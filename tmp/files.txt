@@ -6,7 +6,6 @@ drwxr-xr-x  92 cdzombak  staff   2.9K Jun  1  2017 .nano/
 drwxr-xr-x   6 cdzombak  staff   192B Sep 14 17:34 .npm/
 -rw-r--r--   1 cdzombak  staff    38B Aug  3 17:44 .profile
 drwxr-xr-x   7 cdzombak  staff   224B Aug  3 17:45 .rustup/
--rw-r--r--   1 cdzombak  staff   1.2K May 31  2017 .screenrc
 -rwxr-xr-x@  1 cdzombak  staff   5.5K Jun 16  2017 .set-defaults.sh*
 -rw-r--r--@  1 cdzombak  staff   376B Jan 16 23:11 .zlogin
 -rw-r--r--   1 cdzombak  staff   448B Jan 16 22:29 .zprofile

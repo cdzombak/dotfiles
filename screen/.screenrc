@@ -1,0 +1,35 @@
+# .screenrc
+# based on https://github.com/andrewsardone/dotfiles/blob/master/screen/.screenrc
+
+shell -$SHELL
+
+escape ^]^]
+
+defscrollback   10000
+autodetach      on
+
+startup_message	off
+
+# xterm scrollback
+termcapinfo xterm ti@:te@
+
+# status - can't get nice hostname working and I need to move on
+#screen
+#screen $SHELL -c 'screen -X hardstatus alwayslastline "%{= kw}%{g}[ %{w}$(short_hostname) %{R}$STY %{g}] %{Y} %=%{ =kw}%{w}%-w%{Y}%{g}[%{W}%{y}%n: %t%{Y}%{g}]%{w}%+w%=%{g} [ %{y}%l %{g}] [ %{Y}%m-%d %{w}%c %{g}]"'
+hardstatus alwayslastline "%{= kw}%{g}[ %{w}%H %{R}$STY %{g}] %{Y} %=%{ =kw}%{w}%-w%{Y}%{g}[%{W}%{y}%n: %t%{Y}%{g}]%{w}%+w%=%{g} [ %{y}%l %{g}] [ %{Y}%m-%d %{w}%c %{g}]"
+
+# add caption for split screen
+caption splitonly "%{= kw} %?%F%{rk} %?%n: %t %{kw} %f %?(%u)"
+
+# xterm scrollback
+termcapinfo xterm ti@:te@
+
+term screen-256color
+
+# Tell Screen to write its copy buffer to a temporary file (defaults to
+# /tmp/screen-exchange), and then send that file to `pbcopy`.
+# Bound the command to C-a b
+# http://www.samsarin.com/blog/2007/03/11/gnu-screen-working-with-the-scrollback-buffer/
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+
+bind \\ split -v
