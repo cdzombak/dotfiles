@@ -12,6 +12,7 @@ dependencies: ## Install dependencies
 stow-mac: ## Link dotfiles for setup on macOS
 	stow git
 	stow ruby
+	stow hammerspoon
 
 # TODO: OS X config script
 # mac:
