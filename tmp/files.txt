@@ -1,4 +1,2 @@
 -rw-r--r--   1 cdzombak  staff   158B May 18  2017 .README-system.md
-drwxr-xr-x  92 cdzombak  staff   2.9K Jun  1  2017 .nano/
--rw-r--r--   1 cdzombak  staff   2.8K Jun  5  2017 .nanorc
 -rwxr-xr-x@  1 cdzombak  staff   5.5K Jun 16  2017 .set-defaults.sh*

@@ -4,3 +4,6 @@
 [submodule "zsh/.zsh/zsh-syntax-highlighting"]
 	path = zsh/.zsh/zsh-syntax-highlighting
 	url = https://github.com/cdzombak/zsh-syntax-highlighting.git
+[submodule "nano/.nano"]
+	path = nano/.nano
+	url = https://github.com/cdzombak/nanorc.git

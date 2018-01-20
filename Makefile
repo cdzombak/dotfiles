@@ -19,6 +19,7 @@ stow-mac: dependencies submodules
 	stow screen
 	stow profile
 	stow zsh
+	stow nano
 
 # TODO: OS X config script
 # mac:
