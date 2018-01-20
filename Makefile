@@ -15,6 +15,7 @@ stow-mac: ## Link dotfiles for setup on macOS
 	stow hammerspoon
 	stow login
 	stow lldb
+	stow tig
 
 # TODO: OS X config script
 # mac:
