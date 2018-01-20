@@ -6,7 +6,7 @@
 
 **TODO:** This repository contains configuration files targeted at setting up my preferred OS X (er, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
-**TODO:** I plan to add a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration and a `.screenrc`.
+**TODO:** I plan to add a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration and a `.screenrc`. ([#1](https://github.com/cdzombak/dotfiles/issues/1))
 
 ## Dependencies
 
@@ -22,6 +22,7 @@ When setting up a new OS X system, in addition to dotfiles, the following are re
 * Listings of Safari and Chrome extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
 * The scripts, services, etc. in [my `osx-automation` repository](https://github.com/cdzombak/osx-automation)
 * My IntelliJ settings repository (private)
+* My SSH configuration repository (private)
 
 ## Inspiration & Acknowledgements
 
@@ -31,6 +32,6 @@ This setup — and my further aspirations for it — are inspired by [@andrewsar
 
 Following Andrew's example, I'd like to move the bulk of my Mac configuration and application setup to this repo.
 
-* Some applications can be installed via CLI from the Mac App Store, and many others are available via `brew cask`.
-* Keeping a list of installed Homebrew packages here would be simple.
-* It would be nice to add [`osx-automation`](https://github.com/cdzombak/osx-automation) as a submodule and symlink its contents to the correct places via `stow`.
+* Some applications can be installed [via CLI from the Mac App Store](https://github.com/mas-cli/mas) ([#2](https://github.com/cdzombak/dotfiles/issues/2)), and many others are available via [`brew cask`](https://caskroom.github.io) ([#3](https://github.com/cdzombak/dotfiles/issues/3)).
+* Keeping a list of installed [Homebrew](https://brew.sh) packages here would be simple. ([#4](https://github.com/cdzombak/dotfiles/issues/4))
+* It would be nice to add [`osx-automation`](https://github.com/cdzombak/osx-automation) as a submodule and symlink its contents to the correct places via `stow`. ([#5](https://github.com/cdzombak/dotfiles/issues/5))
