@@ -17,6 +17,7 @@ stow-mac: ## Link dotfiles for setup on macOS
 	stow lldb
 	stow tig
 	stow screen
+	stow profile
 
 # TODO: OS X config script
 # mac:
