@@ -19,7 +19,7 @@ When setting up a new OS X system, in addition to dotfiles, the following are re
 
 * Listings of `/Applications` and `~/Applications`
 * `brew list`
-* Listings of Safari and Chrome exgtensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
+* Listings of Safari and Chrome extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
 * The scripts, services, etc. in [my `osx-automation` repository](https://github.com/cdzombak/osx-automation)
 * My IntelliJ settings repository (private)
 
