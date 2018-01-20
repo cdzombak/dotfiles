@@ -37,8 +37,8 @@ stow-mac: ## Link dotfiles for setup on macOS
 # link-bin:
 # 	@ln -s `pwd`/bin ~/bin
 
-.PHONY: install-mac
-install-mac: dependencies stow-mac ## Configure a macOS system (stow-mac)
+.PHONY: mac
+mac: dependencies stow-mac ## Configure a macOS system (dependencies, stow-mac)
 
 # via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
