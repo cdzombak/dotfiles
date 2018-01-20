@@ -13,6 +13,7 @@ stow-mac: ## Link dotfiles for setup on macOS
 	stow git
 	stow ruby
 	stow hammerspoon
+	stow login
 
 # TODO: OS X config script
 # mac:
