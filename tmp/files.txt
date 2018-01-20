@@ -1,7 +1,6 @@
 -rw-r--r--   1 cdzombak  staff   158B May 18  2017 .README-system.md
 drwx------  10 cdzombak  staff   320B Dec  1 09:45 .config/
 drwxr-xr-x   4 cdzombak  staff   128B Jan 17 10:41 .docker/
--rw-r--r--   1 cdzombak  staff   184B May 26  2017 .gemrc
 drwxr-xr-x  12 cdzombak  staff   384B Jan 11 11:23 .hammerspoon/
 -rw-r--r--   1 cdzombak  staff     0B May 18  2017 .hushlogin
 -rw-r--r--   1 cdzombak  staff   801B Jun  5  2017 .irbrc

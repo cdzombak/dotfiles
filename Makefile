@@ -11,6 +11,7 @@ dependencies: ## Install dependencies
 .PHONY: stow-mac
 stow-mac: ## Link dotfiles for setup on macOS
 	stow git
+	stow ruby
 
 # TODO: OS X config script
 # mac:
