@@ -1,15 +1,15 @@
 default: help
 
 .PHONY: dependencies
-dependencies: ## Install dependencies
+dependencies:
 	@command -v stow >/dev/null 2>&1 || brew install stow 2>/dev/null || sudo apt-get install -y stow 2>/dev/null || sudo yum install -y stow 2>/dev/null || { echo >&2 "Please install GNU stow"; exit 1; }
 
-# TODO: As noted in Aspirations, include osx-automation as a submodule
-# submodules:
-# 	git submodule update --init
+# TODO: As noted in Aspirations, add osx-automation as a submodule
+submodules:
+	git submodule update --init
 
 .PHONY: stow-mac
-stow-mac: ## Link dotfiles for setup on macOS
+stow-mac: dependencies submodules
 	stow git
 	stow ruby
 	stow hammerspoon
@@ -18,6 +18,7 @@ stow-mac: ## Link dotfiles for setup on macOS
 	stow tig
 	stow screen
 	stow profile
+	stow zsh
 
 # TODO: OS X config script
 # mac:
@@ -28,7 +29,7 @@ stow-mac: ## Link dotfiles for setup on macOS
 # 	@ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
-mac: dependencies stow-mac ## Configure a macOS system (dependencies, stow-mac)
+mac: dependencies submodules stow-mac ## Configure a macOS system (stow-mac)
 
 # via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
