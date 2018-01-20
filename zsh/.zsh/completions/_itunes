@@ -1,0 +1,51 @@
+#compdef itunes
+
+local curcontext="$curcontext" state line
+typeset -A opt_args
+
+_arguments -C \
+  ':command:->command' \
+  '*::options:->options'
+
+case $state in
+  (command)
+    local -a subcommands
+    subcommands=(
+      'launch:Launch iTunes'
+      'quit:Quit iTunes'
+      'play:Play'
+      'stop:Stop playback'
+      'pause:Pause playback'
+      'resume:Resume playback'
+      'rewind:Rewind playback'
+      'mute:Mute iTunes'
+      'unmute:Unmute iTunes'
+      'next:Skip to the next song'
+      'previous:Return to the previous song'
+      'shuf:Set shuffled playback'
+      'shuffle:Set shuffled playback'
+      'vol:Set volume to a given amount from 0 to 100'
+      'status:Show what song is currently playing in iTunes'
+      'playing:Show what song is currently playing in iTunes'
+      'playlist:Play playlist with a given name'
+      'help:Display help (also -h, --help)'
+    )
+    _describe -t commands 'itunes' subcommands
+  ;;
+
+  (options)
+    case $line[1] in
+
+      (shuf|shuffle)
+        local -a shuffle_subcommands
+        shuffle_subcommands=(
+          'toggle:Toggle shuffle playback mode (doesn''t support the MiniPlayer)'
+          'off:Turn off shuffle playback mode'
+          'on:Turn on shuffle playback mode'
+        )
+        _describe -t commands 'itunes shuffle' shuffle_subcommands
+      ;;
+
+    esac
+  ;;
+esac
