@@ -1,0 +1,2 @@
+command alias uikit expr @import UIKit
+command alias foundation expr @import Foundation

@@ -1,5 +1,4 @@
 -rw-r--r--   1 cdzombak  staff   158B May 18  2017 .README-system.md
--rw-r--r--   1 cdzombak  staff    88B May 26  2017 .lldbinit
 drwx------   3 cdzombak  staff    96B May 17  2017 .local/
 drwxr-xr-x  92 cdzombak  staff   2.9K Jun  1  2017 .nano/
 -rw-r--r--   1 cdzombak  staff   2.8K Jun  5  2017 .nanorc
