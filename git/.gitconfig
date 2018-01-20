@@ -1,0 +1,78 @@
+# Core
+
+[user]
+	name = Chris Dzombak
+	email = chris@chrisdzombak.net
+	signingkey = E5BFE8EF
+
+[core]
+	autocrlf = false
+	excludesfile = /Users/cdzombak/.gitignore
+	quotepath = false
+	trustctime = false
+
+[color]
+	diff = true
+	status = true
+	branch = true
+	interactive = true
+	ui = true
+
+[commit]
+	gpgsign = true
+
+[apply]
+	whitespace = nowarn
+
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+
+[url "https://"]
+	insteadOf = git://
+
+[credential]
+	helper = osxkeychain
+
+# GitHub
+
+[github]
+	user = cdzombak
+[gist]
+	home = /Users/cdzombak/code/gists
+
+# Aliases
+
+[alias]
+	st = status -sb
+	poh = push origin HEAD
+	wdiff = diff --word-diff
+	co = checkout
+	ci = commit
+	br = branch
+	sta = stash
+	sub = submodule
+	pre = pull --rebase
+	lg = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	tags = tag -l
+	exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
+	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+# Tools
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+	compactionHeuristic = true
+	tool = Kaleidoscope
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2

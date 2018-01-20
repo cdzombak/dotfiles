@@ -10,24 +10,7 @@ dependencies: ## Install dependencies
 
 .PHONY: stow-mac
 stow-mac: ## Link dotfiles for setup on macOS
-	@echo "stow"
-	# stow git
-	# stow misc
-	# stow ruby
-	# stow screen
-	# stow slate
-	# stow sqlite
-	# stow tig
-	# stow tmux
-	# stow vim
-	# stow xvim
-	# stow zsh
-	# stow lldb
-	# stow node
-	# stow xdg_base_directory
-	# stow asdf
-	# stow docker
-	# stow emacs
+	stow git
 
 # TODO: OS X config script
 # mac:
