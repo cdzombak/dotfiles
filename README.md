@@ -4,7 +4,7 @@
 
 ## Repo Contents
 
-This repository contains configuration files targeted at setting up my preferred OS X (er, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
+This repository contains configuration files targeted at setting up my preferred ~~OS X~~ (fine, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
 There is also a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration, essential Git configuration, and a `.screenrc`.
 
@@ -13,9 +13,9 @@ There is also a `server` build target, which will install a minimal configuratio
 * [GNU `make`](https://www.gnu.org/software/make/)
 * [GNU `stow`](https://www.gnu.org/software/stow/)
 
-## Other OS X System Configuration
+## Other macOS System Configuration
 
-When setting up a new OS X system, in addition to dotfiles, the following are required:
+When setting up a new macOS system, in addition to dotfiles, the following are required:
 
 * Listings of `/Applications` and `~/Applications` ([#2](https://github.com/cdzombak/dotfiles/issues/2), [#3](https://github.com/cdzombak/dotfiles/issues/3))
 * `brew list` ([#4](https://github.com/cdzombak/dotfiles/issues/4))
@@ -25,6 +25,8 @@ When setting up a new OS X system, in addition to dotfiles, the following are re
 * My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * The miscellaneous configuration files in `~/Dropbox/Configs`
+
+My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
 ## Inspiration & Acknowledgements
 
