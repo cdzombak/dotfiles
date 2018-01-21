@@ -1,2 +1,0 @@
--rw-r--r--   1 cdzombak  staff   158B May 18  2017 .README-system.md
--rwxr-xr-x@  1 cdzombak  staff   5.5K Jun 16  2017 .set-defaults.sh*

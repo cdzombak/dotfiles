@@ -4,7 +4,7 @@
 
 ## Repo Contents
 
-**TODO:** This repository contains configuration files targeted at setting up my preferred OS X (er, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
+This repository contains configuration files targeted at setting up my preferred OS X (er, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
 **TODO:** I plan to add a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration and a `.screenrc`. ([#1](https://github.com/cdzombak/dotfiles/issues/1))
 
@@ -17,12 +17,13 @@
 
 When setting up a new OS X system, in addition to dotfiles, the following are required:
 
-* Listings of `/Applications` and `~/Applications`
-* `brew list`
+* Listings of `/Applications` and `~/Applications` ([#2](https://github.com/cdzombak/dotfiles/issues/2), [#3](https://github.com/cdzombak/dotfiles/issues/3))
+* `brew list` ([#4](https://github.com/cdzombak/dotfiles/issues/4))
 * Listings of Safari and Chrome extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
-* The scripts, services, etc. in [my `osx-automation` repository](https://github.com/cdzombak/osx-automation)
-* My IntelliJ settings repository (private)
-* My SSH configuration repository (private)
+* The scripts, services, etc. in [my `osx-automation` repository](https://github.com/cdzombak/osx-automation) ([#5](https://github.com/cdzombak/dotfiles/issues/5))
+* Dropbox symlinks to/from various areas in my homed directory ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01); private)
+* My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
+* My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 
 ## Inspiration & Acknowledgements
 
