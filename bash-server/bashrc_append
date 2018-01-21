@@ -1,0 +1,3 @@
+alias ..='cd ..'
+alias md='mkdir'
+set -o noclobber

@@ -5,7 +5,7 @@ IFS=$'\n\t'
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS setup because not on macOS"
-  exit 1
+  exit 2
 fi
 
 # inspired by:

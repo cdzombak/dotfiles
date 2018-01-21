@@ -2,10 +2,16 @@ SHELL:=/usr/bin/env bash
 
 default: help
 
+# via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
+.PHONY: help
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+# Cross-Platform Targets
+
 .PHONY: homebrew
-homebrew: ## Install Homebrew
-	if [ "$(uname)" != "Darwin" ]; then echo "Skipping Homebrew install because not on macOS" && exit 0; fi
-	@command -v brew >/dev/null 2>&1 && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+homebrew: ## Install Homebrew (no-op on other than macOS)
+	sh install-homebrew.sh
 
 .PHONY: dependencies
 dependencies: homebrew
@@ -16,8 +22,20 @@ dependencies: homebrew
 submodules:
 	git submodule update --init
 
+# Platform Verfication
+
+.PHONY: require-macos
+require-macos:
+	@if [ "$$(uname)" != "Darwin" ]; then echo "This target must be run on macOS." && exit 2; fi
+
+.PHONY: require-non-macos
+require-non-macos:
+	@if [ "$$(uname)" == "Darwin" ]; then echo "This target is not intended to run on macOS." && exit 2; fi
+
+# macOS Targets
+
 .PHONY: stow-mac
-stow-mac: dependencies submodules
+stow-mac: dependencies submodules require-macos
 	stow git
 	stow ruby
 	stow hammerspoon
@@ -30,7 +48,7 @@ stow-mac: dependencies submodules
 	stow nano
 
 .PHONY: configure-mac
-configure-mac: ## Run macOS defaults configuration script
+configure-mac: require-macos
 	sh macos-configure.sh
 
 # TODO: As noted in Aspirations, install osx-automation's scripts
@@ -39,19 +57,24 @@ configure-mac: ## Run macOS defaults configuration script
 # 	@ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
-mac: configure-mac stow-mac ## Configure a macOS system (configure-mac stow-mac)
+mac: require-macos configure-mac stow-mac ## Install Homebrew & configure a macOS system
+
+# Server (*nix) Targets
 
 .PHONY: stow-server
-stow-server: dependencies submodules
+stow-server: dependencies submodules require-non-macos
 	stow git-server
 	stow screen
 	stow nano
 	stow tig
 
-.PHONY: server
-server: stow-server ## Configure a *nix server (stow-server)
+.PHONY: integrate-bash-server
+integrate-bash-server: require-non-macos
+	sh bash-server/integrate.sh
 
-# via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-.PHONY: help
-help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+.PHONY: server-homedir
+server-homedir: require-non-macos
+	sh server-homedir.sh
+
+.PHONY: server
+server: require-non-macos server-homedir stow-server integrate-bash-server ## Configure a *nix server
