@@ -13,6 +13,6 @@ fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RC_APPEND_LINE="source \"$DIR/bashrc_append\""
-grep -qF 'include "/bashrc_append"' ~/.bashrc || echo -n "\n$RC_APPEND_LINE\n" >> ~/.bashrc
+grep -qF 'include "/bashrc_append"' ~/.bashrc || (echo "" >> ~/.bashrc ; echo "$RC_APPEND_LINE" >> ~/.bashrc)
 
 ln -s "$DIR/.bash_profile" $HOME/.bash_profile
