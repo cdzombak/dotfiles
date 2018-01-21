@@ -12,6 +12,11 @@ fi
 #   brandonb927's osx-for-hackers.sh: https://gist.github.com/brandonb927/3195465
 #   andrewsardone's dotfiles: https://github.com/andrewsardone/dotfiles/blob/master/osx/osx-defaults
 
+# app keyboard shortcuts:
+#   read via defaults read com.BUNDLE_ID NSUserKeyEquivalents
+#   meta-keys: @ for Command, $ for Shift, ~ for Alt and ^ for Ctrl
+#   via http://hints.macworld.com/article.php?story=20131123074223584
+
 # Set the colours you can use
 black='\033[0;30m'
 white='\033[0;37m'
@@ -306,6 +311,10 @@ echo ""
 echo "Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app"
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
 
+echo ""
+echo "Add the keyboard shortcut ⌘ + ⇧ + K to clear flag in Mail.app"
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Clear Flag" "@\$k"
+
 ###############################################################################
 # IntelliJ
 ###############################################################################
@@ -376,6 +385,15 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 echo ""
 echo "Avoid t.co in Tweetbot-Mac"
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+
+###############################################################################
+# Messages
+###############################################################################
+
+echo ""
+echo "Messages.app keyboard shortcuts"
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation" "@~^c"
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation\\U2026" "@^\$w"
 
 ###############################################################################
 # Kill affected applications
