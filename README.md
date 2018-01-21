@@ -25,6 +25,7 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * The miscellaneous configuration files in `~/Dropbox/Configs`
+* Custom launch agents from `~/Library/LaunchAgents`
 
 My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
