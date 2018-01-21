@@ -12,6 +12,7 @@ fi
 # We do this by sourcing an additional config file here, rather than adding all changes to ~/.bashrc.
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 RC_APPEND_LINE="source \"$DIR/bashrc_append\""
 grep -qF 'include "/bashrc_append"' ~/.bashrc || echo -n "\n$RC_APPEND_LINE\n" >> ~/.bashrc
+
+ln -s "$DIR/.bash_profile" $HOME/.bash_profile

@@ -8,7 +8,7 @@ if [ "$(uname)" == "Darwin" ]; then
   exit 2
 fi
 
-mkdir -p opt/bin
-mkdir -p opt/sbin
-mkdir -p opt/lib
-mkdir -p tmp
+mkdir -p $HOME/opt/bin
+mkdir -p $HOME/opt/sbin
+mkdir -p $HOME/opt/lib
+mkdir -p $HOME/tmp
