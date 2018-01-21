@@ -1,0 +1,40 @@
+# Core
+
+[user]
+	name = Chris Dzombak
+	email = chris@chrisdzombak.net
+
+[core]
+	autocrlf = false
+	excludesfile = /home/cdzombak/.gitexcludes
+	quotepath = false
+	trustctime = false
+
+[color]
+	diff = true
+	status = true
+	branch = true
+	interactive = true
+	ui = true
+
+[apply]
+	whitespace = nowarn
+
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+
+[url "https://"]
+	insteadOf = git://
+
+# Aliases
+
+[alias]
+	st = status -sb
+	poh = push origin HEAD
+	co = checkout
+	ci = commit
+	br = branch
+	sta = stash
+	sub = submodule
+	pre = pull --rebase
+	lg = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative

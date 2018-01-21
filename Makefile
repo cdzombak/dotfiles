@@ -41,6 +41,16 @@ configure-mac: ## Run macOS defaults configuration script
 .PHONY: mac
 mac: configure-mac stow-mac ## Configure a macOS system (configure-mac stow-mac)
 
+.PHONY: stow-server
+stow-server: dependencies submodules
+	stow git-server
+	stow screen
+	stow nano
+	stow tig
+
+.PHONY: server
+server: stow-server ## Configure a *nix server (stow-server)
+
 # via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
 help:

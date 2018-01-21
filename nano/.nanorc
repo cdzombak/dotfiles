@@ -4,9 +4,6 @@ set tabsize 4
 set quickblank
 set smarthome
 
-#set backup
-set backupdir "/Users/cdzombak/.nano-backups"
-
 # not used for now:
 #set nowrap
 #set tabstospaces
