@@ -15,4 +15,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RC_APPEND_LINE="source \"$DIR/bashrc_append\""
 grep -qF 'include "/bashrc_append"' ~/.bashrc || (echo "" >> ~/.bashrc ; echo "$RC_APPEND_LINE" >> ~/.bashrc)
 
-ln -s "$DIR/.bash_profile" $HOME/.bash_profile
+if [ ! -e "$HOME/.bash_profile" ]; then
+  ln -s "$DIR/.bash_profile" "$HOME/.bash_profile"
+else
+  if [ ! -L "$HOME/.bash_profile" ]; then
+    echo "Warning: .bash_profile exists but is not a symlink."
+    echo "         Manually integrate that file into dotfiles/bash-server."
+  fi
+fi
