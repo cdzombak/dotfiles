@@ -6,7 +6,7 @@
 
 This repository contains configuration files targeted at setting up my preferred OS X (er, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
-**TODO:** I plan to add a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration and a `.screenrc`. ([#1](https://github.com/cdzombak/dotfiles/issues/1))
+There is also a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration, essential Git configuration, and a `.screenrc`.
 
 ## Dependencies
 
