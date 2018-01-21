@@ -312,10 +312,6 @@ echo "Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 echo ""
-echo "Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app"
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
-
-echo ""
 echo "Add the keyboard shortcut ⌘ + ⇧ + K to clear flag in Mail.app"
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Clear Flag" "@\$k"
 
