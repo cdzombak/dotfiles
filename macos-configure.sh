@@ -251,6 +251,10 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Pinning Dock to the right side"
+defaults write com.apple.Dock orientation -string right
+
+echo ""
 echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
