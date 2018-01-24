@@ -4,7 +4,7 @@
 
 ## Repo Contents
 
-This repository contains configuration files targeted at setting up my preferred ~~OS X~~ (fine, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
+This repository contains configuration files that help implement my preferred ~~OS X~~ (fine, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
 There is also a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration, essential Git configuration, and a `.screenrc`.
 
