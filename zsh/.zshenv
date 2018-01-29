@@ -27,3 +27,7 @@ source ~/.zsh/fn-default.zsh
 env_default PAGER 'less'
 env_default LESS '-R'
 export EDITOR='nano -w'
+
+if [ -f /Users/cdzombak/code/censys/cub/bin/cub ]; then
+	eval "$(/Users/cdzombak/code/censys/cub/bin/cub init -)"
+fi
