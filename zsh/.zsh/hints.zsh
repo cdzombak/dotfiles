@@ -30,6 +30,7 @@ HINTS=(
     "${CYAN}watch-reload-chrome/safari${NC} to refresh your browser when your codebase changes."
     "Syntax is ${CYAN}screen -DR [name]${NC} to open a screen."
     "Use ${CYAN}tldr${NC} for a quick ${CYAN}man${NC} alternative."
+    "${CYAN}wx${NC} and ${CYAN}metar${NC} are available for weather checks."
 )
 echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
 
