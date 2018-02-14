@@ -27,6 +27,8 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * The miscellaneous configuration files in `~/Dropbox/Configs`
 * Custom launch agents from `~/Library/LaunchAgents`
+* Lock down `/etc/ssh/sshd_config`
+* Etc. settings in System Preferences (would be nice to migrate to the configuration script)
 
 My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
