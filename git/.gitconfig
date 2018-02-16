@@ -56,6 +56,7 @@
 	tags = tag -l
 	exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	cbr = rev-parse --abbrev-ref HEAD
 
 # Tools
 
