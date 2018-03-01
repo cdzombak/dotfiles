@@ -65,6 +65,7 @@ source ~/.zsh/bundler.zsh
 source ~/.zsh/json.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
+source ~/.zsh/fzf.zsh
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 
 zstyle ':notify:*' command-complete-timeout 10
