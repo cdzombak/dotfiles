@@ -24,9 +24,6 @@
 [apply]
 	whitespace = nowarn
 
-[format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
-
 [url "https://"]
 	insteadOf = git://
 
