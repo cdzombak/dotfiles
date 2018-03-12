@@ -6,9 +6,8 @@ virtualenvwrapper='virtualenvwrapper.sh'
 VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python2'
 PYTHON_V=`$VIRTUALENVWRAPPER_PYTHON -c "import platform; print(platform.python_version())"`
 echo "\033[0;33m\ue0b0\033[0m Configuring \033[0;36mvirtualenvwrapper\033[0m with \033[0;36mpython2/pip2\033[0m ($PYTHON_V) at \033[0;36m$VIRTUALENVWRAPPER_PYTHON\033[0m."
-PYTHON_V=`/usr/bin/python -c "import platform; print(platform.python_version())"`
 PYTHON_V3=`/usr/local/bin/python3 -c "import platform; print(platform.python_version())"`
-echo "\033[0;33m\ue0b0\033[0m Also available: \033[0;36mpython\033[0m ($PYTHON_V), \033[0;36mpython3/pip3\033[0m ($PYTHON_V3).\n"
+echo "\033[0;33m\ue0b0\033[0m Also available: \033[0;36mpython3/pip3\033[0m ($PYTHON_V3).\n"
 unset PYTHON_V
 unset PYTHON_V3
 
