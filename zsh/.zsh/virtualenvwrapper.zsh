@@ -2,12 +2,12 @@
 
 virtualenvwrapper='virtualenvwrapper.sh'
 
-# setup virtualenvwrapper for Homebrew's python2. I have no idea how to use it with system python or python3.
-VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python2'
+# setup virtualenvwrapper for Homebrew's python2.
+VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python'
 PYTHON_V=`$VIRTUALENVWRAPPER_PYTHON -c "import platform; print(platform.python_version())"`
-echo "\033[0;33m\ue0b0\033[0m Configuring \033[0;36mvirtualenvwrapper\033[0m with \033[0;36mpython2/pip2\033[0m ($PYTHON_V) at \033[0;36m$VIRTUALENVWRAPPER_PYTHON\033[0m."
+echo "\033[0;33m\ue0b0\033[0m Configuring \033[0;36mvirtualenvwrapper\033[0m with brewed \033[0;36mpython/pip\033[0m (\033[0;36mpython2/pip2\033[0m) ($PYTHON_V) at \033[0;36m$VIRTUALENVWRAPPER_PYTHON\033[0m."
 PYTHON_V3=`/usr/local/bin/python3 -c "import platform; print(platform.python_version())"`
-echo "\033[0;33m\ue0b0\033[0m Also available: \033[0;36mpython3/pip3\033[0m ($PYTHON_V3).\n"
+echo "\033[0;33m\ue0b0\033[0m Also available: brewed \033[0;36mpython3/pip3\033[0m ($PYTHON_V3).\n"
 unset PYTHON_V
 unset PYTHON_V3
 
