@@ -30,6 +30,10 @@
 [credential]
 	helper = osxkeychain
 
+[pager]
+	status = false
+	branch = false
+
 # GitHub
 
 [github]
@@ -72,5 +76,6 @@
 [diff]
 	compactionHeuristic = true
 	tool = Kaleidoscope
+
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
