@@ -180,8 +180,12 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # fi
 
 echo ""
-echo "Hiding all desktop icons"
-defaults write com.apple.finder CreateDesktop -bool false
+echo ""
+cecho "Hide all desktop icons? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  defaults write com.apple.finder CreateDesktop -bool false
+fi
 
 echo ""
 echo "Allowing text selection in Quick Look/Preview in Finder by default"
