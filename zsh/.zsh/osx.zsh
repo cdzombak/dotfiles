@@ -38,7 +38,7 @@ function ff() {
 }
 
 function quick-look() {
-  (( $# > 0 )) && qlmanage -p $* &>/dev/null &
+  (( $# > 0 )) && qlmanage -p $* &>/dev/null
 }
 
 alias ql="quick-look"
