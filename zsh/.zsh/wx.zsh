@@ -1,9 +1,9 @@
 function wx() {
 	if [[ $# -eq 0 ]]; then
-		curl "wttr.in/Ann+Arbor,+Michigan"
+		curl "https://wttr.in/Ann+Arbor,+Michigan"
 	else 
 		local msg="$*"
-		curl "wttr.in/$msg?u"
+		curl "https://wttr.in/$msg?u"
 	fi
 }
 
