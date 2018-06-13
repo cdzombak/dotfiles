@@ -62,6 +62,7 @@ source ~/.zsh/gitignore.zsh
 source ~/.zsh/xcode.zsh
 source ~/.zsh/golang.zsh
 source ~/.zsh/bundler.zsh
+source ~/.zsh/docker-func.zsh
 source ~/.zsh/json.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
