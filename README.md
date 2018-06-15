@@ -25,10 +25,10 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * Dropbox symlinks to/from various areas in my home directory ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01); private)
 * My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
-* The miscellaneous configuration files in `~/Dropbox/Configs`
+* Miscellaneous tools' configuration files I store in `~/Dropbox/Configs`
 * Custom launch agents from `~/Library/LaunchAgents`
-* Lock down `/etc/ssh/sshd_config`
-* Etc. settings in System Preferences (would be nice to migrate to the configuration script)
+* Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
+* Lock down `/etc/ssh/sshd_config` on the new Mac
 
 My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
