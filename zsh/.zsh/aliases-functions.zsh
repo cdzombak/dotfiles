@@ -86,3 +86,16 @@ YYYY-MM-DD (Short day)          | date +%F\(%a\)          | $(date +%F\(%a\))
 YYYY-MM-DD (Long day)           | date +%F\(%A\)          | $(date +%F\(%A\))
 "
 }
+
+function coauth() {
+	if [[ $# -eq 0 ]]; then
+		local result=$(git log | grep -i "co-authored-by" | head -n 1 | xargs echo)
+		echo "$result" | clipcopy
+		echo "[copied] $result"
+	else 
+		local msg="$*"
+		local result=$(git log | grep -i "co-authored-by" | grep -i "$msg" | head -n 1 | xargs echo)
+		echo "$result" | clipcopy
+		echo "[copied] $result"
+	fi
+}
