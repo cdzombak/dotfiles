@@ -24,6 +24,9 @@ alias unix2dos='todos'
 # fuckingg macbooks
 alias ggit='git'
 
+# is this a dag????
+alias dag='git'
+
 # git - stage missing files for removal
 alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
