@@ -3,7 +3,7 @@
 [user]
 	name = Chris Dzombak
 	email = chris@chrisdzombak.net
-	signingkey = E5BFE8EF
+	signingkey = 8C54123A
 
 [core]
 	autocrlf = false
