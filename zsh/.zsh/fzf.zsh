@@ -1,8 +1,30 @@
 # fzf
 # https://github.com/junegunn/fzf
+
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border --multi'
 export FZF_DEFAULT_COMMAND='ag -g ""'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+###
+### [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+###
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  export PATH="$PATH:/usr/local/opt/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+###
+######
+###
 
 # fshow - git commit browser (enter for show, ctrl-d for diff, ` toggles sort)
 # via https://junegunn.kr/2015/03/browsing-git-commits-with-fzf/
