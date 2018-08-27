@@ -95,6 +95,11 @@ markdownMode:bindWithAutomaticExit('s', function()
   wrapSelectedText('~~')
 end)
 
+-- Strikethrough, Slack edition (ugh)
+markdownMode:bindWithAutomaticExit('t', function()
+  wrapSelectedText('~')
+end)
+
 markdownMode:bindWithAutomaticExit('u', function()
   wrapSelectedText('_')
 end)
