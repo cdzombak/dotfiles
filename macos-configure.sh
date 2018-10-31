@@ -112,12 +112,12 @@ defaults write com.apple.screencapture type png
 # General Power and Performance modifications
 ###############################################################################
 
-echo ""
-cecho "Disable the menubar transparency? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  defaults write com.apple.universalaccess reduceTransparency -bool true
-fi
+# echo ""
+# cecho "Disable the menubar transparency? (y/N)" $magenta
+# read -r response
+# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#   defaults write com.apple.universalaccess reduceTransparency -bool true
+# fi
 
 # echo ""
 # echo "Speeding up wake from sleep to 24 hours from an hour"
