@@ -27,6 +27,7 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * Miscellaneous tools' configuration files I store in `~/Dropbox/Configs`
 * Custom launch agents from `~/Library/LaunchAgents`
+* Alfred workflows & other configuration, which _should_ be synced via Dropbox
 * Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
 * Lock down `/etc/ssh/sshd_config` on the new Mac
 
