@@ -1,3 +1,7 @@
 alias ..='cd ..'
 alias md='mkdir'
+
+# find external IP. pass -4 or -6 to specify v4/v6 address.
+alias myip='curl -s -w "\n" https://ip.dzdz.cz'
+
 set -o noclobber

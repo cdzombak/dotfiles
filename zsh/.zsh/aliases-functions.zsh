@@ -33,6 +33,9 @@ alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs g
 # wake PC via SSH into curie-srv at home
 alias wol-edison="ssh -t curie-remote \"/usr/local/bin/wakeonlan -i 192.168.1.255 -p 7 70:85:c2:22:b5:0b\""
 
+# find external IP. pass -4 or -6 to specify v4/v6 address.
+alias myip='curl -s -w "\n" https://ip.dzdz.cz'
+
 # ls archives (inspired by `extract`)
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 lsz() {
