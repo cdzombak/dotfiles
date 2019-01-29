@@ -7,4 +7,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 
-source ~/.zsh/virtualenvwrapper.zsh
+if [ -f /usr/local/bin/python ]; then
+    source ~/.zsh/virtualenvwrapper.zsh
+fi

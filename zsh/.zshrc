@@ -66,17 +66,18 @@ source ~/.zsh/docker-func.zsh
 source ~/.zsh/json.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
-source ~/.zsh/fzf.zsh
-source ~/.zsh/zsh-notify/notify.plugin.zsh
+which fzf > /dev/null 2>&1 && source ~/.zsh/fzf.zsh
+which thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
 
+if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
+	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+
+source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10
 zstyle ':notify:*' error-title "Error ❗️"
 zstyle ':notify:*' success-title "Completed ✅"
-
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
-eval $(thefuck --alias)
 
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
