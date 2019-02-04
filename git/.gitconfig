@@ -5,6 +5,15 @@
 	email = chris@chrisdzombak.net
 	signingkey = 8C54123A
 
+[includeIf "gitdir:~/code/censys/"]
+	path = .gitconfig-censys
+
+## temporary:
+[includeIf "gitdir:~/code/discover/"]
+	path = .gitconfig-censys
+[includeIf "gitdir:~/code/discover-playground/"]
+	path = .gitconfig-censys
+
 [core]
 	autocrlf = false
 	excludesfile = /Users/cdzombak/.gitexcludes
@@ -80,6 +89,7 @@
 
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
