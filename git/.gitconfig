@@ -11,8 +11,6 @@
 ## temporary:
 [includeIf "gitdir:~/code/discover/"]
 	path = .gitconfig-censys
-[includeIf "gitdir:~/code/discover-playground/"]
-	path = .gitconfig-censys
 
 [core]
 	autocrlf = false
