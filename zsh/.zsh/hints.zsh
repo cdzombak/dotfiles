@@ -2,7 +2,6 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 HINTS=(
-    "${CYAN}f*-&${NC} is available for correcting typos."
     "Use ${CYAN}g_pip[2/3]${NC} to work outside a virtualenv."
     "Use ${CYAN}psgrep${NC} to look for running processes."
     "${CYAN}git-stage-missing${NC} will stage missing files for removal."
