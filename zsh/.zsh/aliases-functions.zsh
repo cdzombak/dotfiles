@@ -39,6 +39,11 @@ alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archive
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
+# download YouTube video -> local Plex server
+youtube-plex-dl() {
+	ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
+}
+
 # ls archives (inspired by `extract`)
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 lsz() {
