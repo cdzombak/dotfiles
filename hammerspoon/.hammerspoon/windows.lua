@@ -257,8 +257,8 @@ function hs.window.nextScreen(win)
   end
 end
 
-local hMovement = 30
-local vMovement = 20
+local hMovement = 40
+local vMovement = 30
 
 function hs.window.moveUp(win)
   local f = win:frame()
