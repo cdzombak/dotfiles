@@ -25,7 +25,7 @@ set -o noclobber
 
 # Set ZSH_CACHE_DIR to the path where cache files should be created
 if [[ -z "$ZSH_CACHE_DIR" ]]; then
-  ZSH_CACHE_DIR="~/.zsh-cache"
+  ZSH_CACHE_DIR="$HOME/.zsh-cache"
 fi
 
 autoload -U compaudit compinit
