@@ -29,7 +29,12 @@ source ~/.zsh/fn-default.zsh
 
 env_default PAGER 'less'
 env_default LESS '-R'
-export EDITOR='nano -w'
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ ! -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
+	export EDITOR='nano -w'
+else
+	export EDITOR='subl -w'
+fi
 
 if [ -f /Users/cdzombak/code/censys/cub/bin/cub ]; then
 	eval "$(/Users/cdzombak/code/censys/cub/bin/cub init -)"

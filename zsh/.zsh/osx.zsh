@@ -1,8 +1,8 @@
 # https://raw.github.com/robbyrussell/oh-my-zsh/master/plugins/osx/osx.plugin.zsh
 
 # add Sublime Text to env:
+# (EDITOR is set in .zshenv)
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-export EDITOR='subl -w'
 
 function pfd() {
   osascript 2>/dev/null <<EOF
