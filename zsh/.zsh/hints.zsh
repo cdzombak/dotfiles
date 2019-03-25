@@ -12,14 +12,10 @@ HINTS=(
     "Use ${CYAN}extract${NC} to extract most archives in the terminal."
     "Hit ${CYAN}ctrl-X ctrl-E${NC} to edit the entered command line in your editor."
     "Use ${CYAN}byword${NC}, ${CYAN}marked${NC}, or ${CYAN}mded${NC} to work with Markdown documents."
-    "${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
     "Use ${CYAN}mdf${NC} to make a directory and switch to it."
     "Use ${CYAN}pfd${NC} or ${CYAN}pfs${NC} to print the current Finder directory or selection."
     "Use ${CYAN}cdf${NC}, ${CYAN}pushdf${NC}, or ${CYAN}ff${NC} to switch to the current Finder directory."
     "Use ${CYAN}trash${NC} to move something to the trash."
-    "macOS: ${CYAN}finder-show/hide-invisibles${NC} will quickly toggle invisible files in Finder."
-    "macOS: ${CYAN}dock-bottom/left/right${NC} are available."
-    "macOS: ${CYAN}Command+Option+D${NC} toggle Dock hiding."
     "Type ${CYAN}cbp${NC} to preview the clipboard in less."
     "Use ${CYAN}pyclean${NC} to cleanup Python bytecode in the current or given directories."
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: https://github.com/sharkdp/fd"
@@ -35,6 +31,17 @@ HINTS=(
     "${CYAN}hsgrep${NC} will grep through history."
     "Run ${CYAN}hist${NC} to look at the most recent 100 commands in history."
 )
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    HINTS=( 
+        "${HINTS[@]}"
+        "[macOS] ${CYAN}Shift-Command-.${NC} will quickly toggle invisible files in Finder."
+        "[macOS] ${CYAN}dock-bottom/left/right${NC} are available."
+        "[macOS] ${CYAN}Command+Option+D${NC} will toggle Dock hiding."
+        "[macOS] ${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
+    )
+fi
+
 echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
 
 unset HINTS

@@ -90,10 +90,6 @@ bid() {
   [[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
 }
 
-# Show/hide hidden files in the Finder
-alias finder-show-invisibles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder && open -a Finder"
-alias finder-hide-invisibles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder && open -a Finder"
-
 # Move the Dock
 alias dock-bottom="defaults write com.apple.Dock orientation -string bottom && killall Dock"
 alias dock-left="defaults write com.apple.Dock orientation -string left && killall Dock"

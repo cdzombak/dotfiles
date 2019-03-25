@@ -47,7 +47,9 @@ source ~/.zsh/aliases-functions.zsh
 source ~/.zsh/grep.zsh
 source ~/.zsh/extract.zsh
 source ~/.zsh/history.zsh
-source ~/.zsh/osx.zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	source ~/.zsh/osx.zsh
+fi
 source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/pip.zsh
