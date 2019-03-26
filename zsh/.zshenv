@@ -25,6 +25,9 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export PIP_RESPECT_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV="1"
+
 source ~/.zsh/fn-default.zsh
 
 env_default PAGER 'less'
