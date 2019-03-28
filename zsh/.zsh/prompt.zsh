@@ -57,6 +57,7 @@ CURRENT_BG='NONE'
   # escape sequence with a single literal character.
   # Do not change this! Do not make it '\u2b80'; that is the old, wrong code point.
   SEGMENT_SEPARATOR=$'\ue0b0'
+  R_SEGMENT_SEPARATOR=$'\ue0b2'
 }
 
 # Begin a segment
@@ -84,6 +85,26 @@ prompt_end() {
   fi
   echo -n "%{%f%}"
   CURRENT_BG=''
+}
+
+rprompt_begin() {
+  local bg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  CURRENT_BG=$1
+  echo -n "%{%K$CURRENT_BG%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR "
+}
+
+prompt_rsegment() {
+  local bg nbg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && nbg="%K{$2}" || nbg="%k"
+  [[ -n $3 ]] && fg="%F{$3}" || fg="%f"
+  echo -n "%{$bg%}%{$fg%} "
+  [[ -n $4 ]] && echo -n $4
+  if [[ $CURRENT_BG != 'NONE' && $2 != $CURRENT_BG ]]; then
+    echo -n " %{$nbg%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR%{$fg%} "
+  fi
+  CURRENT_BG=$2
 }
 
 ### Prompt components
@@ -210,6 +231,20 @@ prompt_virtualenv() {
   fi
 }
 
+rprompt_virtualenv() {
+  local virtualenv_path="$VIRTUAL_ENV"
+  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
+    prompt_rsegment green blue black "`basename $virtualenv_path`"
+  fi
+}
+
+# kubectl context
+source ~/.zsh/kubectl-prompt.zsh
+
+rprompt_kubectl() {
+  prompt_rsegment blue blue black $ZSH_KUBECTL_PROMPT
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -228,7 +263,6 @@ prompt_status() {
 build_prompt() {
   RETVAL=$?
   prompt_status
-  prompt_virtualenv
   prompt_context
   prompt_dir
   prompt_git
@@ -237,4 +271,12 @@ build_prompt() {
   prompt_end
 }
 
+## Right prompt
+build_rprompt() {
+  rprompt_begin green
+  rprompt_virtualenv
+  rprompt_kubectl
+}
+
 PROMPT='%{%f%b%k%}$(build_prompt) '
+RPROMPT='$(build_rprompt)'
