@@ -51,13 +51,17 @@ stow-mac: dependencies submodules require-macos
 configure-mac: require-macos
 	bash macos-configure.sh
 
+.PHONY: software-mac
+software-mac: require-macos
+	bash macos-software-install.sh
+
 # TODO: As noted in Aspirations, install osx-automation's scripts
 # .PHONY: link-mac
 # link-mac:
 # 	@ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
-mac: require-macos configure-mac stow-mac ## Install Homebrew & configure a macOS system
+mac: require-macos configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
 
 # Server (*nix) Targets
 
