@@ -80,6 +80,10 @@ integrate-bash-server: require-non-macos
 server-homedir: require-non-macos
 	bash server-homedir.sh
 
+.PHONY: software-server
+software-server: server-homedir
+    bash server-software-install.sh
+
 .PHONY: server
-server: require-non-macos server-homedir stow-server integrate-bash-server ## Configure a *nix server
+server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a *nix server
 
