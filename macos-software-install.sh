@@ -105,6 +105,7 @@ brew cask install \
   licecap \
   marked \
   omnioutliner \
+  paw \
   rocket \
   sensiblesidebuttons \
   slack \
@@ -113,6 +114,7 @@ brew cask install \
   sublime-text \
   thingsmacsandboxhelper \
   tor-browser \
+  transmit \
   wavebox
 
 echo ""
