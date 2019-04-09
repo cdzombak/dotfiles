@@ -8,12 +8,10 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 # TODO: python & python tools (brew: pycodestyle) (2/3, virtualenv, pip)
-# TODO: node tools
-# TODO: sublime etc
+# TODO: sublime, config, lint deps
 # TODO: osx automation & curie match integration
 # TODO: review and simplify configure
-# TODO: jdks
-# TODO: survey applications for stuff casks & mas can't install: Sonos,
+# TODO: followup steps (configuration, menubar, etc. esp. Choosy)
 # TODO: setapp programatically?
 
 brew install \
@@ -39,11 +37,15 @@ brew install \
   xz \
   yarn
 
+brew tap caskroom/versions
+brew tap homebrew/cask-drivers
+brew tap homebrew/cask-fonts
+
 echo ""
 echo "Install Java tools? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install java
+  brew cask install java java8
   brew install gradle-completion maven
 fi
 
@@ -82,6 +84,7 @@ brew cask install \
   arq \
   brooklyn \
   caprine \
+  choosy \
   dash \
   docker \
   dropbox \
@@ -92,6 +95,7 @@ brew cask install \
   iterm2 \
   ejector \
   fastscripts \
+  font-meslo-for-powerline \
   gpg-suite-no-mail \
   hammerspoon \
   iina \
@@ -104,6 +108,7 @@ brew cask install \
   rocket \
   sensiblesidebuttons \
   slack \
+  sonos \
   spotify \
   sublime-text \
   thingsmacsandboxhelper \
@@ -117,7 +122,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install plexamp
 fi
 
-mas install 1450391666 # AccessControlKitty for Xcode
+echo ""
+echo "Install home hardware utilities? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install fujitsu-scansnap-manager logitech-myharmony
+fi
+
 mas install 1091189122 # Bear
 mas install 1121192229 # Better Blocker
 mas install 1055511498 # Day One
@@ -142,4 +153,4 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 mas install 409203825 409201541 # Numbers, Pages
-mas install 497799835 # Xcode
+mas install 497799835 1450391666 # Xcode, # AccessControlKitty for Xcode
