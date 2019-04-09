@@ -11,7 +11,7 @@ help:
 
 .PHONY: homebrew
 homebrew: ## Install Homebrew (no-op on other than macOS)
-	bash install-homebrew.sh
+	@bash install-homebrew.sh
 
 .PHONY: dependencies
 dependencies: homebrew
@@ -49,16 +49,16 @@ stow-mac: dependencies submodules require-macos
 
 .PHONY: configure-mac
 configure-mac: require-macos
-	bash macos-configure.sh
+	@bash macos-configure.sh
 
 .PHONY: software-mac
-software-mac: require-macos
-	bash macos-software-install.sh
+software-mac: require-macos ## Install macOS software suite. This can take a long time.
+	@bash macos-software-install.sh
 
 # TODO: As noted in Aspirations, install osx-automation's scripts
 # .PHONY: link-mac
 # link-mac:
-# 	@ln -s `pwd`/bin ~/bin
+#   @ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
 mac: require-macos configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
@@ -74,16 +74,16 @@ stow-server: dependencies submodules require-non-macos
 
 .PHONY: integrate-bash-server
 integrate-bash-server: require-non-macos
-	bash bash-server/integrate.sh
+	@bash bash-server/integrate.sh
 
 .PHONY: server-homedir
 server-homedir: require-non-macos
-	bash server-homedir.sh
+	@bash server-homedir.sh
 
 .PHONY: software-server
 software-server: server-homedir
-    bash server-software-install.sh
+	@bash server-software-install.sh
 
 .PHONY: server
-server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a *nix server
+server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a *nix server (currently likely assumes Ubuntu or Debian)
 

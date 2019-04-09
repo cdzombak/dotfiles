@@ -7,12 +7,27 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
+echo "---- macOS Software Installation ----"
+echo "This will take a while. The computer should be plugged in and have a solid network connection."
+echo "If you don't wish to do this now, you can run make software-mac later."
+echo "Continue? (y/N)"
+CONTINUE=false
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  CONTINUE=true
+fi
+
+if ! $CONTINUE; then
+  exit 0
+fi
+
 # TODO: python & python tools (brew: pycodestyle) (2/3, virtualenv, pip)
 # TODO: sublime, config, lint deps
 # TODO: osx automation & curie match integration
-# TODO: review and simplify configure
+# TODO: more app keyboard shortcuts in configure
 # TODO: followup steps (configuration, menubar, etc. esp. Choosy)
 # TODO: setapp programatically?
+# TODO: qlgenerators - see Dropbox and cask possibilities
 
 brew install \
   bash-completion \
@@ -82,8 +97,8 @@ brew cask install \
   aerial \
   alfred \
   arq \
+  bartender \
   brooklyn \
-  caprine \
   choosy \
   dash \
   docker \
@@ -104,6 +119,7 @@ brew cask install \
   kaleidoscope \
   licecap \
   marked \
+  omnidisksweeper \
   omnioutliner \
   paw \
   rocket \
@@ -125,6 +141,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install CoconutBattery? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install coconutbattery
+fi
+
+echo ""
 echo "Install home hardware utilities? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -133,19 +156,38 @@ fi
 
 mas install 1091189122 # Bear
 mas install 1121192229 # Better Blocker
+mas install 420212497 # Byword
+mas install 969418666 # ColorSnapper
 mas install 1055511498 # Day One
 mas install 1381004916 # Discovery network browser
 mas install 924726344 # Deliveries
 mas install 524373870 # Due
+mas install 913158085 # Expressions
+mas install 1081413713 # GIF Brewery
 mas install 959111981 # IPinator
+mas install 927292435 # iStat Mini
 mas install 539362919 # Living Earth
 mas install 455484422 # Liya - SQLite
 mas install 1006739057 # NepTunes
 mas install 1179623856 # Pastebot
+mas install 410968114 # PDFScanner (Scanning & OCR)
 mas install 432027450 # RadarScope
 mas install 880001334 # Reeder 3
 mas install 904280696 # Things
 mas install 494803304 # Wifi Explorer
+
+echo ""
+echo "Install social networking software? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install caprine
+  mas install 792425898 # Flume for Instagram
+  mas install 1384080005 # Tweetbot 3
+
+  # https://twitter.com/dancounsell/status/667011332894535682
+  echo "Avoid t.co in Tweetbot-Mac"
+  defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+fi
 
 echo ""
 echo "Install Keynote? (y/N)"
@@ -156,3 +198,72 @@ fi
 
 mas install 409203825 409201541 # Numbers, Pages
 mas install 497799835 1450391666 # Xcode, # AccessControlKitty for Xcode
+
+echo "In Xcode, show how long it takes to build your project"
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+
+echo "In Xcode, enable faster build times by leveraging multi-core CPU"
+defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
+
+echo ""
+echo "Wrapping up soon...now we'll check on some less-frequently used software."
+
+echo ""
+echo "Install Logic/Final Cut and related tools? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 634148309 # Logic Pro X
+  mas install 424390742 # Compressor
+  mas install 434290957 # Motion
+  mas install 424389933 # Final Cut Pro
+fi
+
+echo ""
+echo "Install games? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 1047760200 # Mini Metro
+  mas install 804079949 # SimCity 4 Deluxe Edition
+fi
+
+echo ""
+echo "Install Calca? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 635758264 # Calca
+fi
+
+echo ""
+echo "Install DaisyDisk? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 411643860 # DaisyDisk
+fi
+
+echo ""
+echo "Install Fileloupe media browser? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 944693506 # Fileloupe
+fi
+
+echo ""
+echo "Install Kindle? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 405399194 # Kindle
+fi
+
+echo ""
+echo "Install MacTracker? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 430255202 # MacTracker
+fi
+
+echo ""
+echo "Install Tomato One focus timer? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 907364780
+fi

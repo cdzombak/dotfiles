@@ -220,9 +220,9 @@ fi
 # echo "Disable the “Are you sure you want to open this application?" dialog
 # defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-echo ""
-echo "Do not hide the Library folder w/in Finder"
-chflags nohidden ~/Library/
+# echo ""
+# echo "Do not hide the Library folder w/in Finder"
+# chflags nohidden ~/Library/
 
 echo ""
 echo "Finder: show all filename extensions"
@@ -290,18 +290,18 @@ echo ""
 echo "Adding a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-echo ""
-echo "Show Safari's status bar."
-defaults write com.apple.Safari ShowStatusBar -bool true
+# echo ""
+# echo "Show Safari's status bar."
+# defaults write com.apple.Safari ShowStatusBar -bool true
 
 echo ""
 echo "Prevent Safari from opening 'safe' files by default"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-echo ""
-echo "Using the system-native print preview dialog in Chrome"
-defaults write com.google.Chrome DisablePrintPreview -bool true
-defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+# echo ""
+# echo "Using the system-native print preview dialog in Chrome"
+# defaults write com.google.Chrome DisablePrintPreview -bool true
+# defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 
 echo ""
 echo "Disable annoying Chrome swipe-to-navigate gesture"
@@ -394,10 +394,10 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 # Messages
 ###############################################################################
 
-echo ""
-echo "Messages.app keyboard shortcuts"
-defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation" "@~^c"
-defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation\\U2026" "@^\$w"
+# echo ""
+# echo "Messages.app keyboard shortcuts"
+# defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation" "@~^c"
+# defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation\\U2026" "@^\$w"
 
 ###############################################################################
 # Kill affected applications
