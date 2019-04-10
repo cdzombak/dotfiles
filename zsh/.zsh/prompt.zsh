@@ -87,6 +87,13 @@ prompt_end() {
   CURRENT_BG=''
 }
 
+# End the right prompt
+rprompt_end() {
+  echo -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  echo -n "%{%k%f%}"
+  CURRENT_BG=''
+}
+
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
@@ -214,7 +221,9 @@ prompt_virtualenv() {
 rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    echo "`basename $virtualenv_path`"
+    CURRENT_BG='cyan'
+    echo -n "%{%k%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR%{%K{$CURRENT_BG}%F{black}%} "
+    echo -n "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`) "
   fi
 }
 
@@ -253,9 +262,9 @@ build_prompt() {
 
 ## Right prompt
 build_rprompt() {
-  # rprompt_begin green
   rprompt_virtualenv
-  rprompt_kubectl
+  # rprompt_kubectl
+  rprompt_end
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
