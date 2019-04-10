@@ -40,7 +40,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
-CURRENT_BG='NONE'
+_ZSH_PROMPT_CURRENT_BG='NONE'
 
 # Special Powerline characters
 
@@ -56,58 +56,58 @@ CURRENT_BG='NONE'
   # what font the user is viewing this source code in. Do not replace the
   # escape sequence with a single literal character.
   # Do not change this! Do not make it '\u2b80'; that is the old, wrong code point.
-  SEGMENT_SEPARATOR=$'\ue0b0'
-  R_SEGMENT_SEPARATOR=$'\ue0b2'
+  _ZSH_PROMPT_SEGMENT_SEPARATOR=$'\ue0b0'
+  _ZSH_PROMPT_R_SEGMENT_SEPARATOR=$'\ue0b2'
 }
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
 # rendering default background/foreground.
-prompt_segment() {
+_zsh_prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  if [[ $_ZSH_PROMPT_CURRENT_BG != 'NONE' && $1 != $_ZSH_PROMPT_CURRENT_BG ]]; then
+    echo -n " %{$bg%F{$_ZSH_PROMPT_CURRENT_BG}%}$_ZSH_PROMPT_SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
-  CURRENT_BG=$1
+  _ZSH_PROMPT_CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
 }
 
 # End the prompt, closing any open segments
-prompt_end() {
-  if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+_zsh_prompt_end() {
+  if [[ -n $_ZSH_PROMPT_CURRENT_BG ]]; then
+    echo -n " %{%k%F{$_ZSH_PROMPT_CURRENT_BG}%}$_ZSH_PROMPT_SEGMENT_SEPARATOR"
   else
     echo -n "%{%k%}"
   fi
   echo -n "%{%f%}"
-  CURRENT_BG=''
+  _ZSH_PROMPT_CURRENT_BG=''
 }
 
 # End the right prompt
-rprompt_end() {
-  if [[ -n $CURRENT_BG && $CURRENT_BG != 'NONE' ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+_zsh_rprompt_end() {
+  if [[ -n $_ZSH_PROMPT_CURRENT_BG && $_ZSH_PROMPT_CURRENT_BG != 'NONE' ]]; then
+    echo -n " %{%k%F{$_ZSH_PROMPT_CURRENT_BG}%}$_ZSH_PROMPT_SEGMENT_SEPARATOR"
   fi
   echo -n "%{%k%f%}"
-  CURRENT_BG=''
+  _ZSH_PROMPT_CURRENT_BG=''
 }
 
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
 # Context: user@hostname (who am I and where am I)
-prompt_context() {
+_zsh_prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@$SHORT_HOST"
+    _zsh_prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@$SHORT_HOST"
   fi
 }
 
 # Git: branch/detached head, dirty status
-prompt_git() {
+_zsh_prompt_git() {
   (( $+commands[git] )) || return
   local PL_BRANCH_CHAR
   () {
@@ -121,9 +121,9 @@ prompt_git() {
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment yellow black
+      _zsh_prompt_segment yellow black
     else
-      prompt_segment green black
+      _zsh_prompt_segment green black
     fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
@@ -149,44 +149,44 @@ prompt_git() {
   fi
 }
 
-prompt_bzr() {
+_zsh_prompt_bzr() {
     (( $+commands[bzr] )) || return
     if (bzr status >/dev/null 2>&1); then
         status_mod=`bzr status | head -n1 | grep "modified" | wc -m`
         status_all=`bzr status | head -n1 | wc -m`
         revision=`bzr log | head -n2 | tail -n1 | sed 's/^revno: //'`
         if [[ $status_mod -gt 0 ]] ; then
-            prompt_segment yellow black
+            _zsh_prompt_segment yellow black
             echo -n "bzr@"$revision "✚ "
         else
             if [[ $status_all -gt 0 ]] ; then
-                prompt_segment yellow black
+                _zsh_prompt_segment yellow black
                 echo -n "bzr@"$revision
 
             else
-                prompt_segment green black
+                _zsh_prompt_segment green black
                 echo -n "bzr@"$revision
             fi
         fi
     fi
 }
 
-prompt_hg() {
+_zsh_prompt_hg() {
   (( $+commands[hg] )) || return
   local rev status
   if $(hg id >/dev/null 2>&1); then
     if $(hg prompt >/dev/null 2>&1); then
       if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
         # if files are not added
-        prompt_segment red white
+        _zsh_prompt_segment red white
         st='±'
       elif [[ -n $(hg prompt "{status|modified}") ]]; then
         # if any modification
-        prompt_segment yellow black
+        _zsh_prompt_segment yellow black
         st='±'
       else
         # if working copy is clean
-        prompt_segment green black
+        _zsh_prompt_segment green black
       fi
       echo -n $(hg prompt "☿ {rev}@{branch}") $st
     else
@@ -194,13 +194,13 @@ prompt_hg() {
       rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
       branch=$(hg id -b 2>/dev/null)
       if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
+        _zsh_prompt_segment red black
         st='±'
       elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
+        _zsh_prompt_segment yellow black
         st='±'
       else
-        prompt_segment green black
+        _zsh_prompt_segment green black
       fi
       echo -n "☿ $rev@$branch" $st
     fi
@@ -208,19 +208,19 @@ prompt_hg() {
 }
 
 # Dir: current working directory
-prompt_dir() {
-  prompt_segment blue black '%~'
+_zsh_prompt_dir() {
+  _zsh_prompt_segment blue black '%~'
 }
 
-rprompt_segment() {
+_zsh_rprompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $1 != $CURRENT_BG ]]; then
-    echo -n " %{%K{$CURRENT_BG}%F{$1}%}$R_SEGMENT_SEPARATOR"
+  if [[ $1 != $_ZSH_PROMPT_CURRENT_BG ]]; then
+    echo -n " %{%K{$_ZSH_PROMPT_CURRENT_BG}%F{$1}%}$_ZSH_PROMPT_R_SEGMENT_SEPARATOR"
   fi
   echo -n "%{$bg%}%{$fg%} "
-  CURRENT_BG=$1
+  _ZSH_PROMPT_CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
 }
 
@@ -232,21 +232,21 @@ rprompt_segment() {
 #   fi
 # }
 
-rprompt_virtualenv() {
+_zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    rprompt_segment cyan black "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`)"
+    _zsh_rprompt_segment cyan black "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`)"
   fi
 }
 
 # kubectl context
 source ~/.zsh/kubectl-prompt.zsh
 
-rprompt_kubectl() {
+_zsh_rprompt_kubectl() {
   if [[ $ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
     local kcprompt
     kcprompt=$(echo -n $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
-    rprompt_segment black cyan "$kcprompt"
+    _zsh_rprompt_segment black cyan "$kcprompt"
   fi
 }
 
@@ -270,34 +270,34 @@ kubernetes-context-hide() {
 # - was there an error
 # - am I root
 # - are there background jobs?
-prompt_status() {
+_zsh_prompt_status() {
   local symbols
   symbols=()
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+  [[ -n "$symbols" ]] && _zsh_prompt_segment black default "$symbols"
 }
 
 ## Main prompt
-build_prompt() {
+_zsh_build_prompt() {
   RETVAL=$?
-  prompt_status
-  prompt_context
-  prompt_dir
-  prompt_git
-  prompt_bzr
-  prompt_hg
-  prompt_end
+  _zsh_prompt_status
+  _zsh_prompt_context
+  _zsh_prompt_dir
+  _zsh_prompt_git
+  _zsh_prompt_bzr
+  _zsh_prompt_hg
+  _zsh_prompt_end
 }
 
 ## Right prompt
-build_rprompt() {
-  rprompt_virtualenv
-  rprompt_kubectl
-  rprompt_end
+_zsh_build_rprompt() {
+  _zsh_rprompt_virtualenv
+  _zsh_rprompt_kubectl
+  _zsh_rprompt_end
 }
 
-PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT='$(build_rprompt)'
+PROMPT='%{%f%b%k%}$(_zsh_build_prompt) '
+RPROMPT='$(_zsh_build_rprompt)'
