@@ -89,7 +89,9 @@ prompt_end() {
 
 # End the right prompt
 rprompt_end() {
-  echo -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  if [[ -n $CURRENT_BG && $CURRENT_BG != 'NONE' ]]; then
+    echo -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  fi
   echo -n "%{%k%f%}"
   CURRENT_BG=''
 }
