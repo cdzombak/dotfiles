@@ -87,26 +87,6 @@ prompt_end() {
   CURRENT_BG=''
 }
 
-rprompt_begin() {
-  local bg
-  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  CURRENT_BG=$1
-  echo -n "%{%K$CURRENT_BG%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR "
-}
-
-prompt_rsegment() {
-  local bg nbg fg
-  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  [[ -n $2 ]] && nbg="%K{$2}" || nbg="%k"
-  [[ -n $3 ]] && fg="%F{$3}" || fg="%f"
-  echo -n "%{$bg%}%{$fg%} "
-  [[ -n $4 ]] && echo -n $4
-  if [[ $CURRENT_BG != 'NONE' && $2 != $CURRENT_BG ]]; then
-    echo -n " %{$nbg%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR%{$fg%} "
-  fi
-  CURRENT_BG=$2
-}
-
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
@@ -234,7 +214,7 @@ prompt_virtualenv() {
 rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_rsegment green blue black "`basename $virtualenv_path`"
+    echo "`basename $virtualenv_path`"
   fi
 }
 
@@ -242,7 +222,7 @@ rprompt_virtualenv() {
 source ~/.zsh/kubectl-prompt.zsh
 
 rprompt_kubectl() {
-  prompt_rsegment blue blue black $ZSH_KUBECTL_PROMPT
+  echo $ZSH_KUBECTL_PROMPT
 }
 
 # Status:
@@ -273,7 +253,7 @@ build_prompt() {
 
 ## Right prompt
 build_rprompt() {
-  rprompt_begin green
+  # rprompt_begin green
   rprompt_virtualenv
   rprompt_kubectl
 }
