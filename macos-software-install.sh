@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+IFS=$'\n\t'
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS setup because not on macOS"
