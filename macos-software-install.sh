@@ -78,6 +78,31 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install mactex texmaker
 fi
 
+echo ""
+echo "-- Database tools."
+echo "-- There are a lot of options here: MySQLWorkbench, DBeaver, Liya (SQLite), plus tools from Setapp (TK)."
+
+echo ""
+echo "Install MySQLWorkbench? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install mysqlworkbench
+fi
+
+echo ""
+echo "Install DBeaver (multi-database management tool)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install dbeaver-community
+fi
+
+echo ""
+echo "Install Liya (for SQLite)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 455484422 # Liya - SQLite
+fi
+
 # install dust: A more intuitive version of du in rust
 if [ ! -x "/usr/local/bin/dust" ]; then
   TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'dust-work'`
@@ -167,7 +192,6 @@ mas install 1081413713 # GIF Brewery
 mas install 959111981 # IPinator
 mas install 927292435 # iStat Mini
 mas install 539362919 # Living Earth
-mas install 455484422 # Liya - SQLite
 mas install 1006739057 # NepTunes
 mas install 1179623856 # Pastebot
 mas install 410968114 # PDFScanner (Scanning & OCR)
