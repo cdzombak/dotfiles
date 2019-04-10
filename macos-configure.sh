@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# TODO: more app keyboard shortcuts in configure
+# TODO: move system prefs here as possible
+
 set -euo pipefail
 IFS=$'\n\t'
 

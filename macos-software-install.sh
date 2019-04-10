@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# TODO: python & python tools (brew: pycodestyle) (2/3, virtualenv, pip)
+# TODO: sublime, config, lint deps
+# TODO: osx automation & curie match integration
+# TODO: followup steps (configuration, menubar, etc. esp. Choosy)
+# TODO: setapp programatically?
+# TODO: qlgenerators - see Dropbox and cask possibilities
+
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -21,14 +28,6 @@ fi
 if ! $CONTINUE; then
   exit 0
 fi
-
-# TODO: python & python tools (brew: pycodestyle) (2/3, virtualenv, pip)
-# TODO: sublime, config, lint deps
-# TODO: osx automation & curie match integration
-# TODO: more app keyboard shortcuts in configure
-# TODO: followup steps (configuration, menubar, etc. esp. Choosy)
-# TODO: setapp programatically?
-# TODO: qlgenerators - see Dropbox and cask possibilities
 
 brew install \
   bash-completion \
