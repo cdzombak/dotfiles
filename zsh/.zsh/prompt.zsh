@@ -90,7 +90,7 @@ prompt_end() {
 # End the right prompt
 rprompt_end() {
   if [[ -n $CURRENT_BG && $CURRENT_BG != 'NONE' ]]; then
-    echo -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
   fi
   echo -n "%{%k%f%}"
   CURRENT_BG=''
@@ -212,20 +212,30 @@ prompt_dir() {
   prompt_segment blue black '%~'
 }
 
-# Virtualenv: current working virtualenv
-prompt_virtualenv() {
-  local virtualenv_path="$VIRTUAL_ENV"
-  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+rprompt_segment() {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $1 != $CURRENT_BG ]]; then
+    echo -n " %{%K{$CURRENT_BG}%F{$1}%}$R_SEGMENT_SEPARATOR"
   fi
+  echo -n "%{$bg%}%{$fg%} "
+  CURRENT_BG=$1
+  [[ -n $3 ]] && echo -n $3
 }
+
+# Virtualenv: current working virtualenv
+# prompt_virtualenv() {
+#   local virtualenv_path="$VIRTUAL_ENV"
+#   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
+#     prompt_segment blue black "(`basename $virtualenv_path`)"
+#   fi
+# }
 
 rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    CURRENT_BG='cyan'
-    echo -n "%{%k%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR%{%K{$CURRENT_BG}%F{black}%} "
-    echo -n "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`) "
+    rprompt_segment cyan black "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`)"
   fi
 }
 
@@ -233,7 +243,27 @@ rprompt_virtualenv() {
 source ~/.zsh/kubectl-prompt.zsh
 
 rprompt_kubectl() {
-  echo $ZSH_KUBECTL_PROMPT
+  if [[ $ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
+    local kcprompt
+    kcprompt=$(echo -n $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
+    rprompt_segment black cyan "$kcprompt"
+  fi
+}
+
+k8s-ctx-show() {
+  ZSH_RPROMPT_K8S_CONTEXT=true
+}
+
+k8s-ctx-hide() {
+  ZSH_RPROMPT_K8S_CONTEXT=false
+}
+
+kubernetes-context-show() {
+  k8s-ctx-show
+}
+
+kubernetes-context-hide() {
+  k8s-ctx-hide
 }
 
 # Status:
@@ -265,7 +295,7 @@ build_prompt() {
 ## Right prompt
 build_rprompt() {
   rprompt_virtualenv
-  # rprompt_kubectl
+  rprompt_kubectl
   rprompt_end
 }
 
