@@ -28,6 +28,10 @@ if [[ -z "$ZSH_CACHE_DIR" ]]; then
   ZSH_CACHE_DIR="$HOME/.zsh-cache"
 fi
 
+if [ -d "$HOME/.shell-completion-local" ] ; then
+    fpath=(~/.shell-completion-local $fpath)
+fi
+
 autoload -U compaudit compinit
 source ~/.zsh/lib-rc/compfix.zsh
 # If completion insecurities exist, warn the user without enabling completions:
