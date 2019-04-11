@@ -178,6 +178,7 @@ brew cask install \
   bartender \
   brooklyn \
   choosy \
+  cloudytabs \
   dash \
   docker \
   dropbox \
