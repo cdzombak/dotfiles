@@ -32,21 +32,36 @@ fi
 brew install \
   bash-completion \
   cloc \
+  coreutils \
+  curl \
   fzf \
   git \
+  gnupg \
+  grep \
   htop \
   iperf3 \
   jq \
   mas \
+  mtr \
   nano \
   nativefier \
   nmap \
   node \
+  pycodestyle \
+  ripgrep \
   screen \
+  shellcheck \
   sqlite \
   stow \
+  swift-sh \
   telnet \
   terminal-notifier \
+  the_silver_searcher \
+  tig \
+  tldr \
+  tofrodos \
+  trash \
+  tree \
   wakeonlan \
   wget \
   xz \
@@ -55,6 +70,8 @@ brew install \
 brew tap caskroom/versions
 brew tap homebrew/cask-drivers
 brew tap homebrew/cask-fonts
+
+npm install -g emoj
 
 echo ""
 echo "Install Java tools? (y/N)"
@@ -65,10 +82,45 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install Scala tools? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install sbt
+fi
+
+echo ""
+echo "Install Carthage? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install carthage
+fi
+
+echo ""
+echo "Install Go? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install go
+fi
+
+echo ""
 echo "Install Google Cloud SDK? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install google-cloud-sdk
+fi
+
+echo ""
+echo "Install Lua? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install lua
+fi
+
+echo ""
+echo "Install WWDC macOS application (for videos, etc.)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install wwdc
 fi
 
 echo ""
@@ -121,6 +173,7 @@ brew cask install \
   1password \
   aerial \
   alfred \
+  appcleaner \
   arq \
   bartender \
   brooklyn \
@@ -142,6 +195,7 @@ brew cask install \
   istat-menus \
   jetbrains-toolbox \
   kaleidoscope \
+  launchcontrol \
   licecap \
   marked \
   omnidisksweeper \
@@ -154,15 +208,17 @@ brew cask install \
   spotify \
   sublime-text \
   thingsmacsandboxhelper \
+  the-unarchiver \
   tor-browser \
   transmit \
-  wavebox
+  wavebox \
+  wireshark
 
 echo ""
-echo "Install Plexamp? (y/N)"
+echo "Install balena etcher (for burning SD card images)? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install plexamp
+  brew cask install balenaetcher
 fi
 
 echo ""
@@ -173,10 +229,53 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install IVPN client? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install ivpn
+fi
+
+echo ""
+echo "Install Mendeley Desktop? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install mendeley
+fi
+
+echo ""
+echo "Install PhotoSweeper X? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install photosweeper-x
+fi
+
+echo ""
+echo "Install Plexamp? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install plexamp
+fi
+
+echo ""
+echo "Install SuperDuper? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install superduper
+fi
+
+echo ""
 echo "Install home hardware utilities? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install fujitsu-scansnap-manager logitech-myharmony
+  brew cask install fujitsu-scansnap-manager logitech-myharmony garmin-express
+fi
+
+echo ""
+echo "Install podcasting utilities? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install skype
+  open "https://www.ecamm.com/mac/callrecorder/"
 fi
 
 mas install 1091189122 # Bear
@@ -214,10 +313,24 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install Adobe Creative Cloud? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install adobe-creative-cloud
+fi
+
+echo ""
 echo "Install Keynote? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mas install 409183694 # Keynote
+fi
+
+echo ""
+echo "Install Deckset? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install deckset
 fi
 
 mas install 409203825 409201541 # Numbers, Pages
@@ -246,6 +359,7 @@ echo ""
 echo "Install games? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install nsnake
   mas install 1047760200 # Mini Metro
   mas install 804079949 # SimCity 4 Deluxe Edition
 fi
@@ -255,6 +369,13 @@ echo "Install Calca? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mas install 635758264 # Calca
+fi
+
+echo ""
+echo "Install CubicSDR? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install cubicsdr
 fi
 
 echo ""
@@ -272,6 +393,14 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install Handbrake? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install handbrake
+  brew install lame
+fi
+
+echo ""
 echo "Install Kindle? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -286,8 +415,31 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Install Tomato One focus timer? (y/N)"
+echo "Install TableFlip (Markdown table utility)? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  mas install 907364780
+  brew cask install tableflip
 fi
+
+echo ""
+echo "Install Tadam focus timer? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mas install 531349534 # Tadam
+fi
+
+# echo ""
+# echo "Install Tomato One focus timer? (y/N)"
+# read -r response
+# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#   mas install 907364780 # Tomato One
+# fi
+
+echo ""
+echo "Install youtube-dl? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install youtube-dl
+fi
+
+open "https://codingmonkeys.de/portmap/"
