@@ -71,6 +71,9 @@ brew tap caskroom/versions
 brew tap homebrew/cask-drivers
 brew tap homebrew/cask-fonts
 
+brew tap wagoodman/dive
+brew install dive
+
 npm install -g emoj
 
 echo ""
