@@ -45,6 +45,7 @@ brew install \
   mtr \
   nano \
   nativefier \
+  ncdu \
   nmap \
   node \
   pycodestyle \
