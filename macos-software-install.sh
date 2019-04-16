@@ -128,7 +128,7 @@ fi
 
 echo ""
 echo "-- Database tools."
-echo "-- There are a lot of options here: MySQLWorkbench, DBeaver, Liya (SQLite), plus tools from Setapp (TK)."
+echo "-- There are a lot of options here: MySQLWorkbench, Liya (SQLite), IntelliJ, plus tools from Setapp (favorite is SQLPro)."
 
 echo ""
 echo "Install MySQLWorkbench? (y/N)"
@@ -138,14 +138,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Install DBeaver (multi-database management tool)? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install dbeaver-community
-fi
-
-echo ""
-echo "Install Liya (for SQLite)? (y/N)"
+echo "Install Liya (for SQLite, from Mac App Store)? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mas install 455484422 # Liya - SQLite
