@@ -29,6 +29,7 @@ if ! $CONTINUE; then
 fi
 
 brew install \
+  awscli \
   bash-completion \
   cloc \
   coreutils \
