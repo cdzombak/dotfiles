@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# TODO: python & python tools (brew: pycodestyle) (2/3, virtualenv, pip)
-# TODO: sublime, config, lint deps
+# TODO: python & python tools (2/3, virtualenv, pip)
 # TODO: osx automation & curie match integration
 # TODO: followup steps (configuration, menubar, etc. esp. Choosy)
 # TODO: setapp programatically?
@@ -34,13 +33,17 @@ brew install \
   cloc \
   coreutils \
   curl \
+  eslint \
+  flake8 \
   fzf \
   git \
   gnupg \
+  go \
   grep \
   htop \
   iperf3 \
   jq \
+  lua \
   mas \
   mtr \
   nano \
@@ -66,6 +69,7 @@ brew install \
   wakeonlan \
   wget \
   xz \
+  yamllint \
   yarn
 
 brew tap caskroom/versions
@@ -75,7 +79,8 @@ brew tap homebrew/cask-fonts
 brew tap wagoodman/dive
 brew install dive
 
-npm install -g emoj
+npm install -g emoj@">=2.0.0"
+npm install -g dockerfilelint@">=1.5.0"
 
 echo ""
 echo "Install Java tools? (y/N)"
@@ -100,24 +105,10 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Install Go? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew install go
-fi
-
-echo ""
 echo "Install Google Cloud SDK? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install google-cloud-sdk
-fi
-
-echo ""
-echo "Install Lua? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew install lua
 fi
 
 echo ""
