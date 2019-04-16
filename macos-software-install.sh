@@ -239,6 +239,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install OSXFuse (for use with Transmit Disk)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install osxfuse
+fi
+
+echo ""
 echo "Install PhotoSweeper X? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
