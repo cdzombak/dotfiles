@@ -83,6 +83,8 @@ brew install dive
 npm install -g emoj@">=2.0.0"
 npm install -g dockerfilelint@">=1.5.0"
 
+sudo gem install sqlint
+
 echo ""
 echo "Install Java tools? (y/N)"
 read -r response
