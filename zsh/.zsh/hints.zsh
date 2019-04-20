@@ -33,11 +33,11 @@ HINTS=(
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    HINTS=( 
+    HINTS=(
         "${HINTS[@]}"
         "[macOS] ${CYAN}Shift-Command-.${NC} will quickly toggle invisible files in Finder."
         "[macOS] ${CYAN}dock-bottom/left/right${NC} are available."
-        "[macOS] ${CYAN}Command+Option+D${NC} will toggle Dock hiding."
+        "[macOS] ${CYAN}Command+Option+D${NC} will toggle Dock hiding (I often remap to ${CYAN}Control+Shift+H${NC})."
         "[macOS] ${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
     )
 fi
