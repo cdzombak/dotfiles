@@ -44,6 +44,19 @@ youtube-plex-dl() {
 	ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
 }
 
+watch-run() {
+    if [ $# -ne 1 ]
+    then
+        echo "Usage: watch-run COMMAND"
+        echo "Watch the current filesystem tree for changes; run COMMAND when changes are detected."
+        echo ""
+        echo "Examples:"
+        echo "    TEST_CONFIG='xyz' watch-run pytest"
+        return 1
+    fi
+    ag -l | entr "$*"
+}
+
 # ls archives (inspired by `extract`)
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 lsz() {

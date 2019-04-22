@@ -29,11 +29,13 @@ if ! $CONTINUE; then
 fi
 
 brew install \
+  ag \
   awscli \
   bash-completion \
   cloc \
   coreutils \
   curl \
+  entr \
   eslint \
   flake8 \
   fzf \
