@@ -45,16 +45,17 @@ youtube-plex-dl() {
 }
 
 watch-run() {
-    if [ $# -ne 1 ]
+    if [ $# -eq 0 ]
     then
         echo "Usage: watch-run COMMAND"
         echo "Watch the current filesystem tree for changes; run COMMAND when changes are detected."
         echo ""
         echo "Examples:"
         echo "    TEST_CONFIG='xyz' watch-run pytest"
+        echo "    watch-run make test"
         return 1
     fi
-    ag -l | entr "$*"
+    ag -l | entr $*
 }
 
 # ls archives (inspired by `extract`)
@@ -122,7 +123,7 @@ function coauth() {
 		local result=$(git log | grep -i "co-authored-by" | head -n 1 | xargs echo)
 		echo "$result" | clipcopy
 		echo "[copied] $result"
-	else 
+	else
 		local msg="$*"
 		local result=$(git log | grep -i "co-authored-by" | grep -i "$msg" | head -n 1 | xargs echo)
 		echo "$result" | clipcopy
