@@ -58,6 +58,20 @@ watch-run() {
     ag -l | entr $*
 }
 
+_whois_champ() {
+    if (( $# == 1 )) && [[ "$1" == "champ" ]]; then
+        echo "% WWE WHOIS server"
+        echo "% for more information on Champ, visit https://www.youtube.com/watch?v=cFz9ssTTuAM"
+        echo "% This query returned 1 object"
+        echo ""
+        echo "THAT QUESTION WILL BE ANSWERED THIS SUNDAY SUNDAY SUNDAY AT THE WWE SUPERSLAAAAAAAM WHEN JOHN CENA DEFENDS HIS TITLE!"
+    else
+        whois $*
+    fi
+}
+
+alias whois=_whois_champ
+
 # ls archives (inspired by `extract`)
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 lsz() {
