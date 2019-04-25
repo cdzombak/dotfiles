@@ -24,6 +24,9 @@ alias unix2dos='todos'
 # fuckingg macbooks
 alias ggit='git'
 
+# I can't type
+alias subl.='subl .'
+
 # is this a dag????
 alias dag='git'
 
