@@ -161,6 +161,16 @@ if [ ! -x "/usr/local/bin/dust" ]; then
   popd
 fi
 
+# install metar: CLI metar lookup tool
+if [ ! -x "/usr/local/bin/metar" ]; then
+  TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'metar-work'`
+  git clone "https://github.com/RyuKojiro/metar.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make
+  sudo make install
+  popd
+fi
+
 if [ ! -d "/Applications/Setapp" ]; then
   brew cask install setapp
 fi
