@@ -147,6 +147,10 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mas install 455484422 # Liya - SQLite
 fi
 
+echo ""
+echo "--"
+echo ""
+
 # install dust: A more intuitive version of du in rust
 if [ ! -x "/usr/local/bin/dust" ]; then
   TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'dust-work'`
