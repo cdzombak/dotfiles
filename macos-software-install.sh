@@ -298,7 +298,7 @@ mas install 1006739057 # NepTunes
 mas install 1179623856 # Pastebot
 mas install 410968114 # PDFScanner (Scanning & OCR)
 mas install 432027450 # RadarScope
-mas install 880001334 # Reeder 3
+mas install 1449412482 # Reeder 4
 mas install 904280696 # Things
 mas install 494803304 # Wifi Explorer
 
