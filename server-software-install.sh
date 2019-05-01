@@ -7,8 +7,6 @@ if [ "$(uname)" == "Darwin" ]; then
   exit 2
 fi
 
-sudo apt-get -y install jq
-
 # install dust: A more intuitive version of du in rust
 if [ ! -x "/usr/local/bin/dust" ]; then
   TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'dust-work'`

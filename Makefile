@@ -16,6 +16,9 @@ homebrew: ## Install Homebrew (no-op on other than macOS)
 .PHONY: dependencies
 dependencies: homebrew
 	@command -v stow >/dev/null 2>&1 || brew install stow 2>/dev/null || sudo apt-get install -y stow 2>/dev/null || sudo yum install -y stow 2>/dev/null || { echo >&2 "Please install GNU stow"; exit 1; }
+	@command -v curl >/dev/null 2>&1 || brew install curl 2>/dev/null || sudo apt-get install -y curl 2>/dev/null || sudo yum install -y curl 2>/dev/null || { echo >&2 "Please install curl"; exit 1; }
+	@command -v wget >/dev/null 2>&1 || brew install wget 2>/dev/null || sudo apt-get install -y wget 2>/dev/null || sudo yum install -y wget 2>/dev/null || { echo >&2 "Please install wget"; exit 1; }
+	@command -v jq >/dev/null 2>&1 || brew install jq 2>/dev/null || sudo apt-get install -y jq 2>/dev/null || sudo yum install -y jq 2>/dev/null || { echo >&2 "Please install jq"; exit 1; }
 
 # TODO: As noted in Aspirations, add osx-automation as a submodule
 .PHONY: submodules
