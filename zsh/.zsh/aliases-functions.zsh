@@ -98,7 +98,7 @@ compdef _files lsz
 # better cp based on rsync:
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/cp/cp.plugin.zsh
 cpv() {
-    rsync -pogbr -hhh --backup-dir=/tmp/rsync -e /dev/null --progress "$@"
+    rsync -brlptgoD --executability -hhh --backup-dir=/tmp/cpv_rsync -e /dev/null --progress "$@"
 }
 compdef _files cpv
 
