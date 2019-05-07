@@ -232,6 +232,12 @@ _zsh_rprompt_segment() {
 #   fi
 # }
 
+_zsh_rprompt_local_env() {
+  if [[ -n "$_RPROMPT_ENV" ]]; then
+    _zsh_rprompt_segment green black "$_RPROMPT_ENV"
+  fi
+}
+
 _zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
@@ -294,6 +300,7 @@ _zsh_build_prompt() {
 
 ## Right prompt
 _zsh_build_rprompt() {
+  _zsh_rprompt_local_env
   _zsh_rprompt_virtualenv
   _zsh_rprompt_kubectl
   _zsh_rprompt_end
