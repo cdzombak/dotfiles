@@ -201,6 +201,7 @@ brew cask install \
   iterm2 \
   ejector \
   fastscripts \
+  font-meslo-lg \
   font-meslo-for-powerline \
   gpg-suite-no-mail \
   hammerspoon \
