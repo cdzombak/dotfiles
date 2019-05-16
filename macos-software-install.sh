@@ -130,6 +130,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+echo "Install Netdata locally? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install netdata && brew services start netdata
+fi
+
+echo ""
 echo "-- Database tools."
 echo "-- There are a lot of options here: MySQLWorkbench, Liya (SQLite), IntelliJ, plus tools from Setapp (favorite is SQLPro)."
 
