@@ -221,6 +221,7 @@ brew cask install \
   sonos \
   spotify \
   sublime-text \
+  sublime-merge \
   thingsmacsandboxhelper \
   the-unarchiver \
   tor-browser \
