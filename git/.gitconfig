@@ -5,12 +5,14 @@
 	email = chris@chrisdzombak.net
 	signingkey = 8C54123A
 
-[includeIf "gitdir:~/code/censys/"]
-	path = .gitconfig-censys
+[includeIf "gitdir:~/code/grooveid/"]
+	path = .gitconfig-grooveid
 
-## temporary:
-[includeIf "gitdir:~/code/discover/"]
-	path = .gitconfig-censys
+[includeIf "gitdir:~/code/go/src/grooveid.net/"]
+    path = .gitconfig-grooveid
+
+[includeIf "gitdir:~/go/src/grooveid.net/"]
+	path = .gitconfig-grooveid
 
 [core]
 	autocrlf = false

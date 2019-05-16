@@ -1,0 +1,6 @@
+# company-specific config
+
+[user]
+	name = Chris Dzombak
+	email = chris@grooveid.com
+	signingkey = 6FD1801F
