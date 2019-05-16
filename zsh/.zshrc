@@ -52,7 +52,7 @@ source ~/.zsh/grep.zsh
 source ~/.zsh/extract.zsh
 source ~/.zsh/history.zsh
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	source ~/.zsh/osx.zsh
+    source ~/.zsh/osx.zsh
 fi
 source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
@@ -76,8 +76,8 @@ which fzf > /dev/null 2>&1 && source ~/.zsh/fzf.zsh
 which thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
 
 if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
-	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
