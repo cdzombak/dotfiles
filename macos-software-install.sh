@@ -90,7 +90,7 @@ echo ""
 echo "Install Java tools? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install java java8
+  brew cask install java
   brew install gradle-completion maven
 fi
 
