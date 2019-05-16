@@ -38,10 +38,3 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ ! -f "/Applications/Sublime Te
 else
 	export EDITOR='subl -w'
 fi
-
-if [ -f /Users/cdzombak/code/censys/cub/bin/cub ]; then
-	eval "$(/Users/cdzombak/code/censys/cub/bin/cub init -)"
-fi
-if [ -f /Users/cdzombak/.censys-env ]; then
-	source /Users/cdzombak/.censys-env
-fi
