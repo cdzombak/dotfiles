@@ -49,6 +49,7 @@ stow-mac: dependencies submodules require-macos
 	stow profile
 	stow zsh
 	stow nano
+	ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
 
 .PHONY: configure-mac
 configure-mac: require-macos
