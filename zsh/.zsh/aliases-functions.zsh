@@ -156,3 +156,6 @@ alias kst="kubectl --namespace staging"
 alias kgp='kubectl get pods'
 alias kl='kubectl logs -f'
 alias kgpa='kubectl get pods --all-namespaces -owide'
+
+# wait for the minimum to avoid iTerm "session ended very soon" then exit
+alias xx="sleep 3; exit"
