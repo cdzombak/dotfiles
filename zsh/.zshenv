@@ -6,9 +6,9 @@ export PATH="/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/git/man:/usr/local/man:$MANPATH"
 
 # Golang:
-export GOPATH="$HOME/code/go"
+export GOPATH="$HOME/go:$HOME/code/go"
 export GOROOT=/usr/local/opt/go/libexec
-export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
 
 # Rust:
 export PATH="$HOME/.cargo/bin:$PATH"
