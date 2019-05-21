@@ -58,6 +58,7 @@ brew install \
   ripgrep \
   screen \
   shellcheck \
+  shfmt \
   sqlite \
   stow \
   swift-sh \
