@@ -2,6 +2,10 @@
 # updated per Lri's comment
 alias psgrep="ps -Aco pid,comm | sed 's/^ *//'| sed 's/:/ /'|grep -iE"
 
+# grab the 1st of 2nd column of space-separated lines
+alias _1="cut -d\" \" -f1"
+alias _2="cut -d\" \" -f2"
+
 # ls
 alias ls='ls -Fh'
 alias ll='ls -l'
