@@ -161,6 +161,15 @@ alias kgp='kubectl get pods'
 alias kl='kubectl logs -f'
 alias kgpa='kubectl get pods --all-namespaces -owide'
 
-# wait for the minimum to avoid iTerm "session ended very soon" then exit
-alias xx="sleep 3; exit"
-alias qq="sleep 3; exit"
+# wait for the minimum required to avoid iTerm "session ended very soon" then exit
+function delayed_exit() {
+    NOW=$(date +%s)
+    DELTA=$(($NOW-$SESSION_OPENED_TS))
+    INTERVAL=3
+    if (( $DELTA < $INTERVAL )); then
+        sleep $(($INTERVAL-$DELTA))
+    fi
+    exit
+}
+alias xx="delayed_exit"
+alias qq="delayed_exit"
