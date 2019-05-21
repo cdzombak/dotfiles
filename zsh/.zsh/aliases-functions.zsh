@@ -41,7 +41,7 @@ alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs g
 alias wol-edison="ssh -t curie-remote \"/usr/local/bin/wakeonlan -i 192.168.1.255 -p 7 70:85:c2:22:b5:0b\""
 
 # one-off run feedbin archiver (https://github.com/cdzombak/feedbin-auto-archiver)
-alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archiver/venv/bin/python3 /home/cdzombak/scripts/feedbin-auto-archiver/feedbin_archiver.py --rules-file /home/cdzombak/Dropbox/feedbin-archiver-rules.json --dry-run false\""
+alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archiver/venv/bin/python3 /home/cdzombak/scripts/feedbin-auto-archiver/feedbin_archiver.py --rules-file /home/cdzombak/Dropbox/feedbin-archiver-rules.json --dry-run false --ignore-rules-validation true\""
 
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
