@@ -8,7 +8,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
-# du/df
+# du/df (nb. dust also exists)
 alias du='du -h'
 alias duh='du -d 1'
 alias df='df -h'
