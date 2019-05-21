@@ -34,6 +34,7 @@ brew install \
   cloc \
   coreutils \
   curl \
+  dep \
   entr \
   eslint \
   flake8 \
