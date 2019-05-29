@@ -69,6 +69,7 @@
 	cbr = rev-parse --abbrev-ref HEAD
 	recent = ! git reflog | grep 'checkout: moving from' | head -n 50 | egrep -oh ' \\S+$' | awk '!x[$0]++'
     first = rev-list --max-parents=0 HEAD
+    subl-conflicts = ! git status | grep -i 'both modified' | sed 's/both modified://' | xargs subl
 
 # Tools
 
