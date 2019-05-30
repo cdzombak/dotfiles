@@ -180,10 +180,6 @@ if [ ! -x "/usr/local/bin/metar" ]; then
   popd
 fi
 
-if [ ! -d "/Applications/Setapp" ]; then
-  brew cask install setapp
-fi
-
 brew cask install \
   1password \
   aerial \
@@ -357,6 +353,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install deckset
 fi
 
+echo ""
+echo "Install Zoom for videoconferencing? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install zoomus
+fi
+
 mas install 409203825 409201541 # Numbers, Pages
 mas install 497799835 1450391666 # Xcode, # AccessControlKitty for Xcode
 
@@ -466,4 +469,9 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew install youtube-dl
 fi
 
+if [ ! -d "/Applications/Setapp" ]; then
+  brew cask install setapp
+fi
+
+open "https://ejector.app/releases/latest/"
 open "https://codingmonkeys.de/portmap/"
