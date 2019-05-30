@@ -54,6 +54,7 @@ brew install \
   ncdu \
   nmap \
   node \
+  prettier \
   pycodestyle \
   ripgrep \
   screen \
@@ -187,6 +188,7 @@ brew cask install \
   arq \
   bartender \
   brooklyn \
+  bunch \
   choosy \
   dash \
   docker \
@@ -205,6 +207,7 @@ brew cask install \
   istat-menus \
   jetbrains-toolbox \
   kaleidoscope \
+  keybase \
   launchcontrol \
   licecap \
   marked \
@@ -469,6 +472,13 @@ fi
 
 if [ ! -d "/Applications/Setapp" ]; then
   brew cask install setapp
+fi
+
+echo ""
+echo "Get Grasshopper phone software? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  open "https://grasshopper.com/apps/"
 fi
 
 open "https://ejector.app/releases/latest/"
