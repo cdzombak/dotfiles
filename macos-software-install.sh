@@ -196,7 +196,6 @@ brew cask install \
   google-chrome \
   google-drive-file-stream \
   iterm2 \
-  ejector \
   fastscripts \
   font-meslo-lg \
   font-meslo-for-powerline \
