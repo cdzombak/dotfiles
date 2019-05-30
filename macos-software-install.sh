@@ -61,7 +61,6 @@ brew install \
   shfmt \
   sqlite \
   stow \
-  swift-sh \
   telnet \
   terminal-notifier \
   the_silver_searcher \
@@ -475,3 +474,11 @@ fi
 
 open "https://ejector.app/releases/latest/"
 open "https://codingmonkeys.de/portmap/"
+
+# at the very end, since last time on a fresh machine this failed:
+echo ""
+echo "Install swift-sh? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew install mxcl/made/swift-sh
+fi
