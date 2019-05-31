@@ -28,8 +28,9 @@ alias unix2dos='todos'
 # fuckingg macbooks
 alias ggit='git'
 
-# I can't type
-alias subl.='subl .'
+# Sublime
+alias subl='subl -n' # always open a new window when working from CLI
+alias subl.='subl -n .' # I can't type
 
 # is this a dag????
 alias dag='git'
