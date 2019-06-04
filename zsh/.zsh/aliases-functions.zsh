@@ -60,7 +60,7 @@ senv() {
 
 # download YouTube video -> local Plex server
 youtube-plex-dl() {
-	ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
+    ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
 }
 
 watch-run() {
@@ -94,20 +94,20 @@ alias whois=_whois_champ
 # ls archives (inspired by `extract`)
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 lsz() {
-	if [ $# -ne 1 ]
-	then
-		echo "lsz filename.[tar,tgz,gz,zip,etc]"
-		return 1
-	fi
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz) tar tvf $1;;
-			*.zip)  unzip -l $1;;
-			*)      echo "'$1' unrecognized." ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+    if [ $# -ne 1 ]
+    then
+        echo "lsz filename.[tar,tgz,gz,zip,etc]"
+        return 1
+    fi
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz) tar tvf $1;;
+            *.zip)  unzip -l $1;;
+            *)      echo "'$1' unrecognized." ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 compdef _files lsz
 
@@ -130,7 +130,7 @@ function httpserver() {
 }
 
 function dates() {
-	echo "
+    echo "
 Format/result                   |       Command           |          Output
 --------------------------------+-------------------------+----------------------------
 YYYY-MM-DD_hh:mm:ss             | date +%F_%T             | $(date +%F_%T)
@@ -152,16 +152,16 @@ YYYY-MM-DD (Long day)           | date +%F\(%A\)          | $(date +%F\(%A\))
 }
 
 function coauth() {
-	if [[ $# -eq 0 ]]; then
-		local result=$(git log | grep -i "co-authored-by" | head -n 1 | xargs echo)
-		echo "$result" | clipcopy
-		echo "[copied] $result"
-	else
-		local msg="$*"
-		local result=$(git log | grep -i "co-authored-by" | grep -i "$msg" | head -n 1 | xargs echo)
-		echo "$result" | clipcopy
-		echo "[copied] $result"
-	fi
+    if [[ $# -eq 0 ]]; then
+        local result=$(git log | grep -i "co-authored-by" | head -n 1 | xargs echo)
+        echo "$result" | clipcopy
+        echo "[copied] $result"
+    else
+        local msg="$*"
+        local result=$(git log | grep -i "co-authored-by" | grep -i "$msg" | head -n 1 | xargs echo)
+        echo "$result" | clipcopy
+        echo "[copied] $result"
+    fi
 }
 
 # Kubernetes:
