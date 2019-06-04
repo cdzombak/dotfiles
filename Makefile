@@ -66,7 +66,7 @@ software-mac: require-macos ## Install macOS software suite. This can take a lon
 
 .PHONY: mac
 mac: require-macos configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
-	@mkdir -p ~/.shell-completion-local
+	@bash macos-homedir.sh
 
 # Server (*nix) Targets
 
