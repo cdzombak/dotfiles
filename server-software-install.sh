@@ -16,3 +16,11 @@ if [ ! -x "/usr/local/bin/dust" ]; then
   cp dust $HOME/opt/bin
   popd
 fi
+
+# install my listening wrapper for netstat
+if [ ! -x "$HOME/opt/bin/listening" ]; then
+  pushd "$HOME/opt/bin"
+  wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
+  chmod +x listening
+  popd
+fi

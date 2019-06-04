@@ -59,14 +59,17 @@ configure-mac: require-macos
 software-mac: require-macos ## Install macOS software suite. This can take a long time.
 	@bash macos-software-install.sh
 
+.PHONY: homedir-mac
+homedir-mac:
+	@bash macos-homedir.sh
+
 # TODO: As noted in Aspirations, install osx-automation's scripts
 # .PHONY: link-mac
 # link-mac:
 #   @ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
-mac: require-macos configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
-	@bash macos-homedir.sh
+mac: require-macos homedir-mac configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
 
 # Server (*nix) Targets
 
@@ -91,4 +94,3 @@ software-server: server-homedir
 
 .PHONY: server
 server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a *nix server (currently likely assumes Ubuntu or Debian)
-
