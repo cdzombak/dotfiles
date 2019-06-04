@@ -210,8 +210,11 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 #   /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
 # fi
 
+# Set: Entry, ":FK_StandardViewSettings:IconViewSettings:arrangeBy", Does Not Exist
+# happens on fresh installs
 echo ""
 cecho "Enable snap-to-grid for icons on the desktop and in other icon views? (y/N)" $magenta
+cecho "SELECT NO ON FRESH INSTALLS" $red
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
