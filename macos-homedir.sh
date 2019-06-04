@@ -9,8 +9,16 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 mkdir -p "$HOME/.shell-completion-local"
-mkdir -p "$HOME/env"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/sbin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/tmp"
+
+echo ""
+echo "Create dev workflow directories? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mkdir -p "$HOME/code"
+  mkdir -p "$HOME/env"
+  mkdir -p "$HOME/go"
+fi
