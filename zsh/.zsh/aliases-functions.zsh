@@ -47,6 +47,17 @@ alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archive
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
+# source the named env config file from ~/env
+# or, source the file with the same name as working dir
+senv() {
+    if [ $# -ne 1 ]
+    then
+        ENVNAME=${PWD##*/}
+        source "$HOME/env/$ENVNAME"
+    fi
+    source "$HOME/env/$1"
+}
+
 # download YouTube video -> local Plex server
 youtube-plex-dl() {
 	ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
