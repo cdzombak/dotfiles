@@ -6,6 +6,10 @@
 # https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
 
 fpath=(~/.zsh/completions $fpath)
+if [ -d "$HOME/.shell-completion-local" ] ; then
+    fpath=(~/.shell-completion-local $fpath)
+fi
+
 DEFAULT_USER=cdzombak
 autoload -U zmv
 setopt interactivecomments
@@ -28,10 +32,6 @@ set -o noclobber
 # Set ZSH_CACHE_DIR to the path where cache files should be created
 if [[ -z "$ZSH_CACHE_DIR" ]]; then
     ZSH_CACHE_DIR="$HOME/.zsh-cache"
-fi
-
-if [ -d "$HOME/.shell-completion-local" ] ; then
-    fpath=(~/.shell-completion-local $fpath)
 fi
 
 autoload -U compaudit compinit
