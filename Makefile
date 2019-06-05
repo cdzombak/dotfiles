@@ -23,7 +23,7 @@ dependencies: homebrew
 # TODO: As noted in Aspirations, add osx-automation as a submodule
 .PHONY: submodules
 submodules:
-	git submodule update --init
+	@bash init-submodules.sh
 
 # Platform Verfication
 
