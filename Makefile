@@ -60,7 +60,7 @@ software-mac: require-macos ## Install macOS software suite. This can take a lon
 	@bash macos-software-install.sh
 
 .PHONY: homedir-mac
-homedir-mac:
+homedir-mac: require-macos
 	@bash macos-homedir.sh
 
 # TODO: As noted in Aspirations, install osx-automation's scripts

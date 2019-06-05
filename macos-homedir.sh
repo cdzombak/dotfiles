@@ -10,8 +10,9 @@ fi
 
 mkdir -p "$HOME/.shell-completion-local"
 mkdir -p "$HOME/opt/bin"
-mkdir -p "$HOME/opt/sbin"
 mkdir -p "$HOME/opt/lib"
+mkdir -p "$HOME/opt/sbin"
+mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/tmp"
 
 echo ""
@@ -20,5 +21,6 @@ read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mkdir -p "$HOME/code"
   mkdir -p "$HOME/env"
-  mkdir -p "$HOME/go"
+  mkdir -p "$HOME/go/bin"
+  mkdir -p "$HOME/go/src"
 fi
