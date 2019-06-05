@@ -74,8 +74,7 @@ source ~/.zsh/docker-func.zsh
 source ~/.zsh/json.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
-which fzf > /dev/null 2>&1 && source ~/.zsh/fzf.zsh
-which thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
+command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 
 if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'

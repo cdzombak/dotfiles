@@ -67,7 +67,7 @@ bundle_install() {
 }
 
 _bundler-installed() {
-  which bundle > /dev/null 2>&1
+  command -v bundler >/dev/null 2>&1
 }
 
 _within-bundled-project() {
@@ -101,7 +101,7 @@ for cmd in $bundled_commands; do
   eval "function bundled_$cmd () { _run-with-bundler $cmd \$@}"
   alias $cmd=bundled_$cmd
 
-  if which _$cmd > /dev/null 2>&1; then
+  if command -v _$cmd > /dev/null 2>&1; then
     compdef _$cmd bundled_$cmd=$cmd
   fi
 done
