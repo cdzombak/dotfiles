@@ -13,9 +13,6 @@ export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
 # Rust:
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# cloudsqlproxy:
-export PATH="$HOME/opt/cloudsql:$PATH"
-
 # allow installing in ~/opt:
 # export LD_LIBRARY_PATH="$HOME/opt/lib/:$LD_LIBRARY_PATH"
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
