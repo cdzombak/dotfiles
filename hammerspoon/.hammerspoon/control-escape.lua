@@ -23,7 +23,14 @@ control_handler = function(evt)
     control_key_timer:start()
   else
     if send_escape then
-      keyUpDown({}, 'escape')
+      -- keyUpDown({}, 'escape')
+      -- ^ doesn't dismiss Alfred entry window when text has been entered.
+      -- the following does:
+      hs.osascript.applescript([[
+        tell application "System Events"
+          key code 53
+        end tell
+      ]])
     end
     last_mods = new_mods
     control_key_timer:stop()
