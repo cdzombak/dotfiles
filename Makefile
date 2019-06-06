@@ -56,7 +56,8 @@ configure-mac: require-macos
 	@bash macos-configure.sh
 
 .PHONY: software-mac
-software-mac: require-macos ## Install macOS software suite. This can take a long time.
+software-mac: require-macos submodules ## Install macOS software suite. This can take a long time.
+	@bash ./osx-automation/script/install.sh
 	@bash macos-software-install.sh
 
 .PHONY: homedir-mac
