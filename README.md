@@ -4,7 +4,7 @@
 
 ## Repo Contents
 
-This repository contains configuration files that help implement my preferred ~~OS X~~ (fine, macOS) setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
+This repository contains configuration files that help implement my preferred macOS setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
 There is also a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration, essential Git configuration, and a `.screenrc`.
 
@@ -17,17 +17,13 @@ There is also a `server` build target, which will install a minimal configuratio
 
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
-* Listings of `/Applications` and `~/Applications` ([#2](https://github.com/cdzombak/dotfiles/issues/2), [#3](https://github.com/cdzombak/dotfiles/issues/3))
-* `brew list` ([#4](https://github.com/cdzombak/dotfiles/issues/4))
-* `npm list -g`
 * Listings of Safari and Chrome extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
-* The scripts, services, etc. in [my `osx-automation` repository](https://github.com/cdzombak/osx-automation) ([#5](https://github.com/cdzombak/dotfiles/issues/5))
 * Dropbox symlinks to/from various areas in my home directory ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01); private)
 * My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * Miscellaneous tools' configuration files I store in `~/Dropbox/Configs`
 * Custom launch agents from `~/Library/LaunchAgents`
-* Alfred workflows & other configuration, which _should_ be synced via Dropbox
+* ~~Alfred workflows & other configuration~~ (synced via Dropbox)
 * Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
 * Lock down `/etc/ssh/sshd_config` on the new Mac
 

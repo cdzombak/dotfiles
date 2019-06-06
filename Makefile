@@ -14,13 +14,12 @@ homebrew: ## Install Homebrew (no-op on other than macOS)
 	@bash install-homebrew.sh
 
 .PHONY: dependencies
-dependencies: homebrew
+dependencies: homebrew ## Install dependencies
 	@command -v stow >/dev/null 2>&1 || brew install stow 2>/dev/null || sudo apt-get install -y stow 2>/dev/null || sudo yum install -y stow 2>/dev/null || { echo >&2 "Please install GNU stow"; exit 1; }
 	@command -v curl >/dev/null 2>&1 || brew install curl 2>/dev/null || sudo apt-get install -y curl 2>/dev/null || sudo yum install -y curl 2>/dev/null || { echo >&2 "Please install curl"; exit 1; }
 	@command -v wget >/dev/null 2>&1 || brew install wget 2>/dev/null || sudo apt-get install -y wget 2>/dev/null || sudo yum install -y wget 2>/dev/null || { echo >&2 "Please install wget"; exit 1; }
 	@command -v jq >/dev/null 2>&1 || brew install jq 2>/dev/null || sudo apt-get install -y jq 2>/dev/null || sudo yum install -y jq 2>/dev/null || { echo >&2 "Please install jq"; exit 1; }
 
-# TODO: As noted in Aspirations, add osx-automation as a submodule
 .PHONY: submodules
 submodules:
 	@bash init-submodules.sh
@@ -52,22 +51,17 @@ stow-mac: dependencies submodules require-macos
 	ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
 
 .PHONY: configure-mac
-configure-mac: require-macos
+configure-mac: require-macos ## Run macOS configuration script
 	@bash macos-configure.sh
 
 .PHONY: software-mac
-software-mac: require-macos submodules ## Install macOS software suite. This can take a long time.
+software-mac: require-macos submodules ## Install macOS software suite (this can take a long time)
 	@bash ./osx-automation/script/install.sh
 	@bash macos-software-install.sh
 
 .PHONY: homedir-mac
-homedir-mac: require-macos
+homedir-mac: require-macos ## Set up basic macOS home directory structure
 	@bash macos-homedir.sh
-
-# TODO: As noted in Aspirations, install osx-automation's scripts
-# .PHONY: link-mac
-# link-mac:
-#   @ln -s `pwd`/bin ~/bin
 
 .PHONY: mac
 mac: require-macos homedir-mac configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
@@ -86,12 +80,12 @@ integrate-bash-server: require-non-macos
 	@bash bash-server/integrate.sh
 
 .PHONY: server-homedir
-server-homedir: require-non-macos
+server-homedir: require-non-macos ## Set up basic Linux home directory structure
 	@bash server-homedir.sh
 
 .PHONY: software-server
 software-server: server-homedir
-	@bash server-software-install.sh
+	@bash server-software-install.sh ## Install some extra software on Linux
 
 .PHONY: server
-server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a *nix server (currently likely assumes Ubuntu or Debian)
+server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a Linux server (assumes Ubuntu or Debian)
