@@ -112,13 +112,26 @@ markdownMode:bindWithAutomaticExit('c', function()
   wrapSelectedText('`')
 end)
 
+md_control_handler = function(evt)
+  local mods = evt:getFlags()
+  if mods["ctrl"] then
+    md_control_tap:stop()
+    markdownMode:exit()
+  end
+  return false
+end
+md_control_tap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, md_control_handler)
+
 -- Use Control+m to toggle Markdown Mode
 hs.hotkey.bind({'ctrl'}, 'm', function()
   markdownMode:enter()
+  md_control_tap:start()
 end)
 markdownMode:bind({}, 'escape', function()
+  md_control_tap:stop()
   markdownMode:exit()
 end)
 markdownMode:bind({'ctrl'}, 'm', function()
+  md_control_tap:stop()
   markdownMode:exit()
 end)

@@ -511,13 +511,26 @@ windowLayoutMode:bind({'shift', 'cmd'}, 'right', function ()
   hs.window.focusedWindow():shrinkRight()
 end)
 
+wl_control_handler = function(evt)
+  local mods = evt:getFlags()
+  if mods["ctrl"] then
+    wl_control_tap:stop()
+    windowLayoutMode:exit()
+  end
+  return false
+end
+wl_control_tap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, wl_control_handler)
+
 -- Use Control+s to toggle WindowLayout Mode
 hs.hotkey.bind({'ctrl'}, 's', function()
   windowLayoutMode:enter()
+  wl_control_tap:start()
 end)
 windowLayoutMode:bind({}, 'escape', function()
+  wl_control_tap:stop()
   windowLayoutMode:exit()
 end)
 windowLayoutMode:bind({'ctrl'}, 's', function()
+  wl_control_tap:stop()
   windowLayoutMode:exit()
 end)
