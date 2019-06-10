@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO(cdzombak): complete Dropbox integration for personal computers
+
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -23,4 +25,14 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mkdir -p "$HOME/env"
   mkdir -p "$HOME/go/bin"
   mkdir -p "$HOME/go/src"
+fi
+
+echo ""
+echo "Create links from ~ to Dropbox (for WORK computer)? (y/N)"
+echo "(eg. ~/Documents/Dropbox, etc.)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  ln -s "$HOME/Dropbox/Desktop" "$HOME/Desktop/Dropbox"
+  ln -s "$HOME/Dropbox/Documents" "$HOME/Documents/Dropbox"
+  ln -s "$HOME/Dropbox/Photos" "$HOME/Pictures/Dropbox"
 fi

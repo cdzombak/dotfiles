@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# TODO: python & python tools (2/3, virtualenv, pip)
-# TODO: osx automation & curie match integration
-# TODO: followup steps (configuration, menubar, etc. esp. Choosy)
+# TODO(cdzombak): python & python tools (2/3, virtualenv, pip)
 
 set -euo pipefail
 IFS=$'\n\t'

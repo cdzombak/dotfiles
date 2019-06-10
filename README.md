@@ -13,30 +13,27 @@ There is also a `server` build target, which will install a minimal configuratio
 * [GNU `make`](https://www.gnu.org/software/make/)
 * [GNU `stow`](https://www.gnu.org/software/stow/)
 
+My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
+
+## TODO
+
+* automate installing python & python tools (2/3, virtualenv, pip)
+* complete Dropbox integration/linking for personal computers ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01)
+* checkin custom launch agents (maybe into osx-autmoation)
+* move system prefs & keyboard shortcuts into configure script as possible
+* note & try to automate followup steps (apps configuration, menubar, etc. esp. Choosy)
+
 ## Other macOS System Configuration
 
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
-* Listings of Safari and Chrome extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss Safari extensions)_
-* Dropbox symlinks to/from various areas in my home directory ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01); private)
-* My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
+* Listings of Safari extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss these)_
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
-* Miscellaneous tools' configuration files I store in `~/Dropbox/Configs`
+* My [IntelliJ settings repository](https://github.com/cdzombak/intellij-settings) (private)
+* Miscellaneous tools' configuration files & resources I store in `~/Dropbox/Configs`
 * Custom launch agents from `~/Library/LaunchAgents`
-* ~~Alfred workflows & other configuration~~ (synced via Dropbox)
 * Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
-* Lock down `/etc/ssh/sshd_config` on the new Mac
-
-My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
 ## Inspiration & Acknowledgements
 
 This setup — and my further aspirations for it — are inspired by [@andrewsardone's dotfiles](https://github.com/andrewsardone/dotfiles) and [this article on managing dotfiles with GNU Stow](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html). My Hammerspoon configuration is heavily based on [jasonrudolph/keyboard](https://github.com/jasonrudolph/keyboard).
-
-### Aspirations
-
-Following Andrew's example, I'd like to move the bulk of my Mac configuration and application setup to this repo.
-
-* Some applications can be installed [via CLI from the Mac App Store](https://github.com/mas-cli/mas) ([#2](https://github.com/cdzombak/dotfiles/issues/2)), and many others are available via [`brew cask`](https://caskroom.github.io) ([#3](https://github.com/cdzombak/dotfiles/issues/3)).
-* Keeping a list of installed [Homebrew](https://brew.sh) packages here would be simple. ([#4](https://github.com/cdzombak/dotfiles/issues/4))
-* It would be nice to add [`osx-automation`](https://github.com/cdzombak/osx-automation) as a submodule and symlink its contents to the correct places via `stow`. ([#5](https://github.com/cdzombak/dotfiles/issues/5))
