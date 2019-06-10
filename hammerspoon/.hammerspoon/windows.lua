@@ -516,6 +516,7 @@ wl_control_handler = function(evt)
   if mods["ctrl"] then
     wl_control_tap:stop()
     windowLayoutMode:exit()
+    return true
   end
   return false
 end

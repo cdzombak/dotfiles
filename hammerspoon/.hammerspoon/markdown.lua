@@ -117,6 +117,7 @@ md_control_handler = function(evt)
   if mods["ctrl"] then
     md_control_tap:stop()
     markdownMode:exit()
+    return true
   end
   return false
 end
