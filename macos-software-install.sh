@@ -3,7 +3,6 @@
 # TODO: python & python tools (2/3, virtualenv, pip)
 # TODO: osx automation & curie match integration
 # TODO: followup steps (configuration, menubar, etc. esp. Choosy)
-# TODO: qlgenerators - see Dropbox and cask possibilities
 
 set -euo pipefail
 IFS=$'\n\t'
@@ -56,6 +55,8 @@ brew install \
   node \
   prettier \
   pycodestyle \
+  qlmarkdown \
+  quicklook-json \
   ripgrep \
   screen \
   shellcheck \
