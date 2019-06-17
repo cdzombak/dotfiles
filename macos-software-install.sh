@@ -218,6 +218,7 @@ brew cask install \
   launchcontrol \
   licecap \
   marked \
+  monodraw \
   omnidisksweeper \
   omnioutliner \
   paw \
