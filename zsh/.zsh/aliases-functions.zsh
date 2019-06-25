@@ -59,6 +59,9 @@ ding() {
     terminal-notifier -title "🔔" -message "ding" -ignoreDnD
 }
 
+# remove newline at EOF of the given file, in place
+alias remove-newline-eof="perl -pi -e 'chomp if eof'"
+
 # source the named env config file from ~/env
 # or, source the file with the same name as working dir
 senv() {
