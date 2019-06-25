@@ -50,6 +50,15 @@ alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archive
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
+# get attention
+ding() {
+    setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
+    afplay /System/Library/Sounds/Glass.aiff &
+    (sleep 0.5 ; afplay /System/Library/Sounds/Glass.aiff) &
+    (sleep 1 ; afplay /System/Library/Sounds/Glass.aiff) &
+    terminal-notifier -title "🔔" -message "ding" -ignoreDnD
+}
+
 # source the named env config file from ~/env
 # or, source the file with the same name as working dir
 senv() {
