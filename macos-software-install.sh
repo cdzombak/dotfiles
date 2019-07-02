@@ -30,6 +30,7 @@ brew install \
   bash-completion \
   cloc \
   coreutils \
+  cowsay \
   curl \
   dep \
   entr \

@@ -50,6 +50,8 @@ alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archive
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
+alias joke='curl --silent https://icanhazdadjoke.com  | cowsay'
+
 # get attention
 ding() {
     setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
