@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO(cdzombak): python & python tools (2/3, virtualenv, pip)
-
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -54,6 +52,7 @@ brew install \
   node \
   prettier \
   pycodestyle \
+  python \
   qlmarkdown \
   quicklook-json \
   ripgrep \
@@ -88,6 +87,8 @@ npm install -g emoj@">=2.0.0"
 npm install -g typescript
 
 sudo gem install mdless sqlint
+
+PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv
 
 echo ""
 echo "Install Java tools? (y/N)"
