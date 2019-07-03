@@ -239,6 +239,8 @@ brew cask install \
   wavebox \
   wireshark
 
+ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
+
 echo ""
 echo "Install balena etcher (for burning SD card images)? (y/N)"
 read -r response
