@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO(cdzombak): complete Dropbox integration for personal computers
-
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -16,6 +14,10 @@ mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
 mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/tmp"
+
+# keep Zoom from installing its shitty local webserver thing
+rm -rf "$HOME/.zoomus"
+touch "$HOME/.zoomus"
 
 echo ""
 echo "Create dev workflow directories? (y/N)"
