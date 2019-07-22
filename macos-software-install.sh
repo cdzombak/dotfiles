@@ -84,6 +84,7 @@ brew install dive
 
 npm install -g dockerfilelint@">=1.5.0"
 npm install -g emoj@">=2.0.0"
+npm install -g jshint
 npm install -g typescript
 
 sudo gem install mdless sqlint
