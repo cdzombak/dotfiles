@@ -75,6 +75,9 @@ brew install \
   yamllint \
   yarn
 
+brew install syncthing
+brew services start syncthing
+
 brew tap caskroom/versions
 brew tap homebrew/cask-drivers
 brew tap homebrew/cask-fonts
