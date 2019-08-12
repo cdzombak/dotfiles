@@ -245,40 +245,6 @@ brew cask install \
 
 ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
 
-echo ""
-echo "Install balena etcher (for burning SD card images)? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install balenaetcher
-fi
-
-echo ""
-echo "Install CoconutBattery? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install coconutbattery
-fi
-
-echo ""
-echo "Install IVPN client? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install ivpn
-fi
-
-echo ""
-echo "Install Mendeley Desktop? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install mendeley
-fi
-
-echo ""
-echo "Install OSXFuse (for use with Transmit Disk)? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install osxfuse
-fi
 
 echo ""
 echo "Install PhotoSweeper X? (y/N)"
@@ -396,6 +362,41 @@ defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileT
 
 echo ""
 echo "Wrapping up soon...now we'll check on some less-frequently used software."
+
+echo ""
+echo "Install balena etcher (for burning SD card images)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install balenaetcher
+fi
+
+echo ""
+echo "Install CoconutBattery? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install coconutbattery
+fi
+
+echo ""
+echo "Install IVPN client? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install ivpn
+fi
+
+echo ""
+echo "Install Mendeley Desktop? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install mendeley
+fi
+
+echo ""
+echo "Install OSXFuse (for use with Transmit Disk)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  brew cask install osxfuse
+fi
 
 echo ""
 echo "Install Logic/Final Cut and related tools? (y/N)"
