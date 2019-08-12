@@ -244,6 +244,7 @@ brew cask install \
   wireshark
 
 ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
+ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/Goland ~/Applications/toolbox-goland
 
 brew install go-task/tap/go-task
 
