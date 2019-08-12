@@ -245,6 +245,7 @@ brew cask install \
 
 ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
 
+brew install go-task/tap/go-task
 
 echo ""
 echo "Install PhotoSweeper X? (y/N)"
