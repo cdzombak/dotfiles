@@ -206,7 +206,6 @@ brew cask install \
   choosy \
   dash \
   docker \
-  dropbox \
   fantastical \
   fork \
   google-chrome \

@@ -17,7 +17,6 @@ My zsh theming is intended to work well with a dark color scheme (I use [Solariz
 
 ## TODO
 
-* complete Dropbox integration/linking for personal computers ([documented in Bear](bear://x-callback-url/open-note?id=F5E2A79A-79DD-4E05-8255-38C0D13E88AD-37872-00001D6F2B11BD01)
 * checkin custom launch agents (maybe into osx-autmoation)
 * move system prefs & keyboard shortcuts into configure script as possible
 * note & try to automate followup steps (apps configuration, menubar, etc. esp. Choosy)

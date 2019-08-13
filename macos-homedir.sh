@@ -29,12 +29,24 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   mkdir -p "$HOME/go/src"
 fi
 
+ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" "$HOME/iCloud Drive"
+
+ln -s ~/Sync ~/Dropbox
+ln -s ~/Sync/env ~/env
+ln -s ~/Sync/public ~/Public/burr
+
 echo ""
-echo "Create links from ~ to Dropbox (for WORK computer)? (y/N)"
+echo "Create link to Books & Articles in iCloud Drive? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Library" "$HOME/Books and Articles"
+fi
+
+echo ""
+echo "Create links from Desktop/Documents to iCloud Drive (for WORK computer)? (y/N)"
 echo "(eg. ~/Documents/Dropbox, etc.)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  ln -s "$HOME/Dropbox/Desktop" "$HOME/Desktop/Dropbox"
-  ln -s "$HOME/Dropbox/Documents" "$HOME/Documents/Dropbox"
-  ln -s "$HOME/Dropbox/Photos" "$HOME/Pictures/Dropbox"
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
 fi
