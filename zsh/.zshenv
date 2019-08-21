@@ -5,6 +5,13 @@
 export PATH="/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/git/man:/usr/local/man:$MANPATH"
 
+# Android (ugh)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
 # Golang:
 export GOPATH="$HOME/go:$HOME/code/go"
 export GOROOT=/usr/local/opt/go/libexec
