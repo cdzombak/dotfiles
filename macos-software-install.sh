@@ -317,6 +317,19 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 fi
 
+# Install Webster's 1913 Dictionary
+# mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
+# See: http://jsomers.net/blog/dictionary
+if [ ! -e "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" ]; then
+  TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'dictionary'`
+  pushd "$TMP_DIR"
+  wget -q https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
+  unzip Webster.s.1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
+  popd
+  echo "Opening Dictionary.app; please rearrange Webeter's 1913 to the top / as desired."
+  open -a Dictionary
+fi
+
 echo ""
 echo "Install Adobe Creative Cloud? (y/N)"
 read -r response
