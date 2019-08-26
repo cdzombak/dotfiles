@@ -247,6 +247,18 @@ ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/Goland ~/Application
 
 brew install go-task/tap/go-task
 
+# install Solarized for Xcode
+# if this source disappears, there's also my copy in Sync/Configs
+if [ ! -e "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.dvtcolortheme" ]; then
+  TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'solarized-xcode'`
+  git clone "https://github.com/stackia/solarized-xcode.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  xcode_color_themes_dir="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
+  mkdir -p "$xcode_color_themes_dir"
+  cp ./*.dvtcolortheme "$xcode_color_themes_dir"
+  popd
+fi
+
 echo ""
 echo "Install PhotoSweeper X? (y/N)"
 read -r response
