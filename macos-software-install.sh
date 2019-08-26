@@ -398,12 +398,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install ivpn
 fi
 
-echo ""
-echo "Install Mendeley Desktop? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install mendeley
-fi
+# echo ""
+# echo "Install Mendeley Desktop? (y/N)"
+# read -r response
+# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#   brew cask install mendeley
+# fi
 
 echo ""
 echo "Install OSXFuse (for use with Transmit Disk)? (y/N)"
