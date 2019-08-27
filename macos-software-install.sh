@@ -247,6 +247,16 @@ ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/Goland ~/Application
 
 brew install go-task/tap/go-task
 
+# install my tool which keeps Keybase out of Finder favorites
+if [ ! -e "/usr/local/bin/com.dzombak.remove-keybase-finder-favorite" ]; then
+  TMP_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'remove-keybase-finder-favorite'`
+  git clone "https://github.com/cdzombak/remove-keybase-finder-favorite.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  chmod +x ./install.sh
+  ./install.sh
+  popd
+fi
+
 # install Solarized for Xcode
 # if this source disappears, there's also my copy in Sync/Configs
 if [ ! -e "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.dvtcolortheme" ]; then
