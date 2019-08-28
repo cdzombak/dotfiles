@@ -101,6 +101,9 @@ _zsh_rprompt_end() {
 
 # Context: user@hostname (who am I and where am I)
 _zsh_prompt_context() {
+  if [[ -n "$OSCARSIERRA_ENV" ]]; then
+    _zsh_prompt_segment magenta black "$(echo ${OSCARSIERRA_ENV:0:4} | tr -d ao)"
+  fi
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     _zsh_prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@$SHORT_HOST"
   fi
@@ -233,6 +236,9 @@ _zsh_rprompt_segment() {
 # }
 
 _zsh_rprompt_local_env() {
+  if [[ -n "$OSCARSIERRA_ENV" ]]; then
+    _zsh_rprompt_segment magenta black "os $OSCARSIERRA_ENV"
+  fi
   if [[ -n "$_RPROMPT_ENV" ]]; then
     _zsh_rprompt_segment green black "$_RPROMPT_ENV"
   fi

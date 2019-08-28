@@ -42,7 +42,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     )
 fi
 
-echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
+if [[ -z "$OSCARSIERRA_ENV" ]]; then
+    echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
+fi
 
 unset HINTS
 unset CYAN
