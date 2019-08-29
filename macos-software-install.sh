@@ -22,6 +22,9 @@ if ! $CONTINUE; then
   exit 0
 fi
 
+brew tap rafaelgarrido/homebrew-caveats
+brew install brew-caveats
+
 brew install \
   ag \
   awscli \
