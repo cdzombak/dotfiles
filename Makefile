@@ -24,6 +24,10 @@ dependencies: homebrew ## Install dependencies
 submodules:
 	@bash ./init-submodules.sh
 
+.PHONY: setupnote
+setupnote:
+	@bash ./touch-systemsetup-note.sh
+
 # Platform Verfication
 
 .PHONY: require-macos
@@ -51,11 +55,11 @@ mac-stow: dependencies submodules require-macos ## Link macOS configuration file
 	ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
 
 .PHONY: mac-configure
-mac-configure: require-macos ## Run macOS configuration script
+mac-configure: require-macos setupnote ## Run macOS configuration script
 	@bash ./macos-configure.sh
 
 .PHONY: mac-software
-mac-software: require-macos submodules ## Install macOS software suite (this can take a long time)
+mac-software: require-macos submodules setupnote ## Install macOS software suite (this can take a long time)
 	@bash ./osx-automation/script/install.sh
 	@bash ./macos-software-install.sh
 
