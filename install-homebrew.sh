@@ -2,7 +2,7 @@
 
 # On macOS systems, verify Homebrew is installed, and install it if not.
 
-set -euo pipefail
+set -u
 IFS=$'\n\t'
 
 if [ "$(uname)" != "Darwin" ]; then

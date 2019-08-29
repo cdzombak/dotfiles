@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -15,10 +14,12 @@ mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/scripts"
 mkdir -p "$HOME/tmp"
 
-echo ""
-echo "Create ~/go? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  mkdir -p "$HOME/go/bin"
-  mkdir -p "$HOME/go/src"
+if [ ! -d "$HOME/go" ]; then
+  echo ""
+  echo "Create ~/go? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mkdir -p "$HOME/go/bin"
+    mkdir -p "$HOME/go/src"
+  fi
 fi
