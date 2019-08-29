@@ -11,7 +11,7 @@ help:
 
 .PHONY: homebrew
 homebrew: ## Install Homebrew (no-op on other than macOS)
-	@bash install-homebrew.sh
+	@bash ./install-homebrew.sh
 
 .PHONY: dependencies
 dependencies: homebrew ## Install dependencies
@@ -22,7 +22,7 @@ dependencies: homebrew ## Install dependencies
 
 .PHONY: submodules
 submodules:
-	@bash init-submodules.sh
+	@bash ./init-submodules.sh
 
 # Platform Verfication
 
@@ -37,7 +37,7 @@ require-non-macos:
 # macOS Targets
 
 .PHONY: stow-mac
-stow-mac: dependencies submodules require-macos
+stow-mac: dependencies submodules require-macos ## Link macOS configuration files in $HOME
 	stow git
 	stow ruby
 	stow hammerspoon
@@ -52,19 +52,19 @@ stow-mac: dependencies submodules require-macos
 
 .PHONY: configure-mac
 configure-mac: require-macos ## Run macOS configuration script
-	@bash macos-configure.sh
+	@bash ./macos-configure.sh
 
 .PHONY: software-mac
 software-mac: require-macos submodules ## Install macOS software suite (this can take a long time)
 	@bash ./osx-automation/script/install.sh
-	@bash macos-software-install.sh
+	@bash ./macos-software-install.sh
 
 .PHONY: homedir-mac
 homedir-mac: require-macos ## Set up basic macOS home directory structure
-	@bash macos-homedir.sh
+	@bash ./macos-homedir.sh
 
 .PHONY: mac
-mac: require-macos homedir-mac configure-mac stow-mac software-mac ## Install Homebrew & configure a macOS system
+mac: require-macos homedir-mac configure-mac stow-mac software-mac ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Server (*nix) Targets
 
@@ -76,16 +76,16 @@ stow-server: dependencies submodules require-non-macos
 	stow tig
 
 .PHONY: integrate-bash-server
-integrate-bash-server: require-non-macos
-	@bash bash-server/integrate.sh
+integrate-bash-server: require-non-macos ## Integrate Bash configuration files in $HOME
+	@bash ./bash-server/integrate.sh
 
 .PHONY: server-homedir
 server-homedir: require-non-macos ## Set up basic Linux home directory structure
-	@bash server-homedir.sh
+	@bash ./server-homedir.sh
 
 .PHONY: software-server
 software-server: server-homedir
-	@bash server-software-install.sh ## Install some extra software on Linux
+	@bash ./server-software-install.sh ## Install some extra software on Linux
 
 .PHONY: server
-server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a Linux server (assumes Ubuntu or Debian)
+server: require-non-macos server-homedir stow-server integrate-bash-server software-server ## Configure a Linux server (assumes Ubuntu or Debian). *Recommended entry point.*
