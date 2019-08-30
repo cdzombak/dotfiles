@@ -218,7 +218,7 @@ sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Sync settings from ~/Sync/Configs"
 sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
-  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Enable Settings Repository syncing"
+  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Install Android Studio\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in ~/Sync/Configs"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License"
 sw_install /Applications/Keybase.app "brew_cask_install keybase" \
