@@ -280,7 +280,7 @@ sw_install "/Applications/Living Earth Desktop.app" "mas install 539362919" \
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
-  "- [ ] Start at login\n-[ ] Set Shift-Command-V global shortcut\n-[ ] Configure"
+  "- [ ] Start at login\n-[ ] Set Shift-Command-V global shortcut\n-[ ] Configure\n- [ ] Always Paste Plain Text"
 sw_install /Applications/PDFScanner.app "mas install 410968114"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
