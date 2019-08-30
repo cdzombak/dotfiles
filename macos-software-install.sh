@@ -113,6 +113,7 @@ sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force get
 
 # Install basic tools which use stuff we just installed via Homebrew:
 
+sw_install /usr/local/bin/golangci-lint 'brew_install golangci/tap/golangci-lint'
 sw_install /usr/local/bin/task 'brew_install go-task/tap/go-task'
 
 sw_install /usr/local/bin/dockerfilelint 'npm install -g dockerfilelint@">=1.5.0"'
