@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+set -e
+
+# use in a script with cecho available...
+#source ./cecho
+
+function sw_install() {
+  if [  $# -lt 2 ]; then
+    echo "sw_install checks whether an artifact is present, and if not it runs the given command."
+    echo "If given a third argument, that string will be appended to ~/SystemSetup.md after installation."
+    echo ""
+    echo "Usage: sw_install /path/to/artifact  \\"
+    echo "                 \"brew install packagename\"  \\"
+    # shellcheck disable=SC2028
+    echo "                 \"- [ ] configure it\\n- [ ] test it\""
+    return 1
+  fi
+
+  ARTIFACT="$1"
+  INSTALL_CMD="$2"
+  TODOS="$3"
+
+  if [ -e "$ARTIFACT" ]; then
+    cecho "✔ $ARTIFACT already exists." $green
+    return 0
+  fi
+
+  cecho "Installing $ARTIFACT..." $cyan
+
+  function brew_install() {
+    brew install "$1"
+    CAVEATS="$(brew caveats "$1" | tail -n +2)"
+    if [[ -n "$CAVEATS" ]]; then
+      if [[ -n "$TODOS" ]]; then
+        TODOS="$TODOS\n\n"
+      fi
+      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+    fi
+  }
+
+  function brew_cask_install() {
+    brew cask install "$1"
+    CAVEATS="$(brew caveats "$1" | tail -n +2)"
+    if [[ -n "$CAVEATS" ]]; then
+      if [[ -n "$TODOS" ]]; then
+        TODOS="$TODOS\n\n"
+      fi
+      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+    fi
+  }
+
+  eval "$INSTALL_CMD"
+
+  if [[ -n "$TODOS" ]]; then
+    # shellcheck disable=SC2129
+    echo "## $ARTIFACT" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "$TODOS" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
