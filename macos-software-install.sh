@@ -783,7 +783,11 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
 
-  sw_install /Applications/Setapp/Flume.app "cecho 'Please install Flume from Setapp.' $white && open /Applications/Setapp.app"
+  _install_flume() {
+    cecho 'Please install Flume from Setapp.' $white
+    open /Applications/Setapp.app
+  }
+  sw_install /Applications/Setapp/Flume.app _install_flume
   # shellcheck disable=SC2129
   echo "## Flume.app" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
