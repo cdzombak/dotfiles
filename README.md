@@ -17,7 +17,6 @@ My zsh theming is intended to work well with a dark color scheme (I use [Solariz
 
 ## TODO
 
-* checkin custom launch agents (maybe into osx-automation)
 * move system prefs & keyboard shortcuts into configure script as possible
     * [Add custom keyboard shortcuts to macOS configure script · Issue #6](https://github.com/cdzombak/dotfiles/issues/6)
 * note & try to automate followup steps (apps configuration, menubar, etc. esp. Choosy) (eg. Dictionary)
@@ -31,7 +30,6 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private)
-* Custom launch agents from `~/Library/LaunchAgents` (see TODO above)
 * Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements

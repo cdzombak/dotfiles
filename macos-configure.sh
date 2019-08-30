@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-
-# TODO(cdzombak): more app keyboard shortcuts in configure
-# TODO(cdzombak): move system prefs here as possible
-
 set -euo pipefail
 IFS=$'\n\t'
 source ./lib/cecho
