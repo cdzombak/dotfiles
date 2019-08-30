@@ -108,6 +108,9 @@ sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
 sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" \
   "brew_cask_install quicklook-json"
 
+# provides envsubst:
+sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force gettext"
+
 # Install basic tools which use stuff we just installed via Homebrew:
 
 sw_install /usr/local/bin/task 'brew_install go-task/tap/go-task'
