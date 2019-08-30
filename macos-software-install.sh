@@ -518,6 +518,16 @@ _install_carthage() {
 }
 sw_install /usr/local/bin/carthage _install_carthage
 
+_install_fastlane() {
+  echo ""
+  cecho "Install Fastlane? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install fastlane
+  fi
+}
+sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
+
 _install_gcloud_sdk() {
   echo ""
   cecho "Install Google Cloud SDK? (y/N)" $magenta
