@@ -49,6 +49,14 @@ if [ ! -L "$HOME/Public/burr" ]; then
   ln -s "$HOME/Sync/public" "$HOME/Public/burr"
 fi
 
+if [ ! -L "$HOME/Applications/macOS Utilities" ]; then
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Utilities" "$HOME/Applications/macOS Utilities"
+fi
+
+if [ ! -L "$HOME/Applications/macOS Security Tools" ]; then
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Security Tools" "$HOME/Applications/macOS Security Tools"
+fi
+
 if [ ! -L "$HOME/Books and Articles" ]; then
   echo ""
   echo "Create link to Books & Articles in iCloud Drive? (y/N)"
