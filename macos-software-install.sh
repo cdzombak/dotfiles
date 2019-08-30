@@ -380,14 +380,15 @@ _install_superduper(){
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
-sw_install /Applications/SuperDuper.app _install_superduper
+sw_install "/Applications/SuperDuper!.app" _install_superduper
 
-# TODO(cdzombak): artifacts check for this
 echo ""
 cecho "Install utilities for home hardware devices (Garmin, MyHarmony, ScanSnap)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install fujitsu-scansnap-manager logitech-myharmony garmin-express
+  sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager"
+  sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
+  sw_install "/Applications/Garmin Express.app" "brew_cask_install garmin-express"
 fi
 
 _install_balena_etcher() {
@@ -428,7 +429,7 @@ _install_torbrowser() {
     brew cask install tor-browser
   fi
 }
-sw_install "/Applications/Tor Browser.app" _install_torbrowser
+sw_install "/Applications/TorBrowser.app" _install_torbrowser
 
 _install_daisydisk() {
   echo ""
@@ -465,7 +466,7 @@ cecho "--- Dev Tools ---" $white
 echo ""
 
 echo ""
-cecho "Install Java tools? (y/N)" $magenta
+cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/Caskroom/java "brew_cask_install java"
@@ -513,11 +514,11 @@ _install_wwdcapp() {
 }
 sw_install /Applications/WWDC.app _install_wwdcapp
 
-# TODO(cdzombak): artifacts check for this
 echo ""
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  cecho "TODO(cdzombak): script artifacts check for Latex tools" $red
   brew cask install mactex
   brew cask install texmaker
 fi
@@ -533,7 +534,6 @@ _install_mysqlworkbench() {
     brew cask install mysqlworkbench
   fi
 }
-# TODO(cdzombak): verify artifact name
 sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
 
 _install_liya() {
@@ -560,13 +560,13 @@ _install_kindle() {
 }
 sw_install /Applications/Kindle.app _install_kindle
 
-# TODO(cdzombak): artifacts check for this
 echo ""
 cecho "Install podcasting utilities (Skype + Call Recorder)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install skype
-  open "https://www.ecamm.com/mac/callrecorder/"
+  sw_install /Applications/Skype.app "brew_cask_install skype" \
+    "- [ ] Sign in\n- [ ] Install Ecamm Call Recorder"
+  cecho "To install Ecamm Call Recorder, download it from your customer link (in 1Password, or your email archive - look for email from supportdesk@ecamm.com)" $red
 fi
 
 _install_photosweeper() {
@@ -579,18 +579,20 @@ _install_photosweeper() {
 }
 sw_install "/Applications/PhotoSweeper X.app" _install_photosweeper
 
-# TODO(cdzombak): artifacts check for this
-echo ""
-cecho "Install Adobe Creative Cloud? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  brew cask install adobe-creative-cloud
+_install_adobe_cc() {
+  echo ""
+  cecho "Install Adobe Creative Cloud? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install adobe-creative-cloud
     # shellcheck disable=SC2129
     echo "## Adobe Creative Cloud" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Sign into Adobe Account\n-[ ] Install Lightroom\n- [ ] Install Photoshop" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-fi
+  fi
+}
+sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
 
 _install_pixelmator() {
   echo ""
@@ -602,15 +604,14 @@ _install_pixelmator() {
 }
 sw_install /Applications/Pixelmator.app _install_pixelmator
 
-# TODO(cdzombak): artifacts check for this
 echo ""
-cecho "Install Logic/Final Cut and related tools? (y/N)" $magenta
+cecho "Install Logic Pro, Final Cut Pro, and related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  mas install 634148309 # Logic Pro X
-  mas install 424390742 # Compressor
-  mas install 434290957 # Motion
-  mas install 424389933 # Final Cut Pro
+  sw_install "/Applications/Logic Pro X.app" "mas install 634148309"
+  sw_install "/Applications/Compressor.app" "mas install 424390742"
+  sw_install "/Applications/Final Cut Pro.app" "mas install 424389933"
+  sw_install "/Applications/Motion.app" "mas install 434290957"
 fi
 
 _install_youtubedl() {
@@ -631,7 +632,6 @@ _install_fileloupe() {
     mas install 944693506 # Fileloupe
   fi
 }
-# TODO(cdzombak): verify artifact name
 sw_install /Applications/Fileloupe.app _install_fileloupe
 
 _install_handbrake() {
@@ -821,7 +821,6 @@ _install_minimetro() {
     mas install 1047760200 # Mini Metro
   fi
 }
-# TODO(cdzombak): verify artifact name
 sw_install "/Applications/Mini Metro.app" _install_minimetro
 
 _install_simcity() {
@@ -832,8 +831,7 @@ _install_simcity() {
     mas install 804079949 # SimCity 4 Deluxe Edition
   fi
 }
-# TODO(cdzombak): verify artifact name
-sw_install "/Applications/SimCity 4 Deluxe Edition.app" _install_simcity
+sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 
 echo ""
 cecho "-- Finally, stuff that failed the last time this script was used..." $white
