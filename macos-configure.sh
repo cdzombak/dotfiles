@@ -39,13 +39,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 if ! $CONTINUE; then
-  # Check if we're continuing and output a message if not
-  cecho "Please go read the script, it only takes a few minutes" $red
   exit 1
 fi
 
-# Here we go.. ask for the administrator password upfront and run a
-# keep-alive to update existing `sudo` time stamp until script has finished
+echo "This script will use sudo; enter your password to authenticate."
+# Ask for the administrator password upfront and run a keep-alive to update
+# existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -87,29 +86,9 @@ echo ""
 echo "Save screenshots with a lowercase file extension"
 defaults write com.apple.screencapture type png
 
-###############################################################################
-# General Power and Performance modifications
-###############################################################################
-
-# echo ""
-# cecho "Disable the menubar transparency? (y/N)" $magenta
-# read -r response
-# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#   defaults write com.apple.universalaccess reduceTransparency -bool true
-# fi
-
-# echo ""
-# echo "Speeding up wake from sleep to 24 hours from an hour"
-# # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
-# sudo pmset -a standbydelay 86400
-
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ################################################################################
-
-# echo ""
-# echo "Enabling full keyboard access for all controls (enable Tab in modal dialogs, menu windows, etc.)"
-# defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 echo ""
 echo "Trackpad: enable tap to click for this user and for the login screen"
@@ -146,17 +125,11 @@ fi
 
 echo ""
 echo "Show status bar in Finder by default"
-# read -r response
-# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 defaults write com.apple.finder ShowStatusBar -bool true
-# fi
 
 echo ""
 echo "Avoid creation of .DS_Store files on network volumes"
-# read -r response
-# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-# fi
 
 echo ""
 echo ""
@@ -170,41 +143,17 @@ echo ""
 echo "Allowing text selection in Quick Look/Preview in Finder by default"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
-# echo ""
-# echo "Show item info near icons on the desktop and in other icon views? (y/n)"
-# read -r response
-# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-#   /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-#   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-# fi
-
-# echo ""
-# echo "Show item info to the right of the icons on the desktop? (y/n)"
-# read -r response
-# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#   /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
-# fi
-
+# The following error happens on fresh installs:
 # Set: Entry, ":FK_StandardViewSettings:IconViewSettings:arrangeBy", Does Not Exist
-# happens on fresh installs
 echo ""
 cecho "Enable snap-to-grid for icons on the desktop and in other icon views? (y/N)" $magenta
-cecho "SELECT NO ON FRESH INSTALLS" $red
+cecho "nb. SELECT NO ON FRESH INSTALLS to avoid exiting with error" $red
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 fi
-
-# echo ""
-# echo "Disable the “Are you sure you want to open this application?" dialog
-# defaults write com.apple.LaunchServices LSQuarantine -bool false
-
-# echo ""
-# echo "Do not hide the Library folder w/in Finder"
-# chflags nohidden ~/Library/
 
 echo ""
 echo "Finder: show all filename extensions"
@@ -252,11 +201,6 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 # Chrome, Safari, & WebKit
 ###############################################################################
 
-# echo ""
-# echo "Privacy: Don’t send search queries to Apple"
-# defaults write com.apple.Safari UniversalSearchEnabled -bool false
-# defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
 echo ""
 echo "Enabling Safari's debug & development features"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
@@ -272,9 +216,9 @@ echo ""
 echo "Adding a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-# echo ""
-# echo "Show Safari's status bar."
-# defaults write com.apple.Safari ShowStatusBar -bool true
+echo ""
+echo "Show Safari's status bar."
+defaults write com.apple.Safari ShowStatusBar -bool true
 
 echo ""
 echo "Prevent Safari from opening 'safe' files by default"
@@ -315,7 +259,7 @@ defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
 
 echo ""
 echo "Set zsh as default shell"
-chsh -s $(which zsh)
+chsh -s "$(command -v zsh)"
 
 echo ""
 echo "Only use UTF-8 in Terminal.app"
@@ -376,6 +320,7 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 # Messages
 ###############################################################################
 
+# TODO(cdzombak): No longer used.
 # echo ""
 # echo "Messages.app keyboard shortcuts"
 # defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation" "@~^c"
@@ -390,6 +335,6 @@ cecho "Done!" $cyan
 echo ""
 cecho "################################################################################" $white
 echo ""
-echo "Note that some of these changes require a logout/restart to take effect."
+cecho "Note that some of these changes require a logout/restart to take effect." $white
 cecho "Please restart the system." $red
 echo ""
