@@ -490,6 +490,14 @@ cecho "--- Dev Tools ---" $white
 echo ""
 
 echo ""
+cecho "Install React Native CLI & related tools? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install /usr/local/bin/watchman "brew_install watchman"
+  sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
+fi
+
+echo ""
 cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
