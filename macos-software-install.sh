@@ -38,9 +38,14 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 sw_install /usr/local/Cellar/brew-caveats \
   "brew tap rafaelgarrido/homebrew-caveats && brew install brew-caveats"
 
+# untap caskroom/versions, which conflicts with homebrew/cask-versions:
+if brew tap | grep -c caskroom/versions >/dev/null ; then
+  brew untap caskroom/versions
+fi
+
 # tap the various casks that may be required:
-if ! brew tap | grep -c caskroom/versions >/dev/null ; then
-  brew tap caskroom/versions
+if ! brew tap | grep -c homebrew/cask-versions >/dev/null ; then
+  brew tap homebrew/cask-versions
 fi
 if ! brew tap | grep -c homebrew/cask-drivers >/dev/null ; then
   brew tap homebrew/cask-drivers
