@@ -5,6 +5,7 @@
 
 set -euo pipefail
 IFS=$'\n\t'
+source ./lib/cecho
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS setup because not on macOS"
@@ -19,27 +20,6 @@ fi
 #   read via defaults read com.BUNDLE_ID NSUserKeyEquivalents
 #   meta-keys: @ for Command, $ for Shift, ~ for Alt and ^ for Ctrl
 #   via http://hints.macworld.com/article.php?story=20131123074223584
-
-# Set the colours you can use
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
-
-# Resets the style
-reset=`tput sgr0`
-
-# Color-echo. Improved. [Thanks @joaocunha]
-# arg $1 = message
-# arg $2 = Color
-cecho() {
-  echo "${2}${1}${reset}"
-  return
-}
 
 # Set continue to false by default
 CONTINUE=false

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -eu
 
+source ./lib/cecho
+
 if [[ -f "$HOME/SystemSetup.md" ]]; then
-  echo "✔ Setup note exists at $HOME/SystemSetup.md"
+  cecho "✔ Setup note exists at $HOME/SystemSetup.md" $green
   exit 0
 fi
 
@@ -12,4 +14,4 @@ cat << EOF > "$HOME/SystemSetup.md"
 
 EOF
 
-echo "✔ Created setup note at $HOME/SystemSetup.md"
+cecho "✔ Created setup note at $HOME/SystemSetup.md" $green
