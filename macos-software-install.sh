@@ -461,6 +461,16 @@ _install_mactracker() {
 }
 sw_install /Applications/MacTracker.app _install_mactracker
 
+_install_virtualbox() {
+  echo ""
+  cecho "Install VirtualBox? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install virtualbox virtualbox-extension-pack
+  fi
+}
+sw_install /Applications/VirtualBox.app _install_virtualbox
+
 echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
