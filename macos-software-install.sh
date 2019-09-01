@@ -336,7 +336,7 @@ defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileT
 set +x
 
 sw_install /Applications/Setapp "brew_cask_install setapp && open /Applications/Setapp.app" \
-  "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites"
+  "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites\n- [ ] Disable Setapp in Dock, Menu Bar, and Finder sidebar\n- [ ] Disable showing non-installed apps in Spotlight"
 
 echo ""
 cecho "--- Interactive Section ---" $white
