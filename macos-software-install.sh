@@ -471,6 +471,16 @@ _install_virtualbox() {
 }
 sw_install /Applications/VirtualBox.app _install_virtualbox
 
+_install_screensconnect() {
+  echo ""
+  cecho "Install Screens Connect? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install screens-connect
+  fi
+}
+sw_install "/Applications/Screens Connect.app" _install_screensconnect
+
 echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
