@@ -709,6 +709,11 @@ _install_omnigraffle() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install omnigraffle
+    # shellcheck disable=SC2129
+    echo "## OmniGraffle.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] License" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
   fi
 }
 sw_install /Applications/OmniGraffle.app _install_omnigraffle
