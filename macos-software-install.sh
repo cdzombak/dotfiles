@@ -693,6 +693,16 @@ echo ""
 cecho "--- Office Tools ---" $white
 echo ""
 
+_install_omnigraffle() {
+  echo ""
+  cecho "Install OmniGraffle? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install omnigraffle
+  fi
+}
+sw_install /Applications/OmniGraffle.app _install_omnigraffle
+
 _install_zoom() {
   echo ""
   cecho "Install Zoom for videoconferencing? (y/N)" $magenta
