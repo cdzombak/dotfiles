@@ -67,6 +67,10 @@ mac-software: require-macos submodules setupnote ## Install macOS software suite
 mac-homedir: require-macos ## Set up basic macOS home directory structure
 	@bash ./macos-homedir.sh
 
+.PHONY: mac-safari-extensions
+mac-safari-extensions: require-macos
+	@bash ./macos-safari-extensions.sh
+
 .PHONY: mac
 mac: require-macos mac-homedir mac-configure mac-stow mac-software ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 

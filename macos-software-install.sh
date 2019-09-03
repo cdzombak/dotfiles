@@ -180,7 +180,7 @@ sw_install /Applications/Ejector.app _install_ejector \
   "- [ ] Configure (start at login)\n- [ ] License"
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing"
+  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable Safari extension"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Sync settings from ~/Sync/Configs"
@@ -211,7 +211,8 @@ sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail
   "- [ ] Import GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login"
-sw_install /Applications/IINA.app "brew_cask_install iina"
+sw_install /Applications/IINA.app "brew_cask_install iina" \
+  "- [ ] Enable Safari extension as desired"
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
   "- [ ] Configure based on current favorite system\n- [ ] Add to Today view"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
@@ -894,7 +895,17 @@ _install_simcity() {
 sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 
 echo ""
-cecho "-- Finally, stuff that failed the last time this script was used..." $white
+cecho "--- Safari Extensions ---" $white
+cecho "Safari extensions cannot be automatically installed, but this script can open the relevant pages and generate a TODO list for you." $white
+echo ""
+cecho "Open pages/generate TODO list for Safari Extensions? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  ./macos-safari-extensions.sh
+fi
+
+echo ""
+cecho "--- Finally, stuff that failed the last time this script was used..." $white
 echo ""
 
 _install_swiftsh() {
