@@ -23,22 +23,27 @@ if [ "$(uname)" == "Darwin" ]; then
 ## System Preferences
 
 - [ ] Go through System Preferences, configuring as desired
-    - [ ] FileVault on
-    - [ ] Pay special attention to Security and Privacy, Energy and related
-- [ ] Add current cards to Apple Pay, as desired
+- [ ] Pay special attention to Security and Privacy, Energy and related
+    - [ ] Turn FileVault on
+    - [ ] 5 minutes to screen saver, 5 second delay before locking screen
+    - [ ] 2 minutes to screen off when on battery
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screnshots in \`~/Sync/Configs\`)
 - [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
+
+## Apple Pay
+
+- [ ] Add current cards to Apple Pay, as desired
 
 ## Dock
 
 - [ ] Organize Dock based on screenshot in \`~/Sync/Configs\`
 
-## Finder.app
+## Finder
 
 - [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\`
 - [ ] Configure sidebar based on screenshot in \`~/Sync/Configs\`
 
-## Mail.app
+## Mail
 
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
 
