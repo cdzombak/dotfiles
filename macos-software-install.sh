@@ -183,25 +183,25 @@ sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
   "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable Safari extension"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
-  "- [ ] Sync settings from ~/Sync/Configs"
+  "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable automatic watching for deleted apps"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
   "- [ ] Setup backups to Wasabi"
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
-  "- [ ] Configure based on current favorite system"
+  "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver"
 sw_install "/Applications/Bunch.app" "brew_cask_install bunch" \
-  "- [ ] Sync settings from ~/Sync/Configs"
+  "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install "$HOME/Library/PreferencePanes/Choosy.prefPane" "brew_cask_install choosy" \
   "- [ ] Configure"
 sw_install /Applications/Dash.app "brew_cask_install dash" \
-  "- [ ] Sync settings from ~/Sync/Configs\n- [ ] Sync snippets\n- [ ] Arrange docsets"
+  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 sw_install /Applications/Docker.app "brew_cask_install docker"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts"
 sw_install "/Applications/Fantastical 2.app" "brew_cask_install fantastical" \
-  "- [ ] Configure calendar accounts\n- [ ] Configure calendar set based on current favorite system\n- [ ] Add to Today view"
+  "- [ ] Configure calendar accounts\n- [ ] Configure calendar set based on current favorite system/screenshots in \`~/Sync/Configs\`\n- [ ] Add to Today view"
 sw_install /Applications/Fork.app "brew_cask_install fork"
 sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
   "- [ ] Sign into relevant Google Accounts"
@@ -216,9 +216,9 @@ sw_install /Applications/IINA.app "brew_cask_install iina" \
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
   "- [ ] Configure based on current favorite system\n- [ ] Add to Today view"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
-  "- [ ] Sync settings from ~/Sync/Configs"
+  "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there"
 sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
-  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Install Android Studio\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in ~/Sync/Configs"
+  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Install Android Studio\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License"
 sw_install /Applications/Keybase.app "brew_cask_install keybase" \
@@ -227,10 +227,10 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
-  "- [ ] License"
+  "- [ ] License\n- [ ] Install Custom CSS from \`~/Sync/Configs\`"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
-  "- [ ] License"
+  "- [ ] License\n- [ ] Import templates from \`~/Sync/Configs\`"
 sw_install /Applications/Paw.app "brew_cask_install paw" \
   "- [ ] Sign in / License"
 sw_install /Applications/Rocket.app "brew_cask_install rocket" \

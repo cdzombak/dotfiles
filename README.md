@@ -15,21 +15,14 @@ There is also a `server` build target, which will install a minimal configuratio
 
 My zsh theming is intended to work well with a dark color scheme (I use [Solarized Dark](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)).
 
-## TODO
-
-* move system prefs & keyboard shortcuts into configure script as possible
-    * [Add custom keyboard shortcuts to macOS configure script · Issue #6](https://github.com/cdzombak/dotfiles/issues/6)
-* note & try to automate followup steps (apps configuration, menubar, etc. esp. Choosy) (eg. Dictionary)
-
 ## Other macOS System Configuration
 
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
-* Listings of Safari extensions _(nb. [Migration Assistant](https://support.apple.com/en-us/HT204350) seems to miss these)_
-* Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Dash, iTerm2)
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private)
 * My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private)
+* Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Dash, iTerm2)
 * Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements
