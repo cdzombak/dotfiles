@@ -896,13 +896,50 @@ sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 
 echo ""
 cecho "--- Safari Extensions ---" $white
-cecho "Safari extensions cannot be automatically installed, but this script can open the relevant pages and generate a TODO list for you." $white
+echo "Safari extensions cannot be automatically installed, but this script can open the relevant pages and generate a TODO list for you."
 echo ""
 cecho "Open pages/generate TODO list for Safari Extensions? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   ./macos-safari-extensions.sh
 fi
+
+echo ""
+cecho "--- Keyboard Shortcuts ---" $white
+echo "If these don't apply after a reboot, open the affected app, quit it, and re-run this script."
+echo ""
+
+echo "Bear ..."
+# shellcheck disable=SC2016
+defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
+  Archive = "^$a";
+}'
+
+echo "Day One ..."
+# shellcheck disable=SC2016
+defaults write com.bloombuilt.dayone-mac NSUserKeyEquivalents '{
+  "Main Window" = "@0";
+}'
+
+echo "Fantastical ..."
+# shellcheck disable=SC2016
+defaults write com.flexibits.fantastical2.mac NSUserKeyEquivalents '{
+  "Refresh All" = "@r";
+  Reminders = "@^$r";
+}'
+
+echo "Things ..."
+# shellcheck disable=SC2016
+defaults write com.culturedcode.ThingsMac NSUserKeyEquivalents '{
+  "New Repeating To-Do" = "@$r";
+}'
+
+echo "Xcode ..."
+# shellcheck disable=SC2016
+defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
+    "Jump to Generated Interface" = "@^$i";
+    "Print\\U2026" = "@~^$p";
+}'
 
 echo ""
 cecho "--- Finally, stuff that failed the last time this script was used..." $white

@@ -12,11 +12,6 @@ fi
 #   brandonb927's osx-for-hackers.sh: https://gist.github.com/brandonb927/3195465
 #   andrewsardone's dotfiles: https://github.com/andrewsardone/dotfiles/blob/master/osx/osx-defaults
 
-# app keyboard shortcuts:
-#   read via defaults read com.BUNDLE_ID NSUserKeyEquivalents
-#   meta-keys: @ for Command, $ for Shift, ~ for Alt and ^ for Ctrl
-#   via http://hints.macworld.com/article.php?story=20131123074223584
-
 # Set continue to false by default
 CONTINUE=false
 
@@ -245,10 +240,6 @@ echo ""
 echo "Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app"
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
-echo ""
-echo "Add the keyboard shortcut ⌘ + ⇧ + K to clear flag in Mail.app"
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Clear Flag" "@\$k"
-
 ###############################################################################
 # IntelliJ
 ###############################################################################
@@ -321,14 +312,42 @@ echo "Avoid t.co in Tweetbot-Mac"
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 
 ###############################################################################
-# Messages
+# Keyboard Shortcuts
 ###############################################################################
 
-# TODO(cdzombak): No longer used.
-# echo ""
-# echo "Messages.app keyboard shortcuts"
-# defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation" "@~^c"
-# defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Delete Conversation\\U2026" "@^\$w"
+# App keyboard shortcuts:
+#   read via `defaults read com.BUNDLE_ID NSUserKeyEquivalents`, or -g for the global domain
+#   meta-keys: @ for Command, $ for Shift, ~ for Alt and ^ for Ctrl
+#   via http://hints.macworld.com/article.php?story=20131123074223584
+
+echo ""
+echo "Global Keyboard shortcuts: ⌘P to Save PDF; ^⇧⌘V to Paste and Match Style"
+# shellcheck disable=SC2016
+defaults write -g NSUserKeyEquivalents '{
+  "Paste and Match Style" = "@^$v";
+  "Save as PDF\\U2026" = "@p";
+}'
+
+echo ""
+echo "Finder.app Keyboard shortcut: ⇧⌘O to Documents"
+# shellcheck disable=SC2016
+defaults write com.apple.finder NSUserKeyEquivalents '{
+  Documents = "@$o";
+}'
+
+echo ""
+echo "Mail.app Keyboard shortcut: ⇧⌘K to Clear Flag"
+# shellcheck disable=SC2016
+defaults write com.apple.mail NSUserKeyEquivalents '{
+  "Clear Flag" = "@$k";
+}'
+
+echo ""
+echo "Messages.app Keyboard shortcut: ⇧⌘W to Delete Conversation"
+# shellcheck disable=SC2016
+defaults write com.apple.iChat NSUserKeyEquivalents '{
+  "Delete Conversation\\U2026" = "@$w";
+}'
 
 ###############################################################################
 # Kill affected applications
