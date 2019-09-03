@@ -174,6 +174,7 @@ _install_ejector() {
   pushd "$TMP_DIR"
   wget "https://ejector.app/releases/Ejector1.0.0.zip"
   unzip Ejector1.0.0.zip -d /Applications
+  rm -rf /Applications/__MACOSX
   popd
 }
 sw_install /Applications/Ejector.app _install_ejector \
@@ -324,6 +325,7 @@ _install_websters() {
   pushd "$TMP_DIR"
   wget https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
   unzip Webster.s.1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
+  rm -rf "$HOME/Library/Dictionaries/__MACOSX"
   popd
   cecho "Opening Dictionary.app; please rearrange Webster’s 1913 to the top / as desired." $white
   open -a Dictionary
