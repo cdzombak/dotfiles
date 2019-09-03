@@ -194,6 +194,10 @@ echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
 echo ""
+echo "Hide recent applications in Dock"
+defaults write com.apple.dock show-recents -bool FALSE
+
+echo ""
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
 
@@ -331,10 +335,10 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 ###############################################################################
 
 echo ""
-cecho "Done!" $cyan
+cecho "Done!" $green
 echo ""
 cecho "################################################################################" $white
 echo ""
 cecho "Note that some of these changes require a logout/restart to take effect." $white
-cecho "Please restart the system." $red
+cecho "Please restart the system now." $red
 echo ""
