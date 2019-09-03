@@ -27,10 +27,11 @@ if [ "$(uname)" == "Darwin" ]; then
     - [ ] Pay special attention to Security and Privacy, Energy and related
 - [ ] Add current cards to Apple Pay, as desired
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screnshots in \`~/Sync/Configs\`)
+- [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
 
 ## Dock
 
-- [ ] Organize Dock  based on screenshot in \`~/Sync/Configs\`
+- [ ] Organize Dock based on screenshot in \`~/Sync/Configs\`
 
 ## Finder.app
 
