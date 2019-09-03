@@ -253,6 +253,7 @@ sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
 
 sw_install "$HOME/Library/Fonts/MesloLGM-Regular.ttf" "brew_cask_install font-meslo-lg"
 sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask_install font-meslo-for-powerline"
+sw_install "$HOME/Library/Fonts/NationalPark-Regular.otf" "brew_cask_install font-national-park"
 
 if [ ! -L ~/Applications/toolbox-idea ]; then
   ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
