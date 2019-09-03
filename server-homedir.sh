@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 if [ "$(uname)" == "Darwin" ]; then
-  echo "Skipping bash-server setup because on macOS"
+  echo "Skipping Linux homedir setup because on macOS"
   exit 2
 fi
 

@@ -4,7 +4,7 @@ IFS=$'\n\t'
 source ./lib/cecho
 
 if [ "$(uname)" != "Darwin" ]; then
-  echo "Skipping macOS setup because not on macOS"
+  echo "Skipping macOS configuration because not on macOS"
   exit 2
 fi
 

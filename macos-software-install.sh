@@ -5,7 +5,7 @@ source ./lib/cecho
 source ./lib/sw_install
 
 if [ "$(uname)" != "Darwin" ]; then
-  echo "Skipping macOS setup because not on macOS"
+  echo "Skipping macOS software installation because not on macOS"
   exit 2
 fi
 
