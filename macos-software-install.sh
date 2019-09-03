@@ -242,14 +242,31 @@ sw_install /Applications/Slack.app "brew_cask_install slack" \
 sw_install /Applications/Sonos.app "brew_cask_install sonos"
 sw_install /Applications/Spotify.app "brew_cask_install spotify"
 sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
-sw_install "/Applications/Sublime Text.app" "brew_cask_install sublime-text" \
-  "- [ ] License\n- [ ] [Install Package Control](https://packagecontrol.io/installation)\n- [ ] Install configuration [from my config repo](https://github.com/cdzombak/sublime-text-config)"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync"
 sw_install /Applications/Wavebox.app "brew_cask_install wavebox" \
   "- [ ] Sign into personal Google account for license\n- [ ] Sign into other relevant Google accounts"
 sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
+
+_install_sublimetext() {
+  brew cask install sublime-text
+  SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
+  mkdir -p "$SUBLIMETEXT_INSTALLED_PKGS_DIR"
+  pushd "$SUBLIMETEXT_INSTALLED_PKGS_DIR"
+  wget https://packagecontrol.io/Package%20Control.sublime-package
+  popd
+  SUBLIMETEXT_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Packages"
+  mkdir -p "$SUBLIMETEXT_PKGS_DIR"
+  pushd "$SUBLIMETEXT_PKGS_DIR"
+  git clone git@github.com:cdzombak/sublime-text-config.git User
+  popd
+  if [ ! -L ~/.sublime-config ]; then
+    ln -s ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ~/.sublime-config
+  fi
+}
+sw_install "/Applications/Sublime Text.app" _install_sublimetext \
+  "- [ ] Open the application and allow Package Control to finish installing packages as configured- [ ] License"
 
 sw_install "$HOME/Library/Fonts/MesloLGM-Regular.ttf" "brew_cask_install font-meslo-lg"
 sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask_install font-meslo-for-powerline"
@@ -305,7 +322,7 @@ sw_install "/Applications/Things3.app" _install_things \
 _install_websters() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dictionary')
   pushd "$TMP_DIR"
-  wget -q https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
+  wget https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
   unzip Webster.s.1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
   popd
   cecho "Opening Dictionary.app; please rearrange Webster’s 1913 to the top / as desired." $white
