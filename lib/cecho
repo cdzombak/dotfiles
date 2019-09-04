@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 # Set the colours you can use
 black='\033[0;30m'

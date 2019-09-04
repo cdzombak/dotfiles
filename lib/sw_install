@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-set -e
 
 # use in a script with cecho available...
-#source ./cecho
+# source ./cecho
 
 function sw_install() {
   if [  $# -lt 2 ]; then
