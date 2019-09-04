@@ -10,18 +10,52 @@ mkdir -p "$HOME/opt/bin"
 
 # install dust: A more intuitive version of du in rust
 if [ ! -x "$HOME/opt/bin/dust" ]; then
+  set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
   pushd "$TMP_DIR"
   curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux" | xargs wget -q -O dust.tar.gz
   tar xzf dust.tar.gz
   cp dust "$HOME/opt/bin"
   popd
+  set +x
 fi
 
 # install my listening wrapper for netstat
 if [ ! -x "$HOME/opt/bin/listening" ]; then
+  set -x
   pushd "$HOME/opt/bin"
   wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
   chmod +x listening
   popd
+  set +x
+fi
+
+# install a more recent version of nano
+if [ ! -x "/usr/local/bin/nano" ]; then
+  set -x
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
+  pushd "$TMP_DIR"
+
+  sudo apt-get build-dep nano
+  sudo apt-get install build-essential
+
+  NANO_V="4.4"
+  wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V.tar.gz"
+  tar -xzvf "nano-$NANO_V.tar.gz"
+  cd "./nano-$NANO_V"
+
+  ./configure \
+    --prefix=/usr/local \
+    --disable-libmagic \
+    --enable-utf8 \
+    --enable-nanorc \
+    --enable-color \
+    --enable-multibuffer
+  make
+
+  sudo apt-get remove nano
+  sudo make install-strip
+
+  popd # $TMP_DIR
+  set +x
 fi
