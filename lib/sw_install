@@ -24,6 +24,7 @@ function sw_install() {
     return 0
   fi
 
+  echo ""
   cecho "Installing $ARTIFACT..." $cyan
 
   function brew_install() {

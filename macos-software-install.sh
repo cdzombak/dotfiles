@@ -381,7 +381,6 @@ cecho "--- Utilities ---" $white
 echo ""
 
 _install_netdata() {
-  echo ""
   cecho "Install Netdata locally? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -392,7 +391,6 @@ _install_netdata() {
 sw_install /usr/local/sbin/netdata _install_netdata
 
 _install_iperf3() {
-  echo ""
   cecho "Install iperf3? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -402,7 +400,6 @@ _install_iperf3() {
 sw_install /usr/local/bin/iperf3 _install_iperf3
 
 _install_superduper(){
-  echo ""
   cecho "Install SuperDuper? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -426,7 +423,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 _install_balena_etcher() {
-  echo ""
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -436,7 +432,6 @@ _install_balena_etcher() {
 sw_install /Applications/balenaEtcher.app _install_balena_etcher
 
 _install_coconutbattery() {
-  echo ""
   cecho "Install CoconutBattery? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -446,7 +441,6 @@ _install_coconutbattery() {
 sw_install /Applications/coconutBattery.app _install_coconutbattery
 
 _install_ivpn_client() {
-  echo ""
   cecho "Install IVPN client? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -456,7 +450,6 @@ _install_ivpn_client() {
 sw_install /Applications/IVPN.app _install_ivpn_client
 
 _install_torbrowser() {
-  echo ""
   cecho "Install Tor Browser? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -466,7 +459,6 @@ _install_torbrowser() {
 sw_install "/Applications/TorBrowser.app" _install_torbrowser
 
 _install_daisydisk() {
-  echo ""
   cecho "Install DaisyDisk? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -476,7 +468,6 @@ _install_daisydisk() {
 sw_install /Applications/DaisyDisk.app _install_daisydisk
 
 _install_cubicsdr() {
-  echo ""
   cecho "Install CubicSDR? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -486,7 +477,6 @@ _install_cubicsdr() {
 sw_install /Applications/CubicSDR.app _install_cubicsdr
 
 _install_mactracker() {
-  echo ""
   cecho "Install MacTracker? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -496,7 +486,6 @@ _install_mactracker() {
 sw_install /Applications/MacTracker.app _install_mactracker
 
 _install_virtualbox() {
-  echo ""
   cecho "Install VirtualBox? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -506,7 +495,6 @@ _install_virtualbox() {
 sw_install /Applications/VirtualBox.app _install_virtualbox
 
 _install_screensconnect() {
-  echo ""
   cecho "Install Screens Connect? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -519,7 +507,6 @@ echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
-echo ""
 cecho "Install React Native CLI & related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -537,7 +524,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 _install_sbt() {
-  echo ""
   cecho "Install Scala tools (sbt)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -547,7 +533,6 @@ _install_sbt() {
 sw_install /usr/local/bin/sbt _install_sbt
 
 _install_carthage() {
-  echo ""
   cecho "Install Carthage? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -557,7 +542,6 @@ _install_carthage() {
 sw_install /usr/local/bin/carthage _install_carthage
 
 _install_fastlane() {
-  echo ""
   cecho "Install Fastlane? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -567,7 +551,6 @@ _install_fastlane() {
 sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
 
 _install_gcloud_sdk() {
-  echo ""
   cecho "Install Google Cloud SDK? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -577,7 +560,6 @@ _install_gcloud_sdk() {
 sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
 
 _install_wwdcapp() {
-  echo ""
   cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -586,7 +568,6 @@ _install_wwdcapp() {
 }
 sw_install /Applications/WWDC.app _install_wwdcapp
 
-echo ""
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -595,11 +576,10 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew cask install texmaker
 fi
 
-cecho "-- Database tools." $white
+cecho "Database tools..." $white
 cecho "There are a lot of options here: MySQLWorkbench, Liya (SQLite), IntelliJ, plus tools from Setapp (favorite is SQLPro)." $white
 
 _install_mysqlworkbench() {
-  echo ""
   cecho "Install MySQLWorkbench? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -609,7 +589,6 @@ _install_mysqlworkbench() {
 sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
 
 _install_liya() {
-  echo ""
   cecho "Install Liya (for SQLite, from Mac App Store)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -623,7 +602,6 @@ cecho "--- Media Tools ---" $white
 echo ""
 
 _install_kindle() {
-  echo ""
   cecho "Install Kindle? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -642,7 +620,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 _install_photosweeper() {
-  echo ""
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -652,7 +629,6 @@ _install_photosweeper() {
 sw_install "/Applications/PhotoSweeper X.app" _install_photosweeper
 
 _install_adobe_cc() {
-  echo ""
   cecho "Install Adobe Creative Cloud? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -667,7 +643,6 @@ _install_adobe_cc() {
 sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
 
 _install_pixelmator() {
-  echo ""
   cecho "Install Pixelmator? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -687,7 +662,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 _install_youtubedl() {
-  echo ""
   cecho "Install youtube-dl? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -697,7 +671,6 @@ _install_youtubedl() {
 sw_install /usr/local/bin/youtube-dl _install_youtubedl
 
 _install_fileloupe() {
-  echo ""
   cecho "Install Fileloupe media browser? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -707,7 +680,6 @@ _install_fileloupe() {
 sw_install /Applications/Fileloupe.app _install_fileloupe
 
 _install_handbrake() {
-  echo ""
   cecho "Install Handbrake? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -722,7 +694,6 @@ cecho "--- Music ---" $white
 echo ""
 
 _install_plexamp() {
-  echo ""
   cecho "Install Plexamp? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -737,7 +708,6 @@ _install_plexamp() {
 sw_install /Applications/Plexamp.app _install_plexamp
 
 _install_neptunes() {
-  echo ""
   cecho "Install NepTunes? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -756,7 +726,6 @@ cecho "--- Office Tools ---" $white
 echo ""
 
 _install_omnigraffle() {
-  echo ""
   cecho "Install OmniGraffle? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -771,7 +740,6 @@ _install_omnigraffle() {
 sw_install /Applications/OmniGraffle.app _install_omnigraffle
 
 _install_zoom() {
-  echo ""
   cecho "Install Zoom for videoconferencing? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -781,7 +749,6 @@ _install_zoom() {
 sw_install /Applications/zoom.us.app _install_zoom
 
 _install_monodraw() {
-  echo ""
   cecho "Install Monodraw? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -791,7 +758,6 @@ _install_monodraw() {
 sw_install /Applications/Monodraw.app _install_monodraw
 
 _install_keynote() {
-  echo ""
   cecho "Install Keynote? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -801,7 +767,6 @@ _install_keynote() {
 sw_install /Applications/Keynote.app _install_keynote
 
 _install_deckset() {
-  echo ""
   cecho "Install Deckset? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -811,7 +776,6 @@ _install_deckset() {
 sw_install /Applications/Deckset.app _install_deckset
 
 _install_calca() {
-  echo ""
   cecho "Install Calca? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -821,7 +785,6 @@ _install_calca() {
 sw_install /Applications/Calca.app _install_calca
 
 _install_tableflip() {
-  echo ""
   cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -831,7 +794,6 @@ _install_tableflip() {
 sw_install /Applications/TableFlip.app _install_tableflip
 
 _install_grasshopper() {
-  echo ""
   cecho "Install Grasshopper (phone software)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -846,7 +808,6 @@ _install_grasshopper() {
 sw_install /Applications/Grasshopper.app _install_grasshopper
 
 _install_tadam() {
-  echo ""
   cecho "Install Tadam focus timer? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -859,7 +820,6 @@ echo ""
 cecho "--- Games & Social Networking ---" $white
 echo ""
 
-echo ""
 cecho "Install social networking software (Caprine, Flume, Tweetbot)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -895,7 +855,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 _install_nsnake() {
-  echo ""
   cecho "Install nsnake? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -905,7 +864,6 @@ _install_nsnake() {
 sw_install /usr/local/bin/nsnake _install_nsnake
 
 _install_minimetro() {
-  echo ""
   cecho "Install Mini Metro? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -915,7 +873,6 @@ _install_minimetro() {
 sw_install "/Applications/Mini Metro.app" _install_minimetro
 
 _install_simcity() {
-  echo ""
   cecho "Install SimCity 4 Deluxe? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -984,3 +941,6 @@ _install_swiftsh() {
   fi
 }
 sw_install /usr/local/bin/swift-sh _install_swiftsh
+
+echo ""
+cecho "✔ Done!" $green
