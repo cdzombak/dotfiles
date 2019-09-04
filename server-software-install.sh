@@ -36,8 +36,8 @@ if [ ! -x "/usr/local/bin/nano" ]; then
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
   pushd "$TMP_DIR"
 
-  sudo apt-get build-dep nano
-  sudo apt-get install build-essential
+  sudo apt-get -y build-dep nano
+  sudo apt-get -y install build-essential
 
   NANO_V="4.4"
   wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V.tar.gz"
