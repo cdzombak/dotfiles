@@ -92,8 +92,8 @@ server-homedir: require-non-macos ## Set up basic Linux home directory structure
 	@bash ./server-homedir.sh
 
 .PHONY: server-software
-server-software: server-homedir
-	@bash ./server-software-install.sh ## Install some extra software on Linux
+server-software: server-homedir ## Install some extra software on Linux
+	@bash ./server-software-install.sh
 
 .PHONY: server
 server: require-non-macos server-homedir server-stow server-bash-cfg server-software ## Configure a Linux server (assumes Ubuntu or Debian). *Recommended entry point.*
