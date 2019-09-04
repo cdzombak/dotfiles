@@ -299,8 +299,8 @@ _zsh_build_prompt() {
   _zsh_prompt_context
   _zsh_prompt_dir
   _zsh_prompt_git
-  _zsh_prompt_bzr
-  _zsh_prompt_hg
+  #_zsh_prompt_bzr
+  #_zsh_prompt_hg
   _zsh_prompt_end
 }
 
