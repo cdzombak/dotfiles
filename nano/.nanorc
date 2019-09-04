@@ -4,6 +4,8 @@
 
 set autoindent  # Indent new lines to the previous line's indentation
 set morespace   # Use the blank line below the titlebar as extra editing space.
+set nowrap      # Don't wrap long lines at all.
+                # CLI: -w, --nowrap
 set quickblank  # Do quick statusbar blanking. Statusbar messages will disappear after 1 keystroke instead of 25.
                 # Note that -c (constantly display cursor position & line number on statusbar) overrides this.
 set smarthome   # When Home is pressed anywhere but at the very beginning of non-whitespace characters on a line, the cursor will jump to that beginning (either forwards or backwards). If the cursor is already at that position, it will jump to the true beginning of the line.
@@ -12,9 +14,6 @@ set tabsize 4   # Tab width is 4 spaces.
 ##
 ## Unused options
 ##
-
-# set nowrap        # Don't wrap long lines at all.
-                    # CLI: -w, --nowrap
 
 # set softwrap      # Use soft wrapping by default.
                     # CLI: -$, --softwrap
