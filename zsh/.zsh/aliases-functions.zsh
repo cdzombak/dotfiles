@@ -22,6 +22,7 @@ alias df='df -h'
 
 # mkdir/rmdir
 alias rd='rmdir'
+alias rdf='rm -rf'
 alias md='mkdir'
 
 # tofrodos is packaged for OSX in homebrew
