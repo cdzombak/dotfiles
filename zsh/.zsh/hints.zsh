@@ -6,6 +6,7 @@ HINTS=(
     "Use ${CYAN}psgrep${NC} to look for running processes."
     "${CYAN}git-stage-missing${NC} will stage missing files for removal."
     "Use ${CYAN}lsz${NC} to list files in a tar/zip archive."
+    "Use ${CYAN}cpwd${NC} to copy the path to the current working directory."
     "${CYAN}cpv${NC} is a robust cp alternative."
     "${CYAN}clipcopy${NC} and ${CYAN}clippaste${NC} are available."
     "${CYAN}httpserver${NC} serves the current directory on the given port (default 8080)."
@@ -41,6 +42,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         "Use ${CYAN}trash${NC} to move something to the trash."
         "${CYAN}xc${NC} will open the Xcode workspace or project for the current directory."
         "${CYAN}pfs${NC} will list the current Finder selection."
+        "${CYAN}finder [path]${NC} will open the given path or the current directory in Finder."
         "Use ${CYAN}pfd${NC} to print the current Finder directory.\n        ${CYAN}ff${NC}, ${CYAN}cdf${NC}, ${CYAN}pushdf${NC} to change to it."
     )
 fi

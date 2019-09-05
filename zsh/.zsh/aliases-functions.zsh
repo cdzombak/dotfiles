@@ -35,6 +35,8 @@ alias ggit='git'
 alias subl='subl -n' # always open a new window when working from CLI
 alias subl.='subl -n .' # I can't type
 
+alias cpwd='pwd|tr -d "\n"|clipcopy'
+
 # git - stage missing files for removal
 alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
