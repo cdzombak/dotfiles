@@ -17,7 +17,7 @@ alias lla='ls -la'
 
 # du/df (nb. dust also exists)
 alias du='du -h'
-alias duh='du -d 1'
+alias duh='du -h -d 1'
 alias df='df -h'
 
 # mkdir/rmdir
