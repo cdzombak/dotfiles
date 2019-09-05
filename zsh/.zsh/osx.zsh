@@ -72,11 +72,6 @@ bid() {
   [[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
 }
 
-# Move the Dock
-alias dock-bottom="defaults write com.apple.Dock orientation -string bottom && killall Dock"
-alias dock-left="defaults write com.apple.Dock orientation -string left && killall Dock"
-alias dock-right="defaults write com.apple.Dock orientation -string right && killall Dock"
-
 # preview the clipboard contents in less
 alias cbp="pbpaste|less"
 
