@@ -43,10 +43,6 @@ function quick-look() {
 
 alias ql="quick-look"
 
-function man-preview() {
-  man -t "$@" | open -f -a Preview
-}
-compdef _man man-preview
 
 function vncviewer() {
   open vnc://$@
