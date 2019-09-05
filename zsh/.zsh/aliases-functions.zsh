@@ -64,12 +64,12 @@ alias remove-newline-eof="perl -pi -e 'chomp if eof'"
 # source the named env config file from ~/env
 # or, source the file with the same name as working dir
 senv() {
-    if [ $# -ne 1 ]
-    then
+    if [ $# -ne 1 ]; then
         ENVNAME=${PWD##*/}
         source "$HOME/env/$ENVNAME"
+    else
+        source "$HOME/env/$1"
     fi
-    source "$HOME/env/$1"
 }
 
 # download YouTube video -> local Plex server
