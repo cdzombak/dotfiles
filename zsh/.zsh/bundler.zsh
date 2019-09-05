@@ -1,7 +1,5 @@
 # from https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/bundler , with customizations
 
-alias be="bundle exec"
-
 bundled_commands=(
   annotate
   cap
