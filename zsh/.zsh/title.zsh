@@ -54,15 +54,13 @@ function screen_title {
   esac
 }
 
-function disable_auto_title {
+function disable-auto-title {
   export DISABLE_AUTO_TITLE=true
 }
-alias disable-auto-title='disable_auto_title'
 
-function enable_auto_title {
+function enable-auto-title {
   export DISABLE_AUTO_TITLE=false
 }
-alias enable-auto-title='enable_auto_title'
 
 ZSH_TERM_TAB_TITLE_IDLE="%20<..<%~%<<" # 20 char left truncated PWD
 ZSH_SCREEN_TAB_TITLE_IDLE="%8<..<%~%<<" # 8 char left truncated PWD
