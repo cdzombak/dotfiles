@@ -900,6 +900,8 @@ echo "Bear ..."
 # shellcheck disable=SC2016
 defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
   Archive = "^$a";
+  Back = "^\\U2190";
+  Forward = "^\\U2192";
 }'
 
 echo "Day One ..."
