@@ -12,7 +12,7 @@
 # via jessfraz/dotfiles
 #
 
-dcleanup(){
+docker-cleanup(){
   local containers
   containers=( $(docker ps -aq 2>/dev/null) )
   docker rm "${containers[@]}" 2>/dev/null
@@ -24,7 +24,7 @@ dcleanup(){
   docker rmi "${images[@]}" 2>/dev/null
 }
 
-del_stopped(){
+docker-del-stopped(){
   local name=$1
   local state
   state=$(docker inspect --format "{{.State.Running}}" "$name" 2>/dev/null)
@@ -34,7 +34,7 @@ del_stopped(){
   fi
 }
 
-relies_on(){
+docker-relies-on(){
   for container in "$@"; do
     local state
     state=$(docker inspect --format "{{.State.Running}}" "$container" 2>/dev/null)
