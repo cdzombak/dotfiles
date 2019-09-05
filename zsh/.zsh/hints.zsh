@@ -15,29 +15,33 @@ HINTS=(
     "Use ${CYAN}mdf${NC} to make a directory and switch to it."
     "Use ${CYAN}pfd${NC} or ${CYAN}pfs${NC} to print the current Finder directory or selection."
     "Use ${CYAN}cdf${NC}, ${CYAN}pushdf${NC}, or ${CYAN}ff${NC} to switch to the current Finder directory."
-    "Use ${CYAN}trash${NC} to move something to the trash."
-    "Type ${CYAN}cbp${NC} to preview the clipboard in less."
+    "Type ${CYAN}cbp${NC} to preview the clipboard in ${CYAN}less${NC}."
     "Use ${CYAN}pyclean${NC} to cleanup Python bytecode in the current or given directories."
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: https://github.com/sharkdp/fd"
     "${CYAN}ag${NC} is a great code search tool: https://github.com/ggreer/the_silver_searcher"
     "${CYAN}disable/enable-auto-title${NC} are available."
     "Use ${CYAN}shellcheck${NC} to check shell scripts for potential problems."
     "${CYAN}watch-reload-chrome/safari${NC} to refresh your browser when your codebase changes."
+    "${CYAN}watch-run <command>${NC} to run ${CYAN}<command>${NC} when the current filesystem tree changes."
     "Syntax is ${CYAN}screen -DR [name]${NC} to open a screen."
-    "Use ${CYAN}tldr${NC} for a quick ${CYAN}man${NC} alternative."
     "${CYAN}wx${NC} and ${CYAN}metar${NC} are available for weather checks."
     "Use ${CYAN}!\$${NC} to repeat the last argument of the previous command."
+    "Use ${CYAN}gi <language/platform>${NC} to fetch a gitignore template from https://www.gitignore.io."
     "${CYAN}hsgrep${NC} will grep through history."
     "Run ${CYAN}hist${NC} to look at the most recent 100 commands in history."
+    "${CYAN}_1${NC}, ${CYAN}_2${NC}, ... will grab the ${CYAN}n${NC}th column in a space separated line."
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     HINTS=(
         "${HINTS[@]}"
-        "[macOS] ${CYAN}Shift-Command-.${NC} will quickly toggle invisible files in Finder."
-        "[macOS] ${CYAN}dock-bottom/left/right${NC} are available."
-        "[macOS] ${CYAN}Command+Option+D${NC} will toggle Dock hiding (I often remap to ${CYAN}Control+Shift+H${NC})."
-        "[macOS] ${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
+        "${CYAN}Shift-Command-.${NC} will quickly toggle invisible files in Finder."
+        "${CYAN}Control+Shift+H${NC} will toggle Dock hiding."
+        "${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
+        "Use ${CYAN}trash${NC} to move something to the trash."
+        "${CYAN}xc${NC} will open the Xcode workspace or project for the current directory."
+        "${CYAN}pfs${NC} will list the current Finder selection."
+        "Use ${CYAN}pfd${NC} to print the current Finder directory.\n        ${CYAN}ff${NC}, ${CYAN}cdf${NC}, ${CYAN}pushdf${NC} to change to it."
     )
 fi
 
