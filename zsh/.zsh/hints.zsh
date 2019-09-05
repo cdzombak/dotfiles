@@ -47,7 +47,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     )
 fi
 
-if [[ -z "$OSCARSIERRA_ENV" ]]; then
+if [[ -z "$OSCARSIERRA_ENV" ]] && [[ -z "$SSH_CLIENT" ]] && [[ -z "$SSH_TTY" ]]; then
     echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
 fi
 
