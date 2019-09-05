@@ -21,7 +21,6 @@ HINTS=(
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: https://github.com/sharkdp/fd"
     "${CYAN}ag${NC} is a great code search tool: https://github.com/ggreer/the_silver_searcher"
     "${CYAN}disable/enable-auto-title${NC} are available."
-    "${CYAN}rg${NC} is a fast grep/ag alternative: https://github.com/BurntSushi/ripgrep/"
     "Use ${CYAN}shellcheck${NC} to check shell scripts for potential problems."
     "${CYAN}watch-reload-chrome/safari${NC} to refresh your browser when your codebase changes."
     "Syntax is ${CYAN}screen -DR [name]${NC} to open a screen."
