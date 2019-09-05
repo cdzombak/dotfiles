@@ -30,6 +30,5 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;35m") \
 		PAGER="${commands[less]:-$PAGER}" \
 		_NROFF_U=1 \
-		PATH="$HOME/bin:$PATH" \
-			man "$@"
+		man "$@"
 }
