@@ -51,3 +51,52 @@ defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
     "Print\\U2026" = "@~^$p";
 }'
 
+echo ""
+cecho "--- Finder Sidebar ---" $white
+echo ""
+
+WHOAMI="$(whoami)"
+
+EXPECTED_SIDEBAR_CONTENT=(
+  # formatted as output of `mysides list`
+  # excluding AirDrop.
+  "Applications -> file:///Applications/"
+  "$WHOAMI -> file:///Users/$WHOAMI/"
+  "Desktop -> file:///Users/$WHOAMI/Desktop/"
+  "Documents -> file:///Users/$WHOAMI/Documents/"
+  "Downloads -> file:///Users/$WHOAMI/Downloads/"
+  "tmp -> file:///Users/$WHOAMI/tmp/"
+  "Sync -> file:///Users/$WHOAMI/Sync/"
+)
+
+# remove anything that shouldn't be there...
+mysides list | while read -r LINE; do
+  # only looking at file:// URLs; don't mess with " -> nwnode://domain-AirDrop"
+  if ! echo "$LINE" | grep -c "file://" >/dev/null; then continue; fi
+
+  NAME="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $1}')"
+  URI="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $2}')"
+  FOUND=false
+  # if EXPECTED_SIDEBAR_CONTENT contains this line, continue to the next line:
+  for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
+    if [ "$i" == "$LINE" ] ; then FOUND=true; fi
+  done
+  if $FOUND; then
+    cecho "✔ Found $NAME in Finder sidebar as expected." $green
+    continue
+  fi
+
+  # otherwise, we don't want this one:
+  cecho "Removing unwanted Finder sidebar item $NAME ($URI)..." $yellow
+  mysides remove "$NAME"
+done
+
+for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
+  if ! mysides list | grep -c "$i" >/dev/null; then
+    # this line is missing from sidebar; add it
+    NAME="$(echo "$i" | awk 'BEGIN {FS=" -> "} {print $1}')"
+    URI="$(echo "$i" | awk 'BEGIN {FS=" -> "} {print $2}')"
+    cecho "Adding Finder sidebar item $NAME ($URI)..." $cyan
+    mysides add "$NAME" "$URI"
+  fi
+done
