@@ -13,7 +13,7 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 echo ""
-cecho "--- Keyboard Shortcuts ---" $white
+cecho "--- Application Keyboard Shortcuts ---" $white
 echo "If these don't apply after rebooting, open the affected app, quit it, and re-run this script."
 echo ""
 
@@ -100,3 +100,32 @@ for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
     mysides add "$NAME" "$URI"
   fi
 done
+
+echo ""
+cecho "--- Additional Application Configuration ---" $white
+echo ""
+
+echo "Rocket..."
+defaults write net.matthewpalmer.Rocket deactivated-apps '(
+  Slack,
+  HipChat,
+  Xcode,
+  Terminal,
+  iTerm2,
+  "Sublime Text",
+  "Sublime Text 2",
+  "IntelliJ IDEA",
+  goland,
+  "jetbrains-toolbox-launcher",
+  Dash,
+  studio,
+  Bear
+)'
+defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
+  "github.com",
+  "trello.com",
+  "slack.com",
+  "pinboard.in",
+  "a2mi.social",
+  "git.grooveid.net"
+)'
