@@ -18,10 +18,6 @@ if ! ls "$HOME/Library/Safari/Extensions" >/dev/null; then
   exit 0
 fi
 
-sw_install "$HOME/Library/Safari/Extensions/Bear.safariextz" \
-  "open -a Safari.app 'https://bear.app/faq/Extensions/Browser%20extensions'" \
-  "- [ ] Install Bear extension from https://bear.app/faq/Extensions/Browser%20extensions"
-
 sw_install "$HOME/Library/Safari/Extensions/Choosy.safariextz" \
   "open -a Safari.app 'https://www.choosyosx.com/browsers'" \
   "- [ ] Install Choosy extension from https://www.choosyosx.com/browsers"
@@ -32,6 +28,9 @@ sw_install "$HOME/Library/Safari/Extensions/Day One Quick Entry.safariextz" \
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
   "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable Safari extension"
+
+sw_install /Applications/Bear.app "mas install 1091189122" \
+  "- [ ] Enable Safari Extension"
 
 sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker in Safari"

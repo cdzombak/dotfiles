@@ -294,7 +294,8 @@ fi
 
 # macOS Applications from Mac App Store:
 
-sw_install /Applications/Bear.app "mas install 1091189122"
+sw_install /Applications/Bear.app "mas install 1091189122" \
+  "- [ ] Enable Safari Extension"
 sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker in Safari"
 sw_install /Applications/Byword.app "mas install 420212497"
