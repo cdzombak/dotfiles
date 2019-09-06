@@ -58,6 +58,10 @@ mac-stow: dependencies submodules require-macos ## Link macOS configuration file
 mac-configure: require-macos setupnote ## Run macOS configuration script
 	@bash ./macos-configure.sh
 
+.PHONY: mac-configure-post-software-install
+mac-configure-post-software-install: require-macos mac-software ## Run final macOS configuration script, for software installed by the mac-software target
+	@bash ./macos-configure-post-software-install.sh
+
 .PHONY: mac-software
 mac-software: require-macos submodules setupnote ## Install macOS software suite (this can take a long time)
 	@bash ./osx-automation/script/install.sh
@@ -72,7 +76,7 @@ mac-safari-extensions: require-macos
 	@bash ./macos-safari-extensions.sh
 
 .PHONY: mac
-mac: require-macos mac-homedir mac-configure mac-stow mac-software ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+mac: require-macos mac-configure mac-homedir mac-stow mac-software mac-configure-post-software-install ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Server (*nix) Targets
 
