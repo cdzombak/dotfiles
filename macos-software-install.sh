@@ -205,7 +205,8 @@ sw_install /Applications/Docker.app "brew_cask_install docker"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts"
 sw_install "/Applications/Fantastical 2.app" "brew_cask_install fantastical" \
   "- [ ] Configure calendar accounts\n- [ ] Configure calendar set based on current favorite system/screenshots in \`~/Sync/Configs\`\n- [ ] Add to Today view"
-sw_install /Applications/Fork.app "brew_cask_install fork"
+sw_install /Applications/Fork.app "brew_cask_install fork" \
+  "- [ ] Configure applications & Git path\n- [ ] Install CLI tool"
 sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
   "- [ ] Sign into relevant Google Accounts"
 sw_install "/Applications/Google Drive File Stream.app" "brew_cask_install google-drive-file-stream" \
