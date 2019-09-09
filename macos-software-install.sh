@@ -518,6 +518,15 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
 fi
 
+_install_nodemon() {
+  cecho "Install nodemon (filesystem watcher for Node/NPM projects)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     npm install -g nodemon
+  fi
+}
+sw_install /usr/local/bin/nodemon _install_nodemon
+
 echo ""
 cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
 read -r response
