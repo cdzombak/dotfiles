@@ -64,7 +64,6 @@ sw_install /usr/local/opt/coreutils/libexec/gnubin "brew_install coreutils"
 sw_install /usr/local/bin/cowsay "brew_install cowsay"
 sw_install /usr/local/opt/curl/bin/curl "brew_install curl"
 sw_install /usr/local/bin/dive "brew tap wagoodman/dive && brew_install dive"
-sw_install /usr/local/bin/entr "brew_install entr"
 sw_install /usr/local/bin/eslint "brew_install eslint"
 sw_install /usr/local/bin/flake8 "brew_install flake8"
 sw_install /usr/local/bin/fzf "brew_install fzf"
@@ -108,6 +107,16 @@ sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
   "brew_cask_install qlmarkdown"
 sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" \
   "brew_cask_install quicklook-json"
+
+sw_install /usr/local/bin/entr "brew_install entr"
+# Fix "entr: Too many files listed; the hard limit for your login class is 256."
+# http://eradman.com/entrproject/limits.html
+_install_entr_workaround() {
+  pushd /Library/LaunchDaemons
+  sudo curl -sO "https://dropbox.dzombak.com/limit.maxfiles.plist"
+  popd
+}
+sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
 
 # provides envsubst:
 sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force gettext"
