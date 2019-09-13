@@ -231,7 +231,7 @@ sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there"
 sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
-  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Install Android Studio\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
+  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IntelliJ\n- [ ] Install GoLand\n- [ ] Install Android Studio\n- [ ] Install WebStorm\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License"
 sw_install /Applications/Keybase.app "brew_cask_install keybase" \
@@ -300,6 +300,12 @@ if [ ! -L ~/Applications/toolbox-idea ]; then
 fi
 if [ ! -L ~/Applications/toolbox-goland ]; then
   ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/Goland ~/Applications/toolbox-goland
+fi
+if [ ! -L ~/Applications/toolbox-webstorm ]; then
+  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/WebStorm ~/Applications/toolbox-webstorm
+fi
+if [ ! -L ~/Applications/toolbox-androidstudio ]; then
+  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio ~/Applications/toolbox-androidstudio
 fi
 
 # macOS Applications from Mac App Store:
@@ -599,7 +605,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 cecho "Database tools..." $white
-cecho "There are a lot of options here: MySQLWorkbench, Liya (SQLite), IntelliJ, plus tools from Setapp (favorite is SQLPro)." $white
+cecho "There are a lot of options here: JetBrains DataGrip/IntelliJ, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
 
 _install_mysqlworkbench() {
   cecho "Install MySQLWorkbench? (y/N)" $magenta
