@@ -718,7 +718,7 @@ _install_handbrake() {
 sw_install /Applications/Handbrake.app _install_handbrake
 
 echo ""
-cecho "--- Music ---" $white
+cecho "--- Music / Podcasts ---" $white
 echo ""
 
 _install_plexamp() {
@@ -748,6 +748,15 @@ _install_neptunes() {
   fi
 }
 sw_install /Applications/NepTunes.app _install_neptunes
+
+_install_pocketcasts() {
+  cecho "Install Pocket Casts? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install pocket-casts
+  fi
+}
+sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
 
 echo ""
 cecho "--- Office Tools ---" $white
