@@ -55,7 +55,12 @@ if [ ! -x "/usr/local/bin/nano" ]; then
 
   sudo apt-get remove nano
   sudo make install-strip
+  sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nano 50
 
   popd # $TMP_DIR
   set +x
+
+  echo ""
+  echo "If necessary, run 'sudo update-alternatives --config editor' to select the new nano installation."
+  echo ""
 fi
