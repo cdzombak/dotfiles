@@ -239,8 +239,6 @@ sw_install /Applications/Keybase.app "brew_cask_install keybase" \
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
-sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
-  "- [ ] License\n- [ ] Install Custom CSS from \`~/Sync/Configs\`"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
   "- [ ] License\n- [ ] Import templates from \`~/Sync/Configs\`"
@@ -294,6 +292,13 @@ sw_install "/Applications/Red Eye.app" _install_redeye
 sw_install "$HOME/Library/Fonts/MesloLGM-Regular.ttf" "brew_cask_install font-meslo-lg"
 sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask_install font-meslo-for-powerline"
 sw_install "$HOME/Library/Fonts/NationalPark-Regular.otf" "brew_cask_install font-national-park"
+
+sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
+  "- [ ] License\n- [ ] Install Custom CSS from \`~/Sync/Configs\`"
+if [ ! -L /Applications/Marked.app ]; then
+  # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
+  ln -s "/Applications/Marked 2.app" /Applications/Marked.app
+fi
 
 if [ ! -L ~/Applications/toolbox-idea ]; then
   ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
