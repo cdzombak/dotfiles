@@ -45,11 +45,3 @@ docker-relies-on(){
     fi
   done
 }
-
-#
-# Container Aliases
-#
-
-wpscan() {
-  docker run -it --rm wpscanteam/wpscan -u "$@"
-}
