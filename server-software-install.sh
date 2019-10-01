@@ -8,6 +8,8 @@ fi
 
 mkdir -p "$HOME/opt/bin"
 
+sudo apt install tig tree nnn htop traceroute dnsutils
+
 # install dust: A more intuitive version of du in rust
 if [ ! -x "$HOME/opt/bin/dust" ]; then
   set -x
