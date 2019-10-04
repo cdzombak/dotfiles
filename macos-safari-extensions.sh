@@ -38,6 +38,9 @@ sw_install /Applications/Better.app "mas install 1121192229" \
 sw_install /Applications/IINA.app "brew_cask_install iina" \
   "- [ ] Enable Safari extension as desired"
 
+sw_install /Applications/Instapaper.app "mas install 1481302432" \
+  "- [ ] Enable Safari Extension"
+
 # shellcheck disable=SC2129
 echo "## Safari Extensions" >> "$HOME/SystemSetup.md"
 echo "" >> "$HOME/SystemSetup.md"
