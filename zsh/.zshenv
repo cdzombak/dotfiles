@@ -13,7 +13,7 @@ export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # Golang:
-export GOPATH="$HOME/go:$HOME/code/go"
+export GOPATH="$HOME/go"
 export GOROOT=/usr/local/opt/go/libexec
 export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
 
