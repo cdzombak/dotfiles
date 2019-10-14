@@ -107,25 +107,25 @@ echo ""
 
 echo "Rocket..."
 defaults write net.matthewpalmer.Rocket deactivated-apps '(
-  Slack,
-  HipChat,
-  Xcode,
-  Terminal,
-  iTerm2,
-  "Sublime Text",
-  "Sublime Text 2",
-  "IntelliJ IDEA",
-  goland,
-  "jetbrains-toolbox-launcher",
-  Dash,
-  studio,
-  Bear
+    Slack,
+    HipChat,
+    Xcode,
+    Terminal,
+    iTerm2,
+    "Sublime Text",
+    "Sublime Text 2",
+    "IntelliJ IDEA",
+    goland,
+    "jetbrains-toolbox-launcher",
+    Dash,
+    studio,
+    Bear
 )'
 defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
-  "github.com",
-  "trello.com",
-  "slack.com",
-  "pinboard.in",
-  "a2mi.social",
-  "git.grooveid.net"
+    "github.com",
+    "trello.com",
+    "slack.com",
+    "pinboard.in",
+    "a2mi.social",
+    "git.grooveid.net"
 )'
