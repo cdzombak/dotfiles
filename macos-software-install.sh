@@ -473,6 +473,15 @@ _install_ivpn_client() {
 }
 sw_install /Applications/IVPN.app _install_ivpn_client
 
+_install_wireguard_client() {
+  cecho "Install WireGuard client? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1451685025
+  fi
+}
+sw_install /Applications/WireGuard.app _install_wireguard_client
+
 _install_torbrowser() {
   cecho "Install Tor Browser? (y/N)" $magenta
   read -r response
