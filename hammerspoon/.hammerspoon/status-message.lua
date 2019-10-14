@@ -16,6 +16,7 @@ statusmessage.new = function(messageText)
 
       local styledTextAttributes = {
         font = { name = 'Helvetica Neue', size = 48 },
+        color = { white = 1.0, alpha = 1.0 },
       }
       local styledText = styledtext.new(messageText, styledTextAttributes)
       local styledTextSize = drawing.getTextDrawingSize(styledText)
@@ -29,14 +30,14 @@ statusmessage.new = function(messageText)
 
       local background = drawing.rectangle(
         {
-          x = frame.x + frame.w - styledTextSize.w - 45,
+          x = frame.x + frame.w - styledTextSize.w - 50,
           y = frame.y + frame.h - styledTextSize.h - 23 - 3,
-          w = styledTextSize.w + 15,
+          w = styledTextSize.w + 20,
           h = styledTextSize.h + 6
         }
       )
       background:setRoundedRectRadii(10, 10)
-      background:setFillColor({ red = 0, green = 0, blue = 0, alpha=0.7 })
+      background:setFillColor({ red = 0, green = 0, blue = 0, alpha=0.8 })
 
       backgrounds[idx] = background
       texts[idx] = text
@@ -60,7 +61,7 @@ statusmessage.new = function(messageText)
       end
       if self.texts then
         for idx, text in ipairs(self.texts) do text:delete() end
-        self.text = nil
+        self.texts = nil
       end
     end,
     notify = function(self, seconds)
