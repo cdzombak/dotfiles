@@ -15,7 +15,7 @@ cecho "---- macOS Software Installation ----" $white
 cecho "----                             ----" $white
 echo ""
 cecho "This will take a while. The computer should be plugged in and have a solid network connection." $red
-cecho "If you don't wish to do this now, you can run make software-mac later." $red
+cecho "If you don't wish to do this now, you can run 'make software-mac' later." $red
 echo ""
 cecho "Continue? (y/N)" $red
 CONTINUE=false
