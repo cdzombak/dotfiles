@@ -53,6 +53,9 @@ fi
 if ! brew tap | grep -c homebrew/cask-fonts >/dev/null ; then
   brew tap homebrew/cask-fonts
 fi
+if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
+  brew tap showwin/speedtest
+fi
 
 # begin with basic Homebrew installs:
 # some of these (node, go, mas) are used lated in this setup script.
@@ -88,6 +91,7 @@ sw_install /usr/local/bin/rdfind "brew_install rdfind"
 sw_install /usr/local/bin/screen "brew_install screen"
 sw_install /usr/local/bin/shellcheck "brew_install shellcheck"
 sw_install /usr/local/bin/shfmt "brew_install shfmt"
+sw_install /usr/local/bin/speedtest "brew_install speedtest"
 sw_install /usr/local/opt/sqlite/bin/sqlite3 "brew_install sqlite"
 sw_install /usr/local/bin/stow "brew_install stow"
 sw_install /usr/local/Cellar/syncthing "brew_install syncthing && brew services start syncthing" "- [ ] Begin syncing ~/Sync"
