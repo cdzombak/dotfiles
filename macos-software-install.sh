@@ -540,6 +540,15 @@ _install_screensconnect() {
 }
 sw_install "/Applications/Screens Connect.app" _install_screensconnect
 
+_install_vncviewer() {
+  cecho "Install VNC Viewer? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install vnc-viewer
+  fi
+}
+sw_install "/Applications/VNC Viewer.app" _install_vncviewer
+
 echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
