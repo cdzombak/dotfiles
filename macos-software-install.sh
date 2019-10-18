@@ -748,6 +748,20 @@ echo ""
 cecho "--- Music / Podcasts ---" $white
 echo ""
 
+_install_plexdesktop() {
+  cecho "Install Plex Desltop? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install plex
+    # shellcheck disable=SC2129
+    echo "## Plex.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/Plex.app _install_plexdesktop
+
 _install_plexamp() {
   cecho "Install Plexamp? (y/N)" $magenta
   read -r response
