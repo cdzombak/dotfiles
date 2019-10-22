@@ -4,16 +4,13 @@
 *.bak
 *.BAK
 
-# BEGIN https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
+# Based on https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
 # at 2bb963b (Jul 6, 2017)
 
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
-Icon
 
 # Thumbnails
 ._*
@@ -33,5 +30,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# END https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
