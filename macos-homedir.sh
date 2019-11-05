@@ -56,6 +56,10 @@ if [ ! -L "$HOME/Applications/macOS Security Tools" ]; then
   ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Security Tools" "$HOME/Applications/macOS Security Tools"
 fi
 
+if [ ! -L "$HOME/Downloads/iCloud" ]; then
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Downloads" "$HOME/Downloads/iCloud"
+fi
+
 if [ ! -L "$HOME/Books and Articles" ]; then
   echo ""
   echo "Create link to Books & Articles in iCloud Drive? (y/N)"
