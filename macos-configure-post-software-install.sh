@@ -128,5 +128,6 @@ defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
     "pinboard.in",
     "a2mi.social",
     "git.grooveid.net",
-    "app.logz.io"
+    "app.logz.io",
+    "mail.google.com"
 )'
