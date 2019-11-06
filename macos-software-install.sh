@@ -495,7 +495,7 @@ _install_torbrowser() {
     brew cask install tor-browser
   fi
 }
-sw_install "/Applications/TorBrowser.app" _install_torbrowser
+sw_install "/Applications/Tor Browser.app" _install_torbrowser
 
 _install_daisydisk() {
   cecho "Install DaisyDisk? (y/N)" $magenta
