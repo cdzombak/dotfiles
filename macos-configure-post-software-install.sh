@@ -48,7 +48,7 @@ echo "Xcode ..."
 # shellcheck disable=SC2016
 defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
     "Jump to Generated Interface" = "@^$i";
-    "Print\\U2026" = "@~^$p";
+    "Print…" = "@~^$p";
 }'
 
 echo ""
