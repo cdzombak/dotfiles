@@ -125,11 +125,12 @@ defaults write net.matthewpalmer.Rocket deactivated-apps '(
     "Sublime Text",
     "Sublime Text 2",
     "IntelliJ IDEA",
-    goland,
     "jetbrains-toolbox-launcher",
     Dash,
     studio,
-    Bear
+    Bear,
+    goland,
+    Fork
 )'
 defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
     "github.com",
@@ -139,5 +140,6 @@ defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
     "a2mi.social",
     "git.grooveid.net",
     "app.logz.io",
-    "mail.google.com"
+    "mail.google.com",
+    "git.grooveid.net"
 )'
