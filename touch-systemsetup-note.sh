@@ -33,6 +33,7 @@ if [ "$(uname)" == "Darwin" ]; then
 ## Apple Pay
 
 - [ ] Add current cards to Apple Pay, as desired
+- [ ] Set address correctly
 
 ## Dock
 
