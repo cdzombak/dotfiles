@@ -262,6 +262,8 @@ sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync"
+sw_install "/Applications/Typora.app" "brew_cask_install typora" \
+  "- [ ] Associate with Markdown files"
 sw_install /Applications/Wavebox.app "brew_cask_install wavebox" \
   "- [ ] Sign into personal Google account for license\n- [ ] Sign into other relevant Google accounts"
 sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
@@ -325,7 +327,7 @@ sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Enable Safari Extension"
 sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker in Safari"
-sw_install /Applications/Byword.app "mas install 420212497"
+# sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/ColorSnapper2.app "mas install 969418666"
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
   "- [ ] Sign into Day One account"

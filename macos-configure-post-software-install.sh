@@ -105,6 +105,16 @@ echo ""
 cecho "--- Additional Application Configuration ---" $white
 echo ""
 
+echo "Typora..."
+defaults write abnerworks.Typora "auto_expand_block" 0
+defaults write abnerworks.Typora "copy_markdown_by_default" 1
+defaults write abnerworks.Typora "enable_inline_math" 1
+defaults write abnerworks.Typora prettyIndent 0
+defaults write abnerworks.Typora quitAfterWindowClose 1
+defaults write abnerworks.Typora "strict_mode" 1
+defaults write abnerworks.Typora theme "Github"
+defaults write abnerworks.Typora "use_seamless_window" 1
+
 echo "Rocket..."
 defaults write net.matthewpalmer.Rocket deactivated-apps '(
     Slack,
