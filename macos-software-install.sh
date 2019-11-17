@@ -753,7 +753,7 @@ cecho "--- Music / Podcasts ---" $white
 echo ""
 
 _install_plexdesktop() {
-  cecho "Install Plex Desltop? (y/N)" $magenta
+  cecho "Install Plex Desktop? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install plex
