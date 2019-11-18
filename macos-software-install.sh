@@ -404,6 +404,15 @@ set +x
 sw_install /Applications/Setapp "brew_cask_install setapp && open /Applications/Setapp.app" \
   "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites\n- [ ] Disable Setapp in Dock, Menu Bar, and Finder sidebar\n- [ ] Disable showing non-installed apps in Spotlight"
 
+sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
+  "- [ ] Associate with CSV files"
+
+sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
+  "- [ ] Associate with JSON files"
+
+sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
+  "- [ ] Associate with PLIST files"
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in all system setup contexts." $white
