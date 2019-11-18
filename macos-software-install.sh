@@ -58,7 +58,7 @@ if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
 fi
 
 # begin with basic Homebrew installs:
-# some of these (node, go, mas) are used lated in this setup script.
+# some of these (node, go, mas) are used later in this setup script.
 sw_install /usr/local/bin/ag "brew_install ag"
 sw_install /usr/local/bin/aws "brew_install awscli"
 sw_install /usr/local/Cellar/bash-completion "brew_install bash-completion"
