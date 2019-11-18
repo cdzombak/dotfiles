@@ -960,6 +960,25 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
+cecho "--- Removing software that's no longer used ---" $white
+echo ""
+
+if [ -e "/usr/local/bin/gpg" ]; then
+  echo "GnuPG (Homebrew; use MacGPG instead)..."
+  brew uninstall gnupg
+fi
+
+if [ -e "/Applications/OmniFocus.app" ]; then
+  echo "OmniFocus..."
+  trash /Applications/OmniFocus.app
+fi
+
+if [ -e "/Applications/Plexamp.app" ]; then
+  echo "Plexamp..."
+  trash /Applications/Plexamp.app
+fi
+
+echo ""
 cecho "--- Finally, stuff that failed the last time this script was used..." $white
 echo ""
 
