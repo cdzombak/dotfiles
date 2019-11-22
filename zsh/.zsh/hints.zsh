@@ -12,7 +12,7 @@ HINTS=(
     "${CYAN}httpserver${NC} serves the current directory on the given port (default 8080)."
     "Use ${CYAN}extract${NC} to extract most archives in the terminal."
     "Hit ${CYAN}ctrl-X ctrl-E${NC} to edit the entered command line in your editor."
-    "Use ${CYAN}byword${NC}, ${CYAN}marked${NC}, or ${CYAN}mded${NC} to work with Markdown documents."
+    "Use ${CYAN}typora${NC}, ${CYAN}marked${NC}, or ${CYAN}mded${NC} to work with Markdown documents."
     "Use ${CYAN}mdf${NC} to make a directory and switch to it."
     "Use ${CYAN}pfd${NC} or ${CYAN}pfs${NC} to print the current Finder directory or selection."
     "Use ${CYAN}cdf${NC}, ${CYAN}pushdf${NC}, or ${CYAN}ff${NC} to switch to the current Finder directory."
