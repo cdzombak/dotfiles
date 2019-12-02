@@ -567,6 +567,15 @@ echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
+_install_sfsymbols() {
+  cecho "Install Apple's SF Symbols Mac app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     brew cask install sf-symbols
+  fi
+}
+sw_install "/Applications/SF Symbols.app" _install_sfsymbols
+
 cecho "Install React Native CLI & related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
