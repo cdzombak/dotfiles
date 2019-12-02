@@ -65,8 +65,8 @@ EXPECTED_SIDEBAR_CONTENT=(
   "Desktop -> file:///Users/$WHOAMI/Desktop/"
   "Documents -> file:///Users/$WHOAMI/Documents/"
   "Downloads -> file:///Users/$WHOAMI/Downloads/"
-  "tmp -> file:///Users/$WHOAMI/tmp/"
   "Sync -> file:///Users/$WHOAMI/Sync/"
+  "tmp -> file:///Users/$WHOAMI/tmp/"
 )
 
 # remove anything that shouldn't be there...
