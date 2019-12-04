@@ -48,6 +48,10 @@ function start-torrent {
     ssh pi@torrentpi -o ProxyCommand="ssh curie-remote -W %h:%p" "transmission-remote -a \"$1\""
 }
 
+function pihole-whitelist {
+    ssh pidns -o ProxyCommand="ssh curie-remote -W %h:%p" "sudo pihole -w \"$1\""
+}
+
 # one-off run feedbin archiver (https://github.com/cdzombak/feedbin-auto-archiver)
 alias archive-feedbin="ssh -t burr \"/home/cdzombak/scripts/feedbin-auto-archiver/venv/bin/python3 /home/cdzombak/scripts/feedbin-auto-archiver/feedbin_archiver.py --rules-file /home/cdzombak/Sync/feedbin-archiver-rules.json --dry-run false --ignore-rules-validation true\""
 
