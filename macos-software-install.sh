@@ -354,6 +354,7 @@ sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482"
 sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
+sw_install "/Applications/Triode.app" "mas install 1450027401"
 
 _install_things() {
   mas install 904280696 # Things
