@@ -467,6 +467,15 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/Garmin Express.app" "brew_cask_install garmin-express"
 fi
 
+_install_burn() {
+  cecho "Install Burn (for burning CDs)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install burn
+  fi
+}
+sw_install /Applications/Burn.app _install_burn
+
 _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
