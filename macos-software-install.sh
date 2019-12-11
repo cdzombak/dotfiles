@@ -207,7 +207,7 @@ sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
-  "- [ ] Enable automatic watching for deleted apps"
+  "- [ ] Enable SmartDelete (automatic watching for deleted apps)"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
   "- [ ] Setup backups to Wasabi"
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
@@ -995,6 +995,14 @@ echo ""
 cecho "--- Removing software that's no longer used ---" $white
 echo ""
 
+verify_smartdelete() {
+  while ! pgrep "net.freemacsoft.AppCleaner-SmartDelete" >/dev/null; do
+    cecho "Please enable AppCleaner's 'Smart Delete' feature, via the app's preferences." $white
+    open -a AppCleaner
+    read -p "Press [Enter] to continue..."
+  done
+}
+
 if [ -e "/usr/local/bin/gpg" ]; then
   echo "GnuPG (Homebrew; use MacGPG instead)..."
   brew uninstall gnupg
@@ -1002,11 +1010,13 @@ fi
 
 if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
+  verify_smartdelete
   trash /Applications/OmniFocus.app
 fi
 
 if [ -e "/Applications/Plexamp.app" ]; then
   echo "Plexamp..."
+  verify_smartdelete
   trash /Applications/Plexamp.app
 fi
 
