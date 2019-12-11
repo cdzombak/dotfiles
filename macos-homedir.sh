@@ -24,6 +24,7 @@ if [ ! -d "$HOME/code" ] || [ ! -d "$HOME/env" ] || [ ! -d "$HOME/go" ]; then
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mkdir -p "$HOME/code"
+    mkdir -p "$HOME/code/gists"
     mkdir -p "$HOME/go/bin"
     mkdir -p "$HOME/go/src"
   fi
