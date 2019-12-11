@@ -545,6 +545,8 @@ _install_virtualbox() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install virtualbox virtualbox-extension-pack
+    mkdir -p "$HOME/VirtualBox VMs"
+    mkdir -p "$HOME/VM Images"
   fi
 }
 sw_install /Applications/VirtualBox.app _install_virtualbox
