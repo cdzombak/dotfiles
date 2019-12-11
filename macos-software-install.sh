@@ -407,7 +407,7 @@ defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileT
 set +x
 
 sw_install /Applications/Setapp "brew_cask_install setapp && open /Applications/Setapp.app" \
-  "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites\n- [ ] Disable Setapp in Dock, Menu Bar, and Finder sidebar\n- [ ] Disable showing non-installed apps in Spotlight"
+  "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites (as desired)\n- [ ] Disable Setapp in Dock, Menu Bar, and Finder sidebar\n- [ ] Disable showing non-installed apps in Spotlight"
 
 sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
   "- [ ] Associate with CSV files"
@@ -514,7 +514,7 @@ _install_torbrowser() {
 sw_install "/Applications/Tor Browser.app" _install_torbrowser
 
 _install_daisydisk() {
-  cecho "Install DaisyDisk? (y/N)" $magenta
+  cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mas install 411643860 # DaisyDisk
@@ -995,7 +995,7 @@ verify_smartdelete() {
 }
 
 if [ -e "/usr/local/bin/gpg" ]; then
-  echo "GnuPG (Homebrew; use MacGPG instead)..."
+  echo "GnuPG (Homebrew install; use MacGPG instead)..."
   brew uninstall gnupg
 fi
 
