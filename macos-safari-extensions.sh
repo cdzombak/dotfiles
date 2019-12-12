@@ -41,6 +41,9 @@ sw_install /Applications/IINA.app "brew_cask_install iina" \
 sw_install /Applications/Instapaper.app "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable Safari Extension"
 
+sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
+  "- [ ] Enable Tabs to Links Safari Extension"
+
 # shellcheck disable=SC2129
 echo "## Safari Extensions" >> "$HOME/SystemSetup.md"
 echo "" >> "$HOME/SystemSetup.md"
