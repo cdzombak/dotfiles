@@ -119,7 +119,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Show status bar in Finder by default"
+echo "[Finder] Show status bar in Finder by default"
 defaults write com.apple.finder ShowStatusBar -bool true
 
 echo ""
@@ -135,7 +135,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Allowing text selection in Quick Look/Preview in Finder by default"
+echo "[Finder] Allow text selection in Quick Look/Preview in Finder by default"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
 # The following error happens on fresh installs:
@@ -151,16 +151,33 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Finder: show all filename extensions"
+echo "[Finder] Show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 echo ""
-echo "Disable the warning when changing a file extension"
+echo "[Finder] Disable the warning when changing a file extension"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 echo ""
-echo "When performing a search, search the current folder by default"
+echo "[Finder] When performing a search, search the current folder by default"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+echo ""
+echo "[Finder] Open new tabs, not windows, by default"
+defaults write com.apple.finder FinderSpawnTab -bool true
+
+echo ""
+echo "[Finder] Remove items in Trash after 30 days"
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+
+echo ""
+echo "[Finder] New windows open to home directory"
+defaults write com.apple.finder NewWindowTarget "PfHm"
+defaults write com.apple.finder NewWindowTargetPath "file:///Users/$(whoami)/"
+
+echo ""
+echo "[Finder] Warn when emptying trash"
+defaults write com.apple.finder WarnOnEmptyTrash -bool true
 
 ###############################################################################
 # Dock & Mission Control
