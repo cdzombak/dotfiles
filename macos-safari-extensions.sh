@@ -27,19 +27,19 @@ sw_install "$HOME/Library/Safari/Extensions/Day One Quick Entry.safariextz" \
   "- [ ] Install Day One extension from https://dayoneapp.com/extensions\n- [ ] Sign into Day One extension"
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable Safari extension"
+  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension"
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
-  "- [ ] Enable Safari Extension"
+  "- [ ] Enable Bear Safari Extension"
 
 sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker in Safari"
 
 sw_install /Applications/IINA.app "brew_cask_install iina" \
-  "- [ ] Enable Safari extension as desired"
+  "- [ ] Enable IINA Safari extension (as desired)"
 
 sw_install /Applications/Instapaper.app "mas install 1481302432" \
-  "- [ ] Sign in\n- [ ] Enable Safari Extension"
+  "- [ ] Sign in\n- [ ] Enable Instapaper Safari Extension"
 
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari Extension"
