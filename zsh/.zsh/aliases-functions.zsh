@@ -44,6 +44,9 @@ alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs g
 # wake PC "edison" via SSH into curie-srv
 alias wol-edison="ssh -t curie-remote \"/usr/local/bin/wakeonlan -i 192.168.1.255 -p 7 70:85:c2:22:b5:0b\""
 
+# ssh with multiplexing (relies on ControlPath & etc set in ~/.ssh/config)
+alias ssh-mux='ssh -o "ControlMaster=auto"'
+
 function start-torrent {
     ssh pi@torrentpi -o ProxyCommand="ssh curie-remote -W %h:%p" "transmission-remote -a \"$1\""
 }
