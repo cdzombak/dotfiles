@@ -1010,6 +1010,12 @@ if [ -e "/Applications/Burn.app" ]; then
   trash /Applications/Burn.app
 fi
 
+if [ -e "/Applications/Due.app" ]; then
+  echo "Due (Reminders app; syncing seems broken)..."
+  verify_smartdelete
+  trash /Applications/Due.app
+fi
+
 if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
