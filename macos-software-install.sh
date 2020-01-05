@@ -63,6 +63,7 @@ sw_install /usr/local/bin/ag "brew_install ag"
 sw_install /Applications/AltTab.app "brew_cask_install alt-tab" \
   "- [ ] Open via right-click in Finder\n- [ ] Allow Accessibility access"
 sw_install /usr/local/bin/aws "brew_install awscli"
+sw_install /usr/local/bin/bandwhich "brew_install bandwhich"
 sw_install /usr/local/Cellar/bash-completion "brew_install bash-completion"
 sw_install /usr/local/bin/cloc "brew_install cloc"
 sw_install /usr/local/opt/coreutils/libexec/gnubin "brew_install coreutils"
