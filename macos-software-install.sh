@@ -999,7 +999,7 @@ verify_smartdelete() {
 }
 
 if [ -e "/usr/local/bin/gpg" ]; then
-  if ! ls -la /usr/local/bin/gpg | grep -c "MacGPG"; then
+  if ! ls -la /usr/local/bin/gpg | grep -c "MacGPG" >/dev/null ; then
     echo "GnuPG (Homebrew install; use MacGPG instead)..."
     brew uninstall gnupg
   fi
