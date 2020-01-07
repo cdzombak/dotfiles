@@ -342,7 +342,7 @@ echo "Global Keyboard shortcuts: ⌘P to Save PDF; ^⇧⌘V to Paste and Match S
 # shellcheck disable=SC2016
 defaults write -g NSUserKeyEquivalents '{
   "Paste and Match Style" = "@^$v";
-  "Save as PDF\\U2026" = "@p";
+  "Save as PDF…" = "@p";
 }'
 
 echo ""
@@ -363,7 +363,7 @@ echo ""
 echo "Messages.app Keyboard shortcut: ⇧⌘W to Delete Conversation"
 # shellcheck disable=SC2016
 defaults write com.apple.iChat NSUserKeyEquivalents '{
-  "Delete Conversation\\U2026" = "@$w";
+  "Delete Conversation\U2026" = "@$w";
 }'
 
 ###############################################################################
