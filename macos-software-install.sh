@@ -1001,8 +1001,10 @@ verify_smartdelete() {
 }
 
 if [ -e "/usr/local/bin/gpg" ]; then
-  echo "GnuPG (Homebrew install; use MacGPG instead)..."
-  brew uninstall gnupg
+  if ! ls -la /usr/local/bin/gpg | grep -c "MacGPG"; then
+    echo "GnuPG (Homebrew install; use MacGPG instead)..."
+    brew uninstall gnupg
+  fi
 fi
 
 if [ -e "/Applications/Burn.app" ]; then
