@@ -28,7 +28,7 @@ if ! $CONTINUE; then
   exit 0
 fi
 
-echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate."
+echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Ask for the administrator password upfront and run a keep-alive to update
 # existing `sudo` time stamp until script has finished
 sudo -v

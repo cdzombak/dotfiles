@@ -37,7 +37,7 @@ if ! $CONTINUE; then
   exit 1
 fi
 
-echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate."
+echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Ask for the administrator password upfront and run a keep-alive to update
 # existing `sudo` time stamp until script has finished
 sudo -v
@@ -366,15 +366,11 @@ defaults write com.apple.iChat NSUserKeyEquivalents '{
   "Delete Conversation\U2026" = "@$w";
 }'
 
-###############################################################################
-# Kill affected applications
-###############################################################################
-
 echo ""
 cecho "Done!" $green
 echo ""
 cecho "################################################################################" $white
 echo ""
 cecho "Note that some of these changes require a logout/restart to take effect." $white
-cecho "Please restart the system now." $red
+cecho "Please restart the system." $red
 echo ""
