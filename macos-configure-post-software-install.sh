@@ -130,7 +130,8 @@ defaults write net.matthewpalmer.Rocket deactivated-apps '(
     studio,
     Bear,
     goland,
-    Fork
+    Fork,
+    VirtualBox
 )'
 defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
     "github.com",
