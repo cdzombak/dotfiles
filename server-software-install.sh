@@ -36,6 +36,8 @@ if [ ! -x "$HOME/opt/bin/dust" ]; then
   cp dust "$HOME/opt/bin"
   popd
   set +x
+else
+  echo "dust is already installed."
 fi
 
 # install my listening wrapper for netstat
@@ -47,10 +49,21 @@ if [ ! -x "$HOME/opt/bin/listening" ]; then
   chmod +x listening
   popd
   set +x
+else
+  echo "listening is already installed."
 fi
 
 # install a more recent version of nano
 echo "Installing a recent nano..."
+NANO_V="4.4"
+if [ -x "/usr/local/bin/nano" ]; then
+  # remove outdated version:
+  set +e
+  if ! "/usr/local/bin/nano" -V | grep -c "$NANO_V" >/dev/null ; then
+    sudo mv "/usr/local/bin/nano" "/usr/local/bin/nano.bak"
+  fi
+  set -e
+fi
 if [ ! -x "/usr/local/bin/nano" ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
@@ -59,7 +72,6 @@ if [ ! -x "/usr/local/bin/nano" ]; then
   sudo apt-get -y build-dep nano
   sudo apt-get -y install build-essential
 
-  NANO_V="4.4"
   wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V.tar.gz"
   tar -xzvf "nano-$NANO_V.tar.gz"
   cd "./nano-$NANO_V"
@@ -83,4 +95,6 @@ if [ ! -x "/usr/local/bin/nano" ]; then
   echo ""
   echo "If necessary, run 'sudo update-alternatives --config editor' to select the new nano installation."
   echo ""
+else
+  echo "nano is already installed."
 fi
