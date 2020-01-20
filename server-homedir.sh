@@ -7,6 +7,7 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+mkdir -p "$HOME/.local/dotfiles"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
@@ -14,12 +15,14 @@ mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/scripts"
 mkdir -p "$HOME/tmp"
 
-if [ ! -d "$HOME/go" ]; then
+if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ]; then
   echo ""
   echo "Create ~/go? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mkdir -p "$HOME/go/bin"
     mkdir -p "$HOME/go/src"
+  else
+    touch "$HOME/.local/dotfiles/no-home-go-dir"
   fi
 fi
