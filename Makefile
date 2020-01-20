@@ -28,6 +28,11 @@ submodules:
 setupnote:
 	@bash ./touch-systemsetup-note.sh
 
+.PHONY: reset-choices
+reset-choices: ## Reset any choices persisted in ~/.local/dotfiles
+	rm -rf ~/.local/dotfiles
+	mkdir -p ~/.local/dotfiles
+
 # Platform Verfication
 
 .PHONY: require-macos
