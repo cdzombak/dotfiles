@@ -8,14 +8,17 @@ fi
 
 mkdir -p "$HOME/opt/bin"
 
-echo "Installing packages from apt; this will require sudo:"
+echo "Installing packages from apt; this will require sudo..."
+set -x
 sudo apt update
 sudo apt install tig tree htop traceroute dnsutils
 set +e
 sudo apt install nnn
 set -e
+set +x
 
 # install dust: A more intuitive version of du in rust
+echo "Installing dust..."
 if [ -x "$HOME/opt/bin/dust" ]; then
   # remove outdated version:
   set +e
@@ -36,6 +39,7 @@ if [ ! -x "$HOME/opt/bin/dust" ]; then
 fi
 
 # install my listening wrapper for netstat
+echo "Installing listening..."
 if [ ! -x "$HOME/opt/bin/listening" ]; then
   set -x
   pushd "$HOME/opt/bin"
@@ -46,6 +50,7 @@ if [ ! -x "$HOME/opt/bin/listening" ]; then
 fi
 
 # install a more recent version of nano
+echo "Installing a recent nano..."
 if [ ! -x "/usr/local/bin/nano" ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
