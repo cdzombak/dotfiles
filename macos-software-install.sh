@@ -56,6 +56,9 @@ fi
 if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
   brew tap showwin/speedtest
 fi
+if ! brew tap | grep -c wagoodman/dive >/dev/null ; then
+  brew tap wagoodman/dive
+fi
 
 # begin with basic Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
@@ -70,7 +73,7 @@ sw_install /usr/local/opt/coreutils/libexec/gnubin "brew_install coreutils"
 sw_install /usr/local/bin/cowsay "brew_install cowsay"
 sw_install /usr/local/opt/curl/bin/curl "brew_install curl"
 sw_install /usr/local/bin/diff-so-fancy "brew_install diff-so-fancy"
-sw_install /usr/local/bin/dive "brew tap wagoodman/dive && brew_install dive"
+sw_install /usr/local/bin/dive "brew_install dive"
 sw_install /usr/local/bin/dust "brew_install dust"
 sw_install /usr/local/bin/eslint "brew_install eslint"
 sw_install /usr/local/bin/exa "brew_install exa"
