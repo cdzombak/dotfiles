@@ -8,7 +8,12 @@ fi
 
 mkdir -p "$HOME/opt/bin"
 
-sudo apt install tig tree nnn htop traceroute dnsutils
+echo "Installing packages from apt; this will require sudo:"
+sudo apt update
+sudo apt install tig tree htop traceroute dnsutils
+set +e
+sudo apt install nnn
+set -e
 
 # install dust: A more intuitive version of du in rust
 if [ -x "$HOME/opt/bin/dust" ]; then
