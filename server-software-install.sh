@@ -27,6 +27,7 @@ if [ -x "$HOME/opt/bin/dust" ]; then
   fi
   set -e
 fi
+# TODO(cdzombak): this will break when this is run on arm or when dust releases a linux/arm binary
 if [ ! -x "$HOME/opt/bin/dust" ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
