@@ -11,6 +11,14 @@ mkdir -p "$HOME/opt/bin"
 sudo apt install tig tree nnn htop traceroute dnsutils
 
 # install dust: A more intuitive version of du in rust
+if [ -x "$HOME/opt/bin/dust" ]; then
+  # remove outdated version:
+  set +e
+  if ! "$HOME/opt/bin/dust -V" | grep -c "0.4.4" >/dev/null ; then
+    rm "$HOME/opt/bin/dust"
+  fi
+  set -e
+fi
 if [ ! -x "$HOME/opt/bin/dust" ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
