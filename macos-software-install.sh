@@ -154,6 +154,14 @@ sw_install /usr/local/bin/sqlint 'sudo gem install sqlint'
 
 sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv'
 
+# setup a bare-bones go env and install some basic/helpful Go tools:
+export GOPATH="$HOME/go"
+export GOROOT=/usr/local/opt/go/libexec
+export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
+sw_install "$HOME/go/bin/golint" "go get golang.org/x/lint/golint"
+sw_install "$HOME/go/bin/goimports" "go get golang.org/x/tools/cmd/goimports"
+sw_install "$HOME/go/bin/gorc" "go get github.com/stretchr/gorc"
+
 # metar: CLI metar lookup tool
 _install_metar() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'metar-work')
