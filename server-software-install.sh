@@ -22,7 +22,7 @@ echo "Installing dust..."
 if [ -x "$HOME/opt/bin/dust" ]; then
   # remove outdated version:
   set +e
-  if ! "$HOME/opt/bin/dust -V" | grep -c "0.4.4" >/dev/null ; then
+  if ! "$HOME/opt/bin/dust" -V | grep -c "0.4.4" >/dev/null ; then
     rm "$HOME/opt/bin/dust"
   fi
   set -e
