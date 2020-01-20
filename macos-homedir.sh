@@ -7,13 +7,20 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
-mkdir -p "$HOME/.shell-completion-local"
 mkdir -p "$HOME/.local/dotfiles"
+mkdir -p "$HOME/.local/shell-completion"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
 mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/tmp"
+
+if [ -d "$HOME/.shell-completion-local" ]; then
+  if find "$HOME/.shell-completion-local" -mindepth 1 -print -quit 2>/dev/null | grep -q .; then
+    cp -R "$HOME/.shell-completion-local/"* "$HOME/.local/shell-completion"
+  fi
+  trash "$HOME/.shell-completion-local"
+fi
 
 # keep Zoom from installing its shitty local webserver thing
 rm -rf "$HOME/.zoomus"

@@ -6,8 +6,8 @@
 # https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
 
 fpath=(~/.zsh/completions $fpath)
-if [ -d "$HOME/.shell-completion-local" ] ; then
-    fpath=(~/.shell-completion-local $fpath)
+if [ -d "$HOME/.local/shell-completion" ] ; then
+    fpath=(~/.local/shell-completion $fpath)
 fi
 
 DEFAULT_USER=cdzombak
