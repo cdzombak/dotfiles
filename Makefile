@@ -34,9 +34,9 @@ setupnote:
 require-macos:
 	@if [ "$$(uname)" != "Darwin" ]; then echo "This target must be run on macOS." && exit 2; fi
 
-.PHONY: require-non-macos
-require-non-macos:
-	@if [ "$$(uname)" == "Darwin" ]; then echo "This target is not intended to run on macOS." && exit 2; fi
+.PHONY: require-linux
+require-linux:
+	@if [ "$$(uname)" != "Linux" ]; then echo "This target must be run on Linux." && exit 2; fi
 
 # macOS Targets
 
@@ -78,26 +78,26 @@ mac-safari-extensions: require-macos
 .PHONY: mac
 mac: require-macos mac-configure mac-homedir mac-stow mac-software mac-configure-post-software-install ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
-# Server (*nix) Targets
+# Server (Linux) Targets
 
 .PHONY: server-stow
-server-stow: dependencies submodules require-non-macos
+server-stow: dependencies submodules require-linux
 	stow git-server
 	stow screen
 	stow nano
 	stow tig
 
 .PHONY: server-bash-cfg
-server-bash-cfg: require-non-macos ## Integrate Bash configuration files in $HOME
+server-bash-cfg: require-linux ## Integrate Bash configuration files in $HOME
 	@bash ./bash-server/integrate.sh
 
 .PHONY: server-homedir
-server-homedir: require-non-macos ## Set up basic Linux home directory structure
+server-homedir: require-linux ## Set up basic Linux home directory structure
 	@bash ./server-homedir.sh
 
 .PHONY: server-software
-server-software: server-homedir ## Install some extra software on Linux
+server-software: server-homedir ## Install some extra software on Linux (requires sudo)
 	@bash ./server-software-install.sh
 
 .PHONY: server
-server: require-non-macos server-homedir server-stow server-bash-cfg server-software ## Configure a Linux server (assumes Ubuntu or Debian). *Recommended entry point.*
+server: require-linux server-homedir server-stow server-bash-cfg server-software ## Configure a Linux server. *Recommended entry point.*

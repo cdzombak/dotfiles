@@ -2,8 +2,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-if [ "$(uname)" == "Darwin" ]; then
-  echo "Skipping Linux homedir setup because on macOS"
+if [ "$(uname)" != "Linux" ]; then
+  echo "Skipping Linux software setup because not on Linux"
   exit 2
 fi
 

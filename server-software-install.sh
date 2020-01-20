@@ -1,21 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "$(uname)" == "Darwin" ]; then
-  echo "Skipping Linux software setup because on macOS"
+if [ "$(uname)" != "Linux" ]; then
+  echo "Skipping Linux software setup because not on Linux"
   exit 2
 fi
 
 mkdir -p "$HOME/opt/bin"
 
-echo "Installing packages from apt; this will require sudo..."
-set -x
-sudo apt update
-sudo apt install tig tree htop traceroute dnsutils
-set +e
-sudo apt install nnn
-set -e
-set +x
+if [ -x /usr/bin/apt ]; then
+  echo "Installing packages via apt; this will require sudo..."
+  set -x
+  sudo apt update
+  sudo apt install tig tree htop traceroute dnsutils
+  set +e
+  sudo apt install nnn # not available until Ubuntu 18.x; this is expected to fail on earlier systems
+  set -e
+  set +x
+elif [ -x /usr/bin/dnf ]; then
+  echo "Installing packages via dnf; this will require sudo..."
+  set -x
+  sudo dnf install tig tree htop nnn traceroute bind-utils
+  set +x
+elif [ -x /usr/bin/yum ]; then
+  echo "Installing packages via yum; this will require sudo..."
+  set -x
+  sudo yum install tig tree htop nnn traceroute bind-utils
+  set +x
+else
+  echo ""
+  echo "[!] Could not find apt, dnf, or yum; don't know how to install packages on this system."
+  echo ""
+fi
 
 # install dust: A more intuitive version of du in rust
 echo "Installing dust..."
