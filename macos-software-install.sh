@@ -71,6 +71,7 @@ sw_install /usr/local/bin/cowsay "brew_install cowsay"
 sw_install /usr/local/opt/curl/bin/curl "brew_install curl"
 sw_install /usr/local/bin/diff-so-fancy "brew_install diff-so-fancy"
 sw_install /usr/local/bin/dive "brew tap wagoodman/dive && brew_install dive"
+sw_install /usr/local/bin/dust "brew_install dust"
 sw_install /usr/local/bin/eslint "brew_install eslint"
 sw_install /usr/local/bin/exa "brew_install exa"
 sw_install /usr/local/bin/flake8 "brew_install flake8"
@@ -149,17 +150,6 @@ sw_install /usr/local/bin/mdless 'sudo gem install mdless'
 sw_install /usr/local/bin/sqlint 'sudo gem install sqlint'
 
 sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv'
-
-# dust: A more intuitive version of du in rust
-_install_dust() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
-  pushd "$TMP_DIR"
-  curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "darwin" | xargs wget -O dust.tar.gz
-  tar xzf dust.tar.gz
-  cp dust /usr/local/bin/
-  popd
-}
-sw_install /usr/local/bin/dust _install_dust
 
 # metar: CLI metar lookup tool
 _install_metar() {
