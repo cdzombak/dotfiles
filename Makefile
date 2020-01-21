@@ -80,8 +80,12 @@ mac-homedir: require-macos ## Set up basic macOS home directory structure
 mac-safari-extensions: require-macos
 	@bash ./macos-safari-extensions.sh
 
+.PHONY: mac-open-setupnote
+mac-open-setupnote: require-macos setupnote ## Open the system setup note
+	open -a Typora ~/SystemSetup.md
+
 .PHONY: mac
-mac: require-macos mac-configure mac-homedir mac-stow mac-software mac-configure-post-software-install ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+mac: require-macos mac-configure mac-homedir mac-stow mac-software mac-configure-post-software-install mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Server (Linux) Targets
 
