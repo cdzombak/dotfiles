@@ -142,7 +142,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 # Set: Entry, ":FK_StandardViewSettings:IconViewSettings:arrangeBy", Does Not Exist
 echo ""
 cecho "Enable snap-to-grid for icons on the desktop and in other icon views? (y/N)" $magenta
-cecho "nb. SELECT NO ON FRESH INSTALLS to avoid exiting with error" $red
+cecho "nb. SELECT NO ON FRESH INSTALLS to avoid exiting with error." $red
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
@@ -184,7 +184,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool true
 ###############################################################################
 
 echo ""
-echo "Speeding up Mission Control animations and grouping windows by application"
+echo "Speed up Mission Control animations and grouping windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.2
 defaults write com.apple.dock "expose-group-by-app" -bool true
 
@@ -198,7 +198,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-echo "Pinning Dock to the right side"
+echo "Pin Dock to the right side"
 defaults write com.apple.Dock orientation -string right
 
 echo ""
@@ -218,7 +218,7 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 ###############################################################################
 
 echo ""
-echo "Enabling Safari's debug & development features"
+echo "Enable Safari's debug & development features"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
@@ -229,7 +229,7 @@ echo "Disable preloading top search hit in Safari"
 defaults write com.apple.Safari PreloadTopHit -bool false
 
 echo ""
-echo "Adding a context menu item for showing the Web Inspector in web views"
+echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 echo ""
@@ -254,7 +254,7 @@ defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool
 ###############################################################################
 
 echo ""
-echo "Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app"
+echo "[Mail.app] Set email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>'"
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
@@ -284,11 +284,11 @@ defaults write com.apple.terminal StringEncodings -array 4
 # See http://merowing.info/2015/12/little-things-that-can-make-your-life-easier-in-2016/
 
 echo ""
-echo "In Xcode, show how long it takes to build your project"
+echo "[Xcode] Show how long it takes to build your project"
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
 echo ""
-echo "In Xcode, enable faster build times by leveraging multi-core CPU"
+echo "[Xcode] Enable faster build times by leveraging multi-core CPU"
 defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
 
 ###############################################################################
@@ -311,11 +311,11 @@ hash tmutil &> /dev/null && sudo tmutil disable
 ###############################################################################
 
 echo ""
-echo "Use plain text mode for new TextEdit documents"
+echo "[TextEdit] Use plain text mode for new documents"
 defaults write com.apple.TextEdit RichText -int 0
 
 echo ""
-echo "Open and save files as UTF-8 in TextEdit"
+echo "[TextEdit] Open and save files as UTF-8"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
@@ -325,7 +325,7 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # https://twitter.com/dancounsell/status/667011332894535682
 echo ""
-echo "Avoid t.co in Tweetbot-Mac"
+echo "[Tweetbot-Mac] Avoid t.co"
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 
 ###############################################################################
