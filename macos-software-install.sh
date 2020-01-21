@@ -28,6 +28,8 @@ if ! $CONTINUE; then
   exit 0
 fi
 
+mkdir -p "$HOME/.local/dotfiles/software"
+
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Ask for the administrator password upfront and run a keep-alive to update
 # existing `sudo` time stamp until script has finished
@@ -464,13 +466,18 @@ _install_superduper(){
 }
 sw_install "/Applications/SuperDuper!.app" _install_superduper
 
-echo ""
-cecho "Install utilities for home hardware devices (Garmin, MyHarmony, ScanSnap)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager"
-  sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
-  sw_install "/Applications/Garmin Express.app" "brew_cask_install garmin-express"
+if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
+  echo ""
+  cecho "Install utilities for home hardware devices (Garmin, MyHarmony, ScanSnap)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager"
+    sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
+    sw_install "/Applications/Garmin Express.app" "brew_cask_install garmin-express"
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
+  fi
 fi
 
 _install_balena_etcher() {
@@ -556,14 +563,19 @@ _install_virtualbox() {
 }
 sw_install /Applications/VirtualBox.app _install_virtualbox
 
-_install_screensconnect() {
-  cecho "Install Screens Connect? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install screens-connect
-  fi
-}
-sw_install "/Applications/Screens Connect.app" _install_screensconnect
+if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
+  _install_screensconnect() {
+    cecho "Install Screens Connect? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew cask install screens-connect
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-screensconnect"
+    fi
+  }
+  sw_install "/Applications/Screens Connect.app" _install_screensconnect
+fi
 
 _install_vncviewer() {
   cecho "Install VNC Viewer? (y/N)" $magenta
@@ -717,19 +729,24 @@ _install_photosweeper() {
 }
 sw_install "/Applications/PhotoSweeper X.app" _install_photosweeper
 
-_install_adobe_cc() {
-  cecho "Install Adobe Creative Cloud? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install adobe-creative-cloud
-    # shellcheck disable=SC2129
-    echo "## Adobe Creative Cloud" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Adobe Account\n-[ ] Install Lightroom\n- [ ] Install Photoshop" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
+if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
+  _install_adobe_cc() {
+    cecho "Install Adobe Creative Cloud? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew cask install adobe-creative-cloud
+      # shellcheck disable=SC2129
+      echo "## Adobe Creative Cloud" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign into Adobe Account\n-[ ] Install Lightroom\n- [ ] Install Photoshop" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-adobecc"
+    fi
+  }
+  sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
+fi
 
 _install_pixelmator() {
   cecho "Install Pixelmator? (y/N)" $magenta
@@ -740,14 +757,19 @@ _install_pixelmator() {
 }
 sw_install /Applications/Pixelmator.app _install_pixelmator
 
-echo ""
-cecho "Install Logic Pro, Final Cut Pro, and related tools? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "/Applications/Logic Pro X.app" "mas install 634148309"
-  sw_install "/Applications/Compressor.app" "mas install 424390742"
-  sw_install "/Applications/Final Cut Pro.app" "mas install 424389933"
-  sw_install "/Applications/Motion.app" "mas install 434290957"
+if [ ! -e "$HOME/.local/dotfiles/software/no-applepromediatools" ]; then
+  echo ""
+  cecho "Install Logic Pro, Final Cut Pro, and related tools? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/Logic Pro X.app" "mas install 634148309"
+    sw_install "/Applications/Compressor.app" "mas install 424390742"
+    sw_install "/Applications/Final Cut Pro.app" "mas install 424389933"
+    sw_install "/Applications/Motion.app" "mas install 434290957"
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-applepromediatools"
+  fi
 fi
 
 _install_youtubedl() {
@@ -768,15 +790,20 @@ _install_fileloupe() {
 }
 sw_install /Applications/Fileloupe.app _install_fileloupe
 
-_install_handbrake() {
-  cecho "Install Handbrake? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install handbrake
-    sw_install /usr/local/lib/libmp3lame.dylib "brew_install lame"
-  fi
-}
-sw_install /Applications/Handbrake.app _install_handbrake
+if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
+  _install_handbrake() {
+    cecho "Install Handbrake? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew cask install handbrake
+      sw_install /usr/local/lib/libmp3lame.dylib "brew_install lame"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-handbrake"
+    fi
+  }
+  sw_install /Applications/Handbrake.app _install_handbrake
+fi
 
 echo ""
 cecho "--- Music / Podcasts ---" $white
@@ -891,19 +918,24 @@ _install_tableflip() {
 }
 sw_install /Applications/TableFlip.app _install_tableflip
 
-_install_grasshopper() {
-  cecho "Install Grasshopper (phone software)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'grasshopper-work')
-    pushd "$TMP_DIR"
-    wget http://dl.grasshopper.com/Grasshopper.dmg
-    hdiutil attach ./Grasshopper.dmg
-    cp -rv /Volumes/Grasshopper/Grasshopper.app /Applications/
-    popd
-  fi
-}
-sw_install /Applications/Grasshopper.app _install_grasshopper
+if [ ! -e "$HOME/.local/dotfiles/software/no-grasshopper" ]; then
+  _install_grasshopper() {
+    cecho "Install Grasshopper (phone software)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'grasshopper-work')
+      pushd "$TMP_DIR"
+      wget http://dl.grasshopper.com/Grasshopper.dmg
+      hdiutil attach ./Grasshopper.dmg
+      cp -rv /Volumes/Grasshopper/Grasshopper.app /Applications/
+      popd
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-grasshopper"
+    fi
+  }
+  sw_install /Applications/Grasshopper.app _install_grasshopper
+fi
 
 _install_tadam() {
   cecho "Install Tadam focus timer? (y/N)" $magenta
@@ -918,66 +950,86 @@ echo ""
 cecho "--- Games & Social Networking ---" $white
 echo ""
 
-cecho "Install social networking software (Caprine, Flume, Tweetbot)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /Applications/Caprine.app "brew_cask_install caprine"
-  # shellcheck disable=SC2129
-  echo "## Caprine.app" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
+if [ ! -e "$HOME/.local/dotfiles/software/no-social" ]; then
+  cecho "Install social networking software (Caprine, Flume, Tweetbot)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install /Applications/Caprine.app "brew_cask_install caprine"
+    # shellcheck disable=SC2129
+    echo "## Caprine.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
 
-  _install_flume() {
-    cecho 'Please install Flume from Setapp.' $white
-    open /Applications/Setapp.app
-  }
-  sw_install /Applications/Setapp/Flume.app _install_flume
-  # shellcheck disable=SC2129
-  echo "## Flume.app" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Install app from Setapp\n- [ ] Sign into Instagram account" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
+    _install_flume() {
+      cecho 'Please install Flume from Setapp.' $white
+      open /Applications/Setapp.app
+    }
+    sw_install /Applications/Setapp/Flume.app _install_flume
+    # shellcheck disable=SC2129
+    echo "## Flume.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Install app from Setapp\n- [ ] Sign into Instagram account" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
 
-  sw_install /Applications/Tweetbot.app "mas install 1384080005"
-  # shellcheck disable=SC2129
-  echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  # https://twitter.com/dancounsell/status/667011332894535682
-  cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
-  set -x
-  defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
-  set +x
+    sw_install /Applications/Tweetbot.app "mas install 1384080005"
+    # shellcheck disable=SC2129
+    echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    # https://twitter.com/dancounsell/status/667011332894535682
+    cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
+    set -x
+    defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+    set +x
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-social"
+  fi
 fi
 
-_install_nsnake() {
-  cecho "Install nsnake? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install nsnake
-  fi
-}
-sw_install /usr/local/bin/nsnake _install_nsnake
+if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
+  _install_nsnake() {
+    cecho "Install nsnake? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install nsnake
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-nsnake"
+    fi
+  }
+  sw_install /usr/local/bin/nsnake _install_nsnake
+fi
 
-_install_minimetro() {
-  cecho "Install Mini Metro? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1047760200 # Mini Metro
-  fi
-}
-sw_install "/Applications/Mini Metro.app" _install_minimetro
+if [ ! -e "$HOME/.local/dotfiles/software/no-minimetro" ]; then
+  _install_minimetro() {
+    cecho "Install Mini Metro? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1047760200 # Mini Metro
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-minimetro"
+    fi
+  }
+  sw_install "/Applications/Mini Metro.app" _install_minimetro
+fi
 
-_install_simcity() {
-  cecho "Install SimCity 4 Deluxe? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 804079949 # SimCity 4 Deluxe Edition
-  fi
-}
-sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
+if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
+  _install_simcity() {
+    cecho "Install SimCity 4 Deluxe? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 804079949 # SimCity 4 Deluxe Edition
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-simcity"
+    fi
+  }
+  sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
+fi
 
 echo ""
 cecho "--- Safari Extensions ---" $white
