@@ -47,16 +47,21 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX
 ###############################################################################
 
-echo ""
-cecho "Would you like to set your computer name (as done via System Preferences >> Sharing)?  (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  echo "What would you like it to be? [no backslashes]"
-  read COMPUTER_NAME
-  sudo scutil --set ComputerName "$COMPUTER_NAME"
-  sudo scutil --set HostName "$COMPUTER_NAME"
-  sudo scutil --set LocalHostName "$COMPUTER_NAME"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+if [ ! -e "$HOME/.local/dotfiles/no-set-computer-name" ]; then
+  echo ""
+  cecho "Would you like to set your computer name (as done via System Preferences >> Sharing)?  (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    echo "What would you like it to be? [no backslashes]"
+    read COMPUTER_NAME
+    sudo scutil --set ComputerName "$COMPUTER_NAME"
+    sudo scutil --set HostName "$COMPUTER_NAME"
+    sudo scutil --set LocalHostName "$COMPUTER_NAME"
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+  else
+    touch "$HOME/.local/dotfiles/no-set-computer-name"
+    echo "Won't ask again the next time this script runs."
+  fi
 fi
 
 echo ""
