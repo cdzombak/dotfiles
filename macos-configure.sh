@@ -197,13 +197,25 @@ echo "Speed up Mission Control animations and grouping windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.2
 defaults write com.apple.dock "expose-group-by-app" -bool true
 
+if [ ! -e "$HOME/.local/dotfiles/no-ask-dock-auto-hide-delay" ]; then
+  echo ""
+  cecho "Minimize the Dock auto-hiding delay? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    defaults write com.apple.dock autohide-delay -float 0.1
+    defaults write com.apple.dock autohide-time-modifier -float 0.5
+  fi
+  echo "Won't ask about this again the next time this script runs."
+  touch "$HOME/.local/dotfiles/no-ask-dock-auto-hide-delay"
+fi
+
 echo ""
-cecho "Set Dock to auto-hide and minimize the auto-hiding delay? (y/N)" $magenta
+cecho "Auto-hide the Dock? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   defaults write com.apple.dock autohide -bool true
-  defaults write com.apple.dock autohide-delay -float 0.1
-  defaults write com.apple.dock autohide-time-modifier -float 0.5
+else
+  defaults write com.apple.dock autohide -bool false
 fi
 
 echo ""
