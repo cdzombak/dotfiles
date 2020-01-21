@@ -30,9 +30,6 @@ sw_install /Applications/IINA.app "brew_cask_install iina" \
 sw_install /Applications/Instapaper.app "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable Instapaper Safari extension"
 
-sw_install /Applications/Reeder.app "mas install 1449412482" \
-  "- [ ] Sign into Feedbin\n- [ ] Enable 'Subscribe with Reeder' Safari extension\n- [ ] Configure as desired"
-
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 

@@ -362,7 +362,7 @@ sw_install /Applications/PDFScanner.app "mas install 410968114"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482" \
-  "- [ ] Sign into Feedbin\n- [ ] Enable 'Subscribe with Reeder' Safari extension\n- [ ] Configure as desired"
+  "- [ ] Sign into Feedbin\n- [ ] Configure as desired"
 sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
 
