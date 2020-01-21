@@ -43,7 +43,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 # shellcheck disable=SC2129
-echo "## Safari Extensions ($(date +%F %A))" >> "$HOME/SystemSetup.md"
+echo "## Safari Extensions ($(date +%A\ %F))" >> "$HOME/SystemSetup.md"
 echo "" >> "$HOME/SystemSetup.md"
 echo -e "- [ ] Reconfigure Safari toolbar based on current favorite system" >> "$HOME/SystemSetup.md"
 echo "" >> "$HOME/SystemSetup.md"
