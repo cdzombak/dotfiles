@@ -218,6 +218,9 @@ echo ""
 echo "Hide recent applications in Dock"
 defaults write com.apple.dock show-recents -bool false
 
+# this fades out currently-hidden apps, but I'm not sure yet if I like it
+# defaults write com.apple.Dock showhidden -bool yes
+
 echo ""
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
