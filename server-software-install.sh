@@ -86,8 +86,19 @@ if [ ! -x "/usr/local/bin/nano" ]; then
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
   pushd "$TMP_DIR"
 
-  sudo apt-get -y build-dep nano
-  sudo apt-get -y install build-essential
+  if [ -x /usr/bin/apt-get ]; then
+    sudo apt-get -y install build-essential
+    sudo apt-get -y build-dep nano
+  elif [ -x /usr/bin/dnf ]; then
+    sudo dnf -y group install "Development Tools"
+    sudo dnf -y builddep nano
+  elif [ -x /usr/bin/yum ]; then
+    sudo yum -y groupinstall "Development Tools"
+    sudo yum -y builddep nano
+  else
+    echo "[!] Don't know how to install build tools and dependencies. This may fail."
+    echo "    (package manager is not apt, dnf, or yum)"
+  fi
 
   wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V.tar.gz"
   tar -xzvf "nano-$NANO_V.tar.gz"
@@ -102,7 +113,17 @@ if [ ! -x "/usr/local/bin/nano" ]; then
     --enable-multibuffer
   make
 
-  sudo apt-get remove nano
+  if [ -x /usr/bin/apt-get ]; then
+    sudo apt-get remove nano
+  elif [ -x /usr/bin/dnf ]; then
+    sudo dnf remove nano
+  elif [ -x /usr/bin/yum ]; then
+    sudo yum remove nano
+  else
+    echo "[!] Don't know how to remove the stock nano installation. Do this manually."
+    echo "    (package manager is not apt, dnf, or yum)"
+  fi
+
   sudo make install-strip
   sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nano 50
 
