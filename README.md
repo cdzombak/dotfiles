@@ -4,9 +4,9 @@
 
 ## Repo Contents
 
-This repository contains configuration files that help implement my preferred macOS setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
+This repository contains configuration files and scripts that help implement my preferred macOS setup. It includes my current [Hammerspoon](http://www.hammerspoon.org) configuration.
 
-There is also a `server` build target, which will install a minimal configuration on *nix servers, principally containing a stripped-down bash configuration, essential Git configuration, and a `.screenrc`.
+There is also a `server` build target, which will install a minimal configuration and useful software on Linux servers.
 
 ## Dependencies
 
@@ -21,9 +21,10 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 
 * My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
 * My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private)
-* My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private)
-* Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Dash, iTerm2)
-* Etc. settings in System Preferences (would be nice to migrate to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
+* Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Choosy, Dash, iTerm2)
+* Various settings in System Preferences ([#8: would be nice to migrate](https://github.com/cdzombak/dotfiles/issues/8) to [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
+* My [osx-automation repository](https://github.com/cdzombak/osx-automation/tree/edbc14b506e1b31b9a86e7298fb7c343d81fc289) (installed automatically during `make mac-software`)
+* My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
 
 ## Inspiration & Acknowledgements
 
