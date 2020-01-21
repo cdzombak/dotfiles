@@ -211,7 +211,7 @@ sw_install /Applications/Ejector.app _install_ejector \
   "- [ ] Configure (start at login)\n- [ ] License"
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable Safari extension"
+  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Sync settings from \`~/Sync/Configs\`"
@@ -225,8 +225,8 @@ sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brook
   "- [ ] Configure screen saver"
 sw_install "/Applications/Bunch.app" "brew_cask_install bunch" \
   "- [ ] Sync settings from \`~/Sync/Configs\`"
-sw_install "$HOME/Library/PreferencePanes/Choosy.prefPane" "brew_cask_install choosy" \
-  "- [ ] Configure"
+sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
+  "- [ ] Configure Choosy\n- [ ] Enable Choosy Safari extension"
 sw_install /Applications/Dash.app "brew_cask_install dash" \
   "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 sw_install /Applications/Docker.app "brew_cask_install docker"
@@ -244,7 +244,7 @@ sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login"
 sw_install /Applications/IINA.app "brew_cask_install iina" \
-  "- [ ] Enable Safari extension as desired"
+  "- [ ] Enable Safari extension (as desired)"
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
   "- [ ] Configure based on current favorite system\n- [ ] Add to Today view"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
@@ -338,13 +338,13 @@ fi
 # macOS Applications from Mac App Store:
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
-  "- [ ] Enable Safari Extension"
+  "- [ ] Enable Bear Safari extension"
 sw_install /Applications/Better.app "mas install 1121192229" \
-  "- [ ] Enable Better Blocker in Safari"
+  "- [ ] Enable Better Blocker Safari extension"
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/ColorSnapper2.app "mas install 969418666"
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
-  "- [ ] Sign into Day One account"
+  "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
   "- [ ] Sign into Junecloud account\n- [ ] Add to Today view"
 sw_install /Applications/Discovery.app "mas install 1381004916"
@@ -361,7 +361,8 @@ sw_install /Applications/Pastebot.app "mas install 1179623856" \
 sw_install /Applications/PDFScanner.app "mas install 410968114"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
-sw_install /Applications/Reeder.app "mas install 1449412482"
+sw_install /Applications/Reeder.app "mas install 1449412482" \
+  "- [ ] Sign into Feedbin\n- [ ] Enable 'Subscribe with Reeder' Safari extension\n- [ ] Configure as desired"
 sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
 
@@ -1041,13 +1042,8 @@ fi
 
 echo ""
 cecho "--- Safari Extensions ---" $white
-echo "Safari extensions cannot be automatically installed, but this script can open the relevant pages and generate a TODO list for you."
 echo ""
-cecho "Open pages/generate TODO list for Safari Extensions? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  ./macos-safari-extensions.sh
-fi
+./macos-safari-extensions.sh
 
 echo ""
 cecho "--- Removing software that's no longer used ---" $white
