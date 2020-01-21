@@ -516,6 +516,14 @@ _install_wireguard_client() {
 }
 sw_install /Applications/WireGuard.app _install_wireguard_client
 
+if [ -e "/Applications/TorBrowser.app" ]; then
+  if [ ! -e "/Applications/Tor Browser.app" ]; then
+    mv "/Applications/TorBrowser.app" "/Applications/Tor Browser.app"
+  else
+    trash "/Applications/TorBrowser.app"
+  fi
+fi
+
 _install_torbrowser() {
   cecho "Install Tor Browser? (y/N)" $magenta
   read -r response
