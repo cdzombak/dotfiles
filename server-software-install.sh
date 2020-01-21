@@ -11,21 +11,22 @@ mkdir -p "$HOME/opt/bin"
 if [ -x /usr/bin/apt ]; then
   echo "Installing packages via apt; this will require sudo..."
   set -x
-  sudo apt update
-  sudo apt install tig tree htop traceroute dnsutils
+  sudo apt -y update
+  sudo apt -y install tig tree htop traceroute dnsutils
   set +e
-  sudo apt install nnn # not available until Ubuntu 18.x; this is expected to fail on earlier systems
+  echo "nnn is not available until Ubuntu 18.x; this installation is expected to fail on earlier systems:"
+  sudo apt -y install nnn
   set -e
   set +x
 elif [ -x /usr/bin/dnf ]; then
   echo "Installing packages via dnf; this will require sudo..."
   set -x
-  sudo dnf install tig tree htop nnn traceroute bind-utils
+  sudo dnf -y install tig tree htop nnn traceroute bind-utils
   set +x
 elif [ -x /usr/bin/yum ]; then
   echo "Installing packages via yum; this will require sudo..."
   set -x
-  sudo yum install tig tree htop nnn traceroute bind-utils
+  sudo yum -y install tig tree htop nnn traceroute bind-utils
   set +x
 else
   echo ""
