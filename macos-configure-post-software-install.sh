@@ -3,14 +3,14 @@ set -euo pipefail
 IFS=$'\n\t'
 source ./lib/cecho
 
-# Further configuration ...
-# - for applications installed as part of the software install script
-# - using tools installed as part of the software install script
-
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS configuration because not on macOS"
   exit 2
 fi
+
+# Further configuration ...
+# - for applications installed as part of the software install script
+# - using tools installed as part of the software install script
 
 echo ""
 cecho "--- Application Keyboard Shortcuts ---" $white
@@ -18,38 +18,58 @@ echo "If these don't apply after rebooting, open the affected app, quit it, and 
 echo ""
 
 echo "Bear ..."
-# shellcheck disable=SC2016
-defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
-  Archive = "^$a";
-  Back = "^\U2190";
-  Forward = "^\U2192";
-}'
+if [ -e /Applications/Bear.app ]; then
+  # shellcheck disable=SC2016
+  defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
+    Archive = "^$a";
+    Back = "^\U2190";
+    Forward = "^\U2192";
+  }'
+else
+  echo "Not installed."
+fi
 
 echo "Day One ..."
-# shellcheck disable=SC2016
-defaults write com.bloombuilt.dayone-mac NSUserKeyEquivalents '{
-  "Main Window" = "@0";
-}'
+if [ -e "/Applications/Day One.app" ]; then
+  # shellcheck disable=SC2016
+  defaults write com.bloombuilt.dayone-mac NSUserKeyEquivalents '{
+    "Main Window" = "@0";
+  }'
+else
+  echo "Not installed."
+fi
 
-echo "Fantastical ..."
-# shellcheck disable=SC2016
-defaults write com.flexibits.fantastical2.mac NSUserKeyEquivalents '{
-  "Refresh All" = "@r";
-  Reminders = "@^$r";
-}'
+echo "Fantastical 2..."
+if [ -e "/Applications/Fantastical 2.app" ]; then
+  # shellcheck disable=SC2016
+  defaults write com.flexibits.fantastical2.mac NSUserKeyEquivalents '{
+    "Refresh All" = "@r";
+    Reminders = "@^$r";
+  }'
+else
+  echo "Not installed."
+fi
 
 echo "Things ..."
-# shellcheck disable=SC2016
-defaults write com.culturedcode.ThingsMac NSUserKeyEquivalents '{
-  "New Repeating To-Do" = "@$r";
-}'
+if [ -e "/Applications/Things3.app" ]; then
+  # shellcheck disable=SC2016
+  defaults write com.culturedcode.ThingsMac NSUserKeyEquivalents '{
+    "New Repeating To-Do" = "@$r";
+  }'
+else
+  echo "Not installed."
+fi
 
 echo "Xcode ..."
-# shellcheck disable=SC2016
-defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
-    "Jump to Generated Interface" = "@^$i";
-    "Print…" = "@~^$p";
-}'
+if [ -e /Applications/Xcode.app ]; then
+  # shellcheck disable=SC2016
+  defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
+      "Jump to Generated Interface" = "@^$i";
+      "Print…" = "@~^$p";
+  }'
+else
+  echo "Not installed."
+fi
 
 echo ""
 cecho "--- Finder Sidebar ---" $white
@@ -106,40 +126,48 @@ cecho "--- Additional Application Configuration ---" $white
 echo ""
 
 echo "Typora..."
-defaults write abnerworks.Typora "auto_expand_block" 0
-defaults write abnerworks.Typora "copy_markdown_by_default" 1
-defaults write abnerworks.Typora "enable_inline_math" 1
-defaults write abnerworks.Typora prettyIndent 0
-defaults write abnerworks.Typora quitAfterWindowClose 1
-defaults write abnerworks.Typora "strict_mode" 1
-defaults write abnerworks.Typora theme "Github"
-defaults write abnerworks.Typora "use_seamless_window" 1
+if [ -e "/Applications/Typora.app" ]; then
+  defaults write abnerworks.Typora "auto_expand_block" 0
+  defaults write abnerworks.Typora "copy_markdown_by_default" 1
+  defaults write abnerworks.Typora "enable_inline_math" 1
+  defaults write abnerworks.Typora prettyIndent 0
+  defaults write abnerworks.Typora quitAfterWindowClose 1
+  defaults write abnerworks.Typora "strict_mode" 1
+  defaults write abnerworks.Typora theme "Github"
+  defaults write abnerworks.Typora "use_seamless_window" 1
+else
+  echo "Not installed."
+fi
 
 echo "Rocket..."
-defaults write net.matthewpalmer.Rocket deactivated-apps '(
-    Slack,
-    HipChat,
-    Xcode,
-    Terminal,
-    iTerm2,
-    "Sublime Text",
-    "Sublime Text 2",
-    "IntelliJ IDEA",
-    "jetbrains-toolbox-launcher",
-    Dash,
-    studio,
-    Bear,
-    goland,
-    Fork,
-    VirtualBox
-)'
-defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
-    "github.com",
-    "trello.com",
-    "slack.com",
-    "pinboard.in",
-    "a2mi.social",
-    "app.logz.io",
-    "mail.google.com",
-    "git.grooveid.net"
-)'
+if [ -e "/Applications/Rocket.app" ]; then
+  defaults write net.matthewpalmer.Rocket deactivated-apps '(
+      Slack,
+      HipChat,
+      Xcode,
+      Terminal,
+      iTerm2,
+      "Sublime Text",
+      "Sublime Text 2",
+      "IntelliJ IDEA",
+      "jetbrains-toolbox-launcher",
+      Dash,
+      studio,
+      Bear,
+      goland,
+      Fork,
+      VirtualBox
+  )'
+  defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
+      "github.com",
+      "trello.com",
+      "slack.com",
+      "pinboard.in",
+      "a2mi.social",
+      "app.logz.io",
+      "mail.google.com",
+      "git.grooveid.net"
+  )'
+else
+  echo "Not installed."
+fi
