@@ -22,13 +22,14 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ## System Preferences
 
-- [ ] Go through System Preferences, configuring as desired
+- [ ] Walk through System Preferences, configuring everything as desired
 - [ ] Pay special attention to Security and Privacy, Energy and related
     - [ ] Turn FileVault on
     - [ ] 5 minutes to screen saver, 5 second delay before locking screen
     - [ ] 2 minutes to screen off when on battery
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screnshots in \`~/Sync/Configs\`)
 - [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
+- [ ] Configure share/action extensions as desired
 
 ## Apple Pay
 
