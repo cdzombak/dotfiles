@@ -121,6 +121,8 @@ cecho "Show icons for hard drives, servers, and removable media on the desktop? 
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+else
+  defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 fi
 
 echo ""
@@ -137,6 +139,8 @@ cecho "Hide all desktop icons? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   defaults write com.apple.finder CreateDesktop -bool false
+else
+  defaults write com.apple.finder CreateDesktop -bool true
 fi
 
 echo ""
@@ -212,7 +216,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 
 echo ""
 echo "Hide recent applications in Dock"
-defaults write com.apple.dock show-recents -bool FALSE
+defaults write com.apple.dock show-recents -bool false
 
 echo ""
 echo "Disable Dashboard"
