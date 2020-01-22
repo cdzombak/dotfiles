@@ -427,6 +427,16 @@ echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
 
+GOINTERACTIVE=true
+cecho "Skip the interactive section? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  GOINTERACTIVE=false
+  echo "Moving on."
+fi
+
+if $GOINTERACTIVE; then
+
 echo ""
 cecho "--- Utilities ---" $white
 echo ""
@@ -1037,6 +1047,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
   sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 fi
 
+fi # $GOINTERACTIVE
 
 echo ""
 cecho "--- Removing software that's no longer used ---" $white
