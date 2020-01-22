@@ -67,8 +67,6 @@ fi
 # begin with basic Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
 sw_install /usr/local/bin/ag "brew_install ag"
-sw_install /Applications/AltTab.app "brew_cask_install alt-tab" \
-  "- [ ] Open via right-click in Finder\n- [ ] Allow Accessibility access"
 sw_install /usr/local/bin/aws "brew_install awscli"
 sw_install /usr/local/bin/bandwhich "brew_install bandwhich"
 sw_install /usr/local/Cellar/bash-completion "brew_install bash-completion"
@@ -1062,6 +1060,12 @@ if [ -e "/usr/local/bin/gpg" ]; then
     echo "GnuPG (Homebrew install; use MacGPG instead)..."
     brew uninstall gnupg
   fi
+fi
+
+if [ -e "/Applications/AltTab.app" ]; then
+  echo "AltTab..."
+  verify_smartdelete
+  trash /Applications/AltTab.app
 fi
 
 if [ -e "/Applications/Burn.app" ]; then
