@@ -1037,10 +1037,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
   sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 fi
 
-echo ""
-cecho "--- Safari Extensions ---" $white
-echo ""
-./macos-safari-extensions.sh
 
 echo ""
 cecho "--- Removing software that's no longer used ---" $white
