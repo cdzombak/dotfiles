@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
 
 # Fetch all submodules on macOS:
 if [ "$(uname)" == "Darwin" ]; then

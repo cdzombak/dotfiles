@@ -9,6 +9,11 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
+cecho "----                                ----" $white
+cecho "---- Safari Extensions Installation ----" $white
+cecho "----                                ----" $white
+echo ""
+
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
   "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension"
 

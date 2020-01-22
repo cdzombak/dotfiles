@@ -9,7 +9,6 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
-echo ""
 cecho "----                             ----" $white
 cecho "---- macOS Software Installation ----" $white
 cecho "----                             ----" $white
@@ -426,7 +425,7 @@ sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
 
 echo ""
 cecho "--- Interactive Section ---" $white
-cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in all system setup contexts." $white
+cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
 
 echo ""
 cecho "--- Utilities ---" $white
@@ -1047,6 +1046,8 @@ echo ""
 cecho "--- Removing software that's no longer used ---" $white
 echo ""
 
+REMOVED_ANYTHING=false
+
 verify_smartdelete() {
   while ! pgrep "net.freemacsoft.AppCleaner-SmartDelete" >/dev/null; do
     cecho "Please enable AppCleaner's 'Smart Delete' feature, via the app's preferences." $white
@@ -1059,6 +1060,7 @@ if [ -e "/usr/local/bin/gpg" ]; then
   if ! ls -la /usr/local/bin/gpg | grep -c "MacGPG" >/dev/null ; then
     echo "GnuPG (Homebrew install; use MacGPG instead)..."
     brew uninstall gnupg
+    REMOVED_ANYTHING=true
   fi
 fi
 
@@ -1066,30 +1068,39 @@ if [ -e "/Applications/AltTab.app" ]; then
   echo "AltTab..."
   verify_smartdelete
   trash /Applications/AltTab.app
+  REMOVED_ANYTHING=true
 fi
 
 if [ -e "/Applications/Burn.app" ]; then
   echo "Burn (CD burner)..."
   verify_smartdelete
   trash /Applications/Burn.app
+  REMOVED_ANYTHING=true
 fi
 
 if [ -e "/Applications/Due.app" ]; then
   echo "Due (Reminders app; syncing seems broken)..."
   verify_smartdelete
   trash /Applications/Due.app
+  REMOVED_ANYTHING=true
 fi
 
 if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
   trash /Applications/OmniFocus.app
+  REMOVED_ANYTHING=true
 fi
 
 if [ -e "/Applications/Plexamp.app" ]; then
   echo "Plexamp..."
   verify_smartdelete
   trash /Applications/Plexamp.app
+  REMOVED_ANYTHING=true
+fi
+
+if ! $REMOVED_ANYTHING; then
+  echo "Nothing to do."
 fi
 
 echo ""

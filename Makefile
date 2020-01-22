@@ -27,6 +27,7 @@ submodules:
 .PHONY: setupnote
 setupnote:
 	@bash ./touch-systemsetup-note.sh
+	@echo ""
 
 .PHONY: reset-choices
 reset-choices: ## Reset any choices persisted in ~/.local/dotfiles
@@ -47,6 +48,10 @@ require-linux:
 
 .PHONY: mac-stow
 mac-stow: dependencies submodules require-macos ## Link macOS configuration files in $HOME
+	@echo -ne "\033[0;37m"
+	@echo -n "Link macOS configuration files in $$HOME..."
+	@echo -e "`tput sgr0`"
+	@echo ""
 	stow git
 	stow ruby
 	stow hammerspoon
@@ -58,27 +63,34 @@ mac-stow: dependencies submodules require-macos ## Link macOS configuration file
 	stow zsh
 	stow nano
 	[ -L ~/.kubectl_aliases ] || ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
+	@echo ""
 
 .PHONY: mac-configure
 mac-configure: require-macos setupnote ## Run macOS configuration script
 	@bash ./macos-configure.sh
+	@echo ""
 
 .PHONY: mac-configure-post-software-install
 mac-configure-post-software-install: require-macos mac-software ## Run final macOS configuration script, for software installed by the mac-software target
 	@bash ./macos-configure-post-software-install.sh
+	@echo ""
 
 .PHONY: mac-software
 mac-software: require-macos submodules setupnote ## Install macOS software suite (this can take a long time)
 	@bash ./osx-automation/script/install.sh
+	@echo ""
 	@bash ./macos-software-install.sh
+	@echo ""
 
 .PHONY: mac-homedir
 mac-homedir: require-macos ## Set up basic macOS home directory structure
 	@bash ./macos-homedir.sh
+	@echo ""
 
 .PHONY: mac-safari-extensions
 mac-safari-extensions: require-macos
 	@bash ./macos-safari-extensions.sh
+	@echo ""
 
 .PHONY: mac-open-setupnote
 mac-open-setupnote: require-macos setupnote ## Open the system setup note

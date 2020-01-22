@@ -12,22 +12,24 @@ fi
 #   brandonb927's osx-for-hackers.sh: https://gist.github.com/brandonb927/3195465
 #   andrewsardone's dotfiles: https://github.com/andrewsardone/dotfiles/blob/master/osx/osx-defaults
 
+cecho "----                     ----" $white
+cecho "---- macOS Configuration ----" $white
+cecho "----                     ----" $white
+echo ""
+
 # Set continue to false by default
 CONTINUE=false
 
-echo ""
 cecho "###############################################" $red
 cecho "#        DO NOT RUN THIS SCRIPT BLINDLY       #" $red
-cecho "#         YOU'LL PROBABLY REGRET IT...        #" $red
 cecho "#                                             #" $red
 cecho "#              READ IT THOROUGHLY             #" $red
 cecho "#         AND EDIT TO SUIT YOUR NEEDS         #" $red
 cecho "###############################################" $red
 echo ""
 
-echo ""
 cecho "Have you read through the script you're about to run and " $red
-cecho "understood that it will make changes to your computer? (y/N)" $red
+cecho "understood the changes it will make to your computer? (y/N)" $red
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   CONTINUE=true
@@ -391,10 +393,8 @@ defaults write com.apple.iChat NSUserKeyEquivalents '{
 }'
 
 echo ""
-cecho "Done!" $green
+cecho "✔ Done." $green
 echo ""
-cecho "################################################################################" $white
-echo ""
+cecho "macOS configuration complete." $white
 cecho "Note that some of these changes require a logout/restart to take effect." $white
 cecho "Please restart the system." $red
-echo ""

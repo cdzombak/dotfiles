@@ -8,11 +8,15 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
+cecho "----                            ----" $white
+cecho "---- Post-Install Configuration ----" $white
+cecho "----                            ----" $white
+echo ""
+
 # Further configuration ...
 # - for applications installed as part of the software install script
 # - using tools installed as part of the software install script
 
-echo ""
 cecho "--- Application Keyboard Shortcuts ---" $white
 echo "If these don't apply after rebooting, open the affected app, quit it, and re-run this script."
 echo ""
