@@ -28,7 +28,7 @@ touch "$HOME/.zoomus"
 
 if { [ ! -d "$HOME/code" ] || [ ! -d "$HOME/env" ] || [ ! -d "$HOME/go" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-dev-workflow-dirs" ]; then
   echo ""
-  echo "Create dev workflow directories? (y/N)"
+  echo "Create dev workflow directories in home directory? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mkdir -p "$HOME/code"
@@ -72,7 +72,7 @@ fi
 
 if [ ! -L "$HOME/Books and Articles" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
   echo ""
-  echo "Create link to Books & Articles in iCloud Drive? (y/N)"
+  echo "Create link to iCloud Drive/Books & Articles in home directory? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Library" "$HOME/Books and Articles"
