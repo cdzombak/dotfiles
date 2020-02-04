@@ -78,10 +78,11 @@ mac-configure-post-software-install: require-macos mac-software ## Run final mac
 
 .PHONY: mac-software
 mac-software: require-macos submodules setupnote ## Install macOS software suite (this can take a long time)
-	@bash ./osx-automation/script/install.sh
 	@echo ""
 	@bash ./macos-software-install.sh
 	@echo ""
+	@bash ./osx-automation/script/restore-resources.sh
+	@bash ./osx-automation/script/install.sh
 
 .PHONY: mac-homedir
 mac-homedir: require-macos ## Set up basic macOS home directory structure
