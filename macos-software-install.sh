@@ -688,7 +688,8 @@ sw_install /Applications/WWDC.app _install_wwdcapp
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  cecho "TODO(cdzombak): script artifacts check for Latex tools" $red
+  cecho "TODO(cdzombak): script artifacts checks for Latex tools" $red
+  echo "           See: https://github.com/cdzombak/dotfiles/issues/9"
   brew cask install mactex
   brew cask install texmaker
 fi
