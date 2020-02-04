@@ -60,6 +60,7 @@ mac-stow: dependencies submodules require-macos ## Link macOS configuration file
 	stow tig
 	stow screen
 	stow profile
+	stow thingshub
 	stow zsh
 	stow nano
 	[ -L ~/.kubectl_aliases ] || ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
