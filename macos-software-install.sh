@@ -227,7 +227,8 @@ sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
 sw_install /Applications/Dash.app "brew_cask_install dash" \
   "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 sw_install /Applications/Docker.app "brew_cask_install docker"
-sw_install /Applications/FastScripts.app "brew_cask_install fastscripts"
+sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
+  "- [ ] Launch at login"
 sw_install "/Applications/Fantastical 2.app" "brew_cask_install fantastical" \
   "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences"
 sw_install /Applications/Fork.app "brew_cask_install fork" \
