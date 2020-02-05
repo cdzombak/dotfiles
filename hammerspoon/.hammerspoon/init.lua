@@ -42,7 +42,6 @@ require('control-escape')
 require('delete-words')
 require('logitech-mouse')
 require('markdown')
-require('omnifocus')
 require('super')
 require('windows')
 
