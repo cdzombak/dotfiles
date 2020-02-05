@@ -139,7 +139,6 @@ echo ""
 
 echo "FastScripts..."
 if [ -e "/Applications/FastScripts.app" ]; then
-  # TODO: add to other apps here
   osascript -e "tell application \"FastScripts\" to quit"
   defaults write com.red-sweater.fastscripts ShellScriptEditorIdentifier "com.sublimetext.3"
   # update via:
