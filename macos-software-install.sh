@@ -192,7 +192,7 @@ _install_keybase_favorite_cleaner() {
   ./install.sh
   popd
 }
-sw_install /usr/local/bin/com.dzombak.remove-keybase-finder-favorite _install_keybase_favorite_cleaner
+sw_install /usr/local/opt/com.dzombak.remove-keybase-finder-favorite/bin/remove-keybase-finder-favorite _install_keybase_favorite_cleaner
 
 # Move on to macOS applications:
 
