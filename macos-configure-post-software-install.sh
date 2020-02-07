@@ -120,6 +120,32 @@ else
   echo "Not installed."
 fi
 
+GOSETAPP=true
+cecho "Skip the Setapp apps section? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  GOSETAPP=false
+  echo "Moving on."
+  cecho "Re-run make mac-configure-post-software-install later." $white
+fi
+
+if $GOSETAPP; then
+
+echo "Trickster ..."
+if [ -e "/Applications/Setapp/Trickster.app" ]; then
+  osascript -e "tell application \"Trickster\" to quit"
+  defaults write com.apparentsoft.trickster-setapp Anchor 1
+  defaults write com.apparentsoft.trickster-setapp Attached 1
+  defaults write com.apparentsoft.trickster-setapp DetachEnabled 0
+  defaults write com.apparentsoft.trickster-setapp FavoritesVisible 1
+  # ctrl-z doesn't work
+  open -a "Trickster"
+else
+  echo "Not installed."
+fi
+
+fi
+
 echo ""
 cecho "--- Finder Sidebar ---" $white
 echo ""
