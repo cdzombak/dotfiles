@@ -283,7 +283,7 @@ echo "Set zsh as default shell"
 chsh -s "$(command -v zsh)"
 
 echo ""
-echo "Only use UTF-8 in Terminal.app"
+echo "Use UTF-8 only in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
 ###############################################################################
