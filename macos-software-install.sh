@@ -233,8 +233,6 @@ sw_install /Applications/Dash.app "brew_cask_install dash" \
 sw_install /Applications/Docker.app "brew_cask_install docker"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] Launch at login"
-sw_install "/Applications/Fantastical 2.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences"
 sw_install /Applications/Fork.app "brew_cask_install fork" \
   "- [ ] Configure applications & Git path\n- [ ] Install CLI tool"
 sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
@@ -283,6 +281,14 @@ sw_install "/Applications/Typora.app" "brew_cask_install typora" \
 sw_install /Applications/Wavebox.app "brew_cask_install wavebox" \
   "- [ ] Sign into personal Google account for license\n- [ ] Sign into other relevant Google accounts"
 sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
+
+if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical.app" ]; then
+  echo "Renaming 'Fantastical 2.app' to 'Fantastical.app'..."
+  osascript -e "tell application \"Fantastical 2\" to quit"
+  mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
+fi
+sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
+  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences"
 
 _install_sublimetext() {
   brew cask install sublime-text

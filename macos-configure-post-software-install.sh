@@ -46,15 +46,14 @@ else
   echo "Not installed."
 fi
 
-echo "Fantastical 2..."
-if [ -e "/Applications/Fantastical 2.app" ]; then
-  osascript -e "tell application \"Fantastical 2\" to quit"
+echo "Fantastical..."
+if [ -e "/Applications/Fantastical.app" ]; then
+  osascript -e "tell application \"Fantastical\" to quit"
   # shellcheck disable=SC2016
   defaults write com.flexibits.fantastical2.mac NSUserKeyEquivalents '{
     "Refresh All" = "@r";
     Reminders = "@^$r";
   }'
-  open -a "Fantastical 2"
 else
   echo "Not installed."
 fi
