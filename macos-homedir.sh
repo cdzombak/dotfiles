@@ -9,6 +9,10 @@ fi
 
 mkdir -p "$HOME/.local/dotfiles"
 mkdir -p "$HOME/.local/shell-completion"
+mkdir -p "$HOME/code"
+mkdir -p "$HOME/env"
+mkdir -p "$HOME/go/bin"
+mkdir -p "$HOME/go/src"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
@@ -20,20 +24,6 @@ if [ -d "$HOME/.shell-completion-local" ]; then
     cp -R "$HOME/.shell-completion-local/"* "$HOME/.local/shell-completion"
   fi
   trash "$HOME/.shell-completion-local"
-fi
-
-
-if { [ ! -d "$HOME/code" ] || [ ! -d "$HOME/env" ] || [ ! -d "$HOME/go" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-dev-workflow-dirs" ]; then
-  echo ""
-  echo "Create dev workflow directories in home directory? (y/N)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mkdir -p "$HOME/code"
-    mkdir -p "$HOME/go/bin"
-    mkdir -p "$HOME/go/src"
-  else
-    touch "$HOME/.local/dotfiles/no-home-dev-workflow-dirs"
-  fi
 fi
 
 # Integrate iCloud Drive & Syncthing into ~ via symlinks:
