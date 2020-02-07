@@ -275,14 +275,6 @@ echo "[Mail.app] Set email addresses to copy as 'foo@example.com' instead of 'Fo
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
-# IntelliJ
-###############################################################################
-
-echo ""
-echo "Disable IntelliJ IDEA key repeat fix"
-defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
-
-###############################################################################
 # Shell & Terminal
 ###############################################################################
 
