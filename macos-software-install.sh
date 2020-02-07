@@ -375,6 +375,20 @@ _install_things() {
 sw_install "/Applications/Things3.app" _install_things \
   "- [ ] Sign into Things Cloud account\n-[ ] Configure\n- [ ] Add to Today view"
 
+_install_thingshub() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'thingshub')
+  git clone "https://github.com/cdzombak/thingshub.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install
+  popd
+  mkdir -p "$HOME/.local"
+  touch "$HOME/.local/thingshubd.list"
+  pushd "$TMP_DIR/thingshubd"
+  make install
+  popd
+}
+sw_install "/usr/local/bin/thingshub" _install_thingshub
+
 # Install Webster's 1913 Dictionary
 # mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
 # See: http://jsomers.net/blog/dictionary
