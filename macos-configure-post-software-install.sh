@@ -59,6 +59,22 @@ else
   echo "Not installed."
 fi
 
+echo "Google Chrome..."
+if [ -e "/Applications/Google Chrome.app" ]; then
+  osascript -e "tell application \"Google Chrome\" to quit"
+
+  # echo ""
+  # echo "Using the system-native print preview dialog in Chrome"
+  # defaults write com.google.Chrome DisablePrintPreview -bool true
+  # defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+  echo ""
+  echo "Disable annoying Chrome swipe-to-navigate gesture"
+  defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
+else
+  echo "Not installed."
+fi
+
 echo "Things ..."
 if [ -e "/Applications/Things3.app" ]; then
   osascript -e "tell application \"Things3\" to quit"
@@ -71,14 +87,36 @@ else
   echo "Not installed."
 fi
 
+echo "Tweetbot ..."
+if [ -e "/Applications/Tweeetbot.app" ]; then
+  osascript -e "tell application \"Tweetbot\" to quit"
+  # https://twitter.com/dancounsell/status/667011332894535682
+  echo ""
+  echo "[Tweetbot-Mac] Avoid t.co"
+  defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+else
+  echo "Not installed."
+fi
+
 echo "Xcode ..."
 if [ -e /Applications/Xcode.app ]; then
   osascript -e "tell application \"Xcode\" to quit"
+
   # shellcheck disable=SC2016
   defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
       "Jump to Generated Interface" = "@^$i";
       "Print…" = "@~^$p";
   }'
+
+  # See http://merowing.info/2015/12/little-things-that-can-make-your-life-easier-in-2016/
+
+  echo ""
+  echo "Show how long it takes to build your project"
+  defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+
+  echo ""
+  echo "Enable faster build times by leveraging multi-core CPU"
+  defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
 else
   echo "Not installed."
 fi

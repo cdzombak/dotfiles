@@ -266,15 +266,6 @@ echo ""
 echo "Prevent Safari from opening 'safe' files by default"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-# echo ""
-# echo "Using the system-native print preview dialog in Chrome"
-# defaults write com.google.Chrome DisablePrintPreview -bool true
-# defaults write com.google.Chrome.canary DisablePrintPreview -bool true
-
-echo ""
-echo "Disable annoying Chrome swipe-to-navigate gesture"
-defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
-
 ###############################################################################
 # Mail
 ###############################################################################
@@ -304,20 +295,6 @@ echo "Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
 ###############################################################################
-# Xcode
-###############################################################################
-
-# See http://merowing.info/2015/12/little-things-that-can-make-your-life-easier-in-2016/
-
-echo ""
-echo "[Xcode] Show how long it takes to build your project"
-defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
-
-echo ""
-echo "[Xcode] Enable faster build times by leveraging multi-core CPU"
-defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
-
-###############################################################################
 # Time Machine
 ###############################################################################
 
@@ -344,15 +321,6 @@ echo ""
 echo "[TextEdit] Open and save files as UTF-8"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
-
-###############################################################################
-# Tweetbot
-###############################################################################
-
-# https://twitter.com/dancounsell/status/667011332894535682
-echo ""
-echo "[Tweetbot-Mac] Avoid t.co"
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 
 ###############################################################################
 # Keyboard Shortcuts

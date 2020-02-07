@@ -22,9 +22,6 @@ if [ -d "$HOME/.shell-completion-local" ]; then
   trash "$HOME/.shell-completion-local"
 fi
 
-# keep Zoom from installing its shitty local webserver thing
-rm -rf "$HOME/.zoomus"
-touch "$HOME/.zoomus"
 
 if { [ ! -d "$HOME/code" ] || [ ! -d "$HOME/env" ] || [ ! -d "$HOME/go" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-dev-workflow-dirs" ]; then
   echo ""

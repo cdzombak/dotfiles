@@ -402,16 +402,6 @@ _install_xcode_solarized() {
 }
 sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.dvtcolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
 
-cecho "Set: In Xcode, show how long it takes to build your project" $cyan
-set -x
-defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
-set +x
-
-cecho "Set: In Xcode, enable faster build times by leveraging multi-core CPU" $cyan
-set -x
-defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
-set +x
-
 sw_install /Applications/Setapp "brew_cask_install setapp && open /Applications/Setapp.app" \
   "- [ ] Sign in to Setapp\n- [ ] Install applications from Setapp Favorites (as desired)\n- [ ] Disable Setapp in Dock, Menu Bar, and Finder sidebar\n- [ ] Disable showing non-installed apps in Spotlight"
 
@@ -886,6 +876,9 @@ _install_zoom() {
   cecho "Install Zoom for videoconferencing? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    # keep Zoom from installing its shitty local webserver thing
+    rm -rf "$HOME/.zoomus"
+    touch "$HOME/.zoomus"
     brew cask install zoomus
   fi
 }
