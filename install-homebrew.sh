@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 # On macOS systems, verify Homebrew is installed, and install it if not.
-
-set -u
-IFS=$'\n\t'
+# On non-macOS systems, exit without error.
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping Homebrew setup because not on macOS"
