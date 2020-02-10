@@ -47,6 +47,15 @@ alias wol-edison="ssh -t curie-remote \"/usr/local/bin/wakeonlan -i 192.168.1.25
 # ssh with multiplexing (relies on ControlPath & etc set in ~/.ssh/config)
 alias ssh-mux='ssh -o "ControlMaster=auto"'
 
+# ssc: ssh to the given host and open a screen
+function ssc {
+    old_auto_title=$DISABLE_AUTO_TITLE
+    title "$1"
+    ssh -t "$1" "screen -DR"
+    export DISABLE_AUTO_TITLE=$old_auto_title
+}
+compdef ssc=ssh
+
 function start-torrent {
     ssh pi@torrentpi -o ProxyCommand="ssh curie-remote -W %h:%p" "transmission-remote -a \"$1\""
 }
