@@ -228,6 +228,8 @@ sw_install "/Applications/Bunch.app" "brew_cask_install bunch" \
   "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] Configure Choosy\n- [ ] Enable Choosy Safari extension"
+sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
+  "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/Dash.app "brew_cask_install dash" \
   "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 sw_install /Applications/Docker.app "brew_cask_install docker"

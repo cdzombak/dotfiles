@@ -17,7 +17,7 @@ echo ""
 # - for applications installed as part of the software install script
 # - using tools installed as part of the software install script
 
-cecho "--- Application Keyboard Shortcuts ---" $white
+cecho "--- Application Configuration ---" $white
 echo "If these don't apply after rebooting, open the affected app, quit it, and re-run this script."
 echo ""
 
@@ -31,6 +31,16 @@ if [ -e /Applications/Bear.app ]; then
     Forward = "@^\U2192";
   }'
   open -a Bear
+else
+  echo "Not installed."
+fi
+
+echo "CommandQ ..."
+if [ -e /Applications/CommandQ.app ]; then
+  osascript -e "tell application \"CommandQ\" to quit"
+  defaults write com.commandqapp.CommandQ delay -float 1.805555555555556
+  defaults write com.commandqapp.CommandQ launchOnBoot -bool true
+  open -a CommandQ
 else
   echo "Not installed."
 fi
