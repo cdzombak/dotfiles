@@ -201,6 +201,15 @@ sw_install /usr/local/opt/com.dzombak.remove-keybase-finder-favorite/bin/remove-
 
 # Move on to macOS applications:
 
+_install_instapaper_reader() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
+  git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install-mac
+  popd
+}
+sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
+
 _install_ejector() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ejector-work')
   pushd "$TMP_DIR"
