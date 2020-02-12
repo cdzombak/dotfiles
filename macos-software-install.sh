@@ -240,8 +240,6 @@ sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] Configure Choosy\n- [ ] Enable Choosy Safari extension"
 sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
-sw_install /Applications/Dash.app "brew_cask_install dash" \
-  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 sw_install /Applications/Docker.app "brew_cask_install docker"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] Launch at login"
@@ -301,6 +299,14 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
   "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences"
+
+_install_dash() {
+  brew cask install dash
+  open -a Dash
+  open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
+}
+sw_install /Applications/Dash.app _install_dash \
+  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
 
 _install_sublimetext() {
   brew cask install sublime-text
