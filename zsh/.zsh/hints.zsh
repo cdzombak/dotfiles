@@ -31,6 +31,7 @@ HINTS=(
     "${CYAN}hsgrep${NC} will grep through history."
     "Run ${CYAN}hist${NC} to look at the most recent 100 commands in history."
     "${CYAN}_1${NC}, ${CYAN}_2${NC}, ... will grab the ${CYAN}n${NC}th column in a space separated line."
+    "Run ${CYAN}ssc user@hostname${NC} to ssh to a host and open a screen there."
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
