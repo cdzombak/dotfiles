@@ -125,7 +125,7 @@ if [ -e /Applications/Xcode.app ]; then
 
   echo ""
   echo "Enable faster build times by leveraging multi-core CPU"
-  defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
+  defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $(sysctl -n hw.ncpu)
 else
   echo "Not installed."
 fi
@@ -141,13 +141,24 @@ fi
 
 if $GOSETAPP; then
 
+echo "CloudMounter ..."
+if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
+  osascript -e "tell application \"CloudMounter\" to quit"
+  defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
+  defaults write com.eltima.cloudmounter-setapp auto-mount -bool false
+  defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
+  open -a "CloudMounter"
+else
+  echo "Not installed."
+fi
+
 echo "Trickster ..."
 if [ -e "/Applications/Setapp/Trickster.app" ]; then
   osascript -e "tell application \"Trickster\" to quit"
-  defaults write com.apparentsoft.trickster-setapp Anchor 1
-  defaults write com.apparentsoft.trickster-setapp Attached 1
-  defaults write com.apparentsoft.trickster-setapp DetachEnabled 0
-  defaults write com.apparentsoft.trickster-setapp FavoritesVisible 1
+  defaults write com.apparentsoft.trickster-setapp Anchor -bool true
+  defaults write com.apparentsoft.trickster-setapp Attached -bool true
+  defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
+  defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
   # ctrl-z doesn't work
   open -a "Trickster"
 else
