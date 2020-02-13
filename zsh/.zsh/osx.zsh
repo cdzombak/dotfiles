@@ -74,3 +74,6 @@ alias cbp="pbpaste|less"
 
 alias watch-reload-chrome="ag -l | entr reload-browser \"Google Chrome\""
 alias watch-reload-safari="ag -l | entr reload-browser Safari"
+
+alias hide="chflags hidden"
+alias unhide="chflags nohidden"
