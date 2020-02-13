@@ -1,11 +1,13 @@
+# Based on https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
+
+# Subversion
 .svn
+
+# Temporary/backup files
 *~
 .*.swp
 *.bak
 *.BAK
-
-# Based on https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
-# at 2bb963b (Jul 6, 2017)
 
 # General
 .DS_Store
@@ -23,6 +25,7 @@
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+System Volume Information
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -31,4 +34,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# ThingsHub configs (use git add -f for projects where these should be checked in)
+# https://github.com/cdzombak/thingshub
 .thingshubconfig
