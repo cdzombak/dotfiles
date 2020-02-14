@@ -702,13 +702,22 @@ _install_fastlane() {
 sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
 
 _install_gcloud_sdk() {
-  cecho "Install Google Cloud SDK? (y/N)" $magenta
+  cecho "Install Google Cloud SDK (+kubectl)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install google-cloud-sdk
   fi
 }
 sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
+
+_install_k9s() {
+  cecho "Install k9s (https://github.com/derailed/k9s)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install derailed/k9s/k9s
+  fi
+}
+sw_install /usr/local/bin/k9s _install_k9s
 
 _install_wwdcapp() {
   cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
