@@ -377,6 +377,7 @@ sw_install /Applications/Diagrams.app "mas install 1276248849"
 sw_install /Applications/Discovery.app "mas install 1381004916"
 sw_install /Applications/Expressions.app "mas install 913158085"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
+sw_install "/Applications/Front and Center.app" "mas install 1493996622"
 sw_install /Applications/IPinator.app "mas install 959111981" \
   "- [ ] Add to Today view"
 sw_install "/Applications/Living Earth Desktop.app" "mas install 539362919" \

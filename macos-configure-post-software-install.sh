@@ -68,6 +68,20 @@ else
   echo "Not installed."
 fi
 
+echo "Front and Center..."
+if [ -e "/Applications/Front and Center.app" ]; then
+  osascript -e "tell application \"Front and Center\" to quit"
+  defaults write co.hypercritical.Front-and-Center defaultBehavior 2
+  defaults write co.hypercritical.Front-and-Center hideOnLaunch -bool true
+  defaults write co.hypercritical.Front-and-Center launchOnLogin -bool true
+  defaults write co.hypercritical.Front-and-Center showDockIcon -bool false
+  defaults write co.hypercritical.Front-and-Center showMenuBarIcon -bool true
+  defaults write co.hypercritical.Front-and-Center triggerType 1
+  open -a "Front and Center"
+else
+  echo "Not installed."
+fi
+
 echo "Google Chrome..."
 if [ -e "/Applications/Google Chrome.app" ]; then
   osascript -e "tell application \"Google Chrome\" to quit"
