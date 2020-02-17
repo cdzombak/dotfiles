@@ -39,6 +39,7 @@ sw_install /Applications/Xcode.app "mas install 497799835"
 if ! xcode-select --print-path | grep -c "/Applications/Xcode.app" >/dev/null ; then
   sudo xcode-select --install
   sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -license
 fi
 
 # sw_install's brew_[cask_]install uses `brew caveats`:
