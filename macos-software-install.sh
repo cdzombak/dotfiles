@@ -235,8 +235,6 @@ sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
   "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver"
-sw_install "/Applications/Bunch.app" "brew_cask_install bunch" \
-  "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] License Choosy\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
 sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
@@ -1126,6 +1124,13 @@ if [ -e "/Applications/AltTab.app" ]; then
   echo "AltTab..."
   verify_smartdelete
   trash /Applications/AltTab.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Bunch.app" ]; then
+  echo "Bunch..."
+  verify_smartdelete
+  trash /Applications/Bunch.app
   REMOVED_ANYTHING=true
 fi
 
