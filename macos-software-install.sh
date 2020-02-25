@@ -459,6 +459,8 @@ sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
 sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
   "- [ ] Associate with PLIST files"
 
+sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff"
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
