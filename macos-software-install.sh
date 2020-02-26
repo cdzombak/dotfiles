@@ -457,7 +457,8 @@ sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
 sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
   "- [ ] Associate with PLIST files"
 
-sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff"
+sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
+  "- [ ] Set Honk as system error sound, as desired"
 
 echo ""
 cecho "--- Interactive Section ---" $white
