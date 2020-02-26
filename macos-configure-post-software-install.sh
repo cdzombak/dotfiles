@@ -250,7 +250,12 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   defaults write com.apparentsoft.trickster-setapp Attached -bool true
   defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
   defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
-  # ctrl-z doesn't work
+  if ! grep -c "Trickster" "$HOME/SystemSetup.md"; then
+    echo "## Trickster" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set ctrl-z global show/hide shortcut" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
   set +e
   open -a "Trickster"
   set -e
