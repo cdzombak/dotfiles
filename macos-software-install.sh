@@ -552,15 +552,6 @@ _install_ivpn_client() {
 }
 sw_install /Applications/IVPN.app _install_ivpn_client
 
-_install_wireguard_client() {
-  cecho "Install WireGuard client? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1451685025
-  fi
-}
-sw_install /Applications/WireGuard.app _install_wireguard_client
-
 if [ -e "/Applications/TorBrowser.app" ]; then
   if [ ! -e "/Applications/Tor Browser.app" ]; then
     mv "/Applications/TorBrowser.app" "/Applications/Tor Browser.app"
@@ -1160,6 +1151,13 @@ if [ -e "/Applications/Plexamp.app" ]; then
   echo "Plexamp..."
   verify_smartdelete
   trash /Applications/Plexamp.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/WireGuard.app ]; then
+  echo "WireGuard Client..."
+  verify_smartdelete
+  trash /Applications/WireGuard.app
   REMOVED_ANYTHING=true
 fi
 
