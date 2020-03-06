@@ -982,25 +982,6 @@ _install_tableflip() {
 }
 sw_install /Applications/TableFlip.app _install_tableflip
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-grasshopper" ]; then
-  _install_grasshopper() {
-    cecho "Install Grasshopper (phone software)? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'grasshopper-work')
-      pushd "$TMP_DIR"
-      wget http://dl.grasshopper.com/Grasshopper.dmg
-      hdiutil attach ./Grasshopper.dmg
-      cp -rv /Volumes/Grasshopper/Grasshopper.app /Applications/
-      popd
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-grasshopper"
-    fi
-  }
-  sw_install /Applications/Grasshopper.app _install_grasshopper
-fi
-
 _install_tadam() {
   cecho "Install Tadam focus timer? (y/N)" $magenta
   read -r response
@@ -1144,6 +1125,13 @@ if [ -e "/Applications/Due.app" ]; then
   echo "Due (Reminders app; syncing seems broken)..."
   verify_smartdelete
   trash /Applications/Due.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Grasshopper.app" ]; then
+  echo "Grasshopper..."
+  verify_smartdelete
+  trash /Applications/Grasshopper.app
   REMOVED_ANYTHING=true
 fi
 
