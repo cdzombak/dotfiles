@@ -40,7 +40,7 @@ if ! xcode-select --print-path | grep -c "/Applications/Xcode.app" >/dev/null ; 
   sudo xcode-select --install
   sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 fi
-if ! xcodebuild --checkFirstLaunchStatus; then
+if ! xcodebuild -checkFirstLaunchStatus; then
   sudo xcodebuild -runFirstLaunch
 fi
 
