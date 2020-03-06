@@ -147,8 +147,6 @@ sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
 sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force gettext"
 
 # Install basic tools which use stuff we just installed via Homebrew:
-sw_install /usr/local/bin/task 'brew_install go-task/tap/go-task'
-
 sw_install /usr/local/bin/dockerfilelint 'npm install -g dockerfilelint@">=1.5.0"'
 sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
 sw_install /usr/local/bin/jshint 'npm install -g jshint'
@@ -721,6 +719,15 @@ _install_wwdcapp() {
   fi
 }
 sw_install /Applications/WWDC.app _install_wwdcapp
+
+_install_gotask() {
+  cecho "Install task (simpler Make alternative written in Go)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install go-task/tap/go-task
+  fi
+}
+sw_install /usr/local/bin/task _install_gotask
 
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
