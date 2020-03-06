@@ -152,7 +152,6 @@ sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
 sw_install /usr/local/bin/jshint 'npm install -g jshint'
 sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
-sw_install /usr/local/bin/tsc 'npm install -g typescript'
 
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
 sw_install /usr/local/bin/sqlint 'sudo gem install sqlint'
@@ -640,6 +639,15 @@ _install_sfsymbols() {
   fi
 }
 sw_install "/Applications/SF Symbols.app" _install_sfsymbols
+
+_install_tsc() {
+  cecho "Install tsc (TypeScript compiler)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     npm install -g typescript
+  fi
+}
+sw_install /usr/local/bin/tsc _install_tsc
 
 cecho "Install React Native CLI & related tools? (y/N)" $magenta
 read -r response
