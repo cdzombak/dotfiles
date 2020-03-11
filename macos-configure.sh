@@ -280,9 +280,15 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Shell & Terminal
 ###############################################################################
 
-echo ""
-echo "Set zsh as default shell"
-chsh -s "$(command -v zsh)"
+if [[ $SHELL != *"/zsh" ]]; then
+  echo ""
+  echo "Set zsh as default shell"
+  chsh -s "$(command -v zsh)"
+else
+  echo ""
+  echo "zsh is already the current shell"
+fi
+
 
 echo ""
 echo "Use UTF-8 only in Terminal.app"
