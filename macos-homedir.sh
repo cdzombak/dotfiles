@@ -9,6 +9,7 @@ fi
 
 mkdir -p "$HOME/.local/dotfiles"
 mkdir -p "$HOME/.local/shell-completion"
+mkdir -p "$HOME/Applications"
 mkdir -p "$HOME/code"
 mkdir -p "$HOME/env"
 mkdir -p "$HOME/go/bin"
