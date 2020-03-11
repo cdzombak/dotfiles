@@ -34,16 +34,8 @@ if [[ -z "$ZSH_CACHE_DIR" ]]; then
     ZSH_CACHE_DIR="$HOME/.zsh-cache"
 fi
 
-autoload -U compaudit compinit
-source ~/.zsh/lib-rc/compfix.zsh
-# If completion insecurities exist, warn the user without enabling completions:
-if ! compaudit &>/dev/null; then
-    # This function resides in the "lib-rc/compfix.zsh" script sourced above.
-    handle_completion_insecurities
-# Else, enable and cache completions to the desired file:
-else
-    compinit -d "${ZSH_COMPDUMP}"
-fi
+autoload -U compinit
+compinit -d "${ZSH_COMPDUMP}"
 source ~/.zsh/completion.zsh
 
 source ~/.zsh/navigation.zsh
