@@ -155,7 +155,6 @@ sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
 
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
-sw_install /usr/local/bin/sqlint 'sudo gem install sqlint'
 
 sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv'
 
@@ -1182,6 +1181,16 @@ _install_swiftsh() {
   fi
 }
 sw_install /usr/local/bin/swift-sh _install_swiftsh
+
+_install_sqlint() {
+  echo ""
+  cecho "Install sqlint? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo gem install sqlint
+  fi
+}
+sw_install /usr/local/bin/sqlint _install_sqlint
 
 echo ""
 cecho "✔ Done!" $green
