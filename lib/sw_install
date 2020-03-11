@@ -27,26 +27,27 @@ function sw_install() {
   echo ""
   cecho "Installing $ARTIFACT..." $cyan
 
+  # TODO: FIX CAVEATS
   function brew_install() {
     brew install "$1"
-    CAVEATS="$(brew caveats "$1" | tail -n +2)"
-    if [[ -n "$CAVEATS" ]]; then
-      if [[ -n "$TODOS" ]]; then
-        TODOS="$TODOS\n\n"
-      fi
-      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
-    fi
+    #CAVEATS="$(brew caveats "$1" | tail -n +2)"
+    #if [[ -n "$CAVEATS" ]]; then
+    #  if [[ -n "$TODOS" ]]; then
+    #    TODOS="$TODOS\n\n"
+    #  fi
+    #  TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+    #fi
   }
 
   function brew_cask_install() {
     brew cask install "$1"
-    CAVEATS="$(brew caveats "$1" | tail -n +2)"
-    if [[ -n "$CAVEATS" ]]; then
-      if [[ -n "$TODOS" ]]; then
-        TODOS="$TODOS\n\n"
-      fi
-      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
-    fi
+    #CAVEATS="$(brew caveats "$1" | tail -n +2)"
+    #if [[ -n "$CAVEATS" ]]; then
+    #  if [[ -n "$TODOS" ]]; then
+    #    TODOS="$TODOS\n\n"
+    #  fi
+    #  TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+    #fi
   }
 
   eval "$INSTALL_CMD"
