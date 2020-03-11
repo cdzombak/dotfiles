@@ -35,6 +35,8 @@ echo -e "This script will use ${magenta}sudo${_reset}; enter your password to au
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+sw_install /usr/local/bin/mas "brew_install mas"
+
 sw_install /Applications/Xcode.app "mas install 497799835"
 if ! xcode-select --print-path | grep -c "/Applications/Xcode.app" >/dev/null ; then
   sudo xcode-select --install
@@ -95,7 +97,6 @@ sw_install /usr/local/bin/hexyl "brew_install hexyl"
 sw_install /usr/local/bin/htop "brew_install htop"
 sw_install /usr/local/bin/jq "brew_install jq"
 sw_install /usr/local/bin/lua "brew_install lua"
-sw_install /usr/local/bin/mas "brew_install mas"
 sw_install /usr/local/bin/mdcat "brew_install mdcat"
 sw_install /usr/local/sbin/mtr "brew_install mtr"
 sw_install /usr/local/bin/mysides "brew_cask_install mysides"
