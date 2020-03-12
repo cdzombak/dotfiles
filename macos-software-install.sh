@@ -1174,6 +1174,8 @@ echo ""
 cecho "--- Finally, stuff that failed the last time this script was used..." $white
 echo ""
 
+set +e
+
 _install_swiftsh() {
   echo ""
   cecho "Install swift-sh? (y/N)" $magenta
@@ -1193,6 +1195,8 @@ _install_sqlint() {
   fi
 }
 sw_install /usr/local/bin/sqlint _install_sqlint
+
+set -e
 
 echo ""
 cecho "✔ Done!" $green
