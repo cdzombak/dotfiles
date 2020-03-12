@@ -49,6 +49,10 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
 
+## Messages
+
+- [ ] Set Do Not Disturb for active group threads
+
 EOF
 fi
 

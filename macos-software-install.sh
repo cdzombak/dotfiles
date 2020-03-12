@@ -206,7 +206,8 @@ _install_instapaper_reader() {
   make install-mac
   popd
 }
-sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
+sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
+  "- [ ] Sign in"
 
 _install_ejector() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ejector-work')
@@ -221,7 +222,8 @@ sw_install /Applications/Ejector.app _install_ejector \
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
   "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension"
-sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
+sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
+  "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Sync settings from \`~/Sync/Configs\`"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
@@ -231,7 +233,7 @@ sw_install /Applications/Arq.app "brew_cask_install arq" \
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
   "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
-  "- [ ] Configure screen saver"
+  "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] License Choosy\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
 sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
@@ -246,7 +248,7 @@ sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
 sw_install "/Applications/Google Drive File Stream.app" "brew_cask_install google-drive-file-stream" \
   "- [ ] Sign into relevant Google Account"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
-  "- [ ] Import GPG keys as needed"
+  "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login"
 sw_install /Applications/IINA.app "brew_cask_install iina" \
@@ -302,7 +304,7 @@ _install_dash() {
   open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
 }
 sw_install /Applications/Dash.app _install_dash \
-  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets"
+  "- [ ] Sync settings + snippets from \`~/Sync/Configs\`\n- [ ] Arrange docsets as desired"
 
 _install_sublimetext() {
   brew cask install sublime-text
@@ -395,7 +397,7 @@ _install_things() {
   brew cask install thingsmacsandboxhelper
 }
 sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n-[ ] Configure\n- [ ] Add to Today view"
+  "- [ ] Sign into Things Cloud account\n- [ ] Configure\n- [ ] Add to Today view"
 
 _install_thingshub() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'thingshub')
