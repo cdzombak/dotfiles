@@ -19,6 +19,7 @@ HINTS=(
     "Type ${CYAN}cbp${NC} to preview the clipboard in ${CYAN}less${NC}."
     "Use ${CYAN}pyclean${NC} to cleanup Python bytecode in the current or given directories."
     "Use ${CYAN}pygrep${NC} to grep across Python files in the current or given directories."
+    "Use ${CYAN}hsgrep${NC} to grep through shell history."
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: https://github.com/sharkdp/fd"
     "${CYAN}ag${NC} is a great code search tool: https://github.com/ggreer/the_silver_searcher"
     "${CYAN}disable/enable-auto-title${NC} are available."
@@ -26,6 +27,7 @@ HINTS=(
     "${CYAN}watch-reload-chrome/safari${NC} to refresh your browser when your codebase changes."
     "${CYAN}watch-run <command>${NC} to run ${CYAN}<command>${NC} when the current filesystem tree changes."
     "Syntax is ${CYAN}screen -DR [name]${NC} to open a screen."
+    "Run ${CYAN}ssc${NC} instead of ${CYAN}ssh${NC} to SSH into a machine & open a screen."
     "${CYAN}wx${NC} and ${CYAN}metar${NC} are available for weather checks."
     "Use ${CYAN}!\$${NC} to repeat the last argument of the previous command."
     "Use ${CYAN}gi <language/platform>${NC} to fetch a gitignore template from https://www.gitignore.io."
@@ -33,6 +35,7 @@ HINTS=(
     "Run ${CYAN}hist${NC} to look at the most recent 100 commands in history."
     "${CYAN}_1${NC}, ${CYAN}_2${NC}, ... will grab the ${CYAN}n${NC}th column in a space separated line."
     "Run ${CYAN}ssc user@hostname${NC} to ssh to a host and open a screen there."
+    "${CYAN}marks${NC} to list marks; ${CYAN}jump${NC} to jump to one; and ${CYAN}[un]mark${NC} to manage marks."
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
