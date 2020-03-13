@@ -247,7 +247,7 @@ _zsh_rprompt_local_env() {
 _zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    _zsh_rprompt_segment cyan black "`basename $virtualenv_path` (`python -c \"import platform; print(platform.python_version())\"`)"
+    _zsh_rprompt_segment cyan black "`basename $virtualenv_path`"
   fi
 }
 
@@ -258,7 +258,7 @@ _zsh_rprompt_kubectl() {
   if [[ $ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
     local kcprompt
     kcprompt=$(echo -n $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
-    _zsh_rprompt_segment black cyan "$kcprompt"
+    _zsh_rprompt_segment magenta black "$kcprompt"
   fi
 }
 
@@ -276,6 +276,22 @@ kubernetes-context-show() {
 
 kubernetes-context-hide() {
   k8s-ctx-hide
+}
+
+# pyenv context
+source ~/.zsh/pyenv-prompt.zsh
+_zsh_rprompt_pyenv() {
+  local pyenvinfo
+  local virtualenv_path="$VIRTUAL_ENV"
+  pyenvinfo=$(pyenv_prompt_info)
+  if [[ -n "$pyenvinfo" ]] && [[ "$pyenvinfo" != "system" ]]; then
+    _zsh_rprompt_segment black cyan "🐍 $pyenvinfo"
+  elif [[ -n $virtualenv_path ]] && [[ -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
+    if [[ "$pyenvinfo" == "system" ]]; then
+      pyenvinfo="$(python -V 2>&1 | cut -f 2 -d ' ')"
+    fi
+    _zsh_rprompt_segment black cyan "🐍 $pyenvinfo"
+  fi
 }
 
 # Status:
@@ -307,6 +323,7 @@ _zsh_build_prompt() {
 ## Right prompt
 _zsh_build_rprompt() {
   _zsh_rprompt_local_env
+  _zsh_rprompt_pyenv
   _zsh_rprompt_virtualenv
   _zsh_rprompt_kubectl
   _zsh_rprompt_end

@@ -2,7 +2,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 HINTS=(
-    "Use ${CYAN}g_pip[2/3]${NC} to work outside a virtualenv."
+    "Use ${CYAN}g_pip${NC} to work outside a virtualenv."
     "Use ${CYAN}psgrep${NC} to look for running processes."
     "${CYAN}git-stage-missing${NC} will stage missing files for removal."
     "Use ${CYAN}lsz${NC} to list files in a tar/zip archive."
@@ -18,6 +18,7 @@ HINTS=(
     "Use ${CYAN}cdf${NC}, ${CYAN}pushdf${NC}, or ${CYAN}ff${NC} to switch to the current Finder directory."
     "Type ${CYAN}cbp${NC} to preview the clipboard in ${CYAN}less${NC}."
     "Use ${CYAN}pyclean${NC} to cleanup Python bytecode in the current or given directories."
+    "Use ${CYAN}pygrep${NC} to grep across Python files in the current or given directories."
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: https://github.com/sharkdp/fd"
     "${CYAN}ag${NC} is a great code search tool: https://github.com/ggreer/the_silver_searcher"
     "${CYAN}disable/enable-auto-title${NC} are available."
@@ -49,7 +50,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     )
 fi
 
-if [[ -z "$OSCARSIERRA_ENV" ]] && [[ -z "$SSH_CLIENT" ]] && [[ -z "$SSH_TTY" ]]; then
+if [[ -z "$PIPENV_ACTIVE" ]] && [[ -z "$SSH_CLIENT" ]] && [[ -z "$SSH_TTY" ]]; then
     echo "\033[0;33m\ue0b0 Hint:${NC} ${HINTS[$(( $RANDOM % ${#HINTS[@]} + 1 ))]}\n"
 fi
 

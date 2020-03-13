@@ -51,7 +51,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
-source ~/.zsh/pip.zsh
 source ~/.zsh/markdown.zsh
 source ~/.zsh/fuck-things.zsh
 source ~/.zsh/clipboard.zsh
@@ -70,10 +69,10 @@ command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 if [ -f ~/.local.zsh ]; then
     source ~/.local.zsh
 fi
-
 if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10
