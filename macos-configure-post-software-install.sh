@@ -301,16 +301,9 @@ else
   echo "Not installed."
 fi
 
-GOSETAPP=true
-cecho "Skip the Setapp apps section? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  GOSETAPP=false
-  echo "Moving on."
-  cecho "Re-run make mac-configure-post-software-install later." $white
-fi
+cecho "--- Setapp ---" $white
+echo ""
 
-if $GOSETAPP; then
 echo "Setapp..."
 if [ -e "/Applications/Setapp.app" ]; then
   osascript -e "tell application \"Setapp\" to quit"
@@ -355,8 +348,6 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   set -e
 else
   echo "Not installed."
-fi
-
 fi
 
 echo ""
