@@ -190,6 +190,10 @@ echo ""
 echo "[Finder] Warn when emptying trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool true
 
+echo ""
+echo "Set desktop image"
+osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$HOME/iCloud Drive/Pictures/Wallpapers/mojave night/mojave darker.jpg\""
+
 ###############################################################################
 # Dock & Mission Control
 ###############################################################################
