@@ -47,7 +47,7 @@ require-linux:
 # macOS Targets
 
 .PHONY: mac-stow
-mac-stow: dependencies submodules require-macos ## Link macOS configuration files in $HOME
+mac-stow: require-macos dependencies submodules ## Link macOS configuration files in $HOME
 	@echo -ne "\033[0;37m"
 	@echo -n "Link macOS configuration files in $$HOME..."
 	@echo -e "`tput sgr0`"
