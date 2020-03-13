@@ -21,6 +21,17 @@ cecho "--- Application Configuration ---" $white
 echo "If these don't apply after rebooting, open the affected app, quit it, and re-run this script."
 echo ""
 
+echo "1Password ..."
+if [ -e "/Applications/1Password 7.app" ]; then
+  set +e
+  osascript -e "tell application \"1Password 7\" to quit"
+  set -e
+  defaults write com.agilebits.onepassword7 compromisedPasswordServiceV2 1
+  defaults write com.agilebits.onepassword7 ShowStatusItem -bool false
+else
+  echo "Not installed."
+fi
+
 echo "Bear ..."
 if [ -e /Applications/Bear.app ]; then
   osascript -e "tell application \"Bear\" to quit"
@@ -32,6 +43,19 @@ if [ -e /Applications/Bear.app ]; then
   }'
   set +e
   open -a Bear
+  set -e
+else
+  echo "Not installed."
+fi
+
+echo "Choosy ..."
+if [ -e "/Applications/Choosy.app" ]; then
+  osascript -e "tell application \"Choosy\" to quit"
+  defaults write com.choosyosx.Choosy generalMode 0
+  defaults write com.choosyosx.Choosy launchAtLogin -bool true
+  defaults write com.choosyosx.Choosy runningMode 3
+  set +e
+  open -a Choosy
   set -e
 else
   echo "Not installed."
@@ -87,6 +111,21 @@ else
   echo "Not installed."
 fi
 
+echo "Fork..."
+if [ -e "/Applications/Fork.app" ]; then
+  osascript -e "tell application \"Fork\" to quit"
+  defaults write com.DanPristupov.Fork defaultSourceFolder "/Users/cdzombak/code"
+  defaults write com.DanPristupov.Fork diffFontName "MesloLGM-Regular"
+  defaults write com.DanPristupov.Fork diffFontSize 13
+  defaults write com.DanPristupov.Fork enabledTabsOnFirstRun = 1
+  defaults write com.DanPristupov.Fork externalDiffTool 2
+  defaults write com.DanPristupov.Fork gitInstanceType 3
+  defaults write com.DanPristupov.Fork mergeTool 2
+  defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
+else
+  echo "Not installed."
+fi
+
 echo "Front and Center..."
 if [ -e "/Applications/Front and Center.app" ]; then
   osascript -e "tell application \"Front and Center\" to quit"
@@ -119,9 +158,50 @@ else
   echo "Not installed."
 fi
 
+echo "Living Earth..."
+if [ -e "/Applications/Living Earth Desktop.app" ]; then
+  osascript -e "tell application \"Living Earth Desktop\" to quit"
+  defaults write com.radiantlabs.LivingEarthHDDesktop applicationStyle 0
+  defaults write com.radiantlabs.LivingEarthHDDesktop hotKey 0
+  defaults write com.radiantlabs.LivingEarthHDDesktop screenSaverHotKey 0
+  set +e
+  open -a "Living Earth Desktop"
+  set -e
+else
+  echo "Not installed."
+fi
+
+echo "NepTunes..."
+if [ -e /Applications/NepTunes.app ]; then
+  osascript -e "tell application \"NepTunes\" to quit"
+  defaults write pl.micropixels.NepTunes ShowCover -bool false
+  defaults write pl.micropixels.NepTunes integrationWithiTunes -bool false
+  defaults write pl.micropixels.NepTunes launchAtLogin -bool true
+  defaults write pl.micropixels.NepTunes loveTrackOniTunes -bool true
+  set +e
+  open -a "NepTunes"
+  set -e
+else
+  echo "Not installed."
+fi
+
+echo "Pastebot..."
+if [ -e "/Applications/Pastebot.app" ]; then
+  osascript -e "tell application \"Pastebot\" to quit"
+  defaults write com.tapbots.Pastebot2Mac AlwaysPastePlainText -bool true
+  defaults write com.tapbots.Pastebot2Mac SoundsEnabled -bool false
+  defaults write com.tapbots.Pastebot2Mac UIVisibilityState 2
+  set +e
+  open -a "Pastebot"
+  set -e
+else
+  echo "Not installed."
+fi
+
 echo "Rocket..."
 if [ -e "/Applications/Rocket.app" ]; then
   osascript -e "tell application \"Rocket\" to quit"
+  defaults write net.matthewpalmer.Rocket "preferred-skin-tone" 2
   defaults write net.matthewpalmer.Rocket deactivated-apps '(
       Slack,
       HipChat,
@@ -163,6 +243,7 @@ if [ -e "/Applications/Things3.app" ]; then
   defaults write com.culturedcode.ThingsMac NSUserKeyEquivalents '{
     "New Repeating To-Do" = "@$r";
   }'
+  defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
   set +e
   open -a "Things3"
   set -e
@@ -229,6 +310,18 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 if $GOSETAPP; then
+echo "Setapp..."
+if [ -e "/Applications/Setapp.app" ]; then
+  osascript -e "tell application \"Setapp\" to quit"
+  defaults write com.setapp.DesktopClient EnableLauncher -bool false
+  defaults write com.setapp.DesktopClient KeepTeasers -bool false
+  defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
+  set +e
+  open -a "Setapp"
+  set -e
+else
+  echo "Not installed."
+fi
 
 echo "CloudMounter ..."
 if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
