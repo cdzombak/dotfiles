@@ -399,3 +399,16 @@ for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
     mysides add "$NAME" "$URI"
   fi
 done
+
+echo ""
+cecho "--- Homebrew / Zsh ---" $white
+echo ""
+
+echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
+# Ask for the administrator password upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+sudo chown "$WHOAMI":staff /usr/local/share/zsh
+sudo chown "$WHOAMI":staff /usr/local/share/zsh/site-functions
+sudo chmod -R 755 /usr/local/share/zsh
