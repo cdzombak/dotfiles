@@ -47,6 +47,7 @@ source ~/.zsh/extract.zsh
 source ~/.zsh/history.zsh
 if [[ "$OSTYPE" == "darwin"* ]]; then
     source ~/.zsh/osx.zsh
+    source ~/.zsh/xcode.zsh
 fi
 source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
@@ -59,7 +60,6 @@ source ~/.zsh/rake.zsh
 source ~/.zsh/colored-man-pages.zsh
 source ~/.zsh/nmap.zsh
 source ~/.zsh/gitignore.zsh
-source ~/.zsh/xcode.zsh
 source ~/.zsh/golang.zsh
 source ~/.zsh/bundler.zsh
 source ~/.zsh/marks.zsh
