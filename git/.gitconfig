@@ -8,12 +8,8 @@
 	signingkey = 8C54123A
 
 # Company-specific name/email/signing key
-[includeIf "gitdir:~/code/grooveid/"]
-	path = .gitconfig-grooveid
-[includeIf "gitdir:~/code/go/src/grooveid.net/"]
-	path = .gitconfig-grooveid
-[includeIf "gitdir:~/go/src/grooveid.net/"]
-	path = .gitconfig-grooveid
+[includeIf "gitdir:~/code/blumira/"]
+	path = .gitconfig-blumira
 
 [core]
 	autocrlf = false
