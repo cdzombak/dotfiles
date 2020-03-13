@@ -49,7 +49,7 @@ env_default PAGER 'less'
 env_default LESS '-R'
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ ! -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
-	export EDITOR='nano -w' # if we're in an SSH session or Sublime is missing
+    export EDITOR='nano -w' # if we're in an SSH session or Sublime is missing
 else
-	export EDITOR='subl -w -n' # sublime; wait; new window
+    export EDITOR='subl -w -n' # sublime; wait; new window
 fi
