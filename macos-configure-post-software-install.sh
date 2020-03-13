@@ -144,7 +144,8 @@ fi
 
 echo "Google Chrome..."
 if [ -e "/Applications/Google Chrome.app" ]; then
-  osascript -e "tell application \"Google Chrome\" to quit"
+  # Potentially too destructive...
+  # osascript -e "tell application \"Google Chrome\" to quit"
 
   # echo ""
   # echo "Using the system-native print preview dialog in Chrome"
