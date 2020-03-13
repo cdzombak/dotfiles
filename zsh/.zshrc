@@ -81,6 +81,3 @@ zstyle ':notify:*' success-title "Completed ✅"
 
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
-
-# leave commented to hack around grep
-# [ -f "/Users/cdzombak/go/src/grooveid.net/oscarsierra/hack/zshrc" ] && source "/Users/cdzombak/go/src/grooveid.net/oscarsierra/hack/zshrc"
