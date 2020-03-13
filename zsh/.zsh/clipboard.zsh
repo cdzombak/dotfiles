@@ -87,3 +87,6 @@ function clippaste() {
     fi
   fi
 }
+
+# preview the clipboard contents in less
+alias cbp="clippaste|less"

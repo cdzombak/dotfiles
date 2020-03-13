@@ -69,9 +69,6 @@ bid() {
   [[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
 }
 
-# preview the clipboard contents in less
-alias cbp="pbpaste|less"
-
 alias watch-reload-chrome="ag -l | entr reload-browser \"Google Chrome\""
 alias watch-reload-safari="ag -l | entr reload-browser Safari"
 
