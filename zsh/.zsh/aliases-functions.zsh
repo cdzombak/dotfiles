@@ -9,6 +9,9 @@ alias _3="cut -d\" \" -f3"
 alias _4="cut -d\" \" -f4"
 alias _5="cut -d\" \" -f5"
 
+# json
+alias jsonpp='jq .'
+
 # ls
 alias ls='ls -Fh'
 alias ll='ls -l'

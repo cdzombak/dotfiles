@@ -64,7 +64,6 @@ source ~/.zsh/golang.zsh
 source ~/.zsh/bundler.zsh
 source ~/.zsh/marks.zsh
 source ~/.zsh/docker-func.zsh
-source ~/.zsh/json.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
 command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
