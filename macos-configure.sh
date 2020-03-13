@@ -361,6 +361,10 @@ defaults write com.apple.iChat NSUserKeyEquivalents '{
 }'
 
 echo ""
+echo "Messages.app text size"
+defaults write com.apple.iChat TextSize 7
+
+echo ""
 cecho "✔ Done." $green
 echo ""
 cecho "macOS configuration complete." $white
