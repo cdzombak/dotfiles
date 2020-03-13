@@ -6,11 +6,13 @@ export PATH="/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/git/man:/usr/local/man:$MANPATH"
 
 # Android (ugh)
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
+if [ -d "$HOME/Library/Android/sdk" ]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$PATH:$ANDROID_HOME/emulator"
+    export PATH="$PATH:$ANDROID_HOME/tools"
+    export PATH="$PATH:$ANDROID_HOME/tools/bin"
+    export PATH="$PATH:$ANDROID_HOME/platform-tools"
+fi
 
 # Golang:
 export GOPATH="$HOME/go"
@@ -18,10 +20,14 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
 
 # Rust:
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # Fastlane (brew cask install fastlane):
-export PATH="$PATH:$HOME/.fastlane/bin"
+if [ -d "$HOME/.fastlane/bin" ]; then
+    export PATH="$PATH:$HOME/.fastlane/bin"
+fi
 
 # Homebrew:
 # Python has been installed as
