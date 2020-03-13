@@ -1089,7 +1089,7 @@ fi
 fi # $GOINTERACTIVE
 
 echo ""
-cecho "--- Removing software that's no longer used ---" $white
+cecho "--- Removing software I no longer use ---" $white
 echo ""
 
 REMOVED_ANYTHING=false
@@ -1156,6 +1156,13 @@ if [ -e "/Applications/Plexamp.app" ]; then
   echo "Plexamp..."
   verify_smartdelete
   trash /Applications/Plexamp.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/Wavebox.app ]; then
+  echo "Wavebox..."
+  verify_smartdelete
+  trash /Applications/Wavebox.app
   REMOVED_ANYTHING=true
 fi
 
