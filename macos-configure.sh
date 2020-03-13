@@ -102,6 +102,10 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 # defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
+echo ""
+echo "Show scrollbars only while scrolling"
+defaults write -g AppleShowScrollBars -string WhenScrolling
+
 ###############################################################################
 # Screen
 ###############################################################################
