@@ -23,6 +23,14 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Fastlane (brew cask install fastlane):
 export PATH="$PATH:$HOME/.fastlane/bin"
 
+# Homebrew:
+# Python has been installed as
+#   /usr/local/bin/python3
+# Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+# `python3`, `python3-config`, `pip3` etc., respectively, have been installed into
+#   /usr/local/opt/python/libexec/bin
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
 # allow installing in ~/opt:
 # export LD_LIBRARY_PATH="$HOME/opt/lib/:$LD_LIBRARY_PATH"
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
