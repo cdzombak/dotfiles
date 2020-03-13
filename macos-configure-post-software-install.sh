@@ -18,7 +18,7 @@ echo ""
 # - using tools installed as part of the software install script
 
 cecho "--- Application Configuration ---" $white
-echo "If these don't apply after rebooting, open the affected app, quit it, and re-run this script."
+echo "If these don't apply, open the affected app, quit it, and re-run this script. As a last resort, try rebooting, and run this script again."
 echo ""
 
 echo "1Password ..."
@@ -32,9 +32,23 @@ else
   echo "Not installed."
 fi
 
+echo "Bartender ..."
+if [ -e "/Applications/Bartender 3.app" ]; then
+  osascript -e "tell application \"Bartender 3\" to quit"
+  defaults write ReduceUpdateCheckFrequencyWhenOnBattery -bool true
+  set +e
+  open -a Bartender 3
+  set -e
+else
+  echo "Not installed."
+fi
+
 echo "Bear ..."
 if [ -e /Applications/Bear.app ]; then
   osascript -e "tell application \"Bear\" to quit"
+  defaults write net.shinyfrog.bear SFAppIconMatchesTheme -bool true
+  defaults write net.shinyfrog.bear SFEditorFontSize 17
+  defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 44
   # shellcheck disable=SC2016
   defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
     Archive = "^$a";
@@ -117,7 +131,7 @@ if [ -e "/Applications/Fork.app" ]; then
   defaults write com.DanPristupov.Fork defaultSourceFolder "/Users/cdzombak/code"
   defaults write com.DanPristupov.Fork diffFontName "MesloLGM-Regular"
   defaults write com.DanPristupov.Fork diffFontSize 13
-  defaults write com.DanPristupov.Fork enabledTabsOnFirstRun = 1
+  defaults write com.DanPristupov.Fork enabledTabsOnFirstRun 1
   defaults write com.DanPristupov.Fork externalDiffTool 2
   defaults write com.DanPristupov.Fork gitInstanceType 3
   defaults write com.DanPristupov.Fork mergeTool 2
@@ -330,6 +344,29 @@ else
   echo "Not installed."
 fi
 
+echo "CloudMounter ..."
+if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
+  osascript -e "tell application \"CodeRunner\" to quit"
+  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
+  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
+else
+  echo "Not installed."
+fi
+
+echo "ToothFairy ..."
+if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
+  osascript -e "tell application \"ToothFairy\" to quit"
+  defaults write com.c-command.toothfairy-setapp hideDockIcon -bool true
+  defaults write com.c-command.toothfairy-setapp launchAtLogin -bool true
+  cecho "Configure otherwise as desired; add AirPods to menu bar." $white
+  set +e
+  open -a "ToothFairy"
+  set -e
+else
+  echo "Not installed."
+fi
+
 echo "Trickster ..."
 if [ -e "/Applications/Setapp/Trickster.app" ]; then
   osascript -e "tell application \"Trickster\" to quit"
@@ -341,6 +378,7 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
     echo "## Trickster" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Set ctrl-z global show/hide shortcut" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure file tracking based on screenshot in \`~/Sync/Configs\`" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
   set +e

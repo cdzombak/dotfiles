@@ -22,13 +22,17 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ## System Preferences
 
-- [ ] Walk through System Preferences, configuring everything as desired
+- [ ] Walk through System Preferences, configuring as desired
 - [ ] Pay special attention to Security and Privacy, Energy and related
     - [ ] Turn FileVault on
     - [ ] 5 minutes to screen saver, 5 second delay before locking screen
     - [ ] 2 minutes to screen off when on battery
-- [ ] Sync keyboard shortcuts configuration with current favorite system (screnshots in \`~/Sync/Configs\`)
-- [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
+    - [ ] Allow unlocking machine with Apple Watch
+    - [ ] Enable Firewall
+- [ ] Configure keyboard
+  - [ ] Reassign Caps Lock to Ctrl
+  - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
+  - [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
 - [ ] Configure share/action extensions as desired
 
 ## Apple Pay
@@ -38,7 +42,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ## Dock
 
-- [ ] Organize Dock based on screenshot in \`~/Sync/Configs\`
+- [ ] Organize Dock based on screenshots in \`~/Sync/Configs\`
 
 ## Finder
 
@@ -51,8 +55,13 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ## Messages
 
+- [ ] Sign into iCloud & enable Messages in iCloud
+- [ ] Disable notifications for messages from unknown contacts
 - [ ] Set Do Not Disturb for active group threads
 
+## Safari
+
+- [ ] Walk through Preferences, configuring as desired
 EOF
 fi
 
