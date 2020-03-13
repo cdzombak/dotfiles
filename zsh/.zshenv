@@ -29,6 +29,10 @@ if [ -d "$HOME/.fastlane/bin" ]; then
     export PATH="$PATH:$HOME/.fastlane/bin"
 fi
 
+if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+fi
+
 # Homebrew:
 # Python has been installed as
 #   /usr/local/bin/python3
