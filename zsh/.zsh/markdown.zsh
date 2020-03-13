@@ -27,6 +27,16 @@ marked() {
   fi
 }
 
+mded() {
+  if (( $# == 0 )); then
+    echo "Usage: mded <file>"
+    echo "Touch + Open in Typora"
+  else
+    touch "$1"
+    open -a "Typora" "$1"
+  fi
+}
+
 # mded() {
 #   if (( $# == 0 )); then
 #     echo "Usage: mded <file>"
@@ -38,13 +48,3 @@ marked() {
 #     open -a "Marked 2" "$1"
 #   fi
 # }
-
-mded() {
-  if (( $# == 0 )); then
-    echo "Usage: mded <file>"
-    echo "Touch + Open in Typora"
-  else
-    touch "$1"
-    open -a "Typora" "$1"
-  fi
-}
