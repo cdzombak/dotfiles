@@ -1,3 +1,10 @@
+# ThingsHub configs (use git add -f for projects where these should be checked in)
+# https://github.com/cdzombak/thingshub
+.thingshubconfig
+
+# pyenv local version (use git add -f for projects where these should be checked in)
+.python-version
+
 # Based on https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
 
 # Subversion
@@ -33,7 +40,3 @@ System Volume Information
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# ThingsHub configs (use git add -f for projects where these should be checked in)
-# https://github.com/cdzombak/thingshub
-.thingshubconfig
