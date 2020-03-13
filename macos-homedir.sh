@@ -83,3 +83,21 @@ if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$H
     fi
   fi
 fi
+
+# JetBrains IDE directory shortcuts:
+
+if [ ! -L "$HOME/Applications/toolbox-androidstudio" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio" ]; then
+  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio" "$HOME/Applications/toolbox-androidstudio"
+fi
+if [ ! -L "$HOME/Applications/toolbox-goland" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/Goland" ]; then
+  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/Goland" "$HOME/Applications/toolbox-goland"
+fi
+if [ ! -L "$HOME/Applications/toolbox-idea" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U" ]; then
+  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U" "$HOME/Applications/toolbox-idea"
+fi
+if [ ! -L "$HOME/Applications/toolbox-pycharm" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P" ]; then
+  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P" "$HOME/Applications/toolbox-pycharm"
+fi
+if [ ! -L "$HOME/Applications/toolbox-webstorm" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm" ]; then
+  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm" "$HOME/Applications/toolbox-webstorm"
+fi

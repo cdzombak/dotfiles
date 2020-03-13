@@ -327,20 +327,6 @@ if [ ! -L /Applications/Marked.app ]; then
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
 fi
 
-# TODO: check what is actually installed; add pycharm
-if [ ! -L ~/Applications/toolbox-idea ]; then
-  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/IDEA-U ~/Applications/toolbox-idea
-fi
-if [ ! -L ~/Applications/toolbox-goland ]; then
-  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/Goland ~/Applications/toolbox-goland
-fi
-if [ ! -L ~/Applications/toolbox-webstorm ]; then
-  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/WebStorm ~/Applications/toolbox-webstorm
-fi
-if [ ! -L ~/Applications/toolbox-androidstudio ]; then
-  ln -s ~/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio ~/Applications/toolbox-androidstudio
-fi
-
 # macOS Applications from Mac App Store:
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
