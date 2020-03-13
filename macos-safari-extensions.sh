@@ -39,6 +39,12 @@ cecho "Open Safari for configuration now? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   open -a Safari
+  set +e
+  osascript -e '
+activate application "Safari"
+tell application "System Events" to keystroke "," using command down
+'
+  set -e
 fi
 
 # shellcheck disable=SC2129
