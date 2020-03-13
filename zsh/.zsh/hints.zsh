@@ -42,7 +42,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     HINTS=(
         "${HINTS[@]}"
         "${CYAN}Shift-Command-.${NC} will quickly toggle invisible files in Finder."
-        "${CYAN}Control+Shift+H${NC} will toggle Dock hiding."
+        "${CYAN}Command-Option-D${NC} will toggle Dock hiding."
         "${CYAN}itunes${NC} and ${CYAN}spotify${NC} are available for music control."
         "Use ${CYAN}trash${NC} to move something to the trash."
         "${CYAN}xc${NC} will open the Xcode workspace or project for the current directory."
