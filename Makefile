@@ -71,15 +71,12 @@ mac-configure: require-macos setupnote ## Run macOS configuration script
 	@bash ./macos-configure.sh
 	@echo ""
 
-.PHONY: mac-configure-post-software-install
-mac-configure-post-software-install: require-macos mac-software ## Run final macOS configuration script, for software installed by the mac-software target
-	@bash ./macos-configure-post-software-install.sh
-	@echo ""
-
 .PHONY: mac-software
-mac-software: require-macos submodules setupnote ## Install macOS software suite (this can take a long time)
+mac-software: require-macos dependencies submodules setupnote ## Install and configure macOS software suite (this can take a long time)
 	@echo ""
 	@bash ./macos-software-install.sh
+	@bash ./macos-safari-extensions.sh
+	@bash ./macos-configure-post-software-install.sh
 	@echo ""
 	@bash ./osx-automation/script/restore-resources.sh
 	@bash ./osx-automation/script/install.sh
@@ -89,17 +86,12 @@ mac-homedir: require-macos ## Set up basic macOS home directory structure
 	@bash ./macos-homedir.sh
 	@echo ""
 
-.PHONY: mac-safari-extensions
-mac-safari-extensions: require-macos
-	@bash ./macos-safari-extensions.sh
-	@echo ""
-
 .PHONY: mac-open-setupnote
 mac-open-setupnote: require-macos setupnote ## Open the system setup note
 	open -a Typora ~/SystemSetup.md
 
 .PHONY: mac
-mac: require-macos mac-homedir mac-configure mac-stow mac-software mac-safari-extensions mac-configure-post-software-install mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+mac: require-macos mac-homedir mac-configure mac-stow mac-software mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Server (Linux) Targets
 
