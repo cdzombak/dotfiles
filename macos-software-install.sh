@@ -115,7 +115,7 @@ sw_install /usr/local/bin/speedtest "brew_install speedtest"
 sw_install /usr/local/opt/sqlite/bin/sqlite3 "brew_install sqlite"
 sw_install /usr/local/bin/stow "brew_install stow"
 sw_install /usr/local/Cellar/syncthing "brew_install syncthing && brew services start syncthing" \
-  "- [ ] Begin syncing ~/Sync"
+  "- [ ] Begin syncing \`~/Sync\`\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
 sw_install /usr/local/bin/telnet "brew_install telnet"
 sw_install /usr/local/bin/terminal-notifier "brew_install terminal-notifier"
 sw_install /usr/local/bin/tig "brew_install tig"
@@ -216,7 +216,7 @@ sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
-  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Add destination to curie & fresnel as needed"
+  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Add destination to \`curie\` & \`fresnel\`, as desired\n- [ ] Setup emails via Mailgun\n- [ ] Enable automatic updates\n- [ ] Enable backup using administrator privileges\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
   "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
@@ -267,7 +267,7 @@ sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
 sw_install /Applications/TIDAL.app "brew_cask_install tidal"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
-  "- [ ] License\n- [ ] Sign into Panic Sync"
+  "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
 sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
@@ -278,7 +278,7 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
   mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences"
+  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon"
 
 _install_dash() {
   brew cask install dash
@@ -288,7 +288,7 @@ _install_dash() {
   set -e
 }
 sw_install /Applications/Dash.app _install_dash \
-  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] Open at Login"
+  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] Open at Login\n- [ ] License"
 
 _install_sublimetext() {
   brew cask install sublime-text
@@ -368,7 +368,7 @@ _install_things() {
   brew cask install thingsmacsandboxhelper
 }
 sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n- [ ] Configure\n- [ ] Add to Today view"
+  "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add to Today view"
 
 _install_thingshub() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'thingshub')
@@ -909,7 +909,7 @@ _install_plexdesktop() {
     # shellcheck disable=SC2129
     echo "## Plex.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Plex account\n- [ ] Reorder sidebar based on screenshots in \`~/Sync/Configs\` / as desired" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
@@ -961,7 +961,8 @@ _install_zoom() {
     brew cask install zoomus
   fi
 }
-sw_install /Applications/zoom.us.app _install_zoom
+sw_install /Applications/zoom.us.app _install_zoom \
+  "- [ ] Enable microphone mute when joining meeting"
 
 _install_omnigraffle() {
   cecho "Install OmniGraffle? (y/N)" $magenta

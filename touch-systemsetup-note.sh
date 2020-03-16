@@ -29,7 +29,7 @@ if [ "$(uname)" == "Darwin" ]; then
     - [ ] 2 minutes to screen off when on battery
     - [ ] Allow unlocking machine with Apple Watch
     - [ ] Enable Firewall
-- [ ] Configure keyboard
+- [ ] Configure keyboard + Touch Bar
   - [ ] Reassign Caps Lock to Ctrl
   - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
   - [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
@@ -52,16 +52,24 @@ if [ "$(uname)" == "Darwin" ]; then
 ## Mail
 
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
+- [ ] Set message fonts
 
 ## Messages
 
 - [ ] Sign into iCloud & enable Messages in iCloud
 - [ ] Disable notifications for messages from unknown contacts
 - [ ] Set Do Not Disturb for active group threads
+- [ ] Enable iPhone sending SMS to this Mac
+
+## Notification Center
+
+- [ ] Configure based on screenshot in \`~/Sync/Configs\`
 
 ## Safari
 
 - [ ] Walk through Preferences, configuring as desired
+- [ ] Enable Develop menu
+- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\`
 EOF
 fi
 
