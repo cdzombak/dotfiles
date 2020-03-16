@@ -283,7 +283,9 @@ sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
 _install_dash() {
   brew cask install dash
   open -a Dash
+  set +e
   open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
+  set -e
 }
 sw_install /Applications/Dash.app _install_dash \
   "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] Open at Login"
