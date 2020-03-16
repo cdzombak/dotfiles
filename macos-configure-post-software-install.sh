@@ -258,6 +258,7 @@ if [ -e "/Applications/Things3.app" ]; then
   defaults write com.culturedcode.ThingsMac NSUserKeyEquivalents '{
     "New Repeating To-Do" = "@$r";
   }'
+  defaults write com.culturedcode.ThingsMac CCDockCountType 1
   defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
   set +e
   open -a "Things3"
