@@ -89,6 +89,7 @@ sw_install /usr/local/bin/flake8 "brew_install flake8"
 sw_install /usr/local/bin/fzf "brew_install fzf"
 sw_install /usr/local/bin/git "brew_install git"
 sw_install /usr/local/bin/go "brew_install go"
+sw_install /usr/local/bin/brew-gomod "brew install FiloSottile/gomod/brew-gomod"
 sw_install /usr/local/bin/ggrep "brew_install grep"
 sw_install /usr/local/bin/gron "brew_install gron"
 sw_install /usr/local/bin/hexyl "brew_install hexyl"
@@ -613,13 +614,9 @@ echo ""
 cecho "Install some common Go tools (golint, goimports, gorc)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  # setup a bare-bones go env and install some basic/helpful Go tools:
-  export GOPATH="$HOME/go"
-  export GOROOT=/usr/local/opt/go/libexec
-  export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
-  sw_install "$HOME/go/bin/golint" "go get golang.org/x/lint/golint"
-  sw_install "$HOME/go/bin/goimports" "go get golang.org/x/tools/cmd/goimports"
-  sw_install "$HOME/go/bin/gorc" "go get github.com/stretchr/gorc"
+  sw_install "/usr/local/bin/golint" "brew gomod golang.org/x/lint/golint"
+  sw_install "/usr/local/bin/goimports" "brew gomod golang.org/x/tools/cmd/goimports"
+  sw_install "/usr/local/bin/gorc" "brew gomod github.com/stretchr/gorc"
 fi
 
 cecho "Install some common Python tools (virtualenv, pipenv, pyenv)? (y/N)" $magenta
