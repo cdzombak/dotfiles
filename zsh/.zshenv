@@ -15,9 +15,12 @@ if [ -d "$HOME/Library/Android/sdk" ]; then
 fi
 
 # Golang:
-export GOPATH="$HOME/go"
 export GOROOT=/usr/local/opt/go/libexec
-export PATH="$GOROOT/bin:$HOME/go/bin:$HOME/code/go/bin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
+if [ -d "$HOME/go" ]; then
+    export GOPATH="$HOME/go"
+    export PATH="$GOPATH/bin:$PATH"
+fi
 
 # Rust:
 if [ -d "$HOME/.cargo/bin" ]; then

@@ -11,8 +11,6 @@ mkdir -p "$HOME/.local/dotfiles"
 mkdir -p "$HOME/.local/shell-completion"
 mkdir -p "$HOME/Applications"
 mkdir -p "$HOME/code"
-mkdir -p "$HOME/go/bin"
-mkdir -p "$HOME/go/src"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
@@ -24,6 +22,18 @@ if [ -d "$HOME/.shell-completion-local" ]; then
     cp -R "$HOME/.shell-completion-local/"* "$HOME/.local/shell-completion"
   fi
   trash "$HOME/.shell-completion-local"
+fi
+
+if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ] ; then
+  echo ""
+  echo "Create ~/go/bin and ~/go/src? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mkdir -p "$HOME/go/bin"
+    mkdir -p "$HOME/go/src"
+  else
+    touch "$HOME/.local/dotfiles/no-home-go-dir"
+  fi
 fi
 
 # Integrate iCloud Drive & Syncthing into ~ via symlinks:
