@@ -416,7 +416,7 @@ sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized 
 _install_setapp() {
   brew cask install setapp
   open -a "$(brew cask info setapp | grep '/usr/local/caskroom' | cut -d' ' -f1)/Install Setapp.app"
-  while [ ! -f /Applications/Setapp.app ]; do
+  while [ ! -e /Applications/Setapp.app ]; do
     cecho "Please complete Setapp installation." $white
     read -p "Press [Enter] to continue..."
   done
