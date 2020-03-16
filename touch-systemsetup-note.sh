@@ -53,6 +53,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
 - [ ] Set message fonts
+- [ ] Notifications: badges & notification center only; no sound
 
 ## Messages
 
@@ -60,6 +61,7 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Disable notifications for messages from unknown contacts
 - [ ] Set Do Not Disturb for active group threads
 - [ ] Enable iPhone sending SMS to this Mac
+- [ ] Notifications: never show notification preview
 
 ## Notification Center
 
