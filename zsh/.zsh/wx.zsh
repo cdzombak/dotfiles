@@ -1,10 +1,19 @@
 function wx() {
 	if [[ $# -eq 0 ]]; then
 		curl "https://wttr.in/Ann+Arbor,+Michigan"
-	else 
+	else
 		local msg="$*"
 		curl "https://wttr.in/$msg?u"
 	fi
+}
+
+function wx2() {
+    if [[ $# -eq 0 ]]; then
+        curl "https://v2.wttr.in/Ann+Arbor,+Michigan"
+    else
+        local msg="$*"
+        curl "https://v2.wttr.in/$msg?u"
+    fi
 }
 
 # metar from https://github.com/RyuKojiro/metar
