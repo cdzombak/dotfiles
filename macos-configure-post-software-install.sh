@@ -218,6 +218,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   osascript -e "tell application \"Reeder\" to quit"
   defaults write com.reederapp.macOS "app.appearance" 10
   defaults write com.reederapp.macOS "app.content-size-category" 3
+  defaults write com.reederapp.macOS "app.default-browser" -string "com.apple.Safari"
   defaults write com.reederapp.macOS "app.filter" 2
   defaults write com.reederapp.macOS "app.grayscale-favicons" -bool true
   defaults write com.reederapp.macOS "app.layout" 0
