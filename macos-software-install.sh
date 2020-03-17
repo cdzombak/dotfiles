@@ -343,7 +343,7 @@ sw_install /Applications/ColorSnapper2.app "mas install 969418666"
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
   "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
-  "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add to Today view"
+  "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add to Today view\n- [ ] Disable all notifications options, except showing in Notification Center"
 sw_install /Applications/Diagrams.app "mas install 1276248849"
 sw_install /Applications/Discovery.app "mas install 1381004916"
 sw_install /Applications/Expressions.app "mas install 913158085"

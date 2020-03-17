@@ -19,26 +19,55 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
 - [x] Run setup scripts (\`make mac\`)
+- [ ] Run \`mouse-tracking\` script as appropriate
 
 ## System Preferences
 
-- [ ] Walk through System Preferences, configuring as desired
-- [ ] Pay special attention to Security and Privacy, Energy and related
-    - [ ] Turn FileVault on
-    - [ ] 5 minutes to screen saver, 5 second delay before locking screen
-    - [ ] 2 minutes to screen off when on battery
-    - [ ] Allow unlocking machine with Apple Watch
-    - [ ] Enable Firewall
-- [ ] Configure keyboard + Touch Bar
-  - [ ] Reassign Caps Lock to Ctrl
-  - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
-  - [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
-- [ ] Configure share/action extensions as desired
+- [ ] Walk through System Preferences, configuring as desired (see details below)
 
-## Apple Pay
+### Pay special attention to Security and Privacy, Energy, and related
+
+- [ ] Turn FileVault on
+- [ ] Enable Firewall
+- [ ] Allow unlocking machine with Apple Watch
+- [ ] 5 minutes to screen saver; 5 second delay before locking screen
+- [ ] 2 minutes to screen off when on battery
+- [ ] Review other Energy settings as desired
+- [ ] Name Touch ID finger & add the other index finger
+
+### Apple Pay
 
 - [ ] Add current cards to Apple Pay, as desired
 - [ ] Set address correctly
+
+### Extensions
+
+- [ ] Configure share/action extensions as desired
+
+### iCloud & Internet Accounts
+
+- [ ] Enable iCloud, except Contacts & maybe Mail
+    - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
+- [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
+
+### Keyboard + Touch Bar
+
+- [ ] Touch Bar Shows: Expanded Control Strip
+- [ ] Fn key shows: F1, F2, …
+- [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
+- [ ] Reassign Caps Lock to Ctrl
+- [ ] Turn off "correct spelling automatically," "capitalize words automatically," "add period with double-space"
+- [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
+    - [ ] Customize available services as desired
+- [ ] Enable Dictation + Enhanced Dictation
+
+### Sharing
+
+- [ ] Enable Remote Access (SSH)
+
+### Siri
+
+- [ ] Disable Siri, if necessary
 
 ## Dock
 
@@ -54,6 +83,7 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
 - [ ] Set message fonts
 - [ ] Disable new message sound
+- [ ] Disable loading remote content in messages
 - [ ] Notifications: badges & notification center only; no sound
 
 ## Messages
