@@ -152,6 +152,7 @@ sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
 sw_install /usr/local/bin/jshint 'npm install -g jshint'
 sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
+sw_install /usr/local/bin/bundler 'sudo gem install bundler'
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
 
 # metar: CLI metar lookup tool
