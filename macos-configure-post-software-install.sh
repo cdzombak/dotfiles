@@ -48,7 +48,7 @@ if [ -e /Applications/Bear.app ]; then
   osascript -e "tell application \"Bear\" to quit"
   defaults write net.shinyfrog.bear SFAppIconMatchesTheme -bool true
   defaults write net.shinyfrog.bear SFEditorFontSize 17
-  defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 44
+  defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 50
   # shellcheck disable=SC2016
   defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
     Archive = "^$a";
