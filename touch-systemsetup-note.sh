@@ -53,6 +53,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
 - [ ] Set message fonts
+- [ ] Disable new message sound
 - [ ] Notifications: badges & notification center only; no sound
 
 ## Messages
