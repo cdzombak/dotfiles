@@ -254,7 +254,7 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
-  "- [ ] License\n- [ ] Import templates from \`~/Sync/Configs\`"
+  "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
 sw_install /Applications/Paw.app "brew_cask_install paw" \
   "- [ ] Sign in / License"
 sw_install /Applications/Rocket.app "brew_cask_install rocket" \
@@ -341,7 +341,7 @@ sw_install /Applications/Better.app "mas install 1121192229" \
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/ColorSnapper2.app "mas install 969418666"
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
-  "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension"
+  "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension\n- [ ] Disable global shortcut"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
   "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add to Today view\n- [ ] Disable all notifications options, except showing in Notification Center"
 sw_install /Applications/Diagrams.app "mas install 1276248849"
