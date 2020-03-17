@@ -213,6 +213,28 @@ else
   echo "Not installed."
 fi
 
+echo "Reeder..."
+if [ -e "/Applications/Reeder.app" ]; then
+  osascript -e "tell application \"Reeder\" to quit"
+  defaults write com.reederapp.macOS "app.appearance" 10
+  defaults write com.reederapp.macOS "app.content-size-category" 3
+  defaults write com.reederapp.macOS "app.filter" 2
+  defaults write com.reederapp.macOS "app.grayscale-favicons" -bool true
+  defaults write com.reederapp.macOS "app.layout" 0
+  defaults write com.reederapp.macOS "app.state.controller" -string "streams"
+  defaults write com.reederapp.macOS "app.state.stream.type" 0
+  defaults write com.reederapp.macOS "app.state.stream.user" -string "Feedbin/chris@chrisdzombak.net"
+  defaults write com.reederapp.macOS "app.state.user" -string "Feedbin/chris@chrisdzombak.net"
+  defaults write com.reederapp.macOS "article.font-size" 17
+  defaults write com.reederapp.macOS "article.increase-contrast" -bool true
+  defaults write com.reederapp.macOS "bionic.toolbar" -bool false
+  defaults write com.reederapp.macOS "browser.open-links-in-default-browser" -bool true
+  defaults write com.reederapp.macOS "corekit.animator.configuration" 2
+  defaults write com.reederapp.macOS "subscriptions-hide-allitems-count" -bool false
+else
+  echo "Not installed."
+fi
+
 echo "Rocket..."
 if [ -e "/Applications/Rocket.app" ]; then
   osascript -e "tell application \"Rocket\" to quit"

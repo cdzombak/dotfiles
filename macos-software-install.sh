@@ -360,7 +360,7 @@ sw_install /Applications/PDFScanner.app "mas install 410968114"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482" \
-  "- [ ] Sign into Feedbin\n- [ ] Configure as desired"
+  "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
 
