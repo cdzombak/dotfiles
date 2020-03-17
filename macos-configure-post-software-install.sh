@@ -213,6 +213,23 @@ else
   echo "Not installed."
 fi
 
+echo "RadarScope..."
+if [ -e "/Applications/RadarScope.app" ]; then
+  osascript -e "tell application \"RadarScope\" to quit"
+  defaults write com.basevelocity.mac.RadarScope dataProvider -string "wdt"
+  defaults write com.basevelocity.mac.RadarScope lightningProvider -string "wdtp"
+  defaults write com.basevelocity.mac.RadarScope showCities -bool false
+  defaults write com.basevelocity.mac.RadarScope showDiscussions -bool true
+  defaults write com.basevelocity.mac.RadarScope showLightning -bool true
+  defaults write com.basevelocity.mac.RadarScope showResearchRadars -bool true
+  defaults write com.basevelocity.mac.RadarScope showStormTracks -bool true
+  defaults write com.basevelocity.mac.RadarScope showTDWRs -bool true
+  defaults write com.basevelocity.mac.RadarScope showWatches -bool true
+  defaults write com.basevelocity.mac.RadarScope warningProvider -string "wdt"
+else
+  echo "Not installed."
+fi
+
 echo "Reeder..."
 if [ -e "/Applications/Reeder.app" ]; then
   osascript -e "tell application \"Reeder\" to quit"
