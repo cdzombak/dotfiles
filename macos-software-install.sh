@@ -1238,7 +1238,9 @@ _install_sqlint() {
   cecho "Install sqlint? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo xcode-select --switch /Library/Developer/CommandLineTools
     sudo gem install sqlint
+    sudo xcode-select --switch /Applications/Xcode.app
   fi
 }
 sw_install /usr/local/bin/sqlint _install_sqlint
