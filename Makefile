@@ -73,13 +73,16 @@ mac-configure: require-macos setupnote ## Run macOS configuration script
 
 .PHONY: mac-software
 mac-software: require-macos dependencies submodules setupnote ## Install and configure macOS software suite (this can take a long time)
-	@echo ""
 	@bash ./macos-software-install.sh
+	@echo ""
 	@bash ./macos-safari-extensions.sh
+	@echo ""
 	@bash ./macos-configure-post-software-install.sh
 	@echo ""
 	@bash ./osx-automation/script/restore-resources.sh
+	@echo ""
 	@bash ./osx-automation/script/install.sh
+	@echo ""
 
 .PHONY: mac-homedir
 mac-homedir: require-macos ## Set up basic macOS home directory structure

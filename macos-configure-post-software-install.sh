@@ -29,7 +29,7 @@ if [ -e "/Applications/1Password 7.app" ]; then
   defaults write com.agilebits.onepassword7 compromisedPasswordServiceV2 1
   defaults write com.agilebits.onepassword7 ShowStatusItem -bool false
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Bartender ..."
@@ -40,7 +40,7 @@ if [ -e "/Applications/Bartender 3.app" ]; then
   open -a Bartender 3
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Bear ..."
@@ -59,7 +59,7 @@ if [ -e /Applications/Bear.app ]; then
   open -a Bear
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Choosy ..."
@@ -72,7 +72,7 @@ if [ -e "/Applications/Choosy.app" ]; then
   open -a Choosy
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "CommandQ ..."
@@ -84,7 +84,7 @@ if [ -e /Applications/CommandQ.app ]; then
   open -a CommandQ
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Day One ..."
@@ -95,7 +95,7 @@ if [ -e "/Applications/Day One.app" ]; then
     "Main Window" = "@0";
   }'
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Fantastical..."
@@ -107,7 +107,7 @@ if [ -e "/Applications/Fantastical.app" ]; then
     Reminders = "@^$r";
   }'
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "FastScripts..."
@@ -122,7 +122,7 @@ if [ -e "/Applications/FastScripts.app" ]; then
   open -a FastScripts
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Fork..."
@@ -137,7 +137,7 @@ if [ -e "/Applications/Fork.app" ]; then
   defaults write com.DanPristupov.Fork mergeTool 2
   defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Front and Center..."
@@ -153,7 +153,7 @@ if [ -e "/Applications/Front and Center.app" ]; then
   open -a "Front and Center"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Google Chrome..."
@@ -166,11 +166,10 @@ if [ -e "/Applications/Google Chrome.app" ]; then
   # defaults write com.google.Chrome DisablePrintPreview -bool true
   # defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 
-  echo ""
-  echo "Disable annoying Chrome swipe-to-navigate gesture"
+  echo "  Disable annoying Chrome swipe-to-navigate gesture"
   defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Living Earth..."
@@ -183,7 +182,7 @@ if [ -e "/Applications/Living Earth Desktop.app" ]; then
   open -a "Living Earth Desktop"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "NepTunes..."
@@ -197,7 +196,7 @@ if [ -e /Applications/NepTunes.app ]; then
   open -a "NepTunes"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Pastebot..."
@@ -210,7 +209,7 @@ if [ -e "/Applications/Pastebot.app" ]; then
   open -a "Pastebot"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "RadarScope..."
@@ -227,7 +226,7 @@ if [ -e "/Applications/RadarScope.app" ]; then
   defaults write com.basevelocity.mac.RadarScope showWatches -bool true
   defaults write com.basevelocity.mac.RadarScope warningProvider -string "wdt"
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Reeder..."
@@ -251,7 +250,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   defaults write com.reederapp.macOS "corekit.animator.configuration" 2
   defaults write com.reederapp.macOS "subscriptions-hide-allitems-count" -bool false
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Rocket..."
@@ -289,7 +288,7 @@ if [ -e "/Applications/Rocket.app" ]; then
   open -a Rocket
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Things ..."
@@ -305,7 +304,7 @@ if [ -e "/Applications/Things3.app" ]; then
   open -a "Things3"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Tweetbot ..."
@@ -316,7 +315,7 @@ if [ -e "/Applications/Tweeetbot.app" ]; then
   echo "[Tweetbot-Mac] Avoid t.co"
   defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Typora..."
@@ -331,7 +330,7 @@ if [ -e "/Applications/Typora.app" ]; then
   defaults write abnerworks.Typora theme "Github"
   defaults write abnerworks.Typora "use_seamless_window" 1
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Xcode ..."
@@ -346,17 +345,15 @@ if [ -e /Applications/Xcode.app ]; then
 
   # See http://merowing.info/2015/12/little-things-that-can-make-your-life-easier-in-2016/
 
-  echo ""
-  echo "Show how long it takes to build your project"
+  echo "  Show how long it takes to build your project"
   defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
-
-  echo ""
-  echo "Enable faster build times by leveraging multi-core CPU"
+  echo "  Enable faster build times by leveraging multi-core CPU"
   defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $(sysctl -n hw.ncpu)
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
+echo ""
 cecho "--- Setapp ---" $white
 echo ""
 
@@ -370,7 +367,7 @@ if [ -e "/Applications/Setapp.app" ]; then
   open -a "Setapp"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "CloudMounter ..."
@@ -383,8 +380,6 @@ if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   open -a "CloudMounter"
   set -e
 else
-  echo "Not installed."
-fi
 
 echo "CloudMounter ..."
 if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
@@ -393,7 +388,7 @@ if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
   defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
   cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "ToothFairy ..."
@@ -406,7 +401,7 @@ if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
   open -a "ToothFairy"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
 fi
 
 echo "Trickster ..."
@@ -416,7 +411,7 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   defaults write com.apparentsoft.trickster-setapp Attached -bool true
   defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
   defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
-  if ! grep -c "Trickster" "$HOME/SystemSetup.md"; then
+  if ! grep -c "Trickster" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## Trickster" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Set ctrl-z global show/hide shortcut" >> "$HOME/SystemSetup.md"
@@ -427,7 +422,8 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   open -a "Trickster"
   set -e
 else
-  echo "Not installed."
+  echo "(Not installed.)"
+fi
 fi
 
 echo ""
