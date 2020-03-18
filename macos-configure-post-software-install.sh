@@ -380,14 +380,6 @@ if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   open -a "CloudMounter"
   set -e
 else
-
-echo "CloudMounter ..."
-if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
-  osascript -e "tell application \"CodeRunner\" to quit"
-  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
-  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
-  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
-else
   echo "(Not installed.)"
 fi
 
@@ -424,6 +416,29 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
 else
   echo "(Not installed.)"
 fi
+
+echo ""
+cecho "--- Setapp _or_ Standard Installed ---" $white
+echo ""
+
+echo "CodeRunner (Setapp)..."
+if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
+  osascript -e "tell application \"CodeRunner\" to quit"
+  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
+  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
+else
+  echo "(Not installed.)"
+fi
+
+echo "CodeRunner (Standard)..."
+if [ -e "/Applications/CodeRunner.app" ]; then
+  osascript -e "tell application \"CodeRunner\" to quit"
+  defaults write com.krill.CodeRunner ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner DefaultTabModeSoftTabs 1
+  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
+else
+  echo "(Not installed.)"
 fi
 
 echo ""
