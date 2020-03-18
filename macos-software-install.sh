@@ -83,9 +83,7 @@ sw_install /usr/local/bin/cowsay "brew_install cowsay"
 sw_install /usr/local/opt/curl/bin/curl "brew_install curl"
 sw_install /usr/local/bin/diff-so-fancy "brew_install diff-so-fancy"
 sw_install /usr/local/bin/dust "brew_install dust"
-sw_install /usr/local/bin/eslint "brew_install eslint"
 sw_install /usr/local/bin/exa "brew_install exa"
-sw_install /usr/local/bin/flake8 "brew_install flake8"
 sw_install /usr/local/bin/fzf "brew_install fzf"
 sw_install /usr/local/bin/git "brew_install git"
 sw_install /usr/local/bin/go "brew_install go"
@@ -105,8 +103,6 @@ sw_install /usr/local/bin/ncdu "brew_install ncdu"
 sw_install /usr/local/bin/nmap "brew_install nmap"
 sw_install /usr/local/bin/nnn "brew_install nnn"
 sw_install /usr/local/bin/node "brew_install node"
-sw_install /usr/local/bin/prettier "brew_install prettier"
-sw_install /usr/local/bin/pycodestyle "brew_install pycodestyle"
 sw_install /usr/local/bin/python3 "brew_install python"
 sw_install /usr/local/bin/rdfind "brew_install rdfind"
 sw_install /usr/local/bin/screen "brew_install screen"
@@ -149,7 +145,6 @@ sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force get
 
 # Install basic tools which use stuff we just installed via Homebrew:
 sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
-sw_install /usr/local/bin/jshint 'npm install -g jshint'
 sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
 sw_install /usr/local/bin/bundler 'sudo gem install bundler'
@@ -620,13 +615,21 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/usr/local/bin/gorc" "brew gomod github.com/stretchr/gorc"
 fi
 
-cecho "Install some common Python tools (virtualenv, pipenv, pyenv)? (y/N)" $magenta
+cecho "Install common Python tools (virtualenv, pipenv, pyenv)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv'
   sw_install /usr/local/bin/pipenv "brew_install pipenv"
   # optional, but recommended build deps w/pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
   sw_install /usr/local/bin/pyenv "brew install pyenv openssl readline sqlite3 xz zlib"
+fi
+
+cecho "Install common Python code quality tools (flake8, pylint, pycodestyle)? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install /usr/local/bin/flake8 "brew_install flake8"
+  sw_install /usr/local/bin/pylint "brew_install pylint"
+  sw_install /usr/local/bin/pycodestyle "brew_install pycodestyle"
 fi
 
 cecho "Install Docker & related tools? (y/N)" $magenta
@@ -711,6 +714,14 @@ read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/bin/watchman "brew_install watchman"
   sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
+fi
+
+cecho "Install JS/TS code quality tools (prettier, eslint, jshint)? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+   sw_install /usr/local/bin/prettier 'brew_install prettier'
+   sw_install /usr/local/bin/eslint 'brew_install eslint'
+   sw_install /usr/local/bin/jshint 'npm install -g jshint'
 fi
 
 _install_nodemon() {
