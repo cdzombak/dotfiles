@@ -65,6 +65,10 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Enable Remote Access (SSH)
 
+### Software Update
+
+- [ ] Enable all options except auto-install macOS updates
+
 ### Siri
 
 - [ ] Disable Siri, if necessary
