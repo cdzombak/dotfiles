@@ -246,6 +246,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   defaults write com.reederapp.macOS "article.font-size" 17
   defaults write com.reederapp.macOS "article.increase-contrast" -bool true
   defaults write com.reederapp.macOS "bionic.toolbar" -bool false
+  defaults write com.reederapp.macOS "browser.open-links-in-background" -bool true
   defaults write com.reederapp.macOS "browser.open-links-in-default-browser" -bool true
   defaults write com.reederapp.macOS "corekit.animator.configuration" 2
   defaults write com.reederapp.macOS "subscriptions-hide-allitems-count" -bool false
