@@ -403,6 +403,7 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   defaults write com.apparentsoft.trickster-setapp Attached -bool true
   defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
   defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
+  defaults write com.apparentsoft.trickster-setapp "Fade out" -bool false
   if ! grep -c "Trickster" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## Trickster" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
