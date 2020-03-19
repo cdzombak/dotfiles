@@ -285,7 +285,7 @@ _install_dash() {
   set -e
 }
 sw_install /Applications/Dash.app _install_dash \
-  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] Open at Login\n- [ ] License"
+  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
 
 _install_sublimetext() {
   brew cask install sublime-text
