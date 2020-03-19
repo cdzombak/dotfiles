@@ -247,6 +247,10 @@ echo ""
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
 
+echo ""
+echo "Disable Dock magnification even when holding down Ctrl-Shift"
+defaults write com.apple.dock largesize -int 1
+
 killall Dock
 
 ###############################################################################
