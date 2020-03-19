@@ -441,6 +441,40 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Marked (Setapp)..."
+if [ -e "/Applications/Setapp/Marked 2.app" ]; then
+  osascript -e "tell application \"Marked 2\" to quit"
+  defaults write com.brettterpstra.marked2-setapp WebKitDeveloperExtras -bool true
+  defaults write com.brettterpstra.marked2-setapp convertGithubCheckboxes -bool true
+  defaults write com.brettterpstra.marked2-setapp defaultProcessor -string "Discount (GFM)"
+  defaults write com.brettterpstra.marked2-setapp defaultSyntaxStyle -string "GitHub"
+  defaults write com.brettterpstra.marked2-setapp externalEditor -string "Typora"
+  defaults write com.brettterpstra.marked2-setapp externalImageEditor -string "Pixelmator"
+  defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
+  defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
+  defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
+  cecho "Configure otherwise as desired; in particular, add custom CSS files." $white
+else
+  echo "(Not installed.)"
+fi
+
+echo "Marked (Standard)..."
+if [ -e "/Applications/Marked 2.app" ]; then
+  osascript -e "tell application \"Marked 2\" to quit"
+  defaults write com.brettterpstra.marked2 WebKitDeveloperExtras -bool true
+  defaults write com.brettterpstra.marked2 convertGithubCheckboxes -bool true
+  defaults write com.brettterpstra.marked2 defaultProcessor -string "Discount (GFM)"
+  defaults write com.brettterpstra.marked2 defaultSyntaxStyle -string "GitHub"
+  defaults write com.brettterpstra.marked2 externalEditor -string "Typora"
+  defaults write com.brettterpstra.marked2 externalImageEditor -string "Pixelmator"
+  defaults write com.brettterpstra.marked2 includeMathJax -bool true
+  defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
+  defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
+  cecho "Configure otherwise as desired; in particular, license and add custom CSS files." $white
+else
+  echo "(Not installed.)"
+fi
+
 echo ""
 cecho "--- Finder Sidebar ---" $white
 echo ""
