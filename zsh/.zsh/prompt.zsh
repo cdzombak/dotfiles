@@ -276,7 +276,6 @@ kubernetes-context-hide() {
 }
 
 # pyenv context
-source ~/.zsh/pyenv-prompt.zsh
 _zsh_rprompt_pyenv() {
   local pyenvinfo
   local virtualenv_path="$VIRTUAL_ENV"

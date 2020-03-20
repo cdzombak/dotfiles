@@ -72,7 +72,7 @@ fi
 if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
-command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
+source ~/.zsh/pyenv.zsh
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10

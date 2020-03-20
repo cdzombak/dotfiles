@@ -42,4 +42,9 @@ else
     }
 fi
 
+
+# Fix `brew doctor` with pyenv shims:
+# https://github.com/pyenv/pyenv/issues/106
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+
 unset FOUND_PYENV pyenvdirs dir
