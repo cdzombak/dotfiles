@@ -2,8 +2,9 @@
 # For example, $PATH, $EDITOR, and $PAGER are often set in .zshenv.
 # Also, you can set $ZDOTDIR in .zshenv to specify an alternative location for the rest of your zsh configuration.
 
-export PATH="/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/bin:$PATH"
-export MANPATH="/usr/local/git/man:/usr/local/man:$MANPATH"
+if [ -x /usr/libexec/path_helper ]; then
+    eval "$(/usr/libexec/path_helper -s)"
+fi
 
 # Android (ugh)
 if [ -d "$HOME/Library/Android/sdk" ]; then
