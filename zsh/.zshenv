@@ -9,10 +9,7 @@ fi
 # Android (ugh)
 if [ -d "$HOME/Library/Android/sdk" ]; then
     export ANDROID_HOME="$HOME/Library/Android/sdk"
-    export PATH="$PATH:$ANDROID_HOME/emulator"
-    export PATH="$PATH:$ANDROID_HOME/tools"
-    export PATH="$PATH:$ANDROID_HOME/tools/bin"
-    export PATH="$PATH:$ANDROID_HOME/platform-tools"
+    export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 fi
 
 # Golang:
@@ -46,7 +43,6 @@ fi
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # allow installing in ~/opt:
-# export LD_LIBRARY_PATH="$HOME/opt/lib/:$LD_LIBRARY_PATH"
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
 export MANPATH="$HOME/opt/share/man:$MANPATH"
 
