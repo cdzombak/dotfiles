@@ -695,6 +695,28 @@ _install_k9s() {
 }
 sw_install /usr/local/bin/k9s _install_k9s
 
+_install_lensapp() {
+  cecho "Install Lens for k8s (https://github.com/lensapp/lens)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    set -x
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lens')
+    pushd "$TMP_DIR" >/dev/null
+    curl -s https://api.github.com/repos/lensapp/lens/releases/latest | jq -r ".assets[].browser_download_url" | grep ".dmg$" | xargs wget -q -O Lens.dmg
+    hdiutil attach Lens.dmg
+    for d in /Volumes/Lens*/; do
+      if [ -e "$d""Lens.app" ]; then
+        cp -R "$d""Lens.app" /Applications/
+        hdiutil detach "$d"
+        break
+      fi
+    done
+    popd >/dev/null
+    set +x
+  fi
+}
+sw_install /Applications/Lens.app _install_lensapp
+
 echo ""
 cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
 read -r response
