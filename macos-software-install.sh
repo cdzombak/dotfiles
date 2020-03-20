@@ -299,9 +299,6 @@ _install_sublimetext() {
   pushd "$SUBLIMETEXT_PKGS_DIR"
   git clone git@github.com:cdzombak/sublime-text-config.git User
   popd
-  if [ ! -L ~/.sublime-config ]; then
-    ln -s ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ~/.sublime-config
-  fi
 }
 sw_install "/Applications/Sublime Text.app" _install_sublimetext \
   "- [ ] Open the application and allow Package Control to finish installing packages as configured\n- [ ] License"
@@ -312,6 +309,14 @@ if [ ! -f /etc/paths.d/cdz.SublimeText ]; then
   sudo rm -f /etc/paths.d/cdz.SublimeText
   echo '/Applications/Sublime Text.app/Contents/SharedSupport/bin' | sudo tee -a /etc/paths.d/cdz.SublimeText > /dev/null
   set +x
+fi
+if [ ! -L "$HOME/.config/sublimetext" ]; then
+  set -x
+  ln -s "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "$HOME/.config/sublimetext"
+  set +x
+fi
+if [ -L "$HOME/.sublime-config" ]; then
+  rm "$HOME/.sublime-config"
 fi
 
 _install_redeye() {
