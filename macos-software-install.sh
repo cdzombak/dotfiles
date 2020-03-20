@@ -305,6 +305,14 @@ _install_sublimetext() {
 }
 sw_install "/Applications/Sublime Text.app" _install_sublimetext \
   "- [ ] Open the application and allow Package Control to finish installing packages as configured\n- [ ] License"
+if [ ! -f /etc/paths.d/cdz.SublimeText ]; then
+  # TODO(cdzombak): this may not work on Catalina
+  #                 https://github.com/cdzombak/dotfiles/issues/15
+  set -x
+  sudo rm -f /etc/paths.d/cdz.SublimeText
+  echo '/Applications/Sublime Text.app/Contents/SharedSupport/bin' | sudo tee -a /etc/paths.d/cdz.SublimeText > /dev/null
+  set +x
+fi
 
 _install_redeye() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
