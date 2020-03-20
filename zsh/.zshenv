@@ -34,14 +34,6 @@ if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 fi
 
-# Homebrew:
-# Python has been installed as
-#   /usr/local/bin/python3
-# Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
-# `python3`, `python3-config`, `pip3` etc., respectively, have been installed into
-#   /usr/local/opt/python/libexec/bin
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-
 # allow installing in ~/opt:
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
 export MANPATH="$HOME/opt/share/man:$MANPATH"
