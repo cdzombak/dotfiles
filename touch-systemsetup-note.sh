@@ -60,6 +60,7 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
     - [ ] Customize available services as desired
 - [ ] Enable Dictation + Enhanced Dictation
+    - [ ] Set shortcut: right Command key twice
 
 ### Sharing
 
