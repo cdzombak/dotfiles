@@ -261,7 +261,6 @@ sw_install /Applications/Slack.app "brew_cask_install slack" \
 sw_install /Applications/Sonos.app "brew_cask_install sonos"
 sw_install /Applications/Spotify.app "brew_cask_install spotify"
 sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
-sw_install /Applications/TIDAL.app "brew_cask_install tidal"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
@@ -1231,6 +1230,13 @@ if [ -e "/Applications/Plexamp.app" ]; then
   echo "Plexamp..."
   verify_smartdelete
   trash /Applications/Plexamp.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/TIDAL.app" ]; then
+  echo "TIDAL..."
+  verify_smartdelete
+  trash /Applications/TIDAL.app
   REMOVED_ANYTHING=true
 fi
 
