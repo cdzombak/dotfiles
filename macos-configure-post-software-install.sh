@@ -282,7 +282,8 @@ if [ -e "/Applications/Rocket.app" ]; then
       "a2mi.social",
       "app.logz.io",
       "mail.google.com",
-      "git.grooveid.net"
+      "git.grooveid.net",
+      "console.aws.amazon.com"
   )'
   set +e
   open -a Rocket
