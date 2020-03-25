@@ -45,6 +45,7 @@ fi
 
 if [ ! -L "$HOME/Dropbox" ]; then
   ln -s "$HOME/Sync" "$HOME/Dropbox"
+  chflags -h hidden "$HOME/Dropbox"
 fi
 
 if [ ! -L "$HOME/env" ]; then
