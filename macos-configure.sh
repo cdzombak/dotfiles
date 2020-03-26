@@ -377,6 +377,13 @@ echo "Messages.app text size"
 defaults write com.apple.iChat TextSize 7
 
 echo ""
+echo "Photos.app Keyboard shortcut: ⌥T to Adjust Date & Time"
+# shellcheck disable=SC2016
+defaults write com.apple.Photos NSUserKeyEquivalents '{
+    "Adjust Date and Time\U2026" = "~t";
+}'
+
+echo ""
 cecho "✔ Done." $green
 echo ""
 cecho "macOS configuration complete." $white
