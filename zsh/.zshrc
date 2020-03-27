@@ -57,7 +57,6 @@ source ~/.zsh/clipboard.zsh
 source ~/.zsh/python.zsh
 source ~/.zsh/rake.zsh
 source ~/.zsh/colored-man-pages.zsh
-source ~/.zsh/nmap.zsh
 source ~/.zsh/gitignore.zsh
 source ~/.zsh/golang.zsh
 source ~/.zsh/bundler.zsh
