@@ -68,6 +68,10 @@ if [ ! -L "$HOME/Downloads/iCloud" ]; then
   ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Downloads" "$HOME/Downloads/iCloud"
 fi
 
+if [ ! -L "$HOME/Pictures/iCloud" ]; then
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Pictures" "$HOME/Pictures/iCloud"
+fi
+
 if [ ! -L "$HOME/Books and Articles" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
   echo ""
   echo "Create link to iCloud Drive/Books & Articles in home directory? (y/N)"
