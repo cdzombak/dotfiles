@@ -21,3 +21,4 @@ g_pip(){
 #}
 
 alias prun='pipenv run'
+alias psh='pipenv shell'
