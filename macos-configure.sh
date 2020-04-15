@@ -289,6 +289,34 @@ echo "[Mail.app] Set email addresses to copy as 'foo@example.com' instead of 'Fo
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
+# iTunes
+###############################################################################
+
+if [ ! -e "$HOME/.local/dotfiles/no-itunes-config" ]; then
+  echo ""
+  cecho "Configure iTunes for a 'client' computer (eg. not the master on home Mac Mini server)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    echo ""
+    echo "[iTunes] Delete downloaded movies/shows after watching"
+    defaults write com.apple.iTunes automaticallyDeleteVideoAssetsAfterWatching -bool true
+
+    echo ""
+    echo "[iTunes] Disable features I don't use, including Apple Music"
+    defaults write com.apple.iTunes disableAppleMusic -bool true
+    defaults write com.apple.iTunes disableMusicSocial -bool true
+    defaults write com.apple.iTunes disableMusicStore -bool false
+    defaults write com.apple.iTunes disablePodcasts -bool true
+    defaults write com.apple.iTunes disableRadio -bool false
+    defaults write com.apple.iTunes disableShareLibraryInfo -bool false
+    defaults write com.apple.iTunes disableSharedMusic -bool false
+    defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
+  fi
+  echo "Won't ask about this again the next time this script runs."
+  touch "$HOME/.local/dotfiles/no-itunes-config"
+fi
+
+###############################################################################
 # Shell & Terminal
 ###############################################################################
 
