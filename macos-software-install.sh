@@ -393,6 +393,15 @@ _install_thingshub() {
 }
 sw_install "/usr/local/bin/thingshub" _install_thingshub
 
+_install_unshorten() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
+  git clone "https://github.com/cdzombak/unshorten.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install
+  popd
+}
+sw_install "/usr/local/bin/unshorten" _install_unshorten
+
 # Install Webster's 1913 Dictionary
 # mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
 # See: http://jsomers.net/blog/dictionary
