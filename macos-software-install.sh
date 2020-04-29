@@ -968,6 +968,20 @@ _install_plexdesktop() {
 }
 sw_install /Applications/Plex.app _install_plexdesktop
 
+_install_plexamp() {
+  cecho "Install Plexamp? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install plexamp
+    # shellcheck disable=SC2129
+    echo "## Plexamp.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/Plex.app _install_plexamp
+
 _install_neptunes() {
   cecho "Install NepTunes? (y/N)" $magenta
   read -r response
@@ -1233,13 +1247,6 @@ if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
   trash /Applications/OmniFocus.app
-  REMOVED_ANYTHING=true
-fi
-
-if [ -e "/Applications/Plexamp.app" ]; then
-  echo "Plexamp..."
-  verify_smartdelete
-  trash /Applications/Plexamp.app
   REMOVED_ANYTHING=true
 fi
 
