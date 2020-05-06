@@ -73,6 +73,10 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 echo ""
+echo "Speed up sheet show & hide animations"
+defaults write NSGlobalDomain NSWindowResizeTime .1
+
+echo ""
 echo "Save to disk (not to iCloud) by default"
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
