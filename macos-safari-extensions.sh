@@ -38,6 +38,18 @@ sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
 sw_install "/Applications/StopTheMadness.app" "mas install 1376402589" \
   "- [ ] Enable StopTheMadness Safari Extension\n- [ ] Enable Open Link With -> Choosy\n- [ ] Install Chrome extension in commonly-used profiles ([chrome://extensions](chrome://extensions/))"
 
+_install_stopthenews() {
+  set -x
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'stopthenews')
+  pushd "$TMP_DIR" >/dev/null
+  curl -s https://api.github.com/repos/lapcat/StopTheNews/releases/latest | jq -r ".assets[].browser_download_url" | grep ".zip$" | xargs wget -q -O StopTheNews.zip
+  unzip StopTheNews.zip
+  cp -R StopTheNews.app /Applications/StopTheNews.app
+  popd >/dev/null
+  set +x
+}
+sw_install /Applications/StopTheNews.app _install_stopthenews
+
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 
