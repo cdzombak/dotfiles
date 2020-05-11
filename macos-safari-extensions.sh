@@ -35,6 +35,9 @@ sw_install /Applications/Instapaper.app "mas install 1481302432" \
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
 
+sw_install "/Applications/StopTheMadness.app" "mas install 1376402589" \
+  "- [ ] Enable StopTheMadness Safari Extension\n- [ ] Enable Open Link With -> Choosy\n- [ ] Install Chrome extension in commonly-used profiles ([chrome://extensions](chrome://extensions/))"
+
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 
