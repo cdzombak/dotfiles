@@ -32,6 +32,9 @@ sw_install "/Applications/Day One.app" "mas install 1055511498" \
 sw_install /Applications/Instapaper.app "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable Instapaper Safari extension"
 
+sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
+  "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
+
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 
