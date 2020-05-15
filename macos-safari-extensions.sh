@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -uo pipefail
+set -eo pipefail
 IFS=$'\n\t'
 source ./lib/cecho
 source ./lib/sw_install
