@@ -64,6 +64,9 @@ fi
 if ! brew tap | grep -c homebrew/cask-fonts >/dev/null ; then
   brew tap homebrew/cask-fonts
 fi
+if ! brew tap | grep -c filippo.io/yubikey-agent >/dev/null ; then
+  brew tap filippo.io/yubikey-agent
+fi
 if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
   brew tap showwin/speedtest
 fi
@@ -124,6 +127,8 @@ sw_install /usr/local/bin/wget "brew_install wget"
 sw_install /usr/local/bin/xz "brew_install xz"
 sw_install /usr/local/bin/yamllint "brew_install yamllint"
 sw_install /usr/local/bin/yarn "brew_install yarn"
+sw_install /usr/local/bin/yubikey-agent "brew_install yubikey-agent && brew services start yubikey-agent" \
+  "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed"
 
 sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
   "brew_cask_install qlmarkdown"

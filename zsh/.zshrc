@@ -21,6 +21,8 @@ export LS_COLORS="di=36:ln=35:so=31;1;44:pi=30;1;44:ex=1;31:bd=0;1;44:cd=37;1;44
 
 export SESSION_OPENED_TS=$(date +%s)
 
+command -v yubikey-agent >/dev/null 2>&1 && export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+
 alias reload!='echo "" && . ~/.zshrc'
 
 source ~/.zsh/lib-rc/urlencode.zsh
