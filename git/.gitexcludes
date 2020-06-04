@@ -2,10 +2,13 @@
 # https://github.com/cdzombak/thingshub
 .thingshubconfig
 
+# python
+__pycache__
+*.pyc
 # pyenv local version (use git add -f for projects where these should be checked in)
 .python-version
 
-# Based on https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
+# https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore
 
 # Subversion
 .svn
