@@ -53,6 +53,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
+source ~/.zsh/jobs-help.zsh
 source ~/.zsh/markdown.zsh
 source ~/.zsh/fuck-things.zsh
 source ~/.zsh/clipboard.zsh
