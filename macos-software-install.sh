@@ -380,8 +380,6 @@ sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
 sw_install "/Applications/Front and Center.app" "mas install 1493996622"
 sw_install /Applications/IPinator.app "mas install 959111981" \
   "- [ ] Add to Today view"
-sw_install "/Applications/Living Earth Desktop.app" "mas install 539362919" \
-  "- [ ] Enable/verify iCloud sync\n- [ ] Start at login"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
@@ -1261,6 +1259,13 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   echo "Grasshopper..."
   verify_smartdelete
   trash /Applications/Grasshopper.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Living Earth Desktop.app" ]; then
+  echo "Living Earth Desktop..."
+  verify_smartdelete
+  trash "/Applications/Living Earth Desktop.app"
   REMOVED_ANYTHING=true
 fi
 
