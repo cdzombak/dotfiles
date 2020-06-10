@@ -384,6 +384,19 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Forecast Bar ..."
+if [ -e "/Applications/Setapp/Forecast Bar.app" ]; then
+  if ! grep -c "Forecast Bar" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Forecast Bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set shift-ctrl-x global shortcut" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md" # doesn't use UserDefaults :(
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
 echo "ToothFairy ..."
 if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
   osascript -e "tell application \"ToothFairy\" to quit"
