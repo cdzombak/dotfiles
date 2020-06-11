@@ -369,6 +369,7 @@ sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker Safari extension"
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/ColorSnapper2.app "mas install 969418666"
+sw_install /Applications/Claquette.app "mas install 587748131"
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
   "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension\n- [ ] Disable global shortcut"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
