@@ -473,6 +473,17 @@ sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
 sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
   "- [ ] Associate with PLIST files"
 
+_install_ears() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
+  pushd "$TMP_DIR"
+  wget -O ears.zip "https://clickontyler.com/ears/download/v1/"
+  unzip ears.zip -d "/Applications/"
+  rm -rf "/Applications/__MACOSX"
+  popd
+}
+sw_install "/Applications/Ears.app" _install_ears \
+  "- [ ] License Ears\n- [ ] Add AirPods Pro\n- [ ] Configure as desired\n- [ ] Hide macOS volume control in menu bar"
+
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
 
