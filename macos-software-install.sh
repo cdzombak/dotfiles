@@ -1313,11 +1313,11 @@ if ! $REMOVED_ANYTHING; then
 fi
 
 echo ""
-cecho "--- Installations that should run after most others due to complexities/cleanups ---" $white
+cecho "--- Installations that run after most others due to complexities/cleanups ---" $white
 echo ""
 
 echo "Cleaning up kubectl installed via gcloud/docker ..."
-if command -v gcloud; then
+if command -v gcloud >/dev/null; then
   if gcloud components list --only-local-state | grep -c "kubectl" >/dev/null; then
     echo "Uninstalling kubectl via gcloud."
     gcloud components remove kubectl
