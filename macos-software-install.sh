@@ -705,11 +705,10 @@ _install_virtualbox() {
 sw_install /Applications/VirtualBox.app _install_virtualbox
 
 _install_gcloud_sdk() {
-  cecho "Install Google Cloud SDK + kubectl? (y/N)" $magenta
+  cecho "Install Google Cloud SDK? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install google-cloud-sdk
-    /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/gcloud components install kubectl
   fi
 }
 sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
@@ -1312,6 +1311,32 @@ fi
 if ! $REMOVED_ANYTHING; then
   echo "Nothing to do."
 fi
+
+echo ""
+cecho "--- Installations that should run after most others due to complexities/cleanups ---" $white
+echo ""
+
+echo "Cleaning up kubectl installed via gcloud/docker ..."
+if command -v gcloud; then
+  if gcloud components list --only-local-state | grep -c "kubectl" >/dev/null; then
+    echo "Uninstalling kubectl via gcloud."
+    gcloud components remove kubectl
+  fi
+fi
+if file -h /usr/local/bin/kubectl | grep -c "Applications/Docker.app/Contents/Resources/bin" >/dev/null; then
+  echo "Removing kubectl symlink to Docker.app."
+  rm /usr/local/bin/kubectl
+fi
+_install_kubectl() {
+  echo ""
+  cecho "Install kubectl? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install kubectl
+  fi
+}
+sw_install /usr/local/bin/kubectl _install_kubectl
+echo ""
 
 echo ""
 cecho "--- Stuff that failed the last time this script was used ---" $white
