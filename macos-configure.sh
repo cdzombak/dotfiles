@@ -114,9 +114,14 @@ defaults write -g AppleShowScrollBars -string WhenScrolling
 # Screen
 ###############################################################################
 
+# echo ""
+# echo "Enabling subpixel font rendering on non-Apple LCDs"
+# defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+# https://tonsky.me/blog/monitors/ convinced me to try this...
 echo ""
-echo "Enabling subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+echo "Disabling subpixel font smoothing"
+defaults write NSGlobalDomain AppleFontSmoothing -int 0
 
 ###############################################################################
 # Finder
