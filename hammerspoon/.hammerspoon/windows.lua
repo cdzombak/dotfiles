@@ -257,6 +257,19 @@ function hs.window.nextScreen(win)
   end
 end
 
+function hs.window.previousScreen(win)
+  local currentScreen = win:screen()
+  local allScreens = hs.screen.allScreens()
+  currentScreenIndex = hs.fnutils.indexOf(allScreens, currentScreen)
+  previousScreenIndex = currentScreenIndex - 1
+
+  if allScreens[previousScreenIndex] then
+    win:moveToScreen(allScreens[previousScreenIndex], true, true)
+  else
+    win:moveToScreen(allScreens[#allScreens], true, true)
+  end
+end
+
 local hMovement = 40
 local vMovement = 30
 
@@ -455,10 +468,14 @@ windowLayoutMode:bindWithAutomaticExit('n', function()
   hs.window.focusedWindow():nextScreen()
 end)
 
+windowLayoutMode:bindWithAutomaticExit('p', function()
+  hs.window.focusedWindow():previousScreen()
+end)
+
 -- windowLayoutMode:bindWithAutomaticExit('right', function()
 --   hs.window.focusedWindow():moveOneScreenEast()
 -- end)
---
+
 -- windowLayoutMode:bindWithAutomaticExit('left', function()
 --   hs.window.focusedWindow():moveOneScreenWest()
 -- end)
