@@ -42,7 +42,7 @@ function _zsh_kubectl_prompt_precmd() {
     # Therefore, if KUBECONFIG has been held multiple files, each files need to be checked.
     while read -d ":" config; do
         if ! now="${now}$(stat -L $modified_time_fmt "$config" 2>/dev/null)"; then
-            ZSH_KUBECTL_PROMPT="$config doesn't exist"
+            _ZSH_KUBECTL_PROMPT="$config doesn't exist"
             return 1
         fi
     done <<< "${kubeconfig}:"
@@ -54,13 +54,13 @@ function _zsh_kubectl_prompt_precmd() {
     zstyle ':zsh-kubectl-prompt:' updated_at "$now"
 
     if ! context="$(kubectl config current-context 2>/dev/null)"; then
-        ZSH_KUBECTL_PROMPT="current-context is not set"
+        _ZSH_KUBECTL_PROMPT="current-context is not set"
         return 1
     fi
 
     zstyle -s ':zsh-kubectl-prompt:' namespace namespace
     if [[ "$namespace" != true ]]; then
-        ZSH_KUBECTL_PROMPT="${context}"
+        _ZSH_KUBECTL_PROMPT="${context}"
         return 0
     fi
 
@@ -68,7 +68,7 @@ function _zsh_kubectl_prompt_precmd() {
     [[ -z "$ns" ]] && ns="default"
 
     zstyle -s ':zsh-kubectl-prompt:' separator separator
-    ZSH_KUBECTL_PROMPT="${context}${separator}${ns}"
+    _ZSH_KUBECTL_PROMPT="${context}${separator}${ns}"
 
     return 0
 }

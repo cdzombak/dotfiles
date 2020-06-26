@@ -252,19 +252,19 @@ _zsh_rprompt_virtualenv() {
 source ~/.zsh/kubectl-prompt.zsh
 
 _zsh_rprompt_kubectl() {
-  if [[ $ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
+  if [[ $_ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
     local kcprompt
-    kcprompt=$(echo -n $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
+    kcprompt=$(echo -n $_ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
     _zsh_rprompt_segment magenta black "$kcprompt"
   fi
 }
 
 k8s-ctx-show() {
-  ZSH_RPROMPT_K8S_CONTEXT=true
+  _ZSH_RPROMPT_K8S_CONTEXT=true
 }
 
 k8s-ctx-hide() {
-  ZSH_RPROMPT_K8S_CONTEXT=false
+  _ZSH_RPROMPT_K8S_CONTEXT=false
 }
 
 kubernetes-context-show() {
