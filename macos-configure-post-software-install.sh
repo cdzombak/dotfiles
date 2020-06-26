@@ -421,7 +421,7 @@ if [ -e "/Applications/Setapp/Trickster.app" ]; then
   if ! grep -c "Trickster" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## Trickster" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set ctrl-z global show/hide shortcut" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set ctrl-shift-Y global show/hide shortcut" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Configure file tracking based on screenshot in \`~/Sync/Configs\`" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
