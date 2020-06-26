@@ -65,7 +65,7 @@ if ! brew tap | grep -c homebrew/cask-fonts >/dev/null ; then
   brew tap homebrew/cask-fonts
 fi
 if ! brew tap | grep -c filippo.io/yubikey-agent >/dev/null ; then
-  brew tap filippo.io/yubikey-agent
+  brew tap filippo.io/yubikey-agent https://filippo.io/yubikey-agent
 fi
 if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
   brew tap showwin/speedtest
