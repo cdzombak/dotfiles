@@ -553,6 +553,15 @@ _install_iperf3() {
 }
 sw_install /usr/local/bin/iperf3 _install_iperf3
 
+_install_angryipscan() {
+  cecho "Install Angry IP Scanner? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install angry-ip-scanner
+  fi
+}
+sw_install "/Applications/Angry IP Scanner.app" _install_angryipscan
+
 _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
