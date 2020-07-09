@@ -275,7 +275,7 @@ sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
 sw_install /Applications/Paw.app "brew_cask_install paw" \
   "- [ ] Sign in / License"
 sw_install /Applications/Rocket.app "brew_cask_install rocket" \
-  "- [ ] Enable Accessibility\n- [ ] License\n- [ ] Start at Login"
+  "- [ ] Enable Accessibility\n- [ ] License\n- [ ] Enable Ctrl-Shift-M browse shortcut\n- [ ] Start at Login"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
 sw_install /Applications/Slack.app "brew_cask_install slack" \

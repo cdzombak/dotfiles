@@ -256,6 +256,9 @@ fi
 echo "Rocket..."
 if [ -e "/Applications/Rocket.app" ]; then
   osascript -e "tell application \"Rocket\" to quit"
+  defaults write net.matthewpalmer.Rocket SUAutomaticallyUpdate -bool true
+  defaults write net.matthewpalmer.Rocket launch-at-login -bool true
+  defaults write net.matthewpalmer.Rocket rocket-updater-use-beta -bool true
   defaults write net.matthewpalmer.Rocket "preferred-skin-tone" 2
   defaults write net.matthewpalmer.Rocket deactivated-apps '(
       Slack,
@@ -272,7 +275,9 @@ if [ -e "/Applications/Rocket.app" ]; then
       Bear,
       goland,
       Fork,
-      VirtualBox
+      VirtualBox,
+      WebStorm,
+      pycharm
   )'
   defaults write net.matthewpalmer.Rocket "deactivated-website-patterns" '(
       "github.com",
@@ -282,8 +287,8 @@ if [ -e "/Applications/Rocket.app" ]; then
       "a2mi.social",
       "app.logz.io",
       "mail.google.com",
-      "git.grooveid.net",
-      "console.aws.amazon.com"
+      "console.aws.amazon.com",
+      "bitbucket.org"
   )'
   set +e
   open -a Rocket
