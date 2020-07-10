@@ -361,6 +361,15 @@ if [ ! -L /Applications/Marked.app ]; then
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
 fi
 
+_install_json_viewer() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'json-viewer')
+  git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
+  pushd "$TMP_DIR/app"
+  make install-mac
+  popd
+}
+sw_install "/Applications/JSON Viewer.app" _install_json_viewer
+
 # macOS Applications from Mac App Store:
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
