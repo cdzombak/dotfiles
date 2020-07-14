@@ -905,6 +905,15 @@ echo ""
 cecho "--- Media Tools ---" $white
 echo ""
 
+_install_calibre() {
+  cecho "Install Calibre? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install calibre
+  fi
+}
+sw_install /Applications/calibre.app _install_calibre
+
 _install_pixelmator() {
   cecho "Install Pixelmator? (y/N)" $magenta
   read -r response
