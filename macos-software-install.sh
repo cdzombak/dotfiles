@@ -79,6 +79,7 @@ fi
 sw_install /usr/local/bin/ag "brew_install ag"
 sw_install /usr/local/bin/aws "brew_install awscli"
 sw_install /usr/local/bin/bandwhich "brew_install bandwhich"
+sw_install /usr/local/bin/bettercap "brew_install bettercap"
 sw_install /usr/local/Cellar/bash-completion "brew_install bash-completion"
 sw_install /usr/local/bin/cloc "brew_install cloc"
 sw_install /usr/local/opt/coreutils/libexec/gnubin "brew_install coreutils"
