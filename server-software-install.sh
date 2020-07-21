@@ -144,3 +144,15 @@ if [ ! -x "/usr/local/bin/nano" ]; then
 else
   echo "nano is already installed."
 fi
+echo "Install/update my quick ffmpeg media conversion scripts? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  set -x
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
+  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  chmod +x ./install.sh
+  ./install.sh
+  popd
+  set +x
+fi

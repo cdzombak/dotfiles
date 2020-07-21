@@ -1012,6 +1012,17 @@ _install_fileloupe() {
 }
 sw_install /Applications/Fileloupe.app _install_fileloupe
 
+cecho "Install/update my quick ffmpeg media conversion scripts? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
+  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  chmod +x ./install.sh
+  ./install.sh
+  popd
+fi
+
 echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
