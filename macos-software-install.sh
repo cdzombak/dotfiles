@@ -686,6 +686,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     rm "$HOME/opt/bin/notify-me"
   fi
   scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
+  chmod +x "$HOME/opt/bin/notify-me"
 fi
 
 echo ""

@@ -167,6 +167,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   fi
   set -x
   scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
+  chmod +x "$HOME/opt/bin/notify-me"
   set +x
 fi
 
