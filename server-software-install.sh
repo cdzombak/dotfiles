@@ -12,7 +12,7 @@ if [ -x /usr/bin/apt ]; then
   echo "Installing packages via apt; this will require sudo..."
   set -x
   sudo apt -y update
-  sudo apt -y install tig tree htop traceroute dnsutils
+  sudo apt -y install tig tree htop traceroute dnsutils screen
   set +e
   echo "nnn is not available until Ubuntu 18.x; this installation is expected to fail on earlier systems:"
   sudo apt -y install nnn
@@ -21,12 +21,12 @@ if [ -x /usr/bin/apt ]; then
 elif [ -x /usr/bin/dnf ]; then
   echo "Installing packages via dnf; this will require sudo..."
   set -x
-  sudo dnf -y install tig tree htop nnn traceroute bind-utils
+  sudo dnf -y install tig tree htop nnn traceroute bind-utils screen
   set +x
 elif [ -x /usr/bin/yum ]; then
   echo "Installing packages via yum; this will require sudo..."
   set -x
-  sudo yum -y install tig tree htop nnn traceroute bind-utils
+  sudo yum -y install tig tree htop nnn traceroute bind-utils screen
   set +x
 else
   echo ""
