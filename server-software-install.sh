@@ -62,7 +62,8 @@ if [ ! -x /usr/local/bin/dust ]; then
     curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "i686" | xargs wget -q -O dust.tar.gz
   fi
   tar xzf dust.tar.gz
-  sudo cp dust /usr/local/bin
+  rm dust.tar.gz
+  sudo cp ./dust*/dust /usr/local/bin
   sudo chmod +x /usr/local/bin/dust
   popd
   set +x
