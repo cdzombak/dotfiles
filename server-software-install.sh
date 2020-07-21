@@ -144,6 +144,18 @@ if [ ! -x "/usr/local/bin/nano" ]; then
 else
   echo "nano is already installed."
 fi
+
+echo "Install/update my notify-me script (requires SSH setup & authorized to log in to burr)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  if [ -f "$HOME/opt/bin/notify-me" ]; then
+    rm "$HOME/opt/bin/notify-me"
+  fi
+  set -x
+  scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
+  set +x
+fi
+
 echo "Install/update my quick ffmpeg media conversion scripts? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then

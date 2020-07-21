@@ -679,6 +679,15 @@ _install_mactracker() {
 }
 sw_install /Applications/MacTracker.app _install_mactracker
 
+echo "Install/update my notify-me script (requires SSH setup & authorized to log in to burr)? (y/N)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  if [ -f "$HOME/opt/bin/notify-me" ]; then
+    rm "$HOME/opt/bin/notify-me"
+  fi
+  scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
+fi
+
 echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
