@@ -80,16 +80,17 @@ fi
 
 # install a more recent version of nano
 echo "Installing a recent nano..."
-NANO_V="4.4"
-if [ -x "/usr/local/bin/nano" ]; then
+NANO_V="4.9.3"
+if [ -x /usr/local/bin/nano ]; then
   # remove outdated version:
   set +e
-  if ! "/usr/local/bin/nano" -V | grep -c "$NANO_V" >/dev/null ; then
-    sudo mv "/usr/local/bin/nano" "/usr/local/bin/nano.bak"
+  if ! /usr/local/bin/nano -V | grep -c "$NANO_V" >/dev/null ; then
+    sudo mkdir -p /usr/local/opt/nano/bin
+    sudo mv /usr/local/bin/nano /usr/local/opt/nano/bin/nano.bak
   fi
   set -e
 fi
-if [ ! -x "/usr/local/bin/nano" ]; then
+if [ ! -x /usr/local/bin/nano ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'nano-working')
   pushd "$TMP_DIR"
