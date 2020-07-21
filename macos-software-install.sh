@@ -170,12 +170,16 @@ sw_install /usr/local/bin/metar _install_metar
 
 # my listening wrapper for lsof
 _install_listening() {
-  pushd "$HOME/opt/bin"
-  wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
-  chmod +x listening
-  popd
+  if [ -f "$HOME/opt/bin/listening" ]; then
+    mv "$HOME/opt/bin/listening" /usr/local/bin
+  else
+    pushd /usr/local/bin
+    wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
+    chmod +x listening
+    popd
+  fi
 }
-sw_install "$HOME/opt/bin/listening" _install_listening
+sw_install "/usr/local/bin/listening" _install_listening
 
 # my tool which keeps Keybase out of Finder favorites
 _install_keybase_favorite_cleaner() {

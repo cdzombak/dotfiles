@@ -60,13 +60,20 @@ fi
 
 # install my listening wrapper for netstat
 echo "Installing listening..."
-if [ ! -x "$HOME/opt/bin/listening" ]; then
-  set -x
-  pushd "$HOME/opt/bin"
-  wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
-  chmod +x listening
-  popd
-  set +x
+if [ ! -x "/usr/local/bin/listening" ]; then
+  if [ -e "$HOME/opt/bin/listening" ]; then
+    echo " Moving listening from ~ to /usr/local..."
+    sudo mv "$HOME/opt/bin/listening" /usr/local/bin
+  else
+    set -x
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'listening-work')
+    pushd "$TMP_DIR"
+    wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
+    chmod +x ./listening
+    sudo mv ./listening /usr/local/bin
+    popd
+    set +x
+  fi
 else
   echo "listening is already installed."
 fi
