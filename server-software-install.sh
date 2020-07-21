@@ -37,21 +37,33 @@ fi
 # install dust: A more intuitive version of du in rust
 echo "Installing dust..."
 if [ -x "$HOME/opt/bin/dust" ]; then
+  echo " Moving dust from ~ to /usr/local..."
+  sudo mv "$HOME/opt/bin/dust" /usr/local/bin/dust
+fi
+if [ -x /usr/local/bin/dust ]; then
   # remove outdated version:
+  # see https://github.com/bootandy/dust/releases
   set +e
-  if ! "$HOME/opt/bin/dust" -V | grep -c "0.4.4" >/dev/null ; then
-    rm "$HOME/opt/bin/dust"
+  if ! /usr/local/bin/dust -V | grep -c "0.5.1" >/dev/null ; then
+    echo " Removing outdated dust..."
+    sudo rm /usr/local/bin/dust
   fi
   set -e
 fi
-# TODO(cdzombak): this will break when this is run on arm or when dust releases a linux/arm binary
-if [ ! -x "$HOME/opt/bin/dust" ]; then
+if [ ! -x /usr/local/bin/dust ]; then
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
   pushd "$TMP_DIR"
-  curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux" | xargs wget -q -O dust.tar.gz
+  if uname -a | grep -c -i arm >/dev/null; then
+    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm" | xargs wget -q -O dust.tar.gz
+  elif uname -a | grep -c -i x86_64 >/dev/null; then
+    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O dust.tar.gz
+  else
+    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "i686" | xargs wget -q -O dust.tar.gz
+  fi
   tar xzf dust.tar.gz
-  cp dust "$HOME/opt/bin"
+  sudo cp dust /usr/local/bin
+  sudo chmod +x /usr/local/bin/dust
   popd
   set +x
 else
