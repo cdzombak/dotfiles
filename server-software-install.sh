@@ -6,6 +6,11 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+echo "This script will use sudo; enter your password to authenticate if prompted."
+# Ask for the administrator password upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 mkdir -p "$HOME/opt/bin"
 
 if [ -x /usr/bin/apt ]; then
