@@ -98,6 +98,7 @@ if [ ! -x /usr/local/bin/bandwhich ]; then
     rm bandwhich.tar.gz
     sudo cp ./bandwhich /usr/local/bin
     sudo chmod +x /usr/local/bin/bandwhich
+    sudo setcap cap_sys_ptrace,cap_dac_read_search,cap_net_raw,cap_net_admin+ep /usr/local/bin/bandwhich
     popd
     set +x
   else
