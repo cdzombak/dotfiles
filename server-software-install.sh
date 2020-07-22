@@ -9,7 +9,7 @@ fi
 mkdir -p "$HOME/opt/bin"
 
 if [ -x /usr/bin/apt ]; then
-  echo "Installing packages via apt; this will require sudo..."
+  echo "Installing common packages via apt..."
   set -x
   sudo apt -y update
   sudo apt -y install tig tree htop traceroute dnsutils screen
@@ -19,12 +19,12 @@ if [ -x /usr/bin/apt ]; then
   set -e
   set +x
 elif [ -x /usr/bin/dnf ]; then
-  echo "Installing packages via dnf; this will require sudo..."
+  echo "Installing common packages via dnf..."
   set -x
   sudo dnf -y install tig tree htop nnn traceroute bind-utils screen
   set +x
 elif [ -x /usr/bin/yum ]; then
-  echo "Installing packages via yum; this will require sudo..."
+  echo "Installing common packages via yum..."
   set -x
   sudo yum -y install tig tree htop nnn traceroute bind-utils screen
   set +x
@@ -35,6 +35,7 @@ else
 fi
 
 # install dust: A more intuitive version of du in rust
+# see https://github.com/bootandy/dust/releases
 echo "Installing dust..."
 if [ -x "$HOME/opt/bin/dust" ]; then
   echo " Moving dust from ~ to /usr/local..."
@@ -42,13 +43,10 @@ if [ -x "$HOME/opt/bin/dust" ]; then
 fi
 if [ -x /usr/local/bin/dust ]; then
   # remove outdated version:
-  # see https://github.com/bootandy/dust/releases
-  set +e
   if ! /usr/local/bin/dust -V | grep -c "0.5.1" >/dev/null ; then
     echo " Removing outdated dust..."
     sudo rm /usr/local/bin/dust
   fi
-  set -e
 fi
 if [ ! -x /usr/local/bin/dust ]; then
   set -x
@@ -69,6 +67,39 @@ if [ ! -x /usr/local/bin/dust ]; then
   set +x
 else
   echo "dust is already installed."
+fi
+
+# install bandwhich: Terminal bandwidth utilization tool
+# see https://github.com/imsnif/bandwhich/releases
+echo "Installing bandwhich..."
+if [ -x "$HOME/opt/bin/bandwhich" ]; then
+  echo " Moving bandwhich from ~ to /usr/local..."
+  sudo mv "$HOME/opt/bin/bandwhich" /usr/local/bin/bandwhich
+fi
+if [ -x /usr/local/bin/bandwhich ]; then
+  # remove outdated version:
+  if ! /usr/local/bin/bandwhich -V | grep -c "0.16.0" >/dev/null ; then
+    echo " Removing outdated bandwhich..."
+    sudo rm /usr/local/bin/bandwhich
+  fi
+fi
+if [ ! -x /usr/local/bin/bandwhich ]; then
+  if uname -a | grep -c -i x86_64 >/dev/null; then
+    set -x
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'bandwhich-work')
+    pushd "$TMP_DIR"
+    curl -s https://api.github.com/repos/imsnif/bandwhich/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O bandwhich.tar.gz
+    tar xzf bandwhich.tar.gz
+    rm bandwhich.tar.gz
+    sudo cp ./bandwhich /usr/local/bin
+    sudo chmod +x /usr/local/bin/bandwhich
+    popd
+    set +x
+  else
+    echo "[!] Unsupported arch. bandwhich only has a build for x86_64; check https://github.com/imsnif/bandwhich/releases to see if this has changed."
+  fi
+else
+  echo "bandwhich is already installed."
 fi
 
 # install my listening wrapper for netstat
@@ -96,12 +127,10 @@ echo "Installing a recent nano..."
 NANO_V="4.9.3"
 if [ -x /usr/local/bin/nano ]; then
   # remove outdated version:
-  set +e
   if ! /usr/local/bin/nano -V | grep -c "$NANO_V" >/dev/null ; then
     sudo mkdir -p /usr/local/opt/nano/bin
     sudo mv /usr/local/bin/nano /usr/local/opt/nano/bin/nano.bak
   fi
-  set -e
 fi
 if [ ! -x /usr/local/bin/nano ]; then
   set -x
