@@ -119,7 +119,7 @@ fi
 echo "Installing restic..."
 if [ -x /usr/local/bin/restic ]; then
   # remove outdated version:
-  if ! /usr/local/bin/restic -V | grep -c "$LATEST_RESTIC" >/dev/null ; then
+  if ! /usr/local/bin/restic version | grep -c "$LATEST_RESTIC" >/dev/null ; then
     echo " Removing outdated restic..."
     sudo rm /usr/local/bin/restic
   fi
