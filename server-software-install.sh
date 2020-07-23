@@ -137,8 +137,7 @@ if [ ! -x /usr/local/bin/restic ]; then
     curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "386" | xargs wget -q -O restic.bz2
   fi
   bunzip2 restic.bz2
-  rm restic.bz2
-  sudo cp "./restic_$LATEST_RESTIC"* /usr/local/bin/restic
+  sudo cp ./restic /usr/local/bin/restic
   sudo chmod +x /usr/local/bin/restic
   popd
   set +x
