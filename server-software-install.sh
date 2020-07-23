@@ -2,7 +2,11 @@
 set -euo pipefail
 
 # versions:
+LATEST_BANDWHICH="0.16.0"
+LATEST_DUST="0.5.1"
 LATEST_RESTIC="0.9.6"
+NANO_V4x="4.9.3"
+
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
   exit 2
@@ -50,7 +54,7 @@ if [ -x "$HOME/opt/bin/dust" ]; then
 fi
 if [ -x /usr/local/bin/dust ]; then
   # remove outdated version:
-  if ! /usr/local/bin/dust -V | grep -c "0.5.1" >/dev/null ; then
+  if ! /usr/local/bin/dust -V | grep -c "$LATEST_DUST" >/dev/null ; then
     echo " Removing outdated dust..."
     sudo rm /usr/local/bin/dust
   fi
@@ -60,11 +64,11 @@ if [ ! -x /usr/local/bin/dust ]; then
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
   pushd "$TMP_DIR"
   if uname -a | grep -c -i arm >/dev/null; then
-    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm" | xargs wget -q -O dust.tar.gz
+    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm" | xargs wget -q -O dust.tar.gz
   elif uname -a | grep -c -i x86_64 >/dev/null; then
-    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O dust.tar.gz
+    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O dust.tar.gz
   else
-    curl -s https://api.github.com/repos/bootandy/dust/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "i686" | xargs wget -q -O dust.tar.gz
+    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "i686" | xargs wget -q -O dust.tar.gz
   fi
   tar xzf dust.tar.gz
   rm dust.tar.gz
@@ -85,7 +89,7 @@ if [ -x "$HOME/opt/bin/bandwhich" ]; then
 fi
 if [ -x /usr/local/bin/bandwhich ]; then
   # remove outdated version:
-  if ! /usr/local/bin/bandwhich -V | grep -c "0.16.0" >/dev/null ; then
+  if ! /usr/local/bin/bandwhich -V | grep -c "$LATEST_BANDWHICH" >/dev/null ; then
     echo " Removing outdated bandwhich..."
     sudo rm /usr/local/bin/bandwhich
   fi
@@ -95,7 +99,7 @@ if [ ! -x /usr/local/bin/bandwhich ]; then
     set -x
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'bandwhich-work')
     pushd "$TMP_DIR"
-    curl -s https://api.github.com/repos/imsnif/bandwhich/releases/latest | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O bandwhich.tar.gz
+    curl -s "https://api.github.com/repos/imsnif/bandwhich/releases/tags/$LATEST_BANDWHICH" | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O bandwhich.tar.gz
     tar xzf bandwhich.tar.gz
     rm bandwhich.tar.gz
     sudo cp ./bandwhich /usr/local/bin
@@ -164,10 +168,9 @@ fi
 
 # install a more recent version of nano
 echo "Installing a recent nano..."
-NANO_V="4.9.3"
 if [ -x /usr/local/bin/nano ]; then
   # remove outdated version:
-  if ! /usr/local/bin/nano -V | grep -c "$NANO_V" >/dev/null ; then
+  if ! /usr/local/bin/nano -V | grep -c "$NANO_V4x" >/dev/null ; then
     sudo mkdir -p /usr/local/opt/nano/bin
     sudo mv /usr/local/bin/nano /usr/local/opt/nano/bin/nano.bak
   fi
@@ -191,9 +194,9 @@ if [ ! -x /usr/local/bin/nano ]; then
     echo "    (package manager is not apt, dnf, or yum)"
   fi
 
-  wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V.tar.gz"
-  tar -xzvf "nano-$NANO_V.tar.gz"
-  cd "./nano-$NANO_V"
+  wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V4x.tar.gz"
+  tar -xzvf "nano-$NANO_V4x.tar.gz"
+  cd "./nano-$NANO_V4x"
 
   ./configure \
     --prefix=/usr/local \
