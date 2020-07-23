@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# versions:
+LATEST_RESTIC="0.9.6"
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
   exit 2
@@ -106,6 +108,38 @@ if [ ! -x /usr/local/bin/bandwhich ]; then
   fi
 else
   echo "bandwhich is already installed."
+fi
+
+# install restic: Fast, secure, efficient backup program
+# see https://github.com/restic/restic/releases
+echo "Installing restic..."
+if [ -x /usr/local/bin/restic ]; then
+  # remove outdated version:
+  if ! /usr/local/bin/restic -V | grep -c "$LATEST_RESTIC" >/dev/null ; then
+    echo " Removing outdated restic..."
+    sudo rm /usr/local/bin/restic
+  fi
+fi
+if [ ! -x /usr/local/bin/restic ]; then
+  set -x
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
+  pushd "$TMP_DIR"
+  if uname -a | grep -c -i arm >/dev/null; then
+    # TODO(cdzombak): arm64 is also available, but I don't think I have any arm64 systems atm
+    curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm\." | xargs wget -q -O restic.bz2
+  elif uname -a | grep -c -i x86_64 >/dev/null; then
+    curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "amd64" | xargs wget -q -O restic.bz2
+  else
+    curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "386" | xargs wget -q -O restic.bz2
+  fi
+  bunzip2 restic.bz2
+  rm restic.bz2
+  sudo cp "./restic_$LATEST_RESTIC"* /usr/local/bin/restic
+  sudo chmod +x /usr/local/bin/restic
+  popd
+  set +x
+else
+  echo "restic is already installed."
 fi
 
 # install my listening wrapper for netstat
