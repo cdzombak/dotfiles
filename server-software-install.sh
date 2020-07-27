@@ -238,7 +238,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   fi
   set -x
   wget --user cdzombak --ask-password -O "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
-  chmod 711 "$HOME/opt/bin/notify-me"
+  chmod 755 "$HOME/opt/bin/notify-me"
   set +x
 fi
 
