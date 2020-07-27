@@ -230,15 +230,15 @@ else
   echo "nano is already installed."
 fi
 
-echo "Install/update my notify-me script (requires SSH setup & authorized to log in to burr)? (y/N)"
+echo "Install/update my notify-me script? (requires auth to dropbox.dzombak.com/_auth)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   if [ -f "$HOME/opt/bin/notify-me" ]; then
     rm "$HOME/opt/bin/notify-me"
   fi
   set -x
-  scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
-  chmod +x "$HOME/opt/bin/notify-me"
+  wget --user cdzombak --ask-password -O "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  chmod 711 "$HOME/opt/bin/notify-me"
   set +x
 fi
 
