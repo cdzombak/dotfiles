@@ -286,7 +286,7 @@ sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensibleside
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
 sw_install /Applications/Slack.app "brew_cask_install slack" \
   "- [ ] Sign in to Slack accounts"
-sw_install /Applications/Sonos.app "brew_cask_install sonos"
+sw_install "/Applications/Sonos S1 Controller.app" "brew_cask_install sonos"
 sw_install /Applications/Spotify.app "brew_cask_install spotify"
 sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
@@ -680,14 +680,16 @@ _install_mactracker() {
 }
 sw_install /Applications/MacTracker.app _install_mactracker
 
-echo "Install/update my notify-me script (requires SSH setup & authorized to log in to burr)? (y/N)"
+echo "Install/update my notify-me script? (requires auth to dropbox.dzombak.com/_auth)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   if [ -f "$HOME/opt/bin/notify-me" ]; then
     rm "$HOME/opt/bin/notify-me"
   fi
-  scp cdzombak@burr.cdzombak.net:/home/cdzombak/opt/bin/notify-me "$HOME/opt/bin/notify-me"
-  chmod +x "$HOME/opt/bin/notify-me"
+  set -x
+  wget --user cdzombak --ask-password -O "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  chmod 755 "$HOME/opt/bin/notify-me"
+  set +x
 fi
 
 echo ""
