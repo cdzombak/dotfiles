@@ -1138,7 +1138,8 @@ _install_monodraw() {
     brew cask install monodraw
   fi
 }
-sw_install /Applications/Monodraw.app _install_monodraw
+sw_install /Applications/Monodraw.app _install_monodraw \
+  "- [ ] Register (link in 1Password)"
 
 _install_keynote() {
   cecho "Install Keynote? (y/N)" $magenta
