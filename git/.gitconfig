@@ -5,7 +5,7 @@
 [user]
 	name = Chris Dzombak
 	email = chris@dzombak.com
-	signingkey = 8C54123A
+	signingkey = 588D34AC
 
 # Company-specific name/email/signing key
 [includeIf "gitdir:~/code/blumira/"]
