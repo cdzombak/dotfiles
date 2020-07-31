@@ -230,7 +230,7 @@ else
   echo "nano is already installed."
 fi
 
-echo "Install/update my notify-me script? (requires auth to dropbox.dzombak.com/_auth)"
+echo "Install/update my notify-me script? (requires auth to dropbox.dzombak.com/_auth) (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   if [ -f "$HOME/opt/bin/notify-me" ]; then
