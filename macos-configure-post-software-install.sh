@@ -98,6 +98,23 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Due ..."
+if [ -e "/Applications/Due.app" ]; then
+  osascript -e "tell application \"Due\" to quit"
+  # shellcheck disable=SC2016
+  defaults write com.phocusllp.duemac prefIntApplicationRunningMode -int 1
+  defaults write com.phocusllp.duemac prefIntDefaultContentSizeCategory -int 0
+  defaults write com.phocusllp.duemac prefIntWeekStarts -int 1
+  defaults write com.phocusllp.duemac prefStringDue2ThemeName -string "Change with System"
+  defaults write com.phocusllp.duemac prefStringLastAutoDarkThemeName -string "Slate Dark";
+  defaults write com.phocusllp.duemac prefStringLastAutoLightThemeName -string "Vanilla Lilac";
+  set +e
+  open -a Due
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "Fantastical..."
 if [ -e "/Applications/Fantastical.app" ]; then
   osascript -e "tell application \"Fantastical\" to quit"
