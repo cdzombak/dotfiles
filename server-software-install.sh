@@ -5,7 +5,7 @@ set -euo pipefail
 LATEST_BANDWHICH="0.16.0"
 LATEST_DUST="0.5.1"
 LATEST_RESTIC="0.9.6"
-NANO_V4x="4.9.3"
+NANO_V5x="5.0"
 
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
@@ -169,7 +169,7 @@ fi
 echo "Installing a recent nano..."
 if [ -x /usr/local/bin/nano ]; then
   # remove outdated version:
-  if ! /usr/local/bin/nano -V | grep -c "$NANO_V4x" >/dev/null ; then
+  if ! /usr/local/bin/nano -V | grep -c "$NANO_V5x" >/dev/null ; then
     sudo mkdir -p /usr/local/opt/nano/bin
     sudo mv /usr/local/bin/nano /usr/local/opt/nano/bin/nano.bak
   fi
@@ -193,13 +193,13 @@ if [ ! -x /usr/local/bin/nano ]; then
     echo "    (package manager is not apt, dnf, or yum)"
   fi
 
-  wget "https://www.nano-editor.org/dist/v4/nano-$NANO_V4x.tar.gz"
-  tar -xzvf "nano-$NANO_V4x.tar.gz"
-  cd "./nano-$NANO_V4x"
+  wget "https://www.nano-editor.org/dist/v5/nano-$NANO_V5x.tar.gz"
+  tar -xzvf "nano-$NANO_V5x.tar.gz"
+  cd "./nano-$NANO_V5x"
 
   ./configure \
     --prefix=/usr/local \
-    --disable-libmagic \
+    --enable-libmagic \
     --enable-utf8 \
     --enable-nanorc \
     --enable-color \
