@@ -69,5 +69,12 @@ alias watch-reload-chrome="ag -l | entr reload-browser \"Google Chrome\""
 alias watch-reload-safari="ag -l | entr reload-browser Safari"
 
 # hide/unhide files in Finder:
-alias hide="chflags -h hidden"
-alias unhide="chflags -h nohidden"
+
+hide() {
+    chflags -h hidden "$@"
+}
+compdef _files hide
+unhide() {
+    chflags -h nohidden "$@"
+}
+compdef _files unhide
