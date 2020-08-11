@@ -42,6 +42,11 @@ if [[ "${terminfo[kend]}" != "" ]]; then
   bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
 fi
 
+# make forward delete work:
+# https://stackoverflow.com/questions/33270381/delete-forward-character-iterm2-osx
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
+
 # Edit the current command line in $EDITOR: ctrl-X ctrl-E
 autoload -U edit-command-line
 zle -N edit-command-line
