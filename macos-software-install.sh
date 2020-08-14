@@ -705,6 +705,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/usr/local/bin/golint" "brew gomod golang.org/x/lint/golint"
   sw_install "/usr/local/bin/goimports" "brew gomod golang.org/x/tools/cmd/goimports"
   sw_install "/usr/local/bin/gorc" "brew gomod github.com/stretchr/gorc"
+  sw_install "/usr/local/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
 fi
 
 cecho "Install common Python tools (virtualenv, pipenv, pyenv)? (y/N)" $magenta
