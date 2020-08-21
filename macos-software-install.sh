@@ -287,7 +287,6 @@ sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensibleside
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
 sw_install /Applications/Slack.app "brew_cask_install slack" \
   "- [ ] Sign in to Slack accounts"
-sw_install "/Applications/Sonos S1 Controller.app" "brew_cask_install sonos"
 sw_install /Applications/Spotify.app "brew_cask_install spotify"
 sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
@@ -304,6 +303,17 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
   "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon"
+
+_install_sonos() {
+  if [ -e "/Applications/Sonos S1 Controller.app" ]; then
+    brew cask uninstall --force sonos
+    rm -rf "/Applications/Sonos S1 Controller.app"
+    brew cleanup
+    brew update
+  fi
+  brew cask install sonos
+}
+sw_install "/Applications/Sonos.app" _install_sonos
 
 _install_dash() {
   brew cask install dash
