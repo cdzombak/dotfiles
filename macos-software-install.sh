@@ -281,8 +281,6 @@ sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
   "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
 sw_install /Applications/Paw.app "brew_cask_install paw" \
   "- [ ] Sign in / License"
-sw_install /Applications/Rocket.app "brew_cask_install rocket" \
-  "- [ ] Enable Accessibility\n- [ ] License\n- [ ] Enable Ctrl-Shift-M browse shortcut\n- [ ] Start at Login"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
 sw_install /Applications/Slack.app "brew_cask_install slack" \
@@ -1348,6 +1346,17 @@ if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
   trash /Applications/OmniFocus.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Rocket.app" ]; then
+  echo "Rocket..."
+  verify_smartdelete
+  set +e
+  osascript -e "tell application \"Rocket\" to quit"
+  trash "$HOME/Library/Scripts/Restart Rocket.scpt"
+  set -e
+  trash /Applications/Rocket.app
   REMOVED_ANYTHING=true
 fi
 
