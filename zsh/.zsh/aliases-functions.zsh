@@ -41,9 +41,6 @@ alias subl.='subl -n .' # I can't type
 
 alias cpwd='pwd|tr -d "\n"|clipcopy'
 
-# git - stage missing files for removal
-alias git-stage-missing="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-
 # wake PC "edison" via SSH into curie-srv
 alias wol-edison="ssh -t curie-remote \"/usr/local/bin/wakeonlan -i 192.168.1.255 -p 7 70:85:c2:22:b5:0b\""
 
