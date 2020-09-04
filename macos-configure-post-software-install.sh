@@ -419,6 +419,19 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Path Finder ..."
+if [ -e "/Applications/Setapp/Path Finder.app" ]; then
+  osascript -e "tell application \"Path Finder\" to quit"
+  defaults write com.cocoatech.PathFinder-setapp disableWarnOnQuit -bool true
+  defaults write com.cocoatech.PathFinder-setapp globalAppsMenuEnabled -bool false
+  defaults write com.cocoatech.PathFinder-setapp kNTDiffToolPath "/usr/local/bin/ksdiff"
+  defaults write com.cocoatech.PathFinder-setapp kOpenTextEditDocumentsInTextEditor -bool false
+  defaults write com.cocoatech.PathFinder-setapp kTerminalApplicationPath "/Applications/iTerm.app"
+  defaults write com.cocoatech.PathFinder-setapp textEditorApplicationPath "/Applications/Sublime Text.app"
+else
+  echo "(Not installed.)"
+fi
+
 echo "ToothFairy ..."
 if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
   osascript -e "tell application \"ToothFairy\" to quit"
