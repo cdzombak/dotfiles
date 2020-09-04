@@ -400,6 +400,7 @@ sw_install /Applications/Deliveries.app "mas install 924726344" \
   "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add to Today view\n- [ ] Disable all notifications options, except showing in Notification Center"
 sw_install /Applications/Diagrams.app "mas install 1276248849"
 sw_install /Applications/Discovery.app "mas install 1381004916"
+sw_install /Applications/Downlink.app "mas install 1454269192"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
 sw_install /Applications/Expressions.app "mas install 913158085"
