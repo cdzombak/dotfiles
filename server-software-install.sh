@@ -3,7 +3,7 @@ set -euo pipefail
 
 # versions:
 LATEST_BANDWHICH="0.16.0"
-LATEST_DUST="0.5.1"
+LATEST_DUST="0.5.3"
 LATEST_RESTIC="0.9.6"
 NANO_V5x="5.0"
 
