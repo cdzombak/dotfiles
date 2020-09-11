@@ -427,20 +427,6 @@ _install_things() {
 sw_install "/Applications/Things3.app" _install_things \
   "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add to Today view"
 
-_install_thingshub() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'thingshub')
-  git clone "https://github.com/cdzombak/thingshub.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install
-  popd
-  mkdir -p "$HOME/.local"
-  touch "$HOME/.local/thingshubd.list"
-  pushd "$TMP_DIR/thingshubd"
-  make install
-  popd
-}
-sw_install "/usr/local/bin/thingshub" _install_thingshub
-
 _install_unshorten() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
   git clone "https://github.com/cdzombak/unshorten.git" "$TMP_DIR"
@@ -1358,6 +1344,25 @@ if [ -e "/Applications/Rocket.app" ]; then
   trash "$HOME/Library/Scripts/Restart Rocket.scpt"
   set -e
   trash /Applications/Rocket.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /usr/local/bin/thingshub ]; then
+  echo "ThingsHub..."
+  trash /usr/local/bin/thingshub
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/Library/LaunchAgents/com.dzombak.thingshubd.plist" ]; then
+  echo "thingshubd launch agent..."
+  launchctl unload -w "$HOME/Library/LaunchAgents/com.dzombak.thingshubd.plist"
+  trash "$HOME/Library/LaunchAgents/com.dzombak.thingshubd.plist"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /usr/local/opt/thingshubd ]; then
+  echo "thingshubd..."
+  trash /usr/local/opt/thingshubd
   REMOVED_ANYTHING=true
 fi
 
