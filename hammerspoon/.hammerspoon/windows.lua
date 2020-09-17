@@ -31,11 +31,11 @@ function hs.window.threeQuarterLeft(win)
   f.y = max.y
   f.h = max.h
 
-  if max.w > 1680 then
-    f.w = max.w * 0.8
-  else
-    f.w = max.w * 0.7
-  end
+  -- if max.w > 1680 then
+  f.w = max.w * 0.8
+  -- else
+  --   f.w = max.w * 0.7
+  -- end
 
   win:setFrame(f)
 end
@@ -54,11 +54,11 @@ function hs.window.oneQuarterLeft(win)
   f.y = max.y
   f.h = max.h
 
-  if max.w > 1680 then
-    f.w = max.w * 0.2
-  else
-    f.w = max.w * 0.3
-  end
+  -- if max.w > 1680 then
+  f.w = max.w * 0.2
+  -- else
+  --   f.w = max.w * 0.3
+  -- end
 
   win:setFrame(f)
 end
@@ -90,11 +90,11 @@ function hs.window.threeQuarterRight(win)
   local screen = win:screen()
   local max = screen:frame()
 
-  if max.w > 1680 then
-    f.w = max.w * 0.8
-  else
-    f.w = max.w * 0.7
-  end
+  -- if max.w > 1680 then
+  f.w = max.w * 0.8
+  -- else
+  --   f.w = max.w * 0.7
+  -- end
 
   f.h = max.h
   f.x = max.x + (max.w - f.w)
@@ -112,11 +112,11 @@ function hs.window.oneQuarterRight(win)
   local screen = win:screen()
   local max = screen:frame()
 
-  if max.w > 1680 then
-    f.w = max.w * 0.2
-  else
-    f.w = max.w * 0.3
-  end
+  -- if max.w > 1680 then
+  f.w = max.w * 0.2
+  -- else
+  --   f.w = max.w * 0.3
+  -- end
 
   f.h = max.h
   f.x = max.x + (max.w - f.w)
