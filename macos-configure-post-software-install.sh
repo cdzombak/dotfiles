@@ -32,6 +32,21 @@ else
   echo "(Not installed.)"
 fi
 
+echo "AltTab ..."
+if [ -e "/Applications/AltTab.app" ]; then
+  set +e
+  osascript -e "tell application \"AltTab\" to quit"
+  set -e
+  defaults write com.lwouis.alt-tab-macos SUAutomaticallyUpdate -bool true
+  defaults write com.lwouis.alt-tab-macos showOnScreen 2
+  defaults write com.lwouis.alt-tab-macos updatePolicy 2
+  set +e
+  open -a AltTab
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "Bartender ..."
 if [ -e "/Applications/Bartender 3.app" ]; then
   osascript -e "tell application \"Bartender 3\" to quit"
