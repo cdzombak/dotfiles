@@ -499,7 +499,7 @@ _install_ears() {
   popd
 }
 sw_install "/Applications/Ears.app" _install_ears \
-  "- [ ] License Ears\n- [ ] Add AirPods Pro\n- [ ] Configure as desired\n- [ ] Hide macOS volume control in menu bar"
+  "- [ ] License Ears\n- [ ] Add AirPods Pro\n- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes\n- [ ] Hide macOS volume control in menu bar"
 
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
