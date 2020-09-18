@@ -264,6 +264,7 @@ sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
+sw_install "/Applications/HTTP Toolkit.app" "brew_cask_install http-toolkit"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
   "- [ ] License\n- [ ] Configure based on current favorite system\n- [ ] Add to Today view"
