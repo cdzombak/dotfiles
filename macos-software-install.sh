@@ -551,7 +551,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   cecho "Install utilities for home hardware devices (Garmin, MyHarmony, ScanSnap)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager"
+    sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
+      "- [ ] Right click Dock icon -> Options and enable OCR on all pages"
     sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
     sw_install "/Applications/Garmin Express.app" "brew_cask_install garmin-express"
   else
