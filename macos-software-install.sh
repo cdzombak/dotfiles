@@ -943,6 +943,15 @@ _install_pixelmator() {
 }
 sw_install /Applications/Pixelmator.app _install_pixelmator
 
+_install_geotag() {
+  cecho "Install GeoTag? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew cask install geotag
+  fi
+}
+sw_install /Applications/GeoTag.app _install_geotag
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
   _install_adobe_cc() {
     cecho "Install Adobe Creative Cloud? (y/N)" $magenta
