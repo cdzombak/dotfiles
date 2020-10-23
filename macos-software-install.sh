@@ -948,6 +948,12 @@ _install_geotag() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew cask install geotag
+    mkdir -p "$HOME/tmp/GeoTag Backups"
+    # shellcheck disable=SC2129
+    echo "## /Applications/GeoTag.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set backups directory to \`~/tmp/GeoTag Backups\`" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
   fi
 }
 sw_install /Applications/GeoTag.app _install_geotag
