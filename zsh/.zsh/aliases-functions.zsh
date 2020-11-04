@@ -201,3 +201,22 @@ function delayed_exit() {
 }
 alias xx="delayed_exit"
 alias qq="delayed_exit"
+
+# helpers for https://github.com/cdzombak/hosts-timer
+function use-facebook() {
+    if [ $# -eq 0 ]; then
+        echo "Usage: use-facebook DURATION"
+        echo "   eg. use-facebook 5m"
+        return 1
+    fi
+    sudo hosts-timer -time "$1" facebook.com
+}
+
+function use-twitter() {
+    if [ $# -eq 0 ]; then
+        echo "Usage: use-facebook DURATION"
+        echo "   eg. use-facebook 5m"
+        return 1
+    fi
+    sudo hosts-timer -time "$1" twitter.com
+}
