@@ -439,6 +439,20 @@ _install_unshorten() {
 }
 sw_install "/usr/local/bin/unshorten" _install_unshorten
 
+_install_hosts_timer() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
+  git clone "https://github.com/cdzombak/hosts-timer.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install
+  popd
+  echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/hosts-timer > /dev/null
+  sudo chown root:wheel /etc/sudoers.d/hosts-timer
+  sudo chmod 440 /etc/sudoers.d/hosts-timer
+  # disable facebook by default:
+  sudo hosts-timer -install facebook.com
+}
+sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
+
 # Install Webster's 1913 Dictionary
 # mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
 # See: http://jsomers.net/blog/dictionary
