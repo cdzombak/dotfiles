@@ -20,6 +20,7 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
 - [x] Run setup scripts (\`make mac\`)
 - [ ] Run \`mouse-tracking\` script as appropriate
+- [ ] Add \`/etc/hosts\` entries for local network from [Bear note](bear://x-callback-url/open-note?id=809AE9A3-AC09-4EDC-A325-0C7B1C9C1A84-466-00005616E1E5CA25)
 
 ## System Preferences
 
