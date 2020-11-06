@@ -296,6 +296,7 @@ sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
 sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
+sw_install "/Applications/YubiKey Manager.app" "brew_cask_install yubico-yubikey-manager"
 
 if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical.app" ]; then
   echo "Renaming 'Fantastical 2.app' to 'Fantastical.app'..."
