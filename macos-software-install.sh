@@ -240,8 +240,6 @@ sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion"
-sw_install "/Applications/AltTab.app" "brew_cask_install alt-tab" \
-  "- [ ] Allow in Accessibility settings\n- [ ] Hide in Bartender"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
@@ -1329,12 +1327,12 @@ if [ -e "/usr/local/bin/gpg" ]; then
   fi
 fi
 
-# if [ -e "/Applications/AltTab.app" ]; then
-#   echo "AltTab..."
-#   verify_smartdelete
-#   trash /Applications/AltTab.app
-#   REMOVED_ANYTHING=true
-# fi
+if [ -e "/Applications/AltTab.app" ]; then
+  echo "AltTab..."
+  verify_smartdelete
+  trash /Applications/AltTab.app
+  REMOVED_ANYTHING=true
+fi
 
 if [ -e "/Applications/Bunch.app" ]; then
   echo "Bunch..."
