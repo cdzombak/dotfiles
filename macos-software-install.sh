@@ -611,15 +611,6 @@ _install_coconutbattery() {
 }
 sw_install /Applications/coconutBattery.app _install_coconutbattery
 
-_install_sshuttle() {
-  cecho "Install sshuttle (proxy server that works as a poor man's VPN)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install sshuttle
-  fi
-}
-sw_install /usr/local/bin/sshuttle _install_sshuttle
-
 _install_ivpn_client() {
   cecho "Install IVPN client? (y/N)" $magenta
   read -r response
@@ -877,15 +868,6 @@ _install_fastlane() {
   fi
 }
 sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
-
-_install_gotask() {
-  cecho "Install task (simpler Make alternative written in Go)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install go-task/tap/go-task
-  fi
-}
-sw_install /usr/local/bin/task _install_gotask
 
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
@@ -1377,6 +1359,12 @@ if [ -e "/Applications/Rocket.app" ]; then
   trash "$HOME/Library/Scripts/Restart Rocket.scpt"
   set -e
   trash /Applications/Rocket.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /usr/local/bin/task ]; then
+  echo "task ..."
+  brew uninstall go-task/tap/go-task
   REMOVED_ANYTHING=true
 fi
 
