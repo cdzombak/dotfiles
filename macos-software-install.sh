@@ -1078,7 +1078,7 @@ _install_plexamp() {
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
-sw_install /Applications/Plex.app _install_plexamp
+sw_install /Applications/Plexamp.app _install_plexamp
 
 _install_neptunes() {
   cecho "Install NepTunes? (y/N)" $magenta
