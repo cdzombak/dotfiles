@@ -729,7 +729,8 @@ fi
 cecho "Install Docker & related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /Applications/Docker.app "brew_cask_install docker"
+  sw_install /Applications/Docker.app "brew_cask_install docker" \
+    "- [ ] Disable application starting at login"
   sw_install /usr/local/bin/dockerfilelint 'npm install -g dockerfilelint@">=1.5.0"'
   sw_install /usr/local/bin/dive "brew_install dive"
 fi
