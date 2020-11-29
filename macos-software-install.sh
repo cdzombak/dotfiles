@@ -257,8 +257,6 @@ sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
 sw_install /Applications/Fork.app "brew_cask_install fork"
 sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
   "- [ ] Sign into relevant Google Accounts"
-sw_install "/Applications/Google Drive File Stream.app" "brew_cask_install google-drive-file-stream" \
-  "- [ ] Sign into relevant Google Account\n- [ ] Verify Start at Login is set"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
@@ -408,7 +406,6 @@ sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
 sw_install /Applications/Expressions.app "mas install 913158085"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
-sw_install "/Applications/Front and Center.app" "mas install 1493996622"
 sw_install /Applications/IPinator.app "mas install 959111981" \
   "- [ ] Add to Today view"
 sw_install /Applications/Numbers.app "mas install 409203825"
@@ -1327,6 +1324,22 @@ if [ -e "/Applications/Burn.app" ]; then
   echo "Burn (CD burner)..."
   verify_smartdelete
   trash /Applications/Burn.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Front and Center.app" ]; then
+  echo "Front And Center..."
+  verify_smartdelete
+  osascript -e 'tell application "Front and Center" to quit'
+  trash "/Applications/Front and Center.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Google Drive File Stream.app" ]; then
+  echo "Google Drive File Stream (use CloudMounter instead)..."
+  verify_smartdelete
+  osascript -e 'tell application "Google Drive File Stream" to quit'
+  brew cask uninstall google-drive-file-stream || trash "/Applications/Google Drive File Stream.app"
   REMOVED_ANYTHING=true
 fi
 
