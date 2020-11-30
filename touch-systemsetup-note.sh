@@ -108,6 +108,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Walk through Preferences, configuring as desired
 - [ ] Enable Develop menu
+- [ ] Disable AutoFill (in favor of [1Password 7.7](https://blog.1password.com/big-sur-1password-7-7/))
 - [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\`
 EOF
 fi
