@@ -131,8 +131,6 @@ sw_install /usr/local/bin/wget "brew_install wget"
 sw_install /usr/local/bin/xz "brew_install xz"
 sw_install /usr/local/bin/yamllint "brew_install yamllint"
 sw_install /usr/local/bin/yarn "brew_install yarn"
-sw_install /usr/local/bin/yubikey-agent "brew_install yubikey-agent && brew services start yubikey-agent" \
-  "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed"
 
 sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
   "brew_cask_install qlmarkdown"
@@ -531,6 +529,24 @@ if $GOINTERACTIVE; then
 echo ""
 cecho "--- Utilities ---" $white
 echo ""
+
+_install_yubikey_agent() {
+  cecho "Install Yubikey SSH Agent? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install yubikey-agent && brew services start yubikey-agent
+    if [ -e "$HOME/.ssh/config.templates/yubikey-agent" ] && [ ! -e "$HOME/.ssh/config.local/yubikey-agent" ]; then
+      mkdir -p "$HOME/.ssh/config.local/"
+      ln -s "$HOME/.ssh/config.templates/yubikey-agent" "$HOME/.ssh/config.local/yubikey-agent"
+    fi
+    # shellcheck disable=SC2129
+    echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /usr/local/bin/yubikey-agent _install_yubikey_agent
 
 _install_netdata() {
   cecho "Install Netdata? (y/N)" $magenta
