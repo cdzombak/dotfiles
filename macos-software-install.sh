@@ -193,22 +193,6 @@ _install_keybase_favorite_cleaner() {
 }
 sw_install /usr/local/opt/com.dzombak.remove-keybase-finder-favorite/bin/remove-keybase-finder-favorite _install_keybase_favorite_cleaner
 
-_install_gmail_cleaner() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'gmail-cleaner')
-  git clone "https://github.com/cdzombak/gmail-cleaner.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make build-darwin-amd64
-  cp ./out/darwin-amd64/gmail-cleaner "$HOME/opt/bin/gmail-cleaner"
-  popd
-  mkdir -p "$HOME/.config/gmail-cleaner-personal"
-  # shellcheck disable=SC2129
-  echo "## gmail-cleaner" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Put credentials & token in ~/.config/gmail-cleaner-personal" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-}
-sw_install "$HOME/opt/bin/gmail-cleaner" _install_gmail_cleaner
-
 # Move on to macOS applications:
 
 _install_instapaper_reader() {
@@ -1355,6 +1339,18 @@ if [ -e "/Applications/Front and Center.app" ]; then
   verify_smartdelete
   osascript -e 'tell application "Front and Center" to quit'
   trash "/Applications/Front and Center.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/opt/bin/gmail-cleaner" ]; then
+  echo "gmail-cleaner..."
+  trash "$HOME/opt/bin/gmail-cleaner"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/.config/gmail-cleaner-personal" ]; then
+  echo "gmail-cleaner config..."
+  trash "$HOME/.config/gmail-cleaner-personal"
   REMOVED_ANYTHING=true
 fi
 
