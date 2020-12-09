@@ -1,8 +1,10 @@
+# Git config for Linux servers; assumes username 'cdzombak'
+
 # Core
 
 [user]
 	name = Chris Dzombak
-	email = chris@chrisdzombak.net
+	email = chris@dzombak.com
 
 [core]
 	autocrlf = false
@@ -44,3 +46,4 @@
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	cbr = rev-parse --abbrev-ref HEAD
 	recent = ! git reflog | grep 'checkout: moving from' | head -n 50 | egrep -oh ' \\S+$' | awk '!x[$0]++'
+	first = rev-list --max-parents=0 HEAD
