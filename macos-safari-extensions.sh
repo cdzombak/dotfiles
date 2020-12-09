@@ -29,7 +29,7 @@ sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
 sw_install "/Applications/Day One.app" "mas install 1055511498" \
   "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension"
 
-sw_install /Applications/Instapaper.app "mas install 1481302432" \
+sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable Instapaper Safari extension"
 
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
