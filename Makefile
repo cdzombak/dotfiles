@@ -101,6 +101,7 @@ mac: require-macos mac-homedir mac-configure mac-stow mac-software mac-open-setu
 .PHONY: server-stow
 server-stow: dependencies submodules require-linux
 	stow git-server
+	touch ~/.gitconfig.local
 	stow screen
 	stow nano
 	stow tig

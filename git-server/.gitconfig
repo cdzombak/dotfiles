@@ -6,6 +6,9 @@
 	name = Chris Dzombak
 	email = chris@dzombak.com
 
+[include]
+    path = /home/cdzombak/.gitconfig.local
+
 [core]
 	autocrlf = false
 	excludesfile = /home/cdzombak/.gitexcludes
