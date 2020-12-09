@@ -282,7 +282,7 @@ alias gcloud="gcloud-ctx-show; gcloud"
 _zsh_rprompt_gcloud() {
   if [[ $_ZSH_RPROMPT_GCLOUD_CONTEXT = true ]]; then
     local gcprompt
-    gcprompt="G☁️ $(echo -n $(grep --context=0 --max-count=1 'account =' "$HOME/.config/gcloud/configurations/config_default" | sed 's/account = //' | sed 's/.com$//'))"
+    gcprompt="GCP $(echo -n $(grep --context=0 --max-count=1 'account =' "$HOME/.config/gcloud/configurations/config_default" | sed 's/account = //' | sed 's/.com$//'))"
     _zsh_rprompt_segment green black "$gcprompt"
   fi
 }
