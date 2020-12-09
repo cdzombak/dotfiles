@@ -514,33 +514,43 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
-_install_yubikey_agent() {
-  cecho "Install Yubikey SSH Agent? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install yubikey-agent && brew services start yubikey-agent
-    if [ -e "$HOME/.ssh/config.templates/yubikey-agent" ] && [ ! -e "$HOME/.ssh/config.local/yubikey-agent" ]; then
-      mkdir -p "$HOME/.ssh/config.local/"
-      ln -s "$HOME/.ssh/config.templates/yubikey-agent" "$HOME/.ssh/config.local/yubikey-agent"
+if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
+  _install_yubikey_agent() {
+    cecho "Install Yubikey SSH Agent? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install yubikey-agent && brew services start yubikey-agent
+      if [ -e "$HOME/.ssh/config.templates/yubikey-agent" ] && [ ! -e "$HOME/.ssh/config.local/yubikey-agent" ]; then
+        mkdir -p "$HOME/.ssh/config.local/"
+        ln -s "$HOME/.ssh/config.templates/yubikey-agent" "$HOME/.ssh/config.local/yubikey-agent"
+      fi
+      # shellcheck disable=SC2129
+      echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent"
     fi
-    # shellcheck disable=SC2129
-    echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /usr/local/bin/yubikey-agent _install_yubikey_agent
+  }
+  sw_install /usr/local/bin/yubikey-agent _install_yubikey_agent
+fi
 
-_install_netdata() {
-  cecho "Install Netdata? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install netdata
-    brew services start netdata
-  fi
-}
-sw_install /usr/local/sbin/netdata _install_netdata
+if [ ! -e "$HOME/.local/dotfiles/software/no-netdata" ]; then
+  _install_netdata() {
+    cecho "Install Netdata? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install netdata
+      brew services start netdata
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-netdata"
+    fi
+  }
+  sw_install /usr/local/sbin/netdata _install_netdata
+fi
 
 _install_superduper(){
   cecho "Install SuperDuper? (y/N)" $magenta
@@ -1009,13 +1019,18 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   sw_install /Applications/Handbrake.app _install_handbrake
 fi
 
-echo ""
-cecho "Install podcasting utilities (Skype + Call Recorder)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /Applications/Skype.app "brew_cask_install skype" \
-    "- [ ] Sign in\n- [ ] Install Ecamm Call Recorder"
-  cecho "To install Ecamm Call Recorder, download it from your customer link (in 1Password, or your email archive - look for email from supportdesk@ecamm.com)" $red
+if [ ! -e "$HOME/.local/dotfiles/software/no-podcast-utils" ]; then
+  echo ""
+  cecho "Install podcasting utilities (Skype + Call Recorder)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install /Applications/Skype.app "brew_cask_install skype" \
+      "- [ ] Sign in\n- [ ] Install Ecamm Call Recorder"
+    cecho "To install Ecamm Call Recorder, download it from your customer link (in 1Password, or your email archive - look for email from supportdesk@ecamm.com)" $red
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-podcast-utils"
+  fi
 fi
 
 _install_photosweeper() {
