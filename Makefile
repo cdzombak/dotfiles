@@ -14,7 +14,7 @@ homebrew: ## Install Homebrew (no-op on other than macOS)
 	@bash ./install-homebrew.sh
 
 .PHONY: dependencies
-dependencies: homebrew ## Install dependencies
+dependencies: homebrew ## Install basic dependencies
 	@command -v stow >/dev/null 2>&1 || brew install stow 2>/dev/null || sudo apt-get install -y stow 2>/dev/null || sudo yum install -y stow 2>/dev/null || { echo >&2 "Please install GNU stow"; exit 1; }
 	@command -v curl >/dev/null 2>&1 || brew install curl 2>/dev/null || sudo apt-get install -y curl 2>/dev/null || sudo yum install -y curl 2>/dev/null || { echo >&2 "Please install curl"; exit 1; }
 	@command -v wget >/dev/null 2>&1 || brew install wget 2>/dev/null || sudo apt-get install -y wget 2>/dev/null || sudo yum install -y wget 2>/dev/null || { echo >&2 "Please install wget"; exit 1; }
@@ -73,6 +73,11 @@ mac-configure: require-macos setupnote ## Run macOS configuration script
 
 .PHONY: mac-software
 mac-software: require-macos dependencies submodules setupnote ## Install and configure macOS software suite (this can take a long time)
+	@echo -ne "\033[0;37m"
+	@echo "WARNING: the configuration part of this setup will quit & open some apps automatically."
+	@echo "         Use Ctrl-C to exit ASAP if you have work open right now."
+	@echo -e "`tput sgr0`"
+	@echo ""
 	@bash ./macos-software-install.sh
 	@echo ""
 	@bash ./macos-safari-extensions.sh
