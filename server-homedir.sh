@@ -23,6 +23,7 @@ if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ]; then
     mkdir -p "$HOME/go/bin"
     mkdir -p "$HOME/go/src"
   else
+    echo "Won't ask again next time this script is run."
     touch "$HOME/.local/dotfiles/no-home-go-dir"
   fi
 fi

@@ -255,6 +255,7 @@ if [ ! -e "$HOME/.local/dotfiles/no-ffmpeg-scripts" ]; then
     popd
     set +x
   else
+    echo "Won't ask again next time this script is run."
     touch "$HOME/.local/dotfiles/no-ffmpeg-scripts"
   fi
 fi
