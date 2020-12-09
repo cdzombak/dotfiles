@@ -2,10 +2,10 @@
 set -euo pipefail
 
 # versions:
-LATEST_BANDWHICH="0.16.0"
+LATEST_BANDWHICH="0.20.0"
 LATEST_DUST="0.5.3"
-LATEST_RESTIC="0.10.0"
-NANO_V5x="5.0"
+LATEST_RESTIC="0.11.0"
+NANO_V5x="5.4"
 
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
@@ -242,15 +242,19 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   set +x
 fi
 
-echo "Install/update my quick ffmpeg media conversion scripts? (y/N)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  set -x
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
-  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  chmod +x ./install.sh
-  ./install.sh
-  popd
-  set +x
+if [ ! -e "$HOME/.local/dotfiles/no-ffmpeg-scripts" ]; then
+  echo "Install/update my quick ffmpeg media conversion scripts? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    set -x
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
+    git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    chmod +x ./install.sh
+    ./install.sh
+    popd
+    set +x
+  else
+    touch "$HOME/.local/dotfiles/no-ffmpeg-scripts"
+  fi
 fi

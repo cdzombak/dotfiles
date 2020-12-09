@@ -113,4 +113,4 @@ if [ "$(uname)" == "Darwin" ]; then
 EOF
 fi
 
-cecho "✔ Created setup note at $HOME/SystemSetup.md" $green
+cecho "✔ Setup note lives at $HOME/SystemSetup.md" $green
