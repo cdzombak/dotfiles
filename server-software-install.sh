@@ -254,3 +254,21 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   popd
   set +x
 fi
+
+echo "Install libsecret for Git credential storage? (uses apt) (y/N)"
+# TODO(cdzombak): support other package managers
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  set -x
+  sudo apt-get install libsecret-1-0 libsecret-1-dev
+  cd /usr/share/doc/git/contrib/credential/libsecret
+  sudo make
+  touch "$HOME/.gitconfig.local"
+  if ! grep -c "git-credential-libsecret" "$HOME/.gitconfig.local" >/dev/null; then
+    cat <<EOF >> "$HOME/.gitconfig.local"
+[credential]
+    helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+EOF
+  fi
+  set +x
+fi
