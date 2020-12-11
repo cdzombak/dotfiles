@@ -26,10 +26,4 @@ termcapinfo xterm ti@:te@
 
 term screen-256color
 
-# Tell Screen to write its copy buffer to a temporary file (defaults to
-# /tmp/screen-exchange), and then send that file to `pbcopy`.
-# Bound the command to C-a b
-# http://www.samsarin.com/blog/2007/03/11/gnu-screen-working-with-the-scrollback-buffer/
-bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
-
 bind \\ split -v
