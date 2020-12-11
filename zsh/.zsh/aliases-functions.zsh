@@ -51,7 +51,7 @@ alias ssh-mux='ssh -o "ControlMaster=auto"'
 function ssc {
     old_auto_title=$DISABLE_AUTO_TITLE
     title "$1"
-    ssh -t "$1" bash -c "screen -DR"
+    ssh -t "$1" "screen -DR"
     export DISABLE_AUTO_TITLE=$old_auto_title
 }
 compdef ssc=ssh
