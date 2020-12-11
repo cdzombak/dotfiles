@@ -27,3 +27,6 @@ termcapinfo xterm ti@:te@
 term screen-256color
 
 bind \\ split -v
+
+# fix SSH agent forwarding: https://superuser.com/a/180149
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
