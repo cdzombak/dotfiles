@@ -237,8 +237,6 @@ sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
 sw_install /Applications/Fork.app "brew_cask_install fork"
-sw_install "/Applications/Google Chrome.app" "brew_cask_install google-chrome" \
-  "- [ ] Sign into relevant Google Accounts"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
