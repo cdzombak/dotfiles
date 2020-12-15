@@ -494,6 +494,15 @@ sw_install "/Applications/Ears.app" _install_ears \
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
 
+_airbuddy_note() {
+  # shellcheck disable=SC2129
+  echo "## AirBuddy.app" >> "$HOME/SystemSetup.md"
+  echo "" >> "$HOME/SystemSetup.md"
+  echo -e "- [ ] Download, install, and license ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Menu bar placement" >> "$HOME/SystemSetup.md"
+  echo "" >> "$HOME/SystemSetup.md"
+}
+sw_install /Applications/AirBuddy.app _airbuddy_note
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white

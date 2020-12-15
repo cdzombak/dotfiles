@@ -32,16 +32,13 @@ else
   echo "(Not installed.)"
 fi
 
-echo "AltTab ..."
-if [ -e "/Applications/AltTab.app" ]; then
+echo "AirBuddy ..."
+if [ -e "/Applications/AirBuddy.app" ]; then
+  osascript -e "tell application \"AirBuddy\" to quit"
+  defaults write codes.rambo.AirBuddy SUAutomaticallyUpdate -bool true
+  defaults write codes.rambo.AirBuddy SUEnableAutomaticChecks -bool true
   set +e
-  osascript -e "tell application \"AltTab\" to quit"
-  set -e
-  defaults write com.lwouis.alt-tab-macos SUAutomaticallyUpdate -bool true
-  defaults write com.lwouis.alt-tab-macos showOnScreen 2
-  defaults write com.lwouis.alt-tab-macos updatePolicy 2
-  set +e
-  open -a AltTab
+  open -a "AirBuddy"
   set -e
 else
   echo "(Not installed.)"
