@@ -102,6 +102,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ## Notification Center
 
+- [ ] Add Now Playing widget
 - [ ] Configure based on screenshot in \`~/Sync/Configs\`
 
 ## Safari

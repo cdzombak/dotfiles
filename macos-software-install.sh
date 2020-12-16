@@ -244,7 +244,7 @@ sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
 sw_install "/Applications/HTTP Toolkit.app" "brew_cask_install http-toolkit"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
-  "- [ ] License\n- [ ] Configure based on current favorite system\n- [ ] Add to Today view"
+  "- [ ] License\n- [ ] Configure based on current favorite system\n- [ ] Add widget to Notification Center"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there"
 sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
@@ -281,7 +281,7 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
   mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Today view\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon"
+  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon"
 
 _install_sonos() {
   if [ -e "/Applications/Sonos S1 Controller.app" ]; then
@@ -378,7 +378,7 @@ sw_install /Applications/Claquette.app "mas install 587748131"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
-  "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add to Today view\n- [ ] Disable all notifications options, except showing in Notification Center"
+  "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add widget to Notification Center\n- [ ] Disable all notifications options, except showing in Notification Center"
 sw_install /Applications/Diagrams.app "mas install 1276248849"
 sw_install /Applications/Discovery.app "mas install 1381004916"
 sw_install /Applications/Due.app "mas install 524373870" \
@@ -386,7 +386,7 @@ sw_install /Applications/Due.app "mas install 524373870" \
 sw_install /Applications/Expressions.app "mas install 913158085"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
 sw_install /Applications/IPinator.app "mas install 959111981" \
-  "- [ ] Add to Today view"
+  "- [ ] Add to Notification Center"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
@@ -404,7 +404,7 @@ _install_things() {
   brew cask install thingsmacsandboxhelper
 }
 sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add to Today view"
+  "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add widget to Notification Center"
 
 _install_unshorten() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
@@ -498,7 +498,7 @@ _airbuddy_note() {
   # shellcheck disable=SC2129
   echo "## AirBuddy.app" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Download, install, and license ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Menu bar placement" >> "$HOME/SystemSetup.md"
+  echo -e "- [ ] Download, install, and license ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Menu bar placement\n- [ ] Add Notification Center widget" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
 }
 sw_install /Applications/AirBuddy.app _airbuddy_note
