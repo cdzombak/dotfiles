@@ -236,6 +236,8 @@ sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
+sw_install /Applications/Firefox.app "brew_cask_install firefox" \
+  "- [ ] Sign into Firefox Sync\n- [ ] Add StopTheMadness extension"
 sw_install /Applications/Fork.app "brew_cask_install fork"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
   "- [ ] Import/generate GPG keys as needed"
