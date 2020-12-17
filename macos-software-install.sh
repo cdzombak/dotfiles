@@ -626,6 +626,15 @@ _install_applepibaker() {
 }
 sw_install /Applications/ApplePiBaker.app _install_applepibaker
 
+_install_fio() {
+  cecho "Install fio (CLI IO tester)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install fio
+  fi
+}
+sw_install /usr/local/bin/fio _install_fio
+
 _install_coconutbattery() {
   cecho "Install CoconutBattery? (y/N)" $magenta
   read -r response
