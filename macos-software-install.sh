@@ -617,17 +617,8 @@ _install_balena_etcher() {
 }
 sw_install /Applications/balenaEtcher.app _install_balena_etcher
 
-_install_applepibaker() {
-  cecho "ApplePiBaker (for working with RPi SD cards)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask applepi-baker
-  fi
-}
-sw_install /Applications/ApplePiBaker.app _install_applepibaker
-
 _install_fio() {
-  cecho "Install fio (CLI IO tester)? (y/N)" $magenta
+  cecho "Install fio (CLI Flexible IO tester)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install fio
