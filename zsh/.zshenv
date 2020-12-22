@@ -25,7 +25,7 @@ if [ -d "$HOME/.cargo/bin" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-# Fastlane (brew cask install fastlane):
+# Fastlane (brew install --cask fastlane):
 if [ -d "$HOME/.fastlane/bin" ]; then
     export PATH="$PATH:$HOME/.fastlane/bin"
 fi

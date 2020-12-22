@@ -287,17 +287,17 @@ sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
 
 _install_sonos() {
   if [ -e "/Applications/Sonos S1 Controller.app" ]; then
-    brew cask uninstall --force sonos
+    brew uninstall --cask --force sonos
     rm -rf "/Applications/Sonos S1 Controller.app"
     brew cleanup
     brew update
   fi
-  brew cask install sonos
+  brew install --cask sonos
 }
 sw_install "/Applications/Sonos.app" _install_sonos
 
 _install_dash() {
-  brew cask install dash
+  brew install --cask dash
   open -a Dash
   set +e
   open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
@@ -307,7 +307,7 @@ sw_install /Applications/Dash.app _install_dash \
   "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
 
 _install_sublimetext() {
-  brew cask install sublime-text
+  brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
   mkdir -p "$SUBLIMETEXT_INSTALLED_PKGS_DIR"
   pushd "$SUBLIMETEXT_INSTALLED_PKGS_DIR"
@@ -322,8 +322,6 @@ _install_sublimetext() {
 sw_install "/Applications/Sublime Text.app" _install_sublimetext \
   "- [ ] Open the application and allow Package Control to finish installing packages as configured\n- [ ] License"
 if [ ! -f /etc/paths.d/cdz.SublimeText ]; then
-  # TODO(cdzombak): this may not work on Catalina
-  #                 https://github.com/cdzombak/dotfiles/issues/15
   set -x
   sudo rm -f /etc/paths.d/cdz.SublimeText
   echo '/Applications/Sublime Text.app/Contents/SharedSupport/bin' | sudo tee -a /etc/paths.d/cdz.SublimeText > /dev/null
@@ -403,7 +401,7 @@ sw_install "/Applications/Triode.app" "mas install 1450027401"
 
 _install_things() {
   mas install 904280696 # Things
-  brew cask install thingsmacsandboxhelper
+  brew install --cask thingsmacsandboxhelper
 }
 sw_install "/Applications/Things3.app" _install_things \
   "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add widget to Notification Center"
@@ -463,8 +461,8 @@ _install_xcode_solarized() {
 sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.dvtcolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
 
 _install_setapp() {
-  brew cask install setapp
-  open -a "$(brew cask info setapp | grep '/usr/local/caskroom' | cut -d' ' -f1)/Install Setapp.app"
+  brew install --cask setapp
+  open -a "$(brew info --cask setapp | grep '/usr/local/caskroom' | cut -d' ' -f1)/Install Setapp.app"
   while [ ! -e /Applications/Setapp.app ]; do
     cecho "Please complete Setapp installation." $white
     read -p "Press [Enter] to continue..."
@@ -565,7 +563,7 @@ _install_superduper(){
   cecho "Install SuperDuper? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install superduper
+    brew install --cask superduper
     # shellcheck disable=SC2129
     echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
@@ -603,7 +601,7 @@ _install_angryipscan() {
   cecho "Install Angry IP Scanner? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install angry-ip-scanner
+    brew install --cask angry-ip-scanner
   fi
 }
 sw_install "/Applications/Angry IP Scanner.app" _install_angryipscan
@@ -612,7 +610,7 @@ _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install balenaetcher
+    brew install --cask balenaetcher
   fi
 }
 sw_install /Applications/balenaEtcher.app _install_balena_etcher
@@ -630,7 +628,7 @@ _install_coconutbattery() {
   cecho "Install CoconutBattery? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install coconutbattery
+    brew install --cask coconutbattery
   fi
 }
 sw_install /Applications/coconutBattery.app _install_coconutbattery
@@ -639,7 +637,7 @@ _install_ivpn_client() {
   cecho "Install IVPN client? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install ivpn
+    brew install --cask ivpn
   fi
 }
 sw_install /Applications/IVPN.app _install_ivpn_client
@@ -656,7 +654,7 @@ _install_torbrowser() {
   cecho "Install Tor Browser? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install tor-browser
+    brew install --cask tor-browser
   fi
 }
 sw_install "/Applications/Tor Browser.app" _install_torbrowser
@@ -675,7 +673,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
     cecho "Install Screens Connect? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew cask install screens-connect
+      brew install --cask screens-connect
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-screensconnect"
@@ -688,7 +686,7 @@ _install_vncviewer() {
   cecho "Install VNC Viewer? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install vnc-viewer
+    brew install --cask vnc-viewer
   fi
 }
 sw_install "/Applications/VNC Viewer.app" _install_vncviewer
@@ -697,7 +695,7 @@ _install_cubicsdr() {
   cecho "Install CubicSDR? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install cubicsdr
+    brew install --cask cubicsdr
   fi
 }
 sw_install /Applications/CubicSDR.app _install_cubicsdr
@@ -767,7 +765,7 @@ _install_virtualbox() {
   cecho "Install VirtualBox? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install virtualbox virtualbox-extension-pack
+    brew install --cask virtualbox virtualbox-extension-pack
     mkdir -p "$HOME/VirtualBox VMs"
     mkdir -p "$HOME/VM Images"
   fi
@@ -778,7 +776,7 @@ _install_gcloud_sdk() {
   cecho "Install Google Cloud SDK? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install google-cloud-sdk
+    brew install --cask google-cloud-sdk
   fi
 }
 sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
@@ -890,7 +888,7 @@ _install_fastlane() {
   cecho "Install Fastlane? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install fastlane
+    brew install --cask fastlane
   fi
 }
 sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
@@ -900,15 +898,15 @@ read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   cecho "TODO(cdzombak): script artifacts checks for Latex tools" $red
   echo "           See: https://github.com/cdzombak/dotfiles/issues/9"
-  brew cask install mactex
-  brew cask install texmaker
+  brew install --cask mactex
+  brew install --cask texmaker
 fi
 
 _install_wwdcapp() {
   cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install wwdc
+    brew install --cask wwdc
   fi
 }
 sw_install /Applications/WWDC.app _install_wwdcapp
@@ -917,7 +915,7 @@ _install_sfsymbols() {
   cecho "Install Apple's SF Symbols Mac app? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     brew cask install sf-symbols
+     brew install --cask sf-symbols
   fi
 }
 sw_install "/Applications/SF Symbols.app" _install_sfsymbols
@@ -929,7 +927,7 @@ _install_mysqlworkbench() {
   cecho "Install MySQLWorkbench? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install mysqlworkbench
+    brew install --cask mysqlworkbench
   fi
 }
 sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
@@ -951,7 +949,7 @@ _install_calibre() {
   cecho "Install Calibre? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install calibre
+    brew install --cask calibre
   fi
 }
 sw_install /Applications/calibre.app _install_calibre
@@ -969,7 +967,7 @@ _install_geotag() {
   cecho "Install GeoTag? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install geotag
+    brew install --cask geotag
     mkdir -p "$HOME/tmp/GeoTag Backups"
     # shellcheck disable=SC2129
     echo "## /Applications/GeoTag.app" >> "$HOME/SystemSetup.md"
@@ -985,7 +983,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
     cecho "Install Adobe Creative Cloud? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew cask install adobe-creative-cloud
+      brew install --cask adobe-creative-cloud
       # shellcheck disable=SC2129
       echo "## Adobe Creative Cloud" >> "$HOME/SystemSetup.md"
       echo "" >> "$HOME/SystemSetup.md"
@@ -1028,7 +1026,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
     cecho "Install Handbrake? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew cask install handbrake
+      brew install --cask handbrake
       sw_install /usr/local/lib/libmp3lame.dylib "brew_install lame"
     else
       echo "Won't ask again next time this script is run."
@@ -1056,7 +1054,7 @@ _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install photosweeper-x
+    brew install --cask photosweeper-x
   fi
 }
 sw_install "/Applications/PhotoSweeper X.app" _install_photosweeper
@@ -1089,7 +1087,7 @@ _install_plexdesktop() {
   cecho "Install Plex Desktop? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install plex
+    brew install --cask plex
     # shellcheck disable=SC2129
     echo "## Plex.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
@@ -1103,7 +1101,7 @@ _install_plexamp() {
   cecho "Install Plexamp? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install plexamp
+    brew install --cask plexamp
     # shellcheck disable=SC2129
     echo "## Plexamp.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
@@ -1131,7 +1129,7 @@ _install_pocketcasts() {
   cecho "Install Pocket Casts? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install pocket-casts
+    brew install --cask pocket-casts
   fi
 }
 sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
@@ -1156,7 +1154,7 @@ _install_zoom() {
     # keep Zoom from installing its shitty local webserver thing
     rm -rf "$HOME/.zoomus"
     touch "$HOME/.zoomus"
-    brew cask install zoomus
+    brew install --cask zoomus
   fi
 }
 sw_install /Applications/zoom.us.app _install_zoom \
@@ -1166,7 +1164,7 @@ _install_omnigraffle() {
   cecho "Install OmniGraffle? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install omnigraffle
+    brew install --cask omnigraffle
     # shellcheck disable=SC2129
     echo "## OmniGraffle.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
@@ -1180,7 +1178,7 @@ _install_monodraw() {
   cecho "Install Monodraw? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install monodraw
+    brew install --cask monodraw
   fi
 }
 sw_install /Applications/Monodraw.app _install_monodraw \
@@ -1199,7 +1197,7 @@ _install_deckset() {
   cecho "Install Deckset? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install deckset
+    brew install --cask deckset
   fi
 }
 sw_install /Applications/Deckset.app _install_deckset
@@ -1217,7 +1215,7 @@ _install_tableflip() {
   cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew cask install tableflip
+    brew install --cask tableflip
   fi
 }
 sw_install /Applications/TableFlip.app _install_tableflip
@@ -1392,7 +1390,7 @@ if [ -e "/Applications/Google Drive File Stream.app" ]; then
   echo "Google Drive File Stream (use CloudMounter instead)..."
   verify_smartdelete
   osascript -e 'tell application "Google Drive File Stream" to quit'
-  brew cask uninstall google-drive-file-stream || trash "/Applications/Google Drive File Stream.app"
+  brew uninstall --cask google-drive-file-stream || trash "/Applications/Google Drive File Stream.app"
   REMOVED_ANYTHING=true
 fi
 

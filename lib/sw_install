@@ -39,7 +39,7 @@ function sw_install() {
   }
 
   function brew_cask_install() {
-    brew cask install "$1"
+    brew install --cask "$1"
     CAVEATS="$(brew caveats "$1" | tail -n +2)"
     if [[ -n "$CAVEATS" ]]; then
       if [[ -n "$TODOS" ]]; then
