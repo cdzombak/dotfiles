@@ -1233,6 +1233,15 @@ echo ""
 cecho "--- Games & Social Networking ---" $white
 echo ""
 
+_install_discord() {
+  cecho "Install Discord? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask discord
+  fi
+}
+sw_install /Applications/Discord.app _install_discord
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-social" ]; then
   cecho "Install social networking software (Caprine, Flume, Tweetbot)? (y/N)" $magenta
   read -r response
