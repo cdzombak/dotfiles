@@ -431,6 +431,23 @@ else
   echo "(Not installed.)"
 fi
 
+echo "HazeOver ..."
+if [ -e "/Applications/Setapp/HazeOver.app" ]; then
+  defaults write com.pointum.hazeover-setapp Animation -float "0.05"
+  defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
+  defaults write com.pointum.hazeover-setapp Enabled -bool true
+  defaults write com.pointum.hazeover-setapp Intensity -float "9.892295295774538"
+  if ! grep -c "HazeOver" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## HazeOver" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
 echo "Path Finder ..."
 if [ -e "/Applications/Setapp/Path Finder.app" ]; then
   osascript -e "tell application \"Path Finder\" to quit"
