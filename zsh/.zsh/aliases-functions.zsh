@@ -210,19 +210,6 @@ function use-facebook() {
         return 1
     fi
     sudo hosts-timer -time "$1" facebook.com
-    osascript <<'END'
-tell application "Safari"
-    quit
-end tell
-delay 1
-tell application "Safari" to activate
--- not needed due to my Safari setting to always restore tabs:
--- tell application "System Events"
---     tell process "Safari"
---         click menu item "Reopen All Windows From Last Session" of menu "History" of menu bar 1
---     end tell
--- end tell
-END
 }
 
 function use-twitter() {
@@ -232,17 +219,4 @@ function use-twitter() {
         return 1
     fi
     sudo hosts-timer -time "$1" twitter.com
-    osascript <<'END'
-tell application "Safari"
-    quit
-end tell
-delay 1
-tell application "Safari" to activate
--- not needed due to my Safari setting to always restore tabs:
--- tell application "System Events"
---     tell process "Safari"
---         click menu item "Reopen All Windows From Last Session" of menu "History" of menu bar 1
---     end tell
--- end tell
-END
 }
