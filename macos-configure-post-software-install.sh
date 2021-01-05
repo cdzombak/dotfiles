@@ -436,7 +436,9 @@ if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   defaults write com.pointum.hazeover-setapp Animation -float "0.05"
   defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
   defaults write com.pointum.hazeover-setapp Enabled -bool true
-  defaults write com.pointum.hazeover-setapp Intensity -float "9.892295295774538"
+  defaults write com.pointum.hazeover-setapp IndependentScreens -bool false
+  defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
+  defaults write com.pointum.hazeover-setapp MultiFocus -bool true
   if ! grep -c "HazeOver" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## HazeOver" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
