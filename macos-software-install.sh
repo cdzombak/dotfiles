@@ -182,17 +182,6 @@ _install_listening() {
 }
 sw_install "/usr/local/bin/listening" _install_listening
 
-# my tool which keeps Keybase out of Finder favorites
-_install_keybase_favorite_cleaner() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'remove-keybase-finder-favorite')
-  git clone "https://github.com/cdzombak/remove-keybase-finder-favorite.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  chmod +x ./install.sh
-  ./install.sh
-  popd
-}
-sw_install /usr/local/opt/com.dzombak.remove-keybase-finder-favorite/bin/remove-keybase-finder-favorite _install_keybase_favorite_cleaner
-
 # Move on to macOS applications:
 
 _install_instapaper_reader() {
@@ -253,8 +242,6 @@ sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-to
   "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13"
-sw_install /Applications/Keybase.app "brew_cask_install keybase" \
-  "- [ ] Sign in"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
@@ -1407,6 +1394,21 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   echo "Grasshopper..."
   verify_smartdelete
   trash /Applications/Grasshopper.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Keybase.app" ]; then
+  echo "Keybase..."
+  verify_smartdelete
+  brew uninstall --zap --cask keybase
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /usr/local/opt/com.dzombak.remove-keybase-finder-favorite/bin/remove-keybase-finder-favorite ]; then
+  echo "cdzombak/remove-keybase-finder-favorite..."
+  launchctl unload "$HOME/Library/LaunchAgents/com.dzombak.remove-keybase-finder-favorite.plist"
+  rm -f "$HOME/Library/LaunchAgents/com.dzombak.remove-keybase-finder-favorite.plist"
+  rm -rf /usr/local/opt/com.dzombak.remove-keybase-finder-favorite
   REMOVED_ANYTHING=true
 fi
 
