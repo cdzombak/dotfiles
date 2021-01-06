@@ -228,18 +228,13 @@ sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
 sw_install /Applications/Firefox.app "brew_cask_install firefox" \
   "- [ ] Sign into Firefox Sync\n- [ ] Add StopTheMadness extension"
 sw_install /Applications/Fork.app "brew_cask_install fork"
-sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
-  "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
-sw_install "/Applications/HTTP Toolkit.app" "brew_cask_install http-toolkit"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install "/Applications/iStat Menus.app" "brew_cask_install istat-menus" \
   "- [ ] License\n- [ ] Configure based on current favorite system\n- [ ] Add widget to Notification Center"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there"
-sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
-  "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
@@ -248,12 +243,8 @@ sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
   "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
-sw_install /Applications/Paw.app "brew_cask_install paw" \
-  "- [ ] Sign in / License"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
-sw_install /Applications/Slack.app "brew_cask_install slack" \
-  "- [ ] Sign in to Slack accounts"
 sw_install /Applications/Spotify.app "brew_cask_install spotify"
 sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
@@ -261,8 +252,6 @@ sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
-sw_install /Applications/Wireshark.app "brew_cask_install wireshark"
-sw_install "/Applications/YubiKey Manager.app" "brew_cask_install yubico-yubikey-manager"
 
 if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical.app" ]; then
   echo "Renaming 'Fantastical 2.app' to 'Fantastical.app'..."
@@ -282,16 +271,6 @@ _install_sonos() {
   brew install --cask sonos
 }
 sw_install "/Applications/Sonos.app" _install_sonos
-
-_install_dash() {
-  brew install --cask dash
-  open -a Dash
-  set +e
-  open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
-  set -e
-}
-sw_install /Applications/Dash.app _install_dash \
-  "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
 
 _install_sublimetext() {
   brew install --cask sublime-text
@@ -344,15 +323,6 @@ if [ ! -L /Applications/Marked.app ]; then
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
 fi
 
-_install_json_viewer() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'json-viewer')
-  git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
-  pushd "$TMP_DIR/app"
-  make install-mac
-  popd
-}
-sw_install "/Applications/JSON Viewer.app" _install_json_viewer
-
 # macOS Applications from Mac App Store:
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
@@ -360,14 +330,10 @@ sw_install /Applications/Bear.app "mas install 1091189122" \
 sw_install /Applications/Better.app "mas install 1121192229" \
   "- [ ] Enable Better Blocker Safari extension"
 # sw_install /Applications/Byword.app "mas install 420212497"
-sw_install /Applications/ColorSnapper2.app "mas install 969418666"
-sw_install /Applications/Claquette.app "mas install 587748131"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
   "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add widget to Notification Center\n- [ ] Disable all notifications options, except showing in Notification Center"
-sw_install /Applications/Diagrams.app "mas install 1276248849"
-sw_install /Applications/Discovery.app "mas install 1381004916"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
 sw_install /Applications/Expressions.app "mas install 913158085"
@@ -378,7 +344,6 @@ sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text"
-sw_install /Applications/PDFScanner.app "mas install 410968114"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482" \
@@ -458,15 +423,6 @@ _install_setapp() {
 sw_install /Applications/Setapp.app _install_setapp \
   "- [ ] Sign in to Setapp\n- [ ] Install & configure applications from Setapp Favorites (as desired)"
 
-sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
-  "- [ ] Associate with CSV files"
-
-sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
-  "- [ ] Associate with JSON files"
-
-sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
-  "- [ ] Associate with PLIST files"
-
 _install_ears() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
   pushd "$TMP_DIR"
@@ -531,6 +487,20 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
   sw_install /usr/local/bin/yubikey-agent _install_yubikey_agent
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
+  _install_yubikey_manager() {
+    cecho "Install Yubikey Manager? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask yubico-yubikey-manager
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-yubikey-manager"
+    fi
+  }
+  sw_install "/Applications/YubiKey Manager.app" _install_yubikey_manager
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-netdata" ]; then
   _install_netdata() {
     cecho "Install Netdata? (y/N)" $magenta
@@ -575,6 +545,15 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   fi
 fi
 
+_install_discovery() {
+  cecho "Install Discovery (DNS-SD browser)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    "mas install 1381004916"
+  fi
+}
+sw_install /Applications/Discovery.app _install_discovery
+
 _install_iperf3() {
   cecho "Install iperf3? (y/N)" $magenta
   read -r response
@@ -593,6 +572,34 @@ _install_angryipscan() {
 }
 sw_install "/Applications/Angry IP Scanner.app" _install_angryipscan
 
+_install_wireshark() {
+  cecho "Install Wireshark? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask wireshark
+  fi
+}
+sw_install /Applications/Wireshark.app _install_wireshark
+
+_install_paw() {
+  cecho "Install Paw? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install /Applications/Paw.app "brew_cask_install paw" \
+      "- [ ] Sign in / License"
+  fi
+}
+sw_install /Applications/Paw.app _install_paw
+
+_install_httptoolkit() {
+  cecho "Install HTTP Toolkit? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask http-toolkit
+  fi
+}
+sw_install "/Applications/HTTP Toolkit.app" _install_httptoolkit
+
 _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
@@ -603,7 +610,7 @@ _install_balena_etcher() {
 sw_install /Applications/balenaEtcher.app _install_balena_etcher
 
 _install_fio() {
-  cecho "Install fio (CLI Flexible IO tester)? (y/N)" $magenta
+  cecho "Install fio (CLI-based Flexible IO tester)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install fio
@@ -620,14 +627,28 @@ _install_coconutbattery() {
 }
 sw_install /Applications/coconutBattery.app _install_coconutbattery
 
-_install_ivpn_client() {
-  cecho "Install IVPN client? (y/N)" $magenta
+_install_daisydisk() {
+  cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask ivpn
+    mas install 411643860 # DaisyDisk
   fi
 }
-sw_install /Applications/IVPN.app _install_ivpn_client
+sw_install /Applications/DaisyDisk.app _install_daisydisk
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-ivpn" ]; then
+  _install_ivpn_client() {
+    cecho "Install IVPN client? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask ivpn
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-ivpn"
+    fi
+  }
+  sw_install /Applications/IVPN.app _install_ivpn_client
+fi
 
 if [ -e "/Applications/TorBrowser.app" ]; then
   if [ ! -e "/Applications/Tor Browser.app" ]; then
@@ -645,15 +666,6 @@ _install_torbrowser() {
   fi
 }
 sw_install "/Applications/Tor Browser.app" _install_torbrowser
-
-_install_daisydisk() {
-  cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 411643860 # DaisyDisk
-  fi
-}
-sw_install /Applications/DaisyDisk.app _install_daisydisk
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
   _install_screensconnect() {
@@ -708,11 +720,77 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   set +x
 fi
 
+_install_gpgkeychain() {
+  cecho "Install GPG Keychain? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
+      "- [ ] Import/generate GPG keys as needed"
+  fi
+}
+sw_install "/Applications/GPG Keychain.app" _install_gpgkeychain
+
+_install_colorsnapper() {
+  cecho "Install ColorSnapper? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 969418666
+  fi
+}
+sw_install /Applications/ColorSnapper2.app _install_colorsnapper
+
 echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
-cecho "Install some common Go tools (golint, goimports, gorc)? (y/N)" $magenta
+if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
+  _install_jetbrains() {
+    cecho "Install JetBrains Toolbox? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
+        "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-jetbrains"
+    fi
+  }
+  sw_install "/Applications/JetBrains Toolbox.app" _install_jetbrains
+fi
+
+_install_ask_dash() {
+  cecho "Install Dash? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    _install_dash() {
+      brew install --cask dash
+      open -a Dash
+      set +e
+      open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
+      set -e
+    }
+    sw_install /Applications/Dash.app _install_dash \
+      "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
+  fi
+}
+sw_install /Applications/Dash.app _install_ask_dash
+
+cecho "Install JSON tools (JSON Editor & Viewer)? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
+    "- [ ] Associate with JSON files"
+  _install_json_viewer() {
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'json-viewer')
+    git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
+    pushd "$TMP_DIR/app"
+    make install-mac
+    popd
+  }
+  sw_install "/Applications/JSON Viewer.app" _install_json_viewer
+fi
+
+cecho "Install common Go tools (golint, goimports, gorc, pkger, golangci-lint)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/usr/local/bin/golint" "brew gomod golang.org/x/lint/golint"
@@ -739,6 +817,15 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/bin/pycodestyle "brew_install pycodestyle"
 fi
 
+_install_gcloud_sdk() {
+  cecho "Install Google Cloud SDK? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask google-cloud-sdk
+  fi
+}
+sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
+
 cecho "Install Docker & related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -758,15 +845,6 @@ _install_virtualbox() {
   fi
 }
 sw_install /Applications/VirtualBox.app _install_virtualbox
-
-_install_gcloud_sdk() {
-  cecho "Install Google Cloud SDK? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask google-cloud-sdk
-  fi
-}
-sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
 
 _install_kail() {
   cecho "Install kail (kubernetes tail)? (y/N)" $magenta
@@ -810,6 +888,16 @@ _install_lensapp() {
   fi
 }
 sw_install /Applications/Lens.app _install_lensapp
+
+_install_plist_editor() {
+  cecho "Install PLIST Editor? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
+      "- [ ] Associate with PLIST files"
+  fi
+}
+sw_install "/Applications/PLIST Editor.app" _install_plist_editor
 
 echo ""
 cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
@@ -907,6 +995,7 @@ _install_sfsymbols() {
 }
 sw_install "/Applications/SF Symbols.app" _install_sfsymbols
 
+echo ""
 cecho "Database tools..." $white
 cecho "There are a lot of options here: JetBrains DataGrip/IntelliJ, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
 
@@ -998,6 +1087,15 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-applepromediatools" ]; then
     touch "$HOME/.local/dotfiles/software/no-applepromediatools"
   fi
 fi
+
+_install_claquette() {
+  cecho "Install Claquette (lightweight simple video editing tool)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 587748131
+  fi
+}
+sw_install /Applications/Claquette.app _install_claquette
 
 _install_youtubedl() {
   cecho "Install youtube-dl? (y/N)" $magenta
@@ -1098,20 +1196,6 @@ _install_plexamp() {
 }
 sw_install /Applications/Plexamp.app _install_plexamp
 
-_install_neptunes() {
-  cecho "Install NepTunes? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1006739057
-    # shellcheck disable=SC2129
-    echo "## NepTunes.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into last.fm\n-[ ] Configure" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/NepTunes.app _install_neptunes
-
 _install_pocketcasts() {
   cecho "Install Pocket Casts? (y/N)" $magenta
   read -r response
@@ -1131,21 +1215,50 @@ _install_kindle() {
 sw_install /Applications/Kindle.app _install_kindle
 
 echo ""
-cecho "--- Office Tools ---" $white
+cecho "--- Office & Communication Tools ---" $white
 echo ""
 
-_install_zoom() {
-  cecho "Install Zoom for videoconferencing? (y/N)" $magenta
+if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
+  _install_slack() {
+    cecho "Install Slack? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install /Applications/Slack.app "brew_cask_install slack" \
+        "- [ ] Sign in to Slack accounts"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-slack"
+    fi
+  }
+  sw_install /Applications/Slack.app _install_slack
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
+  _install_zoom() {
+    cecho "Install Zoom for videoconferencing? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      # keep Zoom from installing its shitty local webserver thing
+      rm -rf "$HOME/.zoomus"
+      touch "$HOME/.zoomus"
+      brew install --cask zoomus
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-zoom"
+    fi
+  }
+  sw_install /Applications/zoom.us.app _install_zoom \
+    "- [ ] Enable microphone mute when joining meeting"
+fi
+
+_install_diagrams() {
+  cecho "Install Diagrams? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    # keep Zoom from installing its shitty local webserver thing
-    rm -rf "$HOME/.zoomus"
-    touch "$HOME/.zoomus"
-    brew install --cask zoomus
+    mas install 1276248849
   fi
 }
-sw_install /Applications/zoom.us.app _install_zoom \
-  "- [ ] Enable microphone mute when joining meeting"
+sw_install /Applications/Diagrams.app _install_diagrams
 
 _install_omnigraffle() {
   cecho "Install OmniGraffle? (y/N)" $magenta
@@ -1189,6 +1302,15 @@ _install_deckset() {
 }
 sw_install /Applications/Deckset.app _install_deckset
 
+_install_pdfscanner() {
+  cecho "Install PDF Scanner (PDF scan & compression tool)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 410968114
+  fi
+}
+sw_install /Applications/PDFScanner.app _install_pdfscanner
+
 _install_calca() {
   cecho "Install Calca? (y/N)" $magenta
   read -r response
@@ -1207,17 +1329,18 @@ _install_tableflip() {
 }
 sw_install /Applications/TableFlip.app _install_tableflip
 
-_install_tadam() {
-  cecho "Install Tadam focus timer? (y/N)" $magenta
+_install_csveditor() {
+  cecho "Install CSV Editor? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 531349534 # Tadam
+    sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
+      "- [ ] Associate with CSV files"
   fi
 }
-sw_install /Applications/Tadam.app _install_tadam
+sw_install "/Applications/Easy CSV Editor.app" _install_csveditor
 
 echo ""
-cecho "--- Games & Social Networking ---" $white
+cecho "--- Social Networking ---" $white
 echo ""
 
 _install_discord() {
@@ -1230,7 +1353,7 @@ _install_discord() {
 sw_install /Applications/Discord.app _install_discord
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-social" ]; then
-  cecho "Install social networking software (Caprine, Flume, Tweetbot)? (y/N)" $magenta
+  cecho "Install social network clients (Caprine, Flume, Tweetbot)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/Caprine.app "brew_cask_install caprine"
@@ -1267,6 +1390,10 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-social" ]; then
     touch "$HOME/.local/dotfiles/software/no-social"
   fi
 fi
+
+echo ""
+cecho "--- Games ---" $white
+echo ""
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
   _install_nsnake() {
@@ -1514,7 +1641,7 @@ sw_install /usr/local/bin/kubectl _install_kubectl
 echo ""
 
 echo ""
-cecho "--- Stuff that failed the last time this script was used ---" $white
+cecho "--- Optional installs that failed last time this script was used ---" $white
 echo ""
 
 set +e
