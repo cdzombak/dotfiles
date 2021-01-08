@@ -1214,6 +1214,25 @@ _install_kindle() {
 }
 sw_install /Applications/Kindle.app _install_kindle
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-remotehelperapp" ]; then
+  _install_remotehelperapp() {
+    cecho "Install Remote Helper app (companion to iOS Remote Control app)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'remotehelperapp-work')
+      pushd "$TMP_DIR"
+      wget --quiet -O "RemoteForMac.zip" "https://cherpake.com/download-latest"
+      unzip ./RemoteForMac.zip
+      installer -pkg ./Remote-for-Mac-*.pkg -target /
+      popd
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-remotehelperapp"
+    fi
+  }
+  sw_install "/Applications/Remote for Mac.app" _install_remotehelperapp
+fi
+
 echo ""
 cecho "--- Office & Communication Tools ---" $white
 echo ""
