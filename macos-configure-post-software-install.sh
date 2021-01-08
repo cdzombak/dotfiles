@@ -74,6 +74,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Black Ink ..."
+if [ -e "/Applications/Black Ink.app" ]; then
+  osascript -e "tell application \"Black Ink\" to quit"
+  defaults write com.red-sweater.blackink2 SkipToNext -bool false
+else
+  echo "(Not installed.)"
+fi
+
 echo "Choosy ..."
 if [ -e "/Applications/Choosy.app" ]; then
   osascript -e "tell application \"Choosy\" to quit"

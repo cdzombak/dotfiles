@@ -1424,6 +1424,30 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
   sw_install /usr/local/bin/nsnake _install_nsnake
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-blackink" ]; then
+  _install_blackink() {
+    cecho "Install Black Ink (crossword puzzle app)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'black-ink-work')
+      pushd "$TMP_DIR"
+      wget --quiet "https://redsweater.com/blackink/BlackInkLatest.zip"
+      unzip ./BlackInkLatest.zip
+      cp -R "Black Ink.app" /Applications/
+      popd
+      # shellcheck disable=SC2129
+      echo "## Black Ink.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] License\n- [ ] Enable software updates" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-blackink"
+    fi
+  }
+  sw_install "/Applications/Black Ink.app" _install_blackink
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-minimetro" ]; then
   _install_minimetro() {
     cecho "Install Mini Metro? (y/N)" $magenta
