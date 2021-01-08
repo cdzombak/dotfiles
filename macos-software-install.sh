@@ -545,6 +545,19 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   fi
 fi
 
+_install_unifiprotect() {
+  cecho "Install my homemade UniFi Protect app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
+    git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    popd
+  fi
+}
+sw_install "/Applications/UniFi Protect.app" _install_unifiprotect
+
 _install_discovery() {
   cecho "Install Discovery (DNS-SD browser)? (y/N)" $magenta
   read -r response
