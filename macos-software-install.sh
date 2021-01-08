@@ -1395,6 +1395,21 @@ echo ""
 cecho "--- Games ---" $white
 echo ""
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-steam" ]; then
+  _install_steam() {
+    cecho "Install Steam? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install /Applications/Steam.app "brew install --cask steam" \
+        "- [ ] Launch & sign in\n- [ ] Remove login item in System Preferences/Users & Groups\n- [ ] Disable & unload \`com.valvesoftware.steamclean\` launchd job"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-steam"
+    fi
+  }
+  sw_install /Applications/Steam.app _install_steam
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
   _install_nsnake() {
     cecho "Install nsnake? (y/N)" $magenta
