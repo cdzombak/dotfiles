@@ -23,7 +23,7 @@ if [ -x /usr/bin/apt ]; then
   echo "Installing common packages via apt..."
   set -x
   sudo apt -y update
-  sudo apt -y install tig tree htop traceroute dnsutils screen
+  sudo apt -y install tig tree htop traceroute dnsutils screen molly-guard
   set +e
   echo "nnn is not available until Ubuntu 18.x; this installation is expected to fail on earlier systems:"
   sudo apt -y install nnn
@@ -32,12 +32,12 @@ if [ -x /usr/bin/apt ]; then
 elif [ -x /usr/bin/dnf ]; then
   echo "Installing common packages via dnf..."
   set -x
-  sudo dnf -y install tig tree htop nnn traceroute bind-utils screen
+  sudo dnf -y install tig tree htop nnn traceroute bind-utils screen molly-guard
   set +x
 elif [ -x /usr/bin/yum ]; then
   echo "Installing common packages via yum..."
   set -x
-  sudo yum -y install tig tree htop nnn traceroute bind-utils screen
+  sudo yum -y install tig tree htop nnn traceroute bind-utils screen molly-guard
   set +x
 else
   echo ""
