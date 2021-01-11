@@ -150,13 +150,14 @@ sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
 # provides envsubst:
 sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force gettext"
 
-# Install basic tools which use stuff we just installed via Homebrew:
+# Install tools which use stuff we just installed via Homebrew:
 sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
 sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
 sw_install /usr/local/bin/bundler 'sudo gem install bundler'
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
 sw_install /usr/local/bin/qrcp "brew gomod github.com/claudiodangelis/qrcp"
+sw_install /usr/local/bin/plistwatch "brew gomod github.com/catilac/plistwatch"
 
 # metar: CLI metar lookup tool
 _install_metar() {
