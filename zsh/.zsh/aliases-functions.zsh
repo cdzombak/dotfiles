@@ -193,7 +193,7 @@ alias kgpa='kubectl get pods --all-namespaces -owide'
 function delayed_exit() {
     NOW=$(date +%s)
     DELTA=$(($NOW-$SESSION_OPENED_TS))
-    INTERVAL=3
+    INTERVAL=4
     if (( $DELTA < $INTERVAL )); then
         sleep $(($INTERVAL-$DELTA))
     fi
