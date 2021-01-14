@@ -221,5 +221,5 @@ function use-twitter() {
     sudo hosts-timer -time "$1" twitter.com
 }
 
-alias hosts-list='grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //"'
-alias hosts-list-md='grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /"'
+alias hosts-list='grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" && echo "Windows Game Desktop" && echo "Windows Laptop" && echo "Lab Mac Mini"'
+alias hosts-list-md='grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" && echo "- [ ] Windows Game Desktop" && echo "- [ ] Windows Laptop" && echo "- [ ] Lab Mac Mini"'
