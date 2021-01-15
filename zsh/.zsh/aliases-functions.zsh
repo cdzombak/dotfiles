@@ -100,7 +100,7 @@ senv() {
 
 # download YouTube video -> local Plex server
 plex-ytdl() {
-    ssh -t curie-remote "~/youtube-dl-wrapper.sh \"$1\""
+    ssh -t curie-remote "/Users/cdzombak/code/youtube-dl-wrapper.sh \"$1\""
 }
 
 watch-run() {
