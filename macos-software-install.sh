@@ -1274,14 +1274,14 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
       # keep Zoom from installing its shitty local webserver thing
       rm -rf "$HOME/.zoomus"
       touch "$HOME/.zoomus"
-      brew install --cask zoomus
+      brew install --cask zoom
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-zoom"
     fi
   }
   sw_install /Applications/zoom.us.app _install_zoom \
-    "- [ ] Enable microphone mute when joining meeting"
+    "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting"
 fi
 
 _install_diagrams() {
