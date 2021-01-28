@@ -8,9 +8,6 @@ function pyclean() {
     find ${ZSH_PYCLEAN_PLACES} -type d -name "__pycache__" -delete
 }
 
-# Grep among .py files
-alias pygrep='grep -r --include="*.py"'
-
 alias pip="noglob pip" # allows square brackets for pip command invocation
 g_pip(){
    PIP_REQUIRE_VIRTUALENV="0" pip "$@"

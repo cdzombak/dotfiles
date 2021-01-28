@@ -18,7 +18,6 @@ HINTS=(
     "Use ${CYAN}cdf${NC}, ${CYAN}pushdf${NC}, or ${CYAN}ff${NC} to switch to the current Finder directory."
     "Type ${CYAN}cbp${NC} to preview the clipboard in ${CYAN}less${NC}."
     "Use ${CYAN}pyclean${NC} to cleanup Python bytecode in the current or given directories."
-    "Use ${CYAN}pygrep${NC} to grep across Python files in the current or given directories."
     "Use ${CYAN}hsgrep${NC} to grep through shell history."
     "${CYAN}fd${NC} is a user-friendly ${CYAN}find${NC} alternative: ${CYAN}https://github.com/sharkdp/fd${NC}"
     "${CYAN}ag${NC} is a great code search tool: ${CYAN}https://github.com/ggreer/the_silver_searcher${NC}"
