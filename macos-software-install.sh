@@ -1284,6 +1284,15 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
     "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting"
 fi
 
+_install_mailplane() {
+  cecho "Install Mailplane? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask mailplane
+  fi
+}
+sw_install /Applications/Mailplane.app _install_mailplane
+
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
   read -r response
