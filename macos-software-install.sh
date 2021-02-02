@@ -502,21 +502,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
   sw_install "/Applications/YubiKey Manager.app" _install_yubikey_manager
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-netdata" ]; then
-  _install_netdata() {
-    cecho "Install Netdata? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install netdata
-      brew services start netdata
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-netdata"
-    fi
-  }
-  sw_install /usr/local/sbin/netdata _install_netdata
-fi
-
 _install_superduper(){
   cecho "Install SuperDuper? (y/N)" $magenta
   read -r response
