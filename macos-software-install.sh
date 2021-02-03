@@ -1032,7 +1032,7 @@ sw_install /Applications/calibre.app _install_calibre
 if [ -e "/Applications/Pixelmator.app" ]; then
   echo "Replacing Pixelmator Classic by Pixelmator Pro..."
   mas install 1289583905
-  rm -rf "/Applications/Pixelmator.app"
+  sudo rm -rf "/Applications/Pixelmator.app"
 fi
 
 _install_pixelmator() {
