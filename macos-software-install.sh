@@ -1029,14 +1029,20 @@ _install_calibre() {
 }
 sw_install /Applications/calibre.app _install_calibre
 
+if [ -e "/Applications/Pixelmator.app" ]; then
+  echo "Replacing Pixelmator Classic by Pixelmator Pro..."
+  mas install 1289583905
+  rm -rf "/Applications/Pixelmator.app"
+fi
+
 _install_pixelmator() {
   cecho "Install Pixelmator? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 407963104
+    mas install 1289583905
   fi
 }
-sw_install /Applications/Pixelmator.app _install_pixelmator
+sw_install "/Applications/Pixelmator Pro.app" _install_pixelmator
 
 _install_geotag() {
   cecho "Install GeoTag? (y/N)" $magenta
