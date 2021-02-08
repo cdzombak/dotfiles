@@ -13,6 +13,10 @@ cecho "---- Post-Install Configuration ----" $white
 cecho "----                            ----" $white
 echo ""
 
+cecho "Set path for macOS .apps to include /usr/local..." $white
+sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+echo ""
+
 # Further configuration ...
 # - for applications installed as part of the software install script
 # - using tools installed as part of the software install script
