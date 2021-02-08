@@ -36,9 +36,12 @@ if [[ -z "$ZSH_CACHE_DIR" ]]; then
     ZSH_CACHE_DIR="$HOME/.zsh-cache"
 fi
 
-autoload -U compinit
-compinit -d "${ZSH_COMPDUMP}"
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 source ~/.zsh/completion.zsh
+autoload -Uz compinit
+compinit
 
 source ~/.zsh/navigation.zsh
 source ~/.zsh/title.zsh
