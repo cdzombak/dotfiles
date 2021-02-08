@@ -13,6 +13,18 @@ cecho "---- Post-Install Configuration ----" $white
 cecho "----                            ----" $white
 echo ""
 
+if [ ! -f "$HOME/.netrc" ]; then
+  cecho "Git authentication configuration..." $white
+  cp ./.netrc.template "$HOME/.netrc"
+  chmod 600 "$HOME/.netrc"
+  # shellcheck disable=SC2129
+  echo "## \`~/.netrc\`" >> "$HOME/SystemSetup.md"
+  echo "" >> "$HOME/SystemSetup.md"
+  echo -e "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set Bitbucket username (as needed)\n- [ ] Set Bitbucket token (as needed) ([create one here](https://bitbucket.org/account/settings/app-passwords/))" >> "$HOME/SystemSetup.md"
+  echo "" >> "$HOME/SystemSetup.md"
+  echo ""
+fi
+
 cecho "Set path for macOS .apps to include /usr/local..." $white
 sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
 echo ""
