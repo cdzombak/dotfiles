@@ -378,8 +378,9 @@ _install_hosts_timer() {
   echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/hosts-timer > /dev/null
   sudo chown root:wheel /etc/sudoers.d/hosts-timer
   sudo chmod 440 /etc/sudoers.d/hosts-timer
-  # disable facebook by default:
+  # disable facebook & HN by default:
   sudo hosts-timer -install facebook.com
+  sudo hosts-timer -install news.ycombinator.com
 }
 sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
 
