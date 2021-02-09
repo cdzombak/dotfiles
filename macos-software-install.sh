@@ -1127,20 +1127,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   sw_install /Applications/Handbrake.app _install_handbrake
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-podcast-utils" ]; then
-  echo ""
-  cecho "Install podcasting utilities (Skype + Call Recorder)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/Skype.app "brew_cask_install skype" \
-      "- [ ] Sign in\n- [ ] Install Ecamm Call Recorder"
-    cecho "To install Ecamm Call Recorder, download it from your customer link (in 1Password, or your email archive - look for email from supportdesk@ecamm.com)" $red
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-podcast-utils"
-  fi
-fi
-
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
