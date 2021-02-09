@@ -20,7 +20,7 @@ if [ ! -f "$HOME/.netrc" ]; then
   # shellcheck disable=SC2129
   echo "## \`~/.netrc\`" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set Bitbucket username (as needed)\n- [ ] Set Bitbucket token (as needed) ([create one here](https://bitbucket.org/account/settings/app-passwords/))" >> "$HOME/SystemSetup.md"
+  echo -e "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set Bitbucket username (as needed)\n- [ ] Set Bitbucket token (as needed) ([create one here](https://bitbucket.org/account/settings/app-passwords/))\n- [ ] Set dropbox.dzombak.com credentials" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
   echo ""
 fi

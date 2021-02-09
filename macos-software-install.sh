@@ -717,7 +717,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     rm "$HOME/opt/bin/notify-me"
   fi
   set -x
-  wget --user cdzombak --ask-password -O "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  curl -s --netrc --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me || curl -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
   chmod 755 "$HOME/opt/bin/notify-me"
   set +x
 fi
