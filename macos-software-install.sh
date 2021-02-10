@@ -1374,43 +1374,89 @@ _install_discord() {
 }
 sw_install /Applications/Discord.app _install_discord
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-social" ]; then
-  cecho "Install social network clients (Caprine, Flume, Tweetbot)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/Caprine.app "brew_cask_install caprine"
-    # shellcheck disable=SC2129
-    echo "## Caprine.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
+if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
+  _install_Mastonaut() {
+    cecho "Install Mastonaut (Mastodon client)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1450757574
+      # shellcheck disable=SC2129
+      echo "## Mastonaut.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign into personal a2mi.social Mastodon account" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-mastonaut"
+    fi
+  }
+  sw_install /Applications/Mastonaut.app _install_Mastonaut
+fi
 
-    _install_flume() {
+if [ ! -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
+  _install_caprine() {
+    cecho "Install Caprine (FB Messenger client)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask caprine
+      # shellcheck disable=SC2129
+      echo "## Caprine.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-caprine"
+    fi
+  }
+  sw_install /Applications/Caprine.app _install_caprine
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-flume" ]; then
+  _install_flume() {
+    cecho "Install Flume (Instagram client)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       cecho 'Please install Flume from Setapp.' $white
       open /Applications/Setapp.app
-    }
-    sw_install /Applications/Setapp/Flume.app _install_flume
-    # shellcheck disable=SC2129
-    echo "## Flume.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Install app from Setapp\n- [ ] Sign into Instagram account" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
 
-    sw_install /Applications/Tweetbot.app "mas install 1384080005"
-    # shellcheck disable=SC2129
-    echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    # https://twitter.com/dancounsell/status/667011332894535682
-    cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
-    set -x
-    defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
-    set +x
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-social"
-  fi
+      # shellcheck disable=SC2129
+      echo "## Flume.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Install app from Setapp\n- [ ] Sign into Instagram account" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-flume"
+    fi
+  }
+  sw_install /Applications/Setapp/Flume.app _install_flume
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
+  _install_tweetbot() {
+    cecho "Install Tweetbot? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1384080005
+
+      # shellcheck disable=SC2129
+      echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+
+      # https://twitter.com/dancounsell/status/667011332894535682
+      cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
+      set -x
+      defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+      set +x
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-tweetbot"
+    fi
+  }
+  sw_install /Applications/Tweetbot.app _install_tweetbot
 fi
 
 echo ""
