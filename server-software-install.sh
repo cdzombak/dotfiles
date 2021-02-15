@@ -4,7 +4,7 @@ set -euo pipefail
 # versions:
 LATEST_BANDWHICH="0.20.0"
 LATEST_DUST="0.5.4"
-LATEST_RESTIC="0.11.0"
+LATEST_RESTIC="0.12.0"
 NANO_V5x="5.4"
 
 if [ "$(uname)" != "Linux" ]; then
