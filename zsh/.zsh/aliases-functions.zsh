@@ -222,3 +222,16 @@ function use-twitter() {
 }
 alias hosts-list='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" ; echo "Windows Game Desktop" ; echo "Windows Laptop" ; echo "Lab Mac Mini" ; }'
 alias hosts-list-md='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" ; echo "- [ ] Windows Game Desktop" ; echo "- [ ] Windows Laptop" ; echo "- [ ] Lab Mac Mini" ; }'
+
+function rm-known-host() {
+    if [ -z "$1" ]; then
+        echo "usage: rm-known-host LINE_NUMBER"
+        return 1
+    fi
+    re='^[0-9]+$'
+    if ! [[ "$1" =~ $re ]] ; then
+        echo "usage: rm-known-host LINE_NUMBER"
+        return 1
+    fi
+    gsed -i "$1d" "$HOME/.ssh/known_hosts"
+}
