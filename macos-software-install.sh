@@ -792,6 +792,15 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/JSON Viewer.app" _install_json_viewer
 fi
 
+_install_ask_script_debugger() {
+  cecho "Install Script Debugger (for AppleScript)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask script-debugger
+  fi
+}
+sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
+
 cecho "Install common Go tools (golint, goimports, gorc, pkger, golangci-lint)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
