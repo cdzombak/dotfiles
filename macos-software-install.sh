@@ -1059,6 +1059,15 @@ _install_pixelmator() {
 }
 sw_install "/Applications/Pixelmator Pro.app" _install_pixelmator
 
+_install_acorn() {
+  cecho "Install Acorn? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1547371478
+  fi
+}
+sw_install "/Applications/Acorn.app" _install_acorn
+
 _install_geotag() {
   cecho "Install GeoTag? (y/N)" $magenta
   read -r response
