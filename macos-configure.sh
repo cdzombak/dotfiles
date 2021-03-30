@@ -45,6 +45,10 @@ echo -e "This script will use ${magenta}sudo${_reset}; enter your password to au
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
 ###############################################################################
 # General UI/UX
 ###############################################################################
@@ -67,8 +71,9 @@ if [ ! -e "$HOME/.local/dotfiles/no-set-computer-name" ]; then
 fi
 
 echo ""
-echo "Expanding the save and print panel by default"
+echo "Expand the save and print panels by default"
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
@@ -96,6 +101,10 @@ echo ""
 echo "Write screenshots to disk right away, without floating thumbnail"
 defaults write "com.apple.screencapture" "show-thumbnail" '0'
 
+echo ""
+echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ################################################################################
@@ -109,10 +118,28 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
 # defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 # defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# Follow the keyboard focus while zoomed in
+# defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 echo ""
 echo "Show scrollbars only while scrolling"
 defaults write -g AppleShowScrollBars -string WhenScrolling
+
+echo ""
+echo "Disable automatic capitalization as it’s annoying when typing code"
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+echo ""
+echo "Disable automatic period substitution as it’s annoying when typing code"
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+echo ""
+echo "Disable auto-correct"
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+echo ""
+echo "Increase sound quality for Bluetooth headphones/headsets"
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 ###############################################################################
 # Screen
