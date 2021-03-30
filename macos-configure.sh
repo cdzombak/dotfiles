@@ -92,6 +92,10 @@ echo ""
 echo "Save screenshots with a lowercase file extension"
 defaults write com.apple.screencapture type png
 
+echo ""
+echo "Write screenshots to disk right away, without floating thumbnail"
+defaults write "com.apple.screencapture" "show-thumbnail" '0'
+
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ################################################################################
