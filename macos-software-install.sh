@@ -450,7 +450,7 @@ _airbuddy_note() {
 }
 sw_install /Applications/AirBuddy.app _airbuddy_note
 
-sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle brew_install mailtrackerblocker \
+sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
 
 echo ""
