@@ -367,7 +367,7 @@ else
 fi
 
 echo "Tweetbot ..."
-if [ -e "/Applications/Tweeetbot.app" ]; then
+if [ -e "/Applications/Tweetbot.app" ]; then
   osascript -e "tell application \"Tweetbot\" to quit"
   # https://twitter.com/dancounsell/status/667011332894535682
   echo ""
