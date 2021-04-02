@@ -26,9 +26,6 @@ sw_install /Applications/Better.app "mas install 1121192229" \
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
 
-sw_install "/Applications/Day One.app" "mas install 1055511498" \
-  "- [ ] Sign into Day One account\n- [ ] Enable Day One Safari extension\n- [ ] Sign into Day One Safari extension"
-
 sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable Instapaper Safari extension"
 
