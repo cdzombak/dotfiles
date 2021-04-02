@@ -21,7 +21,7 @@ export LS_COLORS="di=36:ln=35:so=31;1;44:pi=30;1;44:ex=1;31:bd=0;1;44:cd=37;1;44
 
 export SESSION_OPENED_TS=$(date +%s)
 
-command -v yubikey-agent >/dev/null 2>&1 && export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+command -v yubikey-agent >/dev/null 2>&1 && export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
 
 alias reload!='echo "" && . ~/.zshrc'
 
@@ -74,8 +74,8 @@ command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 if [ -f ~/.local.zsh ]; then
     source ~/.local.zsh
 fi
-if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
+    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 source ~/.zsh/pyenv.zsh
 

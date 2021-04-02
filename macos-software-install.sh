@@ -34,7 +34,7 @@ echo -e "This script will use ${magenta}sudo${_reset}; enter your password to au
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-sw_install /usr/local/bin/mas "brew install mas"
+sw_install "$(brew --prefix)/bin/mas" "brew install mas"
 
 sw_install /Applications/Xcode.app "mas install 497799835"
 if ! xcode-select --print-path | grep -c "/Applications/Xcode.app" >/dev/null ; then
@@ -46,7 +46,7 @@ if ! xcodebuild -checkFirstLaunchStatus; then
 fi
 
 # sw_install's brew_[cask_]install uses `brew caveats`:
-sw_install /usr/local/Cellar/brew-caveats \
+sw_install "$(brew --prefix)/Cellar/brew-caveats" \
   "brew tap rafaelgarrido/homebrew-caveats && brew install brew-caveats"
 
 # untap caskroom/versions, which conflicts with homebrew/cask-versions:
@@ -76,69 +76,69 @@ fi
 
 # begin with basic Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
-sw_install /usr/local/bin/ag "brew_install ag"
-sw_install /usr/local/bin/aws "brew_install awscli"
-sw_install /usr/local/bin/bandwhich "brew_install bandwhich"
-sw_install /usr/local/bin/bettercap "brew_install bettercap"
-sw_install /usr/local/Cellar/bash-completion "brew_install bash-completion"
-sw_install /usr/local/bin/cloc "brew_install cloc"
-sw_install /usr/local/opt/coreutils/libexec/gnubin "brew_install coreutils"
-sw_install /usr/local/bin/cowsay "brew_install cowsay"
-sw_install /usr/local/opt/curl/bin/curl "brew_install curl"
-sw_install /usr/local/bin/diff-so-fancy "brew_install diff-so-fancy"
-sw_install /usr/local/bin/dog "brew_install dog"
-sw_install /usr/local/bin/dust "brew_install dust"
-sw_install /usr/local/bin/exa "brew_install exa"
-sw_install /usr/local/bin/fzf "brew_install fzf"
-sw_install /usr/local/bin/git "brew_install git"
-sw_install /usr/local/bin/go "brew_install go" \
+sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
+sw_install "$(brew --prefix)/bin/aws" "brew_install awscli"
+sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+sw_install "$(brew --prefix)/bin/bettercap" "brew_install bettercap"
+sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
+sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
+sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
+sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
+sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
+sw_install "$(brew --prefix)/bin/diff-so-fancy" "brew_install diff-so-fancy"
+sw_install "$(brew --prefix)/bin/dog" "brew_install dog"
+sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
+sw_install "$(brew --prefix)/bin/exa" "brew_install exa"
+sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
+sw_install "$(brew --prefix)/bin/git" "brew_install git"
+sw_install "$(brew --prefix)/bin/go" "brew_install go" \
   "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
-sw_install /usr/local/bin/brew-gomod "brew install FiloSottile/gomod/brew-gomod"
-sw_install /usr/local/bin/ggrep "brew_install grep"
-sw_install /usr/local/bin/gron "brew_install gron"
-sw_install /usr/local/bin/hexyl "brew_install hexyl"
-sw_install /usr/local/bin/http "brew_install httpie"
-sw_install /usr/local/bin/htop "brew_install htop"
-sw_install /usr/local/bin/jq "brew_install jq"
-sw_install /usr/local/bin/lua "brew_install lua"
-sw_install /usr/local/bin/mdcat "brew_install mdcat"
-sw_install /usr/local/bin/mogrify "brew_install imagemagick"
-sw_install /usr/local/sbin/mtr "brew_install mtr"
-sw_install /usr/local/bin/mysides "brew_cask_install mysides"
-sw_install /usr/local/bin/nano "brew_install nano"
-sw_install /usr/local/bin/ncdu "brew_install ncdu"
-sw_install /usr/local/bin/nmap "brew_install nmap"
-sw_install /usr/local/bin/nnn "brew_install nnn"
-sw_install /usr/local/bin/node "brew_install node"
-sw_install /usr/local/bin/python3 "brew_install python"
-sw_install /usr/local/bin/rdfind "brew_install rdfind"
-sw_install /usr/local/bin/screen "brew_install screen"
-sw_install /usr/local/bin/shellcheck "brew_install shellcheck"
-sw_install /usr/local/bin/shfmt "brew_install shfmt"
-sw_install /usr/local/bin/speedtest "brew_install speedtest"
-sw_install /usr/local/opt/sqlite/bin/sqlite3 "brew_install sqlite"
-sw_install /usr/local/bin/stow "brew_install stow"
-sw_install /usr/local/Cellar/syncthing "brew_install syncthing && brew services start syncthing" \
+sw_install "$(brew --prefix)/bin/brew-gomod" "brew install FiloSottile/gomod/brew-gomod"
+sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
+sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
+sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
+sw_install "$(brew --prefix)/bin/http" "brew_install httpie"
+sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
+sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
+sw_install "$(brew --prefix)/bin/lua" "brew_install lua"
+sw_install "$(brew --prefix)/bin/mdcat" "brew_install mdcat"
+sw_install "$(brew --prefix)/bin/mogrify" "brew_install imagemagick"
+sw_install "$(brew --prefix)/sbin/mtr" "brew_install mtr"
+sw_install "$(brew --prefix)/bin/mysides" "brew_cask_install mysides"
+sw_install "$(brew --prefix)/bin/nano" "brew_install nano"
+sw_install "$(brew --prefix)/bin/ncdu" "brew_install ncdu"
+sw_install "$(brew --prefix)/bin/nmap" "brew_install nmap"
+sw_install "$(brew --prefix)/bin/nnn" "brew_install nnn"
+sw_install "$(brew --prefix)/bin/node" "brew_install node"
+sw_install "$(brew --prefix)/bin/python3" "brew_install python"
+sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
+sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
+sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
+sw_install "$(brew --prefix)/bin/shfmt" "brew_install shfmt"
+sw_install "$(brew --prefix)/bin/speedtest" "brew_install speedtest"
+sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
+sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
+sw_install "$(brew --prefix)/Cellar/syncthing" "brew_install syncthing && brew services start syncthing" \
   "- [ ] Begin syncing \`~/Sync\`\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
-sw_install /usr/local/bin/telnet "brew_install telnet"
-sw_install /usr/local/bin/terminal-notifier "brew_install terminal-notifier"
-sw_install /usr/local/bin/tig "brew_install tig"
-sw_install /usr/local/bin/todos "brew_install tofrodos"
-sw_install /usr/local/bin/trash "brew_install trash"
-sw_install /usr/local/bin/tree "brew_install tree"
-sw_install /usr/local/bin/wakeonlan "brew_install wakeonlan"
-sw_install /usr/local/bin/websocat "brew_install websocat"
-sw_install /usr/local/bin/wget "brew_install wget"
-sw_install /usr/local/bin/xz "brew_install xz"
-sw_install /usr/local/bin/yamllint "brew_install yamllint"
-sw_install /usr/local/bin/yarn "brew_install yarn"
+sw_install "$(brew --prefix)/bin/telnet" "brew_install telnet"
+sw_install "$(brew --prefix)/bin/terminal-notifier" "brew_install terminal-notifier"
+sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
+sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
+sw_install "$(brew --prefix)/bin/trash" "brew_install trash"
+sw_install "$(brew --prefix)/bin/tree" "brew_install tree"
+sw_install "$(brew --prefix)/bin/wakeonlan" "brew_install wakeonlan"
+sw_install "$(brew --prefix)/bin/websocat" "brew_install websocat"
+sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
+sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
+sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
+sw_install "$(brew --prefix)/bin/yarn" "brew_install yarn"
 
 sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
   "brew_cask_install qlmarkdown"
 sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" \
   "brew_cask_install quicklook-json"
 
-sw_install /usr/local/bin/entr "brew_install entr"
+sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
 # Fix "entr: Too many files listed; the hard limit for your login class is 256."
 # http://eradman.com/entrproject/limits.html
 _install_entr_workaround() {
@@ -149,7 +149,7 @@ _install_entr_workaround() {
 sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
 
 # provides envsubst:
-sw_install /usr/local/bin/gettext "brew_install gettext && brew link --force gettext"
+sw_install "$(brew --prefix)/bin/gettext" "brew_install gettext && brew link --force gettext"
 
 # Install tools which use stuff we just installed via Homebrew:
 sw_install /usr/local/bin/emoj 'npm install -g emoj@">=2.0.0"'
@@ -157,8 +157,8 @@ sw_install /usr/local/bin/markdown-toc 'npm install -g markdown-toc'
 sw_install /usr/local/bin/nativefier 'npm install -g nativefier'
 sw_install /usr/local/bin/bundler 'sudo gem install bundler'
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
-sw_install /usr/local/bin/qrcp "brew gomod github.com/claudiodangelis/qrcp"
-sw_install /usr/local/bin/plistwatch "brew gomod github.com/catilac/plistwatch"
+sw_install "$(brew --prefix)/bin/qrcp" "brew gomod github.com/claudiodangelis/qrcp"
+sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
 
 # metar: CLI metar lookup tool
 _install_metar() {
@@ -418,7 +418,7 @@ sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized 
 
 _install_setapp() {
   brew install --cask setapp
-  open -a "$(brew info --cask setapp | grep '/usr/local/caskroom' | cut -d' ' -f1)/Install Setapp.app"
+  open -a "$(brew info --cask setapp | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/Install Setapp.app"
   while [ ! -e /Applications/Setapp.app ]; do
     cecho "Please complete Setapp installation." $white
     read -p "Press [Enter] to continue..."
@@ -491,7 +491,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
       touch "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent"
     fi
   }
-  sw_install /usr/local/bin/yubikey-agent _install_yubikey_agent
+  sw_install "$(brew --prefix)/bin/yubikey-agent" _install_yubikey_agent
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
@@ -566,7 +566,7 @@ _install_iperf3() {
     brew install iperf3
   fi
 }
-sw_install /usr/local/bin/iperf3 _install_iperf3
+sw_install "$(brew --prefix)/bin/iperf3" _install_iperf3
 
 _install_angryipscan() {
   cecho "Install Angry IP Scanner? (y/N)" $magenta
@@ -621,7 +621,7 @@ _install_fio() {
     brew install fio
   fi
 }
-sw_install /usr/local/bin/fio _install_fio
+sw_install "$(brew --prefix)/bin/fio" _install_fio
 
 _install_coconutbattery() {
   cecho "Install CoconutBattery? (y/N)" $magenta
@@ -807,28 +807,28 @@ sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
 cecho "Install common Go tools (golint, goimports, gorc, pkger, golangci-lint)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "/usr/local/bin/golint" "brew gomod golang.org/x/lint/golint"
-  sw_install "/usr/local/bin/goimports" "brew gomod golang.org/x/tools/cmd/goimports"
-  sw_install "/usr/local/bin/gorc" "brew gomod github.com/stretchr/gorc"
-  sw_install "/usr/local/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
-  sw_install "/usr/local/bin/golangci-lint" "brew_install golangci-lint"
+  sw_install "$(brew --prefix)/bin/golint" "brew gomod golang.org/x/lint/golint"
+  sw_install "$(brew --prefix)/bin/goimports" "brew gomod golang.org/x/tools/cmd/goimports"
+  sw_install "$(brew --prefix)/bin/gorc" "brew gomod github.com/stretchr/gorc"
+  sw_install "$(brew --prefix)/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
+  sw_install "$(brew --prefix)/bin/golangci-lint" "brew_install golangci-lint"
 fi
 
 cecho "Install common Python tools (virtualenv, pipenv, pyenv)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" pip install virtualenv'
-  sw_install /usr/local/bin/pipenv "brew_install pipenv"
+  sw_install "$(brew --prefix)/bin/pipenv" "brew_install pipenv"
   # optional, but recommended build deps w/pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-  sw_install /usr/local/bin/pyenv "brew install pyenv openssl readline sqlite3 xz zlib"
+  sw_install "$(brew --prefix)/bin/pyenv" "brew install pyenv openssl readline sqlite3 xz zlib"
 fi
 
 cecho "Install common Python code quality tools (flake8, pylint, pycodestyle)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /usr/local/bin/flake8 "brew_install flake8"
-  sw_install /usr/local/bin/pylint "brew_install pylint"
-  sw_install /usr/local/bin/pycodestyle "brew_install pycodestyle"
+  sw_install "$(brew --prefix)/bin/flake8" "brew_install flake8"
+  sw_install "$(brew --prefix)/bin/pylint" "brew_install pylint"
+  sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
 _install_gcloud_sdk() {
@@ -838,7 +838,7 @@ _install_gcloud_sdk() {
     brew install --cask google-cloud-sdk
   fi
 }
-sw_install /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk _install_gcloud_sdk
+sw_install "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" _install_gcloud_sdk
 
 cecho "Install Docker & related tools? (y/N)" $magenta
 read -r response
@@ -846,7 +846,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /Applications/Docker.app "brew_cask_install docker" \
     "- [ ] Disable application starting at login"
   sw_install /usr/local/bin/dockerfilelint 'npm install -g dockerfilelint@">=1.5.0"'
-  sw_install /usr/local/bin/dive "brew_install dive"
+  sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
 fi
 
 _install_virtualbox() {
@@ -870,7 +870,7 @@ _install_kail() {
     brew install boz/repo/kail
   fi
 }
-sw_install /usr/local/bin/kail _install_kail
+sw_install "$(brew --prefix)/bin/kail" _install_kail
 
 _install_k9s() {
   cecho "Install k9s (https://github.com/derailed/k9s)? (y/N)" $magenta
@@ -879,7 +879,7 @@ _install_k9s() {
     brew install derailed/k9s/k9s
   fi
 }
-sw_install /usr/local/bin/k9s _install_k9s
+sw_install "$(brew --prefix)/bin/k9s" _install_k9s
 
 _install_lensapp() {
   cecho "Install Lens for k8s (https://github.com/lensapp/lens)? (y/N)" $magenta
@@ -917,9 +917,9 @@ echo ""
 cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /usr/local/Caskroom/java "brew_cask_install java"
-  sw_install /usr/local/Cellar/gradle-completion "brew_install gradle-completion"
-  sw_install /usr/local/bin/mvn "brew_install maven"
+  sw_install "$(brew --prefix)/Caskroom/java" "brew_cask_install java"
+  sw_install "$(brew --prefix)/Cellar/gradle-completion" "brew_install gradle-completion"
+  sw_install "$(brew --prefix)/bin/mvn" "brew_install maven"
 fi
 
 _install_sbt() {
@@ -929,7 +929,7 @@ _install_sbt() {
     brew install sbt
   fi
 }
-sw_install /usr/local/bin/sbt _install_sbt
+sw_install "$(brew --prefix)/bin/sbt" _install_sbt
 
 _install_tsc() {
   cecho "Install tsc (TypeScript compiler)? (y/N)" $magenta
@@ -943,15 +943,15 @@ sw_install /usr/local/bin/tsc _install_tsc
 cecho "Install React Native CLI & related tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /usr/local/bin/watchman "brew_install watchman"
+  sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman"
   sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
 fi
 
 cecho "Install JS/TS code quality tools (prettier, eslint, jshint)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-   sw_install /usr/local/bin/prettier 'brew_install prettier'
-   sw_install /usr/local/bin/eslint 'brew_install eslint'
+   sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
+   sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
    sw_install /usr/local/bin/jshint 'npm install -g jshint'
 fi
 
@@ -971,7 +971,7 @@ _install_carthage() {
     brew install carthage
   fi
 }
-sw_install /usr/local/bin/carthage _install_carthage
+sw_install "$(brew --prefix)/bin/carthage" _install_carthage
 
 _install_fastlane() {
   cecho "Install Fastlane? (y/N)" $magenta
@@ -1133,7 +1133,7 @@ _install_youtubedl() {
     brew install youtube-dl
   fi
 }
-sw_install /usr/local/bin/youtube-dl _install_youtubedl
+sw_install "$(brew --prefix)/bin/youtube-dl" _install_youtubedl
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
@@ -1141,7 +1141,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask handbrake
-      sw_install /usr/local/lib/libmp3lame.dylib "brew_install lame"
+      sw_install "$(brew --prefix)/lib/libmp3lame.dylib" "brew_install lame"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-handbrake"
@@ -1510,7 +1510,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
       touch "$HOME/.local/dotfiles/software/no-nsnake"
     fi
   }
-  sw_install /usr/local/bin/nsnake _install_nsnake
+  sw_install "$(brew --prefix)/bin/nsnake" _install_nsnake
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-blackink" ]; then
@@ -1581,8 +1581,8 @@ verify_smartdelete() {
   done
 }
 
-if [ -e "/usr/local/bin/gpg" ]; then
-  if ! ls -la /usr/local/bin/gpg | grep -c "MacGPG" >/dev/null ; then
+if [ -e "$(brew --prefix)/bin/gpg" ]; then
+  if ! ls -la "$(brew --prefix)/bin/gpg" | grep -c "MacGPG" >/dev/null ; then
     echo "GnuPG (Homebrew install; use MacGPG instead)..."
     brew uninstall gnupg
     REMOVED_ANYTHING=true
@@ -1692,7 +1692,7 @@ if [ -e "/Applications/Rocket.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
-if [ -e /usr/local/bin/task ]; then
+if [ -e "$(brew --prefix)/bin/task" ]; then
   echo "task ..."
   brew uninstall go-task/tap/go-task
   REMOVED_ANYTHING=true
@@ -1757,6 +1757,10 @@ if file -h /usr/local/bin/kubectl | grep -c "Applications/Docker.app/Contents/Re
   echo "Removing kubectl symlink to Docker.app."
   rm /usr/local/bin/kubectl
 fi
+if file -h /opt/homebrew/bin/kubectl | grep -c "Applications/Docker.app/Contents/Resources/bin" >/dev/null; then
+  echo "Removing kubectl symlink to Docker.app."
+  rm /opt/homebrew/bin/kubectl
+fi
 _install_kubectl() {
   echo ""
   cecho "Install kubectl? (y/N)" $magenta
@@ -1765,7 +1769,7 @@ _install_kubectl() {
     brew install kubectl
   fi
 }
-sw_install /usr/local/bin/kubectl _install_kubectl
+sw_install "$(brew --prefix)/bin/kubectl" _install_kubectl
 echo ""
 
 echo ""
@@ -1782,7 +1786,7 @@ _install_swiftsh() {
     brew install mxcl/made/swift-sh
   fi
 }
-sw_install /usr/local/bin/swift-sh _install_swiftsh
+sw_install "$(brew --prefix)/bin/swift-sh" _install_swiftsh
 
 _install_sqlint() {
   echo ""

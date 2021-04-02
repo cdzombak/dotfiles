@@ -25,8 +25,13 @@ if [ ! -f "$HOME/.netrc" ]; then
   echo ""
 fi
 
-cecho "Set path for macOS .apps to include /usr/local..." $white
-sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+if [ -d /opt/homebrew ]; then
+  cecho "Set path for macOS .apps to include /usr/local and /opt/homebrew..." $white
+  sudo launchctl config user path "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/opt/homebrew/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+else
+  cecho "Set path for macOS .apps to include /usr/local..." $white
+  sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+fi
 echo ""
 
 # Further configuration ...
@@ -639,6 +644,14 @@ echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authe
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-sudo chown "$WHOAMI":staff /usr/local/share/zsh
-sudo chown "$WHOAMI":staff /usr/local/share/zsh/site-functions
-sudo chmod -R 755 /usr/local/share/zsh
+if [ -d /usr/local/share/zsh ]; then
+  sudo chown "$WHOAMI":staff /usr/local/share/zsh
+  sudo chown "$WHOAMI":staff /usr/local/share/zsh/site-functions
+  sudo chmod -R 755 /usr/local/share/zsh
+fi
+
+if [ -d /opt/homebrew/share/zsh ]; then
+  sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh
+  sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh/site-functions
+  sudo chmod -R 755 /opt/homebrew/share/zsh
+fi

@@ -230,6 +230,11 @@ else
   echo "nano is already installed."
 fi
 
+if [ ! -L "$HOME/.local/.nano-root" ]; then
+  mkdir -p "$HOME/.local"
+  ln -s /usr/local "$HOME/.local/.nano-root"
+fi
+
 echo "Install/update my notify-me script? (requires auth to dropbox.dzombak.com/_auth) (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then

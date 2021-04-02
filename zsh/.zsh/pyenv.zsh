@@ -7,7 +7,7 @@
 command -v pyenv &> /dev/null && FOUND_PYENV=1 || FOUND_PYENV=0
 
 if [[ $FOUND_PYENV -ne 1 ]]; then
-    pyenvdirs=("$HOME/.pyenv" "/usr/local/pyenv" "/opt/pyenv" "/usr/local/opt/pyenv")
+    pyenvdirs=("$HOME/.pyenv" "$(brew --prefix)/pyenv" "/opt/pyenv" "$(brew --prefix)/opt/pyenv")
     for dir in $pyenvdirs; do
         if [[ -d $dir/bin ]]; then
             export PATH="$PATH:$dir/bin"

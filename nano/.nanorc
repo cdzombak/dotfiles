@@ -43,5 +43,5 @@ unset nonewlines  # Would: Disable adding newlines to the ends of files.
 ## Improved Nano Syntax Highlighting Files from https://github.com/scopatz/nanorc
 ##
 
-include "/usr/local/share/nano/*.nanorc"
+include "~/.local/.nano-root/share/nano/*.nanorc"
 include "~/.nano/*.nanorc"

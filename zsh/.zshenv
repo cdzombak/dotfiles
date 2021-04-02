@@ -13,7 +13,7 @@ if [ -d "$HOME/Library/Android/sdk" ]; then
 fi
 
 # Golang:
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=$(brew --prefix)/opt/go/libexec
 export PATH="$GOROOT/bin:$PATH"
 if [ -d "$HOME/go" ]; then
     export GOPATH="$HOME/go"
@@ -30,8 +30,8 @@ if [ -d "$HOME/.fastlane/bin" ]; then
     export PATH="$PATH:$HOME/.fastlane/bin"
 fi
 
-if [ -d "/usr/local/Caskroom/google-cloud-sdk/" ] ; then
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
+    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
 
 # allow installing in ~/opt:

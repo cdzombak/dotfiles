@@ -13,6 +13,20 @@ command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.github
 if [ ! -f /etc/paths.d/cdz.Homebrew ]; then
   set -x
   sudo rm -f /etc/paths.d/cdz.Homebrew
-  echo -e '/usr/local/bin\n/usr/local/sbin' | sudo tee -a /etc/paths.d/cdz.Homebrew > /dev/null
+  if [ -d /opt/homebrew ]; then
+    echo -e "/usr/local/bin\n/usr/local/sbin\n/opt/homebrew/bin\n/opt/homebrew/sbin" | sudo tee -a /etc/paths.d/cdz.Homebrew > /dev/null
+  else
+    echo -e "/usr/local/bin\n/usr/local/sbin" | sudo tee -a /etc/paths.d/cdz.Homebrew > /dev/null
+  fi
   set +x
+fi
+
+mkdir -p "$HOME/.local"
+
+if [ ! -L "$HOME/.local/brew-root" ]; then
+  ln -s "$(brew --prefix)" "$HOME/.local/brew-root"
+fi
+
+if [ ! -L "$HOME/.local/.nano-root" ]; then
+  ln -s "$(brew --prefix)" "$HOME/.local/.nano-root"
 fi
