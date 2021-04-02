@@ -41,8 +41,13 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 * My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
 * My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private; install manually when first opening these IDEs)
 * Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Choosy, Dash, iTerm2, SuperDuper, & VPN configs)
-* Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh), which already covers many of the more important settings)
+* Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh) already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements
 
-This setup — and my further aspirations for it — are inspired by [@andrewsardone's dotfiles](https://github.com/andrewsardone/dotfiles) and [this article on managing dotfiles with GNU Stow](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html). My Hammerspoon configuration is heavily based on [jasonrudolph/keyboard](https://github.com/jasonrudolph/keyboard).
+This setup — and my further aspirations for it — are inspired by:
+
+- [@andrewsardone's dotfiles](https://github.com/andrewsardone/dotfiles) 
+- [This article on managing dotfiles with GNU Stow](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
+- [@mathiasbynens's macOS configuration script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
+- My Hammerspoon configuration is heavily based on [jasonrudolph/keyboard](https://github.com/jasonrudolph/keyboard)
