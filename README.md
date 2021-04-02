@@ -20,7 +20,7 @@ My zsh theming is intended to work well with a dark color scheme (I use [Solariz
 
 ## Installation
 
-Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig/blob/master/README.md#installation) (private).
+Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig/blob/master/README.md#installation) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html)).
 
 ```bash
 # in ~
@@ -36,7 +36,7 @@ Running `make` with no target prints help.
 
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
-* My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private)
+* My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html))
 * My [osx-automation repository](https://github.com/cdzombak/osx-automation/tree/edbc14b506e1b31b9a86e7298fb7c343d81fc289) (installed automatically during `make mac-software`)
 * My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
 * My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private; install manually when first opening these IDEs)
