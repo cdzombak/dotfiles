@@ -462,6 +462,7 @@ fi
 
 echo "HazeOver ..."
 if [ -e "/Applications/Setapp/HazeOver.app" ]; then
+  osascript -e "tell application \"HazeOver\" to quit"
   defaults write com.pointum.hazeover-setapp Animation -float "0.05"
   defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
   defaults write com.pointum.hazeover-setapp Enabled -bool true
@@ -475,6 +476,9 @@ if [ -e "/Applications/Setapp/HazeOver.app" ]; then
     echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
+  set +e
+  open -a "HazeOver"
+  set -e
 else
   echo "(Not installed.)"
 fi
