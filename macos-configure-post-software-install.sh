@@ -496,6 +496,17 @@ else
   echo "(Not installed.)"
 fi
 
+echo "SQLPro Studio ..."
+if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
+  osascript -e "tell application \"SQLPro Studio\" to quit"
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-DisableSampleConnections" '1'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalentMask" '1048576'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalent" '"\U21a9"'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-CommentUncommentShortcutKeyEquivalent" '/'
+else
+  echo "(Not installed.)"
+fi
+
 echo "ToothFairy ..."
 if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
   osascript -e "tell application \"ToothFairy\" to quit"
