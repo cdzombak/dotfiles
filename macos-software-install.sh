@@ -685,6 +685,15 @@ _install_cubicsdr() {
 }
 sw_install /Applications/CubicSDR.app _install_cubicsdr
 
+_install_chirp() {
+  cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask chirp
+  fi
+}
+sw_install /Applications/CHIRP.app _install_chirp
+
 _install_coconutbattery() {
   cecho "Install CoconutBattery? (y/N)" $magenta
   read -r response
