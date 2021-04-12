@@ -293,6 +293,16 @@ _install_suspicious_package() {
 }
 sw_install "/Applications/Suspicious Package.app" _install_suspicious_package
 
+_install_whatsyoursign() {
+  brew install --cask whatsyoursign
+  open -a "$(brew info --cask whatsyoursign | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/WhatsYourSign Installer.app"
+  while [ ! -e /Applications/WhatsYourSign.app ]; do
+    cecho "Please complete WhatsYourSign installation." $white
+    read -p "Press [Enter] to continue..."
+  done
+}
+sw_install /Applications/WhatsYourSign.app _install_whatsyoursign
+
 _install_redeye() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
   pushd "$TMP_DIR"
