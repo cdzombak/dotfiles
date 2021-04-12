@@ -282,6 +282,17 @@ if [ -L "$HOME/.sublime-config" ]; then
   rm "$HOME/.sublime-config"
 fi
 
+_install_suspicious_package() {
+  brew install --cask suspicious-package
+  # if [ ! -f /etc/paths.d/cdz.SuspiciousPackage ]; then
+  #   set -x
+  #   sudo rm -f /etc/paths.d/cdz.SuspiciousPackage
+  #   echo '/Applications/Suspicious Package.app/Contents/SharedSupport' | sudo tee -a /etc/paths.d/cdz.SuspiciousPackage > /dev/null
+  #   set +x
+  # fi
+}
+sw_install "/Applications/Suspicious Package.app" _install_suspicious_package
+
 _install_redeye() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
   pushd "$TMP_DIR"
