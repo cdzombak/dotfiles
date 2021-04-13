@@ -115,6 +115,9 @@ sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 
+sw_install "$(brew --prefix)/bin/tldr" "brew_install tealdeer"
+"$(brew --prefix)/bin/tldr" --update &
+
 sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
   "brew_cask_install qlmarkdown"
 sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" \
