@@ -17,22 +17,24 @@ EOF
 if [ "$(uname)" == "Darwin" ]; then
   cat << EOF > "$HOME/SystemSetup.md"
 
-- [ ] Set up Solarized Dark profile in Terminal.app as the default
 - [x] Run setup scripts (\`make mac\`)
+- [ ] Set up Solarized Dark profile in Terminal.app as the default
 - [ ] Run \`mouse-tracking\` script as appropriate
-- [ ] Add \`/etc/hosts\` entries for local network from [Bear note](bear://x-callback-url/open-note?id=809AE9A3-AC09-4EDC-A325-0C7B1C9C1A84-466-00005616E1E5CA25)
 
 ## System Preferences
 
 - [ ] Walk through System Preferences, configuring as desired (see details below)
 
-### Pay special attention to Security and Privacy, Energy, and related
+Consider running \`plistwatch\` while configuring, to capture additional scriptable configuration.
 
-- [ ] Turn FileVault on
+### Pay special attention to Security & Privacy, Energy, and related
+
+- [ ] Enable FileVault
 - [ ] Enable Firewall
 - [ ] Allow unlocking machine with Apple Watch
+- [ ] Allow apps downloaded from: App Store and identified developers
 - [ ] 5 minutes to screen saver; 5 second delay before locking screen
-- [ ] 2 minutes to screen off when on battery
+- [ ] 2 minutes to screen off when on battery; 10 minutes on AC
 - [ ] Review other Energy settings as desired
 - [ ] Name Touch ID finger & add the other index finger
 
@@ -47,7 +49,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 ### iCloud & Internet Accounts
 
-- [ ] Enable iCloud, except Contacts & maybe Mail
+- [ ] Enable iCloud, except Contacts & Mail
     - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
 
@@ -63,26 +65,42 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Enable Dictation + Enhanced Dictation
     - [ ] Set shortcut: right Command key twice
 
-### Sharing
+### Sharing (as desired)
 
 - [ ] Enable Remote Access (SSH)
 
 ### Software Update
 
-- [ ] Enable all options except auto-install macOS updates
+- [ ] Enable all options except auto-install major macOS updates
 
 ### Siri
 
 - [ ] Disable Siri, if necessary
 
+### Desktop & Screen Saver
+
+- [ ] Customize as desired
+
+### Printers & Scanners
+
+- [ ] Install home printer
+
+### Sound
+
+- [ ] Alerts play through selected sound output device
+
+### Users & Groups
+
+- [ ] Disable guest access
+
 ## Dock
 
-- [ ] Organize Dock based on screenshots in \`~/Sync/Configs\`
+- [ ] Organize Dock based on screenshots in \`~/Sync/Configs\` (or current favorite system)
 
 ## Finder
 
-- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\`
-- [ ] Configure sidebar based on screenshot in \`~/Sync/Configs\`
+- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Configure sidebar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
 
 ## Mail
 

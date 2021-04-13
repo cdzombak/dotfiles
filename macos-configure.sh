@@ -90,11 +90,26 @@ echo "Automatically quit printer app once the print jobs complete"
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 echo ""
+echo "Enable automatic software update checks"
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+echo ""
 echo "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 echo ""
-echo "Save screenshots with a lowercase file extension"
+echo "Download newly available updates in background"
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+echo ""
+echo "Install System data files & security updates"
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+
+echo ""
+echo "Save screenshots as PNG, with a lowercase file extension"
 defaults write com.apple.screencapture type png
 
 echo ""
@@ -104,6 +119,14 @@ defaults write "com.apple.screencapture" "show-thumbnail" '0'
 echo ""
 echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+echo ""
+echo "Don't automatically hide the menu bar"
+defaults write -g "_HIHideMenuBar" '0'
+
+echo ""
+echo "Set alert volume to ~75%"
+defaults write -g "com.apple.sound.beep.volume" '"0.7788008"'
 
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
@@ -124,6 +147,10 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 echo ""
 echo "Show scrollbars only while scrolling"
 defaults write -g AppleShowScrollBars -string WhenScrolling
+
+echo ""
+echo "Click in scroll bar to jump to the spot that's clicked"
+defaults write -g "AppleScrollerPagingBehavior" '1'
 
 echo ""
 echo "Disable automatic capitalization as it’s annoying when typing code"
@@ -149,7 +176,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # echo "Enabling subpixel font rendering on non-Apple LCDs"
 # defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
-# https://tonsky.me/blog/monitors/ convinced me to try this...
+# https://tonsky.me/blog/monitors/ convinced me to try this:
 echo ""
 echo "Disabling subpixel font smoothing"
 defaults write NSGlobalDomain AppleFontSmoothing -int 0
@@ -163,12 +190,14 @@ echo "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 echo ""
-cecho "Show icons for hard drives, servers, and removable media on the desktop? (y/N)" $magenta
+cecho "Show icons for external hard drives and removable media on the desktop? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 else
   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 fi
 
 echo ""
@@ -234,6 +263,15 @@ echo ""
 echo "[Finder] Warn when emptying trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool true
 
+echo ""
+echo "Expand File Info panes: General, Open With, Sharing & Permissions"
+# Expand the following File Info panes:
+# “General”, “Open with”, and “Sharing & Permissions”
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+  General -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
+
 ###############################################################################
 # Dock & Mission Control
 ###############################################################################
@@ -282,10 +320,18 @@ defaults write com.apple.dock show-recents -bool false
 echo ""
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
+# Don’t show Dashboard as a Space
+defaults write com.apple.dock dashboard-in-overlay -bool true
 
 echo ""
-echo "Disable Dock magnification even when holding down Ctrl-Shift"
+echo "Disable Dock magnification"
+defaults write "com.apple.dock" "magnification" '0'
+# Disable Dock magnification even when holding down Ctrl-Shift
 defaults write com.apple.dock largesize -int 1
+
+echo ""
+echo "Set Dock size"
+defaults write "com.apple.dock" "tilesize" '46'
 
 killall Dock
 
@@ -300,6 +346,9 @@ defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 
+# Add a context menu item for showing the Web Inspector in web views
+# defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
 echo ""
 echo "Disable preloading top search hit in Safari"
 defaults write com.apple.Safari PreloadTopHit -bool false
@@ -313,8 +362,36 @@ echo "Show Safari's status bar."
 defaults write com.apple.Safari ShowStatusBar -bool true
 
 echo ""
+echo "Show the full URL in the address bar"
+# Show the full URL in the address bar (note: this still hides the scheme)
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+echo ""
 echo "Prevent Safari from opening 'safe' files by default"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+
+echo ""
+echo "Set Safari’s home page to about:blank"
+# Set Safari’s home page to `about:blank` for faster loading
+defaults write com.apple.Safari HomePage -string "about:blank"
+
+echo ""
+echo "Warn about fraudulent websites"
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+echo ""
+echo "Disable Java"
+defaults write com.apple.Safari WebKitJavaEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
+
+echo ""
+echo "Enable Do Not Track"
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+echo ""
+echo "Update extensions automatically"
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 ###############################################################################
 # Mail
@@ -364,7 +441,6 @@ else
   echo ""
   echo "zsh is already the current shell"
 fi
-
 
 echo ""
 echo "Use UTF-8 only in Terminal.app"
