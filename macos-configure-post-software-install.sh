@@ -440,6 +440,16 @@ if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
   defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
   defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
+  if ! grep -c "CloudMounter" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## CloudMounter" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Add Personal Google Drive" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Add Work Google Drive (as desired)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Add Personal Dropbox" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Add Goliath ~ (local)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Add Wasabi" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
   set +e
   open -a "CloudMounter"
   set -e
