@@ -438,7 +438,7 @@ echo "CloudMounter ..."
 if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   osascript -e "tell application \"CloudMounter\" to quit"
   defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
-  defaults write com.eltima.cloudmounter-setapp auto-mount -bool false
+  defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
   defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
   set +e
   open -a "CloudMounter"
