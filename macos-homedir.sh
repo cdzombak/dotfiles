@@ -137,3 +137,9 @@ fi
 if [ ! -L "$HOME/Applications/toolbox-webstorm" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm" ]; then
   ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0" "$HOME/Applications/toolbox-webstorm"
 fi
+
+# Misc. cleanup:
+
+if [ -e "$HOME/Pictures/Photo Booth Library" ]; then
+  chflags -h hidden "$HOME/Pictures/Photo Booth Library"
+fi
