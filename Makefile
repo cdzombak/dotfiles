@@ -71,10 +71,10 @@ mac-configure: require-macos setupnote ## Run macOS configuration script
 	@echo ""
 
 .PHONY: mac-software
-mac-software: require-macos dependencies submodules setupnote ## Install and configure macOS software suite (this can take a long time)
+mac-software: require-macos dependencies submodules setupnote mac-rosetta ## Install and configure macOS software suite (this can take a long time)
 	@echo -ne "\033[0;37m"
 	@echo "WARNING: the configuration part of this setup will quit & open some apps automatically."
-	@echo "         Use Ctrl-C to exit ASAP if you have work open right now."
+	@echo "         Use Ctrl-C to exit if you have work open right now."
 	@echo -e "`tput sgr0`"
 	@echo ""
 	@bash ./macos-software-install.sh
@@ -97,8 +97,13 @@ mac-homedir: require-macos ## Set up basic macOS home directory structure
 mac-open-setupnote: require-macos setupnote ## Open the system setup note
 	open -a Typora ~/SystemSetup.md
 
+.PHONY: mac-rosetta
+mac-rosetta: require-macos ## Install Rosetta on Apple Silicon Macs (no-op on other Macs)
+	@bash ./macos-rosetta.sh
+	@echo ""
+
 .PHONY: mac
-mac: require-macos mac-homedir mac-configure mac-stow mac-software mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+mac: require-macos mac-homedir mac-configure mac-rosetta mac-stow mac-software mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Server (Linux) Targets
 
