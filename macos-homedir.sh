@@ -59,8 +59,15 @@ if [ ! -L "$HOME/Dropbox" ]; then
   chflags -h hidden "$HOME/Dropbox"
 fi
 
-if [ ! -L "$HOME/env" ]; then
-  ln -s "$HOME/Sync/env" "$HOME/env"
+if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.local/dotfiles/no-home-env-dir" ]; then
+  echo ""
+  echo "Create ~/env (synced via Syncthing)? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    ln -s "$HOME/Sync/env" "$HOME/env"
+  else
+    touch "$HOME/.local/dotfiles/no-home-env-dir"
+  fi
 fi
 
 if [ ! -L "$HOME/Public/burr" ]; then
