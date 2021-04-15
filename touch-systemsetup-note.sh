@@ -51,6 +51,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 - [ ] Enable iCloud, except Contacts & Mail
     - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
+    - [ ] Enable Desktop & Documents folders, as desired
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
 
 ### Keyboard + Touch Bar
