@@ -200,7 +200,7 @@ sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
-  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Add destination to \`curie\` & \`fresnel\`, as desired\n- [ ] Setup emails via Mailgun\n- [ ] Enable automatic updates\n- [ ] Enable backup using administrator privileges\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
+  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Setup emails via Mailgun\n- [ ] Enable automatic updates\n- [ ] Enable backup using administrator privileges\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
   "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
