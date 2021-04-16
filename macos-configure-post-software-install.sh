@@ -200,14 +200,23 @@ fi
 echo "Fork..."
 if [ -e "/Applications/Fork.app" ]; then
   osascript -e "tell application \"Fork\" to quit"
-  defaults write com.DanPristupov.Fork defaultSourceFolder "/Users/cdzombak/code"
+  if [ -e "$HOME/code" ]; then
+    defaults write com.DanPristupov.Fork defaultSourceFolder "$HOME/code"
+  else
+    defaults write com.DanPristupov.Fork defaultSourceFolder "$HOME"
+  fi
   defaults write com.DanPristupov.Fork diffFontName "MesloLGM-Regular"
+  defaults write com.DanPristupov.Fork diffFontSize 11
   defaults write com.DanPristupov.Fork diffFontSize 13
-  defaults write com.DanPristupov.Fork enabledTabsOnFirstRun 1
-  defaults write com.DanPristupov.Fork externalDiffTool 2
-  defaults write com.DanPristupov.Fork gitInstanceType 3
-  defaults write com.DanPristupov.Fork mergeTool 2
   defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
+  if ! grep -c "Fork.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Fork.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set Git instance" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set Terminal tool (iTerm2)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set Diff & Merge tools (Kaleidoscope)" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
 else
   echo "(Not installed.)"
 fi
