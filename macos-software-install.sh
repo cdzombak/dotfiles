@@ -227,8 +227,9 @@ sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
   "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
-  "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility"
-sw_install /Applications/Spotify.app "brew_cask_install spotify"
+  "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
+sw_install /Applications/Spotify.app "brew_cask_install spotify" \
+  "- [ ] Sign in"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
