@@ -125,8 +125,6 @@ echo "Don't automatically hide the menu bar"
 defaults write -g "_HIHideMenuBar" '0'
 
 echo ""
-echo "Set alert volume to ~75%"
-defaults write -g "com.apple.sound.beep.volume" '"0.7788008"'
 
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
