@@ -197,7 +197,7 @@ sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
-  "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates"
+  "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
   "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Setup emails via Mailgun\n- [ ] Enable automatic updates\n- [ ] Enable backup using administrator privileges\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
 sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
