@@ -1273,7 +1273,7 @@ _install_plexdesktop() {
     # shellcheck disable=SC2129
     echo "## Plex.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Plex account\n- [ ] Reorder sidebar based on screenshots in \`~/Sync/Configs\` / as desired" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
@@ -1288,6 +1288,9 @@ _install_plexamp() {
     echo "## Plexamp.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Turn off notifications (Settings > Appearance)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable crossfades (Settings > Playback)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Advanced)" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
