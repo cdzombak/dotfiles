@@ -486,6 +486,10 @@ echo ""
 echo "Use UTF-8 only in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
+echo ""
+echo "Set 'Often' update frequency in Activity Monitor"
+defaults write "com.apple.ActivityMonitor" "UpdatePeriod" '2'
+
 ###############################################################################
 # Time Machine
 ###############################################################################
