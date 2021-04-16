@@ -7,6 +7,7 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
+mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.local/dotfiles"
 mkdir -p "$HOME/.local/shell-completion"
 mkdir -p "$HOME/Applications"
