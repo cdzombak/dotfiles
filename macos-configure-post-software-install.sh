@@ -398,8 +398,6 @@ echo "Tweetbot ..."
 if [ -e "/Applications/Tweetbot.app" ]; then
   osascript -e "tell application \"Tweetbot\" to quit"
   # https://twitter.com/dancounsell/status/667011332894535682
-  echo ""
-  echo "[Tweetbot-Mac] Avoid t.co"
   defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 else
   echo "(Not installed.)"
@@ -611,7 +609,6 @@ if [ -e "/Applications/Setapp/Marked 2.app" ]; then
   defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
   defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
   defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
-  cecho "Configure otherwise as desired; in particular, add custom CSS files." $white
 else
   echo "(Not installed.)"
 fi
