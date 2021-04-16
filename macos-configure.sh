@@ -182,6 +182,17 @@ echo "Disabling subpixel font smoothing"
 defaults write NSGlobalDomain AppleFontSmoothing -int 0
 
 ###############################################################################
+# Security
+###############################################################################
+
+echo ""
+cecho "Enable the firewall? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+fi
+
+###############################################################################
 # Finder
 ###############################################################################
 
