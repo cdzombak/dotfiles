@@ -211,7 +211,7 @@ sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
 sw_install /Applications/Firefox.app "brew_cask_install firefox" \
-  "- [ ] Sign into Firefox Sync\n- [ ] Add StopTheMadness extension"
+  "- [ ] Sign into Firefox Sync\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks"
 sw_install /Applications/Fork.app "brew_cask_install fork"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
