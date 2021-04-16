@@ -340,8 +340,8 @@ sw_install /Applications/Deliveries.app "mas install 924726344" \
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
-sw_install /Applications/IPinator.app "mas install 959111981" \
-  "- [ ] Add to Notification Center"
+#sw_install /Applications/IPinator.app "mas install 959111981" \
+#  "- [ ] Add to Notification Center"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
