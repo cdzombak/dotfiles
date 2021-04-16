@@ -680,3 +680,8 @@ if [ -d /opt/homebrew/share/zsh ]; then
   sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh/site-functions
   sudo chmod -R 755 /opt/homebrew/share/zsh
 fi
+
+pushd "$HOME/.zsh"
+find . -type f ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 600 {} \;
+find . -type d ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 700 {} \;
+popd
