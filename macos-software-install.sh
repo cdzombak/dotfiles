@@ -1361,13 +1361,17 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
       rm -rf "$HOME/.zoomus"
       touch "$HOME/.zoomus"
       brew install --cask zoom
+      # shellcheck disable=SC2129
+      echo "## Zoom.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Enable microphone mute when joining meeting" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Disable video when joining meeting" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-zoom"
     fi
   }
-  sw_install /Applications/zoom.us.app _install_zoom \
-    "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting"
 fi
 
 _install_mailplane() {
@@ -1407,10 +1411,14 @@ _install_monodraw() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask monodraw
+    # shellcheck disable=SC2129
+    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
   fi
 }
-sw_install /Applications/Monodraw.app _install_monodraw \
-  "- [ ] Register (link in 1Password)"
+sw_install /Applications/Monodraw.app _install_monodraw
 
 _install_keynote() {
   cecho "Install Keynote? (y/N)" $magenta
