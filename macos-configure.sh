@@ -422,6 +422,25 @@ echo ""
 echo "[Mail.app] Set email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>'"
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
+echo ""
+echo "Disable new message sound"
+defaults write "com.apple.mail" "NewMessagesSoundName" '""'
+
+echo ""
+echo "Check for new messages frequency: Automatic"
+defaults write "com.apple.mail" "AutoFetch" '1'
+defaults write "com.apple.mail" "PollTime" '"-1"'
+
+echo ""
+echo "Customize message fonts & sizes"
+defaults write "com.apple.mail" "NSFontSize" '15'
+defaults write "com.apple.mail" "NSFixedPitchFont" '"MesloLGM-Regular"'
+defaults write "com.apple.mail" "NSFixedPitchFontSize" '14'
+
+echo ""
+echo "Show all member addresses when sending to a group"
+defaults write "com.apple.mail-shared" "ExpandPrivateAliases" '1'
+
 ###############################################################################
 # iTunes
 ###############################################################################
