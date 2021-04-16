@@ -118,10 +118,9 @@ sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 sw_install "$(brew --prefix)/bin/tldr" "brew_install tealdeer"
 "$(brew --prefix)/bin/tldr" --update &
 
-sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" \
-  "brew_cask_install qlmarkdown"
-sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" \
-  "brew_cask_install quicklook-json"
+sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
+  "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
+sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" "brew_cask_install quicklook-json"
 
 sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
 # Fix "entr: Too many files listed; the hard limit for your login class is 256."
