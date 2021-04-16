@@ -242,18 +242,7 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
   mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon"
-
-_install_sonos() {
-  if [ -e "/Applications/Sonos S1 Controller.app" ]; then
-    brew uninstall --cask --force sonos
-    rm -rf "/Applications/Sonos S1 Controller.app"
-    brew cleanup
-    brew update
-  fi
-  brew install --cask sonos
-}
-sw_install "/Applications/Sonos.app" _install_sonos
+  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut"
 
 _install_sublimetext() {
   brew install --cask sublime-text
@@ -1260,6 +1249,21 @@ fi
 echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
+
+if [ -e "/Applications/Sonos S1 Controller.app" ]; then
+  brew uninstall --cask --force sonos
+  rm -rf "/Applications/Sonos S1 Controller.app"
+  brew cleanup
+  brew update
+fi
+_install_sonos() {
+  cecho "Install Sonos? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask sonos
+  fi
+}
+sw_install "/Applications/Sonos.app" _install_sonos
 
 _install_plexdesktop() {
   cecho "Install Plex Desktop? (y/N)" $magenta
