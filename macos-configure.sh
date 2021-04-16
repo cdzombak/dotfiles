@@ -125,6 +125,11 @@ echo "Don't automatically hide the menu bar"
 defaults write -g "_HIHideMenuBar" '0'
 
 echo ""
+echo "Customize menu bar clock appearance"
+defaults write "com.apple.menuextra.clock" "ShowDayOfWeek" '0'
+defaults write "com.apple.menuextra.clock" "ShowDayOfMonth" '0'
+defaults write "com.apple.menuextra.clock" "DateFormat" '"H:mm"'
+defaults write "com.apple.menuextra.clock" "Show24Hour" '1'
 
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
