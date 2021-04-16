@@ -49,6 +49,7 @@ if [ -e "/Applications/1Password 7.app" ]; then
   set -e
   defaults write com.agilebits.onepassword7 compromisedPasswordServiceV2 1
   defaults write com.agilebits.onepassword7 ShowStatusItem -bool false
+  defaults write com.agilebits.onepassword7 watchtowerMakeHTTPSAlwaysAskForConsent 0
 else
   echo "(Not installed.)"
 fi
