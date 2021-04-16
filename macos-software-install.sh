@@ -217,7 +217,7 @@ sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
-  "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there"
+  "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
