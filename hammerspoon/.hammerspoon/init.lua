@@ -42,7 +42,7 @@ require('control-escape')
 require('delete-words')
 -- require('logitech-mouse')
 require('markdown')
-require('scratchtext')
+-- require('scratchtext')
 -- require('super')
 require('windows')
 
