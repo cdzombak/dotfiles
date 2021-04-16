@@ -66,12 +66,25 @@ else
   echo "(Not installed.)"
 fi
 
-echo "Bartender ..."
+echo "Bartender 3 ..."
 if [ -e "/Applications/Bartender 3.app" ]; then
   osascript -e "tell application \"Bartender 3\" to quit"
-  defaults write ReduceUpdateCheckFrequencyWhenOnBattery -bool true
+  defaults write com.surteesstudios.Bartender ReduceUpdateCheckFrequencyWhenOnBattery -bool true
   set +e
   open -a "Bartender 3"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "Bartender 4 ..."
+if [ -e "/Applications/Bartender 4.app" ]; then
+  cecho "TODO(cdzombak): This configuration block may need to change if I move to Setapp's Bartender 4 due to licensing." $white
+  osascript -e "tell application \"Bartender 4\" to quit"
+  defaults write "com.surteesstudios.Bartender" "ReduceMenuItemSpacing" '1'
+  defaults write "com.surteesstudios.Bartender" "ReduceUpdateCheckFrequencyWhenOnBattery" '1'
+  set +e
+  open -a "Bartender 4"
   set -e
 else
   echo "(Not installed.)"
