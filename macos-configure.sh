@@ -359,6 +359,9 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+defaults write "com.apple.Safari" "WebKitPreferences.developerExtrasEnabled" '1'
+defaults write "com.apple.Safari" "IncludeDevelopMenu" '1'
+defaults write "com.apple.Safari.SandboxBroker" "ShowDevelopMenu" '1'
 
 # Add a context menu item for showing the Web Inspector in web views
 # defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
@@ -406,6 +409,10 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 echo ""
 echo "Update extensions automatically"
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
+echo ""
+echo "Disable tab switching w/command-#"
+defaults write "com.apple.Safari" "Command1Through9SwitchesTabs" '0'
 
 ###############################################################################
 # Mail
