@@ -19,7 +19,8 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [x] Run setup scripts (\`make mac\`)
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
-- [ ] Run \`mouse-tracking\` script as appropriate
+    - [ ] Reset font to Meslo LG M for Powerline after initial install
+- [ ] Rename "Macintosh HD"
 
 ## System Preferences
 
@@ -36,25 +37,36 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] 5 minutes to screen saver; 5 second delay before locking screen
 - [ ] 2 minutes to screen off when on battery; 10 minutes on AC
 - [ ] Review other Energy settings as desired
+    - [ ] Enable optimizing video streaming while on battery
 - [ ] Name Touch ID finger & add the other index finger
+- [ ] Find My Mac & Find My Network
+
+### Apple ID & iCloud
+
+- [ ] Enable iCloud, except Contacts & Mail
+    - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
+    - [ ] Enable Desktop & Documents folders, as desired
+- [ ] Enable Touch ID for purchases
 
 ### Apple Pay
 
 - [ ] Add current cards to Apple Pay, as desired
 - [ ] Set address correctly
+- [ ] Set default card
+
+### Desktop & Screen Saver
+
+- [ ] Customize as desired
 
 ### Extensions
 
 - [ ] Configure share/action extensions as desired
 
-### iCloud & Internet Accounts
+### Internet Accounts
 
-- [ ] Enable iCloud, except Contacts & Mail
-    - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
-    - [ ] Enable Desktop & Documents folders, as desired
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
 
-### Keyboard + Touch Bar
+### Keyboard + Touch Bar (as applicable)
 
 - [ ] Touch Bar Shows: Expanded Control Strip
 - [ ] Fn key shows: F1, F2, …
@@ -66,33 +78,37 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Enable Dictation + Enhanced Dictation
     - [ ] Set shortcut: right Command key twice
 
-### Sharing (as desired)
+### Notifications
 
-- [ ] Enable Remote Access (SSH)
-
-### Software Update
-
-- [ ] Enable all options except auto-install major macOS updates
-
-### Siri
-
-- [ ] Disable Siri, if necessary
-
-### Desktop & Screen Saver
-
-- [ ] Customize as desired
+- [ ] Disable entirely for Books, Calendars, Games, Home, Mail, Music, Reminders
+- [ ] Adjust other preferences as desired
 
 ### Printers & Scanners
 
 - [ ] Install home printer
 
+### Sharing (as desired)
+
+- [ ] Enable Remote Login (SSH/SFTP)
+
+### Siri
+
+- [ ] Disable Ask Siri
+
+### Software Update
+
+- [ ] Enable all options except auto-install major macOS updates
+
 ### Sound
 
 - [ ] Alerts play through selected sound output device
+- [ ] Set alert volume to ~75%
 
 ### Users & Groups
 
 - [ ] Disable guest access
+- [ ] Audit login items
+- [ ] Set account photo
 
 ## Dock
 
@@ -105,11 +121,11 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 ## Mail
 
-- [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\`
+- [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Check messages automatically
 - [ ] Set message fonts
-- [ ] Disable new message sound
-- [ ] Disable loading remote content in messages
 - [ ] Notifications: badges & notification center only; no sound
+- [ ] Arrange sidebar; set Favorites
 
 ## Messages
 
@@ -117,19 +133,27 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Disable notifications for messages from unknown contacts
 - [ ] Set Do Not Disturb for active group threads
 - [ ] Enable iPhone sending SMS to this Mac
-- [ ] Notifications: never show notification preview
+- [ ] Notifications: show previews when unlocked
+- [ ] Increase font size
 
 ## Notification Center
 
-- [ ] Add Now Playing widget
-- [ ] Configure based on screenshot in \`~/Sync/Configs\`
+- [ ] Add Weather
+- [ ] Add Screen Time
+- [ ] Configure based on screenshot in \`~/Sync/Configs\` (or current favorite system)
 
 ## Safari
 
 - [ ] Walk through Preferences, configuring as desired
-- [ ] Enable Develop menu
-- [ ] Disable AutoFill (in favor of [1Password 7.7](https://blog.1password.com/big-sur-1password-7-7/))
-- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\`
+    - [ ] Enable Develop menu
+    - [ ] Disable AutoFill (in favor of [1Password 7.7+](https://blog.1password.com/big-sur-1password-7-7/))
+- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+
+## Desk Setup
+
+- [ ] Pair with Bluetooth keyboard
+    - [ ] Change Caps Lock to Control in Keyboard preferences
+- [ ] Run \`mouse-tracking\` script as appropriate
 EOF
 fi
 
