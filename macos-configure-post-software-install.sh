@@ -450,6 +450,7 @@ if [ -e "/Applications/Setapp.app" ]; then
   defaults write com.setapp.DesktopClient EnableLauncher -bool false
   defaults write com.setapp.DesktopClient KeepTeasers -bool false
   defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
+  defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
   set +e
   open -a "Setapp"
   set -e
