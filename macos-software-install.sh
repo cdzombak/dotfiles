@@ -199,8 +199,13 @@ _install_listening() {
     mv "$HOME/opt/bin/listening" /usr/local/bin
   else
     pushd /usr/local/bin
-    wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
-    chmod +x listening
+    if [ -w . ]; then
+      wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
+      chmod +x listening
+    else
+      sudo wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
+      sudo chmod +x listening
+    fi
     popd
   fi
 }
