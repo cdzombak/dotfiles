@@ -521,6 +521,23 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Grids ..."
+if [ -e "/Applications/Setapp/Grids.app" ]; then
+  osascript -e "tell application \"Grids\" to quit"
+  defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
+  if ! grep -c "Grids.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Grids.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable menu bar icon" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable most or all notifications" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set spacing tp \`16\`" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign in" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
 echo "HazeOver ..."
 if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   osascript -e "tell application \"HazeOver\" to quit"
