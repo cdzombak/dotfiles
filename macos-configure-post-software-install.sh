@@ -531,6 +531,23 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Screens ..."
+if [ -e "/Applications/Setapp/Screens.app" ]; then
+  osascript -e "tell application \"Screens\" to quit"
+  defaults write "com.edovia.screens.mac-setapp" "showInMenuBar" '0'
+  defaults write "com.edovia.screens.mac-setapp" "CollapseDiscoveredViewKey" '1'
+  defaults write "com.edovia.screens.mac-setapp" "useSharedClipboardMac" '1'
+  if ! grep -c "Screens.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Screens.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Connect" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable iCloud sync" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
 echo "SQLPro Studio ..."
 if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
   osascript -e "tell application \"SQLPro Studio\" to quit"
