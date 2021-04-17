@@ -1266,6 +1266,11 @@ _install_sonos() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask sonos
+    # shellcheck disable=SC2129
+    echo "## Sonos.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "**Note:** do not enable notifications." >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
   fi
 }
 sw_install "/Applications/Sonos.app" _install_sonos
