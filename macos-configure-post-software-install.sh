@@ -518,6 +518,25 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Keysmith ..."
+if [ -e "/Applications/Setapp/Keysmith.app" ]; then
+  osascript -e "tell application \"Keysmith\" to quit"
+  defaults write "app.keysmith.Keysmith-setapp" "shouldEnableEnhancedAXModeInBrowsers" '1'
+  if ! grep -c "Keysmith.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Keysmith.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+  set +e
+  open -a "Keysmith"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "Path Finder ..."
 if [ -e "/Applications/Setapp/Path Finder.app" ]; then
   osascript -e "tell application \"Path Finder\" to quit"
