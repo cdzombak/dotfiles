@@ -193,7 +193,7 @@ sw_install /Applications/Ejector.app _install_ejector \
   "- [ ] Configure (start at login)\n- [ ] License"
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension\n- [ ] Customize All Vaults\n- [ ] Set keyboard shortcuts\n- [ ] Enable Alfred integration"
+  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension\n- [ ] Customize All Vaults\n- [ ] Set keyboard shortcuts\n- [ ] Enable Alfred integration\n- [ ] Config: Hide in Menu Bar\n- [ ] Config: Open in background at login\n- [ ] Disable all Safari autofill features but \"Other Forms\""
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
@@ -207,7 +207,7 @@ sw_install "/Applications/Bartender 3.app" "brew_cask_install bartender" \
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
-  "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
+  "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Set as default browser\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
 sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
@@ -323,12 +323,12 @@ fi
 sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 sw_install /Applications/Better.app "mas install 1121192229" \
-  "- [ ] Enable Better Blocker Safari extension"
+  "- [ ] Enable Better Blocker Safari extension\n- [ ] Enable Start at Login"
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
 sw_install /Applications/Deliveries.app "mas install 924726344" \
-  "- [ ] Sign into Junecloud account\n- [ ] Enable background upadting\n- [ ] Add widget to Notification Center\n- [ ] Disable all notifications options, except showing in Notification Center"
+  "- [ ] Sign into Junecloud account\n- [ ] Enable background updating\n- [ ] Add widget to Notification Center\n- [ ] Disable all notification options via System Preferences, except showing in Notification Center"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
@@ -337,7 +337,7 @@ sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
-  "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text"
+  "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482" \
