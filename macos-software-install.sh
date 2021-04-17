@@ -348,6 +348,7 @@ _install_things() {
   mas install 904280696 # Things
   brew install --cask thingsmacsandboxhelper
 }
+# nb. Things shows in Finder as Things.app but its filename is Things3.app
 sw_install "/Applications/Things3.app" _install_things \
   "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add widget to Notification Center"
 
