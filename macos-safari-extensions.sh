@@ -33,7 +33,7 @@ sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
 
 sw_install "/Applications/StopTheMadness.app" "mas install 1376402589" \
-  "- [ ] Enable StopTheMadness Safari Extension\n- [ ] Enable Open Link With -> Choosy\n- [ ] Install Firefox extension"
+  "- [ ] Enable StopTheMadness Safari Extension\n- [ ] Enable Open Link With -> Choosy\n- [ ] Install Firefox extension\n- [ ] Configure"
 
 _install_stopthenews() {
   set -x
