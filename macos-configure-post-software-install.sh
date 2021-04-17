@@ -389,6 +389,14 @@ if [ -e "/Applications/Things3.app" ]; then
   }'
   defaults write com.culturedcode.ThingsMac CCDockCountType 1
   defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
+  if ! grep -c "Things.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Things.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set keyboard shortcuts" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable autofill via Things Helper" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set calendar & reminders integration settings" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
   set +e
   open -a "Things3"
   set -e
