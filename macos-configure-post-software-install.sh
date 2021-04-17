@@ -506,6 +506,21 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Glyphfinder ..."
+if [ -e "/Applications/Setapp/Glyphfinder.app" ]; then
+  if ! grep -c "Glyphfinder.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Glyphfinder.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set shortcut Ctrl+Shift+G" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+  set +e
+  open -a "Glyphfinder"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "HazeOver ..."
 if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   osascript -e "tell application \"HazeOver\" to quit"
