@@ -1328,8 +1328,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-remotehelperapp" ]; then
       pushd "$TMP_DIR"
       wget --quiet -O "RemoteForMac.zip" "https://cherpake.com/download-latest"
       unzip ./RemoteForMac.zip
-      installer -pkg ./Remote-for-Mac-*.pkg -target /
+      sudo installer -pkg ./Remote-for-Mac-*.pkg -target /
       popd
+      # shellcheck disable=SC2129
+      echo "## Remote for Mac.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Work through required permissions" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-remotehelperapp"
