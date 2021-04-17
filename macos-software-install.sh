@@ -36,6 +36,14 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 echo ""
+cecho "You need to be signed into the App Store to continue." $white
+cecho "Open the App Store? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  open -a "App Store"
+fi
+
+echo ""
 sw_install "$(brew --prefix)/bin/mas" "brew install mas"
 
 sw_install /Applications/Xcode.app "mas install 497799835"
