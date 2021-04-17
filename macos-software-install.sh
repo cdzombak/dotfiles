@@ -1051,8 +1051,8 @@ sw_install "/Applications/SF Symbols.app" _install_sfsymbols
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  cecho "TODO(cdzombak): script artifacts checks for Latex tools" $red
-  echo "           See: https://github.com/cdzombak/dotfiles/issues/9"
+  cecho "TODO(cdzombak): script artifacts checks for Latex tools" $white
+  cecho "           See: https://github.com/cdzombak/dotfiles/issues/9" $white
   brew install --cask mactex
   brew install --cask texmaker
 fi
