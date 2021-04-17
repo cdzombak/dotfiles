@@ -1486,6 +1486,11 @@ _install_discord() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask discord
+    # shellcheck disable=SC2129
+    echo "## Discord.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
   fi
 }
 sw_install /Applications/Discord.app _install_discord
