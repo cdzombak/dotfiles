@@ -101,7 +101,9 @@ sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
 sw_install "$(brew --prefix)/bin/lua" "brew_install lua"
 sw_install "$(brew --prefix)/bin/mdcat" "brew_install mdcat"
 sw_install "$(brew --prefix)/bin/mogrify" "brew_install imagemagick"
-sw_install "$(brew --prefix)/bin/mysides" "brew_cask_install mysides"
+if [ ! -e "$(brew --prefix)/bin/mysides" ] && [ ! -e "/usr/local/bin/mysides" ]; then
+  brew install --cask mysides
+fi
 sw_install "$(brew --prefix)/bin/nano" "brew_install nano"
 sw_install "$(brew --prefix)/bin/ncdu" "brew_install ncdu"
 sw_install "$(brew --prefix)/bin/nnn" "brew_install nnn"
