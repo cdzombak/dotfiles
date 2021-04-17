@@ -415,7 +415,7 @@ _install_setapp() {
   done
 }
 sw_install /Applications/Setapp.app _install_setapp \
-  "- [ ] Sign in to Setapp\n- [ ] Install & configure applications from Setapp Favorites (as desired)"
+  "- [ ] Sign in to Setapp\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
 
 _install_ears() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
@@ -436,7 +436,7 @@ _install_airbuddy() {
   # shellcheck disable=SC2129
   echo "## AirBuddy.app" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] License ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Menu bar placement\n- [ ] Add Notification Center widget" >> "$HOME/SystemSetup.md"
+  echo -e "- [ ] License ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Add Notification Center widget" >> "$HOME/SystemSetup.md"
   echo "" >> "$HOME/SystemSetup.md"
 }
 sw_install /Applications/AirBuddy.app _install_airbuddy
