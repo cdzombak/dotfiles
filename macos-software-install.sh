@@ -35,6 +35,17 @@ echo -e "This script will use ${magenta}sudo${_reset}; enter your password to au
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# build out /usr/local tree, since we try to install stuff there:
+if [ -w /usr/local ]; then
+  mkdir -p /usr/local/bin
+  mkdir -p /usr/local/sbin
+  mkdir -p /usr/local/share/man/man1
+else
+  sudo mkdir -p /usr/local/bin
+  sudo mkdir -p /usr/local/sbin
+  sudo mkdir -p /usr/local/share/man/man1
+fi
+
 echo ""
 cecho "You need to be signed into the App Store to continue." $white
 cecho "Open the App Store? (y/N)" $magenta
