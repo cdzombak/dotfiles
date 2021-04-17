@@ -740,11 +740,28 @@ EXPECTED_SIDEBAR_CONTENT=(
   "Applications -> file:///Applications/"
   "$WHOAMI -> file:///Users/$WHOAMI/"
   "Desktop -> file:///Users/$WHOAMI/Desktop/"
-  "Documents -> file:///Users/$WHOAMI/Documents/"
   "Downloads -> file:///Users/$WHOAMI/Downloads/"
   "Sync -> file:///Users/$WHOAMI/Sync/"
   "tmp -> file:///Users/$WHOAMI/tmp/"
 )
+
+if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null ; then
+  # On Big Sur, if iCloud Documents is enabled, Documents doesn't seem to show in this list as expected. Weirdly, Desktop does.
+  # Save current IFS state
+  OLDIFS=$IFS
+  # Determine OS version
+  IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_vers -productVersion)"
+  # restore IFS to previous state
+  IFS=$OLDIFS
+  if [[ ${osvers_major} -lt 11 ]]; then
+    # on older OS than Big Sur, we can still check for Documents in the sidebar
+    EXPECTED_SIDEBAR_CONTENT+=("Documents -> file:///Users/$WHOAMI/Documents/")
+  fi
+else
+  # iCloud Documents is not enabled
+  EXPECTED_SIDEBAR_CONTENT+=("Documents -> file:///Users/$WHOAMI/Documents/")
+fi
+
 
 # remove anything that shouldn't be there...
 mysides list | while read -r LINE; do
