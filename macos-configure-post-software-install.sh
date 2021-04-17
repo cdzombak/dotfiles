@@ -487,6 +487,7 @@ if [ -e "/Applications/Setapp/Forecast Bar.app" ]; then
     echo "## Forecast Bar" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Set shift-ctrl-x global shortcut" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Select monochrome menu bar icons" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md" # doesn't use UserDefaults :(
     echo "" >> "$HOME/SystemSetup.md"
   fi
