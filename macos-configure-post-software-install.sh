@@ -119,7 +119,10 @@ fi
 
 echo "Choosy ..."
 if [ -e "/Applications/Choosy.app" ]; then
+  set +e
+  # On Big Sur, this _sometimes_ fails if Safari is running
   osascript -e "tell application \"Choosy\" to quit"
+  set -e
   defaults write com.choosyosx.Choosy generalMode 0
   defaults write com.choosyosx.Choosy launchAtLogin -bool true
   defaults write com.choosyosx.Choosy runningMode 3
