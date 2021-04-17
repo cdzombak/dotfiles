@@ -73,7 +73,12 @@ fi
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
-sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+if ! uname -p | grep -c "arm" >/dev/null; then
+  sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+else
+  cecho "Skipping bandwhich as Homebrew cannot install or build it for M1." $magenta
+  echo "See: https://github.com/Homebrew/homebrew-core/pull/75292"
+fi
 sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
 sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
