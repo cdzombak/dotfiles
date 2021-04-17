@@ -729,10 +729,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   if [ -f "$HOME/opt/bin/notify-me" ]; then
     rm "$HOME/opt/bin/notify-me"
   fi
-  set -x
-  curl -s --netrc --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me || curl -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  if [ -e "$HOME/.netrc" ] && ! grep -c "dropbox.dzombak.com login cdzombak password PUT_" "$HOME/.netrc" >/dev/null; then
+    curl -s --netrc --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  else
+    curl -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  fi
   chmod 755 "$HOME/opt/bin/notify-me"
-  set +x
 fi
 
 _install_colorsnapper() {
