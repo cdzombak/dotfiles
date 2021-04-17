@@ -399,12 +399,14 @@ _install_xcode_solarized() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'solarized-xcode')
   git clone "https://github.com/stackia/solarized-xcode.git" "$TMP_DIR"
   pushd "$TMP_DIR"
-  xcode_color_themes_dir="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
-  mkdir -p "$xcode_color_themes_dir"
-  cp ./*.dvtcolortheme "$xcode_color_themes_dir"
+  #xcode_color_themes_dir="$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
+  #mkdir -p "$xcode_color_themes_dir"
+  #cp ./*.dvtcolortheme "$xcode_color_themes_dir"
+  chmod +x ./install.sh
+  ./install.sh
   popd
 }
-sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.dvtcolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
+sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.xccolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
 
 _install_setapp() {
   brew install --cask setapp
