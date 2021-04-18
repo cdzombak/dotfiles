@@ -492,7 +492,8 @@ IFS=$OLDIFS
 if [[ ${osvers_major} -ge 11 ]]; then
   cecho "Applications not supported on older OS versions ..." $white
 
-  sw_install "/Applications/Instapaper.app" "mas install 288545208"
+  sw_install "/Applications/Instapaper.app" "mas install 288545208" \
+    "- [ ] Sign in to Instapaper"
   sw_install "/Applications/Secretive.app" "brew_cask_install secretive" \
     "- [ ] Walk through setup\n- [ ] Enable template in my SSH config\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config"
 else
