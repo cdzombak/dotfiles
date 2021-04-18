@@ -25,7 +25,7 @@ echo ""
 # Check to see if the Mac is reporting itself as running macOS 11
 if [[ ${osvers_major} -ge 11 ]]; then
   # Check to see if the Mac needs Rosetta installed by testing the processor
-  if /usr/sbin/sysctl -n machdep.cpu.brand_string | grep -c -o "Intel"; then
+  if /usr/sbin/sysctl -n machdep.cpu.brand_string | grep -c -o "Intel" >/dev/null; then
     echo "Intel processor detected. No need to install Rosetta."
   else
     # Check Rosetta LaunchDaemon.
