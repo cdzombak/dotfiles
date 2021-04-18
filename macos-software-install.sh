@@ -627,6 +627,7 @@ _install_unifiprotect() {
     git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
     pushd "$TMP_DIR"
     make install-mac
+    make clean
     popd
   fi
 }
