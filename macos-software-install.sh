@@ -493,6 +493,8 @@ if [[ ${osvers_major} -ge 11 ]]; then
   cecho "Applications not supported on older OS versions ..." $white
 
   sw_install "/Applications/Instapaper.app" "mas install 288545208"
+  sw_install "/Applications/Secretive.app" "brew_cask_install secretive" \
+    "- [ ] Walk through setup\n- [ ] Enable template in my SSH config\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config"
 else
   _install_instapaper_reader() {
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
