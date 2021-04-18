@@ -52,6 +52,8 @@ cecho "Open the App Store? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   open -a "App Store"
+  cecho "Press Enter to continue." $magenta
+  read -r response2
 fi
 
 echo ""
