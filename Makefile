@@ -1,3 +1,4 @@
+export PATH := /usr/local/bin:/opt/homebrew/bin:$(PATH)
 SHELL:=/usr/bin/env bash
 
 default: help
