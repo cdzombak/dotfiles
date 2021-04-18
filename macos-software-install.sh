@@ -502,6 +502,7 @@ else
     git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
     pushd "$TMP_DIR"
     make install-mac
+    make clean
     popd
   }
   sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
