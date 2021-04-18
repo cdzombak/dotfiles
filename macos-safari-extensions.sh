@@ -50,6 +50,19 @@ sw_install /Applications/StopTheNews.app _install_stopthenews
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 
+# Save current IFS state
+OLDIFS=$IFS
+# Determine OS version
+IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_vers -productVersion)"
+# restore IFS to previous state
+IFS=$OLDIFS
+if [[ ${osvers_major} -ge 11 ]]; then
+  cecho "Extensions not supported on older OS versions ..." $white
+
+  sw_install "/Applications/Hush.app" "mas install 1544743900" \
+    "- [ ] Enable Safari extension"
+fi
+
 cecho "Open Safari for configuration now? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
