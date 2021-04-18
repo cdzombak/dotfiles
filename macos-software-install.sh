@@ -190,7 +190,7 @@ _install_metar() {
   git clone "https://github.com/RyuKojiro/metar.git" "$TMP_DIR"
   pushd "$TMP_DIR"
   make
-  sudo make install
+  [ -w /usr/local/bin ] && make install || sudo make install
   popd
 }
 sw_install /usr/local/bin/metar _install_metar
