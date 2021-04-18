@@ -215,16 +215,6 @@ sw_install "/usr/local/bin/listening" _install_listening
 
 # Move on to macOS applications:
 
-_install_instapaper_reader() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
-  git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install-mac
-  popd
-}
-sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
-  "- [ ] Sign in to Instapaper"
-
 _install_ejector() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ejector-work')
   pushd "$TMP_DIR"
@@ -492,6 +482,28 @@ sw_install /Applications/AirBuddy.app _install_airbuddy
 
 sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
+
+# Save current IFS state
+OLDIFS=$IFS
+# Determine OS version
+IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_vers -productVersion)"
+# restore IFS to previous state
+IFS=$OLDIFS
+if [[ ${osvers_major} -ge 11 ]]; then
+  cecho "Applications not supported on older OS versions ..." $white
+
+  sw_install "/Applications/Instapaper.app" "mas install 288545208"
+else
+  _install_instapaper_reader() {
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
+    git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    popd
+  }
+  sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
+    "- [ ] Sign in to Instapaper"
+fi
 
 echo ""
 cecho "--- Interactive Section ---" $white
