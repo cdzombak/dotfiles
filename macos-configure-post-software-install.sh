@@ -723,7 +723,6 @@ if [ -e "/Applications/Marked 2.app" ]; then
   defaults write com.brettterpstra.marked2 includeMathJax -bool true
   defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
   defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
-  cecho "Configure otherwise as desired; in particular, license and add custom CSS files." $white
 else
   echo "(Not installed.)"
 fi
