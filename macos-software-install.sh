@@ -964,16 +964,18 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
 fi
 
-_install_virtualbox() {
-  cecho "Install VirtualBox? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask virtualbox virtualbox-extension-pack
-    mkdir -p "$HOME/VirtualBox VMs"
-    mkdir -p "$HOME/VM Images"
-  fi
-}
-sw_install /Applications/VirtualBox.app _install_virtualbox
+if ! uname -p | grep -c "arm" >/dev/null; then
+  _install_virtualbox() {
+    cecho "Install VirtualBox? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask virtualbox virtualbox-extension-pack
+      mkdir -p "$HOME/VirtualBox VMs"
+      mkdir -p "$HOME/VM Images"
+    fi
+  }
+  sw_install /Applications/VirtualBox.app _install_virtualbox
+fi
 
 YES_INSTALL_KUBECTL=false
 echo ""
