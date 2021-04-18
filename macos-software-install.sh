@@ -421,19 +421,18 @@ _install_hosts_timer() {
 sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
 
 # Install Webster's 1913 Dictionary
-# mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
 # See: http://jsomers.net/blog/dictionary
 _install_websters() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dictionary')
   pushd "$TMP_DIR"
-  wget https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
-  unzip Webster.s.1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
+  wget https://github.com/ponychicken/WebsterParser/releases/download/1.3.4/websters-1913.dictionary.zip
+  unzip websters-1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
   rm -rf "$HOME/Library/Dictionaries/__MACOSX"
   popd
   cecho "Opening Dictionary.app; please rearrange Webster’s 1913 to the top / as desired." $white
   open -a Dictionary
 }
-sw_install "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" _install_websters \
+sw_install "$HOME/Library/Dictionaries/websters-1913.dictionary" _install_websters \
   "- [ ] Drag Webster’s 1913 to the top of the list in Dictionary.app's Preferences"
 
 # Solarized for Xcode
