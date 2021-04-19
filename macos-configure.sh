@@ -437,9 +437,14 @@ defaults write "com.apple.mail" "NSFontSize" '15'
 defaults write "com.apple.mail" "NSFixedPitchFont" '"MesloLGM-Regular"'
 defaults write "com.apple.mail" "NSFixedPitchFontSize" '14'
 
-echo ""
-echo "Show all member addresses when sending to a group"
-defaults write "com.apple.mail-shared" "ExpandPrivateAliases" '1'
+if defaults read com.apple.mail-shared >/dev/null; then
+  echo ""
+  echo "Show all member addresses when sending to a group"
+  defaults write "com.apple.mail-shared" "ExpandPrivateAliases" '1'
+else
+  echo ""
+  echo "[info] Skipping settings in mail-shared group which does not exist"
+fi
 
 ###############################################################################
 # iTunes
