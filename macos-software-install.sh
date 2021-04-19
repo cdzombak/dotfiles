@@ -235,7 +235,7 @@ sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
-  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Setup emails via Mailgun\n- [ ] Enable automatic updates\n- [ ] Enable backup using administrator privileges\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
+  "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Setup emails via Mailgun\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
 if [ ! -e "/Applications/Bartender 3.app" ] && [ ! -e "/Applications/Bartender 4.app" ]; then
   sw_install "/Applications/Bartender _.app" "brew_cask_install bartender" \
     "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
