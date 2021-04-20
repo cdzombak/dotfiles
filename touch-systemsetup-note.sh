@@ -154,6 +154,10 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Pair with Bluetooth keyboard
     - [ ] Change Caps Lock to Control in Keyboard preferences
 - [ ] Run \`mouse-tracking\` script as appropriate
+- [ ] Display setup
+    - [ ] Change display resolution as needed
+    - [ ] Change display arrangement as needed
+    - [ ] Confirm 5k/60Hz resolution via System Information app
 EOF
 fi
 
