@@ -734,6 +734,12 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask screens-connect
+      # shellcheck disable=SC2129
+      echo "## /Applications/Screens Connect.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign in / enable" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-screensconnect"
