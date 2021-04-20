@@ -261,7 +261,8 @@ sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
-sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
+sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
+  "- [ ] Allow full disk access"
 sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
   "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
@@ -1874,6 +1875,13 @@ if [ -e "/Applications/Living Earth Desktop.app" ]; then
   echo "Living Earth Desktop..."
   verify_smartdelete
   trash "/Applications/Living Earth Desktop.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/NepTunes.app ]; then
+  echo "NepTunes..."
+  verify_smartdelete
+  trash "/Applications/NepTunes.app"
   REMOVED_ANYTHING=true
 fi
 
