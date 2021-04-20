@@ -79,7 +79,6 @@ fi
 
 echo "Bartender 4 ..."
 if [ -e "/Applications/Bartender 4.app" ]; then
-  cecho "TODO(cdzombak): This configuration block may need to change if I move to Setapp's Bartender 4 due to licensing." $white
   osascript -e "tell application \"Bartender 4\" to quit"
   defaults write "com.surteesstudios.Bartender" "ReduceMenuItemSpacing" '1'
   defaults write "com.surteesstudios.Bartender" "ReduceUpdateCheckFrequencyWhenOnBattery" '1'
