@@ -1841,6 +1841,13 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Instapaper.app" ] && [ -e "/Applications/Instapaper Reader.app" ]; then
+  echo "Instapaper Reader (replaced by Instapaper app from the App Store) ..."
+  verify_smartdelete
+  trash "/Applications/Instapaper Reader.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Keybase.app" ]; then
   echo "Keybase..."
   verify_smartdelete
