@@ -496,6 +496,8 @@ if [[ ${osvers_major} -ge 11 ]]; then
     "- [ ] Sign in to Instapaper"
   sw_install "/Applications/Secretive.app" "brew_cask_install secretive" \
     "- [ ] Walk through setup\n- [ ] Enable template in my SSH config\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config"
+  sw_install "/Applications/Shareful.app" "mas install 1522267256" \
+    "- [ ] Enable share extensions as desired"
 else
   _install_instapaper_reader() {
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
