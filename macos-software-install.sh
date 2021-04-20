@@ -146,7 +146,7 @@ sw_install "$(brew --prefix)/bin/shfmt" "brew_install shfmt"
 sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
 sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
 sw_install "$(brew --prefix)/Cellar/syncthing" "brew_install syncthing && brew services start syncthing" \
-  "- [ ] Begin syncing \`~/Sync\`\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
+  "- [ ] Begin syncing \`~/Sync\`\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)\n- [ ] Staggered file versioning, 60 days (set on Sync folder)\n- [ ] Add \`#include Configs/globalstignore\` to Sync folder's ignore list\n- [ ] Minimum disk space 10% (in app settings & on Sync folder)"
 sw_install "$(brew --prefix)/bin/terminal-notifier" "brew_install terminal-notifier"
 sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
 sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
