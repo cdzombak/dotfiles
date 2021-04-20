@@ -1771,6 +1771,13 @@ if [ -e "/Applications/AltTab.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Bartender 3.app" ] && [ -e "/Applications/Bartender 4.app" ]; then
+  echo "Bartender 3 (replaced by Bartender 4) ..."
+  verify_smartdelete
+  trash "/Applications/Bartender 3.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Bunch.app" ]; then
   echo "Bunch..."
   verify_smartdelete
