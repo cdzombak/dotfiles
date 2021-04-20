@@ -581,7 +581,7 @@ fi
 echo "Mission Control Plus ..."
 if [ -e "/Applications/Setapp/Mission Control Plus.app" ]; then
   if ! grep -c "Mission Control Plus.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Keysmith.app" >> "$HOME/SystemSetup.md"
+    echo "## Mission Control Plus.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Disable complex keyboard shortcuts" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
