@@ -743,7 +743,7 @@ EXPECTED_SIDEBAR_CONTENT=(
   "tmp -> file:///Users/$WHOAMI/tmp/"
 )
 
-if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null ; then
+if diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null ; then
   # On Big Sur, if iCloud Documents is enabled, Documents doesn't seem to show in this list as expected. Weirdly, Desktop does.
   # Save current IFS state
   OLDIFS=$IFS
