@@ -765,6 +765,8 @@ fi
 mysides list | while read -r LINE; do
   # only looking at file:// URLs; don't mess with " -> nwnode://domain-AirDrop"
   if ! echo "$LINE" | grep -c "file://" >/dev/null; then continue; fi
+  # skip CloudMounter sidebar entries
+  if echo "$LINE" | grep -c "CMVolumes" >/dev/null; then continue; fi
 
   NAME="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $1}')"
   URI="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $2}')"
