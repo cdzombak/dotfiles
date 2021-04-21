@@ -78,6 +78,11 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Enable Dictation + Enhanced Dictation
     - [ ] Set shortcut: right Command key twice
 
+### Network
+
+- [ ] Add home VPN config
+- [ ] Show VPN status in menu bar; hide in Bartender Bar
+
 ### Notifications
 
 - [ ] Disable entirely for Books, Calendars, Games, Home, Mail, Music, Reminders
