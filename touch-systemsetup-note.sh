@@ -81,6 +81,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 ### Network
 
 - [ ] Add home VPN config
+    - [ ] Enable 'Send All Traffic Over VPN'
 - [ ] Show VPN status in menu bar; hide in Bartender Bar
 
 ### Notifications
