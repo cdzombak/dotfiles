@@ -24,9 +24,6 @@ function sw_install() {
     return 0
   fi
 
-  echo ""
-  cecho "Installing $ARTIFACT..." $cyan
-
   function brew_install() {
     brew install "$1"
     CAVEATS="$(brew caveats "$1" | tail -n +2)"
@@ -49,7 +46,20 @@ function sw_install() {
     fi
   }
 
-  eval "$INSTALL_CMD"
+  ASK=${CDZ_EVERYTHING_OPTIONAL:-false}
+  if [ "$ASK" = true ]; then
+    cecho "Install $ARTIFACT? (y/N)   (mode: everything is optional)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      echo ""
+      cecho "Installing $ARTIFACT..." $cyan
+      eval "$INSTALL_CMD"
+    fi
+  else
+    echo ""
+    cecho "Installing $ARTIFACT..." $cyan
+    eval "$INSTALL_CMD"
+  fi
 
   if [[ -n "$TODOS" ]]; then
     # shellcheck disable=SC2129
