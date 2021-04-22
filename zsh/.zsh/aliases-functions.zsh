@@ -95,6 +95,15 @@ senv() {
     fi
 }
 
+# import environment variables from .env in the current directory
+# https://stackoverflow.com/a/30969768
+dotenv() {
+    set -o allexport
+    source .env
+    set +o allexport
+    export _RPROMPT_ENV='.env'
+}
+
 # download YouTube video -> local Plex server
 plex-ytdl() {
     ssh -t curie-remote "/Users/cdzombak/code/youtube-dl-wrapper.sh \"$1\""
