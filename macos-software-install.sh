@@ -250,7 +250,6 @@ sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
 sw_install /Applications/Firefox.app "brew_cask_install firefox" \
   "- [ ] Sign into Firefox Sync\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks"
-sw_install /Applications/Fork.app "brew_cask_install fork"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
 sw_install /Applications/IINA.app "brew_cask_install iina"
@@ -387,7 +386,7 @@ _install_things() {
 }
 # nb. Things shows in Finder as Things.app but its filename is Things3.app
 sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n- [ ] Configure as desired\n- [ ] Add widget to Notification Center"
+  "- [ ] Sign into Things Cloud account\n- [ ] Set keyboard shortcuts\n- [ ] Enable autofill via Things Helper\n- [ ] Set calendar & reminders integration settings\n- [ ] Add widget to Notification Center"
 
 _install_unshorten() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
@@ -826,11 +825,13 @@ cecho "--- Dev Tools ---" $white
 echo ""
 
 cecho "Install basic development tools? (y/N)" $magenta
-echo "(cloc, Expressions, hexyl, Sublime Merge, TextBuddy)"
+echo "(cloc, Expressions, Fork, hexyl, Sublime Merge, TextBuddy)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
   sw_install /Applications/Expressions.app "mas install 913158085"
+  sw_install /Applications/Fork.app "brew_cask_install fork" \
+    "- [ ] Set Git instance\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)"
   sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \

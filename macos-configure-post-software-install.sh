@@ -211,14 +211,6 @@ if [ -e "/Applications/Fork.app" ]; then
   defaults write com.DanPristupov.Fork diffFontSize 11
   defaults write com.DanPristupov.Fork diffFontSize 13
   defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
-  if ! grep -c "Fork.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Fork.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set Git instance" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set Terminal tool (iTerm2)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set Diff & Merge tools (Kaleidoscope)" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
 else
   echo "(Not installed.)"
 fi
@@ -401,14 +393,6 @@ if [ -e "/Applications/Things3.app" ]; then
   }'
   defaults write com.culturedcode.ThingsMac CCDockCountType 1
   defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
-  if ! grep -c "Things.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Things.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set keyboard shortcuts" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Enable autofill via Things Helper" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set calendar & reminders integration settings" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
   set +e
   open -a "Things3"
   set -e
