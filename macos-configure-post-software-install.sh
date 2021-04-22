@@ -382,6 +382,16 @@ else
   echo "(Not installed.)"
 fi
 
+echo "TextBuddy ..."
+if [ -e "/Applications/TextBuddy.app" ]; then
+  osascript -e "tell application \"TextBuddy\" to quit"
+  defaults delete "com.clickontyler.TextBuddy" "userSyncEnabled"
+  defaults delete "com.clickontyler.TextBuddy" "showOnActivate"
+  defaults write "com.clickontyler.TextBuddy" "numberLinesFromZero" '0'
+else
+  echo "(Not installed.)"
+fi
+
 echo "Things ..."
 if [ -e "/Applications/Things3.app" ]; then
   osascript -e "tell application \"Things3\" to quit"

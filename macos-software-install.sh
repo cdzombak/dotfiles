@@ -826,13 +826,15 @@ cecho "--- Dev Tools ---" $white
 echo ""
 
 cecho "Install basic development tools? (y/N)" $magenta
-echo "(cloc, Expressions, hexyl, Sublime Merge)"
+echo "(cloc, Expressions, hexyl, Sublime Merge, TextBuddy)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
   sw_install /Applications/Expressions.app "mas install 913158085"
   sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
+  sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
+    "- [ ] Assign global shortcut Ctrl+Shift+T\n- [ ] License"
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
