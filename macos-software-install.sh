@@ -379,6 +379,10 @@ sw_install /Applications/RadarScope.app "mas install 432027450" \
 sw_install /Applications/Reeder.app "mas install 1449412482" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
+sw_install "/Applications/Instapaper.app" "mas install 288545208" \
+    "- [ ] Sign in to Instapaper"
+sw_install "/Applications/Shareful.app" "mas install 1522267256" \
+    "- [ ] Enable share extensions as desired"
 
 _install_things() {
   mas install 904280696 # Things
@@ -483,31 +487,6 @@ sw_install /Applications/AirBuddy.app _install_airbuddy
 sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
 
-# Save current IFS state
-OLDIFS=$IFS
-# Determine OS version
-IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_vers -productVersion)"
-# restore IFS to previous state
-IFS=$OLDIFS
-if [[ ${osvers_major} -ge 11 ]]; then
-  cecho "Applications not supported on older OS versions ..." $white
-
-  sw_install "/Applications/Instapaper.app" "mas install 288545208" \
-    "- [ ] Sign in to Instapaper"
-  sw_install "/Applications/Shareful.app" "mas install 1522267256" \
-    "- [ ] Enable share extensions as desired"
-else
-  _install_instapaper_reader() {
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
-    git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  }
-  sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
-    "- [ ] Sign in to Instapaper"
-fi
 _install_loficafe() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
   git clone "https://github.com/cdzombak/lofiapp.git" "$TMP_DIR"
