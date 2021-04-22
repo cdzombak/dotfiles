@@ -169,6 +169,15 @@ if [ -e "/Applications/Fantastical.app" ]; then
     "Refresh All" = "@r";
     Reminders = "@^$r";
   }'
+  set +e
+  killall 85C27NK92C.com.flexibits.fantastical2.mac.helper
+  # shellcheck disable=SC2016
+  defaults write 85C27NK92C.com.flexibits.fantastical2.mac.helper NSUserKeyEquivalents '{
+    "Refresh All" = "@r";
+    Reminders = "@^$r";
+  }'
+  killall 85C27NK92C.com.flexibits.fantastical2.mac.helper
+  set -e
 else
   echo "(Not installed.)"
 fi
