@@ -71,10 +71,6 @@ if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.local/dotfiles/no-home-env-dir" ]; the
   fi
 fi
 
-if [ ! -L "$HOME/Public/burr" ]; then
-  ln -s "$HOME/Sync/public" "$HOME/Public/burr"
-fi
-
 if [ ! -L "$HOME/Applications/macOS Utilities" ]; then
   ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Utilities" "$HOME/Applications/macOS Utilities"
 fi
