@@ -508,6 +508,15 @@ else
   sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader \
     "- [ ] Sign in to Instapaper"
 fi
+_install_loficafe() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
+  git clone "https://github.com/cdzombak/lofiapp.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install-mac
+  make clean
+  popd
+}
+sw_install "/Applications/Lofi Cafe.app" _install_loficafe
 
 echo ""
 cecho "--- Interactive Section ---" $white
