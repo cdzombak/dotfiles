@@ -904,6 +904,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
     pushd "$TMP_DIR/app"
     make install-mac
+    make clean
     popd
   }
   sw_install "/Applications/JSON Viewer.app" _install_json_viewer
