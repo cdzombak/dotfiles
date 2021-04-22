@@ -131,6 +131,11 @@ defaults write "com.apple.menuextra.clock" "ShowDayOfMonth" '0'
 defaults write "com.apple.menuextra.clock" "DateFormat" '"H:mm"'
 defaults write "com.apple.menuextra.clock" "Show24Hour" '1'
 
+echo ""
+echo "Messages.app text size"
+defaults write "com.apple.MobileSMS" "TextSize" '6'
+defaults write "com.apple.MobileSMS" "TextFontSize" '18'
+
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ################################################################################
@@ -553,17 +558,6 @@ echo "Mail.app Keyboard shortcut: ⇧⌘K to Clear Flag"
 defaults write com.apple.mail NSUserKeyEquivalents '{
   "Clear Flag" = "@$k";
 }'
-
-echo ""
-echo "Messages.app Keyboard shortcut: ⇧⌘W to Delete Conversation"
-# shellcheck disable=SC2016
-defaults write com.apple.iChat NSUserKeyEquivalents '{
-  "Delete Conversation\U2026" = "@$w";
-}'
-
-echo ""
-echo "Messages.app text size"
-defaults write com.apple.iChat TextSize 7
 
 echo ""
 echo "Photos.app Keyboard shortcut: ⌥T to Adjust Date & Time"
