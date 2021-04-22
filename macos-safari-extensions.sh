@@ -26,9 +26,6 @@ sw_install /Applications/Better.app "mas install 1121192229" \
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
   "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
 
-sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
-  "- [ ] Sign in\n- [ ] Enable Instapaper Safari extension"
-
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
 

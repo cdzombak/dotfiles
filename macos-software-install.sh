@@ -1870,6 +1870,13 @@ if [ -e "/Applications/Instapaper.app" ] && [ -e "/Applications/Instapaper Reade
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Instapaper Save.app" ]; then
+  echo "Instapaper Save..." # (keyboard shortcut in Safari conflicts with window layout mode)
+  verify_smartdelete
+  tras "/Applications/Instapaper Save.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Keybase.app" ]; then
   echo "Keybase..."
   verify_smartdelete
