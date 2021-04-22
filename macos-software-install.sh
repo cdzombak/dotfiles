@@ -589,7 +589,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
         ln -s "$HOME/.ssh/config.templates/yubikey-agent" "$HOME/.ssh/config.local/yubikey-agent"
       fi
       # shellcheck disable=SC2129
-      echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
+      echo "## yubikey-agent.app" >> "$HOME/SystemSetup.md"
       echo "" >> "$HOME/SystemSetup.md"
       echo -e "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed" >> "$HOME/SystemSetup.md"
       echo "" >> "$HOME/SystemSetup.md"
