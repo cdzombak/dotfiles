@@ -416,18 +416,15 @@ fi
 echo "Xcode ..."
 if [ -e /Applications/Xcode.app ]; then
   osascript -e "tell application \"Xcode\" to quit"
-
   # shellcheck disable=SC2016
   defaults write com.apple.dt.Xcode NSUserKeyEquivalents '{
       "Jump to Generated Interface" = "@^$i";
       "Print…" = "@~^$p";
   }'
-
   # See http://merowing.info/2015/12/little-things-that-can-make-your-life-easier-in-2016/
-
-  echo "  Show how long it takes to build your project"
+  # Show how long it takes to build your project:
   defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
-  echo "  Enable faster build times by leveraging multi-core CPU"
+  # Enable faster build times by leveraging multi-core CPU:
   defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $(sysctl -n hw.ncpu)
 else
   echo "(Not installed.)"
