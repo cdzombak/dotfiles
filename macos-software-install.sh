@@ -836,6 +836,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
     "- [ ] Assign global shortcut Ctrl+Shift+T\n- [ ] License"
+  [ -e /Applications/Setapp/CodeRunner.app ] || echo && cecho "Recommend installing CodeRunner via Setapp." $white
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then

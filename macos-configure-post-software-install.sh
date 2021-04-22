@@ -673,7 +673,13 @@ if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
   osascript -e "tell application \"CodeRunner\" to quit"
   defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
   defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
-  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
+  if ! grep -c "CodeRunner" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## CodeRunner" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set font to Meslo LG M 14pt" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
 else
   echo "(Not installed.)"
 fi
@@ -683,7 +689,6 @@ if [ -e "/Applications/CodeRunner.app" ]; then
   osascript -e "tell application \"CodeRunner\" to quit"
   defaults write com.krill.CodeRunner ColorTheme -string "Solarized (light)"
   defaults write com.krill.CodeRunner DefaultTabModeSoftTabs 1
-  cecho "Configure otherwise as desired; recommend Meslo LG M 14pt." $white
 else
   echo "(Not installed.)"
 fi
