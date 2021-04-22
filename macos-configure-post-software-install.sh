@@ -144,17 +144,6 @@ else
   echo "(Not installed.)"
 fi
 
-echo "Day One ..."
-if [ -e "/Applications/Day One.app" ]; then
-  osascript -e "tell application \"Day One\" to quit"
-  # shellcheck disable=SC2016
-  defaults write com.bloombuilt.dayone-mac NSUserKeyEquivalents '{
-    "Main Window" = "@0";
-  }'
-else
-  echo "(Not installed.)"
-fi
-
 echo "Due ..."
 if [ -e "/Applications/Due.app" ]; then
   osascript -e "tell application \"Due\" to quit"
