@@ -494,8 +494,6 @@ if [[ ${osvers_major} -ge 11 ]]; then
 
   sw_install "/Applications/Instapaper.app" "mas install 288545208" \
     "- [ ] Sign in to Instapaper"
-  sw_install "/Applications/Secretive.app" "brew_cask_install secretive" \
-    "- [ ] Walk through setup\n- [ ] Enable template in my SSH config\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config"
   sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions as desired"
 else
@@ -553,6 +551,29 @@ _install_istat(){
   fi
 }
 sw_install "/Applications/iStat Menus.app" _install_istat
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-secretive" ]; then
+  _install_secretive() {
+    cecho "Install Secretive (Touch ID SSH agent)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask secretive
+      if [ -e "$HOME/.ssh/config.templates/secretive-agent" ] && [ ! -e "$HOME/.ssh/config.local/secretive-agent" ]; then
+        mkdir -p "$HOME/.ssh/config.local/"
+        ln -s "$HOME/.ssh/config.templates/secretive-agent" "$HOME/.ssh/config.local/secretive-agent"
+      fi
+      # shellcheck disable=SC2129
+      echo "## Secretive.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Walk through setup\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-secretive"
+    fi
+  }
+  sw_install "/Applications/Secretive.app" _install_secretive
+fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
   _install_yubikey_agent() {
