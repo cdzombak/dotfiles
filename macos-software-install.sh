@@ -52,8 +52,9 @@ cecho "Open the App Store? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   open -a "App Store"
-  cecho "Press Enter to continue." $magenta
-  read -r response2
+  cecho "Verify you are signed into the App Store." $white
+  # shellcheck disable=SC2162
+  read -p "Press [Enter] to continue..."
 fi
 
 echo ""
@@ -325,6 +326,7 @@ _install_whatsyoursign() {
   open -a "$(brew info --cask whatsyoursign | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/WhatsYourSign Installer.app"
   while [ ! -e /Applications/WhatsYourSign.app ]; do
     cecho "Please complete WhatsYourSign installation." $white
+    # shellcheck disable=SC2162
     read -p "Press [Enter] to continue..."
   done
 }
@@ -451,6 +453,7 @@ _install_setapp() {
   open -a "$(brew info --cask setapp | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/Install Setapp.app"
   while [ ! -e /Applications/Setapp.app ]; do
     cecho "Please complete Setapp installation." $white
+    # shellcheck disable=SC2162
     read -p "Press [Enter] to continue..."
   done
 }
