@@ -14,7 +14,7 @@ function setupnote() {
   fi
 
   ARTIFACT_NAME="$1"
-  ARTIFACT_NAME=$(echo "$ARTIFACT_NAME" | sed 's/\.app$//' | sed 's/^\/Applications\///')
+  ARTIFACT_NAME=$(echo "$ARTIFACT_NAME" | sed 's/\.app$//' | sed 's/^\/Applications\///' | sed 's/^\/opt\/homebrew\/bin\///' | sed 's/^\/usr\/local\/bin\///')
   TODOS="$2"
 
   if ! grep -c "$ARTIFACT_NAME" "$HOME/SystemSetup.md" >/dev/null; then
