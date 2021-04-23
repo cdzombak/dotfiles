@@ -131,8 +131,11 @@ sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 
-sw_install "$(brew --prefix)/bin/tldr" "brew_install tealdeer"
-"$(brew --prefix)/bin/tldr" --update >/dev/null &
+_install_tealdeer() {
+  brew install tealdeer
+  "$(brew --prefix)/bin/tldr" --update >/dev/null &
+}
+sw_install "$(brew --prefix)/bin/tldr" _install_tealdeer
 
 if uname -p | grep -c "arm" >/dev/null; then
   cecho "Allowing failure for bandwhich as Homebrew cannot currently install or build it for Apple Silicon." $magenta
