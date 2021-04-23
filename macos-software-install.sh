@@ -86,15 +86,6 @@ brew tap | grep -c showwin/speedtest >/dev/null || brew tap showwin/speedtest
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
-if uname -p | grep -c "arm" >/dev/null; then
-  cecho "Allowing failure for bandwhich as Homebrew cannot currently install or build it for M1." $magenta
-  echo "See: https://github.com/Homebrew/homebrew-core/pull/75292"
-  set +e
-  sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
-  set -e
-else
-  sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
-fi
 sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
 sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
@@ -125,15 +116,6 @@ sw_install "$(brew --prefix)/bin/pup" "brew_install pup"
 sw_install "$(brew --prefix)/bin/python3" "brew_install python"
 sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
 sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
-if uname -p | grep -c "arm" >/dev/null; then
-  cecho "Allowing failure for shellcheck as Homebrew cannot currently install or build it for M1." $magenta
-  echo "See: https://github.com/Homebrew/homebrew-core/issues/74109"
-  set +e
-  sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
-  set -e
-else
-  sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
-fi
 sw_install "$(brew --prefix)/bin/shfmt" "brew_install shfmt"
 sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
 sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
@@ -150,6 +132,22 @@ sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 
 sw_install "$(brew --prefix)/bin/tldr" "brew_install tealdeer"
 "$(brew --prefix)/bin/tldr" --update &
+
+if uname -p | grep -c "arm" >/dev/null; then
+  cecho "Allowing failure for bandwhich as Homebrew cannot currently install or build it for Apple Silicon." $magenta
+  echo "See: https://github.com/Homebrew/homebrew-core/pull/75292"
+  set +e
+fi
+sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+set -e
+
+if uname -p | grep -c "arm" >/dev/null; then
+  cecho "Allowing failure for shellcheck as Homebrew cannot currently install or build it for Apple Silicon." $magenta
+  echo "See: https://github.com/Homebrew/homebrew-core/issues/74109"
+  set +e
+fi
+sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
+set -e
 
 sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
   "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
@@ -665,15 +663,21 @@ read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/Angry IP Scanner.app" "brew_cask_install angry-ip-scanner"
   sw_install /Applications/Discovery.app "mas install 1381004916"
-  sw_install "$(brew --prefix)/bin/dog" "brew_install dog"  # cli dns client
   sw_install "$(brew --prefix)/bin/iperf3" "brew_install iperf3"
   sw_install "$(brew --prefix)/sbin/mtr" "brew_install mtr"
   sw_install "$(brew --prefix)/bin/nmap" "brew_install nmap"
   sw_install "$(brew --prefix)/bin/speedtest" "brew_install speedtest"
   sw_install "$(brew --prefix)/bin/telnet" "brew_install telnet"
+  sw_install "/Applications/Port Map.app" _install_portmap
   sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 
-  sw_install "/Applications/Port Map.app" _install_portmap
+  if uname -p | grep -c "arm" >/dev/null; then
+    cecho "Allowing failure for dog as Homebrew cannot currently install or build it for Apple Silicon." $magenta
+    echo "See: https://github.com/Homebrew/homebrew-core/pull/75292"
+    set +e
+  fi
+  sw_install "$(brew --prefix)/bin/dog" "brew_install dog"  # cli dns client
+  set -e
 
   echo ""
   cecho "Install Wireshark & Bettercap? (y/N)" $magenta
