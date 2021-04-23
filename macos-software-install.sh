@@ -78,18 +78,10 @@ if brew tap | grep -c caskroom/versions >/dev/null ; then
 fi
 
 # tap the various casks that may be required:
-if ! brew tap | grep -c homebrew/cask-versions >/dev/null ; then
-  brew tap homebrew/cask-versions
-fi
-if ! brew tap | grep -c homebrew/cask-drivers >/dev/null ; then
-  brew tap homebrew/cask-drivers
-fi
-if ! brew tap | grep -c homebrew/cask-fonts >/dev/null ; then
-  brew tap homebrew/cask-fonts
-fi
-if ! brew tap | grep -c showwin/speedtest >/dev/null ; then
-  brew tap showwin/speedtest
-fi
+brew tap | grep -c homebrew/cask-versions >/dev/null || brew tap homebrew/cask-versions
+brew tap | grep -c homebrew/cask-drivers >/dev/null || brew tap homebrew/cask-drivers
+brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
+brew tap | grep -c showwin/speedtest >/dev/null || brew tap showwin/speedtest
 
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
