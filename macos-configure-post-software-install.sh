@@ -2,6 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 source ./lib/cecho
+source ./lib/sw_install # includes setupnote function
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS configuration because not on macOS"
@@ -17,13 +18,9 @@ if [ ! -f "$HOME/.netrc" ]; then
   cecho "Git authentication configuration..." $white
   cp ./.netrc.template "$HOME/.netrc"
   chmod 600 "$HOME/.netrc"
-  # shellcheck disable=SC2129
-  echo "## \`~/.netrc\`" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set Bitbucket username (as needed)\n- [ ] Set Bitbucket token (as needed) ([create one here](https://bitbucket.org/account/settings/app-passwords/))\n- [ ] Set dropbox.dzombak.com credentials" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo ""
 fi
+# shellcheck disable=SC2088
+setupnote "~/.netrc" "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set Bitbucket username (as needed)\n- [ ] Set Bitbucket token (as needed) ([create one here](https://bitbucket.org/account/settings/app-passwords/))\n- [ ] Set dropbox.dzombak.com credentials"
 
 if [ -d /opt/homebrew ]; then
   cecho "Set path for macOS .apps to include /usr/local and /opt/homebrew..." $white
@@ -465,16 +462,8 @@ if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
   defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
   defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
-  if ! grep -c "CloudMounter" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## CloudMounter" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add Personal Google Drive" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add Work Google Drive (as desired)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add Personal Dropbox" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add Goliath ~ (local)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add Wasabi" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
+  setupnote "CloudMounter" \
+    "- [ ] Add Personal Google Drive\n- [ ] Add Work Google Drive (as desired)\n- [ ] Add Personal Dropbox\n- [ ] Add Goliath ~ (local)\n- [ ] Add Wasabi"
   set +e
   open -a "CloudMounter"
   set -e
@@ -484,26 +473,15 @@ fi
 
 echo "Forecast Bar ..."
 if [ -e "/Applications/Setapp/Forecast Bar.app" ]; then
-  if ! grep -c "Forecast Bar" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Forecast Bar" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set shift-ctrl-x global shortcut" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Select monochrome menu bar icons" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md" # doesn't use UserDefaults :(
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
+  setupnote "Forecast Bar" \
+    "- [ ] Set shift-ctrl-x global shortcut\n- [ ] Select monochrome menu bar icons\n- [ ] Configure as desired"
 else
   echo "(Not installed.)"
 fi
 
 echo "Glyphfinder ..."
 if [ -e "/Applications/Setapp/Glyphfinder.app" ]; then
-  if ! grep -c "Glyphfinder.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Glyphfinder.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set shortcut Ctrl+Shift+G" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
+  setupnote "Glyphfinder.app" "- [ ] Set shortcut Ctrl+Shift+G"
   set +e
   open -a "Glyphfinder"
   set -e
@@ -515,15 +493,8 @@ echo "Grids ..."
 if [ -e "/Applications/Setapp/Grids.app" ]; then
   osascript -e "tell application \"Grids\" to quit"
   defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
-  if ! grep -c "Grids.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Grids.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Disable menu bar icon" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Disable most or all notifications" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set spacing tp \`16\`" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign in" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
+  setupnote "Grids" \
+    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Sign in"
 else
   echo "(Not installed.)"
 fi
@@ -537,13 +508,8 @@ if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   defaults write com.pointum.hazeover-setapp IndependentScreens -bool true
   defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
   defaults write com.pointum.hazeover-setapp MultiFocus -bool true
-  if ! grep -c "HazeOver" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## HazeOver" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
+  setupnote "HazeOver" \
+    "- [ ] Hide in Bartender\n- [ ] Configure as desired"
   set +e
   open -a "HazeOver"
   set -e

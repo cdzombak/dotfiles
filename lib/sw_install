@@ -3,6 +3,29 @@
 # use in a script with cecho available...
 # source ./cecho
 
+function setupnote() {
+  if [  $# -ne 2 ]; then
+    echo "setupnote checks whether the given artifact already appears in ~/SystemSetup.md, and if not it adds the given Markdown string to the checklist."
+    echo ""
+    echo "Usage: setupnote \"Artifact Name\"  \\"
+    # shellcheck disable=SC2028
+    echo "                 \"- [ ] configure it\\n- [ ] test it\""
+    return 1
+  fi
+
+  ARTIFACT_NAME="$1"
+  ARTIFACT_NAME=$(echo "$ARTIFACT_NAME" | sed 's/\.app$//' | sed 's/^\/Applications\///')
+  TODOS="$2"
+
+  if ! grep -c "$ARTIFACT_NAME" "$HOME/SystemSetup.md" >/dev/null; then
+    # shellcheck disable=SC2129
+    echo "## $ARTIFACT_NAME" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "$TODOS" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+
 function sw_install() {
   if [  $# -lt 2 ]; then
     echo "sw_install checks whether an artifact is present, and if not it runs the given command."
@@ -31,7 +54,7 @@ function sw_install() {
       if [[ -n "$TODOS" ]]; then
         TODOS="$TODOS\n\n"
       fi
-      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+      TODOS="$TODOS### Homebrew Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
     fi
   }
 
@@ -42,7 +65,7 @@ function sw_install() {
       if [[ -n "$TODOS" ]]; then
         TODOS="$TODOS\n\n"
       fi
-      TODOS="$TODOS### Homebrew $1 Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
+      TODOS="$TODOS### Homebrew Caveats\n\`\`\`\n$CAVEATS\n\`\`\`"
     fi
   }
 
@@ -62,10 +85,6 @@ function sw_install() {
   fi
 
   if [[ -n "$TODOS" ]]; then
-    # shellcheck disable=SC2129
-    echo "## $ARTIFACT" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "$TODOS" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
+    setupnote "$ARTIFACT" "$TODOS"
   fi
 }

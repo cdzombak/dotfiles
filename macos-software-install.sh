@@ -573,11 +573,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
         mkdir -p "$HOME/.ssh/config.local/"
         ln -s "$HOME/.ssh/config.templates/yubikey-agent" "$HOME/.ssh/config.local/yubikey-agent"
       fi
-      # shellcheck disable=SC2129
-      echo "## yubikey-agent.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+      setupnote "yubikey-agent" "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed\n- [ ] Add new public key to SSH config"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent"
@@ -1593,11 +1589,7 @@ _install_discord() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask discord
-    # shellcheck disable=SC2129
-    echo "## Discord.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
+    setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences"
   fi
 }
 sw_install /Applications/Discord.app _install_discord
@@ -1608,11 +1600,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       mas install 1450757574
-      # shellcheck disable=SC2129
-      echo "## Mastonaut.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign into personal a2mi.social Mastodon account" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-mastonaut"
