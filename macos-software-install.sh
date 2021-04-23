@@ -265,11 +265,13 @@ sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
   "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
+
 _install_vitals() {
   brew tap | grep -c hmarr >/dev/null || brew tap hmarr/tap
   brew install vitals
 }
-sw_install "/Applications/Vitals.app" _install_vitals
+sw_install "/Applications/Vitals.app" _install_vitals \
+  "- [ ] Launch at Login\n- [ ] Arrange in Bartender"
 
 if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical.app" ]; then
   echo "Renaming 'Fantastical 2.app' to 'Fantastical.app'..."
