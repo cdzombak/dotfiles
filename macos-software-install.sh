@@ -399,8 +399,12 @@ _install_unshorten() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
   git clone "https://github.com/cdzombak/unshorten.git" "$TMP_DIR"
   pushd "$TMP_DIR"
-  [ -w /usr/local ] && env GO111MODULE=auto make install || sudo env GO111MODULE=auto make install
-  # note: `env GO111MODULE=auto` to workaround https://github.com/cdzombak/unshorten/issues/1
+  # note: `env GO111MODULE=auto` works around https://github.com/cdzombak/unshorten/issues/1
+  if [ -w /usr/local ]; then
+    env GO111MODULE=auto make install
+  else
+    sudo env GO111MODULE=auto make install
+  fi
   popd
 }
 sw_install "/usr/local/bin/unshorten" _install_unshorten
@@ -409,7 +413,11 @@ _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
   git clone "https://github.com/cdzombak/hosts-timer.git" "$TMP_DIR"
   pushd "$TMP_DIR"
-  [ -w /usr/local ] && make install || sudo make install
+  if [ -w /usr/local ]; then
+    make install
+  else
+    sudo make install
+  fi
   popd
   echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/hosts-timer > /dev/null
   sudo chown root:wheel /etc/sudoers.d/hosts-timer
