@@ -354,6 +354,7 @@ sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
 if [ ! -L /Applications/Marked.app ]; then
   # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
+  chflags -h hidden /Applications/Marked.app
 fi
 
 # macOS Applications from Mac App Store:
