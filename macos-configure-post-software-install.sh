@@ -375,9 +375,11 @@ fi
 echo "TextBuddy ..."
 if [ -e "/Applications/TextBuddy.app" ]; then
   osascript -e "tell application \"TextBuddy\" to quit"
+  set +e
   defaults delete "com.clickontyler.TextBuddy" "userSyncEnabled"
   defaults delete "com.clickontyler.TextBuddy" "showOnActivate"
   defaults write "com.clickontyler.TextBuddy" "numberLinesFromZero" '0'
+  set -e
 else
   echo "(Not installed.)"
 fi
@@ -753,7 +755,6 @@ else
   # iCloud Documents is not enabled
   EXPECTED_SIDEBAR_CONTENT+=("Documents -> file:///Users/$WHOAMI/Documents/")
 fi
-
 
 # remove anything that shouldn't be there...
 mysides list | while read -r LINE; do
