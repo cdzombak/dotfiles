@@ -382,8 +382,6 @@ sw_install /Applications/RadarScope.app "mas install 432027450" \
 sw_install /Applications/Reeder.app "mas install 1449412482" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
-sw_install "/Applications/Instapaper.app" "mas install 288545208" \
-    "- [ ] Sign in to Instapaper"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions as desired"
 
@@ -505,6 +503,16 @@ _install_loficafe() {
   popd
 }
 sw_install "/Applications/Lofi Cafe.app" _install_loficafe
+
+_install_instapaper_reader() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
+  git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install-mac
+  make clean
+  popd
+}
+sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
 
 echo ""
 cecho "--- Interactive Section ---" $white
@@ -1866,15 +1874,15 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
-if [ -e "/Applications/Instapaper.app" ] && [ -e "/Applications/Instapaper Reader.app" ]; then
-  echo "Instapaper Reader (replaced by Instapaper app from the App Store) ..."
+if [ -e "/Applications/Instapaper.app" ] ; then
+  echo "Instapaper (it's a bad app)..."
   verify_smartdelete
-  trash "/Applications/Instapaper Reader.app"
+  trash "/Applications/Instapaper.app"
   REMOVED_ANYTHING=true
 fi
 
 if [ -e "/Applications/Instapaper Save.app" ]; then
-  echo "Instapaper Save..." # (keyboard shortcut in Safari conflicts with window layout mode)
+  echo "Instapaper Save (Safari shortcut conflicts with Window Layout Mode)..."
   verify_smartdelete
   trash "/Applications/Instapaper Save.app"
   REMOVED_ANYTHING=true
