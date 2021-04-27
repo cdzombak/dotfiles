@@ -153,9 +153,9 @@ fi
 sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
 set -e
 
-sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
-  "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
-sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" "brew_cask_install quicklook-json"
+#sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
+#  "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
+#sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" "brew_cask_install quicklook-json"
 
 sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
 # Fix "entr: Too many files listed; the hard limit for your login class is 256."
@@ -377,6 +377,8 @@ sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
+sw_install /Applications/Peek.app "mac install 1554235898" \
+  "- [ ]  Enable Accessibility access as required"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1449412482" \
@@ -1984,6 +1986,18 @@ if [ -e /Applications/WireGuard.app ]; then
   echo "WireGuard Client..."
   verify_smartdelete
   trash /Applications/WireGuard.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" ]; then
+  echo "QLMarkdown (use Peek.app from Mac App Store)..."
+  brew uninstall --cask qlmarkdown
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" ]; then
+  echo "quicklook-json (use Peek.app from Mac App Store)..."
+  brew uninstall --cask quicklook-json
   REMOVED_ANYTHING=true
 fi
 
