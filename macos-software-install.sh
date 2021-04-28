@@ -635,12 +635,13 @@ sw_install "/Applications/SuperDuper!.app" _install_superduper
 if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   echo ""
   cecho "Install utilities for home hardware devices? (y/N)" $magenta
-  echo "(Logitech MyHarmony, Fujitsu ScanSnap)"
+  echo "(Fujitsu ScanSnap)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
       "- [ ] Right click Dock icon -> Options and enable OCR on all pages"
-    sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
+    # sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
+    # MyHarmony isn't supported on anything newer than Mojave.
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
