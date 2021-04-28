@@ -377,7 +377,7 @@ sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
-sw_install /Applications/Peek.app "mac install 1554235898" \
+sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ]  Enable Accessibility access as required"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
