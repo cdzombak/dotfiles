@@ -1091,7 +1091,7 @@ read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
    sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
    sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
-   sw_install /usr/local/bin/jshint 'npm install -g jshint'
+   sw_install "$(brew --prefix)/bin/jshint" 'npm install -g jshint'
 fi
 
 _install_nodemon() {
