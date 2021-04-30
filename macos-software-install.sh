@@ -29,6 +29,15 @@ fi
 
 mkdir -p "$HOME/.local/dotfiles/software"
 
+if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
+  echo ""
+  cecho "Current persisted preferences in ~/.local/dotfiles/software:" $white
+  ls -C "$HOME/.local/dotfiles/software"
+  echo ""
+  # shellcheck disable=SC2162
+  read -p "Press [Enter] to continue..."
+fi
+
 echo ""
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Ask for the administrator password upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
