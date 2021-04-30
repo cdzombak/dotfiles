@@ -148,4 +148,6 @@ if [ -e "$HOME/Pictures/Photo Booth Library" ]; then
   chflags -h hidden "$HOME/Pictures/Photo Booth Library"
 fi
 
-[ -e "$HOME/Creative Cloud Files" ] && chflags -h hidden "$HOME/Creative Cloud Files"
+if [ -e "$HOME/Creative Cloud Files" ]; then
+  chflags -h hidden "$HOME/Creative Cloud Files"
+fi
