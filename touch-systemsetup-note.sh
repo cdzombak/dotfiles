@@ -164,6 +164,14 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
     - [ ] Change display resolution as needed
     - [ ] Change display arrangement as needed
     - [ ] Confirm 5k/60Hz resolution via System Information app
+
+## SSH
+
+- [ ] Verfify base Git config is installed
+- [ ] Clone: \`git clone https://github.com/cdzombak/sshconfig.git .ssh\`
+- [ ] \`./.ssh/fix_authorized_keys.sh\`
+- [ ] Enable config templates as needed (see: Secretive or yubikey-agent setup)
+
 EOF
 fi
 
