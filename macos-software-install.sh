@@ -648,7 +648,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
-      "- [ ] Right click Dock icon -> Options and enable OCR on all pages"
+      "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
     # sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
     # MyHarmony isn't supported on anything newer than Mojave.
   else
@@ -658,7 +658,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
 fi
 
 _install_unifiprotect() {
-  cecho "Install my homemade UniFi Protect app? (y/N)" $magenta
+  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
+  echo "(requires GitHub auth)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
