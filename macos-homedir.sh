@@ -91,12 +91,17 @@ if [ ! -L "$HOME/tmp/iCloud" ]; then
   ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Temp" "$HOME/tmp/iCloud"
 fi
 
-if [ ! -L "$HOME/Books and Articles" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
+if [ -L "$HOME/Books and Articles" ] ; then
+  rm "$HOME/Books and Articles"
+  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
+fi
+
+if [ ! -L "$HOME/Cloud Library" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
   echo ""
-  echo "Create link to iCloud Drive/Books & Articles in home directory? (y/N)"
+  echo "Create link to iCloud Drive/Cloud Library in home directory? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Library" "$HOME/Books and Articles"
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
   else
     touch "$HOME/.local/dotfiles/no-home-booksandarticles-dir"
   fi
