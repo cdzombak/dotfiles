@@ -17,7 +17,7 @@ function setupnote() {
   ARTIFACT_NAME=$(echo "$ARTIFACT_NAME" | sed 's/\.app$//' | sed 's/^\/Applications\///' | sed 's/^\/opt\/homebrew\/bin\///' | sed 's/^\/usr\/local\/bin\///')
   TODOS="$2"
 
-  if ! grep -c "$ARTIFACT_NAME" "$HOME/SystemSetup.md" >/dev/null; then
+  if ! grep -c "## $ARTIFACT_NAME" "$HOME/SystemSetup.md" >/dev/null; then
     # shellcheck disable=SC2129
     echo "## $ARTIFACT_NAME" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
