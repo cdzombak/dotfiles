@@ -57,6 +57,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 ### Desktop & Screen Saver
 
 - [ ] Customize as desired
+- [ ] Install Aqueux desktops package
 
 ### Extensions
 
