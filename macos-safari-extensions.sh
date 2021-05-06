@@ -15,7 +15,7 @@ cecho "----                                ----" $white
 echo ""
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension"
+  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension\n- [ ] Customize All Vaults\n- [ ] Set keyboard shortcuts\n- [ ] Enable Alfred integration\n- [ ] Config: Hide in Menu Bar\n- [ ] Config: Open in background at login\n- [ ] Disable all Safari autofill features but \"Other Forms\"\n- [ ] Enable Apple Watch unlocking"
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Enable Bear Safari extension"
