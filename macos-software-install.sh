@@ -396,6 +396,10 @@ sw_install "/Applications/Triode.app" "mas install 1450027401"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions as desired"
 
+if uname -p | grep -c "arm" >/dev/null; then
+  sw_install "/Applications/IFTTT.app" "mas install 660944635"
+fi
+
 _install_things() {
   mas install 904280696 # Things
   brew install --cask thingsmacsandboxhelper
