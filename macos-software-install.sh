@@ -2029,11 +2029,11 @@ if command -v gcloud >/dev/null; then
 fi
 if file -h /usr/local/bin/kubectl | grep -c "Applications/Docker.app/Contents/Resources/bin" >/dev/null; then
   echo "Removing kubectl symlink to Docker.app."
-  rm /usr/local/bin/kubectl
+  sudo rm /usr/local/bin/kubectl
 fi
 if file -h /opt/homebrew/bin/kubectl | grep -c "Applications/Docker.app/Contents/Resources/bin" >/dev/null; then
   echo "Removing kubectl symlink to Docker.app."
-  rm /opt/homebrew/bin/kubectl
+  sudo rm /opt/homebrew/bin/kubectl
 fi
 
 if $YES_INSTALL_KUBECTL; then
