@@ -984,7 +984,7 @@ cecho "Install common Python tools? (y/N)" $magenta
 echo "(virtualenv, pipenv, pyenv)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install /usr/local/bin/virtualenv 'PIP_REQUIRE_VIRTUALENV="0" sudo -H pip3 install virtualenv'
+  sw_install "$(brew --prefix)/bin/virtualenv" 'PIP_REQUIRE_VIRTUALENV="0" sudo -H pip3 install virtualenv'
   sw_install "$(brew --prefix)/bin/pipenv" "brew_install pipenv"
   # optional, but recommended build deps w/pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
   sw_install "$(brew --prefix)/bin/pyenv" "brew install pyenv openssl readline sqlite3 xz zlib"
@@ -1036,7 +1036,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   fi
   sw_install /Applications/Docker.app "brew_cask_install docker" \
     "- [ ] Disable application starting at login"
-  sw_install /usr/local/bin/dockerfilelint 'npm install -g dockerfilelint'
+  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
 fi
 
