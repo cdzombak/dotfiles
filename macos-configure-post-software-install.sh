@@ -242,6 +242,16 @@ else
   echo "(Not installed.)"
 fi
 
+echo "LaunchControl ..."
+if [ -e "/Applications/LaunchControl.app" ]; then
+  osascript -e "tell application \"LaunchControl\" to quit"
+  defaults write "com.soma-zone.LaunchControl" "restoreSessionUponStart" '1'
+  defaults write "com.soma-zone.LaunchControl" "changeLabelWhenRename" '1'
+  defaults write "com.soma-zone.LaunchControl" "fileEditor" '"/Applications/Sublime Text.app"'
+else
+  echo "(Not installed.)"
+fi
+
 echo "Living Earth..."
 if [ -e "/Applications/Living Earth Desktop.app" ]; then
   osascript -e "tell application \"Living Earth Desktop\" to quit"
