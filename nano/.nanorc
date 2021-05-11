@@ -3,7 +3,7 @@
 #  https://www.if-not-true-then-false.com/2009/tuning-nano-text-editor-with-nanorc/
 
 set autoindent  # Indent new lines to the previous line's indentation
-set morespace   # Use the blank line below the titlebar as extra editing space.
+#set morespace   # Use the blank line below the titlebar as extra editing space.
 set nowrap      # Don't wrap long lines at all.
                 # CLI: -w, --nowrap
 set quickblank  # Do quick statusbar blanking. Statusbar messages will disappear after 1 keystroke instead of 25.
