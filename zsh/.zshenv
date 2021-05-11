@@ -5,6 +5,10 @@
 if [ -x /usr/libexec/path_helper ]; then
     eval "$(/usr/libexec/path_helper -s)"
 fi
+if [ -d /opt/homebrew/bin ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export MANPATH="/opt/homebrew/share/man:$MANPATH"
+fi
 
 # Android (ugh)
 if [ -d "$HOME/Library/Android/sdk" ]; then

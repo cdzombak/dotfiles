@@ -23,6 +23,13 @@ export SESSION_OPENED_TS=$(date +%s)
 
 alias reload!='echo "" && . ~/.zshrc'
 
+# redo prioritizing homebrew in PATH here, same as .zshenv,
+# since something in macOS is resetting it between there and now:
+if [ -d /opt/homebrew/bin ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export MANPATH="/opt/homebrew/share/man:$MANPATH"
+fi
+
 source ~/.zsh/lib-rc/urlencode.zsh
 source ~/.zsh/lib-rc/git.zsh
 source ~/.zsh/lib-rc/short-host.zsh
