@@ -134,7 +134,7 @@ defaults write "com.apple.menuextra.clock" "Show24Hour" '1'
 echo ""
 echo "Messages.app text size"
 defaults write "com.apple.MobileSMS" "TextSize" '6'
-defaults write "com.apple.MobileSMS" "TextFontSize" '18'
+defaults write "com.apple.MobileSMS" "TextFontSize" '15'
 
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
