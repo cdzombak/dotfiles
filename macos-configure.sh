@@ -136,6 +136,10 @@ echo "Messages.app text size"
 defaults write "com.apple.MobileSMS" "TextSize" '6'
 defaults write "com.apple.MobileSMS" "TextFontSize" '15'
 
+echo ""
+echo "Keep windows when quitting apps"
+defaults write -g "NSQuitAlwaysKeepsWindows" '1'
+
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ################################################################################
