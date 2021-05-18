@@ -265,6 +265,18 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Mimestream ..."
+if [ -e "/Applications/Mimestream.app" ]; then
+  osascript -e "tell application \"Mimestream\" to quit"
+  defaults write com.mimestream.Mimestream TextSizeAdjustment 2
+  defaults write com.mimestream.Mimestream ShowBadgeForSpam 1
+  defaults write com.mimestream.Mimestream PlaySounds none
+  setupnote "Mimestream" \
+    "- [ ] Add work and personal accounts; set account names\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+else
+  echo "(Not installed.)"
+fi
+
 echo "NepTunes..."
 if [ -e /Applications/NepTunes.app ]; then
   osascript -e "tell application \"NepTunes\" to quit"
