@@ -552,12 +552,12 @@ defaults write com.apple.finder NSUserKeyEquivalents '{
   Documents = "@$o";
 }'
 
-echo ""
-echo "Mail.app Keyboard shortcut: ⇧⌘K to Clear Flag"
-# shellcheck disable=SC2016
-defaults write com.apple.mail NSUserKeyEquivalents '{
-  "Clear Flag" = "@$k";
-}'
+# echo ""
+# echo "Mail.app Keyboard shortcut: ⇧⌘K to Clear Flag"
+# # shellcheck disable=SC2016
+# defaults write com.apple.mail NSUserKeyEquivalents '{
+#   "Clear Flag" = "@$k";
+# }'
 
 echo ""
 echo "Photos.app Keyboard shortcut: ⌥T to Adjust Date & Time"
