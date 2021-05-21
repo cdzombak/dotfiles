@@ -984,7 +984,7 @@ cecho "Install common Python tools? (y/N)" $magenta
 echo "(virtualenv, pipenv, pyenv)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/virtualenv" 'PIP_REQUIRE_VIRTUALENV="0" sudo -H pip3 install virtualenv'
+  sw_install "$(brew --prefix)/bin/virtualenv" "brew_install virtualenv" # 'PIP_REQUIRE_VIRTUALENV="0" $(brew --prefix)/bin/pip3 install virtualenv'
   sw_install "$(brew --prefix)/bin/pipenv" "brew_install pipenv"
   # optional, but recommended build deps w/pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
   sw_install "$(brew --prefix)/bin/pyenv" "brew install pyenv openssl readline sqlite3 xz zlib"
