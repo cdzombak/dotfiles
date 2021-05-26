@@ -113,6 +113,19 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Cardhop ..."
+if [ -e "/Applications/Cardhop.app" ]; then
+  osascript -e "tell application \"Cardhop\" to quit"
+  defaults write "com.flexibits.cardhop.mac" "HideInMenubar" '1'
+  defaults write "com.flexibits.cardhop.mac" "AlwaysShowAccountInGroupSummary" '1'
+  defaults write "com.flexibits.cardhop.mac" "DefaultAccountExternalIDLocal" '"account:85A75CA9-6381-4B10-B066-C52CFEA5280F"'
+  defaults write "com.flexibits.cardhop.mac" "DefaultAccountExternalID" '"account:85A75CA9-6381-4B10-B066-C52CFEA5280F"'
+  defaults write "com.flexibits.cardhop.mac" "OpenMapsIn" 'google'
+  defaults write "com.flexibits.cardhop.mac" "HotKeyEmpty" '1'
+else
+  echo "(Not installed.)"
+fi
+
 echo "Choosy ..."
 if [ -e "/Applications/Choosy.app" ]; then
   set +e
