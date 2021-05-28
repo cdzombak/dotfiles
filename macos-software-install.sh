@@ -875,7 +875,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
   sw_install /Applications/Expressions.app "mas install 913158085"
   sw_install /Applications/Fork.app "brew_cask_install fork" \
-    "- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub and BitBucket accounts (as desired)"
+    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub and BitBucket accounts (as desired)"
   sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
