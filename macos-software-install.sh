@@ -1228,10 +1228,11 @@ echo ""
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-calibre" ]; then
   _install_calibre() {
-    cecho "Install Calibre? (y/N)" $magenta
+    cecho "Install Calibre + Android File Transfer tool? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask calibre
+      brew install --cask android-file-transfer
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-calibre"
