@@ -403,7 +403,7 @@ sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
 sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required"
-sw_install "/Applications/Poolside FM.app" "mas install 1514817810" \
+sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
