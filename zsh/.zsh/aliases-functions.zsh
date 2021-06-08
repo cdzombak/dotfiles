@@ -210,22 +210,16 @@ alias qq="delayed_exit"
 
 # helpers for https://github.com/cdzombak/hosts-timer
 function use-facebook() {
-    if [ $# -eq 0 ]; then
-        echo "Usage: use-facebook DURATION"
-        echo "   eg. use-facebook 5m"
-        return 1
-    fi
-    sudo hosts-timer -time "$1" facebook.com
+    DUR="${1:-5m}"
+    terminal-notifier -message "Enabling Facebook for $DUR." -title "hosts-timer" -open "https://facebook.com"
+    sudo hosts-timer -time "$DUR" facebook.com
+}
+function use-twitter() {
+    DUR="${1:-5m}"
+    terminal-notifier -message "Enabling Twitter for $DUR." -title "hosts-timer" -open "https://twitter.com"
+    sudo hosts-timer -time "$DUR" twitter.com
 }
 
-function use-twitter() {
-    if [ $# -eq 0 ]; then
-        echo "Usage: use-twitter DURATION"
-        echo "   eg. use-twitter 5m"
-        return 1
-    fi
-    sudo hosts-timer -time "$1" twitter.com
-}
 alias hosts-list='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" ; echo "Windows Game Desktop" ; echo "Windows Laptop" ; echo "Lab Mac Mini" ; }'
 alias hosts-list-md='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" ; echo "- [ ] Windows Game Desktop" ; echo "- [ ] Windows Laptop" ; echo "- [ ] Lab Mac Mini" ; }'
 
