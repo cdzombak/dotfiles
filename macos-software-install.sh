@@ -404,7 +404,7 @@ sw_install /Applications/Pastebot.app "mas install 1179623856" \
 sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required"
 sw_install "/Applications/Pins.app" "mas install 1547106997" \
-  "- [ ] Sign in\n- [ ] Restore purchases"
+  "- [ ] Sign in\n- [ ] Restore purchases\n- [ ] Disable Community links\n- [ ] Enable metadata autofill"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
