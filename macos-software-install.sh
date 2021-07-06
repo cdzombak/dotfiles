@@ -899,6 +899,21 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   [ -e /Applications/Setapp/CodeRunner.app ] || echo && cecho "Recommend installing CodeRunner via Setapp." $white
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-boop" ]; then
+  _install_boop() {
+    cecho "Install Boop? (y/N)" $magenta
+    echo "(OSS TextBuddy alternative)"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1518425043
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-boop"
+    fi
+  }
+  sw_install "/Applications/Boop.app" _install_boop
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
   _install_jetbrains() {
     cecho "Install JetBrains Toolbox? (y/N)" $magenta
