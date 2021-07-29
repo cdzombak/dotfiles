@@ -586,6 +586,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Ohtipi ..."
+if [ -e "/Applications/Setapp/Ohtipi.app" ]; then
+  passetupnote "Ohtipi" \
+    "- [ ] Grant Full Disk Access\n- [ ] Open at login\n- [ ] Hide in Bartender"
+else
+  echo "(Not installed.)"
+fi
+
 echo "Path Finder ..."
 if [ -e "/Applications/Setapp/Path Finder.app" ]; then
   osascript -e "tell application \"Path Finder\" to quit"
