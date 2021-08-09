@@ -1702,7 +1702,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
 fi
 
 echo ""
-cecho "--- Games ---" $white
+cecho "--- Games & Fun ---" $white
 echo ""
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-steam" ]; then
@@ -1784,6 +1784,22 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
     fi
   }
   sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-flyingtoasters" ]; then
+  _install_flyingtoasters() {
+    cecho "Install Flying Toasters screen saver? (y/N)" $magenta
+    echo "(Can also be changed to other screen savers from https://www.bryanbraun.com/after-dark-css )"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask webviewscreensaver --no-quarantine
+      setupnote "Flying Toasters (WebViewScreenSaver)" "- [ ] Set URL to \`https://www.bryanbraun.com/after-dark-css/all/flying-toasters.html\`\n- [ ] Set other URLs from https://www.bryanbraun.com/after-dark-css as desired"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-flyingtoasters"
+    fi
+  }
+  sw_install "$HOME/Library/Screen Savers/WebViewScreenSaver.saver" _install_flyingtoasters
 fi
 
 fi # $GOINTERACTIVE
