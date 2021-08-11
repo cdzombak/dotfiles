@@ -715,6 +715,15 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   fi
 fi
 
+_install_rpi_imager() {
+  cecho "Install Raspberry Pi Imager? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask raspberry-pi-imager
+  fi
+}
+sw_install "/Applications/Raspberry Pi Imager.app" _install_rpi_imager
+
 _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
