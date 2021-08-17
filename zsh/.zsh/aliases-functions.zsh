@@ -235,3 +235,5 @@ function rm-known-host() {
     fi
     gsed -i "$1d" "$HOME/.ssh/known_hosts"
 }
+
+alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'

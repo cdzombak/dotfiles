@@ -5,3 +5,5 @@ alias md='mkdir'
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
 set -o noclobber
+
+alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
