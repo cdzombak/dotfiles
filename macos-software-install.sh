@@ -735,11 +735,13 @@ sw_install /Applications/balenaEtcher.app _install_balena_etcher
 
 echo ""
 cecho "Install CAD & 3D printing tools? (y/N)" $magenta
-echo "(Cura, ...)"
+echo "(Cura, Fusion 360)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$HOME/Applications/Autodesk Fusion 360.app" "brew_cask_install autodesk-fusion360"
-  sw_install "/Applications/Ultimaker Cura.app" "brew_cask_install ultimaker-cura"
+  sw_install "$HOME/Applications/Autodesk Fusion 360.app" "brew_cask_install autodesk-fusion360" \
+    "- [ ] Sign In"
+  sw_install "/Applications/Ultimaker Cura.app" "brew_cask_install ultimaker-cura" \
+    "- [ ] Sign In\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)\n- [ ] Install & authenticate OctoPrint extension"
 fi
 
 _install_fio() {
