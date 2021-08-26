@@ -646,16 +646,25 @@ _install_superduper(){
 }
 sw_install "/Applications/SuperDuper!.app" _install_superduper
 
+_install_octopi_wrapper() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
+  git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install-mac
+  make clean
+  popd
+}
 if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   echo ""
   cecho "Install utilities for home hardware devices? (y/N)" $magenta
-  echo "(Fujitsu ScanSnap)"
+  echo "(Fujitsu ScanSnap, OctoPi.dzhome)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
       "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
     # sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
     # MyHarmony isn't supported on anything newer than Mojave.
+    sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
