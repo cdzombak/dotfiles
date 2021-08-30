@@ -106,6 +106,8 @@ sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
 sw_install "$(brew --prefix)/bin/exa" "brew_install exa"
 sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
 sw_install "$(brew --prefix)/bin/git" "brew_install git"
+sw_install "$(brew --prefix)/bin/git-lfs" "brew_install git-lfs"
+sudo git lfs install --system
 sw_install "$(brew --prefix)/bin/go" "brew_install go" \
   "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
 sw_install "$(brew --prefix)/bin/brew-gomod" "brew install FiloSottile/gomod/brew-gomod"
