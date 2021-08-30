@@ -532,6 +532,16 @@ _install_instapaper_reader() {
 }
 sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
 
+_install_ecobee() {
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
+  git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  make install-mac
+  make clean
+  popd
+}
+sw_install "/Applications/Ecobee.app" _install_ecobee
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
