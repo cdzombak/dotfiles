@@ -278,6 +278,18 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Lunar..."
+if [ -e "/Applications/Lunar.app" ]; then
+  osascript -e "tell application \"Lunar\" to quit"
+  defaults write "fyi.lunar.Lunar" "syncPollingSeconds" '1'
+  defaults write "fyi.lunar.Lunar" "smoothTransition" '1'
+  set +e
+  open -a "Lunar"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "Mimestream ..."
 if [ -e "/Applications/Mimestream.app" ]; then
   osascript -e "tell application \"Mimestream\" to quit"

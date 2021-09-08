@@ -562,6 +562,22 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
+  _install_lunar() {
+    cecho "Install Lunar (external monitor management brightness/etc. tool)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask lunar
+      setupnote "Lunar" \
+        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Disable Raspberry Pi network control\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-lunar"
+    fi
+  }
+  sw_install "/Applications/Lunar.app" _install_lunar
+fi
+
 _install_gpgkeychain() {
   cecho "Install GPG Keychain? (y/N)" $magenta
   cecho "nb: This will be required to sign Git commits per ~/.gitconfig." $red
