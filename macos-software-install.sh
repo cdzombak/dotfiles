@@ -373,8 +373,6 @@ fi
 
 sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
-sw_install /Applications/Better.app "mas install 1121192229" \
-  "- [ ] Enable Better Blocker Safari extension\n- [ ] Enable Start at Login"
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
@@ -1903,6 +1901,13 @@ if [ -e "/Applications/Bartender 3.app" ] && [ -e "/Applications/Bartender 4.app
   echo "Bartender 3 (replaced by Bartender 4) ..."
   verify_smartdelete
   trash "/Applications/Bartender 3.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Better.app" ]; then
+  echo "Better Blocker..."
+  verify_smartdelete
+  trash /Applications/Better.app
   REMOVED_ANYTHING=true
 fi
 
