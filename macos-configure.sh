@@ -371,6 +371,8 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 defaults write "com.apple.Safari" "WebKitPreferences.developerExtrasEnabled" '1'
 defaults write "com.apple.Safari" "IncludeDevelopMenu" '1'
 defaults write "com.apple.Safari.SandboxBroker" "ShowDevelopMenu" '1'
+defaults write "com.apple.Safari" "NeverUseBackgroundColorInToolbar" '1'
+defaults write "com.apple.Safari" "ShowStandaloneTabBar" '1'
 
 # Add a context menu item for showing the Web Inspector in web views
 # defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
