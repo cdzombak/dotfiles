@@ -237,3 +237,5 @@ function rm-known-host() {
 }
 
 alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+alias staged='git diff --staged'
