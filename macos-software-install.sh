@@ -1183,6 +1183,15 @@ _install_nodemon() {
 }
 sw_install /usr/local/bin/nodemon _install_nodemon
 
+_install_arduino() {
+  cecho "Install Arduino IDE? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask arduino
+  fi
+}
+sw_install /Applications/Arduino.app _install_arduino
+
 _install_carthage() {
   cecho "Install Carthage? (y/N)" $magenta
   read -r response
