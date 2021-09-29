@@ -1070,6 +1070,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
+cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+   sw_install /Applications/Arduino.app 'brew_cask_install arduino'
+   sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
+fi
+
 _install_awscli() {
   cecho "Install AWS CLI? (y/N)" $magenta
   read -r response
@@ -1182,15 +1189,6 @@ _install_nodemon() {
   fi
 }
 sw_install /usr/local/bin/nodemon _install_nodemon
-
-_install_arduino() {
-  cecho "Install Arduino IDE? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask arduino
-  fi
-}
-sw_install /Applications/Arduino.app _install_arduino
 
 _install_carthage() {
   cecho "Install Carthage? (y/N)" $magenta
