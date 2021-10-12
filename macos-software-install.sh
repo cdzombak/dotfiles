@@ -376,7 +376,7 @@ sw_install /Applications/Bear.app "mas install 1091189122" \
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
-sw_install /Applications/Deliveries.app "mas install 924726344" \
+sw_install /Applications/Deliveries.app "mas install 290986013" \
   "- [ ] Sign into Junecloud account\n- [ ] Enable background updating\n- [ ] Add widget to Notification Center\n- [ ] Disable all notification options via System Preferences, except showing in Notification Center"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
