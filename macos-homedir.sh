@@ -156,3 +156,7 @@ fi
 if [ -e "$HOME/Creative Cloud Files" ]; then
   chflags -h hidden "$HOME/Creative Cloud Files"
 fi
+
+if [ ! -L "$HOME/.config/ForkLift" ] && [ -d "$HOME/Library/Application Support/ForkLift" ]; then
+  ln -s "$HOME/Library/Application Support/ForkLift" "$HOME/.config/ForkLift"
+fi
