@@ -273,7 +273,7 @@ sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
-  "- [ ] License\n- [ ] Sign into Panic Sync\n- [ ] Configure application"
+  "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
 
