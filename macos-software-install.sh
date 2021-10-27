@@ -371,6 +371,7 @@ fi
 
 # macOS Applications from Mac App Store:
 
+sw_install /Applications/Avenue.app "mas install 1523681067"
 sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 # sw_install /Applications/Byword.app "mas install 420212497"
