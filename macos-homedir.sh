@@ -160,3 +160,5 @@ fi
 if [ ! -L "$HOME/.config/ForkLift" ] && [ -d "$HOME/Library/Application Support/ForkLift" ]; then
   ln -s "$HOME/Library/Application Support/ForkLift" "$HOME/.config/ForkLift"
 fi
+
+chflags -h hidden "$HOME/Public"
