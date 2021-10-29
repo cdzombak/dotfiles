@@ -771,17 +771,6 @@ _install_balena_etcher() {
 }
 sw_install /Applications/balenaEtcher.app _install_balena_etcher
 
-echo ""
-cecho "Install CAD & 3D printing tools? (y/N)" $magenta
-echo "(Cura, Fusion 360)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$HOME/Applications/Autodesk Fusion 360.app" "brew_cask_install autodesk-fusion360" \
-    "- [ ] Sign In"
-  sw_install "/Applications/Ultimaker Cura.app" "brew_cask_install ultimaker-cura" \
-    "- [ ] Sign In\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)\n- [ ] Install & authenticate OctoPrint extension"
-fi
-
 _install_fio() {
   cecho "Install fio (CLI-based Flexible IO tester)? (y/N)" $magenta
   read -r response
@@ -1282,6 +1271,39 @@ _install_liya() {
   fi
 }
 sw_install /Applications/Liya.app _install_liya
+
+echo ""
+cecho "--- CAD, 3DP, and EE Tools ---" $white
+echo ""
+
+_install_cura() {
+  cecho "Install Pixelmator? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask ultimaker-cura
+    setupnote "Cura" "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
+  fi
+}
+sw_install "/Applications/Ultimaker Cura.app" _install_cura
+
+_install_f360() {
+  cecho "Install Fusion 360? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask autodesk-fusion360
+    setupnote "Fusion 360" "- [ ] Sign In"
+  fi
+}
+sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
+
+_install_kicad() {
+  cecho "Install KiCad? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask kicad
+  fi
+}
+sw_install "/Applications/KiCad" _install_kicad
 
 echo ""
 cecho "--- Media Tools ---" $white
