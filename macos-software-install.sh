@@ -780,6 +780,15 @@ _install_fio() {
 }
 sw_install "$(brew --prefix)/bin/fio" _install_fio
 
+_install_f3() {
+  cecho "Install f3 (flash memory card tester)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install f3
+  fi
+}
+sw_install "$(brew --prefix)/bin/f3read" _install_f3
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-ivpn" ]; then
   _install_ivpn_client() {
     cecho "Install IVPN client? (y/N)" $magenta
