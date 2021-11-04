@@ -388,6 +388,8 @@ sw_install /Applications/NewFileMenu.app "mas install 1064959555" \
   "- [ ] Enable Finder extension\n- [ ] Enable opening file after creation\n- [ ] Disable menu bar item\n- [ ] Disable all templates except plain text and shell script\n- [ ] Add Markdown template (located in Sync/Configs/NewFileMenu)"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
+sw_install "/Applications/Paint S.app" "mas install 736473980" \
+  "- [ ] Restore purchases"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
 sw_install /Applications/Peek.app "mas install 1554235898" \
