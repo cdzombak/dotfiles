@@ -545,6 +545,18 @@ _install_ecobee() {
 }
 sw_install "/Applications/Ecobee.app" _install_ecobee
 
+_install_diskspace() {
+  # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
+  set -x
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'diskspace-work')
+  pushd "$TMP_DIR"
+  curl -s "https://api.github.com/repos/scriptingosx/diskspace/releases/latest" | jq -r ".assets[].browser_download_url" | grep ".pkg" | xargs wget -q -O diskspace.pkg
+  sudo installer -pkg ./diskspace.pkg -target /
+  popd
+  set +x
+}
+sw_install "/usr/local/bin/diskspace" _install_diskspace
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
