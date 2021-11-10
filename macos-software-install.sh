@@ -150,17 +150,7 @@ _install_tealdeer() {
 }
 sw_install "$(brew --prefix)/bin/tldr" _install_tealdeer
 
-_install_macocr() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'macocr-work')
-  pushd "$TMP_DIR"
-  curl -sO https://files.littlebird.com.au/ocr.zip
-  unzip ocr.zip
-  sudo cp ./ocr /usr/local/bin
-  sudo chown root:wheel /usr/local/bin/ocr
-  sudo chmod +x /usr/local/bin/ocr
-  popd
-}
-sw_install /usr/local/bin/ocr _install_macocr
+sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
 
 #sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
 #  "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
