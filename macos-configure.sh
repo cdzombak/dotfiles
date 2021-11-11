@@ -39,6 +39,14 @@ if ! $CONTINUE; then
   exit 1
 fi
 
+if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; then
+  cecho "This script requires your terminal app to have Full Disk Access." $red
+  echo "Add this terminal to the Full Disk Access list in System Preferences > Security & Privacy, quit the app, and re-run this script."
+  echo ""
+  # shellcheck disable=SC2162
+  read -p "If you are certain this terminal has Full Disk Access, press [Enter] to continue."
+fi
+
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Ask for the administrator password upfront and run a keep-alive to update
 # existing `sudo` time stamp until script has finished
