@@ -745,15 +745,25 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/telnet" "brew_install telnet"
   sw_install "/Applications/Port Map.app" _install_portmap
   sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
+fi
 
-  echo ""
-  cecho "Install Wireshark & Bettercap? (y/N)" $magenta
+_install_wireshark() {
+  cecho "Install Wireshark? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/Wireshark.app _install_wireshark "brew_cask_install wireshark"
-    sw_install "$(brew --prefix)/bin/bettercap" "brew_install bettercap"
+    brew install --cask wireshark
   fi
-fi
+}
+sw_install /Applications/Wireshark.app _install_wireshark
+
+_install_bettercap() {
+  cecho "Install Bettercap? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install bettercap
+  fi
+}
+sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
 
 _install_rpi_imager() {
   cecho "Install Raspberry Pi Imager? (y/N)" $magenta
