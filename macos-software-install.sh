@@ -242,6 +242,7 @@ sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
+sw_install /Applications/Mimestream.app "brew_cask_install mimestream"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
@@ -1623,15 +1624,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
     fi
   }
 fi
-
-_install_mailplane() {
-  cecho "Install Mailplane? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask mailplane
-  fi
-}
-sw_install /Applications/Mailplane.app _install_mailplane
 
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
