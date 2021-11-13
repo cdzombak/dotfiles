@@ -255,8 +255,6 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
-sw_install /Applications/OmniOutliner.app "brew_cask_install omnioutliner" \
-  "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
 sw_install /Applications/Spotify.app "brew_cask_install spotify" \
@@ -1658,6 +1656,17 @@ _install_omnigraffle() {
   fi
 }
 sw_install /Applications/OmniGraffle.app _install_omnigraffle
+
+_install_omnioutliner() {
+  cecho "Install OmniOutliner? (y/N)" $magenta
+  cecho "(note: cask install failed 2021-11-11)" $red
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask omnioutliner
+    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
+  fi
+}
+sw_install /Applications/OmniOutliner.app _install_omnioutliner
 
 _install_monodraw() {
   cecho "Install Monodraw? (y/N)" $magenta
