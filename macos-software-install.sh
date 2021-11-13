@@ -973,8 +973,8 @@ _install_ask_dash() {
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     _install_dash() {
       brew install --cask dash
-      open -a Dash
       set +e
+      open /Applications/Dash.app
       open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
       set -e
     }
