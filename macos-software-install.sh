@@ -378,7 +378,7 @@ sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
-sw_install /Applications/Reeder.app "mas install 1449412482" \
+sw_install /Applications/Reeder.app "mas install 1529448980" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
