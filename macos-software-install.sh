@@ -224,7 +224,7 @@ sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
-  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable Safari bookmarks\n- [ ] Enable 1Password integration"
+  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable Safari bookmarks\n- [ ] Enable 1Password integration\n- [ ] Set location to US"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
@@ -370,7 +370,7 @@ sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /App
 sw_install /Applications/Deliveries.app "mas install 290986013" \
   "- [ ] Sign into Junecloud account\n- [ ] Enable background updating\n- [ ] Add widget to Notification Center\n- [ ] Disable all notification options via System Preferences, except showing in Notification Center"
 sw_install /Applications/Due.app "mas install 524373870" \
-  "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications"
+  "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable iCloud Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
 #sw_install /Applications/IPinator.app "mas install 959111981" \
 #  "- [ ] Add to Notification Center"
@@ -476,7 +476,7 @@ _install_setapp() {
   done
 }
 sw_install /Applications/Setapp.app _install_setapp \
-  "- [ ] Sign in to Setapp\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
+  "- [ ] Sign in to Setapp\n- [ ] Dsiable \"Show in Finder Sidebar\"\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
 
 _install_ears() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
@@ -572,7 +572,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask lunar
       setupnote "Lunar" \
-        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Disable Raspberry Pi network control\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender"
+        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Disable Raspberry Pi network control\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender\n- [ ] Enable automatic update installation"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-lunar"
@@ -600,7 +600,7 @@ _install_istat(){
     # shellcheck disable=SC2129
     echo "## iStat Menus.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] License\n- [ ] Configure based on current favorite system\n- [ ] Add widget to Notification Center" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] License\n- [ ] Configure based on current favorite system" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
@@ -932,7 +932,8 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /Applications/Fork.app "brew_cask_install fork" \
     "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub and BitBucket accounts (as desired)"
   sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
-  sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge"
+  sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge" \
+    "- [ ] License"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
     "- [ ] Assign global shortcut Ctrl+Shift+T\n- [ ] License"
   [ -e /Applications/Setapp/CodeRunner.app ] || echo && cecho "Recommend installing CodeRunner via Setapp." $white

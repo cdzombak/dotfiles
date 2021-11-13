@@ -556,7 +556,7 @@ if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
   defaults write com.pointum.hazeover-setapp MultiFocus -bool true
   setupnote "HazeOver" \
-    "- [ ] Hide in Bartender\n- [ ] Configure as desired"
+    "- [ ] Hide in Bartender\n- [ ] Configure as desired\n- [ ] Start at Login"
   set +e
   open -a "HazeOver"
   set -e

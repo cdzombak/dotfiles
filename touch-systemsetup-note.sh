@@ -21,6 +21,7 @@ if [ "$(uname)" == "Darwin" ]; then
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
     - [ ] Reset font to Meslo LG M for Powerline after initial install
 - [ ] Rename "Macintosh HD"
+- [ ] Add network interface(s) to Pi-Hole Adblocking group
 
 ## System Preferences
 
@@ -77,7 +78,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
     - [ ] Customize available services as desired
 - [ ] Enable Dictation + Enhanced Dictation
-    - [ ] Set shortcut: right Command key twice
+    - [ ] Set shortcut: right Command key twice (unless keyboard has dictation key on F4)
 
 ### Network
 
@@ -140,13 +141,11 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Disable notifications for messages from unknown contacts
 - [ ] Set Do Not Disturb for active group threads
 - [ ] Enable iPhone sending SMS to this Mac
-- [ ] Notifications: show previews when unlocked
+- [ ] Notifications: show previews only when unlocked
 - [ ] Increase font size
 
 ## Notification Center
 
-- [ ] Add Weather
-- [ ] Add Screen Time
 - [ ] Configure based on screenshot in \`~/Sync/Configs\` (or current favorite system)
 
 ## Safari
@@ -168,9 +167,9 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 ## SSH
 
-- [ ] Verfify base Git config is installed
+- [ ] Verify base Git config is installed
 - [ ] Clone: \`git clone https://github.com/cdzombak/sshconfig.git .ssh\`
-- [ ] \`./.ssh/fix_authorized_keys.sh\`
+- [ ] \`./.ssh/fix_permissions.sh\`
 - [ ] Enable config templates as needed (see: Secretive or yubikey-agent setup)
 
 EOF
