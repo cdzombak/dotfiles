@@ -1289,11 +1289,11 @@ cecho "--- CAD, 3DP, and EE Tools ---" $white
 echo ""
 
 _install_cura() {
-  cecho "Install Pixelmator? (y/N)" $magenta
+  cecho "Install Cura? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask ultimaker-cura
-    setupnote "Cura" "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
+    setupnote "Ultimaker Cura" "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
   fi
 }
 sw_install "/Applications/Ultimaker Cura.app" _install_cura
