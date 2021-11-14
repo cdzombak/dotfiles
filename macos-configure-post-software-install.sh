@@ -696,6 +696,7 @@ if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
     echo "## CodeRunner" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Set font to Meslo LG M 14pt" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Remove the million default file type associations" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
