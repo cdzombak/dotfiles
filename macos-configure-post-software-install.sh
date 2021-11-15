@@ -351,8 +351,8 @@ echo "Reeder..."
 if [ -e "/Applications/Reeder.app" ]; then
   osascript -e "tell application \"Reeder\" to quit"
   defaults write com.reederapp.5.macOS "app.appearance" 10
-  defaults write "com.reederapp.5.macOS" "app.appearance.opaque" '1'
-  defaults write "com.reederapp.5.macOS" "app.content-size-category" '3'
+  defaults write com.reederapp.5.macOS "app.appearance.opaque" '1'
+  defaults write com.reederapp.5.macOS "app.content-size-category" '3'
   defaults write com.reederapp.5.macOS "app.default-browser" -string "com.apple.Safari"
   defaults write com.reederapp.5.macOS "app.filter" 2
   defaults write com.reederapp.5.macOS "app.grayscale-favicons" -bool true
@@ -364,6 +364,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   defaults write com.reederapp.5.macOS "app.state.user" -string "Feedbin/chris@chrisdzombak.net"
   defaults write com.reederapp.5.macOS "article.font-size" 17
   defaults write com.reederapp.5.macOS "article.increase-contrast" -bool true
+  defaults write com.reederapp.5.macOS "article.max.width" '37'
   defaults write com.reederapp.5.macOS "bionic.toolbar" -bool false
   defaults write com.reederapp.5.macOS "browser.open-links-in-background" -bool true
   defaults write com.reederapp.5.macOS "browser.open-links-in-default-browser" -bool true
