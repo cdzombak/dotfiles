@@ -55,6 +55,10 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Set address correctly
 - [ ] Set default card
 
+### Bluetooth
+
+- [ ] Pair AirPods Pro; set to reconnect to this Mac only when last connected
+
 ### Desktop & Screen Saver
 
 - [ ] Customize as desired
@@ -164,6 +168,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
     - [ ] Change display resolution as needed
     - [ ] Change display arrangement as needed
     - [ ] Confirm 5k/60Hz resolution via System Information app
+- [ ] Pair with Sony ANC Headphones as desired
 
 ## SSH
 
