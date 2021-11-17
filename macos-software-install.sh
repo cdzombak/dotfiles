@@ -1008,7 +1008,7 @@ _install_paw() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/Paw.app "brew_cask_install paw" \
-      "- [ ] Sign in / License"
+      "- [ ] Sign in / License\n- [ ] Set font: Meslo LG M 13"
   fi
 }
 sw_install /Applications/Paw.app _install_paw

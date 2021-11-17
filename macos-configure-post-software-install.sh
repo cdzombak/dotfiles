@@ -315,6 +315,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Paw..."
+if [ -e "/Applications/Paw.app" ]; then
+  osascript -e "tell application \"Paw\" to quit"
+  defaults write com.luckymarmot.Paw SUAutomaticallyUpdate 1
+else
+  echo "(Not installed.)"
+fi
+
 echo "Pastebot..."
 if [ -e "/Applications/Pastebot.app" ]; then
   osascript -e "tell application \"Pastebot\" to quit"
