@@ -255,6 +255,15 @@ else
   echo "(Not installed.)"
 fi
 
+echo "JSON Editor ..."
+if [ -e "/Applications/JSON Editor.app" ]; then
+  osascript -e "tell application \"JSON Editor\" to quit"
+  defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontName "MesloLGM-Regular"
+  defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontSize 13
+else
+  echo "(Not installed.)"
+fi
+
 echo "LaunchControl ..."
 if [ -e "/Applications/LaunchControl.app" ]; then
   osascript -e "tell application \"LaunchControl\" to quit"
