@@ -158,6 +158,8 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
     - [ ] Enable Develop menu
     - [ ] Disable AutoFill (in favor of [1Password 7.7+](https://blog.1password.com/big-sur-1password-7-7/))
 - [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Set homepage for new windows: \`https://start.dzdz.cz/\`
+- [ ] New tabs open with start page
 
 ## Desk Setup
 
