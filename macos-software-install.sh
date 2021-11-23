@@ -269,7 +269,7 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
   mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
 fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut"
+  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut\n- [ ] Disable alerts for Deliveries calendar"
 
 sw_install "/Applications/Cardhop.app" "brew_cask_install cardhop" \
   "- [ ] Sign into Flexibits account (via Apple)\n- [ ] Add and name work Google Directory"
