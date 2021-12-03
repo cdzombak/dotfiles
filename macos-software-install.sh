@@ -1790,7 +1790,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
       # shellcheck disable=SC2129
       echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
       echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications\n- [ ] Disable Menu Bar icon\n- [ ] Disable all sounds\n- [ ] Increase font size (17)" >> "$HOME/SystemSetup.md"
       echo "" >> "$HOME/SystemSetup.md"
 
       # https://twitter.com/dancounsell/status/667011332894535682
