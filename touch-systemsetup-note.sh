@@ -57,7 +57,8 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 ### Bluetooth
 
-- [ ] Pair AirPods Pro; set to reconnect to this Mac only when last connected
+- [ ] Pair AirPods Pro
+- [ ] AirPods Pro: **Set to reconnect to this Mac only when last connected**
 
 ### Desktop & Screen Saver
 
