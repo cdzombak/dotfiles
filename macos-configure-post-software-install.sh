@@ -381,7 +381,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   defaults write com.reederapp.5.macOS "app.state.user" -string "Feedbin/chris@chrisdzombak.net"
   defaults write com.reederapp.5.macOS "article.font-size" 17
   defaults write com.reederapp.5.macOS "article.increase-contrast" -bool true
-  defaults write com.reederapp.5.macOS "article.max.width" '37'
+  defaults write com.reederapp.5.macOS "article.max.width" '40'
   defaults write com.reederapp.5.macOS "bionic.toolbar" -bool false
   defaults write com.reederapp.5.macOS "browser.open-links-in-background" -bool true
   defaults write com.reederapp.5.macOS "browser.open-links-in-default-browser" -bool true
