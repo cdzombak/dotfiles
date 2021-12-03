@@ -2002,6 +2002,14 @@ if [ -e "/Applications/Garmin Express.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Setapp/Glyphfinder.app" ]; then
+  echo "Glyphfinder..."
+  verify_smartdelete
+  osascript -e "tell application \"Glyphfinder\" to quit"
+  trash /Applications/Setapp/Glyphfinder.app
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "$HOME/opt/bin/gmail-cleaner" ]; then
   echo "gmail-cleaner..."
   trash "$HOME/opt/bin/gmail-cleaner"
