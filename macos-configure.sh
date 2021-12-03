@@ -371,7 +371,7 @@ killall Dock
 ###############################################################################
 
 echo ""
-echo "Enable Safari's debug & development features"
+echo "Safari: Enable debug & development features"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool false
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
@@ -379,59 +379,73 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 defaults write "com.apple.Safari" "WebKitPreferences.developerExtrasEnabled" '1'
 defaults write "com.apple.Safari" "IncludeDevelopMenu" '1'
 defaults write "com.apple.Safari.SandboxBroker" "ShowDevelopMenu" '1'
-defaults write "com.apple.Safari" "NeverUseBackgroundColorInToolbar" '1'
-defaults write "com.apple.Safari" "ShowStandaloneTabBar" '1'
-
-# Add a context menu item for showing the Web Inspector in web views
-# defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 echo ""
-echo "Disable preloading top search hit in Safari"
+echo "Safari: Toolbar / Tab Bar appearance"
+defaults write "com.apple.Safari" "NeverUseBackgroundColorInToolbar" '1'
+if sysctl hw.model | grep -c "MacBookPro18,2" >/dev/null ; then
+  defaults write "com.apple.Safari" "ShowStandaloneTabBar" '0'
+  # This works around the bug where, on my 2021 MBP 16" with notch, Safari uses 100% of a CPU and acts like a
+  # modifier key is always pressed or a menu is always selected when using "Separate" - ie. classic - tabs.
+  # Covered in this thread, which will be automatically deleted in late 2022:
+  # https://twitter.com/cdzombak/status/1466446603036897281
+else
+  defaults write "com.apple.Safari" "ShowStandaloneTabBar" '1'
+fi
+
+echo ""
+echo "Safari: Disable preloading top search hit"
 defaults write com.apple.Safari PreloadTopHit -bool false
 
 echo ""
-echo "Add a context menu item for showing the Web Inspector in web views"
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-echo ""
-echo "Show Safari's status bar."
+echo "Safari: Show the status bar"
 defaults write com.apple.Safari ShowStatusBar -bool true
 
 echo ""
-echo "Show the full URL in the address bar"
+echo "Safari: Show the full URL in the address bar"
 # Show the full URL in the address bar (note: this still hides the scheme)
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 echo ""
-echo "Prevent Safari from opening 'safe' files by default"
+echo "Safari: Don't open 'safe' files by default"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-echo ""
-echo "Set Safari’s home page to about:blank"
+# echo ""
+# echo "Set Safari’s home page to about:blank"
 # Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
+# defaults write com.apple.Safari HomePage -string "about:blank"
+echo ""
+echo "Set Safari’s home page and new window/tab behavior"
+# new windows & tabs open with start page; homepage accessible with cmd-shift-H is custom "wallpaper"
+defaults write "com.apple.Safari" "NewWindowBehavior" '4'
+defaults write "com.apple.Safari" "NewTabBehavior" '4'
+defaults write com.apple.Safari HomePage -string "https://start.dzdz.cz"
 
 echo ""
-echo "Warn about fraudulent websites"
+echo "Safari: Warn about fraudulent websites"
 defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
 
 echo ""
-echo "Disable Java"
+echo "Safari: Disable Java"
 defaults write com.apple.Safari WebKitJavaEnabled -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
 
 echo ""
-echo "Enable Do Not Track"
+echo "Safari: Enable Do Not Track"
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 echo ""
-echo "Update extensions automatically"
+echo "Safari: Update extensions automatically"
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 echo ""
-echo "Disable tab switching w/command-#"
+echo "Safari: Disable tab switching w/command-#"
 defaults write "com.apple.Safari" "Command1Through9SwitchesTabs" '0'
+
+echo ""
+echo "Add a context menu item for showing the Web Inspector in web views"
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ###############################################################################
 # Mail
