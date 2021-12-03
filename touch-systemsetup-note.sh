@@ -180,6 +180,11 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] \`./.ssh/fix_permissions.sh\`
 - [ ] Enable config templates as needed (see: Secretive or yubikey-agent setup)
 
+Shortcuts.app
+
+- [ ] Add items to Menu Bar as desired
+- [ ] Arrange Menu Bar icon next to FastScripts
+
 EOF
 fi
 
