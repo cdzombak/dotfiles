@@ -239,6 +239,9 @@ function window.centerWithFullHeight(win)
   local max = screen:fullFrame()
 
   f.x = max.x + (max.w / 5)
+  if max.w == 2560 then
+    f.x = f.x - 100
+  end
   f.w = max.w * 3/5
   f.y = max.y
   f.h = max.h
