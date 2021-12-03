@@ -40,10 +40,7 @@ end
 
 require('control-escape')
 require('delete-words')
--- require('logitech-mouse')
 require('markdown')
--- require('scratchtext')
--- require('super')
 require('windows')
 
 hs.notify.new({title='Hammerspoon', informativeText='Ready ✅ (ctrl-alt-` to reload)'}):send()
