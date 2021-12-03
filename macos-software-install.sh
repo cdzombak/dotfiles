@@ -326,8 +326,6 @@ _install_whatsyoursign() {
 }
 sw_install /Applications/WhatsYourSign.app _install_whatsyoursign
 
-sw_install /opt/homebrew/Caskroom/ransomwhere/ "brew_cask_install ransomwhere"
-
 _install_redeye() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
   pushd "$TMP_DIR"
