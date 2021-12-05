@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 set -eo pipefail
 IFS=$'\n\t'
 source ./lib/cecho
@@ -384,6 +384,8 @@ sw_install /Applications/RadarScope.app "mas install 432027450" \
   "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
 sw_install /Applications/Reeder.app "mas install 1529448980" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
+sw_install "/Applications/Service Station.app" "mas install 1503136033" \
+  "- [ ] Install/sync current configuration\n- [ ] Enable Finder extension\n- [ ] Allow access to \`/\`\n- [ ] Restore purchases"
 sw_install "/Applications/Triode.app" "mas install 1450027401"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions as desired"
