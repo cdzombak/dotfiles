@@ -243,7 +243,7 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
-  "- [ ] Add work and personal accounts; set account names\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+  "- [ ] Add work and personal accounts; set account names\n- [ ] Disable notifications for work account (on personal machine)\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
