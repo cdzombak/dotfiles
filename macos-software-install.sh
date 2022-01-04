@@ -2209,16 +2209,6 @@ echo ""
 
 set +e
 
-_install_swiftsh() {
-  echo ""
-  cecho "Install swift-sh? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install mxcl/made/swift-sh
-  fi
-}
-sw_install "$(brew --prefix)/bin/swift-sh" _install_swiftsh
-
 _install_sqlint() {
   echo ""
   cecho "Install sqlint? (y/N)" $magenta
