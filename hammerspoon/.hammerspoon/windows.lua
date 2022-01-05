@@ -240,7 +240,7 @@ function window.centerWithFullHeight(win)
 
   f.x = max.x + (max.w / 5)
   if max.w == 2560 then
-    f.x = f.x - 100
+    f.x = f.x - 50
   end
   f.w = max.w * 3/5
   f.y = max.y
