@@ -241,3 +241,19 @@ alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speed
 alias staged='git diff --staged'
 
 alias diskspace='diskspace -H'
+
+function randpass() {
+    if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        echo "usage: randpass [length]"
+        echo "Length defaults to 32."
+        return
+    fi
+    local n
+    if [ -n "$1" ]; then
+        n="$1"
+    else
+        n="32"
+    fi
+    echo "$(< /dev/urandom gtr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | head -c$n)" | clipcopy
+    echo "Copied to clipboard."
+}
