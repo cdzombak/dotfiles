@@ -351,6 +351,9 @@ if [ ! -L /Applications/Marked.app ]; then
   chflags -h hidden /Applications/Marked.app
 fi
 
+sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
+  "- [ ] Set bezel to 70% opacity (from default 80)\n- [ ] Hide in Dock; show only in menu bar"
+
 # macOS Applications from Mac App Store:
 
 sw_install /Applications/Avenue.app "mas install 1523681067"

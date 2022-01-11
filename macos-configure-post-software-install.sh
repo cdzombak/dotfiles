@@ -264,6 +264,15 @@ else
   echo "(Not installed.)"
 fi
 
+echo "KeyCastr..."
+if [ -e "/Applications/KeyCastr.app" ]; then
+  osascript -e "tell application \"KeyCastr\" to quit"
+  defaults write "io.github.keycastr" "default.fontSize" '"61.50496794871795"'
+  defaults write "io.github.keycastr" "default.commandKeysOnly" '1'
+  defaults write "io.github.keycastr" "selectedVisualizer" 'Default'
+  defaults write "io.github.keycastr" "default.fadeDelay" '"1.646634615384615"'
+fi
+
 echo "LaunchControl ..."
 if [ -e "/Applications/LaunchControl.app" ]; then
   osascript -e "tell application \"LaunchControl\" to quit"
