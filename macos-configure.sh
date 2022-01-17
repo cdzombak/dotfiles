@@ -444,6 +444,10 @@ echo "Safari: Disable tab switching w/command-#"
 defaults write "com.apple.Safari" "Command1Through9SwitchesTabs" '0'
 
 echo ""
+echo "Safari: Don't allow websites to ask to send push notifications"
+defaults write "com.apple.Safari" "CanPromptForPushNotifications" '0'
+
+echo ""
 echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
