@@ -102,6 +102,7 @@ sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreuti
 sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
 sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
 sw_install "$(brew --prefix)/bin/diff-so-fancy" "brew_install diff-so-fancy"
+sw_install "$(brew --prefix)/bin/duf" "brew_install duf"
 sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
 sw_install "$(brew --prefix)/bin/exa" "brew_install exa"
 sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
