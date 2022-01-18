@@ -86,6 +86,22 @@
 	first = rev-list --max-parents=0 HEAD
 	subl-conflicts = ! git status | grep -i 'both modified' | sed 's/both modified://' | xargs subl -a $(git rev-parse --show-toplevel) -n
 
+	# Interactive checkout. Requires fzf (https://github.com/junegunn/fzf).
+	# Example: `git ibco`
+	#
+	# via aaron @ blumira
+	ibco = !git for-each-ref refs/heads --format='%(refname:short)' | fzf | xargs git checkout
+
+	# Interactive remote checkout. Requires fzf (https://github.com/junegunn/fzf).
+	# Example: `git irbco`
+	#
+	# The sed command strips the origin part of the branch name (e.g.
+	# "origin/foo"). The double backslashes are because escape chars need to be
+	# escaped in gitconfigs.
+	#
+	# via aaron @ blumira
+	irbco = !git for-each-ref refs/remotes --format='%(refname:short)' | fzf | sed 's/[^\\/]*\\/\\(.*\\)/\\1/' | xargs git switch
+
 # Tools
 
 [mergetool "Kaleidoscope"]
