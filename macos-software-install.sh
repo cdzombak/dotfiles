@@ -258,7 +258,7 @@ sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
 
 sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
-  "- [ ] Launch\n- [ ] Hide in Bartender"
+  "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
 
 _install_vitals() {
   brew tap | grep -c hmarr >/dev/null || brew tap hmarr/tap
