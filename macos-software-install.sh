@@ -1462,13 +1462,14 @@ _install_tag_editor() {
 sw_install "/Applications/Tag Editor.app" _install_tag_editor
 
 _install_youtubedl() {
-  cecho "Install youtube-dl? (y/N)" $magenta
+  cecho "Install youtube-dl & yt-dlp? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install youtube-dl
+    brew install yt-dlp
   fi
 }
-sw_install "$(brew --prefix)/bin/youtube-dl" _install_youtubedl
+sw_install "$(brew --prefix)/bin/yt-dlp" _install_youtubedl
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
