@@ -1074,9 +1074,10 @@ fi
 
 echo ""
 cecho "Install common Python code quality tools? (y/N)" $magenta
-echo "(flake8, pylint, pycodestyle)"
+echo "(black, flake8, pycodestyle, pylint)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install "$(brew --prefix)/bin/black" "brew_install black"
   sw_install "$(brew --prefix)/bin/flake8" "brew_install flake8"
   sw_install "$(brew --prefix)/bin/pylint" "brew_install pylint"
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
