@@ -239,7 +239,7 @@ sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
-  "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13"
+  "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13\n- [ ] Enable Finder extension"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
