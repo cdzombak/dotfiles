@@ -490,16 +490,6 @@ sw_install "/Applications/Ears.app" _install_ears \
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
 
-_install_airbuddy() {
-  brew install --cask airbuddy
-  # shellcheck disable=SC2129
-  echo "## AirBuddy.app" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-  echo -e "- [ ] License ([info in 1Password](https://start.1password.com/open/i?a=FCGICNWMMVCW7GU5XK7IY2WX6U&v=7edw3bzd47xd7yuuih7tgcfqqa&i=wigjty6o6rc7naunz4kiesdkza&h=my.1password.com))\n- [ ] Configure as desired\n- [ ] Add Notification Center widget" >> "$HOME/SystemSetup.md"
-  echo "" >> "$HOME/SystemSetup.md"
-}
-sw_install /Applications/AirBuddy.app _install_airbuddy
-
 sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
 
@@ -1943,6 +1933,13 @@ if [ -e "/Applications/AccessControlKitty.app" ]; then
   echo "AccessControlKitty Xcode extension..."
   verify_smartdelete
   trash /Applications/AccessControlKitty.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/AirBuddy.app" ]; then
+  echo "AirBuddy..."
+  verify_smartdelete
+  trash /Applications/AirBuddy.app
   REMOVED_ANYTHING=true
 fi
 
