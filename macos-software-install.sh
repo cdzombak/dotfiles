@@ -569,6 +569,16 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
   sw_install "/Applications/Lunar.app" _install_lunar
 fi
 
+_install_duet() {
+  cecho "Install Duet Display? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/duet.app" "brew_cask_install duet" \
+      "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Duet Air"
+  fi
+}
+sw_install "/Applications/duet.app" _install_duet
+
 _install_gpgkeychain() {
   cecho "Install GPG Keychain? (y/N)" $magenta
   cecho "nb: This will be required to sign Git commits per ~/.gitconfig." $red
