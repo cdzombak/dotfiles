@@ -702,6 +702,27 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
   fi
 fi
 
+_install_logitune() {
+  cecho "Install LogiTune (for C920 webcam)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logitune-work')
+    pushd "$TMP_DIR"
+    curl -L -o LogiTuneInstaller.dmg curl -L https://software.vc.logitech.com/downloads/tune/LogiTuneInstaller.dmg
+    hdiutil mount LogiTuneInstaller.dmg
+    open "/Volumes/LogiTuneInstaller/LogiTuneInstaller.app"
+    cecho "Please complete installation with the LogiTune Installer app, and wait until the app opens." $white
+    # shellcheck disable=SC2162
+    read -p "Press [Enter] to continue..."
+    hdiutil unmount "/Volumes/LogiTuneInstaller"
+    osascript -e 'tell application "LogiTune" to quit'
+    sudo launchctl disable gui/501/com.logitech.logitune.launcher
+    popd
+    setupnote "LogiTune.app" "- [ ] Disable meeting notifications/calendar integration\n- [ ] Configure webcam as desired"
+  fi
+}
+sw_install "/Applications/LogiTune.app" _install_logitune
+
 _install_unifiprotect() {
   cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
   echo "(requires GitHub auth)"
