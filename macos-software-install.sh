@@ -733,6 +733,16 @@ _install_logitune() {
 }
 sw_install "/Applications/LogiTune.app" _install_logitune
 
+_install_handmirror() {
+  cecho "Install Hand Mirror (webcam preview app)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1502839586
+    setupnote "Hand Mirror.app" "- [ ] Set shortcut: Ctrl-Shift-Cmd-M\n- [ ] Set open at login as desired\n- [ ] Select correct webcam"
+  fi
+}
+sw_install "/Applications/Hand Mirror.app" _install_handmirror
+
 _install_unifiprotect() {
   cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
   echo "(requires GitHub auth)"

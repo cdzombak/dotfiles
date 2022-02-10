@@ -255,6 +255,20 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Hand Mirror ..."
+if [ -e "/Applications/Hand Mirror.app" ]; then
+  osascript -e "tell application \"Hand Mirror\" to quit"
+  defaults write "net.rafaelconde.Hand-Mirror" "selectedUIIcon" '2'
+  defaults write "net.rafaelconde.Hand-Mirror" "selectedPopoverSize" '0'
+  defaults write "net.rafaelconde.Hand-Mirror" "dismissPreference" '1'
+  defaults write "net.rafaelconde.Hand-Mirror" "selectedMirroringPreference" '1'
+  set +e
+  open -a "Hand Mirror"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "JSON Editor ..."
 if [ -e "/Applications/JSON Editor.app" ]; then
   osascript -e "tell application \"JSON Editor\" to quit"
