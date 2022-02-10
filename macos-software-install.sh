@@ -1158,6 +1158,20 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/Lens.app" "brew_cask_install lens"
 fi
 
+_install_clock() {
+  cecho "Install simple UTC/Local Clock app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'clock')
+    git clone "https://github.com/cdzombak/clock.git" "$TMP_DIR"
+    pushd "$TMP_DIR/app"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/Clock.app" _install_clock
+
 _install_plist_editor() {
   cecho "Install PLIST Editor? (y/N)" $magenta
   read -r response
