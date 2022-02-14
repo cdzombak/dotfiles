@@ -697,16 +697,19 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
-  echo ""
-  cecho "Install Fusitsu ScanSnap utility? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
-      "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
-  fi
+   _install_scansnap() {
+    echo ""
+    cecho "Install Fusitsu ScanSnap utility? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
+        "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
+    fi
+  }
+  sw_install /Applications/ScanSnap _install_scansnap
 fi
 
 # sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
