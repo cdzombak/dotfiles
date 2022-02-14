@@ -677,6 +677,22 @@ _install_superduper(){
 }
 sw_install "/Applications/SuperDuper!.app" _install_superduper
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
+  _install_streamdeck() {
+    echo ""
+    cecho "Install Stream Deck utility? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install "/Applications/Stream Deck.app" "brew_cask_install elgato-stream-deck" \
+        "- [ ] Enable Accessibility permissions\n- [ ] Restore config backup as appropriate"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-stream-deck"
+    fi
+  }
+  sw_install "/Applications/Stream Deck.app" _install_streamdeck
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
   _install_octopi_wrapper() {
     cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
