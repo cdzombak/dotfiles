@@ -684,7 +684,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       sw_install "/Applications/Stream Deck.app" "brew_cask_install elgato-stream-deck" \
-        "- [ ] Enable Accessibility permissions\n- [ ] Restore config backup as appropriate"
+        "- [ ] Enable Accessibility permissions\n- [ ] Install Zoom plugin\n- [ ] Restore config backup as appropriate"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-stream-deck"
