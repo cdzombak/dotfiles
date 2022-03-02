@@ -117,6 +117,10 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Alerts play through selected sound output device
 - [ ] Set alert volume to ~75%
 
+### Spotlight
+
+- [ ] Exclude \`~/code\`, \`~/3p_code\`, and any other high-churn directories
+
 ### Users & Groups
 
 - [ ] Disable guest access
