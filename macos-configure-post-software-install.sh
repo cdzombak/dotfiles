@@ -158,12 +158,13 @@ echo "Due ..."
 if [ -e "/Applications/Due.app" ]; then
   osascript -e "tell application \"Due\" to quit"
   # shellcheck disable=SC2016
+  defaults write com.phocusllp.duemac prefIntDefaultSnoozeInterval -int 600
   defaults write com.phocusllp.duemac prefIntApplicationRunningMode -int 1
   defaults write com.phocusllp.duemac prefIntDefaultContentSizeCategory -int 0
   defaults write com.phocusllp.duemac prefIntWeekStarts -int 1
   defaults write com.phocusllp.duemac prefStringDue2ThemeName -string "Change with System"
-  defaults write com.phocusllp.duemac prefStringLastAutoDarkThemeName -string "Slate Dark";
-  defaults write com.phocusllp.duemac prefStringLastAutoLightThemeName -string "Vanilla Lilac";
+  defaults write com.phocusllp.duemac prefStringLastAutoDarkThemeName -string "Obsidian";
+  defaults write com.phocusllp.duemac prefStringLastAutoLightThemeName -string "Calcite";
   set +e
   open -a Due
   set -e
