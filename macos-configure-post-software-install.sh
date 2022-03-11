@@ -524,6 +524,9 @@ if [ -e /Applications/Xcode.app ]; then
   defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
   # Enable faster build times by leveraging multi-core CPU:
   defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $(sysctl -n hw.ncpu)
+  defaults write com.apple.dt.Xcode IDEFileExtensionDisplayMode 1
+  defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar 1
+  defaults write com.apple.dt.Xcode DVTTextOverscrollAmount "0.5"
 else
   echo "(Not installed.)"
 fi
