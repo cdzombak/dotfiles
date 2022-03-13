@@ -364,6 +364,17 @@ echo ""
 echo "Set Dock size"
 defaults write "com.apple.dock" "tilesize" '46'
 
+echo ""
+echo "Disable hot corners"
+defaults write "com.apple.dock" "wvous-tl-corner" '1'
+defaults write "com.apple.dock" "wvous-tl-modifier" '0'
+defaults write "com.apple.dock" "wvous-bl-modifier" '1048576'
+defaults write "com.apple.dock" "wvous-bl-corner" '1'
+defaults write "com.apple.dock" "wvous-tr-corner" '1'
+defaults write "com.apple.dock" "wvous-tr-modifier" '1048576'
+defaults write "com.apple.dock" "wvous-br-corner" '1'
+defaults write "com.apple.dock" "wvous-br-modifier" '1048576'
+
 killall Dock
 
 ###############################################################################
