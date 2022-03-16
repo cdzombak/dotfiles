@@ -1,15 +1,17 @@
 # Git config for macOS; assumes username 'cdzombak'
 
-# Core
+# User
 
 [user]
 	name = Chris Dzombak
 	email = chris@dzombak.com
 	signingkey = 588D34AC
 
-# Company-specific name/email/signing key
+# Company-specific name/email/signing key:
 [includeIf "gitdir:~/code/blumira/"]
 	path = .gitconfig-blumira
+
+# Core Config
 
 [core]
 	autocrlf = false
@@ -18,15 +20,13 @@
 	trustctime = false
 	pager = diff-so-fancy | less --tabs=4 -RFX  # https://github.com/so-fancy/diff-so-fancy#usage
 
-[color]
-	diff = true
-	status = true
-	branch = true
-	interactive = true
-	ui = true
+[http]
+	postBuffer = 262144000
+	# roughly 250 MB
 
 [commit]
 	gpgsign = true
+	# see GPG config in Tools section
 
 [apply]
 	whitespace = nowarn
@@ -40,10 +40,18 @@
 [credential]
 	helper = osxkeychain
 
+# UI
+
 [pager]
 	status = false
 	branch = false
 
+[color]
+	diff = true
+	status = true
+	branch = true
+	interactive = true
+	ui = true
 # https://github.com/so-fancy/diff-so-fancy#improved-colors-for-the-highlighted-bits
 [color "diff"]
 	meta = 11
@@ -128,7 +136,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-
-[http]
-	postBuffer = 262144000
-	# roughly 250 MB
