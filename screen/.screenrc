@@ -13,10 +13,9 @@ startup_message	off
 # xterm scrollback
 termcapinfo xterm ti@:te@
 
-# status - can't get nice hostname working and I need to move on
-#screen
-#screen $SHELL -c 'screen -X hardstatus alwayslastline "%{= kw}%{g}[ %{w}$(short_hostname) %{R}$STY %{g}] %{Y} %=%{ =kw}%{w}%-w%{Y}%{g}[%{W}%{y}%n: %t%{Y}%{g}]%{w}%+w%=%{g} [ %{y}%l %{g}] [ %{Y}%m-%d %{w}%c %{g}]"'
-hardstatus alwayslastline "%{= kw}%{g}[ %{w}%H %{R}$STY %{g}] %{Y} %=%{ =kw}%{w}%-w%{Y}%{g}[%{W}%{y}%n: %t%{Y}%{g}]%{w}%+w%=%{g} [ %{y}%l %{g}] [ %{Y}%m-%d %{w}%c %{g}]"
+# status line
+# https://www.gnu.org/software/screen/manual/html_node/String-Escapes.html#String-Escapes
+hardstatus alwayslastline "%{= kw}%{g}[ %{w}%H %{y}%l %{g}]%=%{ =kw}%{c}%-w%{r}[%{w}%n: %t%{r}]%{c}%+w%=%{g}[ %{y}%m/%d %c %{g}]"
 
 # add caption for split screen
 caption splitonly "%{= kw} %?%F%{rk} %?%n: %t %{kw} %f %?(%u)"
