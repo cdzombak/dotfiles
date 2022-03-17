@@ -133,5 +133,10 @@ server-homedir: require-linux ## Set up basic Linux home directory structure
 server-software: server-homedir ## Install some extra software on Linux (requires sudo)
 	@bash ./server-software-install.sh
 
+.PHONY: server-secondary
+server-secondary: server-homedir server-bash-cfg ## Setup minimal configuration, as a secondary user on the server
+	stow screen
+	stow nano
+
 .PHONY: server
 server: require-linux server-homedir server-stow server-bash-cfg server-software ## Configure a Linux server. *Recommended entry point.*

@@ -8,7 +8,7 @@ if [ "$(uname)" == "Darwin" ]; then
   exit 2
 fi
 
-# On Ubuntu, we get a default Bash config in our homedir, which we just want to customize a little bit.
+# On Debian/Ubuntu, we get a default Bash config in our homedir, which we just want to customize a little bit.
 # We do this by sourcing an additional config file here, rather than adding all changes to ~/.bashrc.
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
