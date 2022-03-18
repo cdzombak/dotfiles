@@ -46,7 +46,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         "Use ${CYAN}trash${NC} to move something to the trash."
         "${CYAN}xc${NC} will open the Xcode workspace or project for the current directory."
         "${CYAN}pfs${NC} will list the current Finder selection."
-        "${CYAN}finder [path]${NC} will open the given path or the current directory in Finder."
         "Use ${CYAN}pfd${NC} to print the current Finder directory.\n        ${CYAN}ff${NC}, ${CYAN}cdf${NC}, ${CYAN}pushdf${NC} to change to it."
         "Use ${CYAN}hide${NC} and ${CYAN}unhide${NC} to hide files/directories in Finder."
     )

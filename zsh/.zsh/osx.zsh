@@ -33,11 +33,6 @@ function ff() {
   smart_pushd "$(pfd)"
 }
 
-function finder() {
-  # https://brettterpstra.com/2019/08/29/shell-tricks-a-random-selection/
-  open -a "Finder" "${1-.}"
-}
-
 function quick-look() {
   (( $# > 0 )) && qlmanage -p $* &>/dev/null
 }
