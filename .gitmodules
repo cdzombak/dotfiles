@@ -10,6 +10,3 @@
 [submodule "osx-automation"]
 	path = osx-automation
 	url = https://github.com/cdzombak/osx-automation.git
-[submodule "nano/.nano"]
-	path = nano/.nano
-	url = https://github.com/cdzombak/nanorc.git
