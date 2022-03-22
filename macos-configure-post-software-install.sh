@@ -398,7 +398,7 @@ if [ -e "/Applications/Reeder.app" ]; then
   defaults write com.reederapp.5.macOS "app.filter" 2
   defaults write com.reederapp.5.macOS "app.grayscale-favicons" -bool true
   defaults write com.reederapp.5.macOS "app.icon-badge" 0
-  defaults write com.reederapp.5.macOS "app.layout" 0
+  defaults write com.reederapp.5.macOS "app.layout" 3
   defaults write com.reederapp.5.macOS "app.state.controller" -string "streams"
   defaults write com.reederapp.5.macOS "app.state.stream.type" 0
   defaults write com.reederapp.5.macOS "app.state.stream.user" -string "Feedbin/chris@chrisdzombak.net"
