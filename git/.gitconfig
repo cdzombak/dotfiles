@@ -90,9 +90,9 @@
 	exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	cbr = rev-parse --abbrev-ref HEAD
-	recent = ! git reflog | grep 'checkout: moving from' | head -n 50 | egrep -oh ' \\S+$' | awk '!x[$0]++'
-	first = rev-list --max-parents=0 HEAD
+	first-commit = rev-list --max-parents=0 HEAD
 	subl-conflicts = ! git status | grep -i 'both modified' | sed 's/both modified://' | xargs subl -a $(git rev-parse --show-toplevel) -n
+	branch-cleanup = ! git branch --merged | egrep -v \"(^\\*|master|main|dev|development)\" | xargs git branch -d && git remote prune origin
 
 	# Interactive checkout. Requires fzf (https://github.com/junegunn/fzf).
 	# Example: `git ibco`
