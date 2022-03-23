@@ -76,13 +76,13 @@ command -v docker >/dev/null 2>&1 && source ~/.zsh/docker-func.zsh
 source ~/.zsh/hints.zsh
 source ~/.zsh/wx.zsh
 command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
-if [ -f ~/.local.zsh ]; then
-    source ~/.local.zsh
-fi
 if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 source ~/.zsh/pyenv.zsh
+if [ -f ~/.local.zsh ]; then
+    source ~/.local.zsh
+fi
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10
