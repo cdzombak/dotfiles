@@ -738,7 +738,7 @@ _install_logitune() {
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logitune-work')
     pushd "$TMP_DIR"
-    curl -L -o LogiTuneInstaller.dmg curl -L https://software.vc.logitech.com/downloads/tune/LogiTuneInstaller.dmg
+    curl -L -o LogiTuneInstaller.dmg https://software.vc.logitech.com/downloads/tune/LogiTuneInstaller.dmg
     hdiutil mount LogiTuneInstaller.dmg
     open "/Volumes/LogiTuneInstaller/LogiTuneInstaller.app"
     cecho "Please complete installation with the LogiTune Installer app, and wait until the app opens." $white
