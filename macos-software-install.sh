@@ -575,7 +575,7 @@ _install_duet() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install "/Applications/duet.app" "brew_cask_install duet" \
-      "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Duet Air"
+      "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Android USB Support"
   fi
 }
 sw_install "/Applications/duet.app" _install_duet
