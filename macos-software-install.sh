@@ -1737,7 +1737,6 @@ sw_install /Applications/OmniGraffle.app _install_omnigraffle
 
 _install_omnioutliner() {
   cecho "Install OmniOutliner? (y/N)" $magenta
-  cecho "(note: cask install failed 2021-11-11)" $red
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask omnioutliner

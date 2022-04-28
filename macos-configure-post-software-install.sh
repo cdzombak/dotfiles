@@ -348,6 +348,15 @@ else
   echo "(Not installed.)"
 fi
 
+echo "OmniOutliner..."
+if [ -e "/Applications/OmniOutliner.app" ]; then
+  osascript -e "tell application \"OmniOutliner\" to quit"
+  defaults write com.omnigroup.OmniOutliner5 OOReturnShouldCreateNewRow 0
+  defaults write com.omnigroup.OmniOutliner5 OOTabShouldNavigateCells 1
+else
+  echo "(Not installed.)"
+fi
+
 echo "Paw..."
 if [ -e "/Applications/Paw.app" ]; then
   osascript -e "tell application \"Paw\" to quit"
