@@ -520,6 +520,15 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Vitals..."
+if [ -e "/Applications/Vitals.app" ]; then
+  osascript -e "tell application \"Vitals\" to quit"
+  defaults write "com.hmarr.Vitals" "networkStatsEnabled" '1'
+  open -a "Vitals"
+else
+  echo "(Not installed.)"
+fi
+
 echo "Xcode ..."
 if [ -e /Applications/Xcode.app ]; then
   osascript -e "tell application \"Xcode\" to quit"
