@@ -574,7 +574,7 @@ if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
   defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
   defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
   setupnote "CloudMounter" \
-    "- [ ] Add Personal Google Drive\n- [ ] Add Work Google Drive (as desired)\n- [ ] Add Personal Dropbox\n- [ ] Add Goliath ~ (local)\n- [ ] Add Wasabi"
+    "- [ ] Add Personal Google Drive\n- [ ] Add Work Google Drive (as desired)\n- [ ] Add Personal Dropbox\n- [ ] Add Wasabi"
   set +e
   open -a "CloudMounter"
   set -e
