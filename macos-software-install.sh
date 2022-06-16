@@ -1834,7 +1834,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       mas install 1450757574
-      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account"
+      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Notifications: Disable banners & sounds"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-mastonaut"
