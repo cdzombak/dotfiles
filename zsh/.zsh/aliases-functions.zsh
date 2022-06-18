@@ -53,7 +53,7 @@ function ssc {
 }
 compdef ssc=ssh
 
-function start-torrent {
+function torrent {
     ssh pi@torrentpi -o ProxyCommand="ssh curie-remote -W %h:%p" "transmission-remote -a \"$1\""
 }
 
