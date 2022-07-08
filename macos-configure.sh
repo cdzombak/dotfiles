@@ -188,6 +188,13 @@ echo ""
 echo "Increase sound quality for Bluetooth headphones/headsets"
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
+echo ""
+cecho "Set mouse tracking for home office desk? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  ./osx-automation/opt/bin/mouse-tracking home
+fi
+
 ###############################################################################
 # Screen
 ###############################################################################
