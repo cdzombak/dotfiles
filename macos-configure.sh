@@ -262,15 +262,15 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 
 # The following error happens on fresh installs:
 # Set: Entry, ":FK_StandardViewSettings:IconViewSettings:arrangeBy", Does Not Exist
-echo ""
-cecho "Enable snap-to-grid for icons on the desktop and in other icon views? (y/N)" $magenta
-cecho "nb. SELECT NO ON FRESH INSTALLS to avoid exiting with error." $red
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-  /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-  /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-fi
+# echo ""
+# cecho "Enable snap-to-grid for icons on the desktop and in other icon views? (y/N)" $magenta
+# cecho "nb. SELECT NO ON FRESH INSTALLS to avoid exiting with error." $red
+# read -r response
+# if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+#   /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+#   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+# fi
 
 echo ""
 echo "[Finder] Show all filename extensions"
