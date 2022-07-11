@@ -315,7 +315,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 ###############################################################################
 
 echo ""
-echo "Speed up Mission Control animations and grouping windows by application"
+echo "Speed up Mission Control animations; Group windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.2
 defaults write com.apple.dock "expose-group-by-app" -bool true
 
@@ -364,7 +364,7 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 echo ""
 echo "Disable Dock magnification"
 defaults write "com.apple.dock" "magnification" '0'
-# Disable Dock magnification even when holding down Ctrl-Shift
+# Disable Dock magnification even when holding down Ctrl-Shift:
 defaults write com.apple.dock largesize -int 1
 
 echo ""
@@ -434,7 +434,8 @@ defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 # defaults write com.apple.Safari HomePage -string "about:blank"
 echo ""
 echo "Set Safari’s home page and new window/tab behavior"
-# new windows & tabs open with start page; homepage accessible with cmd-shift-H is custom "wallpaper"
+# new windows & tabs open with Safari's Start Page;
+# home page (accessible with cmd-shift-H) is my custom "wallpaper" page
 defaults write "com.apple.Safari" "NewWindowBehavior" '4'
 defaults write "com.apple.Safari" "NewTabBehavior" '4'
 defaults write com.apple.Safari HomePage -string "https://start.dzdz.cz"
@@ -507,15 +508,15 @@ fi
 
 if [ ! -e "$HOME/.local/dotfiles/no-itunes-config" ]; then
   echo ""
-  cecho "Configure iTunes for a 'client' computer (eg. not the master on home Mac Mini server)? (y/N)" $magenta
+  cecho "Configure Apple Music (formerly iTunes)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
-    echo "[iTunes] Delete downloaded movies/shows after watching"
+    echo "[Music] Delete downloaded movies/shows after watching"
     defaults write com.apple.iTunes automaticallyDeleteVideoAssetsAfterWatching -bool true
 
     echo ""
-    echo "[iTunes] Disable features I don't use, including Apple Music"
+    echo "[Music] Disable features I don't use, including Apple Music"
     defaults write com.apple.iTunes disableAppleMusic -bool true
     defaults write com.apple.iTunes disableMusicSocial -bool true
     defaults write com.apple.iTunes disableMusicStore -bool false

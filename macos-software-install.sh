@@ -1889,7 +1889,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
 fi
 
 echo ""
-cecho "--- Games & Fun ---" $white
+cecho "--- Games ---" $white
 echo ""
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-steam" ]; then
