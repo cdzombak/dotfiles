@@ -194,6 +194,6 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Set default note as floating on top & slightly larger font size
 
 EOF
-fi
+fi  # Darwin
 
 cecho "✔ Setup note lives at $HOME/SystemSetup.md" $green
