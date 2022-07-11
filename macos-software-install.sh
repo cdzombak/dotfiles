@@ -127,7 +127,8 @@ sw_install "$(brew --prefix)/bin/nano" "brew_install nano"
 sw_install "$(brew --prefix)/bin/ncdu" "brew_install ncdu"
 sw_install "$(brew --prefix)/bin/nnn" "brew_install nnn"
 sw_install "$(brew --prefix)/bin/node" "brew_install node"
-sw_install "$(brew --prefix)/bin/pup" "brew_install pup"
+sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
+sw_install "$(brew --prefix)/bin/pup" "brew_install pup" # CLI HTML parsing; supports weblink script
 sw_install "$(brew --prefix)/bin/python3" "brew_install python"
 sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
 sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
@@ -151,12 +152,6 @@ _install_tealdeer() {
   "$(brew --prefix)/bin/tldr" --update >/dev/null &
 }
 sw_install "$(brew --prefix)/bin/tldr" _install_tealdeer
-
-sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
-
-#sw_install "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" "brew_cask_install qlmarkdown" \
-#  "- [ ] [Catalina/Big Sur workaround](https://github.com/toland/qlmarkdown/issues/98#issuecomment-607733093): Allow in Security & Privacy pane, after a notarization warning appears"
-#sw_install "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" "brew_cask_install quicklook-json"
 
 sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
 # Fix "entr: Too many files listed; the hard limit for your login class is 256."
@@ -234,6 +229,8 @@ sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
 sw_install /Applications/Firefox.app "brew_cask_install firefox" \
   "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
+sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
+  "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
 sw_install /Applications/IINA.app "brew_cask_install iina"
@@ -246,6 +243,8 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
   "- [ ] Add work and personal accounts; set account names\n- [ ] Disable notifications for work account (on personal machine)\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
+  "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
@@ -253,13 +252,8 @@ sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensibleside
 sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
-sw_install "/Applications/Transmit.app" "brew_cask_install transmit" \
-  "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files"
-
-sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
-  "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
 
 _install_vitals() {
   brew tap | grep -c hmarr >/dev/null || brew tap hmarr/tap
@@ -358,7 +352,6 @@ sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
 
 # macOS Applications from Mac App Store:
 
-sw_install /Applications/Avenue.app "mas install 1523681067"
 sw_install /Applications/Bear.app "mas install 1091189122" \
   "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 # sw_install /Applications/Byword.app "mas install 420212497"
@@ -391,7 +384,6 @@ sw_install /Applications/Reeder.app "mas install 1529448980" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/Service Station.app" "mas install 1503136033" \
   "- [ ] Install/sync current configuration\n- [ ] Enable Finder extension\n- [ ] Allow access to \`/\`\n- [ ] Restore purchases"
-sw_install "/Applications/Triode.app" "mas install 1450027401"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions as desired"
 
@@ -515,16 +507,6 @@ _install_instapaper_reader() {
 }
 sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
 
-_install_ecobee() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
-  git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install-mac
-  make clean
-  popd
-}
-sw_install "/Applications/Ecobee.app" _install_ecobee
-
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
   set -x
@@ -555,6 +537,22 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
+  _install_transmit() {
+    cecho "Install Transmit? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask Transmit
+      setupnote "Transmit" \
+        "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-transmit"
+    fi
+  }
+  sw_install "/Applications/Transmit.app" _install_transmit
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
   _install_lunar() {
     cecho "Install Lunar (external monitor management brightness/etc. tool)? (y/N)" $magenta
@@ -581,16 +579,14 @@ _install_duet() {
 }
 sw_install "/Applications/duet.app" _install_duet
 
-_install_gpgkeychain() {
-  cecho "Install GPG Keychain? (y/N)" $magenta
-  cecho "nb: This will be required to sign Git commits per ~/.gitconfig." $red
+_install_avenue() {
+  cecho "Install Avenue (GPX viewer)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
-      "- [ ] Import/generate GPG keys as needed"
+    mas install 1523681067
   fi
 }
-sw_install "/Applications/GPG Keychain.app" _install_gpgkeychain
+sw_install "/Applications/Avenue.app" _install_avenue
 
 _install_istat(){
   cecho "Install iStat Menus? (y/N)" $magenta
@@ -695,25 +691,27 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
   sw_install "/Applications/Stream Deck.app" _install_streamdeck
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
-  _install_octopi_wrapper() {
-    cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
+if [ ! -e "$HOME/.local/dotfiles/software/no-ecobee-wrapper" ]; then
+  _install_ecobee() {
+    echo ""
+    cecho "Install Ecobee wrapper app? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
-      git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
+      git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
       pushd "$TMP_DIR"
       make install-mac
       make clean
       popd
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-octopi-dzhome"
+      touch "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
     fi
   }
-  sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
+  sw_install "/Applications/Ecobee.app" _install_ecobee
 fi
 
+# ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
 # if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
 #    _install_scansnap() {
 #     echo ""
@@ -730,8 +728,8 @@ fi
 #   sw_install /Applications/ScanSnap _install_scansnap
 # fi
 
+# MyHarmony isn't supported on anything newer than Mojave:
 # sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
-# MyHarmony isn't supported on anything newer than Mojave.
 
 _install_logitune() {
   cecho "Install LogiTune (for C920 webcam)? (y/N)" $magenta
@@ -952,24 +950,6 @@ _install_vncviewer() {
   fi
 }
 sw_install "/Applications/VNC Viewer.app" _install_vncviewer
-
-_install_cubicsdr() {
-  cecho "Install CubicSDR? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask cubicsdr
-  fi
-}
-sw_install /Applications/CubicSDR.app _install_cubicsdr
-
-_install_chirp() {
-  cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask chirp
-  fi
-}
-sw_install /Applications/CHIRP.app _install_chirp
 
 _install_coconutbattery() {
   cecho "Install CoconutBattery? (y/N)" $magenta
@@ -1372,7 +1352,7 @@ _install_liya() {
 sw_install /Applications/Liya.app _install_liya
 
 echo ""
-cecho "--- CAD, 3DP, and EE Tools ---" $white
+cecho "--- CAD, 3DP, EE, Radio Tools ---" $white
 echo ""
 
 _install_cura() {
@@ -1395,6 +1375,25 @@ _install_f360() {
 }
 sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
+  _install_octopi_wrapper() {
+    cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
+      git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
+      pushd "$TMP_DIR"
+      make install-mac
+      make clean
+      popd
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-octopi-dzhome"
+    fi
+  }
+  sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
+fi
+
 _install_kicad() {
   cecho "Install KiCad? (y/N)" $magenta
   read -r response
@@ -1403,6 +1402,24 @@ _install_kicad() {
   fi
 }
 sw_install "/Applications/KiCad" _install_kicad
+
+_install_cubicsdr() {
+  cecho "Install CubicSDR? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask cubicsdr
+  fi
+}
+sw_install /Applications/CubicSDR.app _install_cubicsdr
+
+_install_chirp() {
+  cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask chirp
+  fi
+}
+sw_install /Applications/CHIRP.app _install_chirp
 
 echo ""
 cecho "--- Media Tools ---" $white
@@ -1598,6 +1615,15 @@ _install_sonos() {
   fi
 }
 sw_install "/Applications/Sonos.app" _install_sonos
+
+_install_triode() {
+  cecho "Install Triode? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1450027401
+  fi
+}
+sw_install "/Applications/Triode.app" _install_triode
 
 _install_plexdesktop() {
   cecho "Install Plex Desktop? (y/N)" $magenta
