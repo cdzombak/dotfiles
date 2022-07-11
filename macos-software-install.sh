@@ -31,16 +31,17 @@ mkdir -p "$HOME/.local/dotfiles/software"
 
 if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   echo ""
-  cecho "Current persisted preferences in ~/.local/dotfiles/software:" $white
+  cecho "Please review these currently-persisted choices in ~/.local/dotfiles/software:" $white
   ls -C "$HOME/.local/dotfiles/software"
   echo ""
+  echo "Remove any individual choice directly in a separate window, or reset all using \`make reset-choices\`."
   # shellcheck disable=SC2162
   read -p "Press [Enter] to continue..."
 fi
 
 echo ""
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
-# Ask for the administrator password upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
+# Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -87,7 +88,7 @@ if brew tap | grep -c caskroom/versions >/dev/null ; then
   brew untap caskroom/versions
 fi
 
-# tap the various casks that may be required:
+# tap various casks that may be required:
 brew tap | grep -c homebrew/cask-versions >/dev/null || brew tap homebrew/cask-versions
 brew tap | grep -c homebrew/cask-drivers >/dev/null || brew tap homebrew/cask-drivers
 brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
