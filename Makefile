@@ -62,7 +62,6 @@ mac-stow: require-macos dependencies submodules ## Link macOS configuration file
 	stow ruby
 	stow hammerspoon
 	stow login
-	stow lldb
 	stow tig
 	stow screen
 	stow profile

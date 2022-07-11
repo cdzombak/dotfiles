@@ -1,3 +1,0 @@
-command alias uikit expr @import UIKit
-command alias foundation expr @import Foundation
-command script import "/Users/cdzombak/Library/Application Support/Kaleidoscope/lldb_ksdiff.py"
