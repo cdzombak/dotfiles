@@ -569,24 +569,20 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
   sw_install "/Applications/Lunar.app" _install_lunar
 fi
 
-_install_duet() {
-  cecho "Install Duet Display? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/duet.app" "brew_cask_install duet" \
-      "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Android USB Support"
-  fi
-}
-sw_install "/Applications/duet.app" _install_duet
-
-_install_avenue() {
-  cecho "Install Avenue (GPX viewer)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1523681067
-  fi
-}
-sw_install "/Applications/Avenue.app" _install_avenue
+if [ ! -e "$HOME/.local/dotfiles/software/no-duet" ]; then
+  _install_duet() {
+    cecho "Install Duet Display? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install "/Applications/duet.app" "brew_cask_install duet" \
+        "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Android USB Support"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-duet"
+    fi
+  }
+  sw_install "/Applications/duet.app" _install_duet
+fi
 
 _install_istat(){
   cecho "Install iStat Menus? (y/N)" $magenta
@@ -602,6 +598,22 @@ _install_istat(){
 }
 sw_install "/Applications/iStat Menus.app" _install_istat
 
+echo ""
+cecho "Install/update my notify-me script? (y/N)" $magenta
+echo "(requires auth to dropbox.dzombak.com/_auth)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  if [ -f "$HOME/opt/bin/notify-me" ]; then
+    rm "$HOME/opt/bin/notify-me"
+  fi
+  if [ -e "$HOME/.netrc" ] && ! grep -c "dropbox.dzombak.com login cdzombak password PUT_" "$HOME/.netrc" >/dev/null; then
+    curl -f -s --netrc --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  else
+    curl -f -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
+  fi
+  chmod 755 "$HOME/opt/bin/notify-me"
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-secretive" ]; then
   _install_secretive() {
     cecho "Install Secretive (Touch ID SSH agent)? (y/N)" $magenta
@@ -612,14 +624,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-secretive" ]; then
         mkdir -p "$HOME/.ssh/config.local/"
         ln -s "$HOME/.ssh/config.templates/secretive-agent" "$HOME/.ssh/config.local/secretive-agent"
       fi
-      # shellcheck disable=SC2129
-      echo "## Secretive.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Walk through setup\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-secretive"
+      setupnote "Secretive.app" \
+        "- [ ] Walk through setup\n- [ ] Generate a key for this machine\n- [ ] Add key to SSH config"
     fi
   }
   sw_install "/Applications/Secretive.app" _install_secretive
@@ -691,26 +697,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
   sw_install "/Applications/Stream Deck.app" _install_streamdeck
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-ecobee-wrapper" ]; then
-  _install_ecobee() {
-    echo ""
-    cecho "Install Ecobee wrapper app? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
-      git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
-      pushd "$TMP_DIR"
-      make install-mac
-      make clean
-      popd
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
-    fi
-  }
-  sw_install "/Applications/Ecobee.app" _install_ecobee
-fi
-
 # ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
 # if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
 #    _install_scansnap() {
@@ -762,6 +748,26 @@ _install_handmirror() {
 }
 sw_install "/Applications/Hand Mirror.app" _install_handmirror
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-ecobee-wrapper" ]; then
+  _install_ecobee() {
+    echo ""
+    cecho "Install Ecobee wrapper app? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
+      git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
+      pushd "$TMP_DIR"
+      make install-mac
+      make clean
+      popd
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
+    fi
+  }
+  sw_install "/Applications/Ecobee.app" _install_ecobee
+fi
+
 _install_unifiprotect() {
   cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
   echo "(requires GitHub auth)"
@@ -807,23 +813,33 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 fi
 
-_install_wireshark() {
-  cecho "Install Wireshark? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask wireshark
-  fi
-}
-sw_install /Applications/Wireshark.app _install_wireshark
+if [ ! -e "$HOME/.local/dotfiles/software/no-wireshark" ]; then
+  _install_wireshark() {
+    cecho "Install Wireshark? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask wireshark
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-wireshark"
+    fi
+  }
+  sw_install /Applications/Wireshark.app _install_wireshark
+fi
 
-_install_bettercap() {
-  cecho "Install Bettercap? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install bettercap
-  fi
-}
-sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
+if [ ! -e "$HOME/.local/dotfiles/software/no-bettercap" ]; then
+  _install_bettercap() {
+    cecho "Install Bettercap? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install bettercap
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-bettercap"
+    fi
+  }
+  sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
+fi
 
 _install_rpi_imager() {
   cecho "Install Raspberry Pi Imager? (y/N)" $magenta
@@ -917,31 +933,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
   sw_install "/Applications/Screens Connect.app" _install_screensconnect
 fi
 
-echo ""
-cecho "Install/update my notify-me script? (y/N)" $magenta
-echo "(requires auth to dropbox.dzombak.com/_auth)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  if [ -f "$HOME/opt/bin/notify-me" ]; then
-    rm "$HOME/opt/bin/notify-me"
-  fi
-  if [ -e "$HOME/.netrc" ] && ! grep -c "dropbox.dzombak.com login cdzombak password PUT_" "$HOME/.netrc" >/dev/null; then
-    curl -f -s --netrc --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
-  else
-    curl -f -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
-  fi
-  chmod 755 "$HOME/opt/bin/notify-me"
-fi
-
-_install_colorsnapper() {
-  cecho "Install ColorSnapper? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 969418666
-  fi
-}
-sw_install /Applications/ColorSnapper2.app _install_colorsnapper
-
 _install_vncviewer() {
   cecho "Install VNC Viewer? (y/N)" $magenta
   read -r response
@@ -951,23 +942,23 @@ _install_vncviewer() {
 }
 sw_install "/Applications/VNC Viewer.app" _install_vncviewer
 
-_install_coconutbattery() {
-  cecho "Install CoconutBattery? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask coconutbattery
-  fi
-}
-sw_install /Applications/coconutBattery.app _install_coconutbattery
+# _install_coconutbattery() {
+#   cecho "Install CoconutBattery? (y/N)" $magenta
+#   read -r response
+#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#     brew install --cask coconutbattery
+#   fi
+# }
+# sw_install /Applications/coconutBattery.app _install_coconutbattery
 
-_install_daisydisk() {
-  cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 411643860 # DaisyDisk
-  fi
-}
-sw_install /Applications/DaisyDisk.app _install_daisydisk
+# _install_daisydisk() {
+#   cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
+#   read -r response
+#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#     mas install 411643860 # DaisyDisk
+#   fi
+# }
+# sw_install /Applications/DaisyDisk.app _install_daisydisk
 
 echo ""
 cecho "--- Dev Tools ---" $white
@@ -1053,6 +1044,16 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   }
   sw_install "/Applications/JSON Viewer.app" _install_json_viewer
 fi
+
+_install_csveditor() {
+  cecho "Install CSV Editor? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
+      "- [ ] Associate with CSV files"
+  fi
+}
+sw_install "/Applications/Easy CSV Editor.app" _install_csveditor
 
 _install_paw() {
   cecho "Install Paw? (y/N)" $magenta
@@ -1329,27 +1330,27 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   brew install --cask texmaker
 fi
 
-echo ""
-cecho "Database tools..." $white
-cecho "Additional options exist: JetBrains DataGrip, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
+# echo ""
+# cecho "Database tools..." $white
+# cecho "Additional options exist: JetBrains DataGrip, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
 
-_install_mysqlworkbench() {
-  cecho "Install MySQLWorkbench? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask mysqlworkbench
-  fi
-}
-sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
+# _install_mysqlworkbench() {
+#   cecho "Install MySQLWorkbench? (y/N)" $magenta
+#   read -r response
+#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#     brew install --cask mysqlworkbench
+#   fi
+# }
+# sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
 
-_install_liya() {
-  cecho "Install Liya (for SQLite, from Mac App Store)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 455484422 # Liya - SQLite
-  fi
-}
-sw_install /Applications/Liya.app _install_liya
+# _install_liya() {
+#   cecho "Install Liya (for SQLite, from Mac App Store)? (y/N)" $magenta
+#   read -r response
+#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#     mas install 455484422 # Liya - SQLite
+#   fi
+# }
+# sw_install /Applications/Liya.app _install_liya
 
 echo ""
 cecho "--- CAD, 3DP, EE, Radio Tools ---" $white
@@ -1482,6 +1483,15 @@ _install_fileloupe() {
 }
 sw_install /Applications/Fileloupe.app _install_fileloupe
 
+_install_colorsnapper() {
+  cecho "Install ColorSnapper? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 969418666
+  fi
+}
+sw_install /Applications/ColorSnapper2.app _install_colorsnapper
+
 _install_geotag() {
   cecho "Install GeoTag? (y/N)" $magenta
   read -r response
@@ -1496,6 +1506,15 @@ _install_geotag() {
   fi
 }
 sw_install /Applications/GeoTag.app _install_geotag
+
+_install_avenue() {
+  cecho "Install Avenue (GPX viewer)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1523681067
+  fi
+}
+sw_install "/Applications/Avenue.app" _install_avenue
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
   _install_adobe_cc() {
@@ -1739,6 +1758,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
   }
 fi
 
+# TODO(cdzombak): Signal
+
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
   read -r response
@@ -1747,6 +1768,20 @@ _install_diagrams() {
   fi
 }
 sw_install /Applications/Diagrams.app _install_diagrams
+
+_install_monodraw() {
+  cecho "Install Monodraw? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask monodraw
+    # shellcheck disable=SC2129
+    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/Monodraw.app _install_monodraw
 
 _install_omnigraffle() {
   cecho "Install OmniGraffle? (y/N)" $magenta
@@ -1771,20 +1806,6 @@ _install_omnioutliner() {
   fi
 }
 sw_install /Applications/OmniOutliner.app _install_omnioutliner
-
-_install_monodraw() {
-  cecho "Install Monodraw? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask monodraw
-    # shellcheck disable=SC2129
-    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Monodraw.app _install_monodraw
 
 _install_keynote() {
   cecho "Install Keynote? (y/N)" $magenta
@@ -1831,29 +1852,24 @@ _install_tableflip() {
 }
 sw_install /Applications/TableFlip.app _install_tableflip
 
-_install_csveditor() {
-  cecho "Install CSV Editor? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
-      "- [ ] Associate with CSV files"
-  fi
-}
-sw_install "/Applications/Easy CSV Editor.app" _install_csveditor
-
 echo ""
 cecho "--- Social Networking ---" $white
 echo ""
 
-_install_discord() {
-  cecho "Install Discord? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask discord
-    setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences"
-  fi
-}
-sw_install /Applications/Discord.app _install_discord
+if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
+  _install_discord() {
+    cecho "Install Discord? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask discord
+      setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-discord"
+    fi
+  }
+  sw_install /Applications/Discord.app _install_discord
+fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
   _install_Mastonaut() {
@@ -2157,13 +2173,6 @@ if [ -e "/Applications/Instapaper.app" ] ; then
   echo "Instapaper (it's a bad app)..."
   verify_smartdelete
   trash "/Applications/Instapaper.app"
-  REMOVED_ANYTHING=true
-fi
-
-if [ -e "/Applications/Instapaper Save.app" ]; then
-  echo "Instapaper Save (Safari shortcut conflicts with Window Layout Mode)..."
-  verify_smartdelete
-  trash "/Applications/Instapaper Save.app"
   REMOVED_ANYTHING=true
 fi
 
