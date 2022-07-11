@@ -71,7 +71,7 @@ mac-stow: require-macos dependencies submodules ## Link macOS configuration file
 	@echo ""
 
 .PHONY: mac-configure
-mac-configure: require-macos setupnote ## Run macOS configuration script
+mac-configure: require-macos setupnote submodules ## Run macOS configuration script
 	@bash ./macos-configure.sh
 	@echo ""
 
