@@ -50,7 +50,7 @@ fi
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
