@@ -2099,12 +2099,6 @@ tell application "System Events" to keystroke "," using command down
   set -e
 fi
 
-# shellcheck disable=SC2129
-echo -e "\n## Safari Extensions ($(date +%A\ %F))" >> "$HOME/SystemSetup.md"
-echo "" >> "$HOME/SystemSetup.md"
-echo -e "- [ ] Reconfigure Safari toolbar based on current favorite system" >> "$HOME/SystemSetup.md"
-echo "" >> "$HOME/SystemSetup.md"
-
 echo ""
 cecho "--- Removing software I no longer use ---" $white
 echo ""
