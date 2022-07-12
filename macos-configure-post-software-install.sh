@@ -818,7 +818,7 @@ EXPECTED_SIDEBAR_CONTENT=(
   "tmp -> file:///Users/$WHOAMI/tmp/"
 )
 
-if diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null ; then
+if diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null 2>&1 ; then
   # On Big Sur, if iCloud Documents is enabled, Documents doesn't seem to show in this list as expected. Weirdly, Desktop does.
   # Save current IFS state
   OLDIFS=$IFS
@@ -870,7 +870,7 @@ for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
 done
 
 echo ""
-cecho "--- Homebrew / Zsh ---" $white
+cecho "--- Homebrew / Zsh (permissions fix) ---" $white
 echo ""
 
 echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
@@ -890,7 +890,7 @@ if [ -d /opt/homebrew/share/zsh ]; then
   sudo chmod -R 755 /opt/homebrew/share/zsh
 fi
 
-pushd "$HOME/.zsh"
+pushd "$HOME/.zsh" >/dev/null
 find . -type f ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 600 {} \;
 find . -type d ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 700 {} \;
-popd
+popd>/dev/null
