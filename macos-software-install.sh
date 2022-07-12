@@ -274,6 +274,7 @@ sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
 sw_install "/Applications/Cardhop.app" "brew_cask_install cardhop" \
   "- [ ] Sign into Flexibits account (via Apple)\n- [ ] Add and name work Google Directory"
 
+# TODO(cdzombak): note generating GitHub token at this step
 _install_sublimetext() {
   brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
@@ -798,6 +799,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-bettercap" ]; then
   sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
 fi
 
+# TODO(cdzombak): persist choice
 _install_rpi_imager() {
   cecho "Install Raspberry Pi Imager? (y/N)" $magenta
   read -r response
@@ -807,6 +809,7 @@ _install_rpi_imager() {
 }
 sw_install "/Applications/Raspberry Pi Imager.app" _install_rpi_imager
 
+# TODO(cdzombak): persist choice
 _install_balena_etcher() {
   cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
   read -r response
@@ -1082,6 +1085,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
+# TODO(cdzombak): persist
 cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -1312,6 +1316,7 @@ echo ""
 cecho "--- CAD, 3DP, EE, Radio Tools ---" $white
 echo ""
 
+# TODO(cdzombak): persist all choices here except OctoPi, since monitoring is important
 _install_cura() {
   cecho "Install Cura? (y/N)" $magenta
   read -r response
@@ -1332,6 +1337,7 @@ _install_f360() {
 }
 sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
 
+# TODO(cdzombak): don't persist
 if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
   _install_octopi_wrapper() {
     cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
