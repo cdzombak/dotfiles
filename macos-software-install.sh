@@ -667,11 +667,7 @@ _install_superduper(){
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask superduper
-    # shellcheck disable=SC2129
-    echo "## SuperDuper.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Add this system to backup strategy/plan/routine" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
+    setupnote "SuperDuper.app" "- [ ] Add this system to backup strategy/plan/routine"
   fi
 }
 sw_install "/Applications/SuperDuper!.app" _install_superduper
@@ -682,7 +678,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
     cecho "Install Stream Deck utility? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install "/Applications/Stream Deck.app" "brew_cask_install elgato-stream-deck" \
+      brew install --cask elgato-stream-deck
+      setupnote "Stream Deck.app" \
         "- [ ] Enable Accessibility permissions\n- [ ] Install Zoom plugin\n- [ ] Restore config backup as appropriate"
     else
       echo "Won't ask again next time this script is run."
@@ -960,7 +957,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
     cecho "Install JetBrains Toolbox? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install "/Applications/JetBrains Toolbox.app" "brew_cask_install jetbrains-toolbox" \
+      brew install --cask jetbrains-toolbox
+      setupnote "JetBrains Toolbox.app" \
         "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
     else
       echo "Won't ask again next time this script is run."
@@ -974,14 +972,12 @@ _install_ask_dash() {
   cecho "Install Dash? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _install_dash() {
-      brew install --cask dash
-      set +e
-      open /Applications/Dash.app
-      open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
-      set -e
-    }
-    sw_install /Applications/Dash.app _install_dash \
+    brew install --cask dash
+    set +e
+    open /Applications/Dash.app
+    open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
+    set -e
+    setupnote "Dash.app" \
       "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
   fi
 }
