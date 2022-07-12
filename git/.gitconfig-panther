@@ -1,0 +1,6 @@
+# company-specific config
+
+[user]
+	name = Chris Dzombak
+	email = chris.dzombak@panther.io
+	signingkey = 49B0BF29

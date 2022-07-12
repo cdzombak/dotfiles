@@ -8,8 +8,8 @@
 	signingkey = 588D34AC
 
 # Company-specific name/email/signing key:
-[includeIf "gitdir:~/code/blumira/"]
-	path = .gitconfig-blumira
+[includeIf "gitdir:~/code/panther/"]
+	path = .gitconfig-panther
 
 # Core Config
 

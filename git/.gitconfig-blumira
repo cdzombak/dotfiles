@@ -1,9 +1,0 @@
-# company-specific config
-
-[user]
-	name = Chris Dzombak
-	email = cdzombak@blumira.com
-	signingkey = 49B0BF29
-
-[url "https://bitbucket.org/blumira/"]
-	insteadOf = git@bitbucket.org:blumira/
