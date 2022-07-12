@@ -113,7 +113,7 @@ sw_install "$(brew --prefix)/bin/git-lfs" "brew_install git-lfs"
 sudo git lfs install --system
 sw_install "$(brew --prefix)/bin/go" "brew_install go" \
   "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
-sw_install "$(brew --prefix)/bin/brew-gomod" "brew install FiloSottile/gomod/brew-gomod"
+sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
 sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
 sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
@@ -172,7 +172,6 @@ sw_install "$(brew --prefix)/bin/markdown-toc" 'npm install -g markdown-toc'
 sw_install "$(brew --prefix)/bin/nativefier" 'npm install -g nativefier'
 sw_install /usr/local/bin/bundler 'sudo gem install bundler'
 sw_install /usr/local/bin/mdless 'sudo gem install mdless'
-sw_install "$(brew --prefix)/bin/qrcp" "brew gomod github.com/claudiodangelis/qrcp"
 sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
 
 # metar: CLI metar lookup tool
@@ -2269,6 +2268,30 @@ if [ -e "/Applications/OmniFocus.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" ]; then
+  echo "QLMarkdown (use Peek.app from Mac App Store)..."
+  brew uninstall --cask qlmarkdown
+  REMOVED_ANYTHING=true
+fi
+
+# qrcp isn't building for me atm, and I've never really used it:
+if [ -e "$(brew --prefix)/bin/qrcp" ]; then
+  echo "qrcp..."
+  brew uninstall gomod-qrcp
+  REMOVED_ANYTHING=true
+fi
+if [ -e "$(brew --prefix)/Cellar/gomod-qrcp/" ]; then
+  echo "qrcp (build folder)..."
+  rm -rf "$(brew --prefix)/Cellar/gomod-qrcp/"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" ]; then
+  echo "quicklook-json (use Peek.app from Mac App Store)..."
+  brew uninstall --cask quicklook-json
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Rocket.app" ]; then
   echo "Rocket..."
   verify_smartdelete
@@ -2329,18 +2352,6 @@ if [ -e /Applications/WireGuard.app ]; then
   echo "WireGuard Client..."
   verify_smartdelete
   trash /Applications/WireGuard.app
-  REMOVED_ANYTHING=true
-fi
-
-if [ -e "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" ]; then
-  echo "QLMarkdown (use Peek.app from Mac App Store)..."
-  brew uninstall --cask qlmarkdown
-  REMOVED_ANYTHING=true
-fi
-
-if [ -e "$HOME/Library/QuickLook/QuickLookJSON.qlgenerator" ]; then
-  echo "quicklook-json (use Peek.app from Mac App Store)..."
-  brew uninstall --cask quicklook-json
   REMOVED_ANYTHING=true
 fi
 
