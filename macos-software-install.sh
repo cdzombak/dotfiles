@@ -460,12 +460,6 @@ sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized 
 
 _install_setapp() {
   brew install --cask setapp
-  open -a "$(brew info --cask setapp | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/Install Setapp.app"
-  while [ ! -e /Applications/Setapp.app ]; do
-    cecho "Please complete Setapp installation." $white
-    # shellcheck disable=SC2162
-    read -p "Press [Enter] to continue..."
-  done
 }
 sw_install /Applications/Setapp.app _install_setapp \
   "- [ ] Sign in to Setapp\n- [ ] Dsiable \"Show in Finder Sidebar\"\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
