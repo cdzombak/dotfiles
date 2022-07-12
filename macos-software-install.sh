@@ -492,16 +492,6 @@ _install_loficafe() {
 }
 sw_install "/Applications/Lofi Cafe.app" _install_loficafe
 
-_install_instapaper_reader() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
-  git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install-mac
-  make clean
-  popd
-}
-sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
-
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
   set -x
@@ -1644,6 +1634,20 @@ _install_pocketcasts() {
   fi
 }
 sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
+
+_install_instapaper_reader() {
+  cecho "Install Instapaper Reader? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
+    git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
 
 _install_kindle() {
   cecho "Install Kindle? (y/N)" $magenta
