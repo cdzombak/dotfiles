@@ -83,7 +83,7 @@ function sw_install() {
     fi
   else
     echo ""
-    cecho "Installing $ARTIFACT..." $cyan
+    cecho "$ARTIFACT ..." $cyan
     eval "$INSTALL_CMD"
     if [[ -n "$TODOS" ]]; then
       setupnote "$ARTIFACT" "$TODOS"

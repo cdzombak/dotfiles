@@ -2286,7 +2286,7 @@ if ! $REMOVED_ANYTHING; then
 fi
 
 echo ""
-cecho "--- Installations that run after most others due to complexities/cleanups ---" $white
+cecho "--- Cleanups & Tidying ---" $white
 echo ""
 
 echo "Cleaning up kubectl installed via gcloud/docker ..."

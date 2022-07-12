@@ -48,8 +48,7 @@ if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist >/dev/null ; 
 fi
 
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
-# Ask for the administrator password upfront and run a keep-alive to update
-# existing `sudo` time stamp until script has finished
+# Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
