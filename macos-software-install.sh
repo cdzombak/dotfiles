@@ -468,7 +468,7 @@ sw_install /Applications/Setapp.app _install_setapp \
 _install_ears() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
   pushd "$TMP_DIR"
-  wget -O ears.zip "https://clickontyler.com/ears/download/v1/"
+  wget -O ears.zip "https://download.retina.studio/ears/v1/"
   unzip ears.zip -d "/Applications/"
   rm -rf "/Applications/__MACOSX"
   popd
