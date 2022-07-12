@@ -84,8 +84,6 @@ mac-software: require-macos dependencies submodules setupnote mac-rosetta ## Ins
 	@echo ""
 	@bash ./macos-software-install.sh
 	@echo ""
-	@bash ./macos-safari-extensions.sh
-	@echo ""
 	@bash ./macos-configure-post-software-install.sh
 	@echo ""
 	@bash ./osx-automation/script/restore-resources.sh
