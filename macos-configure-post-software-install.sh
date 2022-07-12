@@ -142,6 +142,47 @@ else
   echo "(Not installed.)"
 fi
 
+echo "CloudMounter ..."
+if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
+  osascript -e "tell application \"CloudMounter\" to quit"
+  defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
+  defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
+  defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
+  setupnote "CloudMounter" \
+    "- [ ] Add Personal Google Drive (as desired)\n- [ ] Add Work Google Drive (as desired)\n- [ ] Add Personal Dropbox (as desired)\n- [ ] Add personal Wasabi account (as desired)"
+  set +e
+  open -a "CloudMounter"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "CodeRunner (Setapp)..."
+if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
+  osascript -e "tell application \"CodeRunner\" to quit"
+  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
+  if ! grep -c "CodeRunner" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## CodeRunner" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set font to Meslo LG M 14pt" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Remove the million default file type associations" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
+echo "CodeRunner (Standard)..."
+if [ -e "/Applications/CodeRunner.app" ]; then
+  osascript -e "tell application \"CodeRunner\" to quit"
+  defaults write com.krill.CodeRunner ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner DefaultTabModeSoftTabs 1
+else
+  echo "(Not installed.)"
+fi
+
 echo "CommandQ ..."
 if [ -e /Applications/CommandQ.app ]; then
   osascript -e "tell application \"CommandQ\" to quit"
@@ -208,6 +249,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Forecast Bar ..."
+if [ -e "/Applications/Setapp/Forecast Bar.app" ]; then
+  setupnote "Forecast Bar" \
+    "- [ ] Set shift-ctrl-x global shortcut\n- [ ] Select monochrome menu bar icons\n- [ ] Configure as desired"
+else
+  echo "(Not installed.)"
+fi
+
 echo "Fork..."
 if [ -e "/Applications/Fork.app" ]; then
   osascript -e "tell application \"Fork\" to quit"
@@ -240,6 +289,16 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Glyphfinder ..."
+if [ -e "/Applications/Setapp/Glyphfinder.app" ]; then
+  setupnote "Glyphfinder.app" "- [ ] Set shortcut Ctrl+Shift+G"
+  set +e
+  open -a "Glyphfinder"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "Google Chrome..."
 if [ -e "/Applications/Google Chrome.app" ]; then
   # Potentially too destructive...
@@ -256,6 +315,16 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Grids ..."
+if [ -e "/Applications/Setapp/Grids.app" ]; then
+  osascript -e "tell application \"Grids\" to quit"
+  defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
+  setupnote "Grids" \
+    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Sign in"
+else
+  echo "(Not installed.)"
+fi
+
 echo "Hand Mirror ..."
 if [ -e "/Applications/Hand Mirror.app" ]; then
   osascript -e "tell application \"Hand Mirror\" to quit"
@@ -265,6 +334,24 @@ if [ -e "/Applications/Hand Mirror.app" ]; then
   defaults write "net.rafaelconde.Hand-Mirror" "selectedMirroringPreference" '1'
   set +e
   open -a "Hand Mirror"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "HazeOver ..."
+if [ -e "/Applications/Setapp/HazeOver.app" ]; then
+  osascript -e "tell application \"HazeOver\" to quit"
+  defaults write com.pointum.hazeover-setapp Animation -float "0.05"
+  defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
+  defaults write com.pointum.hazeover-setapp Enabled -bool true
+  defaults write com.pointum.hazeover-setapp IndependentScreens -bool true
+  defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
+  defaults write com.pointum.hazeover-setapp MultiFocus -bool true
+  setupnote "HazeOver" \
+    "- [ ] Hide in Bartender\n- [ ] Configure as desired\n- [ ] Start at Login"
+  set +e
+  open -a "HazeOver"
   set -e
 else
   echo "(Not installed.)"
@@ -286,6 +373,25 @@ if [ -e "/Applications/KeyCastr.app" ]; then
   defaults write "io.github.keycastr" "default.commandKeysOnly" '1'
   defaults write "io.github.keycastr" "selectedVisualizer" 'Default'
   defaults write "io.github.keycastr" "default.fadeDelay" '"1.646634615384615"'
+fi
+
+echo "Keysmith ..."
+if [ -e "/Applications/Setapp/Keysmith.app" ]; then
+  osascript -e "tell application \"Keysmith\" to quit"
+  defaults write "app.keysmith.Keysmith-setapp" "shouldEnableEnhancedAXModeInBrowsers" '1'
+  if ! grep -c "Keysmith.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Keysmith.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+  set +e
+  open -a "Keysmith"
+  set -e
+else
+  echo "(Not installed.)"
 fi
 
 echo "LaunchControl ..."
@@ -323,6 +429,38 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Marked (Setapp)..."
+if [ -e "/Applications/Setapp/Marked 2.app" ]; then
+  osascript -e "tell application \"Marked 2\" to quit"
+  defaults write com.brettterpstra.marked2-setapp WebKitDeveloperExtras -bool true
+  defaults write com.brettterpstra.marked2-setapp convertGithubCheckboxes -bool true
+  defaults write com.brettterpstra.marked2-setapp defaultProcessor -string "Discount (GFM)"
+  defaults write com.brettterpstra.marked2-setapp defaultSyntaxStyle -string "GitHub"
+  defaults write com.brettterpstra.marked2-setapp externalEditor -string "Typora"
+  defaults write com.brettterpstra.marked2-setapp externalImageEditor -string "Pixelmator"
+  defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
+  defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
+  defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
+else
+  echo "(Not installed.)"
+fi
+
+echo "Marked (Standard)..."
+if [ -e "/Applications/Marked 2.app" ]; then
+  osascript -e "tell application \"Marked 2\" to quit"
+  defaults write com.brettterpstra.marked2 WebKitDeveloperExtras -bool true
+  defaults write com.brettterpstra.marked2 convertGithubCheckboxes -bool true
+  defaults write com.brettterpstra.marked2 defaultProcessor -string "Discount (GFM)"
+  defaults write com.brettterpstra.marked2 defaultSyntaxStyle -string "GitHub"
+  defaults write com.brettterpstra.marked2 externalEditor -string "Typora"
+  defaults write com.brettterpstra.marked2 externalImageEditor -string "Pixelmator"
+  defaults write com.brettterpstra.marked2 includeMathJax -bool true
+  defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
+  defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
+else
+  echo "(Not installed.)"
+fi
+
 echo "Mimestream ..."
 if [ -e "/Applications/Mimestream.app" ]; then
   osascript -e "tell application \"Mimestream\" to quit"
@@ -330,6 +468,22 @@ if [ -e "/Applications/Mimestream.app" ]; then
   defaults write com.mimestream.Mimestream ShowBadgeForSpam 1
   defaults write com.mimestream.Mimestream PlaySounds none
   defaults write com.mimestream.Mimestream DeleteKeyAction 'trash'
+else
+  echo "(Not installed.)"
+fi
+
+echo "Mission Control Plus ..."
+if [ -e "/Applications/Setapp/Mission Control Plus.app" ]; then
+  if ! grep -c "Mission Control Plus.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Mission Control Plus.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable complex keyboard shortcuts" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+  set +e
+  open -a "Mission Control Plus"
+  set -e
 else
   echo "(Not installed.)"
 fi
@@ -348,6 +502,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Ohtipi ..."
+if [ -e "/Applications/Setapp/Ohtipi.app" ]; then
+  passetupnote "Ohtipi" \
+    "- [ ] Grant Full Disk Access\n- [ ] Open at login\n- [ ] Hide in Bartender"
+else
+  echo "(Not installed.)"
+fi
+
 echo "OmniOutliner..."
 if [ -e "/Applications/OmniOutliner.app" ]; then
   osascript -e "tell application \"OmniOutliner\" to quit"
@@ -357,10 +519,15 @@ else
   echo "(Not installed.)"
 fi
 
-echo "Paw..."
-if [ -e "/Applications/Paw.app" ]; then
-  osascript -e "tell application \"Paw\" to quit"
-  defaults write com.luckymarmot.Paw SUAutomaticallyUpdate 1
+echo "Path Finder ..."
+if [ -e "/Applications/Setapp/Path Finder.app" ]; then
+  osascript -e "tell application \"Path Finder\" to quit"
+  defaults write com.cocoatech.PathFinder-setapp disableWarnOnQuit -bool true
+  defaults write com.cocoatech.PathFinder-setapp globalAppsMenuEnabled -bool false
+  defaults write com.cocoatech.PathFinder-setapp kNTDiffToolPath "/usr/local/bin/ksdiff"
+  defaults write com.cocoatech.PathFinder-setapp kOpenTextEditDocumentsInTextEditor -bool false
+  defaults write com.cocoatech.PathFinder-setapp kTerminalApplicationPath "/Applications/iTerm.app"
+  defaults write com.cocoatech.PathFinder-setapp textEditorApplicationPath "/Applications/Sublime Text.app"
 else
   echo "(Not installed.)"
 fi
@@ -376,6 +543,14 @@ if [ -e "/Applications/Pastebot.app" ]; then
   set +e
   open -a "Pastebot"
   set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "Paw..."
+if [ -e "/Applications/Paw.app" ]; then
+  osascript -e "tell application \"Paw\" to quit"
+  defaults write com.luckymarmot.Paw SUAutomaticallyUpdate 1
 else
   echo "(Not installed.)"
 fi
@@ -468,6 +643,48 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Screens ..."
+if [ -e "/Applications/Setapp/Screens.app" ]; then
+  osascript -e "tell application \"Screens\" to quit"
+  defaults write "com.edovia.screens.mac-setapp" "showInMenuBar" '0'
+  defaults write "com.edovia.screens.mac-setapp" "CollapseDiscoveredViewKey" '1'
+  defaults write "com.edovia.screens.mac-setapp" "useSharedClipboardMac" '1'
+  if ! grep -c "Screens.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Screens.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Connect" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable iCloud sync" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+else
+  echo "(Not installed.)"
+fi
+
+echo "Setapp..."
+if [ -e "/Applications/Setapp.app" ]; then
+  osascript -e "tell application \"Setapp\" to quit"
+  defaults write com.setapp.DesktopClient EnableLauncher -bool false
+  defaults write com.setapp.DesktopClient KeepTeasers -bool false
+  defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
+  defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
+  set +e
+  open -a "Setapp"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "SQLPro Studio ..."
+if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
+  osascript -e "tell application \"SQLPro Studio\" to quit"
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-DisableSampleConnections" '1'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalentMask" '1048576'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalent" '"\U21a9"'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-CommentUncommentShortcutKeyEquivalent" '/'
+else
+  echo "(Not installed.)"
+fi
+
 echo "TextBuddy ..."
 if [ -e "/Applications/TextBuddy.app" ]; then
   osascript -e "tell application \"TextBuddy\" to quit"
@@ -491,6 +708,41 @@ if [ -e "/Applications/Things3.app" ]; then
   defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
   set +e
   open -a "Things3"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "ToothFairy ..."
+if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
+  osascript -e "tell application \"ToothFairy\" to quit"
+  defaults write com.c-command.toothfairy-setapp hideDockIcon -bool true
+  defaults write com.c-command.toothfairy-setapp launchAtLogin -bool true
+  cecho "Configure otherwise as desired; add AirPods to menu bar." $white
+  set +e
+  open -a "ToothFairy"
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
+echo "Trickster ..."
+if [ -e "/Applications/Setapp/Trickster.app" ]; then
+  osascript -e "tell application \"Trickster\" to quit"
+  defaults write com.apparentsoft.trickster-setapp Anchor -bool true
+  defaults write com.apparentsoft.trickster-setapp Attached -bool true
+  defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
+  defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
+  defaults write com.apparentsoft.trickster-setapp "Fade out" -bool false
+  if ! grep -c "Trickster" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Trickster" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set ctrl-shift-Y global show/hide shortcut" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure file tracking based on screenshot in \`~/Sync/Configs\`" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+  set +e
+  open -a "Trickster"
   set -e
 else
   echo "(Not installed.)"
@@ -545,265 +797,6 @@ if [ -e /Applications/Xcode.app ]; then
   defaults write com.apple.dt.Xcode IDEFileExtensionDisplayMode 1
   defaults write com.apple.dt.Xcode DVTTextShowFoldingSidebar 1
   defaults write com.apple.dt.Xcode DVTTextOverscrollAmount "0.5"
-else
-  echo "(Not installed.)"
-fi
-
-echo ""
-cecho "--- Setapp ---" $white
-echo ""
-
-echo "Setapp..."
-if [ -e "/Applications/Setapp.app" ]; then
-  osascript -e "tell application \"Setapp\" to quit"
-  defaults write com.setapp.DesktopClient EnableLauncher -bool false
-  defaults write com.setapp.DesktopClient KeepTeasers -bool false
-  defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
-  defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
-  set +e
-  open -a "Setapp"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "CloudMounter ..."
-if [ -e "/Applications/Setapp/CloudMounter.app" ]; then
-  osascript -e "tell application \"CloudMounter\" to quit"
-  defaults write com.eltima.cloudmounter-setapp auto-launch -bool true
-  defaults write com.eltima.cloudmounter-setapp auto-mount -bool true
-  defaults write com.eltima.cloudmounter-setapp SkipWelcomeEncrypt -bool true
-  setupnote "CloudMounter" \
-    "- [ ] Add Personal Google Drive\n- [ ] Add Work Google Drive (as desired)\n- [ ] Add Personal Dropbox\n- [ ] Add Wasabi"
-  set +e
-  open -a "CloudMounter"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Forecast Bar ..."
-if [ -e "/Applications/Setapp/Forecast Bar.app" ]; then
-  setupnote "Forecast Bar" \
-    "- [ ] Set shift-ctrl-x global shortcut\n- [ ] Select monochrome menu bar icons\n- [ ] Configure as desired"
-else
-  echo "(Not installed.)"
-fi
-
-echo "Glyphfinder ..."
-if [ -e "/Applications/Setapp/Glyphfinder.app" ]; then
-  setupnote "Glyphfinder.app" "- [ ] Set shortcut Ctrl+Shift+G"
-  set +e
-  open -a "Glyphfinder"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Grids ..."
-if [ -e "/Applications/Setapp/Grids.app" ]; then
-  osascript -e "tell application \"Grids\" to quit"
-  defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
-  setupnote "Grids" \
-    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Sign in"
-else
-  echo "(Not installed.)"
-fi
-
-echo "HazeOver ..."
-if [ -e "/Applications/Setapp/HazeOver.app" ]; then
-  osascript -e "tell application \"HazeOver\" to quit"
-  defaults write com.pointum.hazeover-setapp Animation -float "0.05"
-  defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
-  defaults write com.pointum.hazeover-setapp Enabled -bool true
-  defaults write com.pointum.hazeover-setapp IndependentScreens -bool true
-  defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
-  defaults write com.pointum.hazeover-setapp MultiFocus -bool true
-  setupnote "HazeOver" \
-    "- [ ] Hide in Bartender\n- [ ] Configure as desired\n- [ ] Start at Login"
-  set +e
-  open -a "HazeOver"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Keysmith ..."
-if [ -e "/Applications/Setapp/Keysmith.app" ]; then
-  osascript -e "tell application \"Keysmith\" to quit"
-  defaults write "app.keysmith.Keysmith-setapp" "shouldEnableEnhancedAXModeInBrowsers" '1'
-  if ! grep -c "Keysmith.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Keysmith.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-  set +e
-  open -a "Keysmith"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-echo "Mission Control Plus ..."
-if [ -e "/Applications/Setapp/Mission Control Plus.app" ]; then
-  if ! grep -c "Mission Control Plus.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Mission Control Plus.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Disable complex keyboard shortcuts" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-  set +e
-  open -a "Mission Control Plus"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Ohtipi ..."
-if [ -e "/Applications/Setapp/Ohtipi.app" ]; then
-  passetupnote "Ohtipi" \
-    "- [ ] Grant Full Disk Access\n- [ ] Open at login\n- [ ] Hide in Bartender"
-else
-  echo "(Not installed.)"
-fi
-
-echo "Path Finder ..."
-if [ -e "/Applications/Setapp/Path Finder.app" ]; then
-  osascript -e "tell application \"Path Finder\" to quit"
-  defaults write com.cocoatech.PathFinder-setapp disableWarnOnQuit -bool true
-  defaults write com.cocoatech.PathFinder-setapp globalAppsMenuEnabled -bool false
-  defaults write com.cocoatech.PathFinder-setapp kNTDiffToolPath "/usr/local/bin/ksdiff"
-  defaults write com.cocoatech.PathFinder-setapp kOpenTextEditDocumentsInTextEditor -bool false
-  defaults write com.cocoatech.PathFinder-setapp kTerminalApplicationPath "/Applications/iTerm.app"
-  defaults write com.cocoatech.PathFinder-setapp textEditorApplicationPath "/Applications/Sublime Text.app"
-else
-  echo "(Not installed.)"
-fi
-
-echo "Screens ..."
-if [ -e "/Applications/Setapp/Screens.app" ]; then
-  osascript -e "tell application \"Screens\" to quit"
-  defaults write "com.edovia.screens.mac-setapp" "showInMenuBar" '0'
-  defaults write "com.edovia.screens.mac-setapp" "CollapseDiscoveredViewKey" '1'
-  defaults write "com.edovia.screens.mac-setapp" "useSharedClipboardMac" '1'
-  if ! grep -c "Screens.app" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Screens.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Connect" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Enable iCloud sync" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-else
-  echo "(Not installed.)"
-fi
-
-echo "SQLPro Studio ..."
-if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
-  osascript -e "tell application \"SQLPro Studio\" to quit"
-  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-DisableSampleConnections" '1'
-  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalentMask" '1048576'
-  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalent" '"\U21a9"'
-  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-CommentUncommentShortcutKeyEquivalent" '/'
-else
-  echo "(Not installed.)"
-fi
-
-echo "ToothFairy ..."
-if [ -e "/Applications/Setapp/ToothFairy.app" ]; then
-  osascript -e "tell application \"ToothFairy\" to quit"
-  defaults write com.c-command.toothfairy-setapp hideDockIcon -bool true
-  defaults write com.c-command.toothfairy-setapp launchAtLogin -bool true
-  cecho "Configure otherwise as desired; add AirPods to menu bar." $white
-  set +e
-  open -a "ToothFairy"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Trickster ..."
-if [ -e "/Applications/Setapp/Trickster.app" ]; then
-  osascript -e "tell application \"Trickster\" to quit"
-  defaults write com.apparentsoft.trickster-setapp Anchor -bool true
-  defaults write com.apparentsoft.trickster-setapp Attached -bool true
-  defaults write com.apparentsoft.trickster-setapp DetachEnabled -bool false
-  defaults write com.apparentsoft.trickster-setapp FavoritesVisible -bool true
-  defaults write com.apparentsoft.trickster-setapp "Fade out" -bool false
-  if ! grep -c "Trickster" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## Trickster" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set ctrl-shift-Y global show/hide shortcut" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Configure file tracking based on screenshot in \`~/Sync/Configs\`" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-  set +e
-  open -a "Trickster"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo ""
-cecho "--- Setapp _or_ Standard Installed ---" $white
-echo ""
-
-echo "CodeRunner (Setapp)..."
-if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
-  osascript -e "tell application \"CodeRunner\" to quit"
-  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
-  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
-  if ! grep -c "CodeRunner" "$HOME/SystemSetup.md" >/dev/null; then
-    echo "## CodeRunner" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set font to Meslo LG M 14pt" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Remove the million default file type associations" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-else
-  echo "(Not installed.)"
-fi
-
-echo "CodeRunner (Standard)..."
-if [ -e "/Applications/CodeRunner.app" ]; then
-  osascript -e "tell application \"CodeRunner\" to quit"
-  defaults write com.krill.CodeRunner ColorTheme -string "Solarized (light)"
-  defaults write com.krill.CodeRunner DefaultTabModeSoftTabs 1
-else
-  echo "(Not installed.)"
-fi
-
-echo "Marked (Setapp)..."
-if [ -e "/Applications/Setapp/Marked 2.app" ]; then
-  osascript -e "tell application \"Marked 2\" to quit"
-  defaults write com.brettterpstra.marked2-setapp WebKitDeveloperExtras -bool true
-  defaults write com.brettterpstra.marked2-setapp convertGithubCheckboxes -bool true
-  defaults write com.brettterpstra.marked2-setapp defaultProcessor -string "Discount (GFM)"
-  defaults write com.brettterpstra.marked2-setapp defaultSyntaxStyle -string "GitHub"
-  defaults write com.brettterpstra.marked2-setapp externalEditor -string "Typora"
-  defaults write com.brettterpstra.marked2-setapp externalImageEditor -string "Pixelmator"
-  defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
-  defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
-  defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
-else
-  echo "(Not installed.)"
-fi
-
-echo "Marked (Standard)..."
-if [ -e "/Applications/Marked 2.app" ]; then
-  osascript -e "tell application \"Marked 2\" to quit"
-  defaults write com.brettterpstra.marked2 WebKitDeveloperExtras -bool true
-  defaults write com.brettterpstra.marked2 convertGithubCheckboxes -bool true
-  defaults write com.brettterpstra.marked2 defaultProcessor -string "Discount (GFM)"
-  defaults write com.brettterpstra.marked2 defaultSyntaxStyle -string "GitHub"
-  defaults write com.brettterpstra.marked2 externalEditor -string "Typora"
-  defaults write com.brettterpstra.marked2 externalImageEditor -string "Pixelmator"
-  defaults write com.brettterpstra.marked2 includeMathJax -bool true
-  defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
-  defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
 else
   echo "(Not installed.)"
 fi
@@ -881,9 +874,9 @@ cecho "--- Homebrew / Zsh ---" $white
 echo ""
 
 echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
-# Ask for the administrator password upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
+# Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if [ -d /usr/local/share/zsh ]; then
   sudo chown "$WHOAMI":staff /usr/local/share/zsh
