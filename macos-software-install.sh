@@ -516,6 +516,8 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   echo "Moving on."
 fi
 
+YES_INSTALL_KUBECTL=false
+
 if $GOINTERACTIVE; then
 
 echo ""
@@ -1135,7 +1137,6 @@ if ! uname -p | grep -c "arm" >/dev/null; then
   sw_install /Applications/VirtualBox.app _install_virtualbox
 fi
 
-YES_INSTALL_KUBECTL=false
 echo ""
 cecho "Install additional Kubernetes tools? (y/N)" $magenta
 echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
@@ -2070,6 +2071,7 @@ IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_ver
 # restore IFS to previous state
 IFS=$OLDIFS
 if [[ ${osvers_major} -ge 11 ]]; then
+  echo ""
   cecho "Extensions not supported on older OS versions ..." $white
 
   sw_install "/Applications/Hush.app" "mas install 1544743900" \
