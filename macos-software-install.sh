@@ -44,7 +44,7 @@ echo ""
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # build out /usr/local tree, since we try to install stuff there:
 if [ -w /usr/local ]; then
