@@ -28,6 +28,7 @@ if ! $CONTINUE; then
 fi
 
 mkdir -p "$HOME/.local/dotfiles/software"
+rm -f "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
 
 if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   echo ""
@@ -741,41 +742,6 @@ _install_handmirror() {
   fi
 }
 sw_install "/Applications/Hand Mirror.app" _install_handmirror
-
-if [ ! -e "$HOME/.local/dotfiles/software/no-ecobee-wrapper" ]; then
-  _install_ecobee() {
-    echo ""
-    cecho "Install Ecobee wrapper app? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
-      git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
-      pushd "$TMP_DIR"
-      make install-mac
-      make clean
-      popd
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
-    fi
-  }
-  sw_install "/Applications/Ecobee.app" _install_ecobee
-fi
-
-_install_unifiprotect() {
-  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
-  echo "(requires GitHub auth)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
-    git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install "/Applications/UniFi Protect.app" _install_unifiprotect
 
 _install_portmap() {
   local LATEST_PORTMAP_TAG="PortMap-2.0.1"
@@ -1845,6 +1811,42 @@ _install_tableflip() {
   fi
 }
 sw_install /Applications/TableFlip.app _install_tableflip
+
+# TODO(cdzombak): move stuff to Home
+
+echo ""
+cecho "--- Home ---" $white
+echo ""
+
+_install_ecobee() {
+  echo ""
+  cecho "Install Ecobee wrapper app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
+    git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/Ecobee.app" _install_ecobee
+
+_install_unifiprotect() {
+  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
+  echo "(requires GitHub auth)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
+    git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/UniFi Protect.app" _install_unifiprotect
 
 echo ""
 cecho "--- Social Networking ---" $white
