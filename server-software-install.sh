@@ -3,9 +3,9 @@ set -euo pipefail
 
 # versions:
 LATEST_BANDWHICH="0.20.0"
-LATEST_DUST="0.6.2"
-LATEST_RESTIC="0.12.1"
-NANO_V5x="5.4"
+LATEST_DUST="0.8.0"
+LATEST_RESTIC="0.13.1"
+NANO_V6x="6.3"
 
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
@@ -169,7 +169,7 @@ fi
 echo "Installing a recent nano..."
 if [ -x /usr/local/bin/nano ]; then
   # remove outdated version:
-  if ! /usr/local/bin/nano -V | grep -c "$NANO_V5x" >/dev/null ; then
+  if ! /usr/local/bin/nano -V | grep -c "$NANO_V6x" >/dev/null ; then
     sudo mkdir -p /usr/local/opt/nano/bin
     sudo mv /usr/local/bin/nano /usr/local/opt/nano/bin/nano.bak
   fi
@@ -193,9 +193,9 @@ if [ ! -x /usr/local/bin/nano ]; then
     echo "    (package manager is not apt, dnf, or yum)"
   fi
 
-  wget "https://www.nano-editor.org/dist/v5/nano-$NANO_V5x.tar.gz"
-  tar -xzvf "nano-$NANO_V5x.tar.gz"
-  cd "./nano-$NANO_V5x"
+  wget "https://www.nano-editor.org/dist/v6/nano-$NANO_V6x.tar.gz"
+  tar -xzvf "nano-$NANO_V6x.tar.gz"
+  cd "./nano-$NANO_V6x"
 
   ./configure \
     --prefix=/usr/local \
