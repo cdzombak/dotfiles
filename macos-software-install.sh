@@ -1323,7 +1323,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew tap wagoodman/dive
   fi
   sw_install /Applications/Docker.app "brew_cask_install docker" \
-    "- [ ] Disable application starting at login"
+    "- [ ] Disable application starting at login, as desired\n- [ ] Disable weekly tips\n- [ ] Enable Docker Compose V2, as desired"
   sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
 fi
