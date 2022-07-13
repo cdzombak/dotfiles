@@ -30,6 +30,7 @@ fi
 mkdir -p "$HOME/.local/dotfiles/software"
 rm -f "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
 rm -f "$HOME/.local/dotfiles/software/no-home-hardware-utils"
+rm -f "$HOME/.local/dotfiles/software/no-octopi-dzhome"
 
 if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   echo ""
@@ -1341,25 +1342,19 @@ _install_f360() {
 }
 sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
 
-# TODO(cdzombak): don't persist
-if [ ! -e "$HOME/.local/dotfiles/software/no-octopi-dzhome" ]; then
-  _install_octopi_wrapper() {
-    cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
-      git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
-      pushd "$TMP_DIR"
-      make install-mac
-      make clean
-      popd
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-octopi-dzhome"
-    fi
-  }
-  sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
-fi
+_install_octopi_wrapper() {
+  cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
+    git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
 
 _install_kicad() {
   cecho "Install KiCad? (y/N)" $magenta
