@@ -28,9 +28,14 @@ if ! $CONTINUE; then
 fi
 
 mkdir -p "$HOME/.local/dotfiles/software"
+
+# cleanup old, unused choices:
 rm -f "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
 rm -f "$HOME/.local/dotfiles/software/no-home-hardware-utils"
 rm -f "$HOME/.local/dotfiles/software/no-octopi-dzhome"
+
+# default choices which you can override in another window if desired:
+touch "$HOME/.local/dotfiles/software/no-boop"
 
 if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   echo ""
@@ -1024,6 +1029,52 @@ _install_csveditor() {
 }
 sw_install "/Applications/Easy CSV Editor.app" _install_csveditor
 
+_install_plist_editor() {
+  cecho "Install PLIST Editor? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
+      "- [ ] Associate with PLIST files"
+  fi
+}
+sw_install "/Applications/PLIST Editor.app" _install_plist_editor
+
+_install_clock() {
+  cecho "Install simple UTC/Local Clock app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'clock')
+    git clone "https://github.com/cdzombak/clock.git" "$TMP_DIR"
+    pushd "$TMP_DIR/app"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/Clock.app" _install_clock
+
+_install_wwdcapp() {
+  cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask wwdc
+  fi
+}
+sw_install /Applications/WWDC.app _install_wwdcapp
+
+_install_sfsymbols() {
+  cecho "Install Apple's SF Symbols Mac app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     brew install --cask sf-symbols
+  fi
+}
+sw_install "/Applications/SF Symbols.app" _install_sfsymbols
+
+echo ""
+cecho "HTTP/API Tools..." $white
+echo ""
+
 _install_paw() {
   cecho "Install Paw? (y/N)" $magenta
   read -r response
@@ -1052,14 +1103,9 @@ _install_websocat() {
 }
 sw_install "$(brew --prefix)/bin/websocat" _install_websocat
 
-_install_ask_script_debugger() {
-  cecho "Install Script Debugger (for AppleScript)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask script-debugger
-  fi
-}
-sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
+echo ""
+cecho "Languages & Tools..." $white
+echo ""
 
 echo ""
 cecho "Install common Go tools? (y/N)" $magenta
@@ -1099,108 +1145,27 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-embedded-tools" ]; then
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
      sw_install /Applications/Arduino.app 'brew_cask_install arduino'
      sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
-   else
+  else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.local/dotfiles/software/no-embedded-tools"
   fi
 fi
 
-_install_awscli() {
-  cecho "Install AWS CLI? (y/N)" $magenta
+_install_nvm() {
+  cecho "Install nvm? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install awscli
+    brew install nvm
+    mkdir "$HOME/.nvm"
   fi
 }
-sw_install "$(brew --prefix)/bin/aws" _install_awscli
-
-_install_docli() {
-  cecho "Install DigitalOcean CLI? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install doctl
-  fi
-}
-sw_install "$(brew --prefix)/bin/doctl" _install_docli
-
-_install_gcloud_sdk() {
-  cecho "Install Google Cloud SDK? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask google-cloud-sdk
-  fi
-}
-sw_install "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" _install_gcloud_sdk
-
-echo ""
-cecho "Install Docker & related tools? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  if ! brew tap | grep -c wagoodman/dive >/dev/null ; then
-    brew tap wagoodman/dive
-  fi
-  sw_install /Applications/Docker.app "brew_cask_install docker" \
-    "- [ ] Disable application starting at login"
-  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
-  sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
-fi
-
-if ! uname -p | grep -c "arm" >/dev/null; then
-  _install_virtualbox() {
-    cecho "Install VirtualBox? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask virtualbox virtualbox-extension-pack
-      mkdir -p "$HOME/VirtualBox VMs"
-      mkdir -p "$HOME/VM Images"
-    fi
-  }
-  sw_install /Applications/VirtualBox.app _install_virtualbox
-fi
-
-echo ""
-cecho "Install additional Kubernetes tools? (y/N)" $magenta
-echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  YES_INSTALL_KUBECTL=true
-  if ! brew tap | grep -c boz/repo >/dev/null ; then
-    brew tap boz/repo
-  fi
-  sw_install "$(brew --prefix)/bin/kail" "brew_install boz/repo/kail"
-  sw_install "$(brew --prefix)/bin/k9s" "brew_install derailed/k9s/k9s"
-  sw_install "/Applications/Lens.app" "brew_cask_install lens"
-fi
-
-_install_clock() {
-  cecho "Install simple UTC/Local Clock app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'clock')
-    git clone "https://github.com/cdzombak/clock.git" "$TMP_DIR"
-    pushd "$TMP_DIR/app"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install "/Applications/Clock.app" _install_clock
-
-_install_plist_editor() {
-  cecho "Install PLIST Editor? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
-      "- [ ] Associate with PLIST files"
-  fi
-}
-sw_install "/Applications/PLIST Editor.app" _install_plist_editor
+sw_install "$(brew --prefix)/opt/nvm" _install_nvm
 
 _install_yarn() {
   cecho "Install yarn? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     brew install yarn
+    brew install yarn
   fi
 }
 sw_install "$(brew --prefix)/bin/yarn" _install_yarn
@@ -1240,29 +1205,34 @@ _install_carthage() {
 }
 sw_install "$(brew --prefix)/bin/carthage" _install_carthage
 
-_install_fastlane() {
-  cecho "Install Fastlane? (y/N)" $magenta
+# _install_fastlane() {
+#   cecho "Install Fastlane? (y/N)" $magenta
+#   read -r response
+#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#     brew install --cask fastlane
+#   fi
+# }
+# sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
+
+_install_ask_script_debugger() {
+  cecho "Install Script Debugger (for AppleScript)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask fastlane
+    brew install --cask script-debugger
   fi
 }
-sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
+sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
 
-cecho "Install React Native CLI & related tools? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman"
-  sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
-fi
-
-echo ""
-cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/Caskroom/java" "brew_cask_install java"
-  sw_install "$(brew --prefix)/Cellar/gradle-completion" "brew_install gradle-completion"
-  sw_install "$(brew --prefix)/bin/mvn" "brew_install maven"
+if [ ! -e "$HOME/.local/dotfiles/software/no-react-native" ]; then
+  cecho "Install React Native CLI & related tools? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman"
+    sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-react-native"
+  fi
 fi
 
 _install_sbt() {
@@ -1274,23 +1244,19 @@ _install_sbt() {
 }
 sw_install "$(brew --prefix)/bin/sbt" _install_sbt
 
-_install_wwdcapp() {
-  cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
+if [ ! -e "$HOME/.local/dotfiles/software/no-java-devtools" ]; then
+  echo ""
+  cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask wwdc
+    sw_install "$(brew --prefix)/Caskroom/java" "brew_cask_install java"
+    sw_install "$(brew --prefix)/Cellar/gradle-completion" "brew_install gradle-completion"
+    sw_install "$(brew --prefix)/bin/mvn" "brew_install maven"
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-java-devtools"
   fi
-}
-sw_install /Applications/WWDC.app _install_wwdcapp
-
-_install_sfsymbols() {
-  cecho "Install Apple's SF Symbols Mac app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     brew install --cask sf-symbols
-  fi
-}
-sw_install "/Applications/SF Symbols.app" _install_sfsymbols
+fi
 
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
@@ -1299,6 +1265,81 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   cecho "           See: https://github.com/cdzombak/dotfiles/issues/9" $white
   brew install --cask mactex
   brew install --cask texmaker
+fi
+
+echo ""
+cecho "Cloud CLIs..." $white
+echo ""
+
+_install_awscli() {
+  cecho "Install AWS CLI? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install awscli
+  fi
+}
+sw_install "$(brew --prefix)/bin/aws" _install_awscli
+
+_install_docli() {
+  cecho "Install DigitalOcean CLI? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install doctl
+  fi
+}
+sw_install "$(brew --prefix)/bin/doctl" _install_docli
+
+_install_gcloud_sdk() {
+  cecho "Install Google Cloud SDK? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask google-cloud-sdk
+  fi
+}
+sw_install "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" _install_gcloud_sdk
+
+echo ""
+cecho "Virtualization, Docker, K8s..." $white
+echo ""
+
+echo ""
+cecho "Install Docker & related tools? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  if ! brew tap | grep -c wagoodman/dive >/dev/null ; then
+    brew tap wagoodman/dive
+  fi
+  sw_install /Applications/Docker.app "brew_cask_install docker" \
+    "- [ ] Disable application starting at login"
+  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
+  sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
+fi
+
+if ! uname -p | grep -c "arm" >/dev/null; then
+  _install_virtualbox() {
+    cecho "Install VirtualBox? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask virtualbox virtualbox-extension-pack
+      mkdir -p "$HOME/VirtualBox VMs"
+      mkdir -p "$HOME/VM Images"
+    fi
+  }
+  sw_install /Applications/VirtualBox.app _install_virtualbox
+fi
+
+echo ""
+cecho "Install additional Kubernetes tools? (y/N)" $magenta
+echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  YES_INSTALL_KUBECTL=true
+  if ! brew tap | grep -c boz/repo >/dev/null ; then
+    brew tap boz/repo
+  fi
+  sw_install "$(brew --prefix)/bin/kail" "brew_install boz/repo/kail"
+  sw_install "$(brew --prefix)/bin/k9s" "brew_install derailed/k9s/k9s"
+  sw_install "/Applications/Lens.app" "brew_cask_install lens"
 fi
 
 # echo ""
