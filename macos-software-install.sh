@@ -113,7 +113,6 @@ sw_install "$(brew --prefix)/bin/git-lfs" "brew_install git-lfs"
 sudo git lfs install --system --skip-repo
 sw_install "$(brew --prefix)/bin/go" "brew_install go" \
   "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
-sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
 sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
 sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
@@ -147,6 +146,15 @@ sw_install "$(brew --prefix)/bin/tree" "brew_install tree"
 sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
+
+set +e
+if brew info brew-gomod | head -n 1 | grep -c filosottile >/dev/null ; then
+  echo "replacing brew-gomod by my fork ..."
+  echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
+  brew uninstall brew-gomod
+fi
+set -e
+sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
 
 _install_tealdeer() {
   brew install tealdeer
