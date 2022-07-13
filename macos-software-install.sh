@@ -1086,12 +1086,16 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
-# TODO(cdzombak): persist
-cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-   sw_install /Applications/Arduino.app 'brew_cask_install arduino'
-   sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
+if [ ! -e "$HOME/.local/dotfiles/software/no-embedded-tools" ]; then
+  cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     sw_install /Applications/Arduino.app 'brew_cask_install arduino'
+     sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
+   else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-embedded-tools"
+  fi
 fi
 
 _install_awscli() {
