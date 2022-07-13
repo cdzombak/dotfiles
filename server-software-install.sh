@@ -129,7 +129,7 @@ if [ ! -x /usr/local/bin/restic ]; then
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
   pushd "$TMP_DIR"
   if uname -a | grep -c -i arm >/dev/null; then
-    # TODO(cdzombak): arm64 is also available, but I don't think I have any arm64 systems atm
+    # NOTE(cdzombak): arm64 is also available, but I don't think I have any arm64 systems atm
     curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm\." | xargs wget -q -O restic.bz2
   elif uname -a | grep -c -i x86_64 >/dev/null; then
     curl -s "https://api.github.com/repos/restic/restic/releases/tags/v$LATEST_RESTIC" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "amd64" | xargs wget -q -O restic.bz2
