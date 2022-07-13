@@ -29,6 +29,7 @@ fi
 
 mkdir -p "$HOME/.local/dotfiles/software"
 rm -f "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
+rm -f "$HOME/.local/dotfiles/software/no-home-hardware-utils"
 
 if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   echo ""
