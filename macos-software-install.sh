@@ -47,6 +47,19 @@ if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
   read -p "Press [Enter] to continue..."
 fi
 
+if [ -e "$HOME/.nvm/nvm.sh" ]; then
+  echo ""
+  cecho "nvm is installed and will be deactivated in this shell." $red
+  echo "This ensures that system-level node, installed directly by homebrew, is used to install packages globally."
+  # shellcheck disable=SC2162
+  read -p "Press [Enter] to continue..."
+  . "$HOME/.nvm/nvm.sh"
+  echo "+ npm deactivate"
+  nvm deactivate
+  echo "+ which node"
+  which node
+fi
+
 echo ""
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
