@@ -1368,26 +1368,36 @@ echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
 
-# TODO(cdzombak): persist all choices here except OctoPi, since monitoring is important
-_install_cura() {
-  cecho "Install Cura? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask ultimaker-cura
-    setupnote "Ultimaker Cura" "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
-  fi
-}
-sw_install "/Applications/Ultimaker Cura.app" _install_cura
+if [ ! -e "$HOME/.local/dotfiles/software/no-cura" ]; then
+  _install_cura() {
+    cecho "Install Cura? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask ultimaker-cura
+      setupnote "Ultimaker Cura" \
+        "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-cura"
+    fi
+  }
+  sw_install "/Applications/Ultimaker Cura.app" _install_cura
+fi
 
-_install_f360() {
-  cecho "Install Fusion 360? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask autodesk-fusion360
-    setupnote "Fusion 360" "- [ ] Sign In"
-  fi
-}
-sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
+if [ ! -e "$HOME/.local/dotfiles/software/no-fusion360" ]; then
+  _install_f360() {
+    cecho "Install Fusion 360? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask autodesk-fusion360
+      setupnote "Fusion 360" "- [ ] Sign In"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-fusion360"
+    fi
+  }
+  sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
+fi
 
 _install_octopi_wrapper() {
   cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
@@ -1403,32 +1413,47 @@ _install_octopi_wrapper() {
 }
 sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
 
-_install_kicad() {
-  cecho "Install KiCad? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask kicad
-  fi
-}
-sw_install "/Applications/KiCad" _install_kicad
+if [ ! -e "$HOME/.local/dotfiles/software/no-kicad" ]; then
+  _install_kicad() {
+    cecho "Install KiCad? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask kicad
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-kicad"
+    fi
+  }
+  sw_install "/Applications/KiCad" _install_kicad
+fi
 
-_install_cubicsdr() {
-  cecho "Install CubicSDR? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask cubicsdr
-  fi
-}
-sw_install /Applications/CubicSDR.app _install_cubicsdr
+if [ ! -e "$HOME/.local/dotfiles/software/no-cubicsdr" ]; then
+  _install_cubicsdr() {
+    cecho "Install CubicSDR? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask cubicsdr
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-cubicsdr"
+    fi
+  }
+  sw_install /Applications/CubicSDR.app _install_cubicsdr
+fi
 
-_install_chirp() {
-  cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask chirp
-  fi
-}
-sw_install /Applications/CHIRP.app _install_chirp
+if [ ! -e "$HOME/.local/dotfiles/software/no-chirp" ]; then
+  _install_chirp() {
+    cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask chirp
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-chirp"
+    fi
+  }
+  sw_install /Applications/CHIRP.app _install_chirp
+fi
 
 echo ""
 cecho "--- Office & Communication ---" $white
@@ -1471,7 +1496,16 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
   }
 fi
 
-# TODO(cdzombak): Signal
+_install_signal() {
+  cecho "Install Signal? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask signal
+    setupnote "Signal.app" \
+        "- [ ] Authenticate with phone"
+  fi
+}
+sw_install /Applications/Signal.app _install_signal
 
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
@@ -1547,15 +1581,6 @@ _install_pdfscanner() {
 }
 sw_install /Applications/PDFScanner.app _install_pdfscanner
 
-_install_calca() {
-  cecho "Install Calca? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 635758264 # Calca
-  fi
-}
-sw_install /Applications/Calca.app _install_calca
-
 _install_tableflip() {
   cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
   read -r response
@@ -1565,24 +1590,18 @@ _install_tableflip() {
 }
 sw_install /Applications/TableFlip.app _install_tableflip
 
+_install_calca() {
+  cecho "Install Calca? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 635758264 # Calca
+  fi
+}
+sw_install /Applications/Calca.app _install_calca
+
 echo ""
 cecho "--- Media Tools ---" $white
 echo ""
-
-if [ ! -e "$HOME/.local/dotfiles/software/no-calibre" ]; then
-  _install_calibre() {
-    cecho "Install Calibre + Android File Transfer tool? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask calibre
-      brew install --cask android-file-transfer
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-calibre"
-    fi
-  }
-  sw_install /Applications/calibre.app _install_calibre
-fi
 
 if [ -e "/Applications/Pixelmator.app" ]; then
   echo "Replacing Pixelmator Classic by Pixelmator Pro..."
@@ -1727,6 +1746,18 @@ _install_youtubedl() {
 }
 sw_install "$(brew --prefix)/bin/yt-dlp" _install_youtubedl
 
+echo ""
+cecho "Install/update my quick ffmpeg media conversion scripts? (y/N)" $magenta
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
+  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+  pushd "$TMP_DIR"
+  chmod +x ./install.sh
+  ./install.sh
+  popd
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
     cecho "Install Handbrake? (y/N)" $magenta
@@ -1742,23 +1773,44 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
   sw_install /Applications/Handbrake.app _install_handbrake
 fi
 
-echo ""
-cecho "Install/update my quick ffmpeg media conversion scripts? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
-  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  chmod +x ./install.sh
-  ./install.sh
-  popd
+if [ ! -e "$HOME/.local/dotfiles/software/no-calibre" ]; then
+  _install_calibre() {
+    cecho "Install Calibre + Android File Transfer tool? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask calibre
+      brew install --cask android-file-transfer
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-calibre"
+    fi
+  }
+  sw_install /Applications/calibre.app _install_calibre
 fi
-
-# TODO(cdzombak): move stuff to Home
 
 echo ""
 cecho "--- Home ---" $white
 echo ""
+
+if [ -e "/Applications/Sonos S1 Controller.app" ]; then
+  brew uninstall --cask --force sonos
+  rm -rf "/Applications/Sonos S1 Controller.app"
+  brew cleanup
+  brew update
+fi
+_install_sonos() {
+  cecho "Install Sonos? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask sonos
+    # shellcheck disable=SC2129
+    echo "## Sonos.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "**Note:** do not enable notifications." >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install "/Applications/Sonos.app" _install_sonos
 
 _install_ecobee() {
   echo ""
@@ -1794,49 +1846,6 @@ echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
 
-if [ -e "/Applications/Sonos S1 Controller.app" ]; then
-  brew uninstall --cask --force sonos
-  rm -rf "/Applications/Sonos S1 Controller.app"
-  brew cleanup
-  brew update
-fi
-_install_sonos() {
-  cecho "Install Sonos? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask sonos
-    # shellcheck disable=SC2129
-    echo "## Sonos.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "**Note:** do not enable notifications." >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install "/Applications/Sonos.app" _install_sonos
-
-_install_triode() {
-  cecho "Install Triode? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1450027401
-  fi
-}
-sw_install "/Applications/Triode.app" _install_triode
-
-_install_plexdesktop() {
-  cecho "Install Plex Desktop? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask plex
-    # shellcheck disable=SC2129
-    echo "## Plex.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Plex.app _install_plexdesktop
-
 _install_plexamp() {
   cecho "Install Plexamp? (y/N)" $magenta
   read -r response
@@ -1854,6 +1863,20 @@ _install_plexamp() {
 }
 sw_install /Applications/Plexamp.app _install_plexamp
 
+_install_plexdesktop() {
+  cecho "Install Plex Desktop? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask plex
+    # shellcheck disable=SC2129
+    echo "## Plex.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/Plex.app _install_plexdesktop
+
 _install_pocketcasts() {
   cecho "Install Pocket Casts? (y/N)" $magenta
   read -r response
@@ -1862,6 +1885,15 @@ _install_pocketcasts() {
   fi
 }
 sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
+
+_install_triode() {
+  cecho "Install Triode? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1450027401
+  fi
+}
+sw_install "/Applications/Triode.app" _install_triode
 
 _install_instapaper_reader() {
   cecho "Install Instapaper Reader? (y/N)" $magenta
