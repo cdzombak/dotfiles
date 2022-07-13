@@ -676,7 +676,9 @@ fi
 
 echo "SQLPro Studio ..."
 if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
+  set +e
   osascript -e "tell application \"SQLPro Studio\" to quit"
+  set -e
   defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-DisableSampleConnections" '1'
   defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalentMask" '1048576'
   defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalent" '"\U21a9"'
