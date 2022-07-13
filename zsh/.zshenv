@@ -39,7 +39,7 @@ if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
 fi
 
 # pyenv:
-if command -v pyenv &> /dev/null; then
+if command -v pyenv 1>/dev/null 2>&1; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init --path)"
