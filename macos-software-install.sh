@@ -281,7 +281,6 @@ sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
 sw_install "/Applications/Cardhop.app" "brew_cask_install cardhop" \
   "- [ ] Sign into Flexibits account (via Apple)\n- [ ] Add and name work Google Directory"
 
-# TODO(cdzombak): note generating GitHub token at this step
 _install_sublimetext() {
   brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
@@ -292,6 +291,8 @@ _install_sublimetext() {
   SUBLIMETEXT_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Packages"
   mkdir -p "$SUBLIMETEXT_PKGS_DIR"
   pushd "$SUBLIMETEXT_PKGS_DIR"
+  cecho "This might be a good point to generate a GitHub personal access token for this device, to be stored in the local login keychain:" $white
+  cecho "https://github.com/settings/tokens" $cyan
   git clone git@github.com:cdzombak/sublime-text-config.git User
   popd
 }
