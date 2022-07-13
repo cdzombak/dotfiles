@@ -535,22 +535,6 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
-  _install_transmit() {
-    cecho "Install Transmit? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask Transmit
-      setupnote "Transmit" \
-        "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-transmit"
-    fi
-  }
-  sw_install "/Applications/Transmit.app" _install_transmit
-fi
-
 if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
   _install_lunar() {
     cecho "Install Lunar (external monitor management brightness/etc. tool)? (y/N)" $magenta
@@ -664,16 +648,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
   }
   sw_install "/Applications/YubiKey Manager.app" _install_yubikey_manager
 fi
-
-_install_superduper(){
-  cecho "Install SuperDuper? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask superduper
-    setupnote "SuperDuper.app" "- [ ] Add this system to backup strategy/plan/routine"
-  fi
-}
-sw_install "/Applications/SuperDuper!.app" _install_superduper
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
   _install_streamdeck() {
@@ -801,25 +775,33 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-bettercap" ]; then
   sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
 fi
 
-# TODO(cdzombak): persist choice
-_install_rpi_imager() {
-  cecho "Install Raspberry Pi Imager? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask raspberry-pi-imager
-  fi
-}
-sw_install "/Applications/Raspberry Pi Imager.app" _install_rpi_imager
+if [ ! -e "$HOME/.local/dotfiles/software/no-rpi-imager" ]; then
+  _install_rpi_imager() {
+    cecho "Install Raspberry Pi Imager? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask raspberry-pi-imager
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-rpi-imager"
+    fi
+  }
+  sw_install "/Applications/Raspberry Pi Imager.app" _install_rpi_imager
+fi
 
-# TODO(cdzombak): persist choice
-_install_balena_etcher() {
-  cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask balenaetcher
-  fi
-}
-sw_install /Applications/balenaEtcher.app _install_balena_etcher
+if [ ! -e "$HOME/.local/dotfiles/software/no-balena-etcher" ]; then
+  _install_balena_etcher() {
+    cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask balenaetcher
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-balena-etcher"
+    fi
+  }
+  sw_install /Applications/balenaEtcher.app _install_balena_etcher
+fi
 
 _install_fio() {
   cecho "Install fio (CLI-based Flexible IO tester)? (y/N)" $magenta
@@ -838,6 +820,16 @@ _install_f3() {
   fi
 }
 sw_install "$(brew --prefix)/bin/f3read" _install_f3
+
+_install_superduper(){
+  cecho "Install SuperDuper? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask superduper
+    setupnote "SuperDuper.app" "- [ ] Add this system to backup strategy/plan/routine"
+  fi
+}
+sw_install "/Applications/SuperDuper!.app" _install_superduper
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-ivpn" ]; then
   _install_ivpn_client() {
@@ -903,6 +895,22 @@ _install_vncviewer() {
   fi
 }
 sw_install "/Applications/VNC Viewer.app" _install_vncviewer
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
+  _install_transmit() {
+    cecho "Install Transmit? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask Transmit
+      setupnote "Transmit" \
+        "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-transmit"
+    fi
+  }
+  sw_install "/Applications/Transmit.app" _install_transmit
+fi
 
 # _install_coconutbattery() {
 #   cecho "Install CoconutBattery? (y/N)" $magenta
@@ -1316,7 +1324,7 @@ fi
 # sw_install /Applications/Liya.app _install_liya
 
 echo ""
-cecho "--- CAD, 3DP, EE, Radio Tools ---" $white
+cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
 
 # TODO(cdzombak): persist all choices here except OctoPi, since monitoring is important
@@ -1380,6 +1388,141 @@ _install_chirp() {
   fi
 }
 sw_install /Applications/CHIRP.app _install_chirp
+
+echo ""
+cecho "--- Office & Communication ---" $white
+echo ""
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
+  _install_slack() {
+    cecho "Install Slack? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sw_install /Applications/Slack.app "brew_cask_install slack" \
+        "- [ ] Sign in to Slack accounts"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-slack"
+    fi
+  }
+  sw_install /Applications/Slack.app _install_slack
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
+  _install_zoom() {
+    cecho "Install Zoom for videoconferencing? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      # keep Zoom from installing its shitty local webserver thing
+      rm -rf "$HOME/.zoomus"
+      touch "$HOME/.zoomus"
+      brew install --cask zoom
+      # shellcheck disable=SC2129
+      echo "## Zoom.app" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Enable microphone mute when joining meeting" >> "$HOME/SystemSetup.md"
+      echo -e "- [ ] Disable video when joining meeting" >> "$HOME/SystemSetup.md"
+      echo "" >> "$HOME/SystemSetup.md"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-zoom"
+    fi
+  }
+fi
+
+# TODO(cdzombak): Signal
+
+_install_diagrams() {
+  cecho "Install Diagrams? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1276248849
+  fi
+}
+sw_install /Applications/Diagrams.app _install_diagrams
+
+_install_monodraw() {
+  cecho "Install Monodraw? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask monodraw
+    # shellcheck disable=SC2129
+    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/Monodraw.app _install_monodraw
+
+_install_omnigraffle() {
+  cecho "Install OmniGraffle? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask omnigraffle
+    # shellcheck disable=SC2129
+    echo "## OmniGraffle.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] License" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+}
+sw_install /Applications/OmniGraffle.app _install_omnigraffle
+
+_install_omnioutliner() {
+  cecho "Install OmniOutliner? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask omnioutliner
+    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
+  fi
+}
+sw_install /Applications/OmniOutliner.app _install_omnioutliner
+
+_install_keynote() {
+  cecho "Install Keynote? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 409183694 # Keynote
+  fi
+}
+sw_install /Applications/Keynote.app _install_keynote
+
+_install_deckset() {
+  cecho "Install Deckset? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask deckset
+  fi
+}
+sw_install /Applications/Deckset.app _install_deckset
+
+_install_pdfscanner() {
+  cecho "Install PDF Scanner (PDF scan & compression tool)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 410968114
+  fi
+}
+sw_install /Applications/PDFScanner.app _install_pdfscanner
+
+_install_calca() {
+  cecho "Install Calca? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 635758264 # Calca
+  fi
+}
+sw_install /Applications/Calca.app _install_calca
+
+_install_tableflip() {
+  cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask tableflip
+  fi
+}
+sw_install /Applications/TableFlip.app _install_tableflip
 
 echo ""
 cecho "--- Media Tools ---" $white
@@ -1570,6 +1713,42 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   popd
 fi
 
+# TODO(cdzombak): move stuff to Home
+
+echo ""
+cecho "--- Home ---" $white
+echo ""
+
+_install_ecobee() {
+  echo ""
+  cecho "Install Ecobee wrapper app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
+    git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/Ecobee.app" _install_ecobee
+
+_install_unifiprotect() {
+  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
+  echo "(requires GitHub auth)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
+    git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
+    pushd "$TMP_DIR"
+    make install-mac
+    make clean
+    popd
+  fi
+}
+sw_install "/Applications/UniFi Protect.app" _install_unifiprotect
+
 echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
@@ -1689,177 +1868,6 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-remotehelperapp" ]; then
   }
   sw_install "/Applications/Remote for Mac.app" _install_remotehelperapp
 fi
-
-echo ""
-cecho "--- Office & Communication Tools ---" $white
-echo ""
-
-if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
-  _install_slack() {
-    cecho "Install Slack? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install /Applications/Slack.app "brew_cask_install slack" \
-        "- [ ] Sign in to Slack accounts"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-slack"
-    fi
-  }
-  sw_install /Applications/Slack.app _install_slack
-fi
-
-if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
-  _install_zoom() {
-    cecho "Install Zoom for videoconferencing? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      # keep Zoom from installing its shitty local webserver thing
-      rm -rf "$HOME/.zoomus"
-      touch "$HOME/.zoomus"
-      brew install --cask zoom
-      # shellcheck disable=SC2129
-      echo "## Zoom.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Enable microphone mute when joining meeting" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Disable video when joining meeting" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-zoom"
-    fi
-  }
-fi
-
-# TODO(cdzombak): Signal
-
-_install_diagrams() {
-  cecho "Install Diagrams? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1276248849
-  fi
-}
-sw_install /Applications/Diagrams.app _install_diagrams
-
-_install_monodraw() {
-  cecho "Install Monodraw? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask monodraw
-    # shellcheck disable=SC2129
-    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Monodraw.app _install_monodraw
-
-_install_omnigraffle() {
-  cecho "Install OmniGraffle? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask omnigraffle
-    # shellcheck disable=SC2129
-    echo "## OmniGraffle.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] License" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/OmniGraffle.app _install_omnigraffle
-
-_install_omnioutliner() {
-  cecho "Install OmniOutliner? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask omnioutliner
-    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
-  fi
-}
-sw_install /Applications/OmniOutliner.app _install_omnioutliner
-
-_install_keynote() {
-  cecho "Install Keynote? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 409183694 # Keynote
-  fi
-}
-sw_install /Applications/Keynote.app _install_keynote
-
-_install_deckset() {
-  cecho "Install Deckset? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask deckset
-  fi
-}
-sw_install /Applications/Deckset.app _install_deckset
-
-_install_pdfscanner() {
-  cecho "Install PDF Scanner (PDF scan & compression tool)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 410968114
-  fi
-}
-sw_install /Applications/PDFScanner.app _install_pdfscanner
-
-_install_calca() {
-  cecho "Install Calca? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 635758264 # Calca
-  fi
-}
-sw_install /Applications/Calca.app _install_calca
-
-_install_tableflip() {
-  cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask tableflip
-  fi
-}
-sw_install /Applications/TableFlip.app _install_tableflip
-
-# TODO(cdzombak): move stuff to Home
-
-echo ""
-cecho "--- Home ---" $white
-echo ""
-
-_install_ecobee() {
-  echo ""
-  cecho "Install Ecobee wrapper app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
-    git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install "/Applications/Ecobee.app" _install_ecobee
-
-_install_unifiprotect() {
-  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
-  echo "(requires GitHub auth)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
-    git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install "/Applications/UniFi Protect.app" _install_unifiprotect
 
 echo ""
 cecho "--- Social Networking ---" $white
