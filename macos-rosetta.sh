@@ -12,13 +12,12 @@ fi
 
 # Save current IFS state
 OLDIFS=$IFS
-
 # Determine OS version
 IFS='.' read osvers_major osvers_minor osvers_dot_version <<< "$(/usr/bin/sw_vers -productVersion)"
-
 # restore IFS to previous state
 IFS=$OLDIFS
 
+echo ""
 cecho "---- macOS Rosetta Install ----" $white
 echo ""
 
