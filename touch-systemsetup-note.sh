@@ -170,7 +170,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 - [ ] Pair with Bluetooth keyboard
     - [ ] Change Caps Lock to Control in Keyboard preferences
-- [ ] Run \`mouse-tracking\` script as appropriate
+- [ ] Run \`mouse-tracking\` script as appropriate (eg. \`mouse-tracking home\`)
 - [ ] Display setup
     - [ ] Change display resolution as needed
     - [ ] Change display arrangement as needed
