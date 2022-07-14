@@ -645,6 +645,20 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
   sw_install "$(brew --prefix)/bin/yubikey-agent" _install_yubikey_agent
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-ykman" ]; then
+  _install_ykman() {
+    cecho "Install ykman (CLI YubiKey management tool)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install ykman
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-ykman"
+    fi
+  }
+  sw_install "/Applications/YubiKey Manager.app" _install_ykman
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
   _install_yubikey_manager() {
     cecho "Install Yubikey Manager? (y/N)" $magenta
