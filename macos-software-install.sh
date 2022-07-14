@@ -261,7 +261,7 @@ sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
-  "- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Allow Full Disk Access"
+  "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Make default term"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set font: Meslo LG M Regular, size 13\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
@@ -279,7 +279,7 @@ sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
-  "- [ ] Associate with Markdown files"
+  "- [ ] Associate with Markdown files\n- [ ] License"
 
 _install_vitals() {
   brew tap | grep -c hmarr >/dev/null || brew tap hmarr/tap
@@ -498,7 +498,7 @@ _install_ears() {
   popd
 }
 sw_install "/Applications/Ears.app" _install_ears \
-  "- [ ] License Ears\n- [ ] Add AirPods Pro\n- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes\n- [ ] Hide macOS volume control in menu bar"
+  "- [ ] License Ears\n- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar\n- [ ] Favorite devices: AirPods Pro and Sony ANC Phones\n- [ ] Linked devices: AirPods Pro/Webcam Mic and Sony ANC Phones/Webcam Mic\n- [ ] Hide macOS volume control in menu bar"
 
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
@@ -947,7 +947,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
   sw_install /Applications/Expressions.app "mas install 913158085"
   sw_install /Applications/Fork.app "brew_cask_install fork" \
-    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub and BitBucket accounts (as desired)"
+    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub account (as desired)"
   sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge" \
     "- [ ] License"
@@ -1496,7 +1496,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
       touch "$HOME/.zoomus"
       brew install --cask zoom
       setupnote "Zoom.app" \
-        "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting"
+        "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting\n- [ ] Generally configure as desired"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-zoom"
