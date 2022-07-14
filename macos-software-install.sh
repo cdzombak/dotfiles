@@ -296,9 +296,6 @@ fi
 sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
   "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut\n- [ ] Disable alerts for Deliveries calendar"
 
-sw_install "/Applications/Cardhop.app" "brew_cask_install cardhop" \
-  "- [ ] Sign into Flexibits account (via Apple)\n- [ ] Add and name work Google Directory"
-
 _install_sublimetext() {
   brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
@@ -2268,6 +2265,13 @@ if [ -e "/Applications/Burn.app" ]; then
   echo "Burn (CD burner)..."
   verify_smartdelete
   trash /Applications/Burn.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Cardhop.app" ]; then
+  echo "Cardhop..."
+  verify_smartdelete
+  trash /Applications/Cardhop.app
   REMOVED_ANYTHING=true
 fi
 
