@@ -1913,6 +1913,8 @@ _install_instapaper_reader() {
     make install-mac
     make clean
     popd
+    setupnote "Instapaper Reader.app" \
+      "- [ ] Sign in"
   fi
 }
 sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
