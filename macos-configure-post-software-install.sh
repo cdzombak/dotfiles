@@ -384,7 +384,7 @@ if [ -e "/Applications/Setapp/Keysmith.app" ]; then
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
   set +e
