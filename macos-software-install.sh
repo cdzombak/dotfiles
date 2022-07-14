@@ -584,11 +584,8 @@ _install_istat(){
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask istat-menus
-    # shellcheck disable=SC2129
-    echo "## iStat Menus.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] License\n- [ ] Configure based on current favorite system" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
+    setupnote "iStat Menus.app" \
+      "- [ ] License\n- [ ] Configure based on current favorite system"
   fi
 }
 sw_install "/Applications/iStat Menus.app" _install_istat
@@ -886,12 +883,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask screens-connect
-      # shellcheck disable=SC2129
-      echo "## /Applications/Screens Connect.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign in / enable" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+      setupnote "## /Applications/Screens Connect.app" \
+        "- [ ] Sign in / enable\n- [ ] Hide in Bartender"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-screensconnect"
@@ -1502,12 +1495,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
       rm -rf "$HOME/.zoomus"
       touch "$HOME/.zoomus"
       brew install --cask zoom
-      # shellcheck disable=SC2129
-      echo "## Zoom.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Enable microphone mute when joining meeting" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Disable video when joining meeting" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+      setupnote "Zoom.app" \
+        "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-zoom"
