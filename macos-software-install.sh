@@ -1515,6 +1515,22 @@ _install_signal() {
 }
 sw_install /Applications/Signal.app _install_signal
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-google-drive" ]; then
+  _install_gdrive() {
+    cecho "Install Google Drive? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask google-drive
+      setupnote "Google Drive.app" \
+        "- [ ] Authenticate\n- [ ] Rearrange to bottom of Finder sidebar"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-google-drive"
+    fi
+  }
+  sw_install "/Applications/Google Drive.app" _install_gdrive
+fi
+
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
   read -r response
@@ -2316,7 +2332,7 @@ if [ -e "$HOME/.config/gmail-cleaner-personal" ]; then
 fi
 
 if [ -e "/Applications/Google Drive File Stream.app" ]; then
-  echo "Google Drive File Stream (use CloudMounter instead)..."
+  echo "Google Drive File Stream (use CloudMounter or Google Drive instead)..."
   verify_smartdelete
   osascript -e 'tell application "Google Drive File Stream" to quit'
   brew uninstall --cask google-drive-file-stream || trash "/Applications/Google Drive File Stream.app"
