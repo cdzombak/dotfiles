@@ -255,8 +255,6 @@ sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
-sw_install /Applications/Firefox.app "brew_cask_install firefox" \
-  "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
@@ -1471,6 +1469,17 @@ fi
 echo ""
 cecho "--- Office & Communication ---" $white
 echo ""
+
+_install_firefox() {
+  cecho "Install Firefox? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask firefox
+    setupnote "Firefox.app" \
+        "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
+  fi
+}
+sw_install /Applications/Firefox.app _install_firefox
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
   _install_slack() {
