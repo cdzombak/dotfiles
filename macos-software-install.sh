@@ -267,8 +267,10 @@ sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
-sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
-  "- [ ] Add work and personal accounts; set account names\n- [ ] Disable notifications for work account (on personal machine)\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+if [ ! -e "$HOME/.local/dotfiles/software/no-mimestream" ]; then
+  sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
+    "- [ ] Add work and personal accounts; set account names\n- [ ] Disable notifications for work account (on personal machine)\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+fi
 sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
   "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
@@ -293,8 +295,10 @@ if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical
   osascript -e "tell application \"Fantastical 2\" to quit"
   mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
 fi
-sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-  "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut\n- [ ] Disable alerts for Deliveries calendar"
+if [ ! -e "$HOME/.local/dotfiles/software/no-fantastical" ]; then
+  sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
+    "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut\n- [ ] Disable alerts for Deliveries calendar"
+fi
 
 _install_sublimetext() {
   brew install --cask sublime-text
@@ -377,8 +381,10 @@ sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
 
 # macOS Applications from Mac App Store:
 
-sw_install /Applications/Bear.app "mas install 1091189122" \
-  "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
+if [ ! -e "$HOME/.local/dotfiles/software/no-bear" ]; then
+  sw_install /Applications/Bear.app "mas install 1091189122" \
+    "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
+fi
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
   "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
