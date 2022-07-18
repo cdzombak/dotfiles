@@ -843,6 +843,8 @@ mysides list | while read -r LINE; do
   if ! echo "$LINE" | grep -c "file://" >/dev/null; then continue; fi
   # skip CloudMounter sidebar entries
   if echo "$LINE" | grep -c "CMVolumes" >/dev/null; then continue; fi
+  # skip Google Drive sidebar entry
+  if echo "$LINE" | grep -c "GoogleDrive" >/dev/null; then continue; fi
 
   NAME="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $1}')"
   URI="$(echo "$LINE" | awk 'BEGIN {FS=" -> "} {print $2}')"
