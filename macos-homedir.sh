@@ -51,10 +51,6 @@ fi
 # Integrate iCloud Drive & Syncthing into ~ via symlinks:
 # even if Syncthing isn't setup yet, create broken links to ~/Sync; they'll work later
 
-if [ ! -L "$HOME/iCloud Drive" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" "$HOME/iCloud Drive"
-fi
-
 if [ ! -L "$HOME/Dropbox" ]; then
   ln -s "$HOME/Sync" "$HOME/Dropbox"
   chflags -h hidden "$HOME/Dropbox"
@@ -71,56 +67,64 @@ if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.local/dotfiles/no-home-env-dir" ]; the
   fi
 fi
 
-if [ ! -L "$HOME/Applications/macOS Utilities" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Utilities" "$HOME/Applications/macOS Utilities"
-fi
+if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
 
-if [ ! -L "$HOME/Applications/macOS Security Tools" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Security Tools" "$HOME/Applications/macOS Security Tools"
-fi
-
-if [ ! -L "$HOME/Downloads/iCloud" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Downloads" "$HOME/Downloads/iCloud"
-fi
-
-if [ ! -L "$HOME/Pictures/iCloud" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Pictures" "$HOME/Pictures/iCloud"
-fi
-
-if [ ! -L "$HOME/tmp/iCloud" ]; then
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Temp" "$HOME/tmp/iCloud"
-fi
-
-if [ -L "$HOME/Books and Articles" ] ; then
-  rm "$HOME/Books and Articles"
-  ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
-fi
-
-if [ ! -L "$HOME/Cloud Library" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
-  echo ""
-  echo "Create link to iCloud Drive/Cloud Library in home directory? (y/N)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
-  else
-    touch "$HOME/.local/dotfiles/no-home-booksandarticles-dir"
+  if [ ! -L "$HOME/iCloud Drive" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" "$HOME/iCloud Drive"
   fi
-fi
 
-if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null ; then
-  if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-icloud-links" ]; then
+  if [ ! -L "$HOME/Applications/macOS Utilities" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Utilities" "$HOME/Applications/macOS Utilities"
+  fi
+
+  if [ ! -L "$HOME/Applications/macOS Security Tools" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software/macOS Security Tools" "$HOME/Applications/macOS Security Tools"
+  fi
+
+  if [ ! -L "$HOME/Downloads/iCloud" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Downloads" "$HOME/Downloads/iCloud"
+  fi
+
+  if [ ! -L "$HOME/Pictures/iCloud" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Pictures" "$HOME/Pictures/iCloud"
+  fi
+
+  if [ ! -L "$HOME/tmp/iCloud" ]; then
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Temp" "$HOME/tmp/iCloud"
+  fi
+
+  if [ -L "$HOME/Books and Articles" ] ; then
+    rm "$HOME/Books and Articles"
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
+  fi
+
+  if [ ! -L "$HOME/Cloud Library" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
     echo ""
-    echo "Desktop/Documents in iCloud appears to be disabled."
-    echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
-    echo "(eg. ~/Documents/iCloud, etc. Mainly intended for work computers.)"
+    echo "Create link to iCloud Drive/Cloud Library in home directory? (y/N)"
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
-      ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
+      ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
     else
-      touch "$HOME/.local/dotfiles/no-home-icloud-links"
+      touch "$HOME/.local/dotfiles/no-home-booksandarticles-dir"
     fi
   fi
+
+  if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null 2>&1 ; then
+    if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-icloud-links" ]; then
+      echo ""
+      echo "Desktop/Documents in iCloud appears to be disabled."
+      echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
+      echo "(eg. ~/Documents/iCloud, etc. Mainly intended for work computers.)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
+        ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
+      else
+        touch "$HOME/.local/dotfiles/no-home-icloud-links"
+      fi
+    fi
+  fi
+
 fi
 
 # JetBrains IDE directory shortcuts:

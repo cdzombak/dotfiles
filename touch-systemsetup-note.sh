@@ -49,6 +49,8 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
     - [ ] Enable Desktop & Documents folders, as desired
 - [ ] Enable Touch ID for purchases
 
+_Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\` and \`macos-configure-post-software-install.sh\` to create iCloud Drive links in \`~\` and configure the Finder sidebar.
+
 ### Apple Pay
 
 - [ ] Add current cards to Apple Pay, as desired
