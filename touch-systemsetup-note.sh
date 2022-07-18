@@ -90,7 +90,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 ### Notifications
 
-- [ ] Disable entirely for Books, Calendars, Games, Home, Mail, Music, Reminders
+- [ ] Disable entirely for Books, Calendars, Games, Mail, Music, Reminders
 - [ ] Adjust other preferences as desired
 
 ### Printers & Scanners
