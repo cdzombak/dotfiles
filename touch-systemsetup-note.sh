@@ -116,7 +116,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 ### Spotlight
 
-- [ ] Exclude \`~/code\`, \`~/3p_code\`, and any other high-churn directories
+- [ ] Exclude \`~/code\`, \`~/3p_code\`, \`~/go\` and any other high-churn directories
 
 ### Users & Groups
 
