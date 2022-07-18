@@ -73,17 +73,14 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
 
-### Keyboard + Touch Bar (as applicable)
+### Keyboard
 
-- [ ] Touch Bar Shows: Expanded Control Strip
-- [ ] Fn key shows: F1, F2, …
-- [ ] Customize Touch Bar based on screenshot in \`~/Sync/Configs\`
 - [ ] Reassign Caps Lock to Ctrl
 - [ ] Turn off "correct spelling automatically," "capitalize words automatically," "add period with double-space"
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
     - [ ] Customize available services as desired
 - [ ] Enable Dictation + Enhanced Dictation
-    - [ ] Set shortcut: right Command key twice (unless keyboard has dictation key on F4)
+    - [ ] Set shortcut: right Command key twice (unless keyboard has dictation key on F5)
 
 ### Network
 
