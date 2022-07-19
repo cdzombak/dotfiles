@@ -231,8 +231,9 @@ else
 fi
 
 echo ""
-echo "[Finder] Show status bar in Finder by default"
+echo "[Finder] Show status bar & path bar"
 defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
 
 echo ""
 echo "Avoid creation of .DS_Store files on network volumes"
