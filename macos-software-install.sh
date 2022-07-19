@@ -1488,7 +1488,7 @@ _install_firefox() {
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask firefox
     setupnote "Firefox.app" \
-        "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Add StopTheMadness extension\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
+        "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
   fi
 }
 sw_install /Applications/Firefox.app _install_firefox
@@ -2182,9 +2182,6 @@ sw_install "/Applications/Magic Lasso.app" "mas install 1198047227" \
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
 
-sw_install "/Applications/StopTheMadness.app" "mas install 1376402589" \
-  "- [ ] Enable StopTheMadness Safari Extension\n- [ ] Enable Open Link With -> Choosy\n- [ ] Install Firefox extension\n- [ ] Configure"
-
 _install_stopthenews() {
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'stopthenews')
@@ -2449,6 +2446,13 @@ if [ -e "/Applications/Rocket.app" ]; then
   trash "$HOME/Library/Scripts/Restart Rocket.scpt"
   set -e
   trash /Applications/Rocket.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/StopTheMadness.app" ]; then
+  verify_smartdelete
+  echo "StopTheMadness..."
+  trash "/Applications/StopTheMadness.app"
   REMOVED_ANYTHING=true
 fi
 
