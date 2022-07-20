@@ -600,6 +600,10 @@ defaults write com.apple.finder NSUserKeyEquivalents '{
 # }'
 
 echo ""
+echo "Mail.app Keyboard shortcut: ⌘↩ to send mail"
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+
+echo ""
 echo "Photos.app Keyboard shortcut: ⌥T to Adjust Date & Time"
 # shellcheck disable=SC2016
 defaults write com.apple.Photos NSUserKeyEquivalents '{
