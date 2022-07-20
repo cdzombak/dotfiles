@@ -940,6 +940,17 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
   sw_install "/Applications/Transmit.app" _install_transmit
 fi
 
+_install_tadam() {
+  cecho "Install Tadam (focus timer)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 531349534
+    setupnote "Tadam.app" \
+      "- [ ] Allow notifications\n- [ ] Start at login\n- [ ] Keyboard shortcut Ctrl-T\n- [ ] Arrange in Bartender"
+  fi
+}
+sw_install "/Applications/Tadam.app" _install_tadam
+
 # _install_coconutbattery() {
 #   cecho "Install CoconutBattery? (y/N)" $magenta
 #   read -r response
