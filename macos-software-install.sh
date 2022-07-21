@@ -946,7 +946,7 @@ _install_tadam() {
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mas install 531349534
     setupnote "Tadam.app" \
-      "- [ ] Allow notifications\n- [ ] Start at login\n- [ ] Keyboard shortcut Ctrl-T\n- [ ] Arrange in Bartender"
+      "- [ ] Allow notifications\n- [ ] Start at login\n- [ ] Keyboard shortcut Ctrl-Cmd-T\n- [ ] Arrange in Bartender"
   fi
 }
 sw_install "/Applications/Tadam.app" _install_tadam
