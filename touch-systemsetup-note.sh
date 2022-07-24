@@ -126,6 +126,43 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Audit login items
 - [ ] Set account photo
 
+## Calendar
+
+- [ ] Set default calendar (Personal or Work, depending on laptop)
+- [ ] Hide native Holidays calendar (Work is the preferred Holidays calendar source)
+- [ ] Refresh all accounts every 5 minutes
+- [ ] Disable Time To Leave notifications
+- [ ] Set default alerts for all accounts: events, 5 minutes before; all day events & birthdays, None
+- [ ] Turn on time zone support
+- [ ] Default visible calendars:
+    - iCloud: None
+    - Personal:
+        - Personal
+        - TR
+        - Actions
+        - Environment
+        - Meetups
+        - Cycling
+        - AADL Checkouts
+        - WxCal (Google)
+        - Facebook
+    - Work:
+        - Holidays
+        - Work
+    - Other:
+        - Birthdays
+- [ ] Disable alerts & availability for:
+    - Holidays *(all copies)*
+    - Environment
+    - AADL Checkouts *(availability only)*
+    - WxCal
+    - Deliveries
+    - Work / Contacts
+    - Work / Team Calendar
+    - Birthdays
+    - Siri Suggestions
+- Add to Widgets
+
 ## Dock
 
 - [ ] Organize Dock based on screenshots in \`~/Sync/Configs\` (or current favorite system)
@@ -152,9 +189,9 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Notifications: show previews only when unlocked
 - [ ] Increase font size
 
-## Notification Center
+## Widgets / Notification Center
 
-- [ ] Configure based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Configure: Calendar, Weather, Things, Deliveries (skip as desired for work laptop)
 
 ## Safari
 

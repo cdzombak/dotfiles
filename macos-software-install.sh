@@ -290,16 +290,6 @@ _install_vitals() {
 sw_install "/Applications/Vitals.app" _install_vitals \
   "- [ ] Launch at Login\n- [ ] Arrange in Bartender"
 
-if [ -e "/Applications/Fantastical 2.app" ] && [ ! -e "/Applications/Fantastical.app" ]; then
-  echo "Renaming 'Fantastical 2.app' to 'Fantastical.app'..."
-  osascript -e "tell application \"Fantastical 2\" to quit"
-  mv "/Applications/Fantastical 2.app" "/Applications/Fantastical.app"
-fi
-if [ ! -e "$HOME/.local/dotfiles/software/no-fantastical" ]; then
-  sw_install "/Applications/Fantastical.app" "brew_cask_install fantastical" \
-    "- [ ] Enable 'Run in Background'\n- [ ] Sign into Flexibits account (via Apple)\n- [ ] Configure calendar accounts\n- [ ] Add to Notification Center\n- [ ] Configure application preferences\n- [ ] Enable color menu bar icon\n- [ ] Set keyboard shortcut\n- [ ] Disable alerts for Deliveries calendar"
-fi
-
 _install_sublimetext() {
   brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
@@ -2323,6 +2313,16 @@ if [ -e /usr/local/bin/emoj ]; then
   echo "emoj..."
   npm uninstall -g emoj
   REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Fantastical.app" ]; then
+  echo "Fantastical..."
+  set +e
+  verify_smartdelete
+  osascript -e "tell application \"Fantastical\" to quit"
+  trash /Applications/Fantastical.app
+  REMOVED_ANYTHING=true
+  set -e
 fi
 
 if [ -e "/Applications/Front and Center.app" ]; then
