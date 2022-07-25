@@ -876,7 +876,7 @@ for i in "${EXPECTED_SIDEBAR_CONTENT[@]}"; do
 done
 
 echo ""
-cecho "--- Homebrew / Zsh (permissions fix) ---" $white
+cecho "--- Homebrew / Zsh / usr/local (permissions fixes) ---" $white
 echo ""
 
 echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
@@ -895,6 +895,10 @@ if [ -d /opt/homebrew/share/zsh ]; then
   sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh/site-functions
   sudo chmod -R 755 /opt/homebrew/share/zsh
 fi
+
+# Lunar installs its CLI tool here; location can't be customized
+sudo chown -R "$(whoami):staff" /usr/local/bin
+sudo chmod 755 /usr/local/bin
 
 pushd "$HOME/.zsh" >/dev/null
 find . -type f ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 600 {} \;
