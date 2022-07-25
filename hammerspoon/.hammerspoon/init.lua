@@ -39,6 +39,7 @@ enableHotkeyForWindowsMatchingFilter = function(windowFilter, hotkey)
 end
 
 require('control-escape')
+require('desk-usb')
 require('delete-words')
 require('markdown')
 require('windows')
