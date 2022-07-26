@@ -58,6 +58,8 @@ if [ -e "$HOME/.nvm/nvm.sh" ]; then
   nvm deactivate
   echo "+ which node"
   which node
+  echo "+ which npm"
+  which npm
 fi
 
 echo ""
