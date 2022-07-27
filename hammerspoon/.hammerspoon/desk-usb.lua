@@ -1,12 +1,20 @@
 local log = hs.logger.new('desk-usb.lua', 'debug')
 
 function usbCallback(data)
+    local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
+
     if data["eventType"] == "added" then
         log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
+
+        if isMainKeyboard then
+            -- workaround Lunar not working sometimes after input switching (macOS 12.2+ bug). per the dev:
+            -- "(sometimes) the system responds with an old cached list of screens where the DDC port is not valid anymore"
+            hs.task.new('/Users/cdzombak/.dotfiles/hammerspoon/support/restart-lunar.sh', nil):start()
+        end
     elseif data["eventType"] == "removed" then
         log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
-        if string.find(data["productName"], "Freestyle Edge Keyboard", 0, true) then
+        if isMainKeyboard then
             -- Is this the desktop Mac that runs on my home office desk?
             local isHomeDeskMacStudio = false
             local output, status = hs.execute("hostname")

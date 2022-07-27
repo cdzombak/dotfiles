@@ -555,7 +555,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask lunar
       setupnote "Lunar" \
-        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender\n- [ ] Enable automatic update installation\n- [ ] Install CLI tool\n- [ ] Use Sync mode automatically"
+        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender\n- [ ] Enable automatic update installation\n- [ ] Install CLI tool\n- [ ] Walk through onboarding & initial setup\n- [ ] Use Sync mode automatically"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-lunar"
