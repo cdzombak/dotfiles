@@ -137,6 +137,7 @@ if [ -e "/Applications/Choosy.app" ]; then
   defaults write com.choosyosx.Choosy generalMode 0
   defaults write com.choosyosx.Choosy launchAtLogin -bool true
   defaults write com.choosyosx.Choosy runningMode 3
+  defaults write com.choosyosx.Choosy displayBrowserNames 0
   set +e
   open -a Choosy
   set -e
