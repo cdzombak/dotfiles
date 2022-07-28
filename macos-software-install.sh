@@ -1906,7 +1906,7 @@ _install_plexamp() {
     echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Turn off notifications (Settings > Appearance)" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Disable crossfades (Settings > Playback)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Advanced)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Music Quality)" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
