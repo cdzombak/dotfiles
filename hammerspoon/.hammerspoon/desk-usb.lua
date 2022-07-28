@@ -7,8 +7,13 @@ function usbCallback(data)
         log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
         if isMainKeyboard then
+            -- wake this machine
+            log.d("waking machine via /usr/bin/caffeinate...")
+            hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
+
             -- workaround Lunar not working sometimes after input switching (macOS 12.2+ bug). per the dev:
             -- "(sometimes) the system responds with an old cached list of screens where the DDC port is not valid anymore"
+            log.d("restarting Lunar via hotkey...")
             hs.task.new('/Users/cdzombak/.dotfiles/hammerspoon/support/restart-lunar.sh', nil):start()
         end
     elseif data["eventType"] == "removed" then
