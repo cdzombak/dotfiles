@@ -498,7 +498,7 @@ _install_ears() {
   popd
 }
 sw_install "/Applications/Ears.app" _install_ears \
-  "- [ ] License Ears\n- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar\n- [ ] Favorite devices: AirPods Pro and Sony ANC Phones\n- [ ] Linked devices: AirPods Pro/Webcam Mic and Sony ANC Phones/Webcam Mic\n- [ ] Hide macOS volume control in menu bar"
+  "- [ ] License Ears\n- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar\n- [ ] Favorite devices: AirPods Pro and Sony ANC Phones\n- [ ] Linked devices: AirPods Pro/Webcam Mic and Sony ANC Phones/Webcam Mic\n- [ ] Hide macOS volume control in menu bar\n- [ ] Notifications: banners, show on lock screen, hide in Notification Center, show previews always"
 
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
