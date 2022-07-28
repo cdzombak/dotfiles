@@ -74,6 +74,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 ### Internet Accounts
 
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
+    - [ ] On personal computers, for work Google account, enable *Calendar* only
 
 ### Keyboard
 
@@ -92,7 +93,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 ### Notifications
 
-- [ ] Disable entirely for Books, Calendars, Games, Mail, Music, Reminders
+- [ ] Disable entirely for Books, Games, Mail, Music, Reminders
 - [ ] Adjust other preferences as desired
 
 ### Printers & Scanners
@@ -132,7 +133,8 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Hide native Holidays calendar (Work is the preferred Holidays calendar source)
 - [ ] Refresh all accounts every 5 minutes
 - [ ] Disable Time To Leave notifications
-- [ ] Set default alerts for all accounts: events, 5 minutes before; all day events & birthdays, None
+- [ ] Enable invitation notifications
+- [ ] Clear all default alerts for all accounts (defaults are managed by Google Calendar instead)
 - [ ] Turn on time zone support
 - [ ] Default visible calendars:
     - iCloud: None
