@@ -227,7 +227,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 ## Stickies.app
 
-- [ ] Set default note as floating on top & slightly larger font size
+- [ ] Set default note as floating on top & slightly larger font size (Window > Use as Default)
 
 EOF
 fi  # Darwin
