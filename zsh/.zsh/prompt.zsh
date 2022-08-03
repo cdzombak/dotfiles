@@ -241,6 +241,12 @@ _zsh_rprompt_local_env() {
   fi
 }
 
+_zsh_rprompt_aws_region() {
+  if [[ -n "$AWS_REGION" ]]; then
+    _zsh_rprompt_segment yellow black "$AWS_REGION"
+  fi
+}
+
 _zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
@@ -342,6 +348,7 @@ _zsh_build_rprompt() {
   _zsh_rprompt_pyenv
   _zsh_rprompt_virtualenv
   _zsh_rprompt_kubectl
+  _zsh_rprompt_aws_region
   _zsh_rprompt_gcloud
   _zsh_rprompt_end
 }
