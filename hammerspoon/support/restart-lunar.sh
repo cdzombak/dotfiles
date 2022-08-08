@@ -10,7 +10,7 @@ do
    sleep 1
 done
 
-sleep 2
+sleep 5
 
 osascript -e 'tell application "Lunar" to quit'
 while pgrep Lunar >/dev/null
