@@ -1912,6 +1912,17 @@ _install_plexamp() {
 }
 sw_install /Applications/Plexamp.app _install_plexamp
 
+_install_infuse() {
+  cecho "Install Infuse? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1136220934
+    setupnote "Infuse.app" \
+      "- [ ] Sign into Plex servers as desired\n- [ ] Add file shares as desired\n- [ ] Disable file shares in Library views\n- [ ] Restore purchases"
+  fi
+}
+sw_install /Applications/Plex.app _install_infuse
+
 _install_plexdesktop() {
   cecho "Install Plex Desktop? (y/N)" $magenta
   read -r response
