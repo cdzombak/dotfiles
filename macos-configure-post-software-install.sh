@@ -81,6 +81,7 @@ if [ -e "/Applications/Bartender 4.app" ]; then
   defaults write "com.surteesstudios.Bartender" "ReduceUpdateCheckFrequencyWhenOnBattery" '1'
   defaults write "com.surteesstudios.Bartender" "BartenderBarOnlyOnNotchScreens" '1'
   defaults delete "com.surteesstudios.Bartender" "UseBartenderBar"
+  defaults write "com.surteesstudios.Bartender" "Gaps-RequireAltOrRightClickToShowGapPopup" '1'
   set +e
   open -a "Bartender 4"
   set -e
