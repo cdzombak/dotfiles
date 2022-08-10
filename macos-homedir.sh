@@ -167,6 +167,10 @@ fi
 
 chflags -h hidden "$HOME/Public"
 
+if [ -d "$HOME/Sites" ]; then
+  chflags -h hidden "$HOME/Sites"
+fi
+
 echo "Hide ~/Movies entirely? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
