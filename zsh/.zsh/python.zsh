@@ -16,3 +16,6 @@ g_pip(){
 #g_pip3(){
 #   PIP_REQUIRE_VIRTUALENV="0" pip3 "$@"
 #}
+
+alias prun='pipenv run'
+alias psh='pipenv shell'
