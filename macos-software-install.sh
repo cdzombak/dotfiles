@@ -241,6 +241,7 @@ sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial"
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
   "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable Safari bookmarks\n- [ ] Enable 1Password integration\n- [ ] Set location to US\n- [ ] Sweep through synced workflows, fixing as needed"
+  sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
