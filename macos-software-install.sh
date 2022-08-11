@@ -185,16 +185,6 @@ _install_tealdeer() {
 }
 sw_install "$(brew --prefix)/bin/tldr" _install_tealdeer
 
-sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
-# Fix "entr: Too many files listed; the hard limit for your login class is 256."
-# http://eradman.com/entrproject/limits.html
-_install_entr_workaround() {
-  pushd /Library/LaunchDaemons
-  sudo curl -sO "https://dropbox.dzombak.com/limit.maxfiles.plist"
-  popd
-}
-sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
-
 # provides envsubst:
 sw_install "$(brew --prefix)/bin/gettext" "brew_install gettext && brew link --force gettext"
 
@@ -967,20 +957,43 @@ echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
+# Fix "entr: Too many files listed; the hard limit for your login class is 256."
+# http://eradman.com/entrproject/limits.html
+_install_entr_workaround() {
+  pushd /Library/LaunchDaemons
+  sudo curl -sO "https://dropbox.dzombak.com/limit.maxfiles.plist"
+  popd
+}
+
 cecho "Install basic development tools? (y/N)" $magenta
-echo "(cloc, Expressions, Fork, hexyl, Sublime Merge, TextBuddy)"
+echo "(Expressions, Fork, Sublime Merge, TextBuddy, cloc, hexyl, file watchers)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
+  # GUI dev tools:
   sw_install /Applications/Expressions.app "mas install 913158085"
   sw_install /Applications/Fork.app "brew_cask_install fork" \
     "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub account (as desired)"
-  sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge" \
     "- [ ] License"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
     "- [ ] Assign global shortcut Ctrl+Shift+T\n- [ ] License"
-  [ -e /Applications/Setapp/CodeRunner.app ] || echo && cecho "Recommend installing CodeRunner via Setapp." $white
+
+  # Via Setapp:
+  if [ ! -e /Applications/Setapp/CodeRunner.app ]; then
+    cecho "Please install CodeRunner via Setapp." $white
+    open "https://setapp.com/apps/coderunner"
+  fi
+
+  # CLI tools, not installed by default on non-dev machines:
+  sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
+  sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
+
+  # Various file watchers, popular in various communities/with various toolchains:
+  sw_install "$(brew --prefix)/bin/air" "brew gomod github.com/cosmtrek/air"
+  sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
+  sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
+  sw_install /usr/local/bin/nodemon "npm install -g nodemon" # drop-in watcher for Node projects
+  sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman" # popular for React Native
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-boop" ]; then
@@ -1217,15 +1230,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
    sw_install "$(brew --prefix)/bin/jshint" 'npm install -g jshint'
 fi
 
-_install_nodemon() {
-  cecho "Install nodemon (filesystem watcher for Node/NPM projects)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     npm install -g nodemon
-  fi
-}
-sw_install /usr/local/bin/nodemon _install_nodemon
-
 _install_carthage() {
   cecho "Install Carthage? (y/N)" $magenta
   read -r response
@@ -1254,10 +1258,9 @@ _install_ask_script_debugger() {
 sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-react-native" ]; then
-  cecho "Install React Native CLI & related tools? (y/N)" $magenta
+  cecho "Install React Native CLI? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman"
     sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
   else
     echo "Won't ask again next time this script is run."
