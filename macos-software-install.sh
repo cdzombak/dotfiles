@@ -152,6 +152,7 @@ sw_install "$(brew --prefix)/bin/node" "brew_install node"
 sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
 sw_install "$(brew --prefix)/bin/pup" "brew_install pup" # CLI HTML parsing; supports weblink script
 sw_install "$(brew --prefix)/bin/python3" "brew_install python"
+sw_install "/Library/QuickLook/Video.qlgenerator" "brew_install qlvideo"
 sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
 sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
 sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
