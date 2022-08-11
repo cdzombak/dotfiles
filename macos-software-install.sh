@@ -273,7 +273,7 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 if [ ! -e "$HOME/.local/dotfiles/software/no-mimestream" ]; then
   sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
-    "- [ ] Add work and personal accounts; set account names\n- [ ] Disable notifications for work account (on personal machine)\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+    "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
 fi
 sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
   "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
