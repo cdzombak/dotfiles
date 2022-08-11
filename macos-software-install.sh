@@ -1148,7 +1148,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-cecho "Install common Python tools? (y/N)" $magenta
+cecho "Install Python env management tools? (y/N)" $magenta
 echo "(virtualenv, pipenv, pyenv)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
