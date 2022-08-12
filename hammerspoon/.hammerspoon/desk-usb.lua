@@ -43,7 +43,7 @@ function usbCallback(data)
             -- on disconnect from 'Freestyle Edge Keyboard',
             -- if this machine is my personal secondary desktop Mac
             -- mute it:
-            if isHomeDeskMacStudio then
+            if isHomeDeskMacStudio and hs.audiodevice.current()["name"] == "Mac Studio Speakers" then
                 hs.audiodevice.defaultOutputDevice():setMuted(true)
             end
 
