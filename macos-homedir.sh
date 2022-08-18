@@ -56,6 +56,10 @@ if [ ! -L "$HOME/Dropbox" ]; then
   chflags -h hidden "$HOME/Dropbox"
 fi
 
+if [ ! -L "$HOME/opt/bin/macupdate" ] ; then
+  ln -s "$HOME/Sync/homeops/bin/macupdate.sh" "$HOME/opt/bin/macupdate"
+fi
+
 if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.local/dotfiles/no-home-env-dir" ]; then
   echo ""
   echo "Create ~/env (synced via Syncthing)? (y/N)"
@@ -202,3 +206,4 @@ else
     chflags -h hidden "$HOME/Music/Logic"
   fi
 fi
+
