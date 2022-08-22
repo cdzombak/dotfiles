@@ -224,6 +224,12 @@ _install_listening() {
 }
 sw_install "/usr/local/bin/listening" _install_listening
 
+_install_windowstack2() {
+  wget "https://raw.githubusercontent.com/cdzombak/windowstack2/main/windowstack.sh" -O "$HOME/opt/bin/windowstack"
+  chmod +x "$HOME/opt/bin/windowstack"
+}
+sw_install "$HOME/opt/bin/windowstack" _install_windowstack2
+
 # Move on to macOS applications:
 
 sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
