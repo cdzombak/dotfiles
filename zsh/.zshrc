@@ -18,6 +18,7 @@ export CLICOLOR=true
 # generate/sync via https://geoff.greer.fm/lscolors/
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 export LS_COLORS="di=36:ln=35:so=31;1;44:pi=30;1;44:ex=1;31:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=30;1;43:tw=30;1;42:ow=30;1;43"
+export WINDOWSTACK2_ERRCOLOR="1;30"
 
 export SESSION_OPENED_TS=$(date +%s)
 
