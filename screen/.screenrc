@@ -3,15 +3,20 @@
 
 shell -$SHELL
 
+# escape sequence Ctrl-]
 escape ^]^]
 
-defscrollback   10000
 autodetach      on
 
 startup_message	off
 
+defscrollback   10000
 # xterm scrollback
 termcapinfo xterm ti@:te@
+
+# With mouse-tracking turned on, it's possible to switch to a region ('focus') using mouse clicks. It's also
+# possible to select a text region in copy-mode using a mouse click to place a mark and the scroll wheel to scroll through the buffer.
+mousetrack on
 
 # status line
 # https://www.gnu.org/software/screen/manual/html_node/String-Escapes.html#String-Escapes
