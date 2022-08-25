@@ -3,9 +3,9 @@ set -euo pipefail
 
 # versions:
 LATEST_BANDWHICH="0.20.0"
-LATEST_DUST="0.8.0"
-LATEST_RESTIC="0.13.1"
-NANO_V6x="6.3"
+LATEST_DUST="0.8.2"
+LATEST_RESTIC="0.14.0"
+NANO_V6x="6.4"
 
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
