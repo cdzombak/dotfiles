@@ -577,6 +577,7 @@ if [ -e "/Applications/Pastebot.app" ]; then
   defaults write com.tapbots.Pastebot2Mac UIVisibilityState 2
   defaults write com.tapbots.Pastebot2Mac "StartSequentialPasteHotKeyCleared" '1'
   defaults write com.tapbots.Pastebot2Mac "PasteAndDequeueHotKeyCleared" '1'
+  defaults write com.tapbots.Pastebot2Mac "MaxNumberClipboardEntries" '500'
   set +e
   open -a "Pastebot"
   set -e
