@@ -444,7 +444,7 @@ if [ -e "/Applications/Lunar.app" ]; then
     "{\"allowsHold\":false,\"enabled\":false,\"modifiers\":6400,\"keyCode\":37,\"identifier\":\"toggle\"}",
     "{\"allowsHold\":false,\"enabled\":false,\"modifiers\":6912,\"keyCode\":22,\"identifier\":\"blackOutOthers\"}",
     "{\"allowsHold\":false,\"enabled\":false,\"modifiers\":8388864,\"keyCode\":109,\"identifier\":\"muteAudio\"}",
-    "{\"allowsHold\":false,\"enabled\":true,\"modifiers\":6912,\"keyCode\":37,\"identifier\":\"restart\"}",
+    "{\"allowsHold\":false,\"enabled\":true,\"modifiers\":6400,\"keyCode\":37,\"identifier\":\"restart\"}",
     "{\"allowsHold\":true,\"enabled\":false,\"modifiers\":8388864,\"keyCode\":103,\"identifier\":\"volumeDown\"}",
     "{\"allowsHold\":true,\"enabled\":false,\"modifiers\":8388864,\"keyCode\":111,\"identifier\":\"volumeUp\"}",
     "{\"allowsHold\":true,\"enabled\":false,\"modifiers\":8388864,\"keyCode\":120,\"identifier\":\"brightnessUp\"}",
