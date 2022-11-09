@@ -2070,31 +2070,31 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
   sw_install /Applications/Caprine.app _install_caprine
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
-  _install_tweetbot() {
-    cecho "Install Tweetbot? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1384080005
+# if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
+#   _install_tweetbot() {
+#     cecho "Install Tweetbot? (y/N)" $magenta
+#     read -r response
+#     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+#       mas install 1384080005
 
-      # shellcheck disable=SC2129
-      echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications\n- [ ] Disable Menu Bar icon\n- [ ] Disable all sounds\n- [ ] Increase font size (17)" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+#       # shellcheck disable=SC2129
+#       echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
+#       echo "" >> "$HOME/SystemSetup.md"
+#       echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications\n- [ ] Disable Menu Bar icon\n- [ ] Disable all sounds\n- [ ] Increase font size (17)" >> "$HOME/SystemSetup.md"
+#       echo "" >> "$HOME/SystemSetup.md"
 
-      # https://twitter.com/dancounsell/status/667011332894535682
-      cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
-      set -x
-      defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
-      set +x
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-tweetbot"
-    fi
-  }
-  sw_install /Applications/Tweetbot.app _install_tweetbot
-fi
+#       # https://twitter.com/dancounsell/status/667011332894535682
+#       cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
+#       set -x
+#       defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+#       set +x
+#     else
+#       echo "Won't ask again next time this script is run."
+#       touch "$HOME/.local/dotfiles/software/no-tweetbot"
+#     fi
+#   }
+#   sw_install /Applications/Tweetbot.app _install_tweetbot
+# fi
 
 echo ""
 cecho "--- Games ---" $white
@@ -2516,6 +2516,13 @@ if [ -e "/Applications/TIDAL.app" ]; then
   echo "TIDAL..."
   verify_smartdelete
   trash /Applications/TIDAL.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/Tweetbot.app ]; then
+  echo "Tweetbot..."
+  verify_smartdelete
+  trash /Applications/Tweetbot.app
   REMOVED_ANYTHING=true
 fi
 
