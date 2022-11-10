@@ -841,6 +841,19 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Zoom..."
+if [ -e "/Applications/zoom.us.app" ]; then
+  osascript -e "tell application \"zoom.us\" to quit"
+  defaults write us.zoom.xos BounceApplicationSetting 2
+  # shellcheck disable=SC2016
+  defaults write us.zoom.xos NSUserKeyEquivalents '{
+    "Stop Video" = "@$^a";
+    "Start Video" = "@$^a";
+  }'
+else
+  echo "(Not installed.)"
+fi
+
 echo ""
 cecho "--- Finder Sidebar ---" $white
 echo ""
