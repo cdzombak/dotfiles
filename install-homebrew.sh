@@ -33,6 +33,6 @@ fi
 
 brew tap homebrew/autoupdate
 if brew autoupdate status | grep -c -q "not configured" >/dev/null; then
-  # 4h == 14400 seconds
-  brew autoupdate start 14400 --cleanup
+  # 44h == 86400 seconds
+  brew autoupdate start 86400 --cleanup
 fi
