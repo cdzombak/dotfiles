@@ -171,10 +171,11 @@ sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 
 set +e
-if brew info brew-gomod | head -n 1 | grep -c filosottile >/dev/null ; then
+if brew tap | grep "filosottile/gomod" >/dev/null ; then
   echo "replacing brew-gomod by my fork ..."
   echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
   brew uninstall brew-gomod
+  brew untap filosottile/gomod
 fi
 set -e
 sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
