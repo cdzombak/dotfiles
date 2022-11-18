@@ -236,7 +236,7 @@ function rm-known-host() {
     gsed -i "$1d" "$HOME/.ssh/known_hosts"
 }
 
-alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 alias staged='git diff --staged'
 
