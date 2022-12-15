@@ -332,9 +332,11 @@ fi
 echo "Hand Mirror ..."
 if [ -e "/Applications/Hand Mirror.app" ]; then
   osascript -e "tell application \"Hand Mirror\" to quit"
-  defaults write "net.rafaelconde.Hand-Mirror" "selectedUIIcon" '2'
-  defaults write "net.rafaelconde.Hand-Mirror" "selectedPopoverSize" '0'
+  defaults write "net.rafaelconde.Hand-Mirror" "selectedUIIcon" "Menu_Aperture"
+  defaults write "net.rafaelconde.Hand-Mirror" "selectedPopoverSize" 'Medium'
   defaults write "net.rafaelconde.Hand-Mirror" "dismissPreference" '1'
+  defaults write "net.rafaelconde.Hand-Mirror" "smartWindowPreference" '0'
+  defaults write "net.rafaelconde.Hand-Mirror" "windowMaskPreference" '0'
   defaults write "net.rafaelconde.Hand-Mirror" "selectedMirroringPreference" '1'
   set +e
   open -a "Hand Mirror"

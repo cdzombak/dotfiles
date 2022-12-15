@@ -735,7 +735,7 @@ _install_handmirror() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mas install 1502839586
-    setupnote "Hand Mirror.app" "- [ ] Set shortcut: Ctrl-Shift-Cmd-M\n- [ ] Set open at login as desired\n- [ ] Select correct webcam"
+    setupnote "Hand Mirror.app" "- [ ] Set shortcut: Ctrl-Shift-Cmd-M\n- [ ] Set open at login as desired\n- [ ] Select correct webcam\n- [ ] Position in menu bar\n- [ ] Restore purchase"
   fi
 }
 sw_install "/Applications/Hand Mirror.app" _install_handmirror
