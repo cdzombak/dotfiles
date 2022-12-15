@@ -39,18 +39,6 @@ cecho "--- Application Configuration ---" $white
 echo "If these don't apply, open the affected app, quit it, and re-run this script. As a last resort, try rebooting, and run this script again."
 echo ""
 
-echo "1Password ..."
-if [ -e "/Applications/1Password 7.app" ]; then
-  set +e
-  osascript -e "tell application \"1Password 7\" to quit"
-  set -e
-  defaults write com.agilebits.onepassword7 compromisedPasswordServiceV2 1
-  defaults write com.agilebits.onepassword7 ShowStatusItem -bool false
-  defaults write com.agilebits.onepassword7 watchtowerMakeHTTPSAlwaysAskForConsent 0
-else
-  echo "(Not installed.)"
-fi
-
 echo "AirBuddy ..."
 if [ -e "/Applications/AirBuddy.app" ]; then
   osascript -e "tell application \"AirBuddy\" to quit"

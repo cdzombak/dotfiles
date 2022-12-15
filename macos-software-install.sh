@@ -233,12 +233,13 @@ sw_install "$HOME/opt/bin/windowstack" _install_windowstack2
 
 # Move on to macOS applications:
 
-sw_install "/Applications/1Password 7.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to 1Password account & start syncing\n- [ ] Enable 1Password Safari extension\n- [ ] Customize All Vaults\n- [ ] Set keyboard shortcuts\n- [ ] Enable Alfred integration\n- [ ] Config: Hide in Menu Bar\n- [ ] Config: Open in background at login\n- [ ] Disable all Safari autofill features but \"Other Forms\"\n- [ ] Enable Apple Watch unlocking"
+sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
+  "- [ ] Sign in to accounts: personal; work as needed\n- [ ] Do not show in menu bar\n- [ ] Start at login\n- [ ] No keyboard shortcut for: Show 1Password; Lock 1Password\n- [ ] Quick Access: Ctrl-Shift-Command-Backslash\n- [ ] Autofill: Command-Backslash\n- [ ] Appearance -> Density: Compact\n- [ ] Security: enable unlock with Apple Watch\n- [ ] Security: hold Option to toggle revealed fields\n- [ ] Privacy -> Watchtower: Enable all Watchtower features\n- [ ] Developer: enable biometric unlock for CLI"
+sw_install /usr/local/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
-  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable Safari bookmarks\n- [ ] Enable 1Password integration\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
+  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
   sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
@@ -372,6 +373,8 @@ sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
 
 # macOS Applications from Mac App Store:
 
+sw_install "/Applications/1Password for Safari.app" "mas install 1569813296" \
+  "- [ ] Enable in Safari\n- [ ] Always allow on every site\n- [ ] Show in Toolbar (arrange to left: Back/Forward, RSS, 1Password) \n- [ ] Disable all Safari autofill features but \"Other Forms\""
 if [ ! -e "$HOME/.local/dotfiles/software/no-bear" ]; then
   sw_install /Applications/Bear.app "mas install 1091189122" \
     "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
