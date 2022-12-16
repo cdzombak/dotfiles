@@ -53,6 +53,7 @@ if [ -e "$HOME/.nvm/nvm.sh" ]; then
   echo "This ensures that system-level node, installed directly by homebrew, is used to install packages globally."
   # shellcheck disable=SC2162
   read -p "Press [Enter] to continue..."
+  set +e
   . "$HOME/.nvm/nvm.sh"
   echo "+ npm deactivate"
   nvm deactivate
@@ -60,6 +61,7 @@ if [ -e "$HOME/.nvm/nvm.sh" ]; then
   which node
   echo "+ which npm"
   which npm
+  set -e
 fi
 
 echo ""
