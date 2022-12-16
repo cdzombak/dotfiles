@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping 1Password 8 upgrade"
   exit 2
 fi
 
-killall "1Password 7"
+killall "1Password 7" >/dev/null 2>&1
+set -e
 
 brew reinstall --cask 1password  # /Applications/1Password.app
 mas install 1569813296  # "/Applications/1Password for Safari.app"
