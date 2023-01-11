@@ -312,7 +312,7 @@ if [ -e "/Applications/Setapp/Grids.app" ]; then
   osascript -e "tell application \"Grids\" to quit"
   defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
   setupnote "Grids" \
-    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Sign in"
+    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Set picture size to \`4\`\n- [ ] Do not show stories or ads\n- [ ] Sign in"
 else
   echo "(Not installed.)"
 fi
