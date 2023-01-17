@@ -600,6 +600,17 @@ else
   echo "(Not installed.)"
 fi
 
+echo "RAW Power..."
+if [ -e "/Applications/RAW Power.app" ]; then
+  osascript -e "tell application \"RAW Power\" to quit"
+  defaults write com.gentlemencoders.RAWPower "Save Edits Automatically" 1
+  defaults write com.gentlemencoders.RAWPower "Use Current Directory for Export" 1
+  defaults write 6MR872QP3J.RAWPower.sharedDefaults viewerBrightness 0.9
+  defaults write 6MR872QP3J.RAWPower.sharedDefaults interfaceBrightness 0.9
+else
+  echo "(Not installed.)"
+fi
+
 echo "Reeder..."
 if [ -e "/Applications/Reeder.app" ]; then
   osascript -e "tell application \"Reeder\" to quit"
