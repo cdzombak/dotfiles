@@ -1099,12 +1099,12 @@ _install_clock() {
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'clock')
     git clone "https://github.com/cdzombak/clock.git" "$TMP_DIR"
     pushd "$TMP_DIR/app"
-    make install-mac
+    make install-mac-homedir
     make clean
     popd
   fi
 }
-sw_install "/Applications/Clock.app" _install_clock
+sw_install "$HOME/Applications/Clock.app" _install_clock
 
 _install_wwdcapp() {
   cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
