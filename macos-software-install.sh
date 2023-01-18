@@ -514,11 +514,11 @@ _install_loficafe() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
   git clone "https://github.com/cdzombak/lofiapp.git" "$TMP_DIR"
   pushd "$TMP_DIR"
-  make install-mac
+  make install-mac-homedir
   make clean
   popd
 }
-sw_install "/Applications/Lofi Cafe.app" _install_loficafe
+sw_install "$HOME/Applications/Lofi Cafe.app" _install_loficafe
 
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
