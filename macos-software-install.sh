@@ -1065,11 +1065,11 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'json-viewer')
     git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
     pushd "$TMP_DIR/app"
-    make install-mac
+    make install-mac-homedir
     make clean
     popd
   }
-  sw_install "/Applications/JSON Viewer.app" _install_json_viewer
+  sw_install "$HOME/Applications/JSON Viewer.app" _install_json_viewer
 fi
 
 _install_csveditor() {
