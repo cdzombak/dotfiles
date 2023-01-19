@@ -250,12 +250,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/no-ffmpeg-scripts" ]; then
-  echo "Install/update my quick ffmpeg media conversion scripts? (y/N)"
+  echo "Install/update my quick media conversion scripts? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     set -x
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
-    git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mediascripts')
+    git clone "https://github.com/cdzombak/quick-media-scripts.git" "$TMP_DIR"
     pushd "$TMP_DIR"
     chmod +x ./install.sh
     ./install.sh

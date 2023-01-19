@@ -1815,11 +1815,11 @@ _install_youtubedl() {
 sw_install "$(brew --prefix)/bin/yt-dlp" _install_youtubedl
 
 echo ""
-cecho "Install/update my quick ffmpeg media conversion scripts? (y/N)" $magenta
+cecho "Install/update my quick media conversion scripts? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ffmpegscripts')
-  git clone "https://github.com/cdzombak/quick-ffmpeg-scripts.git" "$TMP_DIR"
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mediascripts')
+  git clone "https://github.com/cdzombak/quick-media-scripts.git" "$TMP_DIR"
   pushd "$TMP_DIR"
   chmod +x ./install.sh
   ./install.sh
