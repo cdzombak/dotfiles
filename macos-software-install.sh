@@ -2047,8 +2047,15 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
     cecho "Install Mastonaut (Mastodon client)? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1450757574
-      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Notifications: Disable banners & sounds"
+      set -x
+      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mastonaut')
+      pushd "$TMP_DIR" >/dev/null
+      curl -s https://api.github.com/repos/chucker/Mastonaut/releases/latest | jq -r ".assets[].browser_download_url" | grep ".zip$" | xargs wget -q -O Mastonaut.zip
+      unzip Mastonaut.zip
+      cp -R Mastonaut.app /Applications/Mastonaut.app
+      popd >/dev/null
+      set +x
+      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Composing: Default status privacy: Private\n- [ ] Composing: Insert double newlines & Insert joiner character\n- [ ] Notifications enabled: Mentions and Poll Results only\n- [ ] Notification settings (system level): Disable banners & sounds"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-mastonaut"
