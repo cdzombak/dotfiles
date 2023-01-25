@@ -257,3 +257,6 @@ function randpass() {
     echo "$(< /dev/urandom gtr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | head -c$n)" | clipcopy
     echo "Copied to clipboard."
 }
+
+alias toND2X='exiftool -Model="NIKON D2X"'
+alias toND2H='exiftool -Model="NIKON D2H"'
