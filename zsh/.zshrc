@@ -10,6 +10,16 @@ if [ -d "$HOME/.local/shell-completion" ] ; then
     fpath=(~/.local/shell-completion $fpath)
 fi
 
+if [ -x "$(brew --prefix)/bin/assume" ]; then
+    alias assume="source assume"
+    if [ -d "$HOME/.granted/zsh_autocomplete/assume" ]; then
+        fpath=("$HOME/.granted/zsh_autocomplete/assume/" $fpath)
+    fi
+    if [ -d "$HOME/.granted/zsh_autocomplete/granted" ]; then
+        fpath=("$HOME/.granted/zsh_autocomplete/granted/" $fpath)
+    fi
+fi
+
 DEFAULT_USER=cdzombak
 autoload -U zmv
 setopt interactivecomments
