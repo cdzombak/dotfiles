@@ -282,6 +282,7 @@ sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
   "- [ ] Allow full disk access"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
+sw_install /Applications/Sloth.app "brew_cask_install sloth"
 sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
