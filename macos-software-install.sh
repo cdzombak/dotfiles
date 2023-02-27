@@ -384,6 +384,8 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-bear" ]; then
     "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 fi
 # sw_install /Applications/Byword.app "mas install 420212497"
+sw_install /Applications/CARROTweather.app "mas install 993487541" \
+  "- [ ] Restore purchases\n- [ ] Personality: Professional\n- [ ] Sounds: Notifications Only\n- [ ] Source: AccuWeather\n- [ ] Update: 15 Minutes\n- [ ] Mini-Window Shortcut: Off\n- [ ] Sync: Locations, not Settings\n- [ ] Dock icon: Hidden\n- [ ] Position in Mac Menu Bar\n- [ ] Current Data Slot 9: Precip Amount\n- [ ] Current Displayed Summary: Today\n- [ ] Current Spoken Summary: None\n- [ ] Daily Data Left Slot: Precip Chance\n- [ ] Notifications: as desired; refer to iPhone\n- [ ] Open Automatically at Login: On"
 if [ ! -e "$HOME/.local/dotfiles/software/no-dayone" ]; then
   sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
     "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
