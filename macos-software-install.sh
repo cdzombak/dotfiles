@@ -706,6 +706,23 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
   sw_install "/Applications/Elgato Stream Deck.app" _install_streamdeck
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-elgato-control-center" ]; then
+  _install_control_center_elgato() {
+    echo ""
+    cecho "Install Elgato Control Center utility? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask elgato-stream-deck
+      setupnote "Elgato Control Center.app" \
+        "- [ ] Arrange in menu bar"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-elgato-control-center"
+    fi
+  }
+  sw_install "/Applications/Elgato Control Center.app" _install_control_center_elgato
+fi
+
 # ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
 # if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
 #    _install_scansnap() {
