@@ -856,6 +856,7 @@ else
 fi
 
 ./macos-finder-sidebar.sh
+./macos-home-applications.sh
 
 echo ""
 cecho "--- Homebrew / Zsh / usr/local (permissions fixes) ---" $white
@@ -885,4 +886,4 @@ sudo chmod 755 /usr/local/bin
 pushd "$HOME/.zsh" >/dev/null
 find . -type f ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 600 {} \;
 find . -type d ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 700 {} \;
-popd>/dev/null
+popd >/dev/null
