@@ -166,6 +166,9 @@ fi
 if [ -e "/Applications/iTerm.app" ] && [ ! -e "$HOME/Applications/System Tools/iTerm" ]; then
   ln -s "/Applications/iTerm.app" "$HOME/Applications/System Tools/iTerm"
 fi
+if [ -e "/System/Applications/Shortcuts.app" ] && [ ! -e "$HOME/Applications/System Tools/Shortcuts" ]; then
+  ln -s "/System/Applications/Shortcuts.app" "$HOME/Applications/System Tools/Shortcuts"
+fi
 if [ -e "/System/Applications/System Settings.app" ] && [ ! -e "$HOME/Applications/System Tools/System Settings" ]; then
   ln -s "/System/Applications/System Settings.app" "$HOME/Applications/System Tools/System Settings"
 fi
