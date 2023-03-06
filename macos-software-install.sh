@@ -1699,6 +1699,61 @@ _install_acorn() {
 }
 sw_install "/Applications/Acorn.app" _install_acorn
 
+_install_affinity_photo() {
+  cecho "Install Affinity Photo? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask affinity-photo
+  fi
+}
+sw_install "/Applications/Affinity Photo 2.app" _install_affinity_photo
+
+_install_raw_power() {
+  cecho "Install RAW Power? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1157116444
+  fi
+}
+sw_install "/Applications/RAW Power.app" _install_raw_power
+
+_install_topaz_sharpen() {
+  cecho "Install Topaz Sharpen AI? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask topaz-sharpen-ai
+  fi
+}
+sw_install "/Applications/Topaz Sharpen AI.app" _install_topaz_sharpen
+
+_install_note_dxophotolab() {
+  cecho "Install DxO PhotoLab? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    setupnote "DxO PhotoLab" "- [ ] Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)\n- [ ] TODO: note next steps in setup checklist in macos-software-install.sh"
+    cecho "[i] DxO PhotoLab cannot be installed automatically." $white
+    echo "    Install it from https://www.dxo.com/dxo-photolab/download"
+    echo "    Installation steps have been added to the system setup checklist."
+    # shellcheck disable=SC2162
+    read -p "    Press [Enter] to continue..."
+  fi
+}
+sw_install "/Applications/DXOPhotoLab6.app" _install_note_dxophotolab
+
+_install_note_dxofilmpack() {
+  cecho "Install DxO FilmPack? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    setupnote "DxO FilmPack" "- [ ] Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)\n- [ ] TODO: note next steps in setup checklist in macos-software-install.sh"
+    cecho "[i] DxO FilmPack cannot be installed automatically." $white
+    echo "    Install it from https://www.dxo.com/dxo-filmpack/download"
+    echo "    Installation steps have been added to the system setup checklist."
+    # shellcheck disable=SC2162
+    read -p "    Press [Enter] to continue..."
+  fi
+}
+sw_install "/Applications/DxO FilmPack 6.app" _install_note_dxofilmpack
+
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
