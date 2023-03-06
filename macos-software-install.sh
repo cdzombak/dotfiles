@@ -2000,7 +2000,7 @@ _install_infuse() {
       "- [ ] Sign into Plex servers as desired\n- [ ] Add file shares as desired\n- [ ] Disable file shares in Library views\n- [ ] Restore purchases"
   fi
 }
-sw_install /Applications/Plex.app _install_infuse
+sw_install /Applications/Infuse.app _install_infuse
 
 _install_plexdesktop() {
   cecho "Install Plex Desktop? (y/N)" $magenta
