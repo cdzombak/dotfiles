@@ -70,6 +70,9 @@ fi
 if [ -e "/Applications/Plex.app" ] && [ ! -e "$HOME/Applications/Media/Plex" ]; then
   ln -s "/Applications/Plex.app" "$HOME/Applications/Media/Plex"
 fi
+if [ -e "/Applications/Spotify.app" ] && [ ! -e "$HOME/Applications/Media/Spotify" ]; then
+  ln -s "/Applications/Spotify.app" "$HOME/Applications/Media/Spotify"
+fi
 if [ -e "/Applications/Sonos.app" ] && [ ! -e "$HOME/Applications/Media/Sonos" ]; then
   ln -s "/Applications/Sonos.app" "$HOME/Applications/Media/Sonos"
 fi
