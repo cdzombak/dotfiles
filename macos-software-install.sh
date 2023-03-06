@@ -2101,6 +2101,21 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
   sw_install /Applications/Discord.app _install_discord
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-ice-cubes" ]; then
+  _install_ice_cubes() {
+    cecho "Install Ice Cubes (Mastodon client)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 6444915884
+      setupnote "Ice Cubes" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Configure as desired (TODO: add notes to checklist in macos-software-install)"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-ice-cubes"
+    fi
+  }
+  sw_install "/Applications/Ice Cubes.app" _install_ice_cubes
+fi
+
 if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
   _install_Mastonaut() {
     cecho "Install Mastonaut (Mastodon client)? (y/N)" $magenta
