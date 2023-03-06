@@ -37,6 +37,9 @@ fi
 if [ -e "$HOME/Applications/JetBrains Toolbox/WebStorm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/WebStorm" ]; then
   ln -s "$HOME/Applications/JetBrains Toolbox/WebStorm.app" "$HOME/Applications/Dev Tools/WebStorm"
 fi
+if [ -e "$HOME/Applications/Clock.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Clock" ]; then
+  ln -s "$HOME/Applications/Clock.app" "$HOME/Applications/Dev Tools/Clock"
+fi
 if [ -e "$HOME/Applications/JSON Viewer.app" ] && [ ! -e "$HOME/Applications/Dev Tools/JSON Viewer" ]; then
   ln -s "$HOME/Applications/JSON Viewer.app" "$HOME/Applications/Dev Tools/JSON Viewer"
 fi
