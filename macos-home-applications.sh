@@ -125,6 +125,9 @@ fi
 if [ -e "/Applications/Topaz Sharpen AI.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Topaz Sharpen AI" ]; then
   ln -s "/Applications/Topaz Sharpen AI.app" "$HOME/Applications/Photo Tools/Topaz Sharpen AI"
 fi
+if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Squash" ]; then
+  ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Photo Tools/Squash"
+fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
   setupnote "Dock/Social Media" "- [ ] Add Social Media to Dock, if desired"
