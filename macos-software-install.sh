@@ -515,6 +515,13 @@ sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https:
 sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
 
+if [ -e "/Applications/Lofi Cafe.app" ]; then
+  if [ -e "$HOME/Applications/Lofi Cafe.app" ]; then
+    rm -rf "/Applications/Lofi Cafe.app"
+  else
+    mv "/Applications/Lofi Cafe.app" "$HOME/Applications/Lofi Cafe.app"
+  fi
+fi
 _install_loficafe() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
   git clone "https://github.com/cdzombak/lofiapp.git" "$TMP_DIR"
