@@ -59,8 +59,13 @@ fi
 if [ -e "/Applications/Infuse.app" ] && [ ! -e "$HOME/Applications/Media/Infuse" ]; then
   ln -s "/Applications/Infuse.app" "$HOME/Applications/Media/Infuse"
 fi
+if [[ -L "$HOME/Applications/Media/Lofi Cafe" ]] && [[ ! -e "$HOME/Applications/Media/Lofi Cafe" ]];then
+  rm "$HOME/Applications/Media/Lofi Cafe"
+fi
 if [ -e "/Applications/Lofi Cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
   ln -s "/Applications/Lofi Cafe.app" "$HOME/Applications/Media/Lofi Cafe"
+elif [ -e "$HOME/Applications/Lofi Cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
+  ln -s "$HOME/Applications/Lofi Cafe.app" "$HOME/Applications/Media/Lofi Cafe"
 fi
 if [ -e "/Applications/Plex.app" ] && [ ! -e "$HOME/Applications/Media/Plex" ]; then
   ln -s "/Applications/Plex.app" "$HOME/Applications/Media/Plex"
