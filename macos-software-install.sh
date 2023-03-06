@@ -2035,7 +2035,7 @@ _install_triode() {
 sw_install "/Applications/Triode.app" _install_triode
 
 _install_instapaper_reader() {
-  cecho "Install Instapaper Reader? (y/N)" $magenta
+  cecho "Install my Instapaper Reader Electron app? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
