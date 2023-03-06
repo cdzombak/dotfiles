@@ -175,3 +175,10 @@ fi
 if [ -e "/System/Applications/System Settings.app" ] && [ ! -e "$HOME/Applications/System Tools/System Settings" ]; then
   ln -s "/System/Applications/System Settings.app" "$HOME/Applications/System Tools/System Settings"
 fi
+
+# cleanup stray 'Icon?' files if they exist
+rm -rf "$HOME/Applications/Dev Tools/"Icon$'\r'
+rm -rf "$HOME/Applications/Media/"Icon$'\r'
+rm -rf "$HOME/Applications/Photo Tools/"Icon$'\r'
+rm -rf "$HOME/Applications/Social Media/"Icon$'\r'
+rm -rf "$HOME/Applications/System Tools/"Icon$'\r'
