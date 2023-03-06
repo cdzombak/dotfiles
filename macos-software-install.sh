@@ -1595,7 +1595,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-google-drive" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask google-drive
       setupnote "Google Drive.app" \
-        "- [ ] Authenticate\n- [ ] Rearrange to bottom of Finder sidebar"
+        "- [ ] Authenticate"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-google-drive"
