@@ -17,7 +17,9 @@ if [ ! -d "$HOME/Applications/Dev Tools" ]; then
   setupnote "Dock/Dev Tools" "- [ ] Add Dev Tools to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/Dev Tools"
-fileicon set "$HOME/Applications/Dev Tools" "./macOS Configs/Dock Icons/Dev Tools.png"
+if ! fileicon test "$HOME/Applications/Dev Tools"; then
+  fileicon set "$HOME/Applications/Dev Tools" "./macOS Configs/Dock Icons/Dev Tools.png"
+fi
 
 if [ -e "/Applications/Dash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Dash" ]; then
   ln -s "/Applications/Dash.app" "$HOME/Applications/Dev Tools/Dash"
@@ -48,7 +50,9 @@ if [ ! -d "$HOME/Applications/Media" ]; then
   setupnote "Dock/Media" "- [ ] Add Media to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/Media"
-fileicon set "$HOME/Applications/Media" "./macOS Configs/Dock Icons/Media.png"
+if ! fileicon test "$HOME/Applications/Media"; then
+  fileicon set "$HOME/Applications/Media" "./macOS Configs/Dock Icons/Media.png"
+fi
 
 if [ -e "/Applications/calibre.app" ] && [ ! -e "$HOME/Applications/Media/Calibre" ]; then
   ln -s "/Applications/calibre.app" "$HOME/Applications/Media/Calibre"
@@ -90,7 +94,9 @@ if [ ! -d "$HOME/Applications/Photo Tools" ]; then
   setupnote "Dock/Photo Tools" "- [ ] Add Photo Tools to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/Photo Tools"
-fileicon set "$HOME/Applications/Photo Tools" "./macOS Configs/Dock Icons/Photo Tools.png"
+if ! fileicon test "$HOME/Applications/Photo Tools"; then
+  fileicon set "$HOME/Applications/Photo Tools" "./macOS Configs/Dock Icons/Photo Tools.png"
+fi
 
 if [ -e "/Applications/Acorn.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Acorn" ]; then
   ln -s "/Applications/Acorn.app" "$HOME/Applications/Photo Tools/Acorn"
@@ -133,7 +139,9 @@ if [ ! -d "$HOME/Applications/Social Media" ]; then
   setupnote "Dock/Social Media" "- [ ] Add Social Media to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/Social Media"
-fileicon set "$HOME/Applications/Social Media" "./macOS Configs/Dock Icons/Social Media.png"
+if ! fileicon test "$HOME/Applications/Social Media"; then
+  fileicon set "$HOME/Applications/Social Media" "./macOS Configs/Dock Icons/Social Media.png"
+fi
 
 if [ -e "/Applications/Caprine.app" ] && [ ! -e "$HOME/Applications/Social Media/Caprine" ]; then
   ln -s "/Applications/Caprine.app" "$HOME/Applications/Social Media/Caprine"
@@ -158,7 +166,9 @@ if [ ! -d "$HOME/Applications/System Tools" ]; then
   setupnote "Dock/System Tools" "- [ ] Add System Tools to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/System Tools"
-fileicon set "$HOME/Applications/System Tools" "./macOS Configs/Dock Icons/System Tools.png"
+if ! fileicon test "$HOME/Applications/System Tools"; then
+  fileicon set "$HOME/Applications/System Tools" "./macOS Configs/Dock Icons/System Tools.png"
+fi
 
 if [ -e "/Applications/LaunchControl.app" ] && [ ! -e "$HOME/Applications/System Tools/LaunchControl" ]; then
   ln -s "/Applications/LaunchControl.app" "$HOME/Applications/System Tools/LaunchControl"
@@ -182,9 +192,4 @@ if [ -e "/System/Applications/System Settings.app" ] && [ ! -e "$HOME/Applicatio
   ln -s "/System/Applications/System Settings.app" "$HOME/Applications/System Tools/System Settings"
 fi
 
-# cleanup stray 'Icon?' files if they exist
-rm -rf "$HOME/Applications/Dev Tools/"Icon$'\r'
-rm -rf "$HOME/Applications/Media/"Icon$'\r'
-rm -rf "$HOME/Applications/Photo Tools/"Icon$'\r'
-rm -rf "$HOME/Applications/Social Media/"Icon$'\r'
-rm -rf "$HOME/Applications/System Tools/"Icon$'\r'
+cecho "✔ Done." $green
