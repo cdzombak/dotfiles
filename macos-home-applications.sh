@@ -46,6 +46,21 @@ if [ -e "$HOME/Applications/JSON Viewer.app" ] && [ ! -e "$HOME/Applications/Dev
   ln -s "$HOME/Applications/JSON Viewer.app" "$HOME/Applications/Dev Tools/JSON Viewer"
 fi
 
+if [ ! -d "$HOME/Applications/Hobby Tools" ]; then
+  setupnote "Dock/Hobby Tools" "- [ ] Add Hobby Tools to Dock, if desired"
+fi
+mkdir -p "$HOME/Applications/Hobby Tools"
+if ! fileicon test "$HOME/Applications/Hobby Tools"; then
+  fileicon set "$HOME/Applications/Hobby Tools" "./macOS Configs/Dock Icons/Hobby Tools.png"
+fi
+
+if [ -e "/Applications/Ultimaker-Cura.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Cura" ]; then
+  ln -s "/Applications/Ultimaker-Cura.app" "$HOME/Applications/Hobby Tools/Cura"
+fi
+if [ -e "$HOME/Applications/Autodesk Fusion 360.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Fusion 360" ]; then
+  ln -s "$HOME/Applications/Autodesk Fusion 360.app" "$HOME/Applications/Hobby Tools/Fusion 360"
+fi
+
 if [ ! -d "$HOME/Applications/Media" ]; then
   setupnote "Dock/Media" "- [ ] Add Media to Dock, if desired"
 fi
