@@ -69,6 +69,9 @@ fi
 if [ -e "/Applications/Raspberry Pi Imager.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Raspberry Pi Imager" ]; then
   ln -s "/Applications/Raspberry Pi Imager.app" "$HOME/Applications/Hobby Tools/Raspberry Pi Imager"
 fi
+if [ -e "/Applications/Arduino.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Arduino" ]; then
+  ln -s "/Applications/Arduino.app" "$HOME/Applications/Hobby Tools/Arduino"
+fi
 if [ -e "$HOME/Applications/Autodesk Fusion 360.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Fusion 360" ]; then
   ln -s "$HOME/Applications/Autodesk Fusion 360.app" "$HOME/Applications/Hobby Tools/Fusion 360"
 fi
