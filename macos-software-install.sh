@@ -792,7 +792,6 @@ cecho "Install network tools? (y/N)" $magenta
 echo "(Discovery, dog [CLI DNS client], iperf3, mtr, nmap, Port Map, speedtest, telnet, Wifi Explorer)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  # sw_install "/Applications/Angry IP Scanner.app" "brew_cask_install angry-ip-scanner"
   sw_install /Applications/Discovery.app "mas install 1381004916"
   sw_install "$(brew --prefix)/bin/dog" "brew_install dog"  # cli dns client
   sw_install "$(brew --prefix)/bin/iperf3" "brew_install iperf3"
@@ -2402,6 +2401,12 @@ if [ -e "/Applications/AltTab.app" ]; then
   echo "AltTab..."
   verify_smartdelete
   trash /Applications/AltTab.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Angry IP Scanner.app" ]; then
+  echo "Angry IP Scanner..."
+  brew uninstall --cask angry-ip-scanner
   REMOVED_ANYTHING=true
 fi
 
