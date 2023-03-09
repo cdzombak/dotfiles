@@ -24,8 +24,17 @@ fi
 if [ -e "/Applications/Dash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Dash" ]; then
   ln -s "/Applications/Dash.app" "$HOME/Applications/Dev Tools/Dash"
 fi
+if [ -e "/Applications/Fork.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Fork" ]; then
+  ln -s "/Applications/Fork.app" "$HOME/Applications/Dev Tools/Fork"
+fi
 if [ -e "/Applications/iTerm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/iTerm" ]; then
   ln -s "/Applications/iTerm.app" "$HOME/Applications/Dev Tools/iTerm"
+fi
+if [ -e "/Applications/Expressions.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Expressions" ]; then
+  ln -s "/Applications/Expressions.app" "$HOME/Applications/Dev Tools/Expressions"
+fi
+if [ -e "/Applications/Xcode.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Xcode" ]; then
+  ln -s "/Applications/Xcode.app" "$HOME/Applications/Dev Tools/Xcode"
 fi
 if [ -e "/Applications/Sublime Text.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Sublime Text" ]; then
   ln -s "/Applications/Sublime Text.app" "$HOME/Applications/Dev Tools/Sublime Text"
@@ -57,8 +66,15 @@ fi
 if [ -e "/Applications/Ultimaker-Cura.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Cura" ]; then
   ln -s "/Applications/Ultimaker-Cura.app" "$HOME/Applications/Hobby Tools/Cura"
 fi
+if [ -e "/Applications/Raspberry Pi Imager.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Raspberry Pi Imager" ]; then
+  ln -s "/Applications/Raspberry Pi Imager.app" "$HOME/Applications/Hobby Tools/Raspberry Pi Imager"
+fi
 if [ -e "$HOME/Applications/Autodesk Fusion 360.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Fusion 360" ]; then
   ln -s "$HOME/Applications/Autodesk Fusion 360.app" "$HOME/Applications/Hobby Tools/Fusion 360"
+fi
+if [ -e "/Applications/RadarScope.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/RadarScope" ]; then
+  # maybe not a perfect match, but Close Enough
+  ln -s "/Applications/RadarScope.app" "$HOME/Applications/Hobby Tools/RadarScope"
 fi
 
 if [ ! -d "$HOME/Applications/Media" ]; then
@@ -81,6 +97,12 @@ fi
 if [ -e "/Applications/Infuse.app" ] && [ ! -e "$HOME/Applications/Media/Infuse" ]; then
   ln -s "/Applications/Infuse.app" "$HOME/Applications/Media/Infuse"
 fi
+if [ -e "$HOME/Applications/Instapaper Reader.app" ] && [ ! -e "$HOME/Applications/Media/Instapaper Reader" ]; then
+  ln -s "$HOME/Applications/Instapaper Reader.app" "$HOME/Applications/Media/Instapaper Reader"
+fi
+if [ -e "/Applications/Instapaper Reader.app" ] && [ ! -e "$HOME/Applications/Media/Instapaper Reader" ]; then
+  ln -s "/Applications/Instapaper Reader.app" "$HOME/Applications/Media/Instapaper Reader"
+fi
 if [[ -L "$HOME/Applications/Media/Lofi Cafe" ]] && [[ ! -e "$HOME/Applications/Media/Lofi Cafe" ]];then
   rm "$HOME/Applications/Media/Lofi Cafe"
 fi
@@ -100,6 +122,18 @@ if [ -e "/Applications/Spotify.app" ] && [ ! -e "$HOME/Applications/Media/Spotif
 fi
 if [ -e "/Applications/Sonos.app" ] && [ ! -e "$HOME/Applications/Media/Sonos" ]; then
   ln -s "/Applications/Sonos.app" "$HOME/Applications/Media/Sonos"
+fi
+if [ -e "/Applications/Triode.app" ] && [ ! -e "$HOME/Applications/Media/Triode" ]; then
+  ln -s "/Applications/Triode.app" "$HOME/Applications/Media/Triode"
+fi
+if [ -e "/Applications/Tag Editor.app" ] && [ ! -e "$HOME/Applications/Media/Tag Editor" ]; then
+  ln -s "/Applications/Tag Editor.app" "$HOME/Applications/Media/Tag Editor"
+fi
+if [ -e "/Applications/Pocket Casts.app" ] && [ ! -e "$HOME/Applications/Media/Pocket Casts" ]; then
+  ln -s "/Applications/Pocket Casts.app" "$HOME/Applications/Media/Pocket Casts"
+fi
+if [ -e "/Applications/Poolsuite FM.app" ] && [ ! -e "$HOME/Applications/Media/Poolsuite" ]; then
+  ln -s "/Applications/Poolsuite FM.app" "$HOME/Applications/Media/Poolsuite"
 fi
 if [ -e "$HOME/Applications/Transmission Remote.app" ] && [ ! -e "$HOME/Applications/Media/Transmission" ]; then
   ln -s "$HOME/Applications/Transmission Remote.app" "$HOME/Applications/Media/Transmission"
@@ -148,6 +182,9 @@ if [ -e "/Applications/Topaz Sharpen AI.app" ] && [ ! -e "$HOME/Applications/Pho
 fi
 if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Squash" ]; then
   ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Photo Tools/Squash"
+fi
+if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
+  ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
 fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
@@ -202,6 +239,9 @@ if [ -e "/Applications/Transmit.app" ] && [ ! -e "$HOME/Applications/System Tool
 fi
 if [ -e "/Applications/iTerm.app" ] && [ ! -e "$HOME/Applications/System Tools/iTerm" ]; then
   ln -s "/Applications/iTerm.app" "$HOME/Applications/System Tools/iTerm"
+fi
+if [ -e "/Applications/OmniDiskSweeper.app" ] && [ ! -e "$HOME/Applications/System Tools/OmniDiskSweeper" ]; then
+  ln -s "/Applications/OmniDiskSweeper.app" "$HOME/Applications/System Tools/OmniDiskSweeper"
 fi
 if [ -e "/System/Applications/Shortcuts.app" ] && [ ! -e "$HOME/Applications/System Tools/Shortcuts" ]; then
   ln -s "/System/Applications/Shortcuts.app" "$HOME/Applications/System Tools/Shortcuts"
