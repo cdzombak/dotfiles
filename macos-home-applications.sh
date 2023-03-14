@@ -243,6 +243,9 @@ fi
 if [ -e "/Applications/iTerm.app" ] && [ ! -e "$HOME/Applications/System Tools/iTerm" ]; then
   ln -s "/Applications/iTerm.app" "$HOME/Applications/System Tools/iTerm"
 fi
+if [ -e "/Applications/Setapp/ForkLift.app" ] && [ ! -e "$HOME/Applications/System Tools/ForkLift" ]; then
+  ln -s "/Applications/Setapp/ForkLift.app" "$HOME/Applications/System Tools/ForkLift"
+fi
 if [ -e "/Applications/OmniDiskSweeper.app" ] && [ ! -e "$HOME/Applications/System Tools/OmniDiskSweeper" ]; then
   ln -s "/Applications/OmniDiskSweeper.app" "$HOME/Applications/System Tools/OmniDiskSweeper"
 fi
