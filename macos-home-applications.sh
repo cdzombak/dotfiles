@@ -189,6 +189,9 @@ fi
 if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
   ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
 fi
+if [ -e "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" ] && [ ! -e "$HOME/Applications/Photo Tools/ON1 NoNoise AI" ]; then
+  ln -s "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" "$HOME/Applications/Photo Tools/ON1 NoNoise AI"
+fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
   setupnote "Dock/Social Media" "- [ ] Add Social Media to Dock, if desired"
