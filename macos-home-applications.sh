@@ -30,6 +30,9 @@ fi
 if [ -e "/Applications/iTerm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/iTerm" ]; then
   ln -s "/Applications/iTerm.app" "$HOME/Applications/Dev Tools/iTerm"
 fi
+if [ -e "/Applications/Kaleidoscope.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Kaleidoscope" ]; then
+  ln -s "/Applications/Kaleidoscope.app" "$HOME/Applications/Dev Tools/Kaleidoscope"
+fi
 if [ -e "/Applications/Expressions.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Expressions" ]; then
   ln -s "/Applications/Expressions.app" "$HOME/Applications/Dev Tools/Expressions"
 fi
