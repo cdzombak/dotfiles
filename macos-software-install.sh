@@ -242,7 +242,10 @@ sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
 sw_install /usr/local/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
-sw_install "/Applications/Alfred 4.app" "brew_cask_install alfred" \
+if [ -e "/Applications/Alfred 5.app" ]; then
+  brew reinstall --cask alfred
+fi
+sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
   "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
   sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
