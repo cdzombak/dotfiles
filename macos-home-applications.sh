@@ -192,6 +192,12 @@ fi
 if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
   ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
 fi
+if [ -e "/Applications/SIGMA Optimization Pro.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Sigma Optimization Pro" ]; then
+  ln -s "/Applications/SIGMA Optimization Pro.app" "$HOME/Applications/Photo Tools/Sigma Optimization Pro"
+fi
+if [ -e "/Applications/SIGMA Photo Pro 6.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Sigma Photo Pro" ]; then
+  ln -s "/Applications/SIGMA Photo Pro 6.app" "$HOME/Applications/Photo Tools/Sigma Photo Pro"
+fi
 if [ -e "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" ] && [ ! -e "$HOME/Applications/Photo Tools/ON1 NoNoise AI" ]; then
   ln -s "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" "$HOME/Applications/Photo Tools/ON1 NoNoise AI"
 fi
