@@ -1615,6 +1615,15 @@ _install_diagrams() {
 }
 sw_install /Applications/Diagrams.app _install_diagrams
 
+_install_drawio() {
+  cecho "Install Draw.io app? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask drawio
+  fi
+}
+sw_install /Applications/draw.io.app _install_drawio
+
 _install_monodraw() {
   cecho "Install Monodraw? (y/N)" $magenta
   read -r response
