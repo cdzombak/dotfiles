@@ -198,8 +198,8 @@ fi
 if [ -e "/Applications/SIGMA Photo Pro 6.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Sigma Photo Pro" ]; then
   ln -s "/Applications/SIGMA Photo Pro 6.app" "$HOME/Applications/Photo Tools/Sigma Photo Pro"
 fi
-if [ -e "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" ] && [ ! -e "$HOME/Applications/Photo Tools/ON1 NoNoise AI" ]; then
-  ln -s "/Applications/ON1 NoNoise AI 2023/ON1 NoNoise AI 2023.app" "$HOME/Applications/Photo Tools/ON1 NoNoise AI"
+if [ -e "/Applications/Neat Image v9 Standalone/Neat Image v9.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Neat Image" ]; then
+  ln -s "/Applications/Neat Image v9 Standalone/Neat Image v9.app" "$HOME/Applications/Photo Tools/Neat Image"
 fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
