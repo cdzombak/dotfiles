@@ -2563,6 +2563,13 @@ if [ -e "/Applications/Living Earth Desktop.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e /Applications/MagicHighlighter.app ]; then
+  echo "MagicHighlighter..."
+  verify_smartdelete
+  trash "/Applications/MagicHighlighter.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e /Applications/NepTunes.app ]; then
   echo "NepTunes..."
   verify_smartdelete
