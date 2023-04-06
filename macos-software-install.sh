@@ -242,7 +242,7 @@ sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
 sw_install /usr/local/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
-if [ -e "/Applications/Alfred 5.app" ]; then
+if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
 fi
 sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
