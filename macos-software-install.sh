@@ -2330,7 +2330,7 @@ sw_install "/Applications/Hush.app" "mas install 1544743900" \
   "- [ ] Enable Safari extension"
 
 sw_install "/Applications/Magic Lasso.app" "mas install 1198047227" \
-  "- [ ] Enable both Safari extensions\n- [ ] Restore purchases\n- [ ] Enable Battery Boost"
+  "- [ ] Enable Magic Lasso and Magic Lasso Pro Safari extensions\n- [ ] Restore purchases\n- [ ] Enable Battery Boost"
 
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
