@@ -2353,6 +2353,8 @@ sw_install /Applications/StopTheNews.app _install_stopthenews
 sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
   "- [ ] Enable Tabs to Links Safari extension"
 
+sw_install "/Applications/Wayback Machine.app" "mas install 1472432422" \
+  "- [ ] Enable Wayback Machine Safari extnsion (as desired)"
 
 cecho "Open Safari for configuration now? (y/N)" $magenta
 read -r response
