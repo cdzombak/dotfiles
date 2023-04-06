@@ -284,6 +284,8 @@ sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
   "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
+sw_install "/Applications/Raindrop.io.app" "brew_cask_install raindropio" \
+  "- [ ] Sign in"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
 sw_install /Applications/Sloth.app "brew_cask_install sloth"
@@ -411,8 +413,6 @@ sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
 sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 12pt"
-sw_install "/Applications/Pins.app" "mas install 1547106997" \
-  "- [ ] Sign in\n- [ ] Restore purchases\n- [ ] Remove default channels, except Network\n- [ ] Disable Community links\n- [ ] Enable metadata autofill\n- [ ] Enable Safari features\n- [ ] Increase font size, 4 clicks or so\n- [ ] Enable Share menu extension"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
 sw_install /Applications/RadarScope.app "mas install 432027450" \
@@ -2332,6 +2332,9 @@ sw_install "/Applications/Magic Lasso.app" "mas install 1198047227" \
 sw_install "/Applications/RSS Button for Safari.app" "mas install 1437501942" \
   "- [ ] Configure for Reeder.app\n- [ ] Enable RSS Button Safari extension"
 
+sw_install "/Applications/Save to Raindrop.io.app" "mas install 1549370672" \
+  "- [ ]  Enable Save to Raindrop Safari extension"
+
 _install_stopthenews() {
   set -x
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'stopthenews')
@@ -2571,6 +2574,13 @@ if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
   trash /Applications/OmniFocus.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Pins.app" ]; then
+  echo "Pins..."
+  verify_smartdelete
+  trash /Applications/Pins.app
   REMOVED_ANYTHING=true
 fi
 
