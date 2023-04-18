@@ -288,6 +288,8 @@ sw_install "/Applications/Raindrop.io.app" "brew_cask_install raindropio" \
   "- [ ] Sign in"
 sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
   "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
+sw_install "/Applications/Shortcat.app" "brew_cask_install shortcat" \
+  "- [ ] Grant permissions\n- [ ] Assign shortcut Alt-Command-Space (move Finder Search to Ctrl-Command-Space if needed)\n- [ ] Launch at Login"
 sw_install /Applications/Sloth.app "brew_cask_install sloth"
 sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
