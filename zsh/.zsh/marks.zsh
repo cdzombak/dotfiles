@@ -3,6 +3,9 @@
 export MARKPATH=$HOME/.marks
 function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+    if [ -e "$HOME/env/$1" ] ; then
+        source "$HOME/env/$1"
+    fi
 }
 function mark {
     mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
