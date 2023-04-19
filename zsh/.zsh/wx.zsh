@@ -1,6 +1,6 @@
 function wx() {
 	if [[ $# -eq 0 ]]; then
-		curl "https://wttr.in/Ann+Arbor,+Michigan"
+		curl "https://wttr.in/Chelsea,%20Michigan"
 	else
 		local msg="$*"
 		curl "https://wttr.in/$msg?u"
@@ -9,7 +9,7 @@ function wx() {
 
 function wx2() {
     if [[ $# -eq 0 ]]; then
-        curl "https://v2.wttr.in/Ann+Arbor,+Michigan"
+        curl "https://v2.wttr.in/Chelsea,%20Michigan"
     else
         local msg="$*"
         curl "https://v2.wttr.in/$msg?u"
@@ -19,12 +19,12 @@ function wx2() {
 # metar from https://github.com/RyuKojiro/metar
 alias metar='metar -d'
 
-function wwwmetar() {
+function metar.www() {
 	if [[ $# -eq 0 ]]; then
-		curl "http://tgftp.nws.noaa.gov/data/observations/metar/stations/KARB.TXT"
+		curl "https://tgftp.nws.noaa.gov/data/observations/metar/stations/KARB.TXT"
 	else
 		local input="$1"
 		local station=$( awk '{print toupper($0)}' <<< $input )
-		curl "http://tgftp.nws.noaa.gov/data/observations/metar/stations/$station.TXT"
+		curl "https://tgftp.nws.noaa.gov/data/observations/metar/stations/$station.TXT"
 	fi
 }
