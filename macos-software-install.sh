@@ -1197,7 +1197,7 @@ echo ""
 
 echo ""
 cecho "Install common Go tools? (y/N)" $magenta
-echo "(golint, goimports, gorc, pkger, golangci-lint)"
+echo "(golint, goimports, gorc, pkger, golangci-lint, ifacemaker)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/golint" "brew gomod golang.org/x/lint/golint"
@@ -1205,6 +1205,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/gorc" "brew gomod github.com/stretchr/gorc"
   sw_install "$(brew --prefix)/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
   sw_install "$(brew --prefix)/bin/golangci-lint" "brew_install golangci-lint"
+  sw_install "$(brew --prefix)/bin/ifacemaker" "brew gomod github.com/vburenin/ifacemaker"
 fi
 
 echo ""
