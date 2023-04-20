@@ -1205,7 +1205,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/gorc" "brew gomod github.com/stretchr/gorc"
   sw_install "$(brew --prefix)/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
   sw_install "$(brew --prefix)/bin/golangci-lint" "brew_install golangci-lint"
-  sw_install "$(brew --prefix)/bin/ifacemaker" "brew gomod github.com/vburenin/ifacemaker"
+  sw_install "$(brew --prefix)/bin/ifacemaker" "brew gomod github.com/vburenin/ifacemaker@master"
 fi
 
 echo ""
