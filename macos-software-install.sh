@@ -268,6 +268,7 @@ sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
+sw_install "/Applications/Hex Fiend.app" "brew_cask_install hex-fiend"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Make default term"

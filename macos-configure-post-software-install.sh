@@ -351,6 +351,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Hex Fiend ..."
+if [ -e "/Applications/Hex Fiend.app" ]; then
+  osascript -e "tell application \"Hex Fiend\" to quit"
+  defaults write com.ridiculousfish.HexFiend DefaultEditMode 2
+else
+  echo "(Not installed.)"
+fi
+
 echo "JSON Editor ..."
 if [ -e "/Applications/JSON Editor.app" ]; then
   osascript -e "tell application \"JSON Editor\" to quit"
