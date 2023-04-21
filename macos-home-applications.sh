@@ -192,6 +192,9 @@ fi
 if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Squash" ]; then
   ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Photo Tools/Squash"
 fi
+if [ -e "/Applications/Setapp/Luminar Neo.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Luminar Neo" ]; then
+  ln -s "/Applications/Setapp/Luminar Neo.app" "$HOME/Applications/Photo Tools/Luminar Neo"
+fi
 if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
   ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
 fi
