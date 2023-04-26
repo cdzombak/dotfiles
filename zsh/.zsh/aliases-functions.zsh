@@ -258,5 +258,10 @@ function randpass() {
     echo "Copied to clipboard."
 }
 
-alias toND2X='exiftool -Model="NIKON D2X"'
-alias toND2H='exiftool -Model="NIKON D2H"'
+function uti-info() {
+    if [ -z "$1" ]; then
+        echo "usage: uti-info FILE"
+        return 1
+    fi
+    mdls "$1" | grep "kMDItemContentType "
+}

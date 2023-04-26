@@ -51,6 +51,13 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Avenue ..."
+if [ -e "/Applications/Avenue.app" ]; then
+  duti -s com.vincent-neo.Avenue public.gpx viewer
+else
+  echo "(Not installed.)"
+fi
+
 echo "Bartender 3 ..."
 if [ -e "/Applications/Bartender 3.app" ]; then
   osascript -e "tell application \"Bartender 3\" to quit"
