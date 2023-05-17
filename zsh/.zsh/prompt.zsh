@@ -247,6 +247,18 @@ _zsh_rprompt_aws_region() {
   fi
 }
 
+_zsh_rprompt_aws_profile() {
+  if [[ -n "$AWS_PROFILE" ]]; then
+    if [[ "$AWS_PROFILE" =~ "^prod" ]]; then
+        _zsh_rprompt_segment red black "${AWS_PROFILE#*_}"
+    if [[ "$AWS_PROFILE" =~ "^internal_panther-dev-" ]]; then
+        _zsh_rprompt_segment green black "${AWS_PROFILE#*internal_panther-dev-}"
+    else
+        _zsh_rprompt_segment green black "${AWS_PROFILE#*_}"
+    fi
+  fi
+}
+
 _zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
@@ -349,6 +361,7 @@ _zsh_build_rprompt() {
   _zsh_rprompt_virtualenv
   _zsh_rprompt_kubectl
   _zsh_rprompt_aws_region
+  _zsh_rprompt_aws_profile
   _zsh_rprompt_gcloud
   _zsh_rprompt_end
 }
