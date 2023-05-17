@@ -251,7 +251,7 @@ _zsh_rprompt_aws_profile() {
   if [[ -n "$AWS_PROFILE" ]]; then
     if [[ "$AWS_PROFILE" =~ "^prod" ]]; then
         _zsh_rprompt_segment red black "${AWS_PROFILE#*_}"
-    if [[ "$AWS_PROFILE" =~ "^internal_panther-dev-" ]]; then
+    elif [[ "$AWS_PROFILE" =~ "^internal_panther-dev-" ]]; then
         _zsh_rprompt_segment green black "${AWS_PROFILE#*internal_panther-dev-}"
     else
         _zsh_rprompt_segment green black "${AWS_PROFILE#*_}"
