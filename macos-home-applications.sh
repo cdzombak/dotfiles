@@ -210,6 +210,9 @@ fi
 if [ -e "/Applications/Neat Image v9 Standalone/Neat Image v9.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Neat Image" ]; then
   ln -s "/Applications/Neat Image v9 Standalone/Neat Image v9.app" "$HOME/Applications/Photo Tools/Neat Image"
 fi
+if [ -e "/Applications/Peakto.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Peakto" ]; then
+  ln -s "/Applications/Peakto.app" "$HOME/Applications/Photo Tools/Peakto"
+fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
   setupnote "Dock/Social Media" "- [ ] Add Social Media to Dock, if desired"
