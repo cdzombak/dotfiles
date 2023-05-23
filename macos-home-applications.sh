@@ -231,15 +231,16 @@ fi
 if [ -e "/Applications/Setapp/Grids.app" ] && [ ! -e "$HOME/Applications/Social Media/Grids" ]; then
   ln -s "/Applications/Setapp/Grids.app" "$HOME/Applications/Social Media/Grids"
 fi
-if [ -e "/Applications/Ice Cubes.app" ] && [ ! -e "$HOME/Applications/Social Media/Ice Cubes" ]; then
-  ln -s "/Applications/Ice Cubes.app" "$HOME/Applications/Social Media/Ice Cubes"
-fi
-if [ -e "/Applications/Mastonaut.app" ] && [ ! -e "$HOME/Applications/Social Media/Mastonaut" ]; then
-  ln -s "/Applications/Mastonaut.app" "$HOME/Applications/Social Media/Mastonaut"
-fi
 if [ -e "/Applications/Slack.app" ] && [ ! -e "$HOME/Applications/Social Media/Slack" ]; then
   ln -s "/Applications/Slack.app" "$HOME/Applications/Social Media/Slack"
 fi
+
+if [ -e "/Applications/Ivory.app" ] && [ ! -e "$HOME/Applications/Social Media/Ivory" ]; then
+  ln -s "/Applications/Ivory.app" "$HOME/Applications/Social Media/Ivory"
+fi
+
+rm -f "$HOME/Applications/Social Media/Ice Cubes"
+rm -f "$HOME/Applications/Social Media/Mastonaut"
 
 if [ ! -d "$HOME/Applications/System Tools" ]; then
   setupnote "Dock/System Tools" "- [ ] Add System Tools to Dock, if desired"

@@ -2144,41 +2144,25 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
   sw_install /Applications/Discord.app _install_discord
 fi
 
-# if [ ! -e "$HOME/.local/dotfiles/software/no-ice-cubes" ]; then
-#   _install_ice_cubes() {
-#     cecho "Install Ice Cubes (Mastodon client)? (y/N)" $magenta
-#     read -r response
-#     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#       mas install 6444915884
-#       setupnote "Ice Cubes" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Configure as desired (TODO: add notes to checklist in macos-software-install)"
-#     else
-#       echo "Won't ask again next time this script is run."
-#       touch "$HOME/.local/dotfiles/software/no-ice-cubes"
-#     fi
-#   }
-#   sw_install "/Applications/Ice Cubes.app" _install_ice_cubes
-# fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
-  _install_Mastonaut() {
-    cecho "Install Mastonaut (Mastodon client)? (y/N)" $magenta
+  touch "$HOME/.local/dotfiles/software/no-ivory"
+  trash "$HOME/.local/dotfiles/software/no-mastonaut"
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-ivory" ]; then
+  _install_ivory() {
+    cecho "Install Ivory (Mastodon client)? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      set -x
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mastonaut')
-      pushd "$TMP_DIR" >/dev/null
-      curl -s https://api.github.com/repos/chucker/Mastonaut/releases/latest | jq -r ".assets[].browser_download_url" | grep ".zip$" | xargs wget -q -O Mastonaut.zip
-      unzip Mastonaut.zip
-      cp -R Mastonaut.app /Applications/Mastonaut.app
-      popd >/dev/null
-      set +x
-      setupnote "Mastonaut" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Composing: Default status privacy: Private\n- [ ] Composing: Insert double newlines & Insert joiner character\n- [ ] Notifications enabled: Mentions and Poll Results only\n- [ ] Notification settings (system level): Disable banners & sounds"
+      mas install 6444602274
+      setupnote "Ivory" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Restore purchases\n- [ ] Enable notifications\n- [ ] Notification settings (system level): Disable banners & sounds; previews only when unlocked\n- [ ] Sign into Instapaper"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-mastonaut"
+      touch "$HOME/.local/dotfiles/software/no-ivory"
     fi
   }
-  sw_install /Applications/Mastonaut.app _install_Mastonaut
+  sw_install /Applications/Ivory.app _install_ivory
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
@@ -2540,6 +2524,13 @@ if [ -e "/Applications/Instapaper.app" ] ; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Ice Cubes.app" ] ; then
+  echo "Ice Cubes..."
+  verify_smartdelete
+  trash "/Applications/Ice Cubes.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Keybase.app" ]; then
   echo "Keybase..."
   verify_smartdelete
@@ -2566,6 +2557,13 @@ if [ -e /Applications/MagicHighlighter.app ]; then
   echo "MagicHighlighter..."
   verify_smartdelete
   trash "/Applications/MagicHighlighter.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/Mastonaut.app ]; then
+  echo "Mastonaut..."
+  verify_smartdelete
+  trash "/Applications/Mastonaut.app"
   REMOVED_ANYTHING=true
 fi
 

@@ -366,6 +366,14 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Ivory ..."
+if [ -e "/Applications/Ivory.app" ]; then
+  osascript -e "tell application \"Ivory\" to quit"
+  defaults write com.tapbots.Ivory fontSize 16
+else
+  echo "(Not installed.)"
+fi
+
 echo "JSON Editor ..."
 if [ -e "/Applications/JSON Editor.app" ]; then
   osascript -e "tell application \"JSON Editor\" to quit"
