@@ -66,8 +66,8 @@ if ! fileicon test "$HOME/Applications/Hobby Tools"; then
   fileicon set "$HOME/Applications/Hobby Tools" "./macOS Configs/Dock Icons/Hobby Tools.png"
 fi
 
-if [ -e "/Applications/Ultimaker-Cura.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Cura" ]; then
-  ln -s "/Applications/Ultimaker-Cura.app" "$HOME/Applications/Hobby Tools/Cura"
+if [ -e "/Applications/UltiMaker Cura.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Cura" ]; then
+  ln -s "/Applications/Ultimaker Cura.app" "$HOME/Applications/Hobby Tools/Cura"
 fi
 if [ -e "/Applications/Raspberry Pi Imager.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Raspberry Pi Imager" ]; then
   ln -s "/Applications/Raspberry Pi Imager.app" "$HOME/Applications/Hobby Tools/Raspberry Pi Imager"
