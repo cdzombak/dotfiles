@@ -303,6 +303,11 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   OpenWith -bool true \
   Privileges -bool true
 
+echo ""
+echo "Disable QuickLook in-icon previews for small icons"
+# https://mastodon.social/@chockenberry/110385041988304201
+defaults write com.apple.finder QLInlinePreviewMinimumSupportedSize -int 512
+
 ###############################################################################
 # Dock & Mission Control
 ###############################################################################
