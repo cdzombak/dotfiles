@@ -222,8 +222,8 @@ if ! fileicon test "$HOME/Applications/Social Media"; then
   fileicon set "$HOME/Applications/Social Media" "./macOS Configs/Dock Icons/Social Media.png"
 fi
 
-if [ -e "/Applications/Caprine.app" ] && [ ! -e "$HOME/Applications/Social Media/Caprine" ]; then
-  ln -s "/Applications/Caprine.app" "$HOME/Applications/Social Media/Caprine"
+if [ -e "/Applications/Messenger.app" ] && [ ! -e "$HOME/Applications/Social Media/Messenger" ]; then
+  ln -s "/Applications/Messenger.app" "$HOME/Applications/Social Media/Messenger"
 fi
 if [ -e "/Applications/Discord.app" ] && [ ! -e "$HOME/Applications/Social Media/Discord" ]; then
   ln -s "/Applications/Discord.app" "$HOME/Applications/Social Media/Discord"
@@ -241,6 +241,7 @@ fi
 
 rm -f "$HOME/Applications/Social Media/Ice Cubes"
 rm -f "$HOME/Applications/Social Media/Mastonaut"
+rm -f "$HOME/Applications/Social Media/Caprine"
 
 if [ ! -d "$HOME/Applications/System Tools" ]; then
   setupnote "Dock/System Tools" "- [ ] Add System Tools to Dock, if desired"

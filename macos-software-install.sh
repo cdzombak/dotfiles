@@ -2165,23 +2165,24 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ivory" ]; then
   sw_install /Applications/Ivory.app _install_ivory
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
-  _install_caprine() {
-    cecho "Install Caprine (FB Messenger client)? (y/N)" $magenta
+if [ -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
+  touch "$HOME/.local/dotfiles/software/no-messenger"
+  rm "$HOME/.local/dotfiles/software/no-caprine"
+fi
+
+if [ ! -e "$HOME/.local/dotfiles/software/no-messenger" ]; then
+  _install_messenger() {
+    cecho "Install Facebook Messenger? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask caprine
-      # shellcheck disable=SC2129
-      echo "## Caprine.app" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign into Facebook account" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
+      brew install --cask messenger
+      setupnote "Messenger.app" "- [ ] Sign into Facebook account"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-caprine"
+      touch "$HOME/.local/dotfiles/software/no-messenger"
     fi
   }
-  sw_install /Applications/Caprine.app _install_caprine
+  sw_install /Applications/Messenger.app _install_messenger
 fi
 
 # if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
@@ -2433,6 +2434,13 @@ if [ -e "/Applications/Burn.app" ]; then
   echo "Burn (CD burner)..."
   verify_smartdelete
   trash /Applications/Burn.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Caprine.app" ]; then
+  echo "Caprine..."
+  verify_smartdelete
+  trash /Applications/Caprine.app
   REMOVED_ANYTHING=true
 fi
 
