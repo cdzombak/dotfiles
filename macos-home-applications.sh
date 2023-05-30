@@ -234,9 +234,11 @@ fi
 if [ -e "/Applications/Slack.app" ] && [ ! -e "$HOME/Applications/Social Media/Slack" ]; then
   ln -s "/Applications/Slack.app" "$HOME/Applications/Social Media/Slack"
 fi
-
 if [ -e "/Applications/Ivory.app" ] && [ ! -e "$HOME/Applications/Social Media/Ivory" ]; then
   ln -s "/Applications/Ivory.app" "$HOME/Applications/Social Media/Ivory"
+fi
+if [ -e "/Applications/Mona.app" ] && [ ! -e "$HOME/Applications/Social Media/Mona" ]; then
+  ln -s "/Applications/Mona.app" "$HOME/Applications/Social Media/Mona"
 fi
 
 rm -f "$HOME/Applications/Social Media/Ice Cubes"

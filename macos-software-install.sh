@@ -2165,6 +2165,21 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ivory" ]; then
   sw_install /Applications/Ivory.app _install_ivory
 fi
 
+if [ ! -e "$HOME/.local/dotfiles/software/no-mona" ]; then
+  _install_mona() {
+    cecho "Install Mona (Mastodon client)? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1659154653
+      setupnote "Mona" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Restore purchases\n- [ ] Disallow notifications (for now)"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.local/dotfiles/software/no-mona"
+    fi
+  }
+  sw_install /Applications/Mona.app _install_mona
+fi
+
 if [ -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
   touch "$HOME/.local/dotfiles/software/no-messenger"
   rm "$HOME/.local/dotfiles/software/no-caprine"
