@@ -198,14 +198,8 @@ fi
 if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
   ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
 fi
-if [ -e "/Applications/SIGMA Optimization Pro.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Sigma Optimization Pro" ]; then
-  ln -s "/Applications/SIGMA Optimization Pro.app" "$HOME/Applications/Photo Tools/Sigma Optimization Pro"
-fi
 if [ -e "/Applications/SIGMA Photo Pro 6.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Sigma Photo Pro" ]; then
   ln -s "/Applications/SIGMA Photo Pro 6.app" "$HOME/Applications/Photo Tools/Sigma Photo Pro"
-fi
-if [ -e "/Applications/TAP-in Utility.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Tamron Tap-In Utility" ]; then
-  ln -s "/Applications/TAP-in Utility.app" "$HOME/Applications/Photo Tools/Tamron Tap-In Utility"
 fi
 if [ -e "/Applications/Neat Image v9 Standalone/Neat Image v9.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Neat Image" ]; then
   ln -s "/Applications/Neat Image v9 Standalone/Neat Image v9.app" "$HOME/Applications/Photo Tools/Neat Image"
