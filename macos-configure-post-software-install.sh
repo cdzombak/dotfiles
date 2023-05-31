@@ -515,7 +515,7 @@ echo "Mimestream ..."
 if [ -e "/Applications/Mimestream.app" ]; then
   osascript -e "tell application \"Mimestream\" to quit"
   defaults write com.mimestream.Mimestream TextSizeAdjustment 2
-  defaults write com.mimestream.Mimestream ShowBadgeForSpam 1
+  defaults write com.mimestream.Mimestream HideBadgeForSpam 1
   defaults write com.mimestream.Mimestream PlaySounds none
   defaults write com.mimestream.Mimestream DeleteKeyAction 'trash'
 else
