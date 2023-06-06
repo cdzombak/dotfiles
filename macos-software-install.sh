@@ -1895,13 +1895,8 @@ _install_tag_editor() {
   cecho "Install Tag Editor? (amvidia.com/tag-editor) (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'tag-editor-work')
-    pushd "$TMP_DIR"
-    curl -L -o tag_editor.dmg https://amvidia.com/download.php?app=taged
-    hdiutil mount tag_editor.dmg
-    cp -R "/Volumes/Install Tag Editor/Tag Editor.app" "/Applications/Tag Editor.app"
-    hdiutil unmount "/Volumes/Install Tag Editor"
-    popd
+    brew install --cask tageditor
+    setupnote "Tag Editor.app" "- [ ] License"
   fi
 }
 sw_install "/Applications/Tag Editor.app" _install_tag_editor
