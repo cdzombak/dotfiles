@@ -115,7 +115,6 @@ fi
 
 # tap various casks that may be required:
 brew tap | grep -c homebrew/cask-versions >/dev/null || brew tap homebrew/cask-versions
-brew tap | grep -c homebrew/cask-drivers >/dev/null || brew tap homebrew/cask-drivers
 brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
 brew tap | grep -c showwin/speedtest >/dev/null || brew tap showwin/speedtest
 
