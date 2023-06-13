@@ -2145,7 +2145,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
 fi
 
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
+if [ -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
   touch "$HOME/.local/dotfiles/software/no-ivory"
   trash "$HOME/.local/dotfiles/software/no-mastonaut"
 fi
