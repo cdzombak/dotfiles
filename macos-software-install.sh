@@ -1460,7 +1460,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-cura" ]; then
       touch "$HOME/.local/dotfiles/software/no-cura"
     fi
   }
-  sw_install "/Applications/Ultimaker-Cura.app" _install_cura
+  sw_install "/Applications/UltiMaker Cura.app" _install_cura
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-fusion360" ]; then
