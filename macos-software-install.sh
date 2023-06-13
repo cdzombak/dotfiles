@@ -525,11 +525,7 @@ sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mai
   "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
 
 if [ -e "/Applications/Lofi Cafe.app" ]; then
-  if [ -e "$HOME/Applications/Lofi Cafe.app" ]; then
-    rm -rf "/Applications/Lofi Cafe.app"
-  else
-    mv "/Applications/Lofi Cafe.app" "$HOME/Applications/Lofi Cafe.app"
-  fi
+  rm -rf "/Applications/Lofi Cafe.app"
 fi
 _install_loficafe() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
