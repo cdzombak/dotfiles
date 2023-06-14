@@ -78,6 +78,7 @@
 [alias]
 	st = status -sb
 	poh = push origin HEAD
+	puoh = push --set-upstream origin HEAD
 	wdiff = diff --word-diff
 	co = checkout
 	ci = commit
