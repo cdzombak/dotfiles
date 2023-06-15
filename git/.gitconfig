@@ -31,6 +31,12 @@
 [apply]
 	whitespace = nowarn
 
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
 [url "https://"]
 	insteadOf = git://
 
@@ -140,5 +146,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[init]
-	defaultBranch = main
