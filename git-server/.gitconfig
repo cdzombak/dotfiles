@@ -1,7 +1,5 @@
 # Git config for Linux servers; assumes username 'cdzombak'
 
-# Core
-
 [user]
 	name = Chris Dzombak
 	email = chris@dzombak.com
@@ -15,21 +13,36 @@
 	quotepath = false
 	trustctime = false
 
+[http]
+	postBuffer = 262144000
+	# roughly 250 MB
+
+[apply]
+	whitespace = nowarn
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[url "https://"]
+	insteadOf = git://
+
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+
+# UI
+
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+
 [color]
 	diff = true
 	status = true
 	branch = true
 	interactive = true
 	ui = true
-
-[apply]
-	whitespace = nowarn
-
-[format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
-
-[url "https://"]
-	insteadOf = git://
 
 # Aliases
 
