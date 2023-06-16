@@ -2,6 +2,7 @@ local log = hs.logger.new('desk-usb.lua', 'debug')
 
 function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
+  local isWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
 
   if data["eventType"] == "added" then
     log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
@@ -15,6 +16,19 @@ function usbCallback(data)
       -- "(sometimes) the system responds with an old cached list of screens where the DDC port is not valid anymore"
       log.d("restarting Lunar via hotkey...")
       hs.task.new('/Users/cdzombak/.dotfiles/hammerspoon/support/restart-lunar.sh', nil):start()
+    end
+
+    if isWebcam then
+      -- start webcam support software:
+      hs.application.open("net.rafaelconde.Hand-Mirror")
+      logiTuneApp = hs.application.open("com.logitech.logitune", 1, true)
+      if logiTuneApp then
+        for _, window in pairs(logiTuneApp:visibleWindows()) do
+          window:close()
+        end
+      else
+        log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
+      end
     end
   elseif data["eventType"] == "removed" then
     log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
@@ -59,6 +73,18 @@ function usbCallback(data)
         if status == false then
           log.d("failed to set input (" .. newInput .. "): " .. output)
         end
+      end
+    end
+
+    if isWebcam then
+      -- kill webcam support software
+      logiTuneApp = hs.application.get("com.logitech.logitune")
+      if logiTuneApp then
+        logiTuneApp:kill()
+      end
+      handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
+      if handMirrorApp then
+        handMirrorApp:kill()
       end
     end
   end
