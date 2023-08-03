@@ -889,6 +889,7 @@ echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authe
 sudo -v
 while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+WHOAMI="$(whoami)"
 if [ -d /usr/local/share/zsh ]; then
   sudo chown "$WHOAMI":staff /usr/local/share/zsh
   sudo chown "$WHOAMI":staff /usr/local/share/zsh/site-functions
