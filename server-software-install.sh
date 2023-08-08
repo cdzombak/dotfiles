@@ -4,7 +4,7 @@ set -euo pipefail
 # versions:
 LATEST_BANDWHICH="0.20.0"  # https://github.com/imsnif/bandwhich/releases
 LATEST_DUST="0.8.3"  # https://github.com/bootandy/dust/releases
-LATEST_RESTIC="0.14.0"  # https://github.com/restic/restic/releases
+LATEST_RESTIC="0.16.0"  # https://github.com/restic/restic/releases
 NANO_V="7.0"  # https://www.nano-editor.org/download.php
 NANO_MAJOR_V="7"
 
