@@ -551,6 +551,10 @@ _install_diskspace() {
 }
 sw_install "/usr/local/bin/diskspace" _install_diskspace
 
+if [ ! -e "/Applications/Tembo.app" ]; then
+  setupnote "Tembo" "- [ ] [Download](https://www.houdah.com/tembo/download.html) and install Tembo\n- [ ] Register (details in 1Password)\n- [ ] Grant permissions (in Privacy tab)\n- [ ] Enable helper; hide Menu Bar icon\n- [ ] Set global shortcut Ctrl-Shift-Space\n- [ ] Set Groups, Defaults, locations per config screenshots"
+fi
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
