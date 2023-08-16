@@ -277,5 +277,8 @@ fi
 if [ -e "/System/Applications/System Settings.app" ] && [ ! -e "$HOME/Applications/System Tools/System Settings" ]; then
   ln -s "/System/Applications/System Settings.app" "$HOME/Applications/System Tools/System Settings"
 fi
+if [ -e "/Applications/Latest.app" ] && [ ! -e "$HOME/Applications/System Tools/Latest" ]; then
+  ln -s "/Applications/Latest.app" "$HOME/Applications/System Tools/Latest"
+fi
 
 cecho "✔ Done." $green
