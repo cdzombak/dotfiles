@@ -748,6 +748,17 @@ else
   echo "(Not installed.)"
 fi
 
+echo "Tembo ..."
+if [ -e "/Applications/Tembo.app" ]; then
+  osascript -e "tell application \"Tembo\" to quit"
+  set +e
+  defaults write com.houdah.Tembo3 enableTemboHelper 1
+  defaults write com.houdah.Tembo3 quitOnCloseOfLastWindow 1
+  set -e
+else
+  echo "(Not installed.)"
+fi
+
 echo "TextBuddy ..."
 if [ -e "/Applications/TextBuddy.app" ]; then
   osascript -e "tell application \"TextBuddy\" to quit"
