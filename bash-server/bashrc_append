@@ -9,3 +9,16 @@ alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 set -o noclobber
 
 alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+function rm-known-host() {
+    if [ -z "$1" ]; then
+        echo "usage: rm-known-host LINE_NUMBER"
+        return 1
+    fi
+    re='^[0-9]+$'
+    if ! [[ "$1" =~ $re ]] ; then
+        echo "usage: rm-known-host LINE_NUMBER"
+        return 1
+    fi
+    gsed -i "$1d" "$HOME/.ssh/known_hosts"
+}
