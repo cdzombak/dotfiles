@@ -82,6 +82,12 @@ if [ -e "/Applications/RadarScope.app" ] && [ ! -e "$HOME/Applications/Hobby Too
   # maybe not a perfect match, but Close Enough
   ln -s "/Applications/RadarScope.app" "$HOME/Applications/Hobby Tools/RadarScope"
 fi
+if [ -e "/Applications/LTSpice.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/LTSpice" ]; then
+  ln -s "/Applications/LTSpice.app" "$HOME/Applications/Hobby Tools/LTSpice"
+fi
+if [ -e "/Applications/KiCad/KiCad.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/KiCad" ]; then
+  ln -s "/Applications/KiCad/KiCad.app" "$HOME/Applications/Hobby Tools/KiCad"
+fi
 
 if [ ! -d "$HOME/Applications/Media" ]; then
   setupnote "Dock/Media" "- [ ] Add Media to Dock, if desired"

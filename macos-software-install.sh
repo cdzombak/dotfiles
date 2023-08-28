@@ -1498,18 +1498,19 @@ _install_octopi_wrapper() {
 }
 sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-kicad" ]; then
-  _install_kicad() {
-    cecho "Install KiCad? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask kicad
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-kicad"
-    fi
-  }
-  sw_install "/Applications/KiCad" _install_kicad
+if [ -e "$HOME/.local/dotfiles/software/no-kicad" ]; then
+  mv "$HOME/.local/dotfiles/software/no-kicad" "$HOME/.local/dotfiles/software/no-ee-tools"
+fi
+if [ ! -e "$HOME/.local/dotfiles/software/no-ee-tools" ]; then
+  cecho "Install EE tools (KTSpice, KiCad)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     sw_install /Applications/KiCad 'brew_cask_install kicad'
+     sw_install /Applications/LTSpice.app 'brew_cask_install ltspice'
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.local/dotfiles/software/no-ee-tools"
+  fi
 fi
 
 if [ ! -e "$HOME/.local/dotfiles/software/no-cubicsdr" ]; then
