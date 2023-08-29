@@ -42,14 +42,14 @@ fi
 if [ -e "/Applications/Sublime Text.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Sublime Text" ]; then
   ln -s "/Applications/Sublime Text.app" "$HOME/Applications/Dev Tools/Sublime Text"
 fi
-if [ -e "$HOME/Applications/JetBrains Toolbox/GoLand.app" ] && [ ! -e "$HOME/Applications/Dev Tools/GoLand" ]; then
-  ln -s "$HOME/Applications/JetBrains Toolbox/GoLand.app" "$HOME/Applications/Dev Tools/GoLand"
+if [ -e "$HOME/Applications/GoLand.app" ] && [ ! -e "$HOME/Applications/Dev Tools/GoLand" ]; then
+  ln -s "$HOME/Applications/GoLand.app" "$HOME/Applications/Dev Tools/GoLand"
 fi
-if [ -e "$HOME/Applications/JetBrains Toolbox/PyCharm Professional Edition.app" ] && [ ! -e "$HOME/Applications/Dev Tools/PyCharm" ]; then
-  ln -s "$HOME/Applications/JetBrains Toolbox/PyCharm Professional Edition.app" "$HOME/Applications/Dev Tools/PyCharm"
+if [ -e "$HOME/Applications/PyCharm Professional Edition.app" ] && [ ! -e "$HOME/Applications/Dev Tools/PyCharm" ]; then
+  ln -s "$HOME/Applications/PyCharm Professional Edition.app" "$HOME/Applications/Dev Tools/PyCharm"
 fi
-if [ -e "$HOME/Applications/JetBrains Toolbox/WebStorm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/WebStorm" ]; then
-  ln -s "$HOME/Applications/JetBrains Toolbox/WebStorm.app" "$HOME/Applications/Dev Tools/WebStorm"
+if [ -e "$HOME/Applications/WebStorm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/WebStorm" ]; then
+  ln -s "$HOME/Applications/WebStorm.app" "$HOME/Applications/Dev Tools/WebStorm"
 fi
 if [ -e "$HOME/Applications/Clock.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Clock" ]; then
   ln -s "$HOME/Applications/Clock.app" "$HOME/Applications/Dev Tools/Clock"

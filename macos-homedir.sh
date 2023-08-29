@@ -131,30 +131,6 @@ if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
 
 fi
 
-# JetBrains IDE directory shortcuts:
-
-if [ ! -L "$HOME/Applications/toolbox-androidstudio" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0" "$HOME/Applications/toolbox-androidstudio"
-fi
-if [ ! -L "$HOME/Applications/toolbox-clion" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/CLion" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0" "$HOME/Applications/toolbox-clion"
-fi
-if [ ! -L "$HOME/Applications/toolbox-datagrip" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/datagrip" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/datagrip/ch-0" "$HOME/Applications/toolbox-datagrip"
-fi
-if [ ! -L "$HOME/Applications/toolbox-goland" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/Goland" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/Goland/ch-0" "$HOME/Applications/toolbox-goland"
-fi
-if [ ! -L "$HOME/Applications/toolbox-idea" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0" "$HOME/Applications/toolbox-idea"
-fi
-if [ ! -L "$HOME/Applications/toolbox-pycharm" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0" "$HOME/Applications/toolbox-pycharm"
-fi
-if [ ! -L "$HOME/Applications/toolbox-webstorm" ] && [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm" ]; then
-  ln -s "$HOME/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0" "$HOME/Applications/toolbox-webstorm"
-fi
-
 # Misc. cleanup:
 
 if [ -e "$HOME/Pictures/Photo Booth Library" ]; then
