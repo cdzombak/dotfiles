@@ -616,6 +616,24 @@ defaults write com.apple.Photos NSUserKeyEquivalents '{
     "Adjust Date and Time\U2026" = "~t";
 }'
 
+###############################################################################
+# Sudoers
+###############################################################################
+
+# Allow cdzombak to `sudo shutdown` and `sudo renice` without password entry
+echo ""
+echo "sudoers: Allow cdzombak to sudo shutdown and sudo renice without password entry"
+if [ ! -e /etc/sudoers.d/cdzombak-shutdown ]; then
+  echo "cdzombak ALL=NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown" | sudo tee -a /etc/sudoers.d/cdzombak-shutdown > /dev/null
+  sudo chown root:wheel /etc/sudoers.d/cdzombak-shutdown
+  sudo chmod 440 /etc/sudoers.d/cdzombak-shutdown
+fi
+if [ ! -e /etc/sudoers.d/cdzombak-renice ]; then
+  echo "cdzombak ALL=NOPASSWD: /usr/bin/renice" | sudo tee -a /etc/sudoers.d/cdzombak-renice > /dev/null
+  sudo chown root:wheel /etc/sudoers.d/cdzombak-renice
+  sudo chmod 440 /etc/sudoers.d/cdzombak-renice
+fi
+
 echo ""
 cecho "✔ Done." $green
 echo ""
