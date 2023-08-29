@@ -464,9 +464,9 @@ _install_hosts_timer() {
     sudo make install
   fi
   popd
-  echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/hosts-timer > /dev/null
-  sudo chown root:wheel /etc/sudoers.d/hosts-timer
-  sudo chmod 440 /etc/sudoers.d/hosts-timer
+  echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/cdzombak-hosts-timer > /dev/null
+  sudo chown root:wheel /etc/sudoers.d/cdzombak-hosts-timer
+  sudo chmod 440 /etc/sudoers.d/cdzombak-hosts-timer
   # disable HN by default:
   sudo hosts-timer -install news.ycombinator.com
   sudo hosts-timer -install hckrnews.com
