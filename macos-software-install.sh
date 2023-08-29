@@ -1476,6 +1476,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-fusion360" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask autodesk-fusion360
       setupnote "Fusion 360" "- [ ] Sign In"
+      chflags -h hidden "$HOME/Applications/Remove Autodesk Fusion 360.app"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.local/dotfiles/software/no-fusion360"
