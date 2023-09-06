@@ -116,7 +116,6 @@ fi
 # tap various casks that may be required:
 brew tap | grep -c homebrew/cask-versions >/dev/null || brew tap homebrew/cask-versions
 brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
-brew tap | grep -c showwin/speedtest >/dev/null || brew tap showwin/speedtest
 
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
@@ -808,6 +807,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/iperf3" "brew_install iperf3"
   sw_install "$(brew --prefix)/sbin/mtr" "brew_install mtr"
   sw_install "$(brew --prefix)/bin/nmap" "brew_install nmap"
+  brew tap | grep -c showwin/speedtest >/dev/null || brew tap showwin/speedtest
   sw_install "$(brew --prefix)/bin/speedtest" "brew_install speedtest"
   sw_install "$(brew --prefix)/bin/telnet" "brew_install telnet"
   sw_install "/Applications/Port Map.app" _install_portmap
@@ -1419,9 +1419,7 @@ echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   YES_INSTALL_KUBECTL=true
-  if ! brew tap | grep -c boz/repo >/dev/null ; then
-    brew tap boz/repo
-  fi
+  brew tap | grep -c boz/repo >/dev/null || brew tap boz/repo
   sw_install "$(brew --prefix)/bin/kail" "brew_install boz/repo/kail"
   sw_install "$(brew --prefix)/bin/k9s" "brew_install derailed/k9s/k9s"
   sw_install "/Applications/Lens.app" "brew_cask_install lens"
