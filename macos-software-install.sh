@@ -1387,16 +1387,36 @@ echo ""
 cecho "Virtualization, Docker, K8s..." $white
 echo ""
 
+if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; then
+  echo ""
+  cecho "Install OrbStack? (y/N)" $magenta
+  echo "(answering Yes will skip asking about Docker Desktop installation)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask orbstack
+    setupnote "OrbStack.app" \
+      "- [ ] Start at login; show in menu bar\n- [ ] Automatically download updates\n- [ ] Set memory and CPU limits as desired"
+  fi
+fi
+
+if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; then
+  echo ""
+  cecho "Install Docker? (y/N)" $magenta
+  echo "(answering Yes will skip asking about OrbStack installation in the future)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask docker
+    setupnote "Docker.app" \
+      "- [ ] Disable application starting at login, as desired\n- [ ] Disable weekly tips\n- [ ] Enable Docker Compose V2, as desired"
+  fi
+fi
+
 echo ""
-cecho "Install Docker & related tools? (y/N)" $magenta
+cecho "Install Docker/container-related tools (dockerfilelint, dive)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  if ! brew tap | grep -c wagoodman/dive >/dev/null ; then
-    brew tap wagoodman/dive
-  fi
-  sw_install /Applications/Docker.app "brew_cask_install docker" \
-    "- [ ] Disable application starting at login, as desired\n- [ ] Disable weekly tips\n- [ ] Enable Docker Compose V2, as desired"
   sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
+  brew tap | grep -c wagoodman/dive >/dev/null || brew tap wagoodman/dive
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
 fi
 
