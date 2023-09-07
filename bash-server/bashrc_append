@@ -20,5 +20,5 @@ function rm-known-host() {
         echo "usage: rm-known-host LINE_NUMBER"
         return 1
     fi
-    gsed -i "$1d" "$HOME/.ssh/known_hosts"
+    sed -i "$1d" "$HOME/.ssh/known_hosts"
 }
