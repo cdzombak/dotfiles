@@ -27,20 +27,20 @@ if ! $CONTINUE; then
   exit 0
 fi
 
-mkdir -p "$HOME/.local/dotfiles/software"
+mkdir -p "$HOME/.config/dotfiles/software"
 
 # cleanup old, unused choices:
-rm -f "$HOME/.local/dotfiles/software/no-ecobee-wrapper"
-rm -f "$HOME/.local/dotfiles/software/no-home-hardware-utils"
-rm -f "$HOME/.local/dotfiles/software/no-octopi-dzhome"
+rm -f "$HOME/.config/dotfiles/software/no-ecobee-wrapper"
+rm -f "$HOME/.config/dotfiles/software/no-home-hardware-utils"
+rm -f "$HOME/.config/dotfiles/software/no-octopi-dzhome"
 
 # default choices which you can override in another window if desired:
-touch "$HOME/.local/dotfiles/software/no-boop"
+touch "$HOME/.config/dotfiles/software/no-boop"
 
-if [ "$(ls -A "$HOME/.local/dotfiles/software")" ] ; then
+if [ "$(ls -A "$HOME/.config/dotfiles/software")" ] ; then
   echo ""
-  cecho "Please review these currently-persisted choices in ~/.local/dotfiles/software:" $white
-  ls -C "$HOME/.local/dotfiles/software"
+  cecho "Please review these currently-persisted choices in ~/.config/dotfiles/software:" $white
+  ls -C "$HOME/.config/dotfiles/software"
   echo ""
   echo "Remove any individual choice directly in a separate window, or reset all using \`make reset-choices\`."
   # shellcheck disable=SC2162
@@ -279,7 +279,7 @@ sw_install /Applications/Latest.app "brew_cask_install latest"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
-if [ ! -e "$HOME/.local/dotfiles/software/no-mimestream" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-mimestream" ]; then
   sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
     "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
 fi
@@ -390,14 +390,14 @@ sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
 
 sw_install "/Applications/1Password for Safari.app" "mas install 1569813296" \
   "- [ ] Enable in Safari\n- [ ] Always allow on every site\n- [ ] Show in Toolbar (arrange to left: Back/Forward, RSS, 1Password) \n- [ ] Disable all Safari autofill features but \"Other Forms\""
-if [ ! -e "$HOME/.local/dotfiles/software/no-bear" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-bear" ]; then
   sw_install /Applications/Bear.app "mas install 1091189122" \
     "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 fi
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/CARROTweather.app "mas install 993487541" \
   "- [ ] Restore purchases\n- [ ] Personality: Professional\n- [ ] Sounds: Notifications Only\n- [ ] Source: AccuWeather\n- [ ] Update: 15 Minutes\n- [ ] Mini-Window Shortcut: Off\n- [ ] Sync: Locations, not Settings\n- [ ] Dock icon: Hidden\n- [ ] Position in Mac Menu Bar\n- [ ] Current Data Slot 9: Precip Amount\n- [ ] Current Displayed Summary: Today\n- [ ] Current Spoken Summary: None\n- [ ] Daily Data Left Slot: Precip Chance\n- [ ] Notifications: as desired; refer to iPhone\n- [ ] Open Automatically at Login: On"
-if [ ! -e "$HOME/.local/dotfiles/software/no-dayone" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-dayone" ]; then
   sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
     "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
 fi
@@ -575,7 +575,7 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-lunar" ]; then
   _install_lunar() {
     cecho "Install Lunar (external monitor management brightness/etc. tool)? (y/N)" $magenta
     read -r response
@@ -585,13 +585,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-lunar" ]; then
         "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender\n- [ ] Enable automatic update installation\n- [ ] Install CLI tool\n- [ ] Walk through onboarding & initial setup\n- [ ] Use Sync mode automatically"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-lunar"
+      touch "$HOME/.config/dotfiles/software/no-lunar"
     fi
   }
   sw_install "/Applications/Lunar.app" _install_lunar
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-duet" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-duet" ]; then
   _install_duet() {
     cecho "Install Duet Display? (y/N)" $magenta
     read -r response
@@ -600,7 +600,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-duet" ]; then
         "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Android USB Support"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-duet"
+      touch "$HOME/.config/dotfiles/software/no-duet"
     fi
   }
   sw_install "/Applications/duet.app" _install_duet
@@ -633,7 +633,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   chmod 755 "$HOME/opt/bin/notify-me"
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-secretive" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-secretive" ]; then
   _install_secretive() {
     cecho "Install Secretive (Touch ID SSH agent)? (y/N)" $magenta
     read -r response
@@ -650,7 +650,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-secretive" ]; then
   sw_install "/Applications/Secretive.app" _install_secretive
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-yubikey-ssh-agent" ]; then
   _install_yubikey_agent() {
     cecho "Install Yubikey SSH Agent? (y/N)" $magenta
     read -r response
@@ -666,13 +666,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent" ]; then
       setupnote "yubikey-agent" "- [ ] Use \`yubikey-agent -setup\` to generate a new SSH key, if needed\n- [ ] Add new public key to SSH config"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-yubikey-ssh-agent"
+      touch "$HOME/.config/dotfiles/software/no-yubikey-ssh-agent"
     fi
   }
   sw_install "$(brew --prefix)/bin/yubikey-agent" _install_yubikey_agent
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-ykman" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-ykman" ]; then
   _install_ykman() {
     cecho "Install ykman (CLI YubiKey management tool)? (y/N)" $magenta
     read -r response
@@ -680,13 +680,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ykman" ]; then
       brew install ykman
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-ykman"
+      touch "$HOME/.config/dotfiles/software/no-ykman"
     fi
   }
   sw_install "/Applications/YubiKey Manager.app" _install_ykman
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-yubikey-manager" ]; then
   _install_yubikey_manager() {
     cecho "Install Yubikey Manager? (y/N)" $magenta
     read -r response
@@ -694,13 +694,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-yubikey-manager" ]; then
       brew install --cask yubico-yubikey-manager
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-yubikey-manager"
+      touch "$HOME/.config/dotfiles/software/no-yubikey-manager"
     fi
   }
   sw_install "/Applications/YubiKey Manager.app" _install_yubikey_manager
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
   _install_streamdeck() {
     echo ""
     cecho "Install Elgato Stream Deck utility? (y/N)" $magenta
@@ -711,13 +711,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-stream-deck" ]; then
         "- [ ] Enable Accessibility permissions\n- [ ] Install Zoom plugin\n- [ ] Restore config backup as appropriate"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-stream-deck"
+      touch "$HOME/.config/dotfiles/software/no-stream-deck"
     fi
   }
   sw_install "/Applications/Elgato Stream Deck.app" _install_streamdeck
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-elgato-control-center" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-elgato-control-center" ]; then
   _install_control_center_elgato() {
     echo ""
     cecho "Install Elgato Control Center utility? (y/N)" $magenta
@@ -728,14 +728,14 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-elgato-control-center" ]; then
         "- [ ] Arrange in menu bar"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-elgato-control-center"
+      touch "$HOME/.config/dotfiles/software/no-elgato-control-center"
     fi
   }
   sw_install "/Applications/Elgato Control Center.app" _install_control_center_elgato
 fi
 
 # ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
-# if [ ! -e "$HOME/.local/dotfiles/software/no-home-hardware-utils" ]; then
+# if [ ! -e "$HOME/.config/dotfiles/software/no-home-hardware-utils" ]; then
 #    _install_scansnap() {
 #     echo ""
 #     cecho "Install Fusitsu ScanSnap utility? (y/N)" $magenta
@@ -745,7 +745,7 @@ fi
 #         "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
 #     else
 #       echo "Won't ask again next time this script is run."
-#       touch "$HOME/.local/dotfiles/software/no-home-hardware-utils"
+#       touch "$HOME/.config/dotfiles/software/no-home-hardware-utils"
 #     fi
 #   }
 #   sw_install /Applications/ScanSnap _install_scansnap
@@ -815,7 +815,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/WiFi Explorer.app" "mas install 494803304"
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-wireshark" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-wireshark" ]; then
   _install_wireshark() {
     cecho "Install Wireshark? (y/N)" $magenta
     read -r response
@@ -823,13 +823,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-wireshark" ]; then
       brew install --cask wireshark
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-wireshark"
+      touch "$HOME/.config/dotfiles/software/no-wireshark"
     fi
   }
   sw_install /Applications/Wireshark.app _install_wireshark
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-bettercap" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-bettercap" ]; then
   _install_bettercap() {
     cecho "Install Bettercap? (y/N)" $magenta
     read -r response
@@ -837,13 +837,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-bettercap" ]; then
       brew install bettercap
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-bettercap"
+      touch "$HOME/.config/dotfiles/software/no-bettercap"
     fi
   }
   sw_install "$(brew --prefix)/bin/bettercap" _install_bettercap
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-rpi-imager" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-rpi-imager" ]; then
   _install_rpi_imager() {
     cecho "Install Raspberry Pi Imager? (y/N)" $magenta
     read -r response
@@ -851,13 +851,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-rpi-imager" ]; then
       brew install --cask raspberry-pi-imager
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-rpi-imager"
+      touch "$HOME/.config/dotfiles/software/no-rpi-imager"
     fi
   }
   sw_install "/Applications/Raspberry Pi Imager.app" _install_rpi_imager
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-balena-etcher" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-balena-etcher" ]; then
   _install_balena_etcher() {
     cecho "Install balena etcher (for burning SD card images)? (y/N)" $magenta
     read -r response
@@ -865,7 +865,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-balena-etcher" ]; then
       brew install --cask balenaetcher
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-balena-etcher"
+      touch "$HOME/.config/dotfiles/software/no-balena-etcher"
     fi
   }
   sw_install /Applications/balenaEtcher.app _install_balena_etcher
@@ -899,7 +899,7 @@ _install_superduper(){
 }
 sw_install "/Applications/SuperDuper!.app" _install_superduper
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-ivpn" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-ivpn" ]; then
   _install_ivpn_client() {
     cecho "Install IVPN client? (y/N)" $magenta
     read -r response
@@ -907,7 +907,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ivpn" ]; then
       brew install --cask ivpn
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-ivpn"
+      touch "$HOME/.config/dotfiles/software/no-ivpn"
     fi
   }
   sw_install /Applications/IVPN.app _install_ivpn_client
@@ -921,7 +921,7 @@ if [ -e "/Applications/TorBrowser.app" ]; then
   fi
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-tor" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-tor" ]; then
   _install_torbrowser() {
     cecho "Install Tor Browser? (y/N)" $magenta
     read -r response
@@ -929,13 +929,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-tor" ]; then
       brew install --cask tor-browser
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-tor"
+      touch "$HOME/.config/dotfiles/software/no-tor"
     fi
   }
   sw_install "/Applications/Tor Browser.app" _install_torbrowser
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-screensconnect" ]; then
   _install_screensconnect() {
     cecho "Install Screens Connect? (y/N)" $magenta
     read -r response
@@ -945,7 +945,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-screensconnect" ]; then
         "- [ ] Sign in / enable\n- [ ] Hide in Bartender"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-screensconnect"
+      touch "$HOME/.config/dotfiles/software/no-screensconnect"
     fi
   }
   sw_install "/Applications/Screens Connect.app" _install_screensconnect
@@ -960,7 +960,7 @@ _install_vncviewer() {
 }
 sw_install "/Applications/VNC Viewer.app" _install_vncviewer
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-transmit" ]; then
   _install_transmit() {
     cecho "Install Transmit? (y/N)" $magenta
     read -r response
@@ -970,7 +970,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-transmit" ]; then
         "- [ ] License\n- [ ] Sign into Panic Sync (Transmit and Nova repository)\n- [ ] Configure application"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-transmit"
+      touch "$HOME/.config/dotfiles/software/no-transmit"
     fi
   }
   sw_install "/Applications/Transmit.app" _install_transmit
@@ -1048,7 +1048,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman" # popular for React Native
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-boop" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-boop" ]; then
   _install_boop() {
     cecho "Install Boop? (y/N)" $magenta
     echo "(OSS TextBuddy alternative)"
@@ -1057,13 +1057,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-boop" ]; then
       mas install 1518425043
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-boop"
+      touch "$HOME/.config/dotfiles/software/no-boop"
     fi
   }
   sw_install "/Applications/Boop.app" _install_boop
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-jetbrains" ]; then
   _install_jetbrains() {
     cecho "Install JetBrains Toolbox? (y/N)" $magenta
     read -r response
@@ -1073,7 +1073,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-jetbrains" ]; then
         "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-jetbrains"
+      touch "$HOME/.config/dotfiles/software/no-jetbrains"
     fi
   }
   sw_install "/Applications/JetBrains Toolbox.app" _install_jetbrains
@@ -1235,7 +1235,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-embedded-tools" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
   cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -1243,7 +1243,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-embedded-tools" ]; then
      sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-embedded-tools"
+    touch "$HOME/.config/dotfiles/software/no-embedded-tools"
   fi
 fi
 
@@ -1310,14 +1310,14 @@ _install_ask_script_debugger() {
 }
 sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-react-native" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-react-native" ]; then
   cecho "Install React Native CLI? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-react-native"
+    touch "$HOME/.config/dotfiles/software/no-react-native"
   fi
 fi
 
@@ -1330,7 +1330,7 @@ _install_sbt() {
 }
 sw_install "$(brew --prefix)/bin/sbt" _install_sbt
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-java-devtools" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-java-devtools" ]; then
   echo ""
   cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
   read -r response
@@ -1340,7 +1340,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-java-devtools" ]; then
     sw_install "$(brew --prefix)/bin/mvn" "brew_install maven"
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-java-devtools"
+    touch "$HOME/.config/dotfiles/software/no-java-devtools"
   fi
 fi
 
@@ -1472,7 +1472,7 @@ echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-cura" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-cura" ]; then
   _install_cura() {
     cecho "Install Cura? (y/N)" $magenta
     read -r response
@@ -1482,13 +1482,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-cura" ]; then
         "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-cura"
+      touch "$HOME/.config/dotfiles/software/no-cura"
     fi
   }
   sw_install "/Applications/UltiMaker Cura.app" _install_cura
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-fusion360" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-fusion360" ]; then
   _install_f360() {
     cecho "Install Fusion 360? (y/N)" $magenta
     read -r response
@@ -1498,7 +1498,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-fusion360" ]; then
       chflags -h hidden "$HOME/Applications/Remove Autodesk Fusion 360.app"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-fusion360"
+      touch "$HOME/.config/dotfiles/software/no-fusion360"
     fi
   }
   sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
@@ -1518,10 +1518,10 @@ _install_octopi_wrapper() {
 }
 sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
 
-if [ -e "$HOME/.local/dotfiles/software/no-kicad" ]; then
-  mv "$HOME/.local/dotfiles/software/no-kicad" "$HOME/.local/dotfiles/software/no-ee-tools"
+if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
+  mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
 fi
-if [ ! -e "$HOME/.local/dotfiles/software/no-ee-tools" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-ee-tools" ]; then
   cecho "Install EE tools (KTSpice, KiCad)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -1529,11 +1529,11 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ee-tools" ]; then
      sw_install /Applications/LTSpice.app 'brew_cask_install ltspice'
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-ee-tools"
+    touch "$HOME/.config/dotfiles/software/no-ee-tools"
   fi
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-cubicsdr" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-cubicsdr" ]; then
   _install_cubicsdr() {
     cecho "Install CubicSDR? (y/N)" $magenta
     read -r response
@@ -1541,13 +1541,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-cubicsdr" ]; then
       brew install --cask cubicsdr
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-cubicsdr"
+      touch "$HOME/.config/dotfiles/software/no-cubicsdr"
     fi
   }
   sw_install /Applications/CubicSDR.app _install_cubicsdr
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-chirp" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-chirp" ]; then
   _install_chirp() {
     cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
     read -r response
@@ -1555,7 +1555,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-chirp" ]; then
       brew install --cask chirp
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-chirp"
+      touch "$HOME/.config/dotfiles/software/no-chirp"
     fi
   }
   sw_install /Applications/CHIRP.app _install_chirp
@@ -1576,7 +1576,7 @@ _install_firefox() {
 }
 sw_install /Applications/Firefox.app _install_firefox
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-slack" ]; then
   _install_slack() {
     cecho "Install Slack? (y/N)" $magenta
     read -r response
@@ -1585,13 +1585,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-slack" ]; then
         "- [ ] Sign in to Slack accounts"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-slack"
+      touch "$HOME/.config/dotfiles/software/no-slack"
     fi
   }
   sw_install /Applications/Slack.app _install_slack
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-zoom" ]; then
   _install_zoom() {
     cecho "Install Zoom for videoconferencing? (y/N)" $magenta
     read -r response
@@ -1604,7 +1604,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-zoom" ]; then
         "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting\n- [ ] Generally configure as desired"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-zoom"
+      touch "$HOME/.config/dotfiles/software/no-zoom"
     fi
   }
 fi
@@ -1620,7 +1620,7 @@ _install_signal() {
 }
 sw_install /Applications/Signal.app _install_signal
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-google-drive" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-google-drive" ]; then
   _install_gdrive() {
     cecho "Install Google Drive? (y/N)" $magenta
     read -r response
@@ -1630,7 +1630,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-google-drive" ]; then
         "- [ ] Authenticate"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-google-drive"
+      touch "$HOME/.config/dotfiles/software/no-google-drive"
     fi
   }
   sw_install "/Applications/Google Drive.app" _install_gdrive
@@ -1871,7 +1871,7 @@ _install_avenue() {
 }
 sw_install "/Applications/Avenue.app" _install_avenue
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-adobecc" ]; then
   _install_adobe_cc() {
     cecho "Install Adobe Creative Cloud? (y/N)" $magenta
     read -r response
@@ -1884,13 +1884,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-adobecc" ]; then
       echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-adobecc"
+      touch "$HOME/.config/dotfiles/software/no-adobecc"
     fi
   }
   sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-applepromediatools" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-applepromediatools" ]; then
   echo ""
   cecho "Install Logic Pro, Final Cut Pro, and related tools? (y/N)" $magenta
   read -r response
@@ -1901,7 +1901,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-applepromediatools" ]; then
     sw_install "/Applications/Motion.app" "mas install 434290957"
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/software/no-applepromediatools"
+    touch "$HOME/.config/dotfiles/software/no-applepromediatools"
   fi
 fi
 
@@ -1946,7 +1946,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   popd
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
     cecho "Install Handbrake? (y/N)" $magenta
     read -r response
@@ -1955,13 +1955,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-handbrake" ]; then
       sw_install "$(brew --prefix)/lib/libmp3lame.dylib" "brew_install lame"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-handbrake"
+      touch "$HOME/.config/dotfiles/software/no-handbrake"
     fi
   }
   sw_install /Applications/Handbrake.app _install_handbrake
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-calibre" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-calibre" ]; then
   _install_calibre() {
     cecho "Install Calibre + Android File Transfer tool? (y/N)" $magenta
     read -r response
@@ -1970,7 +1970,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-calibre" ]; then
       brew install --cask android-file-transfer
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-calibre"
+      touch "$HOME/.config/dotfiles/software/no-calibre"
     fi
   }
   sw_install /Applications/calibre.app _install_calibre
@@ -2128,7 +2128,7 @@ _install_kindle() {
 }
 sw_install /Applications/Kindle.app _install_kindle
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-remotehelperapp" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-remotehelperapp" ]; then
   _install_remotehelperapp() {
     cecho "Install Remote Helper app (companion to iOS Remote Control app)? (y/N)" $magenta
     read -r response
@@ -2146,7 +2146,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-remotehelperapp" ]; then
       echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-remotehelperapp"
+      touch "$HOME/.config/dotfiles/software/no-remotehelperapp"
     fi
   }
   sw_install "/Applications/Remote for Mac.app" _install_remotehelperapp
@@ -2156,7 +2156,7 @@ echo ""
 cecho "--- Social Networking ---" $white
 echo ""
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-discord" ]; then
   _install_discord() {
     cecho "Install Discord? (y/N)" $magenta
     read -r response
@@ -2165,19 +2165,19 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-discord" ]; then
       setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-discord"
+      touch "$HOME/.config/dotfiles/software/no-discord"
     fi
   }
   sw_install /Applications/Discord.app _install_discord
 fi
 
 
-if [ -e "$HOME/.local/dotfiles/software/no-mastonaut" ]; then
-  touch "$HOME/.local/dotfiles/software/no-ivory"
-  trash "$HOME/.local/dotfiles/software/no-mastonaut"
+if [ -e "$HOME/.config/dotfiles/software/no-mastonaut" ]; then
+  touch "$HOME/.config/dotfiles/software/no-ivory"
+  trash "$HOME/.config/dotfiles/software/no-mastonaut"
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-ivory" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-ivory" ]; then
   _install_ivory() {
     cecho "Install Ivory (Mastodon client)? (y/N)" $magenta
     read -r response
@@ -2186,13 +2186,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-ivory" ]; then
       setupnote "Ivory" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Restore purchases\n- [ ] Enable notifications\n- [ ] Notification settings (system level): Disable banners & sounds; previews only when unlocked\n- [ ] Sign into Instapaper"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-ivory"
+      touch "$HOME/.config/dotfiles/software/no-ivory"
     fi
   }
   sw_install /Applications/Ivory.app _install_ivory
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-mona" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-mona" ]; then
   _install_mona() {
     cecho "Install Mona (Mastodon client)? (y/N)" $magenta
     read -r response
@@ -2201,18 +2201,18 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-mona" ]; then
       setupnote "Mona" "- [ ] Sign into personal a2mi.social Mastodon account\n- [ ] Restore purchases\n- [ ] Disallow notifications (for now)"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-mona"
+      touch "$HOME/.config/dotfiles/software/no-mona"
     fi
   }
   sw_install /Applications/Mona.app _install_mona
 fi
 
-if [ -e "$HOME/.local/dotfiles/software/no-caprine" ]; then
-  touch "$HOME/.local/dotfiles/software/no-messenger"
-  rm "$HOME/.local/dotfiles/software/no-caprine"
+if [ -e "$HOME/.config/dotfiles/software/no-caprine" ]; then
+  touch "$HOME/.config/dotfiles/software/no-messenger"
+  rm "$HOME/.config/dotfiles/software/no-caprine"
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-messenger" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-messenger" ]; then
   _install_messenger() {
     cecho "Install Facebook Messenger? (y/N)" $magenta
     read -r response
@@ -2221,13 +2221,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-messenger" ]; then
       setupnote "Messenger.app" "- [ ] Sign into Facebook account"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-messenger"
+      touch "$HOME/.config/dotfiles/software/no-messenger"
     fi
   }
   sw_install /Applications/Messenger.app _install_messenger
 fi
 
-# if [ ! -e "$HOME/.local/dotfiles/software/no-tweetbot" ]; then
+# if [ ! -e "$HOME/.config/dotfiles/software/no-tweetbot" ]; then
 #   _install_tweetbot() {
 #     cecho "Install Tweetbot? (y/N)" $magenta
 #     read -r response
@@ -2247,7 +2247,7 @@ fi
 #       set +x
 #     else
 #       echo "Won't ask again next time this script is run."
-#       touch "$HOME/.local/dotfiles/software/no-tweetbot"
+#       touch "$HOME/.config/dotfiles/software/no-tweetbot"
 #     fi
 #   }
 #   sw_install /Applications/Tweetbot.app _install_tweetbot
@@ -2257,7 +2257,7 @@ echo ""
 cecho "--- Games ---" $white
 echo ""
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-steam" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-steam" ]; then
   _install_steam() {
     cecho "Install Steam? (y/N)" $magenta
     read -r response
@@ -2266,13 +2266,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-steam" ]; then
         "- [ ] Launch & sign in\n- [ ] Remove login item in System Preferences/Users & Groups\n- [ ] Disable & unload \`com.valvesoftware.steamclean\` launchd job"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-steam"
+      touch "$HOME/.config/dotfiles/software/no-steam"
     fi
   }
   sw_install /Applications/Steam.app _install_steam
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-nsnake" ]; then
   _install_nsnake() {
     cecho "Install nsnake? (y/N)" $magenta
     read -r response
@@ -2280,13 +2280,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-nsnake" ]; then
       brew install nsnake
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-nsnake"
+      touch "$HOME/.config/dotfiles/software/no-nsnake"
     fi
   }
   sw_install "$(brew --prefix)/bin/nsnake" _install_nsnake
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-blackink" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-blackink" ]; then
   _install_blackink() {
     cecho "Install Black Ink (crossword puzzle app)? (y/N)" $magenta
     read -r response
@@ -2304,13 +2304,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-blackink" ]; then
       echo "" >> "$HOME/SystemSetup.md"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-blackink"
+      touch "$HOME/.config/dotfiles/software/no-blackink"
     fi
   }
   sw_install "/Applications/Black Ink.app" _install_blackink
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-minimetro" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-minimetro" ]; then
   _install_minimetro() {
     cecho "Install Mini Metro? (y/N)" $magenta
     read -r response
@@ -2318,13 +2318,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-minimetro" ]; then
       mas install 1047760200 # Mini Metro
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-minimetro"
+      touch "$HOME/.config/dotfiles/software/no-minimetro"
     fi
   }
   sw_install "/Applications/Mini Metro.app" _install_minimetro
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-simcity" ]; then
   _install_simcity() {
     cecho "Install SimCity 4 Deluxe? (y/N)" $magenta
     read -r response
@@ -2332,13 +2332,13 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-simcity" ]; then
       mas install 804079949 # SimCity 4 Deluxe Edition
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-simcity"
+      touch "$HOME/.config/dotfiles/software/no-simcity"
     fi
   }
   sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/software/no-flyingtoasters" ]; then
+if [ ! -e "$HOME/.config/dotfiles/software/no-flyingtoasters" ]; then
   _install_flyingtoasters() {
     cecho "Install Flying Toasters screen saver? (y/N)" $magenta
     echo "(Can also be changed to other screen savers from https://www.bryanbraun.com/after-dark-css )"
@@ -2348,7 +2348,7 @@ if [ ! -e "$HOME/.local/dotfiles/software/no-flyingtoasters" ]; then
       setupnote "Flying Toasters (WebViewScreenSaver)" "- [ ] Set URL to \`https://www.bryanbraun.com/after-dark-css/all/flying-toasters.html\`\n- [ ] Set other URLs from https://www.bryanbraun.com/after-dark-css as desired"
     else
       echo "Won't ask again next time this script is run."
-      touch "$HOME/.local/dotfiles/software/no-flyingtoasters"
+      touch "$HOME/.config/dotfiles/software/no-flyingtoasters"
     fi
   }
   sw_install "$HOME/Library/Screen Savers/WebViewScreenSaver.saver" _install_flyingtoasters

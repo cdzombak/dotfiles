@@ -8,7 +8,7 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 mkdir -p "$HOME/.config"
-mkdir -p "$HOME/.local/dotfiles"
+mkdir -p "$HOME/.config/dotfiles"
 mkdir -p "$HOME/.local/shell-completion"
 mkdir -p "$HOME/Applications"
 mkdir -p "$HOME/opt/bin"
@@ -24,7 +24,7 @@ if [ -d "$HOME/.shell-completion-local" ]; then
   trash "$HOME/.shell-completion-local"
 fi
 
-if [ ! -d "$HOME/code" ] && [ ! -e "$HOME/.local/dotfiles/no-home-code-dir" ] ; then
+if [ ! -d "$HOME/code" ] && [ ! -e "$HOME/.config/dotfiles/no-home-code-dir" ] ; then
   echo ""
   echo "Create ~/code and ~/3p_code? (y/N)"
   read -r response
@@ -32,11 +32,11 @@ if [ ! -d "$HOME/code" ] && [ ! -e "$HOME/.local/dotfiles/no-home-code-dir" ] ; 
     mkdir -p "$HOME/3p_code"
     mkdir -p "$HOME/code"
   else
-    touch "$HOME/.local/dotfiles/no-home-code-dir"
+    touch "$HOME/.config/dotfiles/no-home-code-dir"
   fi
 fi
 
-if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ] ; then
+if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.config/dotfiles/no-home-go-dir" ] ; then
   echo ""
   echo "Create ~/go/bin and ~/go/src? (y/N)"
   read -r response
@@ -44,7 +44,7 @@ if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ] ; then
     mkdir -p "$HOME/go/bin"
     mkdir -p "$HOME/go/src"
   else
-    touch "$HOME/.local/dotfiles/no-home-go-dir"
+    touch "$HOME/.config/dotfiles/no-home-go-dir"
   fi
 fi
 
@@ -60,14 +60,14 @@ if [ ! -L "$HOME/opt/bin/macupdate" ] ; then
   ln -s "$HOME/Sync/homeops/bin/macupdate.sh" "$HOME/opt/bin/macupdate"
 fi
 
-if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.local/dotfiles/no-home-env-dir" ]; then
+if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.config/dotfiles/no-home-env-dir" ]; then
   echo ""
   echo "Create ~/env (synced via Syncthing)? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     ln -s "$HOME/Sync/env" "$HOME/env"
   else
-    touch "$HOME/.local/dotfiles/no-home-env-dir"
+    touch "$HOME/.config/dotfiles/no-home-env-dir"
   fi
 fi
 
@@ -102,19 +102,19 @@ if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
     ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
   fi
 
-  if [ ! -L "$HOME/Cloud Library" ] && [ ! -e "$HOME/.local/dotfiles/no-home-booksandarticles-dir" ] ; then
+  if [ ! -L "$HOME/Cloud Library" ] && [ ! -e "$HOME/.config/dotfiles/no-home-booksandarticles-dir" ] ; then
     echo ""
     echo "Create link to iCloud Drive/Cloud Library in home directory? (y/N)"
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Cloud Library" "$HOME/Cloud Library"
     else
-      touch "$HOME/.local/dotfiles/no-home-booksandarticles-dir"
+      touch "$HOME/.config/dotfiles/no-home-booksandarticles-dir"
     fi
   fi
 
   if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null 2>&1 ; then
-    if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.local/dotfiles/no-home-icloud-links" ]; then
+    if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.config/dotfiles/no-home-icloud-links" ]; then
       echo ""
       echo "Desktop/Documents in iCloud appears to be disabled."
       echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
@@ -124,7 +124,7 @@ if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
         ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
         ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
       else
-        touch "$HOME/.local/dotfiles/no-home-icloud-links"
+        touch "$HOME/.config/dotfiles/no-home-icloud-links"
       fi
     fi
   fi

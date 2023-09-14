@@ -7,7 +7,7 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
-mkdir -p "$HOME/.local/dotfiles"
+mkdir -p "$HOME/.config/dotfiles"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
@@ -15,7 +15,7 @@ mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/scripts"
 mkdir -p "$HOME/tmp"
 
-if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ]; then
+if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.config/dotfiles/no-home-go-dir" ]; then
   echo ""
   echo "Create ~/go? (y/N)"
   read -r response
@@ -24,6 +24,6 @@ if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.local/dotfiles/no-home-go-dir" ]; then
     mkdir -p "$HOME/go/src"
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/no-home-go-dir"
+    touch "$HOME/.config/dotfiles/no-home-go-dir"
   fi
 fi

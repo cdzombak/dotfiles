@@ -60,7 +60,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # General UI/UX
 ###############################################################################
 
-if [ ! -e "$HOME/.local/dotfiles/no-set-computer-name" ]; then
+if [ ! -e "$HOME/.config/dotfiles/no-set-computer-name" ]; then
   echo ""
   cecho "Would you like to set your computer name (as done via System Preferences >> Sharing)?  (y/N)" $magenta
   read -r response
@@ -72,7 +72,7 @@ if [ ! -e "$HOME/.local/dotfiles/no-set-computer-name" ]; then
     sudo scutil --set LocalHostName "$COMPUTER_NAME"
     sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
   else
-    touch "$HOME/.local/dotfiles/no-set-computer-name"
+    touch "$HOME/.config/dotfiles/no-set-computer-name"
     echo "Won't ask again the next time this script runs."
   fi
 fi
@@ -317,7 +317,7 @@ echo "Speed up Mission Control animations; Group windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.2
 defaults write com.apple.dock "expose-group-by-app" -bool true
 
-if [ ! -e "$HOME/.local/dotfiles/no-ask-dock-auto-hide-delay" ]; then
+if [ ! -e "$HOME/.config/dotfiles/no-ask-dock-auto-hide-delay" ]; then
   echo ""
   cecho "Minimize the Dock auto-hiding delay? (y/N)" $magenta
   read -r response
@@ -326,7 +326,7 @@ if [ ! -e "$HOME/.local/dotfiles/no-ask-dock-auto-hide-delay" ]; then
     defaults write com.apple.dock autohide-time-modifier -float 0.5
   fi
   echo "Won't ask about this again the next time this script runs."
-  touch "$HOME/.local/dotfiles/no-ask-dock-auto-hide-delay"
+  touch "$HOME/.config/dotfiles/no-ask-dock-auto-hide-delay"
 fi
 
 echo ""
@@ -505,7 +505,7 @@ fi
 # iTunes
 ###############################################################################
 
-if [ ! -e "$HOME/.local/dotfiles/no-itunes-config" ]; then
+if [ ! -e "$HOME/.config/dotfiles/no-itunes-config" ]; then
   echo ""
   cecho "Configure Apple Music (formerly iTunes)? (y/N)" $magenta
   read -r response
@@ -526,7 +526,7 @@ if [ ! -e "$HOME/.local/dotfiles/no-itunes-config" ]; then
     defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
   fi
   echo "Won't ask about this again the next time this script runs."
-  touch "$HOME/.local/dotfiles/no-itunes-config"
+  touch "$HOME/.config/dotfiles/no-itunes-config"
 fi
 
 ###############################################################################

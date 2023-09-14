@@ -249,7 +249,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   set +x
 fi
 
-if [ ! -e "$HOME/.local/dotfiles/no-ffmpeg-scripts" ]; then
+if [ ! -e "$HOME/.config/dotfiles/no-ffmpeg-scripts" ]; then
   echo "Install/update my quick media conversion scripts? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -263,6 +263,6 @@ if [ ! -e "$HOME/.local/dotfiles/no-ffmpeg-scripts" ]; then
     set +x
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.local/dotfiles/no-ffmpeg-scripts"
+    touch "$HOME/.config/dotfiles/no-ffmpeg-scripts"
   fi
 fi

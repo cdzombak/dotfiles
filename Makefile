@@ -36,9 +36,9 @@ setupnote:
 	@echo ""
 
 .PHONY: reset-choices
-reset-choices: ## Reset any choices persisted in ~/.local/dotfiles
-	rm -rf ~/.local/dotfiles
-	mkdir -p ~/.local/dotfiles
+reset-choices: ## Reset any choices persisted in ~/.config/dotfiles
+	rm -rf ~/.config/dotfiles
+	mkdir -p ~/.config/dotfiles
 
 # Platform Verfication
 
