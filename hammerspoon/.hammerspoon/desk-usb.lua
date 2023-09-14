@@ -1,5 +1,10 @@
 local log = hs.logger.new('desk-usb.lua', 'debug')
 
+function file_exists(name)
+   local f=io.open(name, "r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
 function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
   local isWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
@@ -44,6 +49,13 @@ function usbCallback(data)
       end
       log.d("isHomeDeskMacStudio: " .. tostring(isHomeDeskMacStudio))
 
+      -- on disconnect from 'Freestyle Edge Keyboard',
+      -- if this machine is my personal desktop Mac and it's using the onboard speakers,
+      -- mute it:
+      if isHomeDeskMacStudio and hs.audiodevice.current()["name"] == "Mac Studio Speakers" then
+        hs.audiodevice.defaultOutputDevice():setMuted(true)
+      end
+
       -- Is this machine currently connected to my home office desk external monitor?
       local isHomeDeskExternalMonitor = false
       local output, status = hs.execute("/usr/local/bin/lunar get serial")
@@ -54,17 +66,13 @@ function usbCallback(data)
       end
       log.d("isHomeDeskExternalMonitor: " .. tostring(isHomeDeskExternalMonitor))
 
-      -- on disconnect from 'Freestyle Edge Keyboard',
-      -- if this machine is my personal secondary desktop Mac
-      -- mute it:
-      if isHomeDeskMacStudio and hs.audiodevice.current()["name"] == "Mac Studio Speakers" then
-        hs.audiodevice.defaultOutputDevice():setMuted(true)
-      end
+      local enableAutoMonitorSwitching = file_exists("~/.config/dotfiles/enable-auto-monitor-switching")
 
       -- on disconnect from 'Freestyle Edge Keyboard',
       -- if home desk external monitor is connected,
-      -- switch it to the other input:
-      if isHomeDeskExternalMonitor then
+      -- and ~/.config/dotfiles/enable-auto-monitor-switching exists,
+      -- switch the monitor to the other input:
+      if enableAutoMonitorSwitching and isHomeDeskExternalMonitor then
         local newInput = "displayport2"
         if isHomeDeskMacStudio then
           newInput = "displayport1"
@@ -76,8 +84,9 @@ function usbCallback(data)
       end
     end
 
+    -- on disconnect from my webcam,
+    -- kill webcam support software
     if isWebcam then
-      -- kill webcam support software
       logiTuneApp = hs.application.get("com.logitech.logitune")
       if logiTuneApp then
         logiTuneApp:kill()
