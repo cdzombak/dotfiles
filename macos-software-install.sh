@@ -2094,6 +2094,15 @@ _install_pocketcasts() {
 }
 sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
 
+_install_ytmusic() {
+  cecho "Install YT Music? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask yt-music
+  fi
+}
+sw_install "/Applications/YT Music.app" _install_ytmusic
+
 _install_triode() {
   cecho "Install Triode? (y/N)" $magenta
   read -r response
