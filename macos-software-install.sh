@@ -1413,12 +1413,15 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
 fi
 
 echo ""
-cecho "Install Docker/container-related tools (dockerfilelint, dive)? (y/N)" $magenta
+cecho "Install Docker/container-related tools (act, dive, dockerfilelint, hadolint)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
+  sw_install "$(brew --prefix)/bin/act" "brew_install act"
   brew tap | grep -c wagoodman/dive >/dev/null || brew tap wagoodman/dive
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
+  sw_install "$(brew --prefix)/bin/hadolint" "brew_install hadolint"
+
+  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
 fi
 
 if ! uname -p | grep -c "arm" >/dev/null; then
