@@ -3,7 +3,6 @@ set -euo pipefail
 
 # versions:
 LATEST_BANDWHICH="0.20.0"  # https://github.com/imsnif/bandwhich/releases
-LATEST_DUST="0.8.3"  # https://github.com/bootandy/dust/releases
 LATEST_RESTIC="0.16.0"  # https://github.com/restic/restic/releases
 NANO_V="7.0"  # https://www.nano-editor.org/download.php
 NANO_MAJOR_V="7"
@@ -44,41 +43,6 @@ else
   echo ""
   echo "[!] Could not find apt, dnf, or yum; don't know how to install packages on this system."
   echo ""
-fi
-
-# install dust: A more intuitive version of du in rust
-# see https://github.com/bootandy/dust/releases
-echo "Installing dust..."
-if [ -x "$HOME/opt/bin/dust" ]; then
-  echo " Moving dust from ~ to /usr/local..."
-  sudo mv "$HOME/opt/bin/dust" /usr/local/bin/dust
-fi
-if [ -x /usr/local/bin/dust ]; then
-  # remove outdated version:
-  if ! /usr/local/bin/dust -V | grep -c "$LATEST_DUST" >/dev/null ; then
-    echo " Removing outdated dust..."
-    sudo rm /usr/local/bin/dust
-  fi
-fi
-if [ ! -x /usr/local/bin/dust ]; then
-  set -x
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dust-work')
-  pushd "$TMP_DIR"
-  if uname -a | grep -c -i arm >/dev/null; then
-    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux" | grep "arm" | xargs wget -q -O dust.tar.gz
-  elif uname -a | grep -c -i x86_64 >/dev/null; then
-    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "x86_64" | xargs wget -q -O dust.tar.gz
-  else
-    curl -s "https://api.github.com/repos/bootandy/dust/releases/tags/v$LATEST_DUST" | jq -r ".assets[].browser_download_url" | grep "linux-musl" | grep "i686" | xargs wget -q -O dust.tar.gz
-  fi
-  tar xzf dust.tar.gz
-  rm dust.tar.gz
-  sudo cp ./dust*/dust /usr/local/bin
-  sudo chmod +x /usr/local/bin/dust
-  popd
-  set +x
-else
-  echo "dust is already installed."
 fi
 
 # install bandwhich: Terminal bandwidth utilization tool
