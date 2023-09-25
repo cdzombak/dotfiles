@@ -39,6 +39,9 @@ alias ggit='git'
 alias subl='subl -n' # always open a new window when working from CLI
 alias subl.='subl -n .' # I can't type
 
+# easy access to the Tailscale CLI
+[ -e '/Applications/Tailscale.app' ] && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+
 alias cpwd='pwd|tr -d "\n"|clipcopy'
 
 # ssh with multiplexing (relies on ControlPath & etc set in ~/.ssh/config)
