@@ -101,7 +101,6 @@
 	subl-conflicts = ! git status | grep -i 'both modified' | sed 's/both modified://' | xargs subl -a $(git rev-parse --show-toplevel) -n
 	branch-cleanup = ! git branch --merged | egrep -v \"(^\\*|master|main|dev|development)\" | xargs git branch -d && git remote prune origin
 	recent-branches = branch --sort=-committerdate
-	sc = summarize-changes
 
 	# Interactive checkout. Requires fzf (https://github.com/junegunn/fzf).
 	# Example: `git ibco`
@@ -118,6 +117,8 @@
 	#
 	# via aaron @ blumira
 	irbco = !git for-each-ref refs/remotes --format='%(refname:short)' | fzf | sed 's/[^\\/]*\\/\\(.*\\)/\\1/' | xargs git switch
+
+	sc = summarize-changes
 
 # Tools
 

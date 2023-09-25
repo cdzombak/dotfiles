@@ -29,8 +29,11 @@
 [url "https://"]
 	insteadOf = git://
 
-#[url "https://github.com/"]
-#	insteadOf = git@github.com:
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+
+[credential]
+	helper = cache --timeout 1800
 
 # UI
 
@@ -62,5 +65,22 @@
 	exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	cbr = rev-parse --abbrev-ref HEAD
-	recent = ! git reflog | grep 'checkout: moving from' | head -n 50 | egrep -oh ' \\S+$' | awk '!x[$0]++'
-	first = rev-list --max-parents=0 HEAD
+	first-commit = rev-list --max-parents=0 HEAD
+	branch-cleanup = ! git branch --merged | egrep -v \"(^\\*|master|main|dev|development)\" | xargs git branch -d && git remote prune origin
+	recent-branches = branch --sort=-committerdate
+
+	# Interactive checkout. Requires fzf (https://github.com/junegunn/fzf).
+	# Example: `git ibco`
+	#
+	# via aaron @ blumira
+	ibco = !git for-each-ref refs/heads --format='%(refname:short)' | fzf | xargs git checkout
+
+	# Interactive remote checkout. Requires fzf (https://github.com/junegunn/fzf).
+	# Example: `git irbco`
+	#
+	# The sed command strips the origin part of the branch name (e.g.
+	# "origin/foo"). The double backslashes are because escape chars need to be
+	# escaped in gitconfigs.
+	#
+	# via aaron @ blumira
+	irbco = !git for-each-ref refs/remotes --format='%(refname:short)' | fzf | sed 's/[^\\/]*\\/\\(.*\\)/\\1/' | xargs git switch

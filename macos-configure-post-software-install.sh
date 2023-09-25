@@ -20,7 +20,7 @@ if [ ! -f "$HOME/.netrc" ]; then
   chmod 600 "$HOME/.netrc"
 fi
 # shellcheck disable=SC2088
-setupnote "~/.netrc" "- [ ] Set GitHub token ([create one here](https://github.com/settings/tokens))\n- [ ] Set dropbox.dzombak.com credentials"
+setupnote "~/.netrc" "- [ ] Set dropbox.dzombak.com credentials"
 
 if [ -d /opt/homebrew ]; then
   cecho "Set path for macOS .apps to include /usr/local and /opt/homebrew..." $white
