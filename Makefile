@@ -67,6 +67,7 @@ mac-stow: require-macos dependencies submodules ## Link macOS configuration file
 	stow profile
 	stow zsh
 	stow nano
+	stow act
 	[ -L ~/.kubectl_aliases ] || ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
 	@echo ""
 
