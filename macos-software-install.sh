@@ -401,8 +401,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-dayone" ]; then
   sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
     "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
 fi
-sw_install /Applications/Deliveries.app "mas install 290986013" \
-  "- [ ] Sign into Junecloud account\n- [ ] Enable background updating\n- [ ] Add widget to Notification Center\n- [ ] Disable all notification options via System Preferences, except showing in Notification Center"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
@@ -2043,6 +2041,17 @@ _install_unifiprotect() {
 }
 sw_install "$HOME/Applications/UniFi Protect.app" _install_unifiprotect
 
+_install_parcel() {
+  cecho "Install Parcel (package tracker)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 639968404
+    setupnote "Parcel.app" \
+      "- [ ] Allow notifications\n- [ ] Tweak system notification settings (all off except \"Show in Notification Center\")\n- [ ] Enable calendar integration"
+  fi
+}
+sw_install "/Applications/Parcel.app" _install_parcel
+
 echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
@@ -2503,6 +2512,13 @@ if [ -e "/Applications/Cardhop.app" ]; then
   echo "Cardhop..."
   verify_smartdelete
   trash /Applications/Cardhop.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Deliveries.app" ]; then
+  osascript -e 'quit app "Deliveries"'
+  verify_smartdelete
+  trash "/Applications/Deliveries.app"
   REMOVED_ANYTHING=true
 fi
 
