@@ -418,6 +418,7 @@ sw_install "/Applications/Paint S.app" "mas install 736473980" \
   "- [ ] Restore purchases"
 sw_install /Applications/Pastebot.app "mas install 1179623856" \
   "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
+sw_install /Applications/PCalc.app "mas install 403504866"
 sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 12pt"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
