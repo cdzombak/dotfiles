@@ -1396,6 +1396,9 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
     brew install --cask orbstack
     setupnote "OrbStack.app" \
       "- [ ] Start at login; show in menu bar\n- [ ] Automatically download updates\n- [ ] Set memory and CPU limits as desired"
+    if [ -e "$HOME"/.ssh/config.templates/orbstack ] && [ ! -e "$HOME"/.ssh/config.local/orbstack ]; then
+      ln -s "$HOME"/.ssh/config.templates/orbstack "$HOME"/.ssh/config.local/orbstack
+    fi
   fi
 fi
 
