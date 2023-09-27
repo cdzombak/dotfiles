@@ -57,6 +57,21 @@ fi
 if [ -e "$HOME/Applications/JSON Viewer.app" ] && [ ! -e "$HOME/Applications/Dev Tools/JSON Viewer" ]; then
   ln -s "$HOME/Applications/JSON Viewer.app" "$HOME/Applications/Dev Tools/JSON Viewer"
 fi
+if [ -e "$HOME/Applications/CLion.app" ] && [ ! -e "$HOME/Applications/Dev Tools/CLion" ]; then
+  ln -s "$HOME/Applications/CLion.app" "$HOME/Applications/Dev Tools/CLion"
+fi
+if [ -e "$HOME/Applications/Fleet.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Fleet" ]; then
+  ln -s "$HOME/Applications/Fleet.app" "$HOME/Applications/Dev Tools/Fleet"
+fi
+if [ -e "$HOME/Applications/IntelliJ IDEA Ultimate.app" ] && [ ! -e "$HOME/Applications/Dev Tools/IntelliJ IDEA" ]; then
+  ln -s "$HOME/Applications/IntelliJ IDEA Ultimate.app" "$HOME/Applications/Dev Tools/IntelliJ IDEA"
+fi
+if [ -e "$HOME/Applications/OrbStack.app" ] && [ ! -e "$HOME/Applications/Dev Tools/OrbStack" ]; then
+  ln -s "$HOME/Applications/OrbStack.app" "$HOME/Applications/Dev Tools/OrbStack"
+fi
+if [ -e "$HOME/Applications/GitHub Desktop.app" ] && [ ! -e "$HOME/Applications/Dev Tools/GitHub Desktop" ]; then
+  ln -s "$HOME/Applications/GitHub Desktop.app" "$HOME/Applications/Dev Tools/GitHub Desktop"
+fi
 
 if [ ! -d "$HOME/Applications/Hobby Tools" ]; then
   setupnote "Dock/Hobby Tools" "- [ ] Add Hobby Tools to Dock, if desired"
@@ -87,6 +102,9 @@ if [ -e "/Applications/LTSpice.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/
 fi
 if [ -e "/Applications/KiCad/KiCad.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/KiCad" ]; then
   ln -s "/Applications/KiCad/KiCad.app" "$HOME/Applications/Hobby Tools/KiCad"
+fi
+if [ -e "/Applications/BambuStudio.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Bambu Studio" ]; then
+  ln -s "/Applications/BambuStudio.app" "$HOME/Applications/Hobby Tools/Bambu Studio"
 fi
 
 if [ ! -d "$HOME/Applications/Media" ]; then
@@ -253,6 +271,12 @@ if ! fileicon test "$HOME/Applications/System Tools"; then
   fileicon set "$HOME/Applications/System Tools" "./macOS Configs/Dock Icons/System Tools.png"
 fi
 
+if [ -e "/Applications/Arq.app" ] && [ ! -e "$HOME/Applications/System Tools/Arq" ]; then
+  ln -s "/Applications/Arq.app" "$HOME/Applications/System Tools/Arq"
+fi
+if [ -e "/Applications/Tailscale.app" ] && [ ! -e "$HOME/Applications/System Tools/Tailscale" ]; then
+  ln -s "/Applications/Tailscale.app" "$HOME/Applications/System Tools/Tailscale"
+fi
 if [ -e "/Applications/LaunchControl.app" ] && [ ! -e "$HOME/Applications/System Tools/LaunchControl" ]; then
   ln -s "/Applications/LaunchControl.app" "$HOME/Applications/System Tools/LaunchControl"
 fi
@@ -285,6 +309,9 @@ if [ -e "/System/Applications/System Settings.app" ] && [ ! -e "$HOME/Applicatio
 fi
 if [ -e "/Applications/Latest.app" ] && [ ! -e "$HOME/Applications/System Tools/Latest" ]; then
   ln -s "/Applications/Latest.app" "$HOME/Applications/System Tools/Latest"
+fi
+if [ -e "/Applications/ServerCat.app" ] && [ ! -e "$HOME/Applications/System Tools/ServerCat" ]; then
+  ln -s "/Applications/ServerCat.app" "$HOME/Applications/System Tools/ServerCat"
 fi
 
 cecho "✔ Done." $green
