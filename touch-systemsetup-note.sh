@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -eu
 
-source ./lib/cecho
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR"/lib/cecho
 
 if [[ -f "$HOME/SystemSetup.md" ]]; then
   cecho "✔ Setup note exists at $HOME/SystemSetup.md" $green
@@ -233,6 +235,15 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Set default note as floating on top & slightly larger font size (Window > Use as Default)
 
 EOF
-fi  # Darwin
+elif [ "$(uname)" == "Linux" ]; then
+  cat << EOF > "$HOME/SystemSetup.md"
+
+TODO: Linux setup steps go here
+
+EOF
+else
+  echo "System '$(uname)' unknown."
+  exit 1
+fi
 
 cecho "✔ Setup note lives at $HOME/SystemSetup.md" $green

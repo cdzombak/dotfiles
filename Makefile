@@ -3,24 +3,22 @@ SHELL:=/usr/bin/env bash
 
 default: help
 
-# via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
-help:
+help: # via https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-.PHONY: bump-osx-automation
-bump-osx-automation:
-	git add osx-automation
-	git commit -m "bump osx-automation"
 
 # Cross-Platform Targets
 
 .PHONY: homebrew
-homebrew: ## Install Homebrew (no-op on other than macOS)
-	@bash ./install-homebrew.sh
+homebrew:
+	@if [ "$$(uname)" == "Darwin" ]; then ./mac/install-homebrew.sh; fi
+
+.PHONY: rosetta
+rosetta:
+	@if [ "$$(uname)" == "Darwin" ]; then ./mac/macos-rosetta.sh; fi
 
 .PHONY: dependencies
-dependencies: homebrew ## Install basic dependencies
+dependencies: rosetta homebrew ## Install key dependencies
 	@command -v stow >/dev/null 2>&1 || brew install stow 2>/dev/null || sudo apt-get install -y stow 2>/dev/null || sudo yum install -y stow 2>/dev/null || { echo >&2 "Please install GNU stow"; exit 1; }
 	@command -v curl >/dev/null 2>&1 || brew install curl 2>/dev/null || sudo apt-get install -y curl 2>/dev/null || sudo yum install -y curl 2>/dev/null || { echo >&2 "Please install curl"; exit 1; }
 	@command -v wget >/dev/null 2>&1 || brew install wget 2>/dev/null || sudo apt-get install -y wget 2>/dev/null || sudo yum install -y wget 2>/dev/null || { echo >&2 "Please install wget"; exit 1; }
@@ -28,7 +26,7 @@ dependencies: homebrew ## Install basic dependencies
 
 .PHONY: submodules
 submodules:
-	@bash ./init-submodules.sh
+	@git submodule update --init
 
 .PHONY: setupnote
 setupnote:
@@ -52,28 +50,19 @@ require-linux:
 
 # macOS Targets
 
-.PHONY: mac-stow
-mac-stow: require-macos dependencies submodules ## Link macOS configuration files in $HOME
-	@echo -ne "\033[0;37m"
-	@echo -n "Link macOS configuration files in $$HOME..."
-	@echo -e "`tput sgr0`"
-	@echo ""
-	stow git
-	stow ruby
-	stow hammerspoon
-	stow login
-	stow tig
-	stow screen
-	stow profile
-	stow zsh
-	stow nano
-	stow act
-	[ -L ~/.kubectl_aliases ] || ln -s ~/.dotfiles/kubectl-aliases/.kubectl_aliases ~/.kubectl_aliases
+.PHONY: mac-homedir
+mac-homedir: require-macos ## Set up basic macOS home directory structure
+	@bash ./mac/homedir.sh
 	@echo ""
 
 .PHONY: mac-configure
 mac-configure: require-macos setupnote submodules ## Run macOS configuration script
-	@bash ./macos-configure.sh
+	@bash ./mac/configure.sh
+	@echo ""
+
+.PHONY: mac-stow
+mac-stow: require-macos dependencies submodules ## Link macOS configuration files in $HOME
+	@bash ./mac/stow.sh
 	@echo ""
 
 .PHONY: mac-software
@@ -83,58 +72,44 @@ mac-software: require-macos dependencies submodules setupnote mac-rosetta ## Ins
 	@echo "         Use Ctrl-C to exit if you have work open right now."
 	@echo -e "`tput sgr0`"
 	@echo ""
-	@bash ./macos-software-install.sh
+	@bash ./mac/software-install.sh
 	@echo ""
-	@bash ./macos-configure-post-software-install.sh
-	@echo ""
-	@bash ./osx-automation/script/restore-resources.sh
-	@echo ""
-	@bash ./osx-automation/script/install.sh
+	@bash ./mac/configure-post-software-install.sh
 	@echo ""
 
-.PHONY: mac-homedir
-mac-homedir: require-macos ## Set up basic macOS home directory structure
-	@bash ./macos-homedir.sh
+.PHONY: mac-automation-repo
+mac-automation-repo: ## Update and install the macos-automation repo
+	@bash ./mac/update-macos-automation.sh
+	@echo ""
+	@bash ./macos-automation/script/restore-resources.sh
+	@echo ""
+	@bash ./macos-automation/script/install.sh
 	@echo ""
 
 .PHONY: mac-open-setupnote
-mac-open-setupnote: require-macos setupnote ## Open the system setup note
+mac-open-setupnote: require-macos setupnote ## Open the SystemSetup note
 	open -a Typora ~/SystemSetup.md
 
-.PHONY: mac-rosetta
-mac-rosetta: require-macos ## Install Rosetta on Apple Silicon Macs (no-op on other Macs)
-	@bash ./macos-rosetta.sh
-	@echo ""
-
 .PHONY: mac
-mac: require-macos mac-homedir mac-configure mac-rosetta mac-stow mac-software mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+mac: dependencies require-macos mac-homedir mac-configure mac-stow mac-software mac-automation-repo mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
-# Server (Linux) Targets
+# Linux Targets
 
-.PHONY: server-stow
-server-stow: dependencies submodules require-linux
-	stow git-server
-	touch ~/.gitconfig.local
-	stow screen
-	stow nano
-	stow tig
+.PHONY: linux-stow
+linux-stow: dependencies submodules require-linux ## Link Linux configuration files in $HOME
+	@bash ./linux/stow.sh
+	@bash ./linux/bash/integrate.sh
 
-.PHONY: server-bash-cfg
-server-bash-cfg: require-linux ## Integrate Bash configuration files in $HOME
-	@bash ./bash-server/integrate.sh
+.PHONY: linux-homedir
+linux-homedir: require-linux ## Set up basic Linux home directory structure
+	@bash ./linux/homedir.sh
 
-.PHONY: server-homedir
-server-homedir: require-linux ## Set up basic Linux home directory structure
-	@bash ./server-homedir.sh
+.PHONY: linux-software
+linux-software: require-linux linux-homedir ## Set up core software on Linux (requires sudo)
+	@bash ./linux/software-install.sh
 
-.PHONY: server-software
-server-software: server-homedir ## Install some extra software on Linux (requires sudo)
-	@bash ./server-software-install.sh
+.PHONY: linux-user
+linux-user: linux-stow linux-homedir ## User-level (ie. not systemwide software) setup on Linux
 
-.PHONY: server-secondary
-server-secondary: server-homedir server-bash-cfg ## Setup minimal configuration, as a secondary user on the server
-	stow screen
-	stow nano
-
-.PHONY: server
-server: require-linux server-homedir server-stow server-bash-cfg server-software ## Configure a Linux server. *Recommended entry point.*
+.PHONY: linux-all
+linux-all: require-linux linux-homedir linux-stow linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
