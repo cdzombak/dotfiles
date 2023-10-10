@@ -156,6 +156,7 @@ sw_install "$(brew --prefix)/bin/node" "brew_install node"
 sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
 sw_install "$(brew --prefix)/bin/pdffonts" "brew_install poppler"
 sw_install "$(brew --prefix)/bin/pngcrush" "brew_install pngcrush"
+sw_install "$(brew --prefix)/bin/prettierd" "brew_install fsouza/prettierd/prettierd"
 sw_install "$(brew --prefix)/bin/pup" "brew_install pup" # CLI HTML parsing; supports weblink script
 sw_install "$(brew --prefix)/bin/python3" "brew_install python"
 sw_install "/Applications/QuickLook Video.app" "brew_install qlvideo"
