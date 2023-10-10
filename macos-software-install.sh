@@ -1540,20 +1540,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-fusion360" ]; then
   sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
 fi
 
-_install_octopi_wrapper() {
-  cecho "Install OctoPi.dzhome wrapper app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'octopi')
-    git clone "https://github.com/cdzombak/octopi-app.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install /Applications/OctoPi.dzhome.app _install_octopi_wrapper
-
 if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
   mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
 fi
