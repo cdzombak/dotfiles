@@ -1399,6 +1399,8 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
     if [ -e "$HOME"/.ssh/config.templates/orbstack ] && [ ! -e "$HOME"/.ssh/config.local/orbstack ]; then
       ln -s "$HOME"/.ssh/config.templates/orbstack "$HOME"/.ssh/config.local/orbstack
     fi
+    mkdir -p "$HOME/opt/docker/compose"
+    mkdir -p "$HOME/opt/docker/data"
   fi
 fi
 
@@ -1411,18 +1413,20 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
     brew install --cask docker
     setupnote "Docker.app" \
       "- [ ] Disable application starting at login, as desired\n- [ ] Disable weekly tips\n- [ ] Enable Docker Compose V2, as desired"
+    mkdir -p "$HOME/opt/docker/compose"
+    mkdir -p "$HOME/opt/docker/data"
   fi
 fi
 
 echo ""
-cecho "Install Docker/container-related tools (act, dive, dockerfilelint, hadolint)? (y/N)" $magenta
+cecho "Install Docker/container-related tools (act, dive, dockerfilelint, hadolint, periodic-docker-pull)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/act" "brew_install act"
   brew tap | grep -c wagoodman/dive >/dev/null || brew tap wagoodman/dive
   sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
   sw_install "$(brew --prefix)/bin/hadolint" "brew_install hadolint"
-
+  sw_install "$(brew --prefix)/bin/_periodic_docker_pull" "brew_install cdzombak/oss/periodic-docker-pull"
   sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
 fi
 
