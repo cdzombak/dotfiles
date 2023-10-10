@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+<<<<<<<< HEAD:linux/server-software-install.sh
+# TODO(cdzombak): restructure into mac/linux shared/server/client
+========
+>>>>>>>> 7efb123 (WIP: restructuring):linux/software-install.sh
 # TODO: systemsetup list for Linux server & client (ssh disable root & password, backups; Pi hardening; DNS; hostname
 # TODO: logz.io for system and core services (what's the easiest, lowest friction way to set this up?)
 # TODO: logz.io for docker
