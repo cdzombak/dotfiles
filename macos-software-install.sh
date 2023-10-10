@@ -397,10 +397,6 @@ fi
 # sw_install /Applications/Byword.app "mas install 420212497"
 sw_install /Applications/CARROTweather.app "mas install 993487541" \
   "- [ ] Restore purchases\n- [ ] Personality: Professional\n- [ ] Sounds: Notifications Only\n- [ ] Source: AccuWeather\n- [ ] Update: 15 Minutes\n- [ ] Mini-Window Shortcut: Off\n- [ ] Sync: Locations, not Settings\n- [ ] Dock icon: Hidden\n- [ ] Position in Mac Menu Bar\n- [ ] Current Data Slot 9: Precip Amount\n- [ ] Current Displayed Summary: Today\n- [ ] Current Spoken Summary: None\n- [ ] Daily Data Left Slot: Precip Chance\n- [ ] Notifications: as desired; refer to iPhone\n- [ ] Open Automatically at Login: On"
-if [ ! -e "$HOME/.config/dotfiles/software/no-dayone" ]; then
-  sw_install "/Applications/Day One.app" "mas install 1055511498 && sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh" \
-    "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
-fi
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
 sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
@@ -569,6 +565,23 @@ fi
 YES_INSTALL_KUBECTL=false
 
 if $GOINTERACTIVE; then
+
+if [ ! -e "$HOME/.config/dotfiles/software/no-dayone" ]; then
+  _install_dayone() {
+    cecho "Install Day One? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1055511498
+      sudo bash "/Applications/Day One.app/Contents/Resources/install_cli.sh"
+      setupnote "Day One.app" \
+        "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-dayone"
+    fi
+  }
+  sw_install "/Applications/Day One.app" _install_dayone
+fi
 
 echo ""
 cecho "--- Utilities ---" $white
