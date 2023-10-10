@@ -10,9 +10,9 @@ There is also a `server` build target, which will install a minimal configuratio
 
 ## Dependencies
 
-* [GNU `make`](https://www.gnu.org/software/make/)
-* [GNU `stow`](https://www.gnu.org/software/stow/)
-* *macOS only:* [Homebrew](https://brew.sh)
+- [GNU `make`](https://www.gnu.org/software/make/)
+- [GNU `stow`](https://www.gnu.org/software/stow/)
+- _macOS only:_ [Homebrew](https://brew.sh)
 
 On macOS, the relevant `make` targets will install these dependencies with Homebrew.
 
@@ -36,18 +36,18 @@ Running `make` with no target prints help.
 
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
-* My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html))
-* My [osx-automation repository](https://github.com/cdzombak/osx-automation/tree/edbc14b506e1b31b9a86e7298fb7c343d81fc289) (installed automatically during `make mac-software`)
-* My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
-* My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private; install manually when first opening these IDEs)
-* Miscellaneous tools' configuration files & resources I store in `~/Sync/Configs` (eg. Alfred, Choosy, Dash, iTerm2, SuperDuper, & VPN configs)
-* Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh) already covers many of the more important settings)
+- My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html))
+- My [osx-automation repository](https://github.com/cdzombak/osx-automation/tree/edbc14b506e1b31b9a86e7298fb7c343d81fc289) (installed automatically during `make mac-software`)
+- My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
+- My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private; install manually when first opening these IDEs)
+- Miscellaneous application configuration files & resources I store in `~/.config/macos` and sync between machines with SyncThing (eg. Alfred, Choosy, Dash, iTerm2)
+- Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh) already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements
 
 This setup — and my further aspirations for it — are inspired by:
 
-- [@andrewsardone's dotfiles](https://github.com/andrewsardone/dotfiles) 
+- [@andrewsardone's dotfiles](https://github.com/andrewsardone/dotfiles)
 - [This article on managing dotfiles with GNU Stow](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
 - [@mathiasbynens's macOS configuration script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
 - My Hammerspoon configuration is heavily based on [jasonrudolph/keyboard](https://github.com/jasonrudolph/keyboard)

@@ -80,7 +80,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 - [ ] Reassign Caps Lock to Ctrl
 - [ ] Turn off "correct spelling automatically," "capitalize words automatically," "add period with double-space"
-- [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/Sync/Configs\`)
+- [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/.config/macos\`)
     - [ ] Customize available services as desired
 - [ ] Enable Dictation + Enhanced Dictation
     - [ ] Set shortcut: right Command key twice (unless keyboard has dictation key on F5)
@@ -167,16 +167,16 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 ## Dock
 
-- [ ] Organize Dock based on screenshots in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Organize Dock based on screenshots in \`~/.config/macos\` (or current favorite system)
 
 ## Finder
 
-- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
-- [ ] Configure sidebar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
+- [ ] Configure sidebar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
 ## Mail
 
-- [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Configure main, compose, and viewer window toolbars based on screenshots in \`~/.config/macos\` (or current favorite system)
 - [ ] Check messages automatically
 - [ ] Set message fonts
 - [ ] Notifications: badges & notification center only; no sound
@@ -203,7 +203,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - [ ] Disable AutoFill (in favor of [1Password](https://blog.1password.com/big-sur-1password-7-7/))
     - [ ] Privacy: disable hiding IP from known trackers (breaks stuff/slows performance)
     - [ ] Enable Develop menu
-- [ ] Configure toolbar based on screenshot in \`~/Sync/Configs\` (or current favorite system)
+- [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
 ## Desk Setup
 

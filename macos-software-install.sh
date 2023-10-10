@@ -165,7 +165,7 @@ sw_install "$(brew --prefix)/bin/shfmt" "brew_install shfmt"
 sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
 sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
 sw_install "$(brew --prefix)/Cellar/syncthing" "brew_install syncthing && brew services start syncthing" \
-  "- [ ] Begin syncing \`~/Sync\`\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)\n- [ ] Staggered file versioning, 60 days (set on Sync folder)\n- [ ] Add \`#include Configs/globalstignore\` to Sync folder's ignore list\n- [ ] Minimum disk space 10% (in app settings & on Sync folder)"
+  "- [ ] Begin syncing \`~/.config/macos\`\n- [ ] Begin syncing \`~/Sync\`\n- [ ] Sync folder: Staggered file versioning, 60 days\n- [ ] Add \`#include globalstignore\` to ignore lists\n- [ ] Minimum disk space 10% in app settings\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
 sw_install "$(brew --prefix)/bin/terminal-notifier" "brew_install terminal-notifier"
 sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
 sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
@@ -247,7 +247,7 @@ if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
 fi
 sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
-  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
+  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
   sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
@@ -255,7 +255,7 @@ sw_install /Applications/Arq.app "brew_cask_install arq" \
   "- [ ] Setup backups to Wasabi\n- [ ] Setup backups to Goliath\n- [ ] Setup emails via Mailgun\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
 if [ ! -e "/Applications/Bartender 3.app" ] && [ ! -e "/Applications/Bartender 4.app" ]; then
   sw_install "/Applications/Bartender _.app" "brew_cask_install bartender" \
-    "- [ ] Configure based on current favorite system/screenshots in \`~/Sync/Configs\`"
+    "- [ ] Configure based on current favorite system/screenshots in \`~/.config/macos\`"
 fi
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver (as desired)"
@@ -272,7 +272,7 @@ sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
 sw_install "/Applications/Hex Fiend.app" "brew_cask_install hex-fiend"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
-  "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/Sync/Configs\`, taking care not to overwrite the files there\n- [ ] Make default term"
+  "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/.config/macos\`, taking care not to overwrite the files there\n- [ ] Make default term"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG M Regular, size 13\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
 sw_install /Applications/Latest.app "brew_cask_install latest"
@@ -376,7 +376,7 @@ sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask
 sw_install "$HOME/Library/Fonts/NationalPark-Regular.otf" "brew_cask_install font-national-park"
 
 sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
-  "- [ ] License\n- [ ] Install Custom CSS from \`~/Sync/Configs\`"
+  "- [ ] License\n- [ ] Install Custom CSS from \`~/.config/macos\`"
 if [ ! -L /Applications/Marked.app ]; then
   # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
@@ -409,7 +409,7 @@ sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
 sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable system share extension (_not_ Safari extension)"
 sw_install /Applications/NewFileMenu.app "mas install 1064959555" \
-  "- [ ] Enable Finder extension\n- [ ] Enable opening file after creation\n- [ ] Disable menu bar item\n- [ ] Disable all templates except plain text and shell script\n- [ ] Add Markdown template (located in Sync/Configs/NewFileMenu)"
+  "- [ ] Enable Finder extension\n- [ ] Enable opening file after creation\n- [ ] Disable menu bar item\n- [ ] Disable all templates except plain text and shell script\n- [ ] Add Markdown template (located in .config/macos/NewFileMenu)"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install "/Applications/Paint S.app" "mas install 736473980" \
@@ -491,7 +491,7 @@ sw_install "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" _install_web
   "- [ ] Drag Webster’s 1913 to the top of the list in Dictionary.app's Preferences"
 
 # Solarized for Xcode
-# if this source disappears, there's also my copy in Sync/Configs
+# if this source disappears, there's also my copy in ~/.config/macos
 _install_xcode_solarized() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'solarized-xcode')
   git clone "https://github.com/stackia/solarized-xcode.git" "$TMP_DIR"
@@ -506,7 +506,7 @@ _install_setapp() {
   brew install --cask setapp
 }
 sw_install /Applications/Setapp.app _install_setapp \
-  "- [ ] Sign in to Setapp\n- [ ] Dsiable \"Show in Finder Sidebar\"\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
+  "- [ ] Sign in to Setapp\n- [ ] Disable \"Show in Finder Sidebar\"\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
 
 _install_ears() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
@@ -1069,7 +1069,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-jetbrains" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask jetbrains-toolbox
       setupnote "JetBrains Toolbox.app" \
-        "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts'\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable Settings Repository syncing\n- [ ] Install plugins based on docs in \`~/Sync/Configs\`"
+        "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts' to \`~/opt/bin\`\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable settings & plugin syncing"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-jetbrains"
@@ -1088,7 +1088,7 @@ _install_ask_dash() {
     open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
     set -e
     setupnote "Dash.app" \
-      "- [ ] Sync settings from \`~/Sync/Configs\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
+      "- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
   fi
 }
 sw_install /Applications/Dash.app _install_ask_dash
@@ -1696,7 +1696,7 @@ _install_omnioutliner() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask omnioutliner
-    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/Sync/Configs/OmniOutliner\`"
+    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/.config/macos/OmniOutliner\`"
   fi
 }
 sw_install /Applications/OmniOutliner.app _install_omnioutliner

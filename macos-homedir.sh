@@ -36,6 +36,24 @@ if [ ! -d "$HOME/code" ] && [ ! -e "$HOME/.config/dotfiles/no-home-code-dir" ] ;
   fi
 fi
 
+if [ ! -d "$HOME/opt/docker" ] && [ ! -e "$HOME/.config/dotfiles/no-home-opt-docker-dir" ]; then
+  echo ""
+  echo "Create ~/opt/docker? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mkdir -p "$HOME/opt/docker/data"
+    mkdir -p "$HOME/opt/docker/compose"
+    if [ ! -e "$HOME/opt/docker/compose/.git" ]; then
+      pushd "$HOME/opt/docker/compose" >/dev/null
+      git init
+      popd >/dev/null
+    fi
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/no-home-opt-docker-dir"
+  fi
+fi
+
 if [ ! -d "$HOME/go" ] && [ ! -e "$HOME/.config/dotfiles/no-home-go-dir" ] ; then
   echo ""
   echo "Create ~/go/bin and ~/go/src? (y/N)"
@@ -53,11 +71,9 @@ fi
 
 if [ ! -L "$HOME/Dropbox" ]; then
   ln -s "$HOME/Sync" "$HOME/Dropbox"
-  chflags -h hidden "$HOME/Dropbox"
 fi
-
-if [ ! -L "$HOME/opt/bin/macupdate" ] ; then
-  ln -s "$HOME/Sync/homeops/bin/macupdate.sh" "$HOME/opt/bin/macupdate"
+if [ -L "$HOME/Dropbox" ]; then
+  chflags -h hidden "$HOME/Dropbox"
 fi
 
 if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.config/dotfiles/no-home-env-dir" ]; then
@@ -69,6 +85,13 @@ if [ ! -L "$HOME/env" ] && [ ! -e "$HOME/.config/dotfiles/no-home-env-dir" ]; th
   else
     touch "$HOME/.config/dotfiles/no-home-env-dir"
   fi
+fi
+if [ -e "$HOME/env" ]; then
+  chflags -h hidden "$HOME/env"
+fi
+
+if [ -e "$HOME/Sync/globalstignore" ]; then
+  chflags -h hidden "$HOME/Sync/globalstignore"
 fi
 
 if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
@@ -145,7 +168,8 @@ if [ ! -L "$HOME/.config/ForkLift" ] && [ -d "$HOME/Library/Application Support/
   ln -s "$HOME/Library/Application Support/ForkLift" "$HOME/.config/ForkLift"
 fi
 
-chflags -h hidden "$HOME/Public"
+chflags -h nohidden "$HOME/Public"
+chflags -h hidden "$HOME/Public/Drop Box"
 
 if [ -d "$HOME/Sites" ]; then
   chflags -h hidden "$HOME/Sites"
@@ -174,7 +198,7 @@ else
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     if [ ! -e "$HOME/Music/(Logic files hidden).txt" ]; then
       # shellcheck disable=SC2088
-      echo "~/Music/Audio Music Apps, ~/Music/Logic were hidden by macos-homedir.sh.\n\nUnhide then via \`unhide\` command as desired.\n" > "$HOME/Music/(Logic files hidden).txt"
+      echo -e "~/Music/Audio Music Apps, ~/Music/Logic were hidden by $0.\n\nUnhide then via \`unhide\` command as desired.\n" > "$HOME/Music/(Logic files hidden).txt"
     fi
     mkdir -p "$HOME/Music/Audio Music Apps"
     chflags -h hidden "$HOME/Music/Audio Music Apps"
@@ -182,4 +206,3 @@ else
     chflags -h hidden "$HOME/Music/Logic"
   fi
 fi
-
