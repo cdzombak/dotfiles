@@ -215,29 +215,8 @@ _install_metar() {
 }
 sw_install /usr/local/bin/metar _install_metar
 
-# my listening wrapper for lsof
-_install_listening() {
-  if [ -f "$HOME/opt/bin/listening" ]; then
-    mv "$HOME/opt/bin/listening" /usr/local/bin
-  else
-    pushd /usr/local/bin
-    if [ -w . ]; then
-      wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
-      chmod +x listening
-    else
-      sudo wget https://gist.githubusercontent.com/cdzombak/fc0c0acbba9c302571add6dcd6d10deb/raw/c607f9fcc182ecc5d0fcc844bff67c1709847b55/listening
-      sudo chmod +x listening
-    fi
-    popd
-  fi
-}
-sw_install "/usr/local/bin/listening" _install_listening
-
-_install_windowstack2() {
-  wget "https://raw.githubusercontent.com/cdzombak/windowstack2/main/windowstack.sh" -O "$HOME/opt/bin/windowstack"
-  chmod +x "$HOME/opt/bin/windowstack"
-}
-sw_install "$HOME/opt/bin/windowstack" _install_windowstack2
+sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
+sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
 
 # Move on to macOS applications:
 
