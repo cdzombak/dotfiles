@@ -122,6 +122,7 @@ brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-font
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
 sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
 sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+sw_install "$(brew --prefix)/bin/brew-gem" "brew_install brew-gem"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
 sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
 sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
@@ -197,8 +198,9 @@ sw_install "$(brew --prefix)/bin/gettext" "brew_install gettext && brew link --f
 # Install tools which use stuff we just installed via Homebrew:
 sw_install "$(brew --prefix)/bin/markdown-toc" 'npm install -g markdown-toc'
 sw_install "$(brew --prefix)/bin/nativefier" 'npm install -g nativefier'
-sw_install /usr/local/bin/bundler 'sudo gem install bundler'
-sw_install /usr/local/bin/mdless 'sudo gem install mdless'
+sw_install "$(brew --prefix)/bin/bundler" "brew gem install bundler"
+sw_install "$(brew --prefix)/bin/fpm" "brew gem install fpm"
+sw_install "$(brew --prefix)/bin/mdless" "brew gem install mdless"
 sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
 
 # metar: CLI metar lookup tool
@@ -2836,6 +2838,17 @@ else
 fi
 echo ""
 
+echo "Cleaning up gems installed without brew-gem ..."
+if gem list | grep -c mdless >/dev/null; then
+  sudo gem uninstall mdless
+fi
+if gem list | grep -c sqlint >/dev/null; then
+  sudo gem uninstall sqlint
+fi
+if gem list | grep -c pg_query >/dev/null; then
+  sudo gem uninstall pg_query
+fi
+
 echo ""
 cecho "--- Optional installs that have failed previously ---" $white
 echo ""
@@ -2847,9 +2860,7 @@ _install_sqlint() {
   cecho "Install sqlint? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo xcode-select --switch /Library/Developer/CommandLineTools
-    sudo gem install sqlint
-    sudo xcode-select --switch /Applications/Xcode.app
+    brew gem install sqlint
   fi
 }
 sw_install /usr/local/bin/sqlint _install_sqlint
