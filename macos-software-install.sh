@@ -1468,6 +1468,17 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "/Applications/Lens.app" "brew_cask_install lens"
 fi
 
+_install_servercat() {
+  cecho "Install ServerCat? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1501532023
+    setupnote "ServerCat.app" \
+      "- [ ] Add servers as desired"
+  fi
+}
+sw_install "/Applications/ServerCat.app" _install_servercat
+
 # echo ""
 # cecho "Database tools..." $white
 # cecho "Additional options exist: JetBrains DataGrip, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
