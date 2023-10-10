@@ -16,6 +16,10 @@ echo "This script will use sudo; enter your password to authenticate if prompted
 sudo -v
 while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+echo ""
+echo "--- Sources ---"
+echo ""
+
 if [ ! -f /etc/apt/sources.list.d/cdzombak_oss_any.list ]; then
   echo "Setting up cdzombak/oss/any PackageCloud apt repo..."
   curl -s https://packagecloud.io/install/repositories/cdzombak/oss/script.deb.sh?any=true | sudo bash
@@ -24,8 +28,11 @@ if [ ! -f /etc/apt/sources.list.d/cdzombak_3p_any.list ]; then
   echo "Setting up cdzombak/3p/any PackageCloud apt repo..."
   curl -s https://packagecloud.io/install/repositories/cdzombak/3p/script.deb.sh?any=true | sudo bash
 fi
-
 sudo apt -y update
+
+echo ""
+echo "--- Core ---"
+echo ""
 
 echo "Installing common packages via apt..."
 sudo apt -y install tig tree htop nnn traceroute dnsutils screen molly-guard nano jq wget
@@ -97,6 +104,10 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   chmod 755 "$HOME/opt/bin/notify-me"
 fi
 
+echo ""
+echo "--- Docker ---"
+echo ""
+
 _install_docker() {
   sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
   curl -fsSL https://download.docker.com/linux/"$(lsb_release -is | tr '[:upper:]' '[:lower:]')"/gpg | sudo apt-key add -
@@ -128,13 +139,6 @@ _install_docker() {
   sudo systemctl enable docker
   sudo systemctl start docker
   sudo usermod -aG docker "$(whoami)"
-  mkdir -p "$HOME/opt/docker/compose"
-  mkdir -p "$HOME/opt/docker/data"
-  if [ ! -e "$HOME/opt/docker/compose/.git" ]; then
-    pushd "$HOME/opt/docker/compose" >/dev/null
-    git init
-    popd >/dev/null
-  fi
 }
 if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null; then
   echo "Install Docker? (y/N)"
@@ -146,6 +150,10 @@ if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null
     touch "$HOME/.config/dotfiles/no-docker"
   fi
 fi
+
+echo ""
+echo "--- Media Tools ---"
+echo ""
 
 if [ ! -e "$HOME/.config/dotfiles/no-ffmpeg-scripts" ] && ! dpkg-query -W quick-media-conv >/dev/null; then
   echo "Install quick media conversion scripts? (y/N)"
