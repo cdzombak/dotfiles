@@ -214,7 +214,7 @@ _install_metar() {
   git clone "https://github.com/RyuKojiro/metar.git" "$TMP_DIR"
   pushd "$TMP_DIR"
   make
-  [ -w /usr/local/bin ] && make install || sudo make install
+  if [ -w /usr/local/bin ]; then make install; else sudo make install; fi
   popd
 }
 sw_install /usr/local/bin/metar _install_metar
@@ -439,11 +439,7 @@ _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
   git clone "https://github.com/cdzombak/hosts-timer.git" "$TMP_DIR"
   pushd "$TMP_DIR"
-  if [ -w /usr/local ]; then
-    make install
-  else
-    sudo make install
-  fi
+  if [ -w /usr/local ]; then make install; else sudo make install; fi
   popd
   echo "cdzombak ALL=NOPASSWD: /usr/local/bin/hosts-timer" | sudo tee -a /etc/sudoers.d/cdzombak-hosts-timer > /dev/null
   sudo chown root:wheel /etc/sudoers.d/cdzombak-hosts-timer
