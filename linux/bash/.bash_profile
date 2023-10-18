@@ -1,8 +1,16 @@
-export EDITOR=nano
+# shellcheck shell=bash
 
+export EDITOR=nano
 export LD_LIBRARY_PATH=$HOME/opt/lib/:$LD_LIBRARY_PATH
-export PATH=$HOME/opt/sbin:$HOME/opt/bin:$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH
 export MANPATH=$HOME/opt/share/man:$MANPATH
-export GOPATH=$HOME/go
+
+if [ -d "$HOME/go" ]; then
+    export GOPATH=$HOME/go
+    export PATH=$HOME/opt/sbin:$HOME/opt/bin:$HOME/go/bin:/usr/local/go/bin:$PATH
+elif [ -d "/usr/local/go/bin" ]; then
+    export PATH=$HOME/opt/sbin:$HOME/opt/bin:/usr/local/go/bin:$PATH
+else
+    export PATH=$HOME/opt/sbin:$HOME/opt/bin:$PATH
+fi
 
 source ~/.bashrc

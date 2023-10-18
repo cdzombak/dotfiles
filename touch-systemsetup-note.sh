@@ -19,7 +19,7 @@ EOF
 if [ "$(uname)" == "Darwin" ]; then
   cat << EOF > "$HOME/SystemSetup.md"
 
-- [x] Run setup scripts (\`make mac\`)
+- [ ] Run setup scripts (\`make mac\`)
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
     - [ ] Reset font to Meslo LG M for Powerline after initial install
 - [ ] Rename "Macintosh HD"
@@ -236,11 +236,49 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 EOF
 elif [ "$(uname)" == "Linux" ]; then
+  # shellcheck disable=SC1091
+  source "$SCRIPT_DIR"/linux/swprof
+
   cat << EOF > "$HOME/SystemSetup.md"
 
-TODO: Linux setup steps go here
+- [ ] Configure DNS as desired
+- [ ] \`adduser cdzombak\`
+- [ ] \`usermod -aG sudo cdzombak && usermod -aG admin cdzombak\`
+- [ ] Set/change hostname as desired
+- [ ] \`sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo reboot\`
+- [ ] Add SSH key to SSH config repo
+- [ ] Install SSH config
+- [ ] Install dotfiles
+
+## SSH Hardening
+
+- [ ] Customize \`/etc/ssh/sshd_config\`:
+    - \`PasswordAuthentication no\`
+    - \`ChallengeResponseAuthentication no\`
+    - \`PermitRootLogin no\`
+    - When finished, \`sudo systemctl reload sshd\`
+
+## Backups
+
+- [ ] Configure and schedule backups as desired
 
 EOF
+  if is_raspbian; then
+  cat << EOF > "$HOME/SystemSetup.md"
+
+## Raspbery Pi Setup
+
+- [ ] Configure system via \`sudo raspi-config\`
+- [ ] Harden for reliability per [my blog post on reducing SD card wear](https://www.dzombak.com/blog/2021/11/Reducing-SD-Card-Wear-on-a-Raspberry-Pi-or-Armbian-Device.html)
+EOF
+cat << EOF > "$HOME/SystemSetup.md"
+
+## Core Services
+
+TODO(cdzombak): postfix, netdata, docker, logz
+TODO(cdzombak): customize motd
+EOF
+  fi
 else
   echo "System '$(uname)' unknown."
   exit 1

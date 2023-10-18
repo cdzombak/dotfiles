@@ -1,4 +1,4 @@
-# Git config for Linux servers; assumes username 'cdzombak'
+# Git config for Linux; assumes username 'cdzombak'
 
 [user]
 	name = Chris Dzombak

@@ -104,12 +104,16 @@ linux-stow: dependencies submodules require-linux ## Link Linux configuration fi
 linux-homedir: require-linux ## Set up basic Linux home directory structure
 	@bash ./linux/homedir.sh
 
+.PHONY: linux-user
+linux-user: setupnote linux-stow linux-homedir ## User-level (ie. nothing systemwide) setup on Linux
+
+.PHONY: linux-configure
+linux-software: setupnote require-linux ## Set up core software on Linux (requires sudo)
+	@bash ./linux/configure.sh
+
 .PHONY: linux-software
-linux-software: require-linux linux-homedir ## Set up core software on Linux (requires sudo)
+linux-software: setupnote require-linux linux-homedir ## Set up core software on Linux (requires sudo)
 	@bash ./linux/software-install.sh
 
-.PHONY: linux-user
-linux-user: linux-stow linux-homedir ## User-level (ie. not systemwide software) setup on Linux
-
 .PHONY: linux-all
-linux-all: require-linux linux-homedir linux-stow linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
+linux-all: require-linux linux-user linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
