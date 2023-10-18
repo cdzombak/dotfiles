@@ -1809,7 +1809,7 @@ _install_note_dxophotolab() {
     read -p "    Press [Enter] to continue..."
   fi
 }
-sw_install "/Applications/DXOPhotoLab6.app" _install_note_dxophotolab
+sw_install "/Applications/DXOPhotoLab7.app" _install_note_dxophotolab
 
 _install_note_dxofilmpack() {
   cecho "Install DxO FilmPack? (y/N)" $magenta
@@ -1823,7 +1823,7 @@ _install_note_dxofilmpack() {
     read -p "    Press [Enter] to continue..."
   fi
 }
-sw_install "/Applications/DxO FilmPack 6.app" _install_note_dxofilmpack
+sw_install "/Applications/DxO FilmPack 7.app" _install_note_dxofilmpack
 
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta

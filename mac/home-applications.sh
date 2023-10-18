@@ -190,11 +190,11 @@ fi
 if [ -e "/Applications/Affinity Photo 2.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Affinity Photo" ]; then
   ln -s "/Applications/Affinity Photo 2.app" "$HOME/Applications/Photo Tools/Affinity Photo"
 fi
-if [ -e "/Applications/DXOPhotoLab6.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DXO PhotoLab" ]; then
-  ln -s "/Applications/DXOPhotoLab6.app" "$HOME/Applications/Photo Tools/DXO PhotoLab"
+if [ -e "/Applications/DXOPhotoLab7.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DXO PhotoLab" ]; then
+  ln -s "/Applications/DXOPhotoLab7.app" "$HOME/Applications/Photo Tools/DXO PhotoLab"
 fi
-if [ -e "/Applications/DxO FilmPack 6.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DxO FilmPack" ]; then
-  ln -s "/Applications/DxO FilmPack 6.app" "$HOME/Applications/Photo Tools/DxO FilmPack"
+if [ -e "/Applications/DxO FilmPack 7.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DxO FilmPack" ]; then
+  ln -s "/Applications/DxO FilmPack 7.app" "$HOME/Applications/Photo Tools/DxO FilmPack"
 fi
 if [ -e "/Applications/Fileloupe.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Fileloupe" ]; then
   ln -s "/Applications/Fileloupe.app" "$HOME/Applications/Photo Tools/Fileloupe"
