@@ -436,8 +436,6 @@ _install_hosts_timer() {
   # disable HN by default:
   sudo hosts-timer -install news.ycombinator.com
   sudo hosts-timer -install hckrnews.com
-  # disable Twitter by default:
-  sudo hosts-timer -install twitter.com
 }
 sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
 
