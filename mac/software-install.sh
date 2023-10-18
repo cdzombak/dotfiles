@@ -131,6 +131,7 @@ sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreuti
 sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
 sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
 sw_install "$(brew --prefix)/bin/diff-so-fancy" "brew_install diff-so-fancy"
+sw_install "$(brew --prefix)/bin/ddgr" "brew_install ddgr"
 sw_install "$(brew --prefix)/bin/duf" "brew_install duf"
 sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
 sw_install "$(brew --prefix)/bin/duti" "brew_install duti"
@@ -209,6 +210,7 @@ sw_install "$(brew --prefix)/bin/nativefier" 'npm install -g nativefier'
 sw_install "$(brew --prefix)/bin/bundler" "brew gem install bundler"
 sw_install "$(brew --prefix)/bin/fpm" "brew gem install fpm"
 sw_install "$(brew --prefix)/bin/mdless" "brew gem install mdless"
+sw_install "$(brew --prefix)/bin/rubocop" "brew gem install rubocop"
 sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
 
 # metar: CLI metar lookup tool
@@ -251,6 +253,7 @@ sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
   "- [ ] License\n- [ ] Launch at login"
+sw_install "/Applications/GitHub Desktop.app" "brew_cask_install github"
 sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
   "- [ ] Import/generate GPG keys as needed"
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
