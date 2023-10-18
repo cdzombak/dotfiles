@@ -147,6 +147,7 @@ sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
 sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
 sw_install "$(brew --prefix)/bin/jsonnet-lint" "brew_install go-jsonnet"
 sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
+sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
 sw_install "$(brew --prefix)/bin/lua" "brew_install lua"
 sw_install "$(brew --prefix)/bin/mdcat" "brew_install mdcat"
 sw_install "$(brew --prefix)/bin/mogrify" "brew_install imagemagick"
@@ -177,7 +178,9 @@ sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
 sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
 sw_install "$(brew --prefix)/bin/trash" "brew_install trash"
 sw_install "$(brew --prefix)/bin/tree" "brew_install tree"
+sw_install "$(brew --prefix)/bin/unshorten" "brew_install cdzombak/oss/unshorten"
 sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
+sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
 
@@ -218,9 +221,6 @@ _install_metar() {
   popd
 }
 sw_install /usr/local/bin/metar _install_metar
-
-sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
-sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
 
 # Move on to macOS applications:
 
@@ -420,20 +420,6 @@ _install_things() {
 # nb. Things shows in Finder as Things.app but its filename is Things3.app
 sw_install "/Applications/Things3.app" _install_things \
   "- [ ] Sign into Things Cloud account\n- [ ] Set keyboard shortcuts\n- [ ] Enable autofill via Things Helper\n- [ ] Set calendar & reminders integration settings\n- [ ] Add widget to Notification Center"
-
-_install_unshorten() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unshorten')
-  git clone "https://github.com/cdzombak/unshorten.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  # note: `env GO111MODULE=auto` works around https://github.com/cdzombak/unshorten/issues/1
-  if [ -w /usr/local ]; then
-    env GO111MODULE=auto make install
-  else
-    sudo env GO111MODULE=auto make install
-  fi
-  popd
-}
-sw_install "/usr/local/bin/unshorten" _install_unshorten
 
 _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
