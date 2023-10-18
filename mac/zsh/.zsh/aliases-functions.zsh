@@ -71,8 +71,6 @@ function torrent {
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
-alias joke='curl --silent https://icanhazdadjoke.com  | cowsay'
-
 # get attention
 ding() {
     setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
@@ -236,8 +234,6 @@ function rm-known-host() {
     fi
     gsed -i "$1d" "$HOME/.ssh/known_hosts"
 }
-
-alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 alias staged='git diff --staged'
 
