@@ -19,8 +19,8 @@ function usbCallback(data)
 
       -- workaround Lunar not working sometimes after input switching (macOS 12.2+ bug). per the dev:
       -- "(sometimes) the system responds with an old cached list of screens where the DDC port is not valid anymore"
-      log.d("restarting Lunar via hotkey...")
-      hs.task.new('/Users/cdzombak/.dotfiles/hammerspoon/support/restart-lunar.sh', nil):start()
+      log.d("restarting Lunar...")
+      hs.task.new('/Users/cdzombak/.hammerspoon/support/restart-lunar.sh', nil):start()
     end
 
     if isWebcam then
