@@ -90,8 +90,8 @@ mac-automation-repo: ## Update and install the macos-automation repo
 mac-open-setupnote: require-macos setupnote ## Open the SystemSetup note
 	open -a Typora ~/SystemSetup.md
 
-.PHONY: mac
-mac: dependencies require-macos mac-homedir mac-configure mac-stow mac-software mac-automation-repo mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
+.PHONY: mac-all
+mac-all: dependencies require-macos mac-homedir mac-configure mac-stow mac-software mac-automation-repo mac-open-setupnote ## Install Homebrew, configure a macOS system, and install other Mac software. *Recommended entry point.*
 
 # Linux Targets
 
@@ -115,5 +115,5 @@ linux-configure: setupnote require-linux ## Core Linux configuration (requires s
 linux-software: setupnote require-linux linux-homedir ## Set up core software on Linux (requires sudo)
 	@bash ./linux/software-install.sh
 
-.PHONY: linux-all
-linux-all: require-linux linux-user linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
+.PHONY: linux
+linux-all: require-linux linux-user linux-configure linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
