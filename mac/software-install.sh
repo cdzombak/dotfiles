@@ -990,14 +990,6 @@ echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
-# Fix "entr: Too many files listed; the hard limit for your login class is 256."
-# http://eradman.com/entrproject/limits.html
-_install_entr_workaround() {
-  pushd /Library/LaunchDaemons
-  sudo curl -sO "https://dropbox.dzombak.com/limit.maxfiles.plist"
-  popd
-}
-
 cecho "Install basic development tools? (y/N)" $magenta
 echo "(Expressions, Fork, Sublime Merge, TextBuddy, cloc, hexyl, file watchers)"
 read -r response
@@ -1024,7 +1016,6 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   # Various file watchers, popular in various communities/with various toolchains:
   sw_install "$(brew --prefix)/bin/air" "brew gomod github.com/cosmtrek/air"
   sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
-  sw_install /Library/LaunchDaemons/limit.maxfiles.plist _install_entr_workaround
   sw_install /usr/local/bin/nodemon "npm install -g nodemon" # drop-in watcher for Node projects
   sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman" # popular for React Native
 fi
