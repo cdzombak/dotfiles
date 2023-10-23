@@ -6,7 +6,7 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
-if ! command -v dkpg-reconfigure &> /dev/null; then
+if [ ! -x /usr/sbin/dpkg-reconfigure ]; then
   echo "dpkg-reconfigure not found; stopping."
   exit 1
 fi
