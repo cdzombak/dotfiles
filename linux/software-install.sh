@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO(cdzombak): postfix
-# TODO(cdzombak): sample restic script and stub config files in /etc daily cron & folder
-# TODO(cdzombak): logz.io for system and core services (what's the easiest, lowest friction way to set this up?)
-# TODO(cdzombak): logz.io for docker
-
 if [ "$(uname)" != "Linux" ]; then
   echo "Skipping Linux software setup because not on Linux"
   exit 2
@@ -17,6 +12,9 @@ if [ ! -x /usr/bin/apt ]; then
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+LIB_DIR="$SCRIPT_DIR/../lib"
+# shellcheck disable=SC1091
+source "$LIB_DIR"/sw_install
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR"/swprof
 
@@ -79,6 +77,11 @@ else
   echo "Bandwhich: unsupported architecture. Check https://github.com/imsnif/bandwhich/releases to see if non-x86_64 builds are available."
 fi
 
+if [ ! -d /etc/restic-backup ]; then
+  echo "Setting up restic scaffolding in /etc/restic-backup..."
+  "$SCRIPT_DIR"/restic-scaffolding/install.sh
+fi
+
 if [ ! -d "$HOME/crontab.d" ]; then
   echo "Setting up ~/crontab.d for use with apply-crontab..."
   apply-crontab -i
@@ -115,13 +118,22 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     wget -O /tmp/netdata-kickstart.sh https://my-netdata.io/kickstart.sh && sh /tmp/netdata-kickstart.sh --stable-channel --native-only
-    # TODO(cdzombak): netdata configuration, accessibility via tailscale
-    # see bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE
+    # TODO(cdzombak): netdata configuration, registry - can I automate that?
+    # TODO(cdzombak): incorporate bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE
+    setupnote "Netdata" \
+      "- [ ] Listen on port 9999\n- [ ] Make accessible via Tailscale\n- [ ] Monitor all services for this server"
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-netdata"
   fi
 fi
+
+echo "Customize MOTD..."
+sudo rm -f /etc/update-motd.d/10-help-text \
+  /etc/update-motd.d/51-cloudguest \
+  /etc/update-motd.d/80-livepatch \
+  /etc/update-motd.d/91-contract-ua-esm-status
+curl -s https://gist.githubusercontent.com/cdzombak/07c5d97e4186dcc73ac4452fbf816387/raw/9f9dd275c22c35649fe3c7b0eebd5e25a2b7d5f1/install.sh | sudo bash
 
 echo ""
 echo "--- Nginx + Certbot ---"
@@ -131,6 +143,8 @@ _install_certbot_snap() {
   _install_snapd
   sudo snap install --classic certbot
   sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  sudo mkdir -p /var/www/letsencrypt/.well-known/acme-challenge
+  sudo chown -R www-data:www-data /var/www/letsencrypt
 }
 if dpkg-query -W certbot >/dev/null; then
   echo "Switch certbot to snap-based install? (y/N)"
@@ -170,43 +184,14 @@ echo ""
 echo "--- Docker ---"
 echo ""
 
-_install_docker() {
-  sudo apt-get install ca-certificates curl gnupg -y
-  sudo install -m 0755 -d /etc/apt/keyrings
-  curl -fsSL https://download.docker.com/linux/"$(lsb_release -is | tr '[:upper:]' '[:lower:]')"/gpg \
-    | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-  sudo chmod a+r /etc/apt/keyrings/docker.gpg
-  echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  sudo apt -y update
-  sudo apt install docker-ce -y
-  if [ ! -e /etc/docker/daemon.json ]; then
-    echo "{}" | sudo tee /etc/docker/daemon.json > /dev/null
-    sudo chown root:docker /etc/docker/daemon.json
-  fi
-  sudo jq ".[\"log-driver\"]=\"local\"" /etc/docker/daemon.json > /tmp/daemon.json.tmp
-  sudo mv /tmp/daemon.json.tmp /etc/docker/daemon.json
-  sudo systemctl enable docker
-  sudo systemctl start docker
-  sudo usermod -aG docker "$(whoami)"
-  sudo useradd -r -s /usr/sbin/nologin dockerapps
-  if [ ! -d /opt/docker ]; then
-    sudo mkdir -p /opt/docker/compose
-    sudo mkdir -p /opt/docker/data
-    sudo mkdir -p /opt/docker/src
-    pushd /opt/docker/compose
-    sudo git init
-    popd
-    sudo chown -R root:docker /opt/docker
-    sudo chmod -R g+w /opt/docker
-  fi
-}
 if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null; then
   echo "Install Docker? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _install_docker
+    "$SCRIPT_DIR"/docker/docker-install.sh
+    if command -v docker >/dev/null; then
+      setupnote "logz.io docker shipper" "- [ ] Ingest Prometheus metrics to Netdata (port 5002)"
+    fi
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-docker"
@@ -217,32 +202,44 @@ echo ""
 echo "--- Logz.io ---"
 echo ""
 
-# TODO: for Docker to logzio:
-# https://docs.logz.io/shipping/log-sources/docker.html#logzio-logging-plugin-config
-# docker plugin install logzio/logzio-logging-plugin:1.0.2 --alias logzio/logzio-logging-plugin
-# docker plugin enable logzio/logzio-logging-plugin
-# verify:
-# docker plugin ls --filter enabled=true
-# TODO: configure daemon.json
-# {
-#   "log-driver": "logzio/logzio-logging-plugin",
-#   "log-opts": {
-#     "logzio-url": "<<LISTENER-HOST>>",
-#     "logzio-token": "<<LOG-SHIPPING-TOKEN>>",
-#     "logzio-dir-path": "<dir_path_to_logs_disk_queue>"
-#   }
-# }
-# sudo mkdir /opt/docker/data/logzio && sudo chown root:docker /opt/docker/data/logzio
+_logz_setup() {
+  echo "Enter your logz.io token: "
+  read -r LOGZ_TOKEN
 
-# for system to logzio:
-# curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz \
-#   && tar xzf logzio-rsyslog.tar.gz \
-#   && sudo rsyslog/install.sh -t linux -a "TOKEN" -l "listener.logz.io" \
-#   && rm logzio-rsyslog.tar.gz
-# curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz \
-#   && tar xzf logzio-rsyslog.tar.gz \
-#   && sudo rsyslog/install.sh -t nginx -a "TOKEN" -l "listener.logz.io" \
-#   && rm logzio-rsyslog.tar.gz
+  echo "syslog..."
+  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-linux')
+  pushd "$TMP_DIR"
+  curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
+  tar xzf logzio-rsyslog.tar.gz
+  sudo rsyslog/install.sh -t linux -a "$LOGZ_TOKEN" -l "listener.logz.io"
+  popd
+
+  if command -v nginx >/dev/null; then
+    echo "nginx..."
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-nginx')
+    pushd "$TMP_DIR"
+    curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
+    tar xzf logzio-rsyslog.tar.gz
+    sudo rsyslog/install.sh -t nginx -a "$LOGZ_TOKEN" -l "listener.logz.io"
+    popd
+  fi
+
+  if command -v docker >/dev/null; then
+    echo "docker..."
+    "$SCRIPT_DIR/docker/setup-logz.sh" "$LOGZ_TOKEN"
+  fi
+}
+if [ ! -e "$HOME/.config/dotfiles/no-logzio" ]; then
+  echo "Setup log shipping to logz.io? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    _logz_setup
+    # TODO(cdzombak): if Pi, review logrotate / rsyslog setup (ref. blog posts once complete)
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/no-logzio"
+  fi
+fi
 
 echo ""
 echo "--- Tailscale ---"
@@ -269,8 +266,10 @@ if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
     echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
-    sudo apt-get update && sudo apt-get install syncthing
-    # TODO(cdzombak): syncthing configuration (add ID to note, GUI password and accessibility via tailscale, start syncing)
+    sudo apt-get update
+    sudo apt-get install syncthing
+    sudo systemctl enable syncthing@cdzombak.service
+    setupnote "Syncthing" "- [ ] Make GUI accessible via Tailscale\n- [ ] Set GUI password\n- [ ] Add ID to Syncthing Devices note\n- [ ] Start syncing fodlers as desired"
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-syncthing"

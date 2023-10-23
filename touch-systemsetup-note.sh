@@ -234,6 +234,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 - [ ] Set default note as floating on top & slightly larger font size (Window > Use as Default)
 
+## Homebrew Auto-update
+
+- [ ] Notifications: Notification Center only; no sounds/badges
+
 EOF
 elif [ "$(uname)" == "Linux" ]; then
   # shellcheck disable=SC1091
@@ -257,26 +261,33 @@ elif [ "$(uname)" == "Linux" ]; then
     - \`ChallengeResponseAuthentication no\`
     - \`PermitRootLogin no\`
     - When finished, \`sudo systemctl reload sshd\`
+- [ ] Customize \`/etc/update-motd.d\` as desired
 
 ## Backups
 
-- [ ] Configure and schedule backups as desired
+- [ ] Create Restic repository (see \`/etc/restic-backup/restic-cfg\`)
+- [ ] Configure backups as desired (see \`/etc/restic-backup\`)
+
+## Postfix
+
+- [ ] Install and configure Postfix for mail delivery if/as desired, per [my internal document](bear://x-callback-url/open-note?id=CEB5B409-41C9-4DCC-999B-031D789F1117-57092-0004FA61C2AC6DAB)
+
+## Swap
+
+- [ ] Configure/disable swap as desired
+- [ ] Change \`vm.swappiness\` and \`m.vfs_cache_pressure\` via \`sudo nano /etc/sysctl.d/90-cdz-swap.conf\` as desired
+
+(Reference: [enable and configure](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04) or [disable](https://linuxhandbook.com/disable-swap-linux/).)
 
 EOF
   if is_raspbian; then
   cat << EOF > "$HOME/SystemSetup.md"
 
-## Raspbery Pi Setup
+## Raspberry Pi Setup
 
 - [ ] Configure system via \`sudo raspi-config\`
-- [ ] Harden for reliability per [my blog post on reducing SD card wear](https://www.dzombak.com/blog/2021/11/Reducing-SD-Card-Wear-on-a-Raspberry-Pi-or-Armbian-Device.html)
-EOF
-cat << EOF > "$HOME/SystemSetup.md"
+- [ ] Harden for reliability per [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html)
 
-## Core Services
-
-TODO(cdzombak): postfix, netdata, docker, logz
-TODO(cdzombak): customize motd
 EOF
   fi
 else

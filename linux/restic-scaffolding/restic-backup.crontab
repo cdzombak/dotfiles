@@ -1,0 +1,4 @@
+# /etc/cron.d/restic-backup: crontab entry for system backup via restic
+SHELL=/bin/bash
+
+00 01 * * *  root  runner -name "restic backup" -- /usr/bin/flock -n /tmp/restic-backup.lock ionice -c2 -n7 nice -n19 /etc/restic-backup/backup.sh

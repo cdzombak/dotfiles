@@ -1,0 +1,6 @@
+/etc
+/usr/local
+
+/home
+/root
+/var/spool/cron

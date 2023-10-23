@@ -4,8 +4,8 @@
 
 # Completions currently based on OpenSSH 7.0 (released on 2015-08-11).
 #
-# TODO: update ssh-keygen (not based on 5.9)
-# TODO: sshd, ssh-keyscan, ssh-keysign
+# TODO(cdzombak): update ssh-keygen (not based on 5.9)
+# TODO(cdzombak): sshd, ssh-keyscan, ssh-keysign
 
 _ssh () {
   local curcontext="$curcontext" state line expl common tmp cmds suf ret=1
