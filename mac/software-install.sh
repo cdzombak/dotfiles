@@ -1775,7 +1775,7 @@ _install_note_dxophotolab() {
   cecho "Install DxO PhotoLab? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    setupnote "DxO PhotoLab" "- [ ] Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)\n- [ ] TODO: note next steps in setup checklist in macos-software-install.sh"
+    setupnote "DxO PhotoLab" "- [ ] Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)\n- [ ] TODO(cdzombak): note next steps in setup checklist in macos-software-install.sh"
     cecho "[i] DxO PhotoLab cannot be installed automatically." $white
     echo "    Install it from https://www.dxo.com/dxo-photolab/download"
     echo "    Installation steps have been added to the system setup checklist."
@@ -1789,7 +1789,7 @@ _install_note_dxofilmpack() {
   cecho "Install DxO FilmPack? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    setupnote "DxO FilmPack" "- [ ] Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)\n- [ ] TODO: note next steps in setup checklist in macos-software-install.sh"
+    setupnote "DxO FilmPack" "- [ ] Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)\n- [ ] TODO(cdzombak): note next steps in setup checklist in macos-software-install.sh"
     cecho "[i] DxO FilmPack cannot be installed automatically." $white
     echo "    Install it from https://www.dxo.com/dxo-filmpack/download"
     echo "    Installation steps have been added to the system setup checklist."
