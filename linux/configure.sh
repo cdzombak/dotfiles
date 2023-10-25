@@ -11,6 +11,19 @@ if [ ! -x /usr/sbin/dpkg-reconfigure ]; then
   exit 1
 fi
 
+IS_ROOT=false
+if [ "$EUID" -eq 0 ]; then
+  if [ "$HOME" != "/root" ]; then
+    echo "[!] you appear to be root but HOME is not /root; exiting."
+    exit 1
+  fi
+  IS_ROOT=true
+fi
+if $IS_ROOT; then
+  echo "Run configuration script as a regular user; it uses sudo where needed."
+  exit 0
+fi
+
 if command -v raspi-config &> /dev/null; then
   echo "Configure with raspi-config? (y/N)"
   read -r response

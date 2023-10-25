@@ -11,6 +11,19 @@ if [ ! -x /usr/bin/apt ]; then
   exit 1
 fi
 
+IS_ROOT=false
+if [ "$EUID" -eq 0 ]; then
+  if [ "$HOME" != "/root" ]; then
+    echo "[!] you appear to be root but HOME is not /root; exiting."
+    exit 1
+  fi
+  IS_ROOT=true
+fi
+if $IS_ROOT; then
+  echo "Run software install script as a regular user; it uses sudo where needed."
+  exit 0
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
@@ -118,10 +131,9 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     wget -O /tmp/netdata-kickstart.sh https://my-netdata.io/kickstart.sh && sh /tmp/netdata-kickstart.sh --stable-channel --native-only
-    # TODO(cdzombak): netdata configuration, registry - can I automate that?
-    # TODO(cdzombak): incorporate bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE
+    # TODO(cdzombak): write/update this netdata config note
     setupnote "Netdata" \
-      "- [ ] Listen on port 9999\n- [ ] Make accessible via Tailscale\n- [ ] Monitor all services for this server"
+      "- [ ] Listen on port 9999\n- [ ] Make accessible via Tailscale\n- [ ] Monitor all services for this server\n- [ ] Configure per [my Netdata config document](bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE)"
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-netdata"

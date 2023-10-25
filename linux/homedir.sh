@@ -6,6 +6,20 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+IS_ROOT=false
+if [ "$EUID" -eq 0 ]; then
+  if [ "$HOME" != "/root" ]; then
+    echo "[!] you appear to be root but HOME is not /root; exiting."
+    exit 1
+  fi
+  IS_ROOT=true
+fi
+
+if $IS_ROOT; then
+  mkdir -p "$HOME/tmp"
+  exit 0
+fi
+
 mkdir -p "$HOME/.config/dotfiles"
 mkdir -p "$HOME/opt/bin"
 mkdir -p "$HOME/opt/lib"

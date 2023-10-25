@@ -6,6 +6,15 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+IS_ROOT=false
+if [ "$EUID" -eq 0 ]; then
+  if [ "$HOME" != "/root" ]; then
+    echo "[!] you appear to be root but HOME is not /root; exiting."
+    exit 1
+  fi
+  IS_ROOT=true
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
@@ -17,11 +26,13 @@ echo ""
 
 cd "$SCRIPT_DIR/.."
 stow --target="$HOME" --ignore="DS_Store" nano
-stow --target="$HOME" --ignore="DS_Store" screen
 stow --target="$HOME" --ignore="DS_Store" tig
+if ! "$IS_ROOT"; then
+  stow --target="$HOME" --ignore="DS_Store" screen
+fi
 cd "$SCRIPT_DIR"
 stow --target="$HOME" --ignore="DS_Store" git
-touch ~/.gitconfig.local
+touch "$HOME"/.gitconfig.local
 "$SCRIPT_DIR"/bash/integrate.sh
 
 cecho "✔ Done." $green
