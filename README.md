@@ -27,7 +27,7 @@ Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig
 
 git clone git@github.com:cdzombak/dotfiles.git .dotfiles
 cd .dotfiles/
-make [ mac | server ]
+make [ mac | linux ]
 ```
 
 Running `make` with no target prints help.
@@ -37,11 +37,10 @@ Running `make` with no target prints help.
 When setting up a new macOS system, in addition to dotfiles, the following are required:
 
 - My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html))
-- My [osx-automation repository](https://github.com/cdzombak/osx-automation/tree/edbc14b506e1b31b9a86e7298fb7c343d81fc289) (installed automatically during `make mac-software`)
+- My [macois-automation repository](https://github.com/cdzombak/macos-automation) (installed automatically during `make mac-software`)
 - My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
-- My [JetBrains settings repository](https://github.com/cdzombak/intellij-settings) (private; install manually when first opening these IDEs)
 - Miscellaneous application configuration files & resources I store in `~/.config/macos` and sync between machines with SyncThing (eg. Alfred, Choosy, Dash, iTerm2)
-- Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/macos-configure.sh) already covers many of the more important settings)
+- Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/mac/configure.sh) already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements
 
