@@ -253,6 +253,7 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] Add SSH key to SSH config repo
 - [ ] Install SSH config
 - [ ] Install dotfiles
+- [ ] Remove \`avahi-daemon\` if plausible (due to [high CPU usage bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=993051;msg=56)) (\`sudo apt remove --purge avahi-daemon\`)
 
 ## SSH Hardening
 
