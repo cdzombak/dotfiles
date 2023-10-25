@@ -257,9 +257,9 @@ elif [ "$(uname)" == "Linux" ]; then
 ## SSH Hardening
 
 - [ ] Customize \`/etc/ssh/sshd_config\`:
-    - \`PasswordAuthentication no\`
-    - \`ChallengeResponseAuthentication no\`
     - \`PermitRootLogin no\`
+    - \`PasswordAuthentication no\`
+    - \`KbdInteractiveAuthentication no\`
     - When finished, \`sudo systemctl reload sshd\`
 - [ ] Customize \`/etc/update-motd.d\` as desired
 
