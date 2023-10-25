@@ -98,7 +98,6 @@ mac-all: dependencies require-macos mac-homedir mac-configure mac-stow mac-softw
 .PHONY: linux-stow
 linux-stow: dependencies submodules require-linux ## Link Linux configuration files in $HOME
 	@bash ./linux/stow.sh
-	@bash ./linux/bash/integrate.sh
 
 .PHONY: linux-homedir
 linux-homedir: require-linux ## Set up basic Linux home directory structure

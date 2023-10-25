@@ -22,5 +22,6 @@ stow --target="$HOME" --ignore="DS_Store" tig
 cd "$SCRIPT_DIR"
 stow --target="$HOME" --ignore="DS_Store" git
 touch ~/.gitconfig.local
+"$SCRIPT_DIR"/bash/integrate.sh
 
 cecho "✔ Done." $green
