@@ -27,7 +27,7 @@ Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig
 
 git clone git@github.com:cdzombak/dotfiles.git .dotfiles
 cd .dotfiles/
-make [ mac | linux ]
+make [ mac-all | linux-all ]
 ```
 
 Running `make` with no target prints help.

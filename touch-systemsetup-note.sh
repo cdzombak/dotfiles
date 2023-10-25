@@ -240,6 +240,16 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 EOF
 elif [ "$(uname)" == "Linux" ]; then
+  IS_ROOT=false
+  if [ "$EUID" -eq 0 ]; then
+    if [ "$HOME" != "/root" ]; then
+      echo "[!] you appear to be root but HOME is not /root; exiting."
+      exit 1
+    fi
+    IS_ROOT=true
+  fi
+  if $IS_ROOT; then exit 0; fi
+
   # shellcheck disable=SC1091
   source "$SCRIPT_DIR"/linux/swprof
 

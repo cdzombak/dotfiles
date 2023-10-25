@@ -114,5 +114,5 @@ linux-configure: setupnote require-linux ## Core Linux configuration (requires s
 linux-software: setupnote require-linux linux-homedir ## Set up core software on Linux (requires sudo)
 	@bash ./linux/software-install.sh
 
-.PHONY: linux
+.PHONY: linux-all
 linux-all: require-linux linux-user linux-configure linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
