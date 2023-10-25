@@ -308,7 +308,7 @@ _install_go_snap() {
   sudo snap install go --classic
   sudo ln -s /snap/bin/go /usr/bin/go
 }
-if dpkg-query -W golang >/dev/null; then
+if dpkg-query -W golang >/dev/null 2>&1; then
   echo "Switch Golang to snap-based install? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then

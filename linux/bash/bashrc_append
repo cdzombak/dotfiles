@@ -51,4 +51,3 @@ function rm-known-host() {
     fi
     sed -i "$1d" "$HOME/.ssh/known_hosts"
 }
-
