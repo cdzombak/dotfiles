@@ -8,7 +8,7 @@ TMP_DIR=$(mktemp -d 2>/dev/null)
 cp ./include-files.txt "$TMP_DIR"
 cp ./excludes.txt "$TMP_DIR"
 
-if [ -d /etc/restic-backup/pre-backup.d ]; then
+if [ -d /etc/restic-backup/pre-backup.d ] && [ -n "$(ls -A /etc/restic-backup/pre-backup.d)" ]; then
   echo "Running /etc/restic-backup/pre-backup.d..."
   for f in /etc/restic-backup/pre-backup.d/*; do
     echo "$f ..."
@@ -23,7 +23,7 @@ restic backup --files-from "$TMP_DIR"/include-files.txt \
   --exclude-file="$TMP_DIR"/excludes.txt
 echo ""
 
-if [ -d /etc/restic-backup/backup.d ]; then
+if [ -d /etc/restic-backup/backup.d ] && [ -n "$(ls -A /etc/restic-backup/backup.d)" ]; then
   echo "Running /etc/restic-backup/backup.d..."
   for f in /etc/restic-backup/backup.d/*; do
     echo "$f ..."

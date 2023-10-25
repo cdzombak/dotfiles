@@ -16,9 +16,12 @@ sudo cp "$SCRIPT_DIR"/keep.json /etc/restic-backup
 sudo chmod 0644 /etc/restic-backup/*.json
 sudo chmod 0644 /etc/restic-backup/*.txt
 sudo cp "$SCRIPT_DIR"/restic-cfg /etc/restic-backup
-sudo chmod 0640 /etc/restic-backup
+sudo chmod 0755 /etc/restic-backup
 sudo chown -R root:root /etc/restic-backup
 
 sudo cp "$SCRIPT_DIR"/restic-backup.crontab /etc/cron.d/restic-backup
 sudo chown root:root /etc/cron.d/restic-backup
 sudo chmod 0644 /etc/cron.d/restic-backup
+
+sudo mkdir /var/log/restic-backup
+sudo chmod 0755 /var/log/restic-backup

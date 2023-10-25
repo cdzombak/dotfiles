@@ -1,6 +1,10 @@
-/etc
-/usr/local
-
 /home
 /root
+
+/etc
+# /opt/docker
+# /opt/tailscale
+/srv
+/usr/local
+# /var/lib/
 /var/spool/cron
