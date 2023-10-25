@@ -84,3 +84,8 @@
 	#
 	# via aaron @ blumira
 	irbco = !git for-each-ref refs/remotes --format='%(refname:short)' | fzf | sed 's/[^\\/]*\\/\\(.*\\)/\\1/' | xargs git switch
+
+# Safe directories (allows regular user to use Git with root-owned configs)
+
+[safe]
+	directory = /etc/nginx
