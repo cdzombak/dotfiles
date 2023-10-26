@@ -25,7 +25,7 @@ Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig
 ```shell
 # in ~
 
-git clone git@github.com:cdzombak/dotfiles.git .dotfiles
+git clone https://github.com/cdzombak/dotfiles.git .dotfiles
 cd .dotfiles/
 make [ mac-all | linux-all ]
 ```

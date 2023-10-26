@@ -250,9 +250,6 @@ elif [ "$(uname)" == "Linux" ]; then
   fi
   if $IS_ROOT; then exit 0; fi
 
-  # shellcheck disable=SC1091
-  source "$SCRIPT_DIR"/linux/swprof
-
   cat << EOF > "$HOME/SystemSetup.md"
 
 - [ ] Configure DNS as desired
@@ -292,7 +289,7 @@ elif [ "$(uname)" == "Linux" ]; then
 (Reference: [enable and configure](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04) or [disable](https://linuxhandbook.com/disable-swap-linux/).)
 
 EOF
-  if is_raspbian; then
+  if lsb_release -d | grep -c "Raspbian" >/dev/null; then
   cat << EOF > "$HOME/SystemSetup.md"
 
 ## Raspberry Pi Setup
