@@ -259,11 +259,12 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] \`adduser cdzombak\`
 - [ ] \`usermod -aG sudo cdzombak && usermod -aG admin cdzombak\`
 - [ ] Set/change hostname as desired
+    - \`hostnamectl set-hostname HOSTNAEME.FQDN.TLD\`
+    - \`hostnamectl set-hostname HOSTNAME --pretty\`
 - [ ] \`sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo reboot\`
-- [ ] Add SSH key to SSH config repo
 - [ ] Install SSH config
 - [ ] Install dotfiles
-- [ ] Remove \`avahi-daemon\` if plausible (due to [high CPU usage bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=993051;msg=56)) (\`sudo apt remove --purge avahi-daemon\`)
+- [ ] Remove \`avahi-daemon\` (for home network machines) if plausible (due to [high CPU usage bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=993051;msg=56)) (\`sudo apt remove --purge avahi-daemon\`)
 
 ## SSH Hardening
 

@@ -22,13 +22,15 @@ My zsh theming is intended to work well with a dark color scheme (I use [Solariz
 
 Begin by [installing my SSH configuration](https://github.com/cdzombak/sshconfig/blob/master/README.md#installation) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html)).
 
-```bash
+```shell
 # in ~
 
 git clone git@github.com:cdzombak/dotfiles.git .dotfiles
 cd .dotfiles/
 make [ mac-all | linux-all ]
 ```
+
+On Linux, also clone the dotfiles and run `make linux-all` from a root terminal (`sudo -i`).
 
 Running `make` with no target prints help.
 
