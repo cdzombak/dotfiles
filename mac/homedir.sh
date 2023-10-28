@@ -136,19 +136,18 @@ if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
     fi
   fi
 
-  if ! diff -r "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/" "$HOME/Documents" >/dev/null 2>&1 ; then
-    if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.config/dotfiles/no-home-icloud-links" ]; then
-      echo ""
-      echo "Desktop/Documents in iCloud appears to be disabled."
-      echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
-      echo "(eg. ~/Documents/iCloud, etc. Mainly intended for work computers.)"
-      read -r response
-      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
-        ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
-      else
-        touch "$HOME/.config/dotfiles/no-home-icloud-links"
-      fi
+  if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.config/dotfiles/no-home-icloud-links" ]; then
+    echo ""
+    echo "Desktop/Documents in iCloud appears to be disabled."
+    echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
+    echo "(eg. ~/Documents/iCloud, etc.)"
+    cecho "nb. Answer NO if this system will use Documents/Desktop iCloud sync." $white
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop" "$HOME/Desktop/iCloud"
+      ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents" "$HOME/Documents/iCloud"
+    else
+      touch "$HOME/.config/dotfiles/no-home-icloud-links"
     fi
   fi
 
