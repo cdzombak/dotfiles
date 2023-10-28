@@ -60,9 +60,6 @@ bid() {
   [[ -z $bundleid || $bundleid = "" ]] && echo "Error getting bundle ID for \"$@\"" || echo "$location: $bundleid"
 }
 
-alias watch-reload-chrome="ag -l | entr reload-browser \"Google Chrome\""
-alias watch-reload-safari="ag -l | entr reload-browser Safari"
-
 # hide/unhide files in Finder:
 
 hide() {
@@ -73,3 +70,6 @@ unhide() {
     chflags -h nohidden "$@"
 }
 compdef _files unhide
+
+# remove quarantine xattr, recursively:
+alias unquar='xattr -r -d com.apple.quarantine'
