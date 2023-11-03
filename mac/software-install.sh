@@ -2413,13 +2413,13 @@ verify_smartdelete() {
   done
 }
 
-if [ -e "$(brew --prefix)/bin/gpg" ]; then
-  if ! ls -la "$(brew --prefix)/bin/gpg" | grep -c "MacGPG" >/dev/null ; then
-    echo "GnuPG (Homebrew install; use MacGPG instead)..."
-    brew uninstall gnupg
-    REMOVED_ANYTHING=true
-  fi
-fi
+# if [ -e "$(brew --prefix)/bin/gpg" ]; then
+#   if ! ls -la "$(brew --prefix)/bin/gpg" | grep -c "MacGPG" >/dev/null ; then
+#     echo "GnuPG (Homebrew install; use MacGPG instead)..."
+#     brew uninstall gnupg
+#     REMOVED_ANYTHING=true
+#   fi
+# fi
 
 if [ -e "/Applications/AccessControlKitty.app" ]; then
   echo "AccessControlKitty Xcode extension..."
