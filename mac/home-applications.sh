@@ -175,6 +175,9 @@ fi
 if [ -e "/Applications/Raindrop.io.app" ] && [ ! -e "$HOME/Applications/Media/Raindrop.io" ]; then
   ln -s "/Applications/Raindrop.io.app" "$HOME/Applications/Media/Raindrop.io"
 fi
+if [ -e "/Applications/YT Music.app" ] && [ ! -e "$HOME/Applications/Media/YT Music" ]; then
+  ln -s "/Applications/YT Music.app" "$HOME/Applications/Media/YT Music"
+fi
 
 if [ ! -d "$HOME/Applications/Photo Tools" ]; then
   setupnote "Dock/Photo Tools" "- [ ] Add Photo Tools to Dock, if desired"
