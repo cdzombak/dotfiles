@@ -62,26 +62,15 @@ else
   echo "(Not installed.)"
 fi
 
-echo "Bartender 3 ..."
-if [ -e "/Applications/Bartender 3.app" ]; then
-  osascript -e "tell application \"Bartender 3\" to quit"
-  defaults write com.surteesstudios.Bartender ReduceUpdateCheckFrequencyWhenOnBattery -bool true
-  set +e
-  open -a "Bartender 3"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
-echo "Bartender 4 ..."
-if [ -e "/Applications/Bartender 4.app" ]; then
-  osascript -e "tell application \"Bartender 4\" to quit"
+echo "Bartender 5 ..."
+if [ -e "/Applications/Bartender 5.app" ]; then
+  osascript -e "tell application \"Bartender 5\" to quit"
   defaults write com.surteesstudios.Bartender "ReduceMenuItemSpacing" '1'
   defaults write com.surteesstudios.Bartender "ReduceUpdateCheckFrequencyWhenOnBattery" '1'
   defaults write com.surteesstudios.Bartender "BartenderBarOnlyOnNotchScreens" '1'
   defaults write com.surteesstudios.Bartender "Gaps-RequireAltOrRightClickToShowGapPopup" '1'
   set +e
-  open -a "Bartender 4"
+  open -a "Bartender 5"
   set -e
 else
   echo "(Not installed.)"
