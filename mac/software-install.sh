@@ -228,7 +228,7 @@ sw_install /usr/local/bin/metar _install_metar
 
 sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
   "- [ ] Sign in to accounts: personal; work as needed\n- [ ] Do not show in menu bar\n- [ ] Start at login\n- [ ] No keyboard shortcut for: Show 1Password; Lock 1Password\n- [ ] Quick Access: Ctrl-Shift-Command-Backslash\n- [ ] Autofill: Command-Backslash\n- [ ] Appearance -> Density: Compact\n- [ ] Security: enable unlock with Apple Watch\n- [ ] Security: hold Option to toggle revealed fields\n- [ ] Privacy -> Watchtower: Enable all Watchtower features\n- [ ] Developer: enable biometric unlock for CLI"
-sw_install /usr/local/bin/op "brew_cask_install 1password-cli"
+sw_install "$(brew --prefix)"/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
 if [ -e "/Applications/Alfred 4.app" ]; then
@@ -704,7 +704,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-elgato-control-center" ]; then
     cecho "Install Elgato Control Center utility? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask elgato-stream-deck
+      brew install --cask elgato-control-center
       setupnote "Elgato Control Center.app" \
         "- [ ] Arrange in menu bar"
     else
@@ -1245,7 +1245,7 @@ _install_tsc() {
      npm install -g typescript
   fi
 }
-sw_install /usr/local/bin/tsc _install_tsc
+sw_install "$(brew --prefix)"/bin/tsc _install_tsc
 
 cecho "Install JS/TS code quality tools (prettier, eslint, jshint)? (y/N)" $magenta
 read -r response
@@ -2807,7 +2807,7 @@ _install_sqlint() {
     brew gem install sqlint
   fi
 }
-sw_install /usr/local/bin/sqlint _install_sqlint
+sw_install "$(brew --prefix)"/bin/sqlint _install_sqlint
 
 set -e
 
