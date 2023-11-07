@@ -58,15 +58,15 @@ function usbCallback(data)
 
       -- Is this machine currently connected to my home office desk external monitor?
       local isHomeDeskExternalMonitor = false
-      local output, status = hs.execute("/usr/local/bin/lunar get serial")
+      local output, status = hs.execute("/Users/cdzombak/.local/bin/lunar get serial")
       if status == false then
         log.d("failed to get monitor serial: " .. output)
-      elseif string.find(output, "B5545C3D-AA52-422C-8C50-2D97E231D7F3", 0, true) or string.find(output, "3C82E6B9-5051-42FD-8BA8-3BB83EC50EE8", 0, true) then
+      elseif string.find(output, "B664054E-3034-4FE7-B340-A748E8B69030", 0, true) or string.find(output, "B5545C3D-AA52-422C-8C50-2D97E231D7F3", 0, true) or string.find(output, "3C82E6B9-5051-42FD-8BA8-3BB83EC50EE8", 0, true) then
         isHomeDeskExternalMonitor = true
       end
       log.d("isHomeDeskExternalMonitor: " .. tostring(isHomeDeskExternalMonitor))
 
-      local enableAutoMonitorSwitching = file_exists("~/.config/dotfiles/enable-auto-monitor-switching")
+      local enableAutoMonitorSwitching = file_exists("/Users/cdzombak/.config/dotfiles/enable-auto-monitor-switching")
 
       -- on disconnect from 'Freestyle Edge Keyboard',
       -- if home desk external monitor is connected,
@@ -77,7 +77,7 @@ function usbCallback(data)
         if isHomeDeskMacStudio then
           newInput = "displayport1"
         end
-        local output, status = hs.execute("/usr/local/bin/lunar set input " .. newInput)
+        local output, status = hs.execute("/Users/cdzombak/.local/bin/lunar set input " .. newInput)
         if status == false then
           log.d("failed to set input (" .. newInput .. "): " .. output)
         end
