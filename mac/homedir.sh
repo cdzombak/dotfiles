@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+LIB_DIR="$SCRIPT_DIR/../lib"
+# shellcheck disable=SC1091
+source "$LIB_DIR"/cecho
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS homedir setup because not on macOS"
@@ -137,8 +141,6 @@ if [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ]; then
   fi
 
   if { [ ! -L "$HOME/Desktop/iCloud" ] || [ ! -L "$HOME/Documents/iCloud" ] ;} && [ ! -e "$HOME/.config/dotfiles/no-home-icloud-links" ]; then
-    echo ""
-    echo "Desktop/Documents in iCloud appears to be disabled."
     echo "Create links from Desktop/Documents to iCloud Drive? (y/N)"
     echo "(eg. ~/Documents/iCloud, etc.)"
     cecho "nb. Answer NO if this system will use Documents/Desktop iCloud sync." $white

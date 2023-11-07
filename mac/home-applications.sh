@@ -22,7 +22,7 @@ if [ ! -d "$HOME/Applications/Dev Tools" ]; then
 fi
 mkdir -p "$HOME/Applications/Dev Tools"
 if ! fileicon test "$HOME/Applications/Dev Tools"; then
-  fileicon set "$HOME/Applications/Dev Tools" "./macOS Configs/Dock Icons/Dev Tools.png"
+  fileicon set "$HOME/Applications/Dev Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/Dev Tools.png"
 fi
 
 if [ -e "/Applications/Dash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Dash" ]; then
@@ -82,7 +82,7 @@ if [ ! -d "$HOME/Applications/Hobby Tools" ]; then
 fi
 mkdir -p "$HOME/Applications/Hobby Tools"
 if ! fileicon test "$HOME/Applications/Hobby Tools"; then
-  fileicon set "$HOME/Applications/Hobby Tools" "./macOS Configs/Dock Icons/Hobby Tools.png"
+  fileicon set "$HOME/Applications/Hobby Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/Hobby Tools.png"
 fi
 
 if [ -e "/Applications/UltiMaker Cura.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Cura" ]; then
@@ -116,7 +116,7 @@ if [ ! -d "$HOME/Applications/Media" ]; then
 fi
 mkdir -p "$HOME/Applications/Media"
 if ! fileicon test "$HOME/Applications/Media"; then
-  fileicon set "$HOME/Applications/Media" "./macOS Configs/Dock Icons/Media.png"
+  fileicon set "$HOME/Applications/Media" "$SCRIPT_DIR/macOS Resources/Dock Icons/Media.png"
 fi
 
 if [ -e "/Applications/calibre.app" ] && [ ! -e "$HOME/Applications/Media/Calibre" ]; then
@@ -184,7 +184,7 @@ if [ ! -d "$HOME/Applications/Photo Tools" ]; then
 fi
 mkdir -p "$HOME/Applications/Photo Tools"
 if ! fileicon test "$HOME/Applications/Photo Tools"; then
-  fileicon set "$HOME/Applications/Photo Tools" "./macOS Configs/Dock Icons/Photo Tools.png"
+  fileicon set "$HOME/Applications/Photo Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/Photo Tools.png"
 fi
 
 if [ -e "/Applications/Acorn.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Acorn" ]; then
@@ -244,7 +244,7 @@ if [ ! -d "$HOME/Applications/Social Media" ]; then
 fi
 mkdir -p "$HOME/Applications/Social Media"
 if ! fileicon test "$HOME/Applications/Social Media"; then
-  fileicon set "$HOME/Applications/Social Media" "./macOS Configs/Dock Icons/Social Media.png"
+  fileicon set "$HOME/Applications/Social Media" "$SCRIPT_DIR/macOS Resources/Dock Icons/Social Media.png"
 fi
 
 if [ -e "/Applications/Messenger.app" ] && [ ! -e "$HOME/Applications/Social Media/Messenger" ]; then
@@ -275,7 +275,7 @@ if [ ! -d "$HOME/Applications/System Tools" ]; then
 fi
 mkdir -p "$HOME/Applications/System Tools"
 if ! fileicon test "$HOME/Applications/System Tools"; then
-  fileicon set "$HOME/Applications/System Tools" "./macOS Configs/Dock Icons/System Tools.png"
+  fileicon set "$HOME/Applications/System Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/System Tools.png"
 fi
 
 if [ -e "/Applications/Arq.app" ] && [ ! -e "$HOME/Applications/System Tools/Arq" ]; then
