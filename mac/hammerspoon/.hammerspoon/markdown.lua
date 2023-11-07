@@ -1,4 +1,4 @@
-local PASTEBOARD_DELAY_SECONDS = 0.100
+local PASTEBOARD_DELAY_SECONDS = 0.150
 
 function wrapSelectedText(wrapCharacters)
   -- Preserve the current contents of the system clipboard
