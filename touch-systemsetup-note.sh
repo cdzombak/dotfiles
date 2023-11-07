@@ -229,6 +229,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 - [ ] Add items to Menu Bar as desired
 - [ ] Arrange Menu Bar icon next to FastScripts
+- [ ] Add SSH key to SSH config (as desired)
 
 ## Stickies.app
 
