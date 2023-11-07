@@ -1,4 +1,4 @@
-local log = hs.logger.new('delete-words.lua', 'debug')
+-- local log = hs.logger.new('delete-words.lua', 'debug')
 
 -- Use control + u to delete to beginning of line
 --

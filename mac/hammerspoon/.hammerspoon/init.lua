@@ -1,7 +1,3 @@
--- mostly from https://github.com/jasonrudolph/keyboard
-
-local log = hs.logger.new('init.lua', 'debug')
-
 -- Use Control+Alt+` to reload Hammerspoon config
 hs.hotkey.bind({'ctrl', 'alt'}, '`', nil, function()
   hs.notify.new({title='Hammerspoon', informativeText='Reloading 💭'}):send()
@@ -9,8 +5,6 @@ hs.hotkey.bind({'ctrl', 'alt'}, '`', nil, function()
 end)
 
 keyUpDown = function(modifiers, key)
-  -- Un-comment & reload config to log each keystroke that we're triggering
-  -- log.d('Sending keystroke:', hs.inspect(modifiers), key)
   hs.eventtap.keyStroke(modifiers, key, 0)
 end
 
