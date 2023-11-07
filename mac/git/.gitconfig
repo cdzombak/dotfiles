@@ -8,8 +8,8 @@
 	signingkey = 7CE31A6E
 
 # Company-specific name/email/signing key:
-#[includeIf "gitdir:~/code/panther/"]
-#	path = .gitconfig-panther
+[includeIf "gitdir:~/code/nametag/"]
+	path = .gitconfig-work
 
 # Core Config
 
