@@ -284,6 +284,8 @@ sw_install "/Applications/Shortcat.app" "brew_cask_install shortcat" \
 sw_install /Applications/Sloth.app "brew_cask_install sloth"
 sw_install /Applications/Spotify.app "brew_cask_install spotify" \
   "- [ ] Sign in\n- [ ] Disable launching at login"
+sw_install "/Applications/Tailscale.app" "brew_cask_install tailscale" \
+  "- [ ] Sign in"
 sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files\n- [ ] License"
@@ -893,22 +895,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-tor" ]; then
     fi
   }
   sw_install "/Applications/Tor Browser.app" _install_torbrowser
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-screensconnect" ]; then
-  _install_screensconnect() {
-    cecho "Install Screens Connect? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask screens-connect
-      setupnote "## /Applications/Screens Connect.app" \
-        "- [ ] Sign in / enable\n- [ ] Hide in Bartender"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-screensconnect"
-    fi
-  }
-  sw_install "/Applications/Screens Connect.app" _install_screensconnect
 fi
 
 _install_vncviewer() {
@@ -2650,6 +2636,16 @@ if [ -e "/Applications/Rocket.app" ]; then
   trash "$HOME/Library/Scripts/Restart Rocket.scpt"
   set -e
   trash /Applications/Rocket.app
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/Screens Connect.app" ]; then
+  echo "Screens Connect..."
+  verify_smartdelete
+  set +e
+  osascript -e "tell application \"Screens Connect\" to quit"
+  set -e
+  trash "/Applications/Screens Connect.app"
   REMOVED_ANYTHING=true
 fi
 
