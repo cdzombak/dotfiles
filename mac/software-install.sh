@@ -135,7 +135,6 @@ sw_install "$(brew --prefix)/bin/ddgr" "brew_install ddgr"
 sw_install "$(brew --prefix)/bin/duf" "brew_install duf"
 sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
 sw_install "$(brew --prefix)/bin/duti" "brew_install duti"
-sw_install "$(brew --prefix)/bin/exa" "brew_install exa"
 sw_install "$(brew --prefix)/bin/fileicon" "brew_install fileicon"
 sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
 sw_install "$(brew --prefix)/bin/git" "brew_install git"
@@ -388,9 +387,6 @@ sw_install /Applications/CARROTweather.app "mas install 993487541" \
   "- [ ] Restore purchases\n- [ ] Personality: Professional\n- [ ] Sounds: Notifications Only\n- [ ] Source: AccuWeather\n- [ ] Update: 15 Minutes\n- [ ] Mini-Window Shortcut: Off\n- [ ] Sync: Locations, not Settings\n- [ ] Dock icon: Hidden\n- [ ] Position in Mac Menu Bar\n- [ ] Current Data Slot 9: Precip Amount\n- [ ] Current Displayed Summary: Today\n- [ ] Current Spoken Summary: None\n- [ ] Daily Data Left Slot: Precip Chance\n- [ ] Notifications: as desired; refer to iPhone\n- [ ] Open Automatically at Login: On"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
-sw_install "/Applications/GIF Brewery 3.app" "mas install 1081413713"
-#sw_install /Applications/IPinator.app "mas install 959111981" \
-#  "- [ ] Add to Notification Center"
 sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable system share extension (_not_ Safari extension)"
 sw_install /Applications/NewFileMenu.app "mas install 1064959555" \
@@ -486,22 +482,6 @@ sw_install "/Applications/Ears.app" _install_ears \
 
 sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
   "- [ ] Set Honk as system error sound, as desired"
-
-sw_install /Library/Mail/Bundles/MailTrackerBlocker.mailbundle "brew_install mailtrackerblocker" \
-  "- [ ] Enable: Open Mail.app > Preferences > General > Manage Plug-ins. Check \`MailTrackerBlocker.mailbundle\`. Apply. Restart Mail."
-
-if [ -e "/Applications/Lofi Cafe.app" ]; then
-  rm -rf "/Applications/Lofi Cafe.app"
-fi
-_install_loficafe() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'lofi-cafe')
-  git clone "https://github.com/cdzombak/lofiapp.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install-mac-homedir
-  make clean
-  popd
-}
-sw_install "$HOME/Applications/Lofi Cafe.app" _install_loficafe
 
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
@@ -781,11 +761,10 @@ _install_portmap() {
 
 echo ""
 cecho "Install network tools? (y/N)" $magenta
-echo "(Discovery, dog [CLI DNS client], iperf3, mtr, nmap, Port Map, speedtest, telnet, Wifi Explorer)"
+echo "(Discovery, iperf3, mtr, nmap, Port Map, speedtest, telnet, Wifi Explorer)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install /Applications/Discovery.app "mas install 1381004916"
-  sw_install "$(brew --prefix)/bin/dog" "brew_install dog"  # cli dns client
   sw_install "$(brew --prefix)/bin/iperf3" "brew_install iperf3"
   sw_install "$(brew --prefix)/sbin/mtr" "brew_install mtr"
   sw_install "$(brew --prefix)/bin/nmap" "brew_install nmap"
@@ -956,35 +935,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-transmit" ]; then
   }
   sw_install "/Applications/Transmit.app" _install_transmit
 fi
-
-_install_tadam() {
-  cecho "Install Tadam (focus timer)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 531349534
-    setupnote "Tadam.app" \
-      "- [ ] Allow notifications\n- [ ] Start at login\n- [ ] Keyboard shortcut Ctrl-Cmd-T\n- [ ] Arrange in Bartender"
-  fi
-}
-sw_install "/Applications/Tadam.app" _install_tadam
-
-# _install_coconutbattery() {
-#   cecho "Install CoconutBattery? (y/N)" $magenta
-#   read -r response
-#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#     brew install --cask coconutbattery
-#   fi
-# }
-# sw_install /Applications/coconutBattery.app _install_coconutbattery
-
-# _install_daisydisk() {
-#   cecho "Install DaisyDisk? (note: OmniDiskSweeper is installed already) (y/N)" $magenta
-#   read -r response
-#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#     mas install 411643860 # DaisyDisk
-#   fi
-# }
-# sw_install /Applications/DaisyDisk.app _install_daisydisk
 
 echo ""
 cecho "--- Dev Tools ---" $white
@@ -2224,32 +2174,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-messenger" ]; then
   sw_install /Applications/Messenger.app _install_messenger
 fi
 
-# if [ ! -e "$HOME/.config/dotfiles/software/no-tweetbot" ]; then
-#   _install_tweetbot() {
-#     cecho "Install Tweetbot? (y/N)" $magenta
-#     read -r response
-#     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#       mas install 1384080005
-
-#       # shellcheck disable=SC2129
-#       echo "## Tweetbot.app" >> "$HOME/SystemSetup.md"
-#       echo "" >> "$HOME/SystemSetup.md"
-#       echo -e "- [ ] Sign into Twitter accounts\n- [ ] Configure/disable notifications\n- [ ] Disable Menu Bar icon\n- [ ] Disable all sounds\n- [ ] Increase font size (17)" >> "$HOME/SystemSetup.md"
-#       echo "" >> "$HOME/SystemSetup.md"
-
-#       # https://twitter.com/dancounsell/status/667011332894535682
-#       cecho "Set: Avoid t.co in Tweetbot-Mac" $cyan
-#       set -x
-#       defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
-#       set +x
-#     else
-#       echo "Won't ask again next time this script is run."
-#       touch "$HOME/.config/dotfiles/software/no-tweetbot"
-#     fi
-#   }
-#   sw_install /Applications/Tweetbot.app _install_tweetbot
-# fi
-
 echo ""
 cecho "--- Games ---" $white
 echo ""
@@ -2490,10 +2414,36 @@ if [ -e "/Applications/Cardhop.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e /Applications/coconutBattery.app ]; then
+  echo "coconutBattery..."
+  set +e
+  verify_smartdelete
+  osascript -e "tell application \"coconutBattery\" to quit"
+  trash /Applications/coconutBattery.app
+  REMOVED_ANYTHING=true
+  set -e
+fi
+
+if [ -e /Applications/DaisyDisk.app ]; then
+  echo "DaisyDisk..."
+  set +e
+  verify_smartdelete
+  osascript -e "tell application \"DaisyDisk\" to quit"
+  trash /Applications/DaisyDisk.app
+  REMOVED_ANYTHING=true
+  set -e
+fi
+
 if [ -e "/Applications/Deliveries.app" ]; then
   osascript -e 'quit app "Deliveries"'
   verify_smartdelete
   trash "/Applications/Deliveries.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$(brew --prefix)/bin/dog" ]; then
+  echo "dog..."
+  brew uninstall dog
   REMOVED_ANYTHING=true
 fi
 
@@ -2507,6 +2457,12 @@ fi
 if [ -e /usr/local/bin/emoj ]; then
   echo "emoj..."
   npm uninstall -g emoj
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "$(brew --prefix)/bin/exa" ]; then
+  echo "exa..."
+  brew uninstall exa
   REMOVED_ANYTHING=true
 fi
 
@@ -2533,6 +2489,13 @@ if [ -e "/Applications/Garmin Express.app" ]; then
   verify_smartdelete
   osascript -e 'tell application "Garmin Express" to quit'
   brew uninstall --cask garmin-express || trash "/Applications/Garmin Express.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e "/Applications/GIF Brewery 3.app" ]; then
+  echo "GIF Brewery 3..."
+  verify_smartdelete
+  trash "/Applications/GIF Brewery 3.app"
   REMOVED_ANYTHING=true
 fi
 
@@ -2571,6 +2534,13 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   REMOVED_ANYTHING=true
 fi
 
+if [ -e "/Applications/Ice Cubes.app" ] ; then
+  echo "Ice Cubes..."
+  verify_smartdelete
+  trash "/Applications/Ice Cubes.app"
+  REMOVED_ANYTHING=true
+fi
+
 if [ -e "/Applications/Instapaper.app" ] ; then
   echo "Instapaper (it's a bad app)..."
   verify_smartdelete
@@ -2578,10 +2548,10 @@ if [ -e "/Applications/Instapaper.app" ] ; then
   REMOVED_ANYTHING=true
 fi
 
-if [ -e "/Applications/Ice Cubes.app" ] ; then
-  echo "Ice Cubes..."
+if [ -e /Applications/IPinator.app ]; then
+  echo "IPinator..."
   verify_smartdelete
-  trash "/Applications/Ice Cubes.app"
+  trash "/Applications/IPinator.app"
   REMOVED_ANYTHING=true
 fi
 
@@ -2611,6 +2581,12 @@ if [ -e /Applications/MagicHighlighter.app ]; then
   echo "MagicHighlighter..."
   verify_smartdelete
   trash "/Applications/MagicHighlighter.app"
+  REMOVED_ANYTHING=true
+fi
+
+if [ -e /Library/Mail/Bundles/MailTrackerBlocker.mailbundle ]; then
+  echo "mailtrackerblocker..."
+  brew uninstall mailtrackerblocker
   REMOVED_ANYTHING=true
 fi
 
@@ -2682,6 +2658,16 @@ if [ -e "/Applications/StopTheMadness.app" ]; then
   echo "StopTheMadness..."
   trash "/Applications/StopTheMadness.app"
   REMOVED_ANYTHING=true
+fi
+
+if [ -e /Applications/Tadam.app ]; then
+  echo "Tadam..."
+  set +e
+  verify_smartdelete
+  osascript -e "tell application \"Tadam\" to quit"
+  trash /Applications/Tadam.app
+  REMOVED_ANYTHING=true
+  set -e
 fi
 
 if [ -e "$(brew --prefix)/bin/task" ]; then
