@@ -947,7 +947,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   # GUI dev tools:
   sw_install /Applications/Expressions.app "mas install 913158085"
   sw_install /Applications/Fork.app "brew_cask_install fork" \
-    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Fork default)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Sign into GitHub account (as desired)"
+    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Homebrew Git)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Set GitHub Desktop as default GitHub tool\n- [ ] Sign into GitHub account (as desired)"
   sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge" \
     "- [ ] License"
   sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
