@@ -70,19 +70,14 @@ if profile_public_server && ! dpkg-query -W fail2ban >/dev/null; then
   sudo apt install -y fail2ban
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/no-ufw" ] && ! dpkg-query -W ufw >/dev/null; then
-  echo "Install ufw? (y/N)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo apt install -y ufw
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/no-ufw"
-  fi
+if [ ! -e "$HOME/.config/dotfiles/no-ufw" ] && profile_public_server && ! dpkg-query -W ufw >/dev/null; then
+  sudo apt install -y ufw
 fi
 
 echo "Installing self-packaged software via apt-get..."
 sudo apt-get install -y apply-crontab dirshard listening runner restic remote-edit unshorten
+
+if is_tiny; then sudo apt-get install -y apt-daily-clean; fi
 
 if [ "$(uname -m)" = "x86_64" ]; then
   sudo apt-get install -y bandwhich
@@ -168,7 +163,7 @@ if dpkg-query -W certbot >/dev/null; then
   fi
 fi
 
-if ! command -v nginx >/dev/null; then
+if profile_server && ! command -v nginx >/dev/null; then
   echo "Install nginx? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -193,15 +188,11 @@ if ! command -v nginx >/dev/null; then
     _install_certbot_snap
   fi
 
-  echo "Install nginx_ensite/dissite scripts? (y/N)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    git clone https://github.com/perusio/nginx_ensite.git /tmp/nginx_ensite
-    pushd /tmp/nginx_ensite
-    sudo make install
-    popd
-    rm -rf /tmp/nginx_ensite
-  fi
+  git clone https://github.com/perusio/nginx_ensite.git /tmp/nginx_ensite
+  pushd /tmp/nginx_ensite
+  sudo make install
+  popd
+  rm -rf /tmp/nginx_ensite
 fi
 
 echo ""

@@ -290,12 +290,12 @@ elif [ "$(uname)" == "Linux" ]; then
 (Reference: [enable and configure](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04) or [disable](https://linuxhandbook.com/disable-swap-linux/).)
 
 EOF
-  if lsb_release -d | grep -c "Raspbian" >/dev/null; then
+  if lsb_release -d | grep -c "Raspbian" >/dev/null || [ -e /etc/armbian-release ]; then
   cat << EOF > "$HOME/SystemSetup.md"
 
-## Raspberry Pi Setup
+## Raspberry Pi / Armbian Device Setup
 
-- [ ] Configure system via \`sudo raspi-config\`
+- [ ] Configure system via \`sudo raspi-config\` / \`sudo armbian-config\`
 - [ ] Harden for reliability per [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html)
 
 EOF
