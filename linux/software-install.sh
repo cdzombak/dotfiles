@@ -75,7 +75,8 @@ if [ ! -e "$HOME/.config/dotfiles/no-ufw" ] && profile_public_server && ! dpkg-q
 fi
 
 echo "Installing self-packaged software via apt-get..."
-sudo apt-get install -y apply-crontab dirshard listening runner restic remote-edit unshorten
+sudo apt-get install -y apply-crontab dirshard listening runner restic unshorten
+# TODO(cdzombak): add remote-edit/apg
 
 if is_tiny; then sudo apt-get install -y apt-daily-clean; fi
 
