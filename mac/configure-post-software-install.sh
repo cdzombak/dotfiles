@@ -706,7 +706,6 @@ if [ -e "/Applications/Setapp/Screens.app" ]; then
   if ! grep -c "Screens.app" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## Screens.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Connect" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Enable iCloud sync" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi

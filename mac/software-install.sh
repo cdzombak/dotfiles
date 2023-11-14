@@ -226,7 +226,7 @@ sw_install /usr/local/bin/metar _install_metar
 # Move on to macOS applications:
 
 sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to accounts: personal; work as needed\n- [ ] Do not show in menu bar\n- [ ] Start at login\n- [ ] No keyboard shortcut for: Show 1Password; Lock 1Password\n- [ ] Quick Access: Ctrl-Shift-Command-Backslash\n- [ ] Autofill: Command-Backslash\n- [ ] Appearance -> Density: Compact\n- [ ] Security: enable unlock with Apple Watch\n- [ ] Security: hold Option to toggle revealed fields\n- [ ] Privacy -> Watchtower: Enable all Watchtower features\n- [ ] Developer: enable biometric unlock for CLI"
+  "- [ ] Sign in to accounts: personal; work as needed\n- [ ] Do not show in menu bar\n- [ ] Start at login\n- [ ] No keyboard shortcut for: Show 1Password; Lock 1Password\n- [ ] Quick Access: Ctrl-Shift-Command-Backslash\n- [ ] Autofill: Command-Backslash\n- [ ] Appearance -> Density: Compact\n- [ ] Security: enable unlock with Apple Watch\n- [ ] Security: hold Option to toggle revealed fields\n- [ ] Privacy -> Watchtower: Enable all Watchtower features\n- [ ] Developer: enable CLI integration"
 sw_install "$(brew --prefix)"/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"
@@ -234,7 +234,7 @@ if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
 fi
 sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
-  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Set location to US\n- [ ] Disable Mini Player hotkey and  keyword\n- [ ] Sweep through synced workflows, fixing as needed"
+  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Change theme\n- [ ] Sweep through synced workflows, fixing as needed"
   sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
@@ -247,7 +247,7 @@ fi
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
-  "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Set as default browser\n- [ ] Configure Choosy/Import and Tweak Choosy Config\n- [ ] Enable Choosy Safari extension"
+  "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Set as default browser\n- [ ] Configure Choosy/Import and Tweak Choosy Config"
 sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
   "- [ ] License\n- [ ] Enable Start at Login"
 sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
@@ -269,7 +269,7 @@ sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 if [ ! -e "$HOME/.config/dotfiles/software/no-mimestream" ]; then
   sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
-    "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Notification config: Show in Notification Center and display badge"
+    "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Increase font size\n- [ ] Notification config: Show in Notification Center and display badge"
 fi
 sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
   "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
@@ -420,7 +420,7 @@ _install_things() {
 }
 # nb. Things shows in Finder as Things.app but its filename is Things3.app
 sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n- [ ] Set keyboard shortcuts\n- [ ] Enable autofill via Things Helper\n- [ ] Set calendar & reminders integration settings\n- [ ] Add widget to Notification Center"
+  "- [ ] Sign into Things Cloud account\n- [ ] Set keyboard shortcuts\n- [ ] Enable autofill via Things Helper\n- [ ] Set calendar & reminders integration settings"
 
 _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
@@ -451,7 +451,7 @@ _install_websters() {
   open -a Dictionary
 }
 sw_install "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" _install_websters \
-  "- [ ] Drag Webster’s 1913 to the top of the list in Dictionary.app's Preferences"
+  "- [ ] Arrange/enable dictionaries in Dictionary.app as desired"
 
 # Solarized for Xcode
 # if this source disappears, there's also my copy in ~/.config/macos
@@ -997,7 +997,7 @@ _install_ask_dash() {
     open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
     set -e
     setupnote "Dash.app" \
-      "- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Sync snippets\n- [ ] Arrange docsets as desired\n- [ ] License"
+      "- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Sync snippets\n- [ ] Review & Arrange docsets as desired\n- [ ] License"
   fi
 }
 sw_install /Applications/Dash.app _install_ask_dash

@@ -37,19 +37,18 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Enable Firewall
 - [ ] Allow unlocking machine with Apple Watch
 - [ ] Allow apps downloaded from: App Store and identified developers
-- [ ] 5 minutes to screen saver; 5 second delay before locking screen
+- [ ] 5 minutes to screen saver
 - [ ] 2 minutes to screen off when on battery; 10 minutes on AC
 - [ ] Review other Energy settings as desired
     - [ ] Enable optimizing video streaming while on battery
 - [ ] Name Touch ID finger & add the other index finger
-- [ ] Find My Mac & Find My Network
+- [ ] Verify Find My Mac is enabled
 
 ### Apple ID & iCloud
 
 - [ ] Enable iCloud, except Contacts & Mail
     - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
     - [ ] Enable Desktop & Documents folders, as desired
-- [ ] Enable Touch ID for purchases
 
 _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\` and \`macos-configure-post-software-install.sh\` to create iCloud Drive links in \`~\` and configure the Finder sidebar.
 
@@ -64,6 +63,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Pair AirPods Pro
 - [ ] AirPods Pro: **Set to reconnect to this Mac only when last connected**
 
+### Control Center
+
+- [ ] Do not show Spotlight in menu bar
+
 ### Desktop & Screen Saver
 
 - [ ] Customize as desired
@@ -76,7 +79,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 ### Internet Accounts
 
 - [ ] Sign into personal & work Google accounts; enable Mail/Contacts/Calendars only
-    - [ ] On personal computers, for work Google account, enable *Calendar* only
+- [ ] On personal computers, for work Google account, enable *Calendar* only
 
 ### Keyboard
 
@@ -84,14 +87,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Turn off "correct spelling automatically," "capitalize words automatically," "add period with double-space"
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/.config/macos\`)
     - [ ] Customize available services as desired
-- [ ] Enable Dictation + Enhanced Dictation
-    - [ ] Set shortcut: right Command key twice (unless keyboard has dictation key on F5)
-
-### Network
-
-- [ ] Add home VPN config
-    - [ ] Enable 'Send All Traffic Over VPN'
-- [ ] Show VPN status in menu bar; hide in Bartender Bar
+- [ ] Enable Dictation
 
 ### Notifications
 
@@ -150,9 +146,11 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
         - AADL Checkouts
         - WxCal (Google)
         - Facebook
-    - Work:
         - Holidays
-        - Work
+        - Journal
+    - Work:
+        - Work Calendar
+        - Team Calendar(s)
     - Other:
         - Birthdays
 - [ ] Disable alerts & availability for:
@@ -160,12 +158,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - Environment
     - AADL Checkouts *(availability only)*
     - WxCal
-    - Deliveries
-    - Work / Contacts
+    - Parcels
     - Work / Team Calendar
     - Birthdays
     - Siri Suggestions
-- Add to Widgets
 
 ## Dock
 
@@ -195,27 +191,27 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 ## Widgets / Notification Center
 
-- [ ] Configure: Calendar, Weather, Things, Deliveries (skip as desired for work laptop)
+- [ ] Configure: Calendar, Oblique SE, Weather, Photos (skip as desired for work laptop)
 
 ## Safari
 
 - [ ] Walk through Preferences, configuring as desired
     - [ ] Set homepage: \`https://start.dzdz.cz/\`
     - [ ] New tabs and windows open with start page
+    - [ ] Set search engine to DuckDuckGo
     - [ ] Disable AutoFill (in favor of [1Password](https://blog.1password.com/big-sur-1password-7-7/))
     - [ ] Privacy: disable hiding IP from known trackers (breaks stuff/slows performance)
-    - [ ] Enable Develop menu
+    - [ ] Enable web developer features
 - [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
 ## Desk Setup
 
-- [ ] Pair with Bluetooth keyboard
-    - [ ] Change Caps Lock to Control in Keyboard preferences
-- [ ] Run \`mouse-tracking\` script as appropriate (eg. \`mouse-tracking home\`)
+- [ ] Set mouse tracking speed as desired
 - [ ] Display setup
     - [ ] Change display resolution as needed
     - [ ] Change display arrangement as needed
     - [ ] Confirm 5k/60Hz resolution via System Information app
+- [ ] Pair with Sony ANC Earbuds as desired
 - [ ] Pair with Sony ANC Headphones as desired
 
 ## SSH
