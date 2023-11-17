@@ -41,7 +41,7 @@ When setting up a new macOS system, in addition to dotfiles, the following are r
 - My [SSH configuration repository](https://github.com/cdzombak/sshconfig) (private; see [my blog post about this setup](https://www.dzombak.com/blog/2021/02/Securing-my-personal-SSH-infrastructure-with-Yubikeys.html))
 - My [macos-automation repository](https://github.com/cdzombak/macos-automation) (installed automatically during `make mac-software`)
 - My [Sublime Text settings repository](https://github.com/cdzombak/sublime-text-config) (private; installed automatically during `make mac-software`)
-- Miscellaneous application configuration files & resources I store in `~/.config/macos` and sync between machines with SyncThing (eg. Alfred, Choosy, Dash, iTerm2)
+- Miscellaneous application configuration files & resources I store in `~/.config/macos` and sync between machines with [Syncthing](https://www.syncthing.net) (eg. Alfred, Choosy, Dash, iTerm2)
 - Various settings in System Preferences (though [the configuration script](https://github.com/cdzombak/dotfiles/blob/master/mac/configure.sh) already covers many of the more important settings)
 
 ## Inspiration & Acknowledgements
