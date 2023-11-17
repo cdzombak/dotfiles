@@ -8,6 +8,6 @@ set -euo pipefail
 # /opt/docker/data/ is expected to exist and be writable by the user running
 # this script (they should be in the sudo and docker groups)
 
-openssl dhparam -out /opt/docker/data/dhparam.pem 4096
+openssl dhparam -out /opt/docker/data/dhparam.pem 2048
 sudo chown root:docker /opt/docker/data/dhparam.pem
 sudo chmod 0444 /opt/docker/data/dhparam.pem
