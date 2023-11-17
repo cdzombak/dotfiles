@@ -1248,10 +1248,8 @@ fi
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  cecho "TODO(cdzombak): script artifacts checks for Latex tools" $white
-  cecho "           See: https://github.com/cdzombak/dotfiles/issues/9" $white
-  brew install --cask mactex
-  brew install --cask texmaker
+  sw_install "/Applications/TeX" "brew_cask_install mactex"
+  sw_install "/Applications/texmaker.app" "brew_cask_install texmaker"
 fi
 
 echo ""
@@ -1704,7 +1702,7 @@ _install_note_dxophotolab() {
   cecho "Install DxO PhotoLab? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    setupnote "DxO PhotoLab" "- [ ] Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)\n- [ ] TODO(cdzombak): note next steps in setup checklist in macos-software-install.sh"
+    setupnote "DxO PhotoLab" "- [ ] Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)"
     cecho "[i] DxO PhotoLab cannot be installed automatically." $white
     echo "    Install it from https://www.dxo.com/dxo-photolab/download"
     echo "    Installation steps have been added to the system setup checklist."
@@ -1718,7 +1716,7 @@ _install_note_dxofilmpack() {
   cecho "Install DxO FilmPack? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    setupnote "DxO FilmPack" "- [ ] Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)\n- [ ] TODO(cdzombak): note next steps in setup checklist in macos-software-install.sh"
+    setupnote "DxO FilmPack" "- [ ] Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)"
     cecho "[i] DxO FilmPack cannot be installed automatically." $white
     echo "    Install it from https://www.dxo.com/dxo-filmpack/download"
     echo "    Installation steps have been added to the system setup checklist."
