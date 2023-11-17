@@ -20,6 +20,9 @@ if [ "$EUID" -eq 0 ]; then
   IS_ROOT=true
 fi
 if $IS_ROOT; then
+  mkdir -p /root/.local
+  ln -s /usr /root/.local/.nano-root
+
   echo "Run software install script as a regular user; it uses sudo where needed."
   exit 0
 fi
