@@ -67,14 +67,12 @@ source ~/.zsh/grep.zsh
 source ~/.zsh/extract.zsh
 source ~/.zsh/history.zsh
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    source ~/.zsh/osx.zsh
+    source ~/.zsh/macos.zsh
     source ~/.zsh/xcode.zsh
 fi
-source ~/.zsh/music-control.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/jobs-help.zsh
 source ~/.zsh/markdown.zsh
-source ~/.zsh/fuck-things.zsh
 source ~/.zsh/clipboard.zsh
 source ~/.zsh/python.zsh
 source ~/.zsh/rake.zsh

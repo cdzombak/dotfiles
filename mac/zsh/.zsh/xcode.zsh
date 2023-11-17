@@ -1,32 +1,46 @@
-# from https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/xcode , with customizations
+# from https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/xcode
 
+alias xcb='xcodebuild'
+alias xcdd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 alias xcp='xcode-select --print-path'
 alias xcsel='sudo xcode-select --switch'
 
 # original author: @subdigital
-# source: http://gist.github.com/subdigital/5420709
+# source: https://gist.github.com/subdigital/5420709
 function xc {
-  local xcode_proj
-  if [[ $# == 0 ]]; then
-    xcode_proj=(*.{xcworkspace,xcodeproj}(N))
-  else
-    xcode_proj=($1/*.{xcworkspace,xcodeproj}(N))
+  local xcode_files
+  xcode_files=(${1:-.}/{*.{xcworkspace,xcodeproj,swiftpm},Package.swift}(N))
+
+  if [[ ${#xcode_files} -eq 0 ]]; then
+    echo "No Xcode files found in ${1:-the current directory}." >&2
+    return 1
   fi
 
-  if [[ ${#xcode_proj} -eq 0 ]]; then
-    if [[ $# == 0 ]]; then
-      echo "No xcworkspace/xcodeproj file found in the current directory."
-    else
-      echo "No xcworkspace/xcodeproj file found in $1."
-    fi
-    return 1
-  else
-    echo "Found ${xcode_proj[1]}"
-    open "${xcode_proj[1]}"
+  local active_path
+  active_path=${"$(xcode-select -p)"%%/Contents/Developer*}
+  echo "Found ${xcode_files[1]}. Opening with ${active_path}"
+
+  # If Xcode is already opened in another Desk, we need this double call
+  # with -g to open the project window in the current Desk and focus it.
+  # See https://github.com/ohmyzsh/ohmyzsh/issues/10384
+  if command pgrep -q "^Xcode"; then
+    open -g -a "$active_path" "${xcode_files[1]}"
   fi
+  open -a "$active_path" "${xcode_files[1]}"
 }
 
-# "XCode-SELect by Version" - select Xcode by just version number
+# Opens a file or files in the Xcode IDE. Multiple files are opened in multi-file browser
+# original author: @possen
+function xx {
+  if [[ $# == 0 ]]; then
+    echo "Specify file(s) to open in xcode."
+    return 1
+  fi
+  echo "${xcode_files}"
+  open -a "Xcode.app" "$@"
+}
+
+# "Xcode-Select by Version" - select Xcode by just version number
 # Uses naming convention:
 #  - different versions of Xcode are named Xcode-<version>.app or stored
 #     in a folder named Xcode-<version>

@@ -54,20 +54,6 @@ function ssc {
 }
 compdef ssc=ssh
 
-function torrent {
-    ssh pi@torrentpi -o ProxyCommand="ssh curie-remote -W %h:%p" "transmission-remote -a \"$1\""
-}
-
-#function pihole-whitelist {
-#    ssh pidns -o ProxyCommand="ssh curie-remote -W %h:%p" "sudo pihole -w \"$1\""
-#}
-#function pihole-disable {
-#    ssh pidns -o ProxyCommand="ssh curie-remote -W %h:%p" "sudo pihole disable \"$1\""
-#}
-#function pihole-enable {
-#    ssh pidns -o ProxyCommand="ssh curie-remote -W %h:%p" "sudo pihole enable"
-#}
-
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
@@ -204,23 +190,10 @@ function delayed_exit() {
     fi
     exit
 }
-alias xx="delayed_exit"
 alias qq="delayed_exit"
 
-# helpers for https://github.com/cdzombak/hosts-timer
-function use-facebook() {
-    DUR="${1:-5m}"
-    terminal-notifier -message "Enabling Facebook for $DUR." -title "hosts-timer" -open "https://facebook.com"
-    sudo hosts-timer -time "$DUR" facebook.com
-}
-function use-twitter() {
-    DUR="${1:-5m}"
-    terminal-notifier -message "Enabling Twitter for $DUR." -title "hosts-timer" -open "https://twitter.com"
-    sudo hosts-timer -time "$DUR" twitter.com
-}
-
-alias hosts-list='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" ; echo "Windows Game Desktop" ; echo "Windows Laptop" ; echo "Lab Mac Mini" ; }'
-alias hosts-list-md='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" ; echo "- [ ] Windows Game Desktop" ; echo "- [ ] Windows Laptop" ; echo "- [ ] Lab Mac Mini" ; }'
+alias hosts-list='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" ; echo "Windows Game Desktop" ; echo "Windows Laptop" ; }'
+alias hosts-list-md='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" ; echo "- [ ] Windows Game Desktop" ; echo "- [ ] Windows Laptop" ; }'
 
 function rm-known-host() {
     if [ -z "$1" ]; then

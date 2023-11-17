@@ -33,11 +33,33 @@ function ff() {
   smart_pushd "$(pfd)"
 }
 
-function quick-look() {
-  (( $# > 0 )) && qlmanage -p $* &>/dev/null
+# Remove .DS_Store files recursively in a directory, default .
+function rmdsstore() {
+  find "${@:-.}" -type f -name .DS_Store -delete
 }
 
-alias ql="quick-look"
+# Erases purgeable disk space with 0s on the selected disk
+function freespace(){
+  if [[ -z "$1" ]]; then
+    echo "Usage: $0 <disk>"
+    echo "Example: $0 /dev/disk1s1"
+    echo
+    echo "Possible disks:"
+    df -h | awk 'NR == 1 || /^\/dev\/disk/'
+    return 1
+  fi
+
+  echo "Cleaning purgeable files from disk: $1 ...."
+  diskutil secureErase freespace 0 $1
+}
+
+_freespace() {
+  local -a disks
+  disks=("${(@f)"$(df | awk '/^\/dev\/disk/{ printf $1 ":"; for (i=9; i<=NF; i++) printf $i FS; print "" }')"}")
+  _describe disks disks
+}
+
+compdef _freespace freespace
 
 # Find bundle ID for an app, via http://brettterpstra.com/2012/07/31/overthinking-it-fast-bundle-id-retrieval-for-mac-apps/
 bid() {
