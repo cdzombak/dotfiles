@@ -214,12 +214,13 @@ sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plis
 
 # metar: CLI metar lookup tool
 _install_metar() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'metar-work')
-  git clone "https://github.com/RyuKojiro/metar.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
+  DEST_DIR="$HOME/3p_code/metar"
+  git clone "https://github.com/RyuKojiro/metar.git" "$DEST_DIR"
+  pushd "$DEST_DIR"
   make
   if [ -w /usr/local/bin ]; then make install; else sudo make install; fi
   popd
+  chmod 0555 "$DEST_DIR"
 }
 sw_install /usr/local/bin/metar _install_metar
 
@@ -449,11 +450,12 @@ sw_install "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" _install_web
 # Solarized for Xcode
 # if this source disappears, there's also my copy in ~/.config/macos
 _install_xcode_solarized() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'solarized-xcode')
-  git clone "https://github.com/stackia/solarized-xcode.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
+  DEST_DIR="$HOME/3p_code/solarized-xcode"
+  git clone "https://github.com/stackia/solarized-xcode.git" "$DEST_DIR"
+  pushd "$DEST_DIR"
   chmod +x ./install.sh
   ./install.sh
+  chmod 0555 "$DEST_DIR"
   popd
 }
 sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.xccolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
