@@ -2,6 +2,11 @@
 set -euo pipefail
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# n.b. This is not a package because, while it provides a solid and reasonably
+#      flexible foundation, it is expected that customizations will be needed
+#      on different machines (e.g. to support multiple restic destinations with
+#      different configurations)
+
 sudo mkdir /etc/restic-backup
 sudo chmod 0755 /etc/restic-backup
 sudo mkdir /etc/restic-backup/backup.d
