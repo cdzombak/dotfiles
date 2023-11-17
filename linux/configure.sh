@@ -52,3 +52,11 @@ if [ ! -e /etc/sysctl.d/90-cdz-netdev.conf ]; then
   echo "net.core.netdev_budget=900" | sudo tee /etc/sysctl.d/90-cdz-netdev.conf
   echo "net.core.netdev_budget_usecs=6000" | sudo tee -a /etc/sysctl.d/90-cdz-netdev.conf
 fi
+
+echo "Clean MOTD..."
+sudo rm -f /etc/update-motd.d/10-help-text \
+  /etc/update-motd.d/50-motd-news \
+  /etc/update-motd.d/51-cloudguest \
+  /etc/update-motd.d/80-livepatch \
+  /etc/update-motd.d/91-contract-ua-esm-status \
+  /etc/update-motd.d/35-armbian-tips

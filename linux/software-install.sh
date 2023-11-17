@@ -138,10 +138,6 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
 fi
 
 echo "Customize MOTD..."
-sudo rm -f /etc/update-motd.d/10-help-text \
-  /etc/update-motd.d/51-cloudguest \
-  /etc/update-motd.d/80-livepatch \
-  /etc/update-motd.d/91-contract-ua-esm-status
 curl -s https://gist.githubusercontent.com/cdzombak/07c5d97e4186dcc73ac4452fbf816387/raw/9f9dd275c22c35649fe3c7b0eebd5e25a2b7d5f1/install.sh | sudo bash
 
 echo ""
