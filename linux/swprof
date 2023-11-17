@@ -23,10 +23,10 @@ if ! profile_desktop && ! profile_server; then
   exit 1
 fi
 
-function is_raspbian() {
-  lsb_release -d | grep -c "Raspbian" >/dev/null
+function is_rpi() {
+  command -v raspi-config >/dev/null
 }
 
 function is_tiny() {
-  is_raspbian || [ -e /etc/armbian-release ]
+  is_rpi || [ -e /etc/armbian-release ]
 }

@@ -35,7 +35,7 @@ source "$LIB_DIR"/sw_install
 source "$SCRIPT_DIR"/swprof
 
 _install_snapd() {
-  if ! dpkg-query -W snapd >/dev/null; then
+  if ! dpkg-query -W snapd >/dev/null 2>&1; then
     sudo apt install snapd
   fi
 }
@@ -69,17 +69,22 @@ if [ ! -L "$HOME/.local/.nano-root" ]; then
   ln -s /usr "$HOME/.local/.nano-root"
 fi
 
-if profile_public_server && ! dpkg-query -W fail2ban >/dev/null; then
+if profile_public_server && ! dpkg-query -W fail2ban >/dev/null 2>&1; then
   sudo apt install -y fail2ban
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/no-ufw" ] && profile_public_server && ! dpkg-query -W ufw >/dev/null; then
+if [ ! -e "$HOME/.config/dotfiles/no-ufw" ] && profile_public_server && ! dpkg-query -W ufw >/dev/null 2>&1; then
   sudo apt install -y ufw
 fi
 
 echo "Installing self-packaged software via apt-get..."
 sudo apt-get install -y apply-crontab dirshard listening runner restic unshorten
 # TODO(cdzombak): add remote-edit/apg once it's in beta
+
+if [ ! -d "$HOME/crontab.d" ]; then
+  echo "Setting up ~/crontab.d for use with apply-crontab..."
+  apply-crontab -i
+fi
 
 # Cron+Runner logging config per my convention:
 mkdir -p "$HOME"/log/runner
@@ -111,18 +116,13 @@ if [ ! -d /etc/restic-backup ]; then
   "$SCRIPT_DIR"/restic-scaffolding/install.sh
 fi
 
-if [ ! -d "$HOME/crontab.d" ]; then
-  echo "Setting up ~/crontab.d for use with apply-crontab..."
-  apply-crontab -i
-fi
-
 if ! command -v op >/dev/null; then
   echo "Installing 1Password CLI..."
   # from https://developer.1password.com/docs/cli/get-started/:
   # Add the key for the 1Password apt repository:
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
   # Add the 1Password apt repository:
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list >/dev/null
   # Add the debsig-verify policy:
   sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
   curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
@@ -142,7 +142,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   chmod 0755 "$HOME/opt/bin/notify-me"
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev/null; then
+if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev/null 2>&1; then
   echo "Install Netdata? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -166,8 +166,8 @@ _rm_avahi() {
   sudo apt remove --purge -y avahi-daemon && sudo apt autoremove -y
   set -e
 }
-if dpkg-query -W avahi-daemon >/dev/null; then
-  if is_server; then
+if dpkg-query -W avahi-daemon >/dev/null 2>&1; then
+  if profile_server; then
     _rm_avahi
   else
     echo "Remove avahi-daemon? (y/N)"
@@ -184,7 +184,7 @@ if is_tiny; then
   echo "Daily apt clean cron job ..."
   sudo apt-get install -y apt-daily-clean
 
-  if is_raspbian && [ ! -e "$HOME/.config/dotfiles/no-disable-hdmi" ] && ! dpkg-query -W pi-disable-hdmi >/dev/null; then
+  if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-disable-hdmi" ] && ! dpkg-query -W pi-disable-hdmi >/dev/null 2>&1; then
     echo "Disable Raspberry Pi HDMI output? (y/N)"
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -211,7 +211,7 @@ _install_certbot_snap() {
   sudo mkdir -p /var/www/letsencrypt/.well-known/acme-challenge
   sudo chown -R www-data:www-data /var/www/letsencrypt
 }
-if dpkg-query -W certbot >/dev/null; then
+if dpkg-query -W certbot >/dev/null 2>&1; then
   echo "Switch certbot to snap-based install? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -297,6 +297,12 @@ _logz_setup() {
   sudo rsyslog/install.sh -t linux -a "$LOGZ_TOKEN" -l "listener.logz.io"
   popd
 
+  if is_tiny; then
+    setupnote "rsyslog" \
+      "- [ ] Place \`/var/spool/rsyslog\` in a tmpfs
+- [ ] Adjust the amount of space it's allowed to use (see [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html))"
+  fi
+
   if command -v nginx >/dev/null; then
     echo "nginx..."
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-nginx')
@@ -311,7 +317,8 @@ _logz_setup() {
     echo "docker..."
     "$SCRIPT_DIR/docker/setup-logz.sh" "$LOGZ_TOKEN"
     if [ -x /usr/sbin/netdata ]; then
-      setupnote "logz.io docker shipper" "- [ ] Ingest Prometheus metrics to Netdata (use 127.0.0.1:6002)"
+      setupnote "logz.io docker shipper" \
+        "- [ ] Ingest Prometheus metrics to Netdata (use 127.0.0.1:6002)"
     fi
   fi
 }
@@ -320,7 +327,6 @@ if [ ! -e "$HOME/.config/dotfiles/no-logzio" ] && [ ! -e /etc/rsyslog.d/22-logzi
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     _logz_setup
-    # TODO(cdzombak): if Pi, review logrotate / rsyslog setup (ref. blog posts once complete)
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-logzio"
@@ -331,7 +337,7 @@ echo ""
 echo "--- Tailscale ---"
 echo ""
 
-if [ ! -e "$HOME/.config/dotfiles/no-tailscale" ] && ! dpkg-query -W tailscale >/dev/null; then
+if [ ! -e "$HOME/.config/dotfiles/no-tailscale" ] && ! dpkg-query -W tailscale >/dev/null 2>&1; then
   echo "Install Tailscale? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -346,7 +352,7 @@ echo ""
 echo "--- Syncthing ---"
 echo ""
 
-if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >/dev/null; then
+if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >/dev/null 2>&1; then
   echo "Install Syncthing? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -395,7 +401,7 @@ echo ""
 echo "--- Media Tools ---"
 echo ""
 
-if [ ! -e "$HOME/.config/dotfiles/no-ffmpeg-scripts" ] && ! dpkg-query -W quick-media-conv >/dev/null; then
+if [ ! -e "$HOME/.config/dotfiles/no-ffmpeg-scripts" ] && ! dpkg-query -W quick-media-conv >/dev/null 2>&1; then
   echo "Install quick media conversion scripts? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then

@@ -24,7 +24,7 @@ if $IS_ROOT; then
   exit 0
 fi
 
-if command -v raspi-config &> /dev/null; then
+if command -v raspi-config > /dev/null; then
   echo "Configure with raspi-config? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
