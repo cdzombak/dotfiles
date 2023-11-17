@@ -79,7 +79,7 @@ fi
 
 echo "Installing self-packaged software via apt-get..."
 sudo apt-get install -y apply-crontab dirshard listening runner restic unshorten
-# TODO(cdzombak): add remote-edit/apg
+# TODO(cdzombak): add remote-edit/apg once it's in beta
 
 # Cron+Runner logging config per my convention:
 mkdir -p "$HOME"/log/runner
@@ -139,7 +139,7 @@ echo "(requires auth to dropbox.dzombak.com/_auth)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   curl -f -u cdzombak --output "$HOME/opt/bin/notify-me" https://dropbox.dzombak.com/_auth/notify-me
-  chmod 755 "$HOME/opt/bin/notify-me"
+  chmod 0755 "$HOME/opt/bin/notify-me"
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev/null; then
@@ -400,7 +400,6 @@ if [ ! -e "$HOME/.config/dotfiles/no-yt-dlp" ] && ! command -v yt-dlp >/dev/null
 #!/bin/sh
 /usr/local/bin/yt-dlp -qU
 EOF
-    sudo chown root:root /etc/cron.daily/yt-dlp-update
     sudo chmod 0755 /etc/cron.daily/yt-dlp-update
   else
     echo "Won't ask again next time this script is run."
