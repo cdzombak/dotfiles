@@ -10,8 +10,6 @@ alias grep='grep -i'
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
-alias speedtest_noinstall='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-
 if which op >/dev/null; then
     alias 1p='eval $(op signin)'
 fi
