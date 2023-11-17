@@ -167,6 +167,12 @@ if profile_server && ! command -v nginx >/dev/null; then
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo apt install nginx
 
+    mkdir -p "$HOME/src"
+    git clone https://github.com/cdzombak/nginx_ensite.git "$HOME/src"/nginx_ensite
+    pushd "$HOME/src"/nginx_ensite
+    sudo make install
+    popd
+
     if [ -e /etc/rsyslog.d/22-logzio-linux.conf ]; then
       echo "system appears to use logz.io"
       echo "Enter your logz.io token: "
@@ -185,12 +191,6 @@ if profile_server && ! command -v nginx >/dev/null; then
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     _install_certbot_snap
   fi
-
-  git clone https://github.com/perusio/nginx_ensite.git /tmp/nginx_ensite
-  pushd /tmp/nginx_ensite
-  sudo make install
-  popd
-  rm -rf /tmp/nginx_ensite
 fi
 
 echo ""
