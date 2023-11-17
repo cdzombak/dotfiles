@@ -81,7 +81,24 @@ echo "Installing self-packaged software via apt-get..."
 sudo apt-get install -y apply-crontab dirshard listening runner restic unshorten
 # TODO(cdzombak): add remote-edit/apg
 
-if is_tiny; then sudo apt-get install -y apt-daily-clean; fi
+# Cron+Runner logging config per my convention:
+mkdir -p "$HOME"/log/runner
+cat << EOF > "$HOME"/crontab.d/01-paths.cron
+PATH=$HOME/opt/bin:/usr/local/bin:/usr/bin:/bin
+RUNNER_LOG_DIR=$HOME/log/runner
+
+EOF
+cat << EOF > "$HOME"/crontab.d/90-runner-logs-cleanup.cron
+
+## Runner logs cleanup
+0  0  *  *  *  runner -job-name "Cleanup Runner Logs" -work-dir $HOME/log/runner -- find . -mtime +7 -name "*.log" -delete
+EOF
+sudo mkdir /var/log/runner
+cat << EOF | sudo tee /etc/cron.daily/runner-logs-cleanup >/dev/null
+#!/bin/sh
+find /var/log/runner -mtime +30 -name "*.log" -delete
+EOF
+sudo chmod 0755 /etc/cron.daily/runner-logs-cleanup
 
 if [ "$(uname -m)" = "x86_64" ]; then
   sudo apt-get install -y bandwhich
@@ -142,6 +159,30 @@ fi
 
 echo "Customize MOTD..."
 curl -s https://gist.githubusercontent.com/cdzombak/07c5d97e4186dcc73ac4452fbf816387/raw/9f9dd275c22c35649fe3c7b0eebd5e25a2b7d5f1/install.sh | sudo bash
+
+if is_tiny; then
+  echo ""
+  echo "--- Raspberry Pi & Similar ---"
+  echo ""
+
+  echo "Daily apt clean cron job ..."
+  sudo apt-get install -y apt-daily-clean
+
+  if is_raspbian && [ ! -e "$HOME/.config/dotfiles/no-disable-hdmi" ] && ! dpkg-query -W pi-disable-hdmi >/dev/null; then
+    echo "Disable Raspberry Pi HDMI output? (y/N)"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sudo apt-get install -y pi-disable-hdmi
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/no-disable-hdmi"
+    fi
+  fi
+
+  # TODO(cdzombak): offer to install pi reliability wifi check script/cronjob
+  # TODO(cdzombak): watchdog
+  # TODO(cdzombak): other Pi reliability stuff, to the extent it can be automated
+fi
 
 echo ""
 echo "--- Nginx + Certbot ---"
