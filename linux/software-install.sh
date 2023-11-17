@@ -160,6 +160,22 @@ fi
 echo "Customize MOTD..."
 curl -s https://gist.githubusercontent.com/cdzombak/07c5d97e4186dcc73ac4452fbf816387/raw/9f9dd275c22c35649fe3c7b0eebd5e25a2b7d5f1/install.sh | sudo bash
 
+_rm_avahi() {
+  echo "Remove avahi-daemon ..."
+  set +e
+  sudo apt remove --purge -y avahi-daemon && sudo apt autoremove -y
+  set -e
+}
+if dpkg-query -W avahi-daemon >/dev/null; then
+  if is_server; then
+    _rm_avahi
+  else
+    echo "Remove avahi-daemon? (y/N)"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then _rm_avahi; fi
+  fi
+fi
+
 if is_tiny; then
   echo ""
   echo "--- Raspberry Pi & Similar ---"
