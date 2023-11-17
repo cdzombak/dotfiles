@@ -290,13 +290,6 @@ sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
 sw_install "/Applications/Typora.app" "brew_cask_install typora" \
   "- [ ] Associate with Markdown files\n- [ ] License"
 
-_install_vitals() {
-  brew tap | grep -c hmarr >/dev/null || brew tap hmarr/tap
-  brew install vitals
-}
-sw_install "/Applications/Vitals.app" _install_vitals \
-  "- [ ] Launch at Login\n- [ ] Arrange in Bartender"
-
 _install_sublimetext() {
   brew install --cask sublime-text
   SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
@@ -2657,6 +2650,13 @@ if [ -e "$(brew --prefix)/bin/wakeonlan" ]; then
   echo "wakeonlan..."
   brew uninstall wakeonlan
 fi
+
+if [ -e "/Applications/Vitals.app" ]; then
+  echo "Vitals..."
+  brew uninstall --cask vitals
+  brew untap hmarr/tap
+fi
+
 
 if [ -e /Applications/Wavebox.app ]; then
   echo "Wavebox..."
