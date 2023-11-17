@@ -297,8 +297,8 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] Sign in (if needed) (\`eval \$(op signin)\`)
 
 EOF
-  if lsb_release -d | grep -c "Raspbian" >/dev/null || [ -e /etc/armbian-release ]; then
-  cat << EOF > "$HOME/SystemSetup.md"
+  if command -v raspi-config >/dev/null || [ -e /etc/armbian-release ]; then
+    cat << EOF > "$HOME/SystemSetup.md"
 
 ## Raspberry Pi / Armbian Device Setup
 

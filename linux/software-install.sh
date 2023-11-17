@@ -98,7 +98,7 @@ cat << EOF > "$HOME"/crontab.d/90-runner-logs-cleanup.cron
 ## Runner logs cleanup
 0  0  *  *  *  runner -job-name "Cleanup Runner Logs" -work-dir $HOME/log/runner -- find . -mtime +7 -name "*.log" -delete
 EOF
-sudo mkdir /var/log/runner
+sudo mkdir -p /var/log/runner
 cat << EOF | sudo tee /etc/cron.daily/runner-logs-cleanup >/dev/null
 #!/bin/sh
 find /var/log/runner -mtime +30 -name "*.log" -delete
