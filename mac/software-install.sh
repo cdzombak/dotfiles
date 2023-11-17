@@ -1544,6 +1544,15 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-google-drive" ]; then
   sw_install "/Applications/Google Drive.app" _install_gdrive
 fi
 
+_install_clocker() {
+  cecho "Install Clocker? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1056643111
+  fi
+}
+sw_install /Applications/Clocker.app _install_clocker
+
 _install_diagrams() {
   cecho "Install Diagrams? (y/N)" $magenta
   read -r response
