@@ -209,9 +209,11 @@ if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null
       read -r LOGZ_TOKEN
       "$SCRIPT_DIR/docker/setup-logz.sh" "$LOGZ_TOKEN"
       if [ -x /usr/sbin/netdata ]; then
-        setupnote "logz.io docker shipper" "- [ ] Ingest Prometheus metrics to Netdata (use 127.0.0.1:6002)"
+        setupnote "logz.io docker shipper" \
+          "- [ ] Ingest Prometheus metrics to Netdata (from \`127.0.0.1:6002\`; \`sudo /etc/netdata/edit-config go.d/prometheus.conf\`)"
       fi
-      setupnote "Docker" "- [ ] Run /opt/docker/gen-data-dhparam.sh (if needed for internal/Tailscale https-portal containers)"
+      setupnote "Docker" \
+        "- [ ] Run /opt/docker/gen-data-dhparam.sh (if needed for internal/Tailscale https-portal containers)"
     fi
   else
     echo "Won't ask again next time this script is run."
@@ -293,7 +295,8 @@ if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >
     sudo apt-get update
     sudo apt-get install syncthing
     sudo systemctl enable syncthing@cdzombak.service
-    setupnote "Syncthing" "- [ ] Make GUI accessible via Tailscale\n- [ ] Set GUI password\n- [ ] Add ID to Syncthing Devices note\n- [ ] Start syncing fodlers as desired"
+    setupnote "Syncthing" \
+      "- [ ] Make GUI accessible via Tailscale\n- [ ] Set GUI password\n- [ ] Add ID to Syncthing Devices note\n- [ ] Start syncing folders as desired"
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-syncthing"
