@@ -269,11 +269,6 @@ elif [ "$(uname)" == "Linux" ]; then
     - When finished, \`sudo systemctl reload sshd\`
 - [ ] Customize \`/etc/update-motd.d\` as desired
 
-## Backups
-
-- [ ] Create Restic repository (see \`/etc/restic-backup/restic-cfg\`)
-- [ ] Configure backups as desired (see \`/etc/restic-backup\`)
-
 ## Postfix
 
 - [ ] Install and configure Postfix for mail delivery if/as desired, per [my internal document](bear://x-callback-url/open-note?id=CEB5B409-41C9-4DCC-999B-031D789F1117-57092-0004FA61C2AC6DAB)
@@ -285,6 +280,10 @@ elif [ "$(uname)" == "Linux" ]; then
 
 (Reference: [enable and configure](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04) or [disable](https://linuxhandbook.com/disable-swap-linux/).)
 
+## Backups
+
+- [ ] Create Restic repository (see \`/etc/restic-backup/restic-cfg\`)
+- [ ] Configure backups as desired (see \`/etc/restic-backup\`)
 EOF
   if lsb_release -d | grep -c "Raspbian" >/dev/null || [ -e /etc/armbian-release ]; then
   cat << EOF > "$HOME/SystemSetup.md"
