@@ -193,6 +193,8 @@ fi
 if [ -e "/Applications/Affinity Photo 2.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Affinity Photo" ]; then
   ln -s "/Applications/Affinity Photo 2.app" "$HOME/Applications/Photo Tools/Affinity Photo"
 fi
+rm "$HOME/Applications/Photo Tools/DXO PhotoLab"
+rm "$HOME/Applications/Photo Tools/DxO FilmPack"
 if [ -e "/Applications/DXOPhotoLab7.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DXO PhotoLab" ]; then
   ln -s "/Applications/DXOPhotoLab7.app" "$HOME/Applications/Photo Tools/DXO PhotoLab"
 fi
