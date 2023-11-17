@@ -59,36 +59,41 @@ source ~/.zsh/completion.zsh
 autoload -Uz compinit
 compinit
 
-source ~/.zsh/navigation.zsh
-source ~/.zsh/title.zsh
-source ~/.zsh/key-bindings.zsh
-source ~/.zsh/aliases-functions.zsh
-source ~/.zsh/grep.zsh
-source ~/.zsh/extract.zsh
-source ~/.zsh/history.zsh
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    source ~/.zsh/macos.zsh
-    source ~/.zsh/xcode.zsh
-fi
-source ~/.zsh/prompt.zsh
-source ~/.zsh/jobs-help.zsh
-source ~/.zsh/markdown.zsh
+source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
-source ~/.zsh/python.zsh
-source ~/.zsh/rake.zsh
 source ~/.zsh/colored-man-pages.zsh
+source ~/.zsh/devtools.zsh
+command -v docker >/dev/null 2>&1 && source ~/.zsh/docker-func.zsh
+source ~/.zsh/envtools.zsh
+source ~/.zsh/extract.zsh
 source ~/.zsh/gitignore.zsh
 source ~/.zsh/golang.zsh
-source ~/.zsh/bundler.zsh
+source ~/.zsh/grep.zsh
+source ~/.zsh/history.zsh
+source ~/.zsh/jobs-help.zsh
+source ~/.zsh/key-bindings.zsh
+command -v kubectl >/dev/null 2>&1 && source ~/.zsh/k8s.zsh
+source ~/.zsh/markdown.zsh
 source ~/.zsh/marks.zsh
-command -v docker >/dev/null 2>&1 && source ~/.zsh/docker-func.zsh
+source ~/.zsh/misc.zsh
+source ~/.zsh/navigation.zsh
+command -v nvm >/dev/null 2>&1 && source ~/.zsh/nvm.zsh
+source ~/.zsh/prompt.zsh
+command -v pyenv >/dev/null 2>&1 && source ~/.zsh/pyenv.zsh
+source ~/.zsh/python.zsh
+command -v rake >/dev/null 2>&1 && source ~/.zsh/rake.zsh
+source ~/.zsh/ssh.zsh
+source ~/.zsh/title.zsh
 source ~/.zsh/wx.zsh
+
 command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
-source ~/.zsh/pyenv.zsh
-source ~/.zsh/nvm.zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source ~/.zsh/macos.zsh
+    source ~/.zsh/xcode.zsh
+fi
 if [ -f ~/.local.zsh ]; then
     source ~/.local.zsh
 fi
