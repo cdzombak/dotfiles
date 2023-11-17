@@ -235,6 +235,13 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 
 - [ ] Notifications: Notification Center only; no sounds/badges
 
+## Add Sites to Dock via Safari
+
+(Really, add to Dock then remove so I just have the app in \`/Applications\`.)
+
+- [ ] [Ntfy](https://ntfy.cdzombak.net)
+    - [ ] Sign in
+
 EOF
 elif [ "$(uname)" == "Linux" ]; then
   IS_ROOT=false
