@@ -291,6 +291,11 @@ elif [ "$(uname)" == "Linux" ]; then
 
 - [ ] Create Restic repository (see \`/etc/restic-backup/restic-cfg\`)
 - [ ] Configure backups as desired (see \`/etc/restic-backup\`)
+
+## 1Password
+
+- [ ] Sign in (if needed) (\`eval \$(op signin)\`)
+
 EOF
   if lsb_release -d | grep -c "Raspbian" >/dev/null || [ -e /etc/armbian-release ]; then
   cat << EOF > "$HOME/SystemSetup.md"
