@@ -1,3 +1,5 @@
+# TODO(cdzombak): sort this into more topical files; move some to macos-automation / new packages
+
 # via http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 # updated per Lri's comment
 alias psgrep="ps -Aco pid,comm | sed 's/^ *//'| sed 's/:/ /'|grep -iE"
