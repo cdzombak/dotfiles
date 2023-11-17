@@ -68,6 +68,7 @@
 	first-commit = rev-list --max-parents=0 HEAD
 	branch-cleanup = ! git branch --merged | egrep -v \"(^\\*|master|main|dev|development)\" | xargs git branch -d && git remote prune origin
 	recent-branches = branch --sort=-committerdate
+	ft = fetch --tags -f
 
 	# Interactive checkout. Requires fzf (https://github.com/junegunn/fzf).
 	# Example: `git ibco`
