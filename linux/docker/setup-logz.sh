@@ -13,6 +13,7 @@ sudo chown -R root:docker /opt/docker/compose/logzio
 sudo chmod 0775 /opt/docker/compose/logzio
 sudo chmod 0660 /opt/docker/compose/logzio/docker-compose.yml
 sudo sed -i "s/__MYLOGZIOTOKEN__/$1/g" /opt/docker/compose/logzio/docker-compose.yml
+sudo sed -i "s/__MYHOSTNAME__/$(hostname -s)/g" /opt/docker/compose/logzio/docker-compose.yml
 pushd /opt/docker/compose/logzio
 sudo docker compose up -d
 popd
