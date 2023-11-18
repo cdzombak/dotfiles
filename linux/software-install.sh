@@ -195,7 +195,23 @@ if is_tiny; then
     fi
   fi
 
-  # TODO(cdzombak): offer to install pi reliability wifi check script/cronjob
+  if [ ! -e "$HOME/.config/dotfiles/no-wifi-check" ] && [ ! -e /usr/local/bin/wifi-check.sh ]; then
+    echo "Install wifi-check script & cronjob? (y/N)"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sudo cp "$SCRIPT_DIR"/pi/wifi-check.sh /usr/local/bin/wifi-check.sh
+      sudo chmod 0755 /usr/local/bin/wifi-check.sh
+      sudo cp "$SCRIPT_DIR"/pi/wifi-check.cron /etc/cron.d/wifi-check
+      echo ""
+      echo "NOTE: The cron job is disabled at install time."
+      echo "      Edit /etc/cron.d/wifi-check to enable it."
+      echo ""
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/no-wifi-check"
+    fi
+  fi
+
   # TODO(cdzombak): watchdog
   # TODO(cdzombak): other Pi reliability stuff, to the extent it can be automated
 fi
