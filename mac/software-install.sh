@@ -1401,7 +1401,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-cura" ]; then
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask ultimaker-cura
       setupnote "Ultimaker Cura" \
-        "- [ ] Sign In\n- [ ] Install & authenticate OctoPrint extension\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
+        "- [ ] Sign In\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-cura"
