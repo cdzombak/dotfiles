@@ -32,6 +32,7 @@ if ! "$IS_ROOT"; then
 fi
 cd "$SCRIPT_DIR"
 stow --target="$HOME" --ignore="DS_Store" git
+stow --target="$HOME" --ignore="DS_Store" htop
 touch "$HOME"/.gitconfig.local
 "$SCRIPT_DIR"/bash/integrate.sh
 
