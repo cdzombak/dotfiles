@@ -26,7 +26,6 @@ fi
 function is_rpi() {
   command -v raspi-config >/dev/null
 }
-
 function is_tiny() {
   is_rpi || [ -e /etc/armbian-release ]
 }

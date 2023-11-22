@@ -95,6 +95,10 @@ mac-all: dependencies require-macos mac-homedir mac-configure mac-stow mac-softw
 
 # Linux Targets
 
+.PHONY: linux-swprof
+linux-swprof:
+	@bash ./linux/swprof-set.sh
+
 .PHONY: linux-stow
 linux-stow: dependencies submodules require-linux ## Link Linux configuration files in $HOME
 	@bash ./linux/stow.sh
@@ -115,4 +119,4 @@ linux-software: setupnote require-linux linux-homedir ## Set up core software on
 	@bash ./linux/software-install.sh
 
 .PHONY: linux-all
-linux-all: require-linux linux-user linux-configure linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
+linux-all: require-linux linux-swprof linux-user linux-configure linux-software ## Configure and install core software on a Linux machine. *Recommended entry point.*
