@@ -150,6 +150,7 @@ sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
 sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
 sw_install "$(brew --prefix)/bin/lua" "brew_install lua"
 sw_install "$(brew --prefix)/bin/mdcat" "brew_install mdcat"
+sw_install "$(brew --prefix)/bin/mdless" "brew install mdless"
 sw_install "$(brew --prefix)/bin/mogrify" "brew_install imagemagick"
 if [ ! -e "$(brew --prefix)/bin/mysides" ] && [ ! -e "/usr/local/bin/mysides" ]; then
   brew install --cask mysides
@@ -208,7 +209,6 @@ sw_install "$(brew --prefix)/bin/markdown-toc" 'npm install -g markdown-toc'
 sw_install "$(brew --prefix)/bin/nativefier" 'npm install -g nativefier'
 sw_install "$(brew --prefix)/bin/bundler" "brew gem install bundler"
 sw_install "$(brew --prefix)/bin/fpm" "brew gem install fpm"
-sw_install "$(brew --prefix)/bin/mdless" "brew gem install mdless"
 sw_install "$(brew --prefix)/bin/rubocop" "brew gem install rubocop"
 sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
 
@@ -2680,7 +2680,7 @@ if [ -e /Applications/WireGuard.app ]; then
 fi
 
 echo ""
-cecho "--- Cleanups & Tidying ---" $white
+cecho "--- Cleanup/Tidy/Migrations ---" $white
 echo ""
 
 echo "Cleaning up kubectl installed via gcloud/docker ..."
@@ -2714,10 +2714,17 @@ else
 fi
 echo ""
 
-echo "Cleaning up gems installed without brew-gem ..."
+echo "Move to Homebrew packaged mdless..."
+if [ -e /opt/homebrew/Cellar/gem-mdless/1.0.37 ]; then
+  brew gem uninstall mdless
+  brew install mdless
+fi
 if gem list | grep -c mdless >/dev/null; then
   sudo gem uninstall mdless
+  brew install mdless
 fi
+
+echo "Cleaning up gems installed without brew-gem ..."
 if gem list | grep -c sqlint >/dev/null; then
   sudo gem uninstall sqlint
 fi
