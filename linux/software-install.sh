@@ -189,36 +189,122 @@ if is_tiny; then
   echo "Daily apt clean cron job ..."
   sudo apt-get install -y apt-daily-clean
 
-  if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-disable-hdmi" ] && ! dpkg-query -W pi-disable-hdmi >/dev/null 2>&1; then
-    echo "Disable Raspberry Pi HDMI output? (y/N)"
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sudo apt-get install -y pi-disable-hdmi
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/no-disable-hdmi"
-    fi
-  fi
+  if profile_server; then
 
-  if [ ! -e "$HOME/.config/dotfiles/no-wifi-check" ] && [ ! -e /usr/local/bin/wifi-check.sh ]; then
-    echo "Install wifi-check script & cronjob? (y/N)"
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sudo cp "$SCRIPT_DIR"/pi/wifi-check.sh /usr/local/bin/wifi-check.sh
-      sudo chmod 0755 /usr/local/bin/wifi-check.sh
-      sudo cp "$SCRIPT_DIR"/pi/wifi-check.cron /etc/cron.d/wifi-check
-      echo ""
-      echo "NOTE: The cron job is disabled at install time."
-      echo "      Edit /etc/cron.d/wifi-check to enable it."
-      echo ""
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/no-wifi-check"
+    if [ ! -e "$HOME/.config/dotfiles/no-wifi-check" ] && [ ! -e /usr/local/bin/wifi-check.sh ]; then
+      echo "Install wifi-check script & cronjob? (y/N)"
+      echo "(n.b. this will also disable daily apt upgrades)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo systemctl mask apt-daily-upgrade
+        sudo systemctl mask apt-daily
+        sudo systemctl disable apt-daily-upgrade.timer
+        sudo systemctl disable apt-daily.timer
+        sudo cp "$SCRIPT_DIR"/pi/wifi-check.sh /usr/local/bin/wifi-check.sh
+        sudo chmod 0755 /usr/local/bin/wifi-check.sh
+        sudo cp "$SCRIPT_DIR"/pi/wifi-check.cron /etc/cron.d/wifi-check
+        echo ""
+        echo "NOTE: The cron job is disabled at install time."
+        echo "      Edit /etc/cron.d/wifi-check to enable it."
+        echo ""
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-wifi-check"
+      fi
     fi
-  fi
 
-  # TODO(cdzombak): watchdog
-  # TODO(cdzombak): other Pi reliability stuff, to the extent it can be automated
+    if [ ! -e "$HOME/.config/dotfiles/no-disable-ipv6" ] && [ ! -e /etc/sysctl.d/90-cdz-disable-ipv6.conf ]; then
+      echo "Disable IPv6? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo cp "$SCRIPT_DIR"/pi/90-cdz-disable-ipv6.conf /etc/sysctl.d/90-cdz-disable-ipv6.conf
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-disable-ipv6"
+      fi
+    fi
+
+    if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-disable-hdmi" ] && ! dpkg-query -W pi-disable-hdmi >/dev/null 2>&1; then
+      echo "Disable Raspberry Pi HDMI output? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo apt-get install -y pi-disable-hdmi
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-disable-hdmi"
+      fi
+    fi
+
+    if [ ! -e "$HOME/.config/dotfiles/no-disable-mandb-update" ] && [ -e /var/lib/man-db/auto-update ]; then
+      echo "Disable man-db auto-update? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo rm /var/lib/man-db/auto-update
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-disable-mandb-update"
+      fi
+    fi
+
+    if [ ! -e "$HOME/.config/dotfiles/no-disable-apt-autoupdate" ] && systemctl is-enabled --quiet apt-daily-upgrade.timer; then
+      echo "Disable daily apt updates? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo systemctl mask apt-daily-upgrade
+        sudo systemctl mask apt-daily
+        sudo systemctl disable apt-daily-upgrade.timer
+        sudo systemctl disable apt-daily.timer
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-disable-apt-autoupdate"
+      fi
+    fi
+
+    if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-rm-modemmanager" ] && dpkg-query -W modemmanager >/dev/null 2>&1; then
+      echo "Remove ModemManager? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo apt remove --purge -y modemmanager
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-rm-modemmanager"
+      fi
+    fi
+
+    if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-disable-bt" ] && systemctl is-active --quiet service bluetooth.service; then
+      echo "Disable Bluetooth? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo systemctl disable bluetooth.service
+        sudo systemctl disable hciuart.service
+        sudo apt remove --purge -y bluez
+        echo "dtoverlay=disable-bt" | sudo tee -a /boot/config.txt
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-disable-bt"
+      fi
+    fi
+
+    # TODO(cdzombak): hardware watchdog (setup & enable basics; ask about wifi)
+
+    # TODO(cdzombak): other Pi reliability stuff TK, to the extent it can be automated
+
+    # TODO(cdzombak): add a todo item for RO FS or dramatic SD card intervention that can't be automated
+
+    sudo apt remove --purge wolfram-engine triggerhappy xserver-common lightdm
+    sudo apt autoremove --purge -y
+  fi
+fi
+
+if [ ! -e "$HOME/.config/dotfiles/no-kernelpanic-reboot" ] && [ ! -e /etc/sysctl.d/90-cdz-kernelpanic.conf ]; then
+  echo "Reboot automatically 10 seconds after a kernel panic? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo cp "$SCRIPT_DIR"/pi/90-cdz-kernelpanic.conf /etc/sysctl.d/90-cdz-kernelpanic.conf
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/no-kernelpanic-reboot"
+  fi
 fi
 
 echo ""
@@ -320,8 +406,8 @@ _logz_setup() {
 
   if is_tiny; then
     setupnote "rsyslog" \
-      "- [ ] Place \`/var/spool/rsyslog\` in a tmpfs
-- [ ] Adjust the amount of space it's allowed to use (see [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html))"
+      "- [ ] Place \`/var/spool/rsyslog\` in a tmpfs (\`tmpfs  /var/spool/rsyslog  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=25M  0  0\`)
+- [ ] Adjust the amount of space it's allowed to use (see \`/etc/rsyslog.d/22-logzio-linux.conf\`)"
   fi
 
   if command -v nginx >/dev/null; then
