@@ -158,7 +158,12 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
 fi
 
 echo "Customize MOTD..."
-curl -s https://gist.githubusercontent.com/cdzombak/07c5d97e4186dcc73ac4452fbf816387/raw/9f9dd275c22c35649fe3c7b0eebd5e25a2b7d5f1/install.sh | sudo bash
+dpkg-query -W figlet >/dev/null 2>&1 || sudo apt install -y figlet
+cat << 'EOF' | sudo tee /etc/update-motd.d/10-banner >/dev/null
+#!/bin/sh
+figlet -f big "$(hostname -s)" | grep -v "^ *$"
+EOF
+chmod 755 /etc/update-motd.d/10-banner
 
 _rm_avahi() {
   echo "Remove avahi-daemon ..."
