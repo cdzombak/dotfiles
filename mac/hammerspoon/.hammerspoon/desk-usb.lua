@@ -26,7 +26,7 @@ function usbCallback(data)
     if isWebcam then
       -- start webcam support software:
       hs.application.open("net.rafaelconde.Hand-Mirror")
-      logiTuneApp = hs.application.open("com.logitech.logitune", 2, true)
+      logiTuneApp = hs.application.open("com.logitech.logitune", 3, true)
       if logiTuneApp then
         for _, window in pairs(logiTuneApp:visibleWindows()) do
           window:close()
