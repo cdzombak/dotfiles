@@ -1426,6 +1426,20 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-fusion360" ]; then
   sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
 fi
 
+if [ ! -e "$HOME/.config/dotfiles/software/no-meshman3dviewer" ]; then
+  _install_meshman3dviewer() {
+    cecho "Install Meshman 3D Viewer? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      mas install 1502933106
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-meshman3dviewer"
+    fi
+  }
+  sw_install "/Applications/Meshman 3D Viewer PRO.app" _install_meshman3dviewer
+fi
+
 if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
   mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
 fi
