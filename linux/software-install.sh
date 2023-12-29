@@ -305,7 +305,7 @@ if is_tiny; then
       sudo dphys-swapfile swapoff
       sudo dphys-swapfile uninstall
       sudo update-rc.d dphys-swapfile remove
-      sudo apt purge dphys-swapfile
+      sudo apt purge dphys-swapfile -y
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/no-disable-dphys-swapfile"
