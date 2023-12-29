@@ -287,10 +287,11 @@ if is_tiny; then
 
     # TODO(cdzombak): hardware watchdog (setup & enable basics; ask about wifi)
 
-    # TODO(cdzombak): other Pi reliability stuff TK, to the extent it can be automated
     setupnote "SD Card Reliability" \
       "- [ ] Aggressively manage things that persist to the SD card, or make the system's root filesystem read-only. See [my Pi Reliability series](https://www.dzombak.com/blog/series/pi-reliability.html)."
 
+    # TODO(cdzombak): Add other Pi reliability stuff here, to the extent it can be automated
+    #                 (or note it in the setup note)
 
     sudo apt remove --purge wolfram-engine triggerhappy xserver-common lightdm
     sudo apt autoremove --purge -y
