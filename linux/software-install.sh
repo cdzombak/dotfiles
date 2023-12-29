@@ -286,6 +286,7 @@ if is_tiny; then
     fi
 
     # TODO(cdzombak): hardware watchdog (setup & enable basics; ask about wifi)
+    # https://4.preview.dzombak.com/blog/2023/12/Mitigating-hardware-firmware-driver-instability-on-the-Raspberry-Pi.html#use-the-raspberry-pis-hardware-watchdog
 
     setupnote "SD Card Reliability" \
       "- [ ] Aggressively manage things that persist to the SD card, or make the system's root filesystem read-only. See [my Pi Reliability series](https://www.dzombak.com/blog/series/pi-reliability.html)."
