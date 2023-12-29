@@ -296,6 +296,20 @@ if is_tiny; then
     sudo apt remove --purge wolfram-engine triggerhappy xserver-common lightdm
     sudo apt autoremove --purge -y
   fi
+
+  if [ ! -e "$HOME/.config/dotfiles/no-disable-dphys-swapfile" ] && dpkg-query -W dphys-swapfile >/dev/null 2>&1; then
+    echo "Disable SD card swap and dphys-swapfile? (y/N)"
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      sudo dphys-swapfile swapoff
+      sudo dphys-swapfile uninstall
+      sudo update-rc.d dphys-swapfile remove
+      sudo apt purge dphys-swapfile
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/no-disable-dphys-swapfile"
+    fi
+  fi
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/no-kernelpanic-reboot" ] && [ ! -e /etc/sysctl.d/90-cdz-kernelpanic.conf ]; then
