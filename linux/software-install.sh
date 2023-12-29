@@ -285,8 +285,27 @@ if is_tiny; then
       fi
     fi
 
-    # TODO(cdzombak): hardware watchdog (setup & enable basics; ask about wifi)
-    # https://4.preview.dzombak.com/blog/2023/12/Mitigating-hardware-firmware-driver-instability-on-the-Raspberry-Pi.html#use-the-raspberry-pis-hardware-watchdog
+    if is_rpi && [ ! -e "$HOME/.config/dotfiles/no-watchdog" ] && ! systemctl is-active --quiet service watchdog.service; then
+      echo "Set up the Pi's hardware watchdog? (y/N)"
+      read -r response
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        echo "dtparam=watchdog=on" | sudo tee -a /boot/config.txt
+        sudo apt install -y watchdog
+        cat << EOF | sudo tee /etc/watchdog.conf >/dev/null
+
+# cdzombak via dotfiles/linux/software-install.sh:
+watchdog-device = /dev/watchdog
+watchdog-timeout = 15
+max-load-1 = 24
+min-memory = 1
+EOF
+        sudo systemctl enable watchdog
+        echo "[INFO] A reboot is required to activate the watchdog."
+      else
+        echo "Won't ask again next time this script is run."
+        touch "$HOME/.config/dotfiles/no-watchdog"
+      fi
+    fi
 
     setupnote "SD Card Reliability" \
       "- [ ] Aggressively manage things that persist to the SD card, or make the system's root filesystem read-only. See [my Pi Reliability series](https://www.dzombak.com/blog/series/pi-reliability.html)."
