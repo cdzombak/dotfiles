@@ -310,7 +310,10 @@ EOF
     setupnote "SD Card Reliability" \
       "- [ ] Aggressively manage things that persist to the SD card, or make the system's root filesystem read-only. See [my Pi Reliability series](https://www.dzombak.com/blog/series/pi-reliability.html).\n- [ ] Enable root filesystem fsck on every boot."
 
-    sudo apt remove --purge wolfram-engine triggerhappy xserver-common lightdm
+    if dpkg-query -W wolfram-engine; then sudo apt remove --purge -y wolfram-engine; fi
+    if dpkg-query -W triggerhappy; then sudo apt remove --purge -y triggerhappy; fi
+    if dpkg-query -W xserver-common; then sudo apt remove --purge -y xserver-common; fi
+    if dpkg-query -W lightdm; then sudo apt remove --purge -y lightdm; fi
     sudo apt autoremove --purge -y
   fi
 
