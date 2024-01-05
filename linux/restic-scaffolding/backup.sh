@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /etc/restic-backup
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd "$SCRIPT_DIR"
 source ./restic-cfg
 
 TMP_DIR=$(mktemp -d 2>/dev/null)
 cp ./include-files.txt "$TMP_DIR"
 cp ./excludes.txt "$TMP_DIR"
 
-if [ -d /etc/restic-backup/pre-backup.d ] && [ -n "$(ls -A /etc/restic-backup/pre-backup.d)" ]; then
-  echo "Running /etc/restic-backup/pre-backup.d..."
-  for f in /etc/restic-backup/pre-backup.d/*; do
+if [ -d "$SCRIPT_DIR"/pre-backup.d ] && [ -n "$(ls -A "$SCRIPT_DIR"/pre-backup.d)" ]; then
+  echo "Running $SCRIPT_DIR/pre-backup.d..."
+  for f in "$SCRIPT_DIR"/pre-backup.d/*; do
     echo "$f ..."
     bash "$f" "$TMP_DIR"
     echo ""
@@ -23,9 +24,9 @@ restic backup --files-from "$TMP_DIR"/include-files.txt \
   --exclude-file="$TMP_DIR"/excludes.txt
 echo ""
 
-if [ -d /etc/restic-backup/backup.d ] && [ -n "$(ls -A /etc/restic-backup/backup.d)" ]; then
-  echo "Running /etc/restic-backup/backup.d..."
-  for f in /etc/restic-backup/backup.d/*; do
+if [ -d "$SCRIPT_DIR"/backup.d ] && [ -n "$(ls -A "$SCRIPT_DIR"/backup.d)" ]; then
+  echo "Running $SCRIPT_DIR/backup.d..."
+  for f in "$SCRIPT_DIR"/backup.d/*; do
     echo "$f ..."
     bash "$f"
     echo ""
