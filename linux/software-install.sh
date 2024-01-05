@@ -163,7 +163,7 @@ cat << 'EOF' | sudo tee /etc/update-motd.d/10-banner >/dev/null
 #!/bin/sh
 figlet -f big "$(hostname -s)" | grep -v "^ *$"
 EOF
-chmod 755 /etc/update-motd.d/10-banner
+sudo chmod 755 /etc/update-motd.d/10-banner
 
 _rm_avahi() {
   echo "Remove avahi-daemon ..."
