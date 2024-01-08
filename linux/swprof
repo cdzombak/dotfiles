@@ -1,13 +1,13 @@
 # shellcheck shell=bash
 
 function profile_desktop() {
-  [ -e "$HOME/.config/dotfiles/sw-profile-desktop" ]
+  [ -e "/home/cdzombak/.config/dotfiles/sw-profile-desktop" ]
 }
 function profile_home_server() {
-  [ -e "$HOME/.config/dotfiles/sw-profile-home-server" ]
+  [ -e "/home/cdzombak/.config/dotfiles/sw-profile-home-server" ]
 }
 function profile_public_server() {
-  [ -e "$HOME/.config/dotfiles/sw-profile-public-server" ]
+  [ -e "/home/cdzombak/.config/dotfiles/sw-profile-public-server" ]
 }
 function profile_server() {
   profile_home_server || profile_public_server
@@ -16,9 +16,9 @@ function profile_server() {
 if ! profile_desktop && ! profile_server; then
   mkdir -p ~/.config/dotfiles
   echo "Please set a software profile by running one of:"
-  echo "  touch ~/.config/dotfiles/sw-profile-desktop"
-  echo "  touch ~/.config/dotfiles/sw-profile-home-server"
-  echo "  touch ~/.config/dotfiles/sw-profile-public-server"
+  echo "  touch /home/cdzombak/.config/dotfiles/sw-profile-desktop"
+  echo "  touch /home/cdzombak/.config/dotfiles/sw-profile-home-server"
+  echo "  touch /home/cdzombak/.config/dotfiles/sw-profile-public-server"
   echo "Then re-run this script."
   exit 1
 fi
