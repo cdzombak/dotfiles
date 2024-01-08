@@ -379,8 +379,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-bear" ]; then
     "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 fi
 # sw_install /Applications/Byword.app "mas install 420212497"
-sw_install /Applications/CARROTweather.app "mas install 993487541" \
-  "- [ ] Restore purchases\n- [ ] Personality: Professional\n- [ ] Sounds: Notifications Only\n- [ ] Source: AccuWeather\n- [ ] Update: 15 Minutes\n- [ ] Mini-Window Shortcut: Off\n- [ ] Sync: Locations, not Settings\n- [ ] Dock icon: Hidden\n- [ ] Position in Mac Menu Bar\n- [ ] Current Data Slot 9: Precip Amount\n- [ ] Current Displayed Summary: Today\n- [ ] Current Spoken Summary: None\n- [ ] Daily Data Left Slot: Precip Chance\n- [ ] Notifications: as desired; refer to iPhone\n- [ ] Open Automatically at Login: On"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
 sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
@@ -2404,6 +2402,12 @@ if [ -e "/Applications/Cardhop.app" ]; then
   echo "Cardhop..."
   verify_smartdelete
   trash /Applications/Cardhop.app
+fi
+
+if [ -e /Applications/CARROTweather.app ]; then
+  echo "CARROTweather..."
+  verify_smartdelete
+  trash /Applications/CARROTweather.app
 fi
 
 if [ -e /Applications/coconutBattery.app ]; then
