@@ -266,6 +266,7 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] Install SSH config
 - [ ] Install dotfiles
 - [ ] Remove \`avahi-daemon\` (for home network machines) if plausible (due to [high CPU usage bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=993051;msg=56)) (\`sudo apt remove --purge avahi-daemon\`)
+- [ ] Customize \`/etc/update-motd.d\` as desired
 
 ## SSH Hardening
 
@@ -274,7 +275,6 @@ elif [ "$(uname)" == "Linux" ]; then
     - \`PasswordAuthentication no\`
     - \`KbdInteractiveAuthentication no\`
     - When finished, \`sudo systemctl reload sshd\`
-- [ ] Customize \`/etc/update-motd.d\` as desired
 
 ## Postfix
 
