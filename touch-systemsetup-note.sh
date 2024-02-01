@@ -291,6 +291,8 @@ elif [ "$(uname)" == "Linux" ]; then
 
 - [ ] Create Restic repository (see \`/etc/restic-backup/restic-cfg\`)
 - [ ] Configure backups as desired (see \`/etc/restic-backup\`)
+- [ ] Initialize repo with \`restic init\`
+- [ ] Configure cron job (see \`/etc/cron.d/restic-backup\`)
 
 ## 1Password
 
