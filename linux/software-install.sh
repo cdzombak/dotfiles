@@ -148,7 +148,7 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     wget -O /tmp/netdata-kickstart.sh https://my-netdata.io/kickstart.sh && sh /tmp/netdata-kickstart.sh --stable-channel --native-only
     setupnote "Netdata" \
-      "- [ ] Listen on port 9998\n- [ ] Make accessible via Tailscale with HTTPS\n- [ ] Monitor all services for this server\n- [ ] Configure per [my Netdata config document](bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE)"
+      "- [ ] Listen on port 9998\n- [ ] Make accessible via Tailscale with HTTPS (\`sudo tailscale serve --bg --https 9999 9998\`)\n- [ ] Monitor all services for this server\n- [ ] Configure per [my Netdata config document](bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE)"
     sudo mkdir -p /etc/netdata/health.d
     sudo cp "$SCRIPT_DIR"/netdata/user_process_count.conf /etc/netdata/health.d/user_process_count.conf
   else
