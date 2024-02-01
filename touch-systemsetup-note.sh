@@ -260,7 +260,7 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] \`adduser cdzombak\`
 - [ ] \`usermod -aG sudo cdzombak && usermod -aG admin cdzombak\`
 - [ ] Set/change hostname as desired
-    - \`hostnamectl set-hostname HOSTNAEME.FQDN.TLD\`
+    - \`hostnamectl set-hostname HOSTNAME.FQDN.TLD\`
     - \`hostnamectl set-hostname HOSTNAME --pretty\`
 - [ ] \`sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo reboot\`
 - [ ] Install SSH config
