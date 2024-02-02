@@ -36,6 +36,7 @@ fi
 echo "Configure locales? (y/N)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  dpkg-query -W locales >/dev/null 2>&1 || sudo apt install -y locales
   sudo dpkg-reconfigure locales
 fi
 

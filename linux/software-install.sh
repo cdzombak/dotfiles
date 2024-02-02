@@ -62,7 +62,7 @@ echo "--- Core ---"
 echo ""
 
 echo "Installing common packages via apt..."
-sudo apt install -y make tig tree htop nnn traceroute dnsutils screen molly-guard nano jq wget zip unzip
+sudo apt install -y make tig tree htop nnn traceroute dnsutils screen molly-guard nano jq wget zip unzip apt-utils
 
 if [ ! -L "$HOME/.local/.nano-root" ]; then
   mkdir -p "$HOME/.local"

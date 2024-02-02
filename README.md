@@ -30,7 +30,7 @@ cd .dotfiles/
 make [ mac-all | linux-all ]
 ```
 
-On an extremely minimal deb-based Linux install, you will need to install `locales`. Optionally, run `apt install dialog apt-utils` for a better dpkg-reconfigure UX.
+On an extremely minimal deb-based Linux install, optionally, run `apt install dialog` for a better dpkg-reconfigure UX.
 
 On Linux, also clone the dotfiles and run `make linux-all` from a root terminal (`sudo -i`).
 
