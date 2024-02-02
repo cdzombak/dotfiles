@@ -145,6 +145,7 @@ sw_install "$(brew --prefix)/bin/go" "brew_install go" \
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
 sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
 sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
+sw_install "$(brew --prefix)/bin/imagesnap" "brew_install imagesnap"
 sw_install "$(brew --prefix)/bin/jsonnet-lint" "brew_install go-jsonnet"
 sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
 sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
