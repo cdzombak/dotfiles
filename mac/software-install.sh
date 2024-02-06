@@ -386,8 +386,6 @@ sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
   "- [ ] Sign in\n- [ ] Enable system share extension (_not_ Safari extension)"
 sw_install /Applications/NewFileMenu.app "mas install 1064959555" \
   "- [ ] Enable Finder extension\n- [ ] Enable opening file after creation\n- [ ] Disable menu bar item\n- [ ] Disable all templates except plain text and shell script\n- [ ] Add Markdown template (located in .config/macos/NewFileMenu)"
-sw_install /Applications/Notability.app "mas install 360593530" \
-  "- [ ] Restore purchases\n- [ ] Enable iCloud syncing\n- [ ] Change theme as desired\n- [ ] Set typing font: Avenir, 12pt"
 sw_install /Applications/Numbers.app "mas install 409203825"
 sw_install /Applications/Pages.app "mas install 409201541"
 sw_install "/Applications/Paint S.app" "mas install 736473980" \
@@ -2561,6 +2559,12 @@ if [ -e /Applications/NepTunes.app ]; then
   echo "NepTunes..."
   verify_smartdelete
   trash "/Applications/NepTunes.app"
+fi
+
+if [ -e /Applications/Notability.app ]; then
+  echo "Notability..."
+  verify_smartdelete
+  trash "/Applications/Notability.app"
 fi
 
 if [ -e "/Applications/OmniFocus.app" ]; then
