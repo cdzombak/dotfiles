@@ -551,21 +551,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-lunar" ]; then
   sw_install "/Applications/Lunar.app" _install_lunar
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-duet" ]; then
-  _install_duet() {
-    cecho "Install Duet Display? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install "/Applications/duet.app" "brew_cask_install duet" \
-        "- [ ] Allow screen recording & accessibility access\n- [ ] Sign in\n- [ ] Disable screen sharing\n- [ ] Disable opening at login\n- [ ] Enable Android USB Support"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-duet"
-    fi
-  }
-  sw_install "/Applications/duet.app" _install_duet
-fi
-
 _install_istat(){
   cecho "Install iStat Menus? (y/N)" $magenta
   read -r response
