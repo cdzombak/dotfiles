@@ -98,7 +98,7 @@
 	recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	cbr = rev-parse --abbrev-ref HEAD
 	first-commit = rev-list --max-parents=0 HEAD
-	subl-conflicts = ! git status | grep -i 'both modified' | sed 's/both modified://' | xargs subl -a $(git rev-parse --show-toplevel) -n
+	subl-conflicts = ! git status --porcelain | grep '^UU' | sed 's/^UU //' | xargs subl -a $(git rev-parse --show-toplevel) -n
 	branch-cleanup = ! git branch --merged | egrep -v \"(^\\*|master|main|dev|development)\" | xargs git branch -d && git remote prune origin
 	recent-branches = branch --sort=-committerdate
 	ft = fetch --tags -f
