@@ -94,8 +94,11 @@ fi
 if [ -e "/Applications/Arduino.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Arduino" ]; then
   ln -s "/Applications/Arduino.app" "$HOME/Applications/Hobby Tools/Arduino"
 fi
-if [ -e "$HOME/Applications/Autodesk Fusion 360.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Fusion 360" ]; then
-  ln -s "$HOME/Applications/Autodesk Fusion 360.app" "$HOME/Applications/Hobby Tools/Fusion 360"
+if [ -e "$HOME/Applications/Autodesk Fusion.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Fusion" ]; then
+  ln -s "$HOME/Applications/Autodesk Fusion.app" "$HOME/Applications/Hobby Tools/Fusion"
+fi
+if [ -e "/Applications/OpenSCAD.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/OpenSCAD" ]; then
+  ln -s "/Applications/OpenSCAD.app" "$HOME/Applications/Hobby Tools/OpenSCAD"
 fi
 if [ -e "/Applications/RadarScope.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/RadarScope" ]; then
   # maybe not a perfect match, but Close Enough

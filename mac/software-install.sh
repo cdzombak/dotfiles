@@ -1397,18 +1397,32 @@ fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-fusion360" ]; then
   _install_f360() {
-    cecho "Install Fusion 360? (y/N)" $magenta
+    cecho "Install Autodesk Fusion? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask autodesk-fusion360
-      setupnote "Fusion 360" "- [ ] Sign In"
-      chflags -h hidden "$HOME/Applications/Remove Autodesk Fusion 360.app"
+      setupnote "Autodesk Fusion" "- [ ] Sign In"
+      chflags -h hidden "$HOME/Applications/Remove Autodesk Fusion.app"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-fusion360"
     fi
   }
-  sw_install "$HOME/Applications/Autodesk Fusion 360.app" _install_f360
+  sw_install "$HOME/Applications/Autodesk Fusion.app" _install_f360
+fi
+
+if [ ! -e "$HOME/.config/dotfiles/software/no-openscad" ]; then
+  _install_openscad() {
+    cecho "Install OpenSCAD? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask homebrew/cask-versions/openscad-snapshot
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-openscad"
+    fi
+  }
+  sw_install /Applications/OpenSCAD.app _install_openscad
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-meshman3dviewer" ]; then
