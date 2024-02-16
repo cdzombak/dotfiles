@@ -128,7 +128,6 @@ sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completi
 sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
 sw_install "$(brew --prefix)/bin/brew-gem" "brew_install brew-gem"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
-sw_install "$(brew --prefix)/bin/cowsay" "brew_install cowsay"
 sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
 sw_install "$(brew --prefix)/bin/diff-so-fancy" "brew_install diff-so-fancy"
 sw_install "$(brew --prefix)/bin/ddgr" "brew_install ddgr"
@@ -1057,14 +1056,14 @@ cecho "HTTP/API Tools..." $white
 echo ""
 
 _install_paw() {
-  cecho "Install Paw? (y/N)" $magenta
+  cecho "Install ~Paw~ RapidAPI? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/Paw.app "brew_cask_install paw" \
+    sw_install /Applications/RapidAPI.app "brew_cask_install rapidapi" \
       "- [ ] Sign in / License\n- [ ] Set font: Meslo LG M 13"
   fi
 }
-sw_install /Applications/Paw.app _install_paw
+sw_install /Applications/RapidAPI.app _install_paw
 
 echo ""
 cecho "Install HTTP tools? (y/N)" $magenta
@@ -1855,10 +1854,10 @@ _install_tag_editor() {
 sw_install "/Applications/Tag Editor.app" _install_tag_editor
 
 _install_youtubedl() {
-  cecho "Install youtube-dl & yt-dlp? (y/N)" $magenta
+  cecho "Install ~youtube-dl~ yt-dlp? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install youtube-dl
+    # brew install youtube-dl
     brew install yt-dlp
   fi
 }
