@@ -1442,7 +1442,7 @@ if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
   mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
 fi
 if [ ! -e "$HOME/.config/dotfiles/software/no-ee-tools" ]; then
-  cecho "Install EE tools (KTSpice, KiCad)? (y/N)" $magenta
+  cecho "Install EE tools (LTSpice, KiCad)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
      sw_install /Applications/KiCad 'brew_cask_install kicad'
