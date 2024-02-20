@@ -1378,6 +1378,20 @@ echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
 
+if [ ! -e "$HOME/.config/dotfiles/software/no-bambu-studio" ]; then
+  _install_bambustudio() {
+    cecho "Install Bambu Studio? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask bambu-studio
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-bambu-studio"
+    fi
+  }
+  sw_install "/Applications/BambuStudio.app" _install_bambustudio
+fi
+
 if [ ! -e "$HOME/.config/dotfiles/software/no-cura" ]; then
   _install_cura() {
     cecho "Install Cura? (y/N)" $magenta
