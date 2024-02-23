@@ -8,7 +8,7 @@ function my_log() {
   wall "$1"
 }
 
-PING_TARGET="${PING_TAGRET:-192.168.1.1}"
+PING_TARGET="${PING_TARGET:-192.168.1.1}"
 WLAN_IF="${WLAN_IF:-wlan0}"
 
 if ping -i5 -c10 "$PING_TARGET" > /dev/null; then
