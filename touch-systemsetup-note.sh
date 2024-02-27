@@ -208,6 +208,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - [ ] Enable web developer features
 - [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
+### App Icons via Safari
+
+- [ ] [UniChar](https://unichar.app/web/)
+
 ## Desk Setup
 
 - [ ] Set mouse tracking speed as desired
