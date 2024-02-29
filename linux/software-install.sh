@@ -181,6 +181,20 @@ if dpkg-query -W avahi-daemon >/dev/null 2>&1; then
   fi
 fi
 
+_install_usbresetter() {
+  sudo curl -o /usr/local/bin/usb_resetter -sL https://raw.githubusercontent.com/netinvent/usb_resetter/main/usb_resetter/usb_resetter.py
+  sudo chmod +x /usr/local/bin/usb_resetter
+}
+if profile_desktop || profile_home_server; then
+  if [ ! -x /usr/local/bin/usb_resetter ]; then
+    echo "Install usb_resetter? (y/N)"
+    echo "( https://github.com/netinvent/usb_resetter )"
+    # TODO(cdzombak): make a .deb package for this and use it instead of this install method
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then _install_usbresetter; fi
+  fi
+fi
+
 if is_tiny; then
   echo ""
   echo "--- Raspberry Pi & Similar ---"
