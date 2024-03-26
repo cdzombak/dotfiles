@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-PROGNAME="$(basename $0)"
+PROGNAME="$(basename "$0")"
 function my_log() {
   >&2 echo "$1"
   systemd-cat -t "$PROGNAME" echo "$1"
@@ -24,19 +24,30 @@ if sudo iw dev "$WLAN_IF" get power_save | grep -c -i ": on" >/dev/null; then
   fi
 fi
 
-my_log "connection to $PING_TARGET appears down; restarting $WLAN_IF and dhcpd!"
-sudo ip link set "$WLAN_IF" down
-sleep 10
-sudo ip link set "$WLAN_IF" up
-sudo systemctl restart dhcpcd
+my_log "connection to $PING_TARGET appears down; restarting $WLAN_IF (+DHCP)!"
+if systemctl is-active --quiet dhcpd; then
+  # bullseye, buster(?)
+  sudo ip link set "$WLAN_IF" down
+  sleep 10
+  sudo ip link set "$WLAN_IF" up
+  sudo systemctl restart dhcpcd
+elif [ -x /usr/bin/nmcli ]; then
+  # bookworm
+  sudo nmcli device down "$WLAN_IF"
+  sudo pkill dhclient
+  sleep 10
+  sudo nmcli device up "$WLAN_IF"
+fi
 
 sleep 30
 if ping -i5 -c10 "$PING_TARGET" > /dev/null; then
   exit 0
 fi
 
-my_log "connection to $PING_TARGET remains down; restarting networking!!"
-sudo systemctl restart networking
+my_log "connection to $PING_TARGET remains down; restarting networking.service!!"
+sudo systemctl stop networking
+  sleep 10
+sudo systemctl start networking
 
 sleep 30
 if ping -i5 -c10 "$PING_TARGET" > /dev/null; then
@@ -45,7 +56,6 @@ fi
 
 my_log "connection to $PING_TARGET remains down; will reboot shortly!!!"
 sleep 15
-
 if ping -i5 -c10 "$PING_TARGET" > /dev/null; then
   exit 0
 fi
