@@ -7,12 +7,14 @@ end
 
 function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
-  local isWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
+  local isMainMouse = string.find(data["productName"], "USB Optical Mouse", 0, true) and string.find(data["vendorID"], "7119", 0, true)
+  local isLogitechWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
+  local isWebcam = isLogitechWebcam or true
 
   if data["eventType"] == "added" then
     log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
-    if isMainKeyboard then
+    if isMainMouse then
       -- wake this machine
       log.d("waking machine via /usr/bin/caffeinate...")
       hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
@@ -24,21 +26,25 @@ function usbCallback(data)
     end
 
     if isWebcam then
-      -- start webcam support software:
+      -- start webcam/videoconf support software:
       hs.application.open("net.rafaelconde.Hand-Mirror")
-      logiTuneApp = hs.application.open("com.logitech.logitune", 3, true)
-      if logiTuneApp then
-        for _, window in pairs(logiTuneApp:visibleWindows()) do
-          window:close()
+      hs.application.open("com.corsair.ControlCenter")
+
+      if isLogitechWebcam then
+        logiTuneApp = hs.application.open("com.logitech.logitune", 4, true)
+        if logiTuneApp then
+          for _, window in pairs(logiTuneApp:visibleWindows()) do
+            window:close()
+          end
+        else
+          log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
         end
-      else
-        log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
       end
     end
   elseif data["eventType"] == "removed" then
     log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
-    if isMainKeyboard then
+    if isMainMouse then
       -- Is this the desktop Mac that runs on my home office desk?
       local isHomeDeskMacStudio = false
       local output, status = hs.execute("hostname")
@@ -49,7 +55,7 @@ function usbCallback(data)
       end
       log.d("isHomeDeskMacStudio: " .. tostring(isHomeDeskMacStudio))
 
-      -- on disconnect from 'Freestyle Edge Keyboard',
+      -- on disconnect from 'USB Optical Mouse',
       -- if this machine is my personal desktop Mac and it's using the onboard speakers,
       -- mute it:
       if isHomeDeskMacStudio and hs.audiodevice.current()["name"] == "Mac Studio Speakers" then
@@ -68,7 +74,7 @@ function usbCallback(data)
 
       local enableAutoMonitorSwitching = file_exists("/Users/cdzombak/.config/dotfiles/enable-auto-monitor-switching")
 
-      -- on disconnect from 'Freestyle Edge Keyboard',
+      -- on disconnect from 'USB Optical Mouse',
       -- if home desk external monitor is connected,
       -- and ~/.config/dotfiles/enable-auto-monitor-switching exists,
       -- switch the monitor to the other input:
@@ -85,7 +91,7 @@ function usbCallback(data)
     end
 
     -- on disconnect from my webcam,
-    -- kill webcam support software
+    -- kill webcam/videoconf support software
     if isWebcam then
       logiTuneApp = hs.application.get("com.logitech.logitune")
       if logiTuneApp then
@@ -94,6 +100,14 @@ function usbCallback(data)
       handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
       if handMirrorApp then
         handMirrorApp:kill()
+      end
+      zoomApp = hs.application.get("us.zoom.xos")
+      if zoomApp then
+        zoomApp:kill()
+      end
+      elgatoCcApp = hs.application.get("com.corsair.ControlCenter")
+      if elgatoCcApp then
+        elgatoCcApp:kill()
       end
     end
   end
