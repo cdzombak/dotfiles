@@ -9,10 +9,10 @@ function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
   local isMainMouse = string.find(data["productName"], "USB Optical Mouse", 0, true) and string.find(data["vendorID"], "7119", 0, true)
   local isLogitechWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
-  local isWebcam = isLogitechWebcam or true
+  local isWebcam = isLogitechWebcam -- or isEyeContactWebcam
 
   if data["eventType"] == "added" then
-    log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
+    -- log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
     if isMainMouse then
       -- wake this machine
@@ -42,7 +42,7 @@ function usbCallback(data)
       end
     end
   elseif data["eventType"] == "removed" then
-    log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
+    -- log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
     if isMainMouse then
       -- Is this the desktop Mac that runs on my home office desk?
@@ -53,7 +53,7 @@ function usbCallback(data)
       elseif string.find(output, "curie", 0, true) then
         isHomeDeskMacStudio = true
       end
-      log.d("isHomeDeskMacStudio: " .. tostring(isHomeDeskMacStudio))
+      -- log.d("isHomeDeskMacStudio: " .. tostring(isHomeDeskMacStudio))
 
       -- on disconnect from 'USB Optical Mouse',
       -- if this machine is my personal desktop Mac and it's using the onboard speakers,
@@ -93,9 +93,11 @@ function usbCallback(data)
     -- on disconnect from my webcam,
     -- kill webcam/videoconf support software
     if isWebcam then
-      logiTuneApp = hs.application.get("com.logitech.logitune")
-      if logiTuneApp then
-        logiTuneApp:kill()
+      if isLogitechWebcam then
+        logiTuneApp = hs.application.get("com.logitech.logitune")
+        if logiTuneApp then
+          logiTuneApp:kill()
+        end
       end
       handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
       if handMirrorApp then
