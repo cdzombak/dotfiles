@@ -291,7 +291,7 @@ elif [ "$(uname)" == "Linux" ]; then
 ## Swap
 
 - [ ] Configure/disable swap as desired
-- [ ] Change \`vm.swappiness\` and \`m.vfs_cache_pressure\` via \`sudo nano /etc/sysctl.d/90-cdz-swap.conf\` as desired
+- [ ] Change \`vm.swappiness\` and \`vm.vfs_cache_pressure\` via \`sudo nano /etc/sysctl.d/90-cdz-swap.conf\` as desired
 
 (Reference: [enable and configure](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04) or [disable](https://linuxhandbook.com/disable-swap-linux/).)
 
