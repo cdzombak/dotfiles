@@ -1956,30 +1956,6 @@ _install_ecobee() {
 }
 sw_install "/Applications/Ecobee.app" _install_ecobee
 
-_execute_install_unifiprotect() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'unifi-protect')
-  git clone "https://github.com/cdzombak/unifi-protect-app.git" "$TMP_DIR"
-  pushd "$TMP_DIR"
-  make install-mac-homedir
-  make clean
-  popd
-}
-if [ -e "/Applications/UniFi Protect.app" ]; then
-  echo ""
-  echo "Migrate UniFi Protect wrapper app to ~..."
-  rm -rf "/Applications/UniFi Protect.app"
-  _execute_install_unifiprotect
-fi
-_install_unifiprotect() {
-  cecho "Install my UniFi Protect wrapper app? (y/N)" $magenta
-  echo "(requires GitHub auth)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _execute_install_unifiprotect
-  fi
-}
-sw_install "$HOME/Applications/UniFi Protect.app" _install_unifiprotect
-
 _install_parcel() {
   cecho "Install Parcel (package tracker)? (y/N)" $magenta
   read -r response

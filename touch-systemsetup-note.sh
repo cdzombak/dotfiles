@@ -208,9 +208,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - [ ] Enable web developer features
 - [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
-### App Icons via Safari
+### Dock Icons via Safari
 
 - [ ] [UniChar](https://unichar.app/web/)
+- [ ] [UniFi Protect](https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard)
 
 ## Desk Setup
 
