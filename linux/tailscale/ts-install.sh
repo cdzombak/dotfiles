@@ -10,16 +10,7 @@ sudo cp "$SCRIPT_DIR"/on-renew.sh /opt/tailscale/cert/on-renew.sh
 sudo chmod 0750 /opt/tailscale/cert/on-renew.sh
 sudo cp "$SCRIPT_DIR"/tailscale-cert.sh /etc/cron.daily/tailscale-cert
 sudo chmod 0750 /etc/cron.daily/tailscale-cert
-
 sudo /etc/cron.daily/tailscale-cert
-sudo mkdir /opt/tailscale/cert/https-portal
-sudo ln /opt/tailscale/cert/cert.pem /opt/tailscale/cert/https-portal/signed.crt
-sudo ln /opt/tailscale/cert/cert.pem /opt/tailscale/cert/https-portal/chained.crt
-sudo ln /opt/tailscale/cert/key.pem /opt/tailscale/cert/https-portal/domain.key
-sudo chown root:root /opt/tailscale/cert/https-portal
-sudo chmod 0555 /opt/tailscale/cert/https-portal
-sudo chown root:root /opt/tailscale/cert/https-portal/*
-sudo chmod 0444 /opt/tailscale/cert/https-portal/*
 
 sudo mkdir -p /etc/systemd/system/tailscaled.service.d
 sudo chmod 0755 /etc/systemd/system/tailscaled.service.d
