@@ -1019,20 +1019,6 @@ _install_plist_editor() {
 }
 sw_install "/Applications/PLIST Editor.app" _install_plist_editor
 
-_install_clock() {
-  cecho "Install simple UTC/Local Clock app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'clock')
-    git clone "https://github.com/cdzombak/clock.git" "$TMP_DIR"
-    pushd "$TMP_DIR/app"
-    make install-mac-homedir
-    make clean
-    popd
-  fi
-}
-sw_install "$HOME/Applications/Clock.app" _install_clock
-
 _install_wwdcapp() {
   cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
   read -r response

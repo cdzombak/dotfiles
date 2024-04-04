@@ -208,10 +208,14 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - [ ] Enable web developer features
 - [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
-### Dock Icons via Safari
+### Dock Icons / \`~/Applications\` via Safari
 
-- [ ] [UniChar](https://unichar.app/web/)
+- [ ] [Clock](https://clock.dzdz.cz)
+- [ ] [Ntfy](https://ntfy.cdzombak.net)
+    - [ ] Sign in
+- [ ] [UniChar](https://unichar.app/web)
 - [ ] [UniFi Protect](https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard)
+    - [ ] Sign in
 
 ## Desk Setup
 
@@ -243,13 +247,6 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 ## Homebrew Auto-update
 
 - [ ] Notifications: Notification Center only; no sounds/badges
-
-## Add Sites to Dock via Safari
-
-(Really, add to Dock then remove so I just have the app in \`/Applications\`.)
-
-- [ ] [Ntfy](https://ntfy.cdzombak.net)
-    - [ ] Sign in
 
 EOF
 elif [ "$(uname)" == "Linux" ]; then
