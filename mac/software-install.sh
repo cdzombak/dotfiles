@@ -1928,21 +1928,6 @@ _install_sonos() {
 }
 sw_install "/Applications/Sonos.app" _install_sonos
 
-_install_ecobee() {
-  echo ""
-  cecho "Install Ecobee wrapper app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ecobee-app')
-    git clone "https://github.com/cdzombak/ecobee-app.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-  fi
-}
-sw_install "/Applications/Ecobee.app" _install_ecobee
-
 _install_parcel() {
   cecho "Install Parcel (package tracker)? (y/N)" $magenta
   read -r response

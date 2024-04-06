@@ -211,6 +211,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 ### Dock Icons / \`~/Applications\` via Safari
 
 - [ ] [Clock](https://clock.dzdz.cz)
+- [ ] [Ecobee](https://www.ecobee.com/consumerportal/index.html#/devices)
 - [ ] [Ntfy](https://ntfy.cdzombak.net)
     - [ ] Sign in
 - [ ] [UniChar](https://unichar.app/web)
