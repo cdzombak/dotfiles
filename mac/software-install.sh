@@ -2013,22 +2013,6 @@ _install_triode() {
 }
 sw_install "/Applications/Triode.app" _install_triode
 
-_install_instapaper_reader() {
-  cecho "Install my Instapaper Reader Electron app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'instapaper-reader')
-    git clone "https://github.com/cdzombak/instapaper-reader.git" "$TMP_DIR"
-    pushd "$TMP_DIR"
-    make install-mac
-    make clean
-    popd
-    setupnote "Instapaper Reader.app" \
-      "- [ ] Sign in"
-  fi
-}
-sw_install "/Applications/Instapaper Reader.app" _install_instapaper_reader
-
 _install_kindle() {
   cecho "Install Kindle? (y/N)" $magenta
   read -r response

@@ -140,9 +140,6 @@ fi
 if [ -e "$HOME/Applications/Instapaper Reader.app" ] && [ ! -e "$HOME/Applications/Media/Instapaper Reader" ]; then
   ln -s "$HOME/Applications/Instapaper Reader.app" "$HOME/Applications/Media/Instapaper Reader"
 fi
-if [ -e "/Applications/Instapaper Reader.app" ] && [ ! -e "$HOME/Applications/Media/Instapaper Reader" ]; then
-  ln -s "/Applications/Instapaper Reader.app" "$HOME/Applications/Media/Instapaper Reader"
-fi
 if [[ -L "$HOME/Applications/Media/Lofi Cafe" ]] && [[ ! -e "$HOME/Applications/Media/Lofi Cafe" ]];then
   rm "$HOME/Applications/Media/Lofi Cafe"
 fi
