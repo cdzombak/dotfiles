@@ -983,23 +983,15 @@ _install_ask_dash() {
 }
 sw_install /Applications/Dash.app _install_ask_dash
 
-echo ""
-cecho "Install JSON tools? (y/N)" $magenta
-echo "(JSON Editor & Viewer)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "/Applications/JSON Editor.app" "mas install 567740330" \
-    "- [ ] Associate with JSON files"
-  _install_json_viewer() {
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'json-viewer')
-    git clone "git@github.com:cdzombak/jsonview.git" "$TMP_DIR"
-    pushd "$TMP_DIR/app"
-    make install-mac-homedir
-    make clean
-    popd
-  }
-  sw_install "$HOME/Applications/JSON Viewer.app" _install_json_viewer
-fi
+_install_ask_jsoneditor() {
+  cecho "Install JSON Editor? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 567740330
+    setupnote "JSON Editor.app" "- [ ] Associate with JSON files"
+  fi
+}
+sw_install "/Applications/JSON Editor.app" _install_ask_jsoneditor
 
 _install_csveditor() {
   cecho "Install CSV Editor? (y/N)" $magenta

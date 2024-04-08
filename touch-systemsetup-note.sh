@@ -215,6 +215,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
     - [ ] Sign in
 - [ ] [Instapaper Reader](https://instapaper.com/u)
     - [ ] Sign in
+- [ ] [JSON Viewer](https://json.dzdz.cz)
 - [ ] [Ntfy](https://ntfy.cdzombak.net)
     - [ ] Sign in
 - [ ] [UniChar](https://unichar.app/web)
