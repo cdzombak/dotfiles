@@ -140,13 +140,13 @@ fi
 if [ -e "$HOME/Applications/Instapaper Reader.app" ] && [ ! -e "$HOME/Applications/Media/Instapaper Reader" ]; then
   ln -s "$HOME/Applications/Instapaper Reader.app" "$HOME/Applications/Media/Instapaper Reader"
 fi
-if [[ -L "$HOME/Applications/Media/Lofi Cafe" ]] && [[ ! -e "$HOME/Applications/Media/Lofi Cafe" ]];then
-  rm "$HOME/Applications/Media/Lofi Cafe"
+if [ -e "$HOME/Applications/Lofi ATC.app" ] && [ ! -e "$HOME/Applications/Media/Lofi ATC" ]; then
+  ln -s "$HOME/Applications/Lofi ATC.app" "$HOME/Applications/Media/Lofi ATC"
 fi
-if [ -e "/Applications/Lofi Cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
-  ln -s "/Applications/Lofi Cafe.app" "$HOME/Applications/Media/Lofi Cafe"
-elif [ -e "$HOME/Applications/Lofi Cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
+if [ -e "$HOME/Applications/Lofi Cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
   ln -s "$HOME/Applications/Lofi Cafe.app" "$HOME/Applications/Media/Lofi Cafe"
+elif [ -e "$HOME/Applications/lofi.cafe.app" ] && [ ! -e "$HOME/Applications/Media/Lofi Cafe" ]; then
+  ln -s "$HOME/Applications/lofi.cafe.app" "$HOME/Applications/Media/Lofi Cafe"
 fi
 if [ -e "/Applications/Plex.app" ] && [ ! -e "$HOME/Applications/Media/Plex" ]; then
   ln -s "/Applications/Plex.app" "$HOME/Applications/Media/Plex"
@@ -240,6 +240,9 @@ if [ -e "/Applications/Neat Image v9 Standalone/Neat Image v9.app" ] && [ ! -e "
 fi
 if [ -e "/Applications/Peakto.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Peakto" ]; then
   ln -s "/Applications/Peakto.app" "$HOME/Applications/Photo Tools/Peakto"
+fi
+if [ -e "$HOME/Applications/Flickr.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Flickr" ]; then
+  ln -s "$HOME/Applications/Flickr.app" "$HOME/Applications/Photo Tools/Flickr"
 fi
 
 if [ ! -d "$HOME/Applications/Social Media" ]; then
