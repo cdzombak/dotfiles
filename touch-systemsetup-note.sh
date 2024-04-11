@@ -216,6 +216,8 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] [Instapaper Reader](https://instapaper.com/u)
     - [ ] Sign in
 - [ ] [JSON Viewer](https://json.dzdz.cz)
+- [ ] [Lofi ATC](https://www.lofiatc.com/?icao=KDTW)
+- [ ] [Lofi Cafe](https://lofi.cafe)
 - [ ] [Ntfy](https://ntfy.cdzombak.net)
     - [ ] Sign in
 - [ ] [UniChar](https://unichar.app/web)
