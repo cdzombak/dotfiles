@@ -644,15 +644,52 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-yubikey-manager" ]; then
   sw_install "/Applications/YubiKey Manager.app" _install_yubikey_manager
 fi
 
+_install_elgatocc() {
+  brew install --cask elgato-control-center
+  setupnote "Elgato Control Center.app" \
+    "- [ ] Arrange in menu bar"
+}
+
+_install_mutedeck() {
+  brew install --cask mutedeck
+  # /opt/homebrew/Caskroom/mutedeck/2.6.1/MuteDeck-2.6.1-Installer.app
+  MD_INSTALLER_NAME="$(brew info --cask mutedeck | grep -i "Installer.app" | cut -d' ' -f1)" # MuteDeck-2.6.1-Installer.app
+  MD_VDIR="$(echo "$MD_INSTALLER_NAME" | cut -d'-' -f2)" # 2.6.1
+  set +e
+  open "$(brew --prefix)"/Caskroom/mutedeck/"$MD_VDIR"/"$MD_INSTALLER_NAME"
+  set -e
+  echo ""
+  cecho "Please finish installing MuteDeck ..."
+  read -rp "(press enter/return to continue)"
+  setupnote "MuteDeck" \
+"- [ ] Enable Accessibility permissions
+- [ ] Enable System Microphone & Zoom only
+- [ ] Start at login
+- [ ] Don't open window at start
+- [ ] Hide in Bartender Bar"
+}
+
 if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
   _install_streamdeck() {
     echo ""
     cecho "Install Elgato Stream Deck utility? (y/N)" $magenta
+    echo "(and associated tools)"
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask elgato-stream-deck
       setupnote "Elgato Stream Deck.app" \
-        "- [ ] Enable Accessibility permissions\n- [ ] Install plugins: [Control Center](https://marketplace.elgato.com/product/control-center-39a4fa43-1afe-457a-8a19-b5d386e77d53), [Cosmetic Key](https://marketplace.elgato.com/product/cosmetic-key-077407b5-299b-479c-a921-6a3ffec677da), [MuteDeck](https://marketplace.elgato.com/product/mutedeck-5d494067-d9fa-4798-b40e-aca3b09f50a2) or [Zoom](https://marketplace.elgato.com/product/zoom-plugin-a588eabf-fced-401b-a7e3-c12e81bbf75c)\n- [ ] Install icons: [Material](https://marketplace.elgato.com/product/material-1c32abe8-341b-4cba-8e2b-186d6ed96070), [Mana](https://marketplace.elgato.com/product/mana-icons-f69dadd1-fd29-463f-b49d-8af9f7567fb6), [Pure](https://marketplace.elgato.com/product/pure-a994a0a5-049c-4382-b73f-417553e1d8bb), [Entype](https://marketplace.elgato.com/product/entypo-854efe00-6c8c-4532-854f-d5a2b3e3acae), [Hexaza](https://marketplace.elgato.com/product/hexaza-3d4ed1dc-bf33-4f30-9ecd-201769f10c0d)\n- [ ] Restore config backup/saved profiles as desired\n- [ ] Configure as desired"
+"- [ ] Enable Accessibility permissions
+- [ ] Install plugins: [Control Center](https://marketplace.elgato.com/product/control-center-39a4fa43-1afe-457a-8a19-b5d386e77d53), [Cosmetic Key](https://marketplace.elgato.com/product/cosmetic-key-077407b5-299b-479c-a921-6a3ffec677da), [MuteDeck](https://marketplace.elgato.com/product/mutedeck-5d494067-d9fa-4798-b40e-aca3b09f50a2) or [Zoom](https://marketplace.elgato.com/product/zoom-plugin-a588eabf-fced-401b-a7e3-c12e81bbf75c)
+- [ ] Install icons: [Material](https://marketplace.elgato.com/product/material-1c32abe8-341b-4cba-8e2b-186d6ed96070), [Mana](https://marketplace.elgato.com/product/mana-icons-f69dadd1-fd29-463f-b49d-8af9f7567fb6), [Pure](https://marketplace.elgato.com/product/pure-a994a0a5-049c-4382-b73f-417553e1d8bb), [Entype](https://marketplace.elgato.com/product/entypo-854efe00-6c8c-4532-854f-d5a2b3e3acae), [Hexaza](https://marketplace.elgato.com/product/hexaza-3d4ed1dc-bf33-4f30-9ecd-201769f10c0d)
+- [ ] Restore config backup/saved profiles as desired
+- [ ] Configure as desired"
+        brew install --cask elgato-control-center
+      if [ ! -e "/Applications/Elgato Control Center.app" ]; then
+        _install_elgatocc
+      fi
+      if [ ! -e "/Applications/MuteDeck" ]; then
+        _install_mutedeck
+      fi
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-stream-deck"
@@ -662,20 +699,33 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-elgato-control-center" ]; then
-  _install_control_center_elgato() {
+  _install_ask_control_center_elgato() {
     echo ""
     cecho "Install Elgato Control Center utility? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask elgato-control-center
-      setupnote "Elgato Control Center.app" \
-        "- [ ] Arrange in menu bar"
+      _install_elgatocc
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-elgato-control-center"
     fi
   }
-  sw_install "/Applications/Elgato Control Center.app" _install_control_center_elgato
+  sw_install "/Applications/Elgato Control Center.app" _install_ask_control_center_elgato
+fi
+
+if [ ! -e "$HOME/.config/dotfiles/software/no-mutedeck" ]; then
+  _install_ask_mutedeck() {
+    echo ""
+    cecho "Install MuteDeck? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      _install_mutedeck
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-mutedeck"
+    fi
+  }
+  sw_install "/Applications/MuteDeck" _install_ask_mutedeck
 fi
 
 # ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
