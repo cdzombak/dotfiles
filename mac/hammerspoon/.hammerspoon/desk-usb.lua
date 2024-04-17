@@ -18,11 +18,6 @@ function usbCallback(data)
       -- wake this machine
       log.d("waking machine via /usr/bin/caffeinate...")
       hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
-
-      -- workaround Lunar not working sometimes after input switching (macOS 12.2+ bug). per the dev:
-      -- "(sometimes) the system responds with an old cached list of screens where the DDC port is not valid anymore"
-      log.d("restarting Lunar...")
-      hs.task.new('/Users/cdzombak/.hammerspoon/support/restart-lunar.sh', nil):start()
     end
 
     if isWebcam then
@@ -60,33 +55,6 @@ function usbCallback(data)
       -- mute it:
       if isHomeDeskMacStudio and hs.audiodevice.current()["name"] == "Mac Studio Speakers" then
         hs.audiodevice.defaultOutputDevice():setMuted(true)
-      end
-
-      -- Is this machine currently connected to my home office desk external monitor?
-      local isHomeDeskExternalMonitor = false
-      local output, status = hs.execute("/Users/cdzombak/.local/bin/lunar get serial")
-      if status == false then
-        log.d("failed to get monitor serial: " .. output)
-      elseif string.find(output, "B664054E-3034-4FE7-B340-A748E8B69030", 0, true) or string.find(output, "B5545C3D-AA52-422C-8C50-2D97E231D7F3", 0, true) or string.find(output, "3C82E6B9-5051-42FD-8BA8-3BB83EC50EE8", 0, true) then
-        isHomeDeskExternalMonitor = true
-      end
-      log.d("isHomeDeskExternalMonitor: " .. tostring(isHomeDeskExternalMonitor))
-
-      local enableAutoMonitorSwitching = file_exists("/Users/cdzombak/.config/dotfiles/enable-auto-monitor-switching")
-
-      -- on disconnect from 'USB Optical Mouse',
-      -- if home desk external monitor is connected,
-      -- and ~/.config/dotfiles/enable-auto-monitor-switching exists,
-      -- switch the monitor to the other input:
-      if enableAutoMonitorSwitching and isHomeDeskExternalMonitor then
-        local newInput = "displayport2"
-        if isHomeDeskMacStudio then
-          newInput = "displayport1"
-        end
-        local output, status = hs.execute("/Users/cdzombak/.local/bin/lunar set input " .. newInput)
-        if status == false then
-          log.d("failed to set input (" .. newInput .. "): " .. output)
-        end
       end
     end
 

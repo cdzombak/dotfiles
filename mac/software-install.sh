@@ -534,22 +534,6 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-lunar" ]; then
-  _install_lunar() {
-    cecho "Install Lunar (external monitor management brightness/etc. tool)? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask lunar
-      setupnote "Lunar" \
-        "- [ ] Right-click to open\n- [ ] Allow Accessibility\n- [ ] Allow Notifications\n- [ ] License\n- [ ] Confirm Start at Login is enabled\n- [ ] Hide in Bartender\n- [ ] Enable automatic update installation\n- [ ] Install CLI tool\n- [ ] Walk through onboarding & initial setup\n- [ ] Use Sync mode automatically"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-lunar"
-    fi
-  }
-  sw_install "/Applications/Lunar.app" _install_lunar
-fi
-
 _install_istat(){
   cecho "Install iStat Menus? (y/N)" $magenta
   read -r response
@@ -2536,6 +2520,16 @@ if [ -e "/Applications/Living Earth Desktop.app" ]; then
   verify_smartdelete
   trash "/Applications/Living Earth Desktop.app"
 fi
+
+if [ -e "/Applications/Lunar.app" ]; then
+  echo "Lunar..."
+  verify_smartdelete
+  set +e
+  osascript -e "tell application \"Lunar\" to quit"
+  set -e
+  trash "/Applications/Lunar.app"
+fi
+rm -f "$HOME/.config/dotfiles/software/no-lunar"
 
 if [ -e /Applications/MagicHighlighter.app ]; then
   echo "MagicHighlighter..."

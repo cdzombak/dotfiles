@@ -905,7 +905,6 @@ if [ -d /opt/homebrew/share/zsh ]; then
   sudo chmod -R 755 /opt/homebrew/share/zsh
 fi
 
-# Lunar installs its CLI tool here; location can't be customized
 sudo chown -R "$(whoami):staff" /usr/local/bin
 sudo chmod 755 /usr/local/bin
 
