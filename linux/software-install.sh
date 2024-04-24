@@ -292,7 +292,11 @@ if is_tiny; then
         sudo systemctl disable bluetooth.service
         sudo systemctl disable hciuart.service
         sudo apt remove --purge -y bluez
-        echo "dtoverlay=disable-bt" | sudo tee -a /boot/config.txt
+        if [ -f /boot/firmware/config.txt ]; then
+          echo "dtoverlay=disable-bt" | sudo tee -a /boot/firmware/config.txt
+        else
+          echo "dtoverlay=disable-bt" | sudo tee -a /boot/config.txt
+        fi
       else
         echo "Won't ask again next time this script is run."
         touch "$HOME/.config/dotfiles/no-disable-bt"
@@ -303,7 +307,11 @@ if is_tiny; then
       echo "Set up the Pi's hardware watchdog? (y/N)"
       read -r response
       if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        echo "dtparam=watchdog=on" | sudo tee -a /boot/config.txt
+        if [ -f /boot/firmware/config.txt ]; then
+          echo "dtparam=watchdog=on" | sudo tee -a /boot/firmware/config.txt
+        else
+          echo "dtparam=watchdog=on" | sudo tee -a /boot/config.txt
+        fi
         sudo apt install -y watchdog
         cat << EOF | sudo tee /etc/watchdog.conf >/dev/null
 
