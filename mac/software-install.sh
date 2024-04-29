@@ -2082,7 +2082,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-discord" ]; then
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       brew install --cask discord
-      setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Appearance > Notifications)\n- [ ] Disable notification sounds in System Preferences"
+      setupnote "Discord" "- [ ] Login\n- [ ] Disable unread message badge (Preferences > Notifications)\n- [ ] Disable notification sounds in System Preferences"
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-discord"
