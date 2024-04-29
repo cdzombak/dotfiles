@@ -21,6 +21,7 @@ mkdir -p "$HOME/opt/lib"
 mkdir -p "$HOME/opt/sbin"
 mkdir -p "$HOME/opt/share/man"
 mkdir -p "$HOME/tmp"
+mkdir -p "$HOME/Library/LaunchAgents"
 
 if [ -d "$HOME/.shell-completion-local" ]; then
   if find "$HOME/.shell-completion-local" -mindepth 1 -print -quit 2>/dev/null | grep -q .; then
