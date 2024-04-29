@@ -499,6 +499,19 @@ if [ ! -e "/Applications/Tembo.app" ]; then
   setupnote "Tembo" "- [ ] [Download](https://www.houdah.com/tembo/download.html) and install Tembo\n- [ ] Register (details in 1Password)\n- [ ] Grant permissions (in Privacy tab)\n- [ ] Enable helper; hide Menu Bar icon\n- [ ] Set global shortcut Ctrl-Shift-Space\n- [ ] Set Groups, Defaults, locations per config screenshots"
 fi
 
+if [ -e /Applications/Arduino.app ]; then
+  echo "Migrating away from deprecated Arduino cask ..."
+  brew install arduino-cli
+  brew install --cask arduino-ide
+  brew uninstall arduino
+fi
+
+if [ -e /Applications/Paw.app ]; then
+  echo "Migrating Paw to RapidAPI ..."
+  brew install --cask rapidapi
+  brew uninstall --cask paw
+fi
+
 echo ""
 cecho "--- Interactive Section ---" $white
 cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
@@ -1142,8 +1155,9 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
   cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     sw_install /Applications/Arduino.app 'brew_cask_install arduino'
-     sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
+      sw_install "$(brew --prefix)/bin/arduino-cli" 'brew_install arduino-cli'
+      sw_install "/Applications/Arduino IDE.app" 'brew_cask_install arduino-ide'
+      sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/software/no-embedded-tools"
