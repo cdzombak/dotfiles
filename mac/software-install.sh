@@ -348,14 +348,15 @@ _install_whatsyoursign() {
 sw_install /Applications/WhatsYourSign.app _install_whatsyoursign
 
 _install_redeye() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
-  pushd "$TMP_DIR"
-  wget "https://www.hexedbits.com/downloads/redeye.zip"
-  unzip redeye.zip -d /Applications
-  rm -rf /Applications/__MACOSX
-  popd
+  #TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'redeye-work')
+  #pushd "$TMP_DIR"
+  #wget "https://www.hexedbits.com/downloads/redeye.zip"
+  #unzip redeye.zip -d /Applications
+  #rm -rf /Applications/__MACOSX
+  #popd
+  echo "TODO(cdzombak): https://hexedbits.gumroad.com/l/redeye"
 }
-sw_install "/Applications/Red Eye.app" _install_redeye
+#sw_install "/Applications/Red Eye.app" _install_redeye
 
 sw_install "$HOME/Library/Fonts/MesloLGM-Regular.ttf" "brew_cask_install font-meslo-lg"
 sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask_install font-meslo-for-powerline"
