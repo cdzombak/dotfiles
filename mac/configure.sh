@@ -152,12 +152,6 @@ echo ""
 echo "Keep windows when quitting apps"
 defaults write -g "NSQuitAlwaysKeepsWindows" '1'
 
-echo ""
-cecho "Enable auto monitor switching based on USB events (via Hammerspoon)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  touch "/Users/cdzombak/.config/dotfiles/enable-auto-monitor-switching"
-fi
 
 ################################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
