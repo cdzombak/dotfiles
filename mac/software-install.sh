@@ -383,6 +383,8 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-bear" ]; then
     "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
 fi
 # sw_install /Applications/Byword.app "mas install 420212497"
+sw_install /Applications/Dropover.app "mas install 1355679052" \
+  "- [ ] Start at login\n- [ ] Restore purchase"
 sw_install /Applications/Due.app "mas install 524373870" \
   "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
 sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
