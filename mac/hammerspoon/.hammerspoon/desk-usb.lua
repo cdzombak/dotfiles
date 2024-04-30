@@ -9,10 +9,11 @@ function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
   local isMainMouse = string.find(data["productName"], "USB Optical Mouse", 0, true) and string.find(data["vendorID"], "7119", 0, true)
   local isLogitechWebcam = string.find(data["productName"], "HD Pro Webcam C920", 0, true)
-  local isWebcam = isLogitechWebcam -- or isEyeContactWebcam
+  local isEyeContactWebcam = string.find(data["productName"], "iContact Camera Pro", 0, true)
+  local isWebcam = isLogitechWebcam or isEyeContactWebcam
 
   if data["eventType"] == "added" then
-    -- log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
+    log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
     if isMainMouse then
       -- wake this machine
@@ -22,9 +23,12 @@ function usbCallback(data)
 
     if isWebcam then
       -- start webcam/videoconf support software:
-      hs.application.open("net.rafaelconde.Hand-Mirror")
       hs.application.open("com.corsair.ControlCenter")
+      hs.application.open("net.rafaelconde.Hand-Mirror")
 
+      if isEyeContactWebcam then
+        hs.application.open("com.mbox.iContactControl")
+      end
       if isLogitechWebcam then
         logiTuneApp = hs.application.open("com.logitech.logitune", 4, true)
         if logiTuneApp then
@@ -37,7 +41,7 @@ function usbCallback(data)
       end
     end
   elseif data["eventType"] == "removed" then
-    -- log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
+    log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
     if isMainMouse then
       -- Is this the desktop Mac that runs on my home office desk?
@@ -65,6 +69,12 @@ function usbCallback(data)
         logiTuneApp = hs.application.get("com.logitech.logitune")
         if logiTuneApp then
           logiTuneApp:kill()
+        end
+      end
+      if isEyeContactWebcam then
+        eyeContactControlApp = hs.application.get("com.mbox.iContactControl")
+        if eyeContactControlApp then
+          eyeContactControlApp:kill()
         end
       end
       handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")

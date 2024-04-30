@@ -778,6 +778,22 @@ _install_logitune() {
 }
 sw_install "/Applications/LogiTune.app" _install_logitune
 
+_install_iContactControl() {
+  cecho "Install iContactControl (for iContact Pro webcam)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    setupnote "iContactControl" \
+      "- [ ] Download and install from [icontactcamera.com/blogs/news/discover-your-best-virtual-self-with-icontact-controller](https://icontactcamera.com/blogs/news/discover-your-best-virtual-self-with-icontact-controller)
+- [ ] Additional setup steps TKTK"
+    cecho "[i] iContactControl cannot be installed automatically." $white
+    echo "    Install it from https://icontactcamera.com/blogs/news/discover-your-best-virtual-self-with-icontact-controller"
+    echo "    Installation steps have been added to the system setup checklist."
+    # shellcheck disable=SC2162
+    read -p "    Press [Enter] to continue..."
+  fi
+}
+sw_install "/Applications/iContactControl.app" _install_iContactControl
+
 _install_handmirror() {
   cecho "Install Hand Mirror (webcam preview app)? (y/N)" $magenta
   read -r response
