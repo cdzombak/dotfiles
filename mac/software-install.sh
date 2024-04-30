@@ -1865,12 +1865,28 @@ _install_xtool() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     _install_mandatory_x3f_tools
+
     TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'xtool')
     pushd "$TMP_DIR"
     git clone https://github.com/cdzombak/xtool.git
     cd xtool
     make install
     popd
+
+    if [ ! -e "$HOME/.xtoolbak.json" ]; then
+      echo '{ "backups_location": "sub_dir", "backups_folder": "_Xtoolbak" }' | jq . > "$HOME/.xtoolbak.json"
+    fi
+    if [ ! -e "$HOME/.config/xtoolconfig.json" ]; then
+      echo '{
+  "camswap_aliases": {
+    "nd2x": "NIKON D2X"
+  },
+  "neat_image": {
+    "profiles_folder": "/Users/cdzombak/Documents/Neat Image v9 Standalone/Profiles",
+    "default_jpg_quality": 90
+  }
+}' | jq . > "$HOME/.config/xtoolconfig.json"
+    fi
   fi
 }
 sw_install "/usr/local/bin/xtool" _install_xtool
@@ -1883,6 +1899,7 @@ if [ -e /usr/local/bin/xtool ]; then
     cd xtool
     make applescript-install
     popd
+
     trash "$HOME/Library/Scripts/Applications/Finder/xtool - Camswap Sfp.scpt"
   fi
 fi
