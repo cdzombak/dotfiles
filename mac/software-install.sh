@@ -480,8 +480,7 @@ sw_install "/Applications/Ears.app" _install_ears \
 - [ ] Linked devices: AirPods Pro/Webcam Mic, Sony ANC Phones/Webcam Mic, AirPods Pro/Lavalier Mic, Sony ANC Phones/Lavalier Mic
 - [ ] Notifications: banners, show on lock screen, hide in Notification Center, show previews always"
 
-sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff" \
-  "- [ ] Set Honk as system error sound, as desired"
+sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff"
 
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
