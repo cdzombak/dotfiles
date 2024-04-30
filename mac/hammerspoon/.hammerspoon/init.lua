@@ -27,6 +27,8 @@ enableHotkeyForWindowsMatchingFilter = function(windowFilter, hotkey)
   end)
 end
 
+hs.application.enableSpotlightForNameSearches(true)
+
 require('control-escape')
 require('desk-usb')
 require('delete-words')
