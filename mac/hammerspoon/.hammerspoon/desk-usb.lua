@@ -1,9 +1,9 @@
 local log = hs.logger.new('desk-usb.lua', 'debug')
 
-function file_exists(name)
-   local f=io.open(name, "r")
-   if f~=nil then io.close(f) return true else return false end
-end
+-- function file_exists(name)
+--    local f=io.open(name, "r")
+--    if f~=nil then io.close(f) return true else return false end
+-- end
 
 function usbCallback(data)
   local isMainKeyboard = string.find(data["productName"], "Freestyle Edge Keyboard", 0, true)
