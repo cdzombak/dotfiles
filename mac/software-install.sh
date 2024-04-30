@@ -1805,6 +1805,34 @@ _install_note_dxofilmpack() {
 }
 sw_install "/Applications/DxO FilmPack 7.app" _install_note_dxofilmpack
 
+_install_note_sigmaphotopro() {
+  cecho "Install Sigma Photo Pro? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    setupnote "Sigma Photo Pro" "- [ ] Download and install from [sigma-global.com/en/support/software/sigma-photo-pro](https://www.sigma-global.com/en/support/software/sigma-photo-pro/?os=mac)"
+    cecho "[i] Sigma Photo Pro cannot be installed automatically." $white
+    echo "    Install it from https://www.sigma-global.com/en/support/software/sigma-photo-pro/?os=mac"
+    echo "    Installation steps have been added to the system setup checklist."
+    # shellcheck disable=SC2162
+    read -p "    Press [Enter] to continue..."
+  fi
+}
+sw_install "/Applications/SIGMA Photo Pro 6.app" _install_note_sigmaphotopro
+
+_install_note_sigmaoptimizationpro() {
+  cecho "Install Sigma Optimization Pro? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    setupnote "Sigma Optimization Pro" "- [ ] Download and install from [sigma-global.com/en/support/software/sigma-optimization-pro](https://www.sigma-global.com/en/support/software/sigma-optimization-pro/?os=mac)"
+    cecho "[i] Sigma Optimization Pro cannot be installed automatically." $white
+    echo "    Install it from https://www.sigma-global.com/en/support/software/sigma-optimization-pro/?os=mac"
+    echo "    Installation steps have been added to the system setup checklist."
+    # shellcheck disable=SC2162
+    read -p "    Press [Enter] to continue..."
+  fi
+}
+sw_install "/Applications/SIGMA Optimization Pro.app" _install_note_sigmaoptimizationpro
+
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
