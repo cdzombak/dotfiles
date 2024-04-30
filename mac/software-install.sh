@@ -787,6 +787,22 @@ _install_portmap() {
   set +x
 }
 
+if [ ! -e "$HOME/.config/dotfiles/software/no-betterdisplay" ]; then
+  _install_betterdisplay() {
+    cecho "Install BetterDisplay? (y/N)" $magenta
+    read -r response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      brew install --cask betterdisplay
+      setupnote "BetterDisplay.app" \
+        "- [ ] License\n- [ ] Configure as desired"
+    else
+      echo "Won't ask again next time this script is run."
+      touch "$HOME/.config/dotfiles/software/no-betterdisplay"
+    fi
+  }
+  sw_install /Applications/BetterDisplay.app _install_betterdisplay
+fi
+
 echo ""
 cecho "Install network tools? (y/N)" $magenta
 echo "(Discovery, iperf3, mtr, nmap, Port Map, speedtest, telnet, Wifi Explorer)"
