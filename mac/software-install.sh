@@ -1877,15 +1877,7 @@ _install_xtool() {
       echo '{ "backups_location": "sub_dir", "backups_folder": "_Xtoolbak" }' | jq . > "$HOME/.xtoolbak.json"
     fi
     if [ ! -e "$HOME/.config/xtoolconfig.json" ]; then
-      echo '{
-  "camswap_aliases": {
-    "nd2x": "NIKON D2X"
-  },
-  "neat_image": {
-    "profiles_folder": "/Users/cdzombak/Documents/Neat Image v9 Standalone/Profiles",
-    "default_jpg_quality": 90
-  }
-}' | jq . > "$HOME/.config/xtoolconfig.json"
+      ln -s "$HOME/.config/macos/xtoolconfig.json" "$HOME/.config/xtoolconfig.json"
     fi
   fi
 }
