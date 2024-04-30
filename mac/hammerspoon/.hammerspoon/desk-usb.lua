@@ -23,22 +23,22 @@ function usbCallback(data)
 
     if isWebcam then
       -- start webcam/videoconf support software:
-      hs.application.open("com.corsair.ControlCenter")
+      -- hs.application.open("com.corsair.ControlCenter")
       hs.application.open("net.rafaelconde.Hand-Mirror")
 
-      if isEyeContactWebcam then
-        hs.application.open("com.mbox.iContactControl")
-      end
-      if isLogitechWebcam then
-        logiTuneApp = hs.application.open("com.logitech.logitune", 4, true)
-        if logiTuneApp then
-          for _, window in pairs(logiTuneApp:visibleWindows()) do
-            window:close()
-          end
-        else
-          log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
-        end
-      end
+      -- if isEyeContactWebcam then
+      --   hs.application.open("com.mbox.iContactControl")
+      -- end
+      -- if isLogitechWebcam then
+      --   logiTuneApp = hs.application.open("com.logitech.logitune", 4, true)
+      --   if logiTuneApp then
+      --     for _, window in pairs(logiTuneApp:visibleWindows()) do
+      --       window:close()
+      --     end
+      --   else
+      --     log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
+      --   end
+      -- end
     end
   elseif data["eventType"] == "removed" then
     log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
@@ -81,13 +81,15 @@ function usbCallback(data)
       if handMirrorApp then
         handMirrorApp:kill()
       end
-      zoomApp = hs.application.get("us.zoom.xos")
-      if zoomApp then
-        zoomApp:kill()
-      end
-      elgatoCcApp = hs.application.get("com.corsair.ControlCenter")
-      if elgatoCcApp then
-        elgatoCcApp:kill()
+      -- elgatoCcApp = hs.application.get("com.corsair.ControlCenter")
+      -- if elgatoCcApp then
+      --   elgatoCcApp:kill()
+      -- end
+      if isHomeDeskMacStudio then
+        zoomApp = hs.application.get("us.zoom.xos")
+        if zoomApp then
+          zoomApp:kill()
+        end
       end
     end
   end
