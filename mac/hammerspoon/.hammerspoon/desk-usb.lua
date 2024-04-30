@@ -15,11 +15,11 @@ function usbCallback(data)
   if data["eventType"] == "added" then
     log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
-    if isMainMouse then
-      -- wake this machine
-      log.d("waking machine via /usr/bin/caffeinate...")
-      hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
-    end
+    -- if isMainMouse then
+    --   -- wake this machine
+    --   log.d("waking machine via /usr/bin/caffeinate...")
+    --   hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
+    -- end
 
     if isWebcam then
       -- start webcam/videoconf support software:
