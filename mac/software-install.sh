@@ -1034,10 +1034,6 @@ _install_ask_dash() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     brew install --cask dash
-    set +e
-    open /Applications/Dash.app
-    open "$HOME/iCloud Drive/Software/Licenses/license.dash-license"
-    set -e
     setupnote "Dash.app" \
       "- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Sync snippets\n- [ ] Review & Arrange docsets as desired\n- [ ] License"
   fi
