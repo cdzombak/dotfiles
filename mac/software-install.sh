@@ -1850,6 +1850,21 @@ _install_x3f_qlgenerator() {
 }
 sw_install "$HOME/Library/QuickLook/X3F QL Plugin.qlgenerator" _install_x3f_qlgenerator
 
+_install_x3f_tools() {
+  cecho "Install x3f_extract? (y/N)" $magenta
+  echo "( https://github.com/Kalpanika/x3f )"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'x3ftools')
+    pushd "$TMP_DIR"
+    curl -s https://api.github.com/repos/Kalpanika/x3f/releases/latest | jq -r ".assets[].browser_download_url" | grep "osx-universal" | xargs wget -q -O x3ftools.tar.gz
+    tar xzvf x3ftools.tar.gz
+    cp ./x3f_tools-*/bin/* "$HOME/opt/bin"
+    popd
+  fi
+}
+sw_install "$HOME/opt/bin/x3f_extract" _install_x3f_tools
+
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
