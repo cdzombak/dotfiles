@@ -229,7 +229,18 @@ sw_install /usr/local/bin/metar _install_metar
 # Move on to macOS applications:
 
 sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to accounts: personal; work as needed\n- [ ] Do not show in menu bar\n- [ ] Start at login\n- [ ] No keyboard shortcut for: Show 1Password; Lock 1Password\n- [ ] Quick Access: Ctrl-Shift-Command-Backslash\n- [ ] Autofill: Command-Backslash\n- [ ] Appearance -> Density: Compact\n- [ ] Security: enable unlock with Apple Watch\n- [ ] Security: hold Option to toggle revealed fields\n- [ ] Privacy -> Watchtower: Enable all Watchtower features\n- [ ] Developer: enable CLI integration"
+  "- [ ] Sign in to accounts: personal; work as needed
+- [ ] Do not show in menu bar
+- [ ] Start at login
+- [ ] No keyboard shortcut for: Quick Access; Lock 1Password
+- [ ] Show 1Password: Ctrl-Shift-Command-Backslash
+- [ ] Autofill: Command-Backslash
+- [ ] Appearance -> Density: Compact
+- [ ] Appearance -> Always show in Sidebar: Categories and Tags
+- [ ] Security: enable unlock with Apple Watch
+- [ ] Security: hold Option to toggle revealed fields
+- [ ] Privacy -> Watchtower: Enable all Watchtower features
+- [ ] Developer: enable CLI integration"
 sw_install "$(brew --prefix)"/bin/op "brew_cask_install 1password-cli"
 sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
   "- [ ] Configure screen saver (as desired)"

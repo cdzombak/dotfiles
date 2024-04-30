@@ -202,7 +202,6 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] Walk through Preferences, configuring as desired
     - [ ] Set homepage: \`https://start.dzdz.cz/\`
     - [ ] New tabs and windows open with start page
-    - [ ] Set search engine to DuckDuckGo
     - [ ] Disable AutoFill (in favor of [1Password](https://blog.1password.com/big-sur-1password-7-7/))
     - [ ] Privacy: disable hiding IP from known trackers (breaks stuff/slows performance)
     - [ ] Enable web developer features
