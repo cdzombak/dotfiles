@@ -1833,6 +1833,23 @@ _install_note_sigmaoptimizationpro() {
 }
 sw_install "/Applications/SIGMA Optimization Pro.app" _install_note_sigmaoptimizationpro
 
+_install_x3f_qlgenerator() {
+  cecho "Install X3F QL Plugin.qlgenerator? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'x3fqlgenerator')
+    pushd "$TMP_DIR"
+    wget https://dropbox.dzombak.com/X3F-QL-Plugin.qlgenerator.zip
+    mkdir -p "$HOME/Library/QuickLook/"
+    unzip X3F-QL-Plugin.qlgenerator.zip -d "$HOME/Library/QuickLook/"
+    rm -rf "$HOME/Library/QuickLook/__MACOSX"
+    popd
+
+    setupnote "X3F QL Plugin.qlgenerator" "- [ ] Enable in System Settings"
+  fi
+}
+sw_install "$HOME/Library/QuickLook/X3F QL Plugin.qlgenerator" _install_x3f_qlgenerator
+
 _install_photosweeper() {
   cecho "Install PhotoSweeper X? (y/N)" $magenta
   read -r response
