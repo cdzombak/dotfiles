@@ -24,7 +24,11 @@ function usbCallback(data)
     if isWebcam then
       -- start webcam/videoconf support software:
       -- hs.application.open("com.corsair.ControlCenter")
-      hs.application.open("net.rafaelconde.Hand-Mirror")
+
+      handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
+      if handMirrorApp == nil then
+        hs.application.open("net.rafaelconde.Hand-Mirror")
+      end
 
       -- if isEyeContactWebcam then
       --   hs.application.open("com.mbox.iContactControl")
