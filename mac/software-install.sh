@@ -280,7 +280,7 @@ sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG M Regular, size 14\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
 sw_install /Applications/Latest.app "brew_cask_install latest"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
-  "- [ ] License"
+  "- [ ] License\n- [ ] Allow full disk access\n- [ ] Install and allow full disk access for \`fdautil\`\n- [ ] Enable QuickLaunch\n- [ ] Hide QuickLaunch in Bartender bar"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 if [ ! -e "$HOME/.config/dotfiles/software/no-mimestream" ]; then
   sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
