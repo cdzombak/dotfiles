@@ -1189,6 +1189,21 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
 fi
 
+echo ""
+cecho "Install common JS/TS tools? (y/N)" $magenta
+echo "(corepack, nvm, pnpm, tsc, yarn; prettier, eslint, jshint)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install "$(brew --prefix)"/bin/corepack "brew_install corepack"
+  mkdir -p "$HOME/.nvm" && sw_install "$(brew --prefix)"/opt/nvm "brew_install nvm"
+  corepack enable pnpm
+  sw_install "$(brew --prefix)"/bin/tsc
+  corepack enable yarn
+  sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
+  sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
+  sw_install "$(brew --prefix)/bin/jshint" 'npm install -g jshint'
+fi
+
 if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
   cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
   read -r response
@@ -1202,60 +1217,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
   fi
 fi
 
-_install_nvm() {
-  cecho "Install nvm? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install nvm
-    mkdir "$HOME/.nvm"
-  fi
-}
-sw_install "$(brew --prefix)/opt/nvm" _install_nvm
-
-_install_yarn() {
-  cecho "Install yarn? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install yarn
-  fi
-}
-sw_install "$(brew --prefix)/bin/yarn" _install_yarn
-
-_install_tsc() {
-  cecho "Install tsc (TypeScript compiler)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     npm install -g typescript
-  fi
-}
-sw_install "$(brew --prefix)"/bin/tsc _install_tsc
-
-cecho "Install JS/TS code quality tools (prettier, eslint, jshint)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-   sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
-   sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
-   sw_install "$(brew --prefix)/bin/jshint" 'npm install -g jshint'
-fi
-
-_install_carthage() {
-  cecho "Install Carthage? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install carthage
-  fi
-}
-sw_install "$(brew --prefix)/bin/carthage" _install_carthage
-
-# _install_fastlane() {
-#   cecho "Install Fastlane? (y/N)" $magenta
-#   read -r response
-#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#     brew install --cask fastlane
-#   fi
-# }
-# sw_install "$HOME/.fastlane/bin/fastlane" _install_fastlane
-
 _install_ask_script_debugger() {
   cecho "Install Script Debugger (for AppleScript)? (y/N)" $magenta
   read -r response
@@ -1264,6 +1225,17 @@ _install_ask_script_debugger() {
   fi
 }
 sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
+
+if [ ! -e "$HOME/.config/dotfiles/software/no-carthage" ]; then
+  cecho "Install Carthage? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sw_install "$(brew --prefix)"/bin/carthage 'brew_install carthage'
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/software/no-carthage"
+  fi
+fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-react-native" ]; then
   cecho "Install React Native CLI? (y/N)" $magenta
@@ -1276,14 +1248,16 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-react-native" ]; then
   fi
 fi
 
-_install_sbt() {
+if [ ! -e "$HOME/.config/dotfiles/software/no-sbt" ]; then
   cecho "Install Scala tools (sbt)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install sbt
+    sw_install "$(brew --prefix)/bin/sbt" 'brew_install sbt'
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/software/no-sbt"
   fi
-}
-sw_install "$(brew --prefix)/bin/sbt" _install_sbt
+fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-java-devtools" ]; then
   echo ""
@@ -1373,7 +1347,7 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
 fi
 
 echo ""
-cecho "Install Docker/container-related tools (act, dive, dockerfilelint, hadolint, periodic-docker-pull)? (y/N)" $magenta
+cecho "Install Docker/container tools (act, dive, dockerfilelint, hadolint, periodic-docker-pull)? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/act" "brew_install act"
@@ -1398,7 +1372,7 @@ if ! uname -p | grep -c "arm" >/dev/null; then
 fi
 
 echo ""
-cecho "Install additional Kubernetes tools? (y/N)" $magenta
+cecho "Install Kubernetes tools? (y/N)" $magenta
 echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -1419,28 +1393,6 @@ _install_servercat() {
   fi
 }
 sw_install "/Applications/ServerCat.app" _install_servercat
-
-# echo ""
-# cecho "Database tools..." $white
-# cecho "Additional options exist: JetBrains DataGrip, MySQLWorkbench, Liya (SQLite), plus tools from Setapp (favorite is SQLPro)." $white
-
-# _install_mysqlworkbench() {
-#   cecho "Install MySQLWorkbench? (y/N)" $magenta
-#   read -r response
-#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#     brew install --cask mysqlworkbench
-#   fi
-# }
-# sw_install /Applications/MySQLWorkbench.app _install_mysqlworkbench
-
-# _install_liya() {
-#   cecho "Install Liya (for SQLite, from Mac App Store)? (y/N)" $magenta
-#   read -r response
-#   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#     mas install 455484422 # Liya - SQLite
-#   fi
-# }
-# sw_install /Applications/Liya.app _install_liya
 
 echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
