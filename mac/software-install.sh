@@ -1848,7 +1848,7 @@ _install_xtool() {
     pushd "$TMP_DIR"
     git clone https://github.com/cdzombak/xtool.git
     cd xtool
-    make install
+    sudo make install
     popd
 
     if [ ! -e "$HOME/.xtoolbak.json" ]; then
@@ -1870,7 +1870,7 @@ if [ -e /usr/local/bin/xtool ]; then
     make applescript-install
     popd
 
-    trash "$HOME/Library/Scripts/Applications/Finder/xtool - Camswap Sfp.scpt"
+    rm -f "$HOME/Library/Scripts/Applications/Finder/xtool - Camswap Sfp.scpt"
   fi
 fi
 
