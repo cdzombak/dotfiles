@@ -212,6 +212,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 - [ ] [Clock](https://clock.dzdz.cz)
 - [ ] [Ecobee](https://www.ecobee.com/consumerportal/index.html#/devices)
     - [ ] Sign in
+- [ ] [Flickr](https://www.flickr.com)
 - [ ] [Instapaper Reader](https://instapaper.com/u)
     - [ ] Sign in
 - [ ] [JSON Viewer](https://json.dzdz.cz)
