@@ -1191,13 +1191,13 @@ fi
 
 echo ""
 cecho "Install common JS/TS tools? (y/N)" $magenta
-echo "(corepack, nvm, pnpm, tsc, yarn; prettier, eslint, jshint)"
+echo "(corepack, nvm, pnpm, typescript, yarn; prettier, eslint, jshint)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)"/bin/corepack "brew_install corepack"
   mkdir -p "$HOME/.nvm" && sw_install "$(brew --prefix)"/opt/nvm "brew_install nvm"
   corepack enable pnpm
-  sw_install "$(brew --prefix)"/bin/tsc 'brew_install tsc'
+  sw_install "$(brew --prefix)"/bin/tsc 'brew_install typescript'
   corepack enable yarn
   sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
   sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
