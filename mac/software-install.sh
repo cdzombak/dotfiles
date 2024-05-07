@@ -691,7 +691,8 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
 - [ ] Install plugins: [Control Center](https://marketplace.elgato.com/product/control-center-39a4fa43-1afe-457a-8a19-b5d386e77d53), [Cosmetic Key](https://marketplace.elgato.com/product/cosmetic-key-077407b5-299b-479c-a921-6a3ffec677da), [MuteDeck](https://marketplace.elgato.com/product/mutedeck-5d494067-d9fa-4798-b40e-aca3b09f50a2) or [Zoom](https://marketplace.elgato.com/product/zoom-plugin-a588eabf-fced-401b-a7e3-c12e81bbf75c)
 - [ ] Install icons: [Material](https://marketplace.elgato.com/product/material-1c32abe8-341b-4cba-8e2b-186d6ed96070), [Mana](https://marketplace.elgato.com/product/mana-icons-f69dadd1-fd29-463f-b49d-8af9f7567fb6), [Pure](https://marketplace.elgato.com/product/pure-a994a0a5-049c-4382-b73f-417553e1d8bb), [Entype](https://marketplace.elgato.com/product/entypo-854efe00-6c8c-4532-854f-d5a2b3e3acae), [Hexaza](https://marketplace.elgato.com/product/hexaza-3d4ed1dc-bf33-4f30-9ecd-201769f10c0d)
 - [ ] Restore config backup/saved profiles as desired
-- [ ] Configure as desired"
+- [ ] Configure as desired
+- [ ] Set keyboard shortcut for DnD in Shortcuts app"
         brew install --cask elgato-control-center
       if [ ! -e "/Applications/Elgato Control Center.app" ]; then
         _install_elgatocc
