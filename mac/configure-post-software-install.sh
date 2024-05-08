@@ -601,16 +601,27 @@ fi
 echo "RadarScope..."
 if [ -e "/Applications/RadarScope.app" ]; then
   osascript -e "tell application \"RadarScope\" to quit"
-  defaults write com.basevelocity.mac.RadarScope dataProvider -string "wdt"
-  defaults write com.basevelocity.mac.RadarScope lightningProvider -string "wdtp"
-  defaults write com.basevelocity.mac.RadarScope showCities -bool false
-  defaults write com.basevelocity.mac.RadarScope showDiscussions -bool true
-  defaults write com.basevelocity.mac.RadarScope showLightning -bool true
-  defaults write com.basevelocity.mac.RadarScope showResearchRadars -bool true
-  defaults write com.basevelocity.mac.RadarScope showStormTracks -bool true
-  defaults write com.basevelocity.mac.RadarScope showTDWRs -bool true
-  defaults write com.basevelocity.mac.RadarScope showWatches -bool true
-  defaults write com.basevelocity.mac.RadarScope warningProvider -string "wdt"
+  defaults write com.basevelocity.RadarScope "FeatureManager.isAllisonHouseEnabled" -bool false
+  defaults write com.basevelocity.RadarScope "FeatureManager.isWeatherOpsEnabled" -bool false
+  defaults write com.basevelocity.RadarScope "FeatureManager.metFeatureSetState" -int 2
+  defaults write com.basevelocity.RadarScope "FeatureManager.proFeatureSetState" -int 2
+  defaults write com.basevelocity.RadarScope dataProvider -string "wdt"
+  defaults write com.basevelocity.RadarScope fontScale -string "1.6"
+  defaults write com.basevelocity.RadarScope isSidebarCollasped -bool false
+  defaults write com.basevelocity.RadarScope lightningProvider -string "wdtp"
+  defaults write com.basevelocity.RadarScopeoutlookType -string "categorical"
+  defaults write com.basevelocity.RadarScope premiumProductsProvider -string "wdtp"
+  defaults write com.basevelocity.RadarScope showCities -bool false
+  defaults write com.basevelocity.RadarScope showDiscussions -bool true
+  defaults write com.basevelocity.RadarScope showLightning -bool true
+  defaults write com.basevelocity.RadarScope showResearchRadars -bool true
+  defaults write com.basevelocity.RadarScope showResearchRadars -bool true
+  defaults write com.basevelocity.RadarScope showSpotterReports -bool true
+  defaults write com.basevelocity.RadarScope showStormReports -bool true
+  defaults write com.basevelocity.RadarScope showStormTracks -bool true
+  defaults write com.basevelocity.RadarScope showTDWRs -bool true
+  defaults write com.basevelocity.RadarScope showWatches -bool true
+  defaults write com.basevelocity.RadarScope warningProvider -string "wdt"
 else
   echo "(Not installed.)"
 fi

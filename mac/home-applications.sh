@@ -101,7 +101,6 @@ if [ -e "/Applications/OpenSCAD.app" ] && [ ! -e "$HOME/Applications/Hobby Tools
   ln -s "/Applications/OpenSCAD.app" "$HOME/Applications/Hobby Tools/OpenSCAD"
 fi
 if [ -e "/Applications/RadarScope.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/RadarScope" ]; then
-  # maybe not a perfect match, but Close Enough
   ln -s "/Applications/RadarScope.app" "$HOME/Applications/Hobby Tools/RadarScope"
 fi
 if [ -e "/Applications/LTSpice.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/LTSpice" ]; then

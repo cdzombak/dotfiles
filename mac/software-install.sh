@@ -408,8 +408,8 @@ sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 12pt"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
-sw_install /Applications/RadarScope.app "mas install 432027450" \
-  "- [ ] Restore purchases\n- [ ] Sign into relevant accounts"
+sw_install /Applications/RadarScope.app "mas install 288419283" \
+  "- [ ] Restore purchases\n- [ ] Sign into RadarScope account\n- [ ] Sign into Spotter Network account"
 sw_install /Applications/Reeder.app "mas install 1529448980" \
   "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
 sw_install "/Applications/Service Station.app" "mas install 1503136033" \
