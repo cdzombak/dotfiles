@@ -2009,6 +2009,16 @@ _install_quickmediaconv() {
 }
 sw_install "$(brew --prefix)/bin/flv2mp4" _install_quickmediaconv
 
+_install_ffworks() {
+  echo ""
+  cecho "Install ff·Works? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask ff-works
+  fi
+}
+sw_install "/Applications/ff·Works.app" _install_ffworks
+
 if [ ! -e "$HOME/.config/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
     cecho "Install Handbrake? (y/N)" $magenta
