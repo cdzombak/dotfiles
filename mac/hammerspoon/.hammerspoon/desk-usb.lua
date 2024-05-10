@@ -21,15 +21,14 @@ function usbCallback(data)
     --   hs.task.new('/usr/bin/caffeinate', nil, {"-u", "-t", "10"}):start()
     -- end
 
-    if isWebcam then
+    -- if isWebcam then
       -- start webcam/videoconf support software:
       -- hs.application.open("com.corsair.ControlCenter")
 
-      handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
-      if handMirrorApp == nil then
-        hs.application.open("net.rafaelconde.Hand-Mirror")
-      end
-
+      -- handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
+      -- if handMirrorApp == nil then
+      --   hs.application.open("net.rafaelconde.Hand-Mirror")
+      -- end
       -- if isEyeContactWebcam then
       --   hs.application.open("com.mbox.iContactControl")
       -- end
@@ -43,7 +42,7 @@ function usbCallback(data)
       --     log.d("LogiTune not up after launch wait timeout; cannot close window automatically")
       --   end
       -- end
-    end
+    -- end
   elseif data["eventType"] == "removed" then
     log.d("USB disconnect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
@@ -81,10 +80,10 @@ function usbCallback(data)
           eyeContactControlApp:kill()
         end
       end
-      handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
-      if handMirrorApp then
-        handMirrorApp:kill()
-      end
+      -- handMirrorApp = hs.application.get("net.rafaelconde.Hand-Mirror")
+      -- if handMirrorApp then
+      --   handMirrorApp:kill()
+      -- end
       -- elgatoCcApp = hs.application.get("com.corsair.ControlCenter")
       -- if elgatoCcApp then
       --   elgatoCcApp:kill()
