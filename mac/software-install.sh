@@ -1899,6 +1899,7 @@ _install_fileloupe() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     mas install 944693506 # Fileloupe
+    setupnote "Fileloupe" "- [ ] Grant full disk access"
   fi
 }
 sw_install /Applications/Fileloupe.app _install_fileloupe
