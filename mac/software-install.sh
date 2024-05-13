@@ -112,13 +112,7 @@ fi
 sw_install "$(brew --prefix)/Cellar/brew-caveats" \
   "brew tap rafaelgarrido/homebrew-caveats && brew install brew-caveats"
 
-# untap caskroom/versions, which conflicts with homebrew/cask-versions:
-if brew tap | grep -c caskroom/versions >/dev/null ; then
-  brew untap caskroom/versions
-fi
-
 # tap various casks that may be required:
-brew tap | grep -c homebrew/cask-versions >/dev/null || brew tap homebrew/cask-versions
 brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
 
 # begin with core/base Homebrew installs:
@@ -1450,7 +1444,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-openscad" ]; then
     cecho "Install OpenSCAD? (y/N)" $magenta
     read -r response
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask homebrew/cask-versions/openscad-snapshot
+      brew install --cask openscad@snapshot
     else
       echo "Won't ask again next time this script is run."
       touch "$HOME/.config/dotfiles/software/no-openscad"
