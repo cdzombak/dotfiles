@@ -171,6 +171,7 @@ sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
 sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
 sw_install "$(brew --prefix)/Cellar/syncthing" "brew_install syncthing && brew services start syncthing" \
   "- [ ] Begin syncing \`~/.config/macos\`\n- [ ] Begin syncing \`~/Sync\`\n- [ ] Sync folder: Staggered file versioning, 60 days\n- [ ] Add \`#include globalstignore\` to ignore lists\n- [ ] Minimum disk space 10% in app settings\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
+sw_install "$(brew --prefix)/bin/task" "brew_install go-task/tap/go-task"
 sw_install "$(brew --prefix)/bin/terminal-notifier" "brew_install terminal-notifier"
 sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
 sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
@@ -1176,13 +1177,13 @@ fi
 
 echo ""
 cecho "Install common Python code quality tools? (y/N)" $magenta
-echo "(black, flake8, pycodestyle, pylint)"
+echo "(black, flake8, pylint, ruff)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/black" "brew_install black"
   sw_install "$(brew --prefix)/bin/flake8" "brew_install flake8"
   sw_install "$(brew --prefix)/bin/pylint" "brew_install pylint"
-  sw_install "$(brew --prefix)/bin/pycodestyle" "brew_install pycodestyle"
+  sw_install "$(brew --prefix)/bin/ruff" "brew_install ruff"
 fi
 
 echo ""
@@ -2738,11 +2739,6 @@ if [ -e /Applications/Tadam.app ]; then
   osascript -e "tell application \"Tadam\" to quit"
   trash /Applications/Tadam.app
   set -e
-fi
-
-if [ -e "$(brew --prefix)/bin/task" ]; then
-  echo "task ..."
-  brew uninstall go-task/tap/go-task
 fi
 
 if [ -e /usr/local/bin/thingshub ]; then
