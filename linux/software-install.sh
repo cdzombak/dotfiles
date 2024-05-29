@@ -81,6 +81,14 @@ echo "Installing self-packaged software via apt-get..."
 sudo apt-get install -y apply-crontab dirshard listening runner restic unshorten
 # TODO(cdzombak): add remote-edit/apg once it's in beta
 
+if [ -d /etc/bash_completion.d ] && [ ! -e /etc/bash_completion.d/restic ]; then
+  sudo restic generate --bash-completion /etc/bash_completion.d/restic
+fi
+
+if [ -d /usr/local/share/zsh/site-functions ] && [ ! -e /usr/local/share/zsh/site-functions/_restic ]; then
+  sudo restic generate --zsh-completion /usr/local/share/zsh/site-functions/_restic
+fi
+
 if [ ! -d "$HOME/crontab.d" ]; then
   echo "Setting up ~/crontab.d for use with apply-crontab..."
   apply-crontab -i
