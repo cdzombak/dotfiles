@@ -1828,29 +1828,14 @@ _install_x3f_qlgenerator() {
 }
 sw_install "$HOME/Library/QuickLook/X3F QL Plugin.qlgenerator" _install_x3f_qlgenerator
 
-_install_mandatory_x3f_tools() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'x3ftools')
-  pushd "$TMP_DIR"
-  curl -s https://api.github.com/repos/Kalpanika/x3f/releases/latest | jq -r ".assets[].browser_download_url" | grep "osx-universal" | xargs wget -q -O x3ftools.tar.gz
-  tar xzvf x3ftools.tar.gz
-  cp ./x3f_tools-*/bin/* "$HOME/opt/bin"
-  popd
-}
-
 _install_xtool() {
   cecho "Install xtool? (y/N)" $magenta
   echo "( https://github.com/cdzombak/xtool )"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _install_mandatory_x3f_tools
-
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'xtool')
-    pushd "$TMP_DIR"
-    git clone https://github.com/cdzombak/xtool.git
-    cd xtool
-    sudo make install
-    popd
-
+    brew install cdzombak/oss/xtool
+    xtool install -scripts
+    xtool install -x3f-extract
     if [ ! -e "$HOME/.xtoolbak.json" ]; then
       echo '{ "backups_location": "sub_dir", "backups_folder": "_Xtoolbak" }' | jq . > "$HOME/.xtoolbak.json"
     fi
@@ -1859,27 +1844,19 @@ _install_xtool() {
     fi
   fi
 }
-sw_install "/usr/local/bin/xtool" _install_xtool
-
-if [ -e /usr/local/bin/xtool ]; then
-  if [ ! -e "$HOME/Library/Scripts/Applications/Finder/xtool - Inspect GPS.scpt" ]; then
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'xtool')
-    pushd "$TMP_DIR"
-    git clone https://github.com/cdzombak/xtool.git
-    cd xtool
-    make applescript-install
-    popd
-
-    rm -f "$HOME/Library/Scripts/Applications/Finder/xtool - Camswap Sfp.scpt"
-  fi
-fi
+sw_install "$(brew --prefix)/bin/xtool" _install_xtool
 
 _install_x3f_tools() {
-  cecho "Install x3f_extract? (y/N)" $magenta
+  cecho "Install x3f tools (for working with Sigma X3F files)? (y/N)" $magenta
   echo "( https://github.com/Kalpanika/x3f )"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _install_mandatory_x3f_tools
+    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'x3ftools')
+    pushd "$TMP_DIR"
+    curl -s https://api.github.com/repos/Kalpanika/x3f/releases/latest | jq -r ".assets[].browser_download_url" | grep "osx-universal" | xargs wget -q -O x3ftools.tar.gz
+    tar xzvf x3ftools.tar.gz
+    cp ./x3f_tools-*/bin/* "$HOME/opt/bin"
+    popd
   fi
 }
 sw_install "$HOME/opt/bin/x3f_extract" _install_x3f_tools
