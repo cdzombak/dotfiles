@@ -51,10 +51,16 @@ echo ""
 
 echo "Setting up dist.cdzombak.net apt repos ..."
 sudo apt-get install -y ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://dist.cdzombak.net/deb.key | sudo gpg --dearmor -o /etc/apt/keyrings/dist-cdzombak-net.gpg
-sudo chmod 0644 /etc/apt/keyrings/dist-cdzombak-net.gpg
-echo -e "deb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/oss any oss\ndeb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/3p any 3p\n" | sudo tee /etc/apt/sources.list.d/dist-cdzombak-net.list > /dev/null
+if [ ! -d /etc/apt/keyrings ]; then
+  sudo install -m 0755 -d /etc/apt/keyrings
+fi
+if [ ! -f /etc/apt/keyrings/dist-cdzombak-net.gpg ]; then
+  curl -fsSL https://dist.cdzombak.net/deb.key | sudo gpg --dearmor -o /etc/apt/keyrings/dist-cdzombak-net.gpg
+  sudo chmod 0644 /etc/apt/keyrings/dist-cdzombak-net.gpg
+fi
+if [ ! -f /etc/apt/sources.list.d/dist-cdzombak-net.list ]; then
+  echo -e "deb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/oss any oss\ndeb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/3p any 3p\n" | sudo tee /etc/apt/sources.list.d/dist-cdzombak-net.list > /dev/null
+fi
 sudo apt update -y
 
 echo ""
