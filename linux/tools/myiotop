@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# This script enables task delay accounting in the Linux kernel, runs iotop,
+# then on exit sets task_delayacct back to 0.
+
+# from:
+# https://superuser.com/questions/610581/iotop-complains-config-task-delay-acct-not-enabled-in-kernel-only-for-specific
+
+# Disable task delay accounting when the script exits
+disable_task_delayacct() {
+  sudo sysctl kernel.task_delayacct=0
+}
+
+# Trap the EXIT signal to call the disable_task_delayacct function
+trap 'disable_task_delayacct' EXIT
+
+# Enable task delay accounting
+sudo sysctl kernel.task_delayacct=1
+
+# Run iotop with administrative privileges
+sudo iotop

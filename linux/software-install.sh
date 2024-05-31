@@ -124,6 +124,9 @@ if [ ! -d /etc/restic-backup ]; then
   "$SCRIPT_DIR"/restic-scaffolding/install.sh
 fi
 
+mkdir -p "$HOME/opt/bin"
+cp -f "$SCRIPT_DIR/tools/myiotop" "$HOME/opt/bin"
+
 if ! command -v op >/dev/null; then
   echo "Installing 1Password CLI..."
   # from https://developer.1password.com/docs/cli/get-started/:
