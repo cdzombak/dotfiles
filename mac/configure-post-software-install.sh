@@ -62,20 +62,6 @@ else
   echo "(Not installed.)"
 fi
 
-echo "Bartender 5 ..."
-if [ -e "/Applications/Bartender 5.app" ]; then
-  osascript -e "tell application \"Bartender 5\" to quit"
-  defaults write com.surteesstudios.Bartender "ReduceMenuItemSpacing" '1'
-  defaults write com.surteesstudios.Bartender "ReduceUpdateCheckFrequencyWhenOnBattery" '1'
-  defaults write com.surteesstudios.Bartender "BartenderBarOnlyOnNotchScreens" '1'
-  defaults write com.surteesstudios.Bartender "Gaps-RequireAltOrRightClickToShowGapPopup" '1'
-  set +e
-  open -a "Bartender 5"
-  set -e
-else
-  echo "(Not installed.)"
-fi
-
 echo "Bear ..."
 if [ -e /Applications/Bear.app ]; then
   osascript -e "tell application \"Bear\" to quit"
@@ -342,7 +328,7 @@ if [ -e "/Applications/Setapp/HazeOver.app" ]; then
   defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
   defaults write com.pointum.hazeover-setapp MultiFocus -bool true
   setupnote "HazeOver" \
-    "- [ ] Hide in Bartender\n- [ ] Start at Login"
+    "- [ ] Hide in menu bar\n- [ ] Start at Login"
   set +e
   open -a "HazeOver"
   set -e
@@ -393,7 +379,7 @@ if [ -e "/Applications/Setapp/Keysmith.app" ]; then
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Hide in Bartender" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
   set +e
@@ -547,7 +533,7 @@ fi
 echo "Ohtipi ..."
 if [ -e "/Applications/Setapp/Ohtipi.app" ]; then
   passetupnote "Ohtipi" \
-    "- [ ] Grant Full Disk Access\n- [ ] Open at login\n- [ ] Hide in Bartender"
+    "- [ ] Grant Full Disk Access\n- [ ] Open at login\n- [ ] Hide in menu bar"
 else
   echo "(Not installed.)"
 fi

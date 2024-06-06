@@ -253,10 +253,6 @@ sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
   "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
 sw_install /Applications/Arq.app "brew_cask_install arq" \
   "- [ ] Setup onsite backups as desired\n- [ ] Setup offsite backups as desired\n- [ ] Setup emails via Mailgun\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
-if [ ! -e "/Applications/Bartender 5.app" ]; then
-  sw_install "/Applications/Bartender _.app" "brew_cask_install bartender" \
-    "- [ ] Configure based on current favorite system/screenshots in \`~/.config/macos\`"
-fi
 sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
   "- [ ] Configure screen saver (as desired)"
 sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
@@ -279,14 +275,14 @@ sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
   "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG M Regular, size 14\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
 sw_install /Applications/Latest.app "brew_cask_install latest"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
-  "- [ ] License\n- [ ] Allow full disk access\n- [ ] Install and allow full disk access for \`fdautil\`\n- [ ] Enable QuickLaunch\n- [ ] Hide QuickLaunch in Bartender bar"
+  "- [ ] License\n- [ ] Allow full disk access\n- [ ] Install and allow full disk access for \`fdautil\`\n- [ ] Enable QuickLaunch\n- [ ] Hide QuickLaunch in menu bar"
 sw_install /Applications/LICEcap.app "brew_cask_install licecap"
 if [ ! -e "$HOME/.config/dotfiles/software/no-mimestream" ]; then
   sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
     "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Increase font size\n- [ ] Notification config: Show in Notification Center and display badge"
 fi
 sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
-  "- [ ] Launch\n- [ ] Hide in Bartender\n- [ ] Add to Login Items"
+  "- [ ] Launch\n- [ ] Hide in menu bar\n- [ ] Add to Login Items"
 sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
   "- [ ] Allow full disk access"
 sw_install "/Applications/Raindrop.io.app" "brew_cask_install raindropio" \
@@ -674,7 +670,7 @@ _install_mutedeck() {
 - [ ] Enable System Microphone & Zoom only
 - [ ] Start at login
 - [ ] Don't open window at start
-- [ ] Hide in Bartender Bar"
+- [ ] Hide in menu bar"
 }
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
@@ -2392,8 +2388,6 @@ echo ""
 cecho "--- Removing software I no longer use ---" $white
 echo ""
 
-REMOVED_ANYTHING=false
-
 verify_smartdelete() {
   while ! pgrep "net.freemacsoft.AppCleaner-SmartDelete" >/dev/null; do
     cecho "Please enable AppCleaner's 'Smart Delete' feature, via the app's preferences." $white
@@ -2406,7 +2400,6 @@ verify_smartdelete() {
 #   if ! ls -la "$(brew --prefix)/bin/gpg" | grep -c "MacGPG" >/dev/null ; then
 #     echo "GnuPG (Homebrew install; use MacGPG instead)..."
 #     brew uninstall gnupg
-#     REMOVED_ANYTHING=true
 #   fi
 # fi
 
@@ -2433,10 +2426,11 @@ if [ -e "/Applications/Angry IP Scanner.app" ]; then
   brew uninstall --cask angry-ip-scanner
 fi
 
-if [ -e "/Applications/Bartender 3.app" ] && [ -e "/Applications/Bartender 4.app" ]; then
-  echo "Bartender 3 (replaced by Bartender 4) ..."
+if [ -e "/Applications/Bartender 5.app" ]; then
+  echo "Bartender (5)..."
   verify_smartdelete
-  trash "/Applications/Bartender 3.app"
+  killall "Bartender 5"
+  trash "/Applications/Bartender 5.app"
 fi
 
 if [ -e "/Applications/Better.app" ]; then
