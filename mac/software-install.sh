@@ -268,6 +268,8 @@ sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail
 sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
   "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
 sw_install "/Applications/Hex Fiend.app" "brew_cask_install hex-fiend"
+sw_install /Applications/Ice.app "brew_install jordanbaird-ice" \
+  "- [ ] Grant permissions\n- [ ] Launch at login\n- [ ] Configure menu bar as desired/following convention from existing systems"
 sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/.config/macos\`, taking care not to overwrite the files there\n- [ ] Make default term"
