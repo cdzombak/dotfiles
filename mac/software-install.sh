@@ -112,9 +112,6 @@ fi
 sw_install "$(brew --prefix)/Cellar/brew-caveats" \
   "brew tap rafaelgarrido/homebrew-caveats && brew install brew-caveats"
 
-# tap various casks that may be required:
-brew tap | grep -c homebrew/cask-fonts >/dev/null || brew tap homebrew/cask-fonts
-
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
