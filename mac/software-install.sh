@@ -2078,9 +2078,11 @@ _install_plexamp() {
     echo "## Plexamp.app" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Turn off notifications (Settings > Appearance)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Disable crossfades (Settings > Playback)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Music Quality)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Use Large font size (Settings > Experience)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Use system window controls (Settings > Experience > Desktop Integration)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Turn off notifications (Settings > Experience > Desktop Integration)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Playback > Streaming Quality)" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable crossfades (aka \"Sweet Fades\") (Settings > Playback)" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
 }
