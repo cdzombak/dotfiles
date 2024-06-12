@@ -411,6 +411,7 @@ sw_install "/Applications/Service Station.app" "mas install 1503136033" \
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions: Copy, Open In, Save As"
 sw_install /Applications/Soro.app "mas install 1550457805"
+sw_install /Applications/Spaced.app "mas install 1666327168"
 
 _install_things() {
   mas install 904280696 # Things
