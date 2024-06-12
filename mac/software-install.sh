@@ -1113,6 +1113,15 @@ _install_sfsymbols() {
 }
 sw_install "/Applications/SF Symbols.app" _install_sfsymbols
 
+_install_redisinsight() {
+  cecho "Install Redis Insight? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+     brew install --cask redisinsight
+  fi
+}
+sw_install "/Applications/Redis Insight.app" _install_redisinsight
+
 echo ""
 cecho "HTTP/API Tools..." $white
 echo ""
