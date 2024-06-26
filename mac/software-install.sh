@@ -402,6 +402,8 @@ sw_install /Applications/Peek.app "mas install 1554235898" \
   "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 12pt"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
+sw_install /Applications/Tot.app "mas install 1491071483" \
+  "- [ ] Start at login\n- [ ] Add to Dock\n- [ ] Control with Dock Icon; customize color"
 sw_install /Applications/RadarScope.app "mas install 288419283" \
   "- [ ] Restore purchases\n- [ ] Sign into RadarScope account\n- [ ] Sign into Spotter Network account"
 sw_install /Applications/Reeder.app "mas install 1529448980" \
