@@ -2517,6 +2517,15 @@ if [ -e "/Applications/Downlink.app" ]; then
   trash /Applications/Downlink.app
 fi
 
+if [ -e "/Applications/Elgato Control Center.app" ]; then
+  set +e
+  osascript -e 'quit app "Elgato Control Center"'
+  echo "Elgato Control Center..."
+  verify_smartdelete
+  trash "/Applications/Elgato Control Center.app"
+  set -e
+fi
+
 if [ -e /usr/local/bin/emoj ]; then
   echo "emoj..."
   npm uninstall -g emoj
