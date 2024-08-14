@@ -49,3 +49,7 @@ function rm-known-host() {
     fi
     sed -i "$1d" "$HOME/.ssh/known_hosts"
 }
+
+cpv() {
+    rsync -pogbr -hhh --backup-dir="/tmp/rsync-${USER}" -e /dev/null --progress "$@"
+}
