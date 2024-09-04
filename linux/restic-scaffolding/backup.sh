@@ -40,8 +40,12 @@ restic forget --prune \
   --keep-monthly "$(jq .monthly ./keep.json)"
 echo ""
 
+#echo "Repacking some uncompressed packs..."
+#restic prune --repack-uncompressed --max-repack-size=5G
+#echo ""
+
 echo "Running check..."
-restic check
+restic check --read-data-subset=0.5%
 echo ""
 
 echo "Backup & checks completed successfully."
