@@ -34,7 +34,7 @@ if [ -d "$SCRIPT_DIR"/backup.d ] && [ -n "$(ls -A "$SCRIPT_DIR"/backup.d)" ]; th
 fi
 
 echo "Running forget and prune..."
-restic forget --prune \
+restic forget --prune --compact \
   --keep-daily "$(jq .daily ./keep.json)" \
   --keep-weekly "$(jq .weekly ./keep.json)" \
   --keep-monthly "$(jq .monthly ./keep.json)"
