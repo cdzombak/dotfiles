@@ -298,8 +298,11 @@ fi
 if [ -e "/Applications/Sloth.app" ] && [ ! -e "$HOME/Applications/System Tools/Sloth" ]; then
   ln -s "/Applications/Sloth.app" "$HOME/Applications/System Tools/Sloth"
 fi
-if [ -e "/Applications/Setapp/Screens.app" ] && [ ! -e "$HOME/Applications/System Tools/Screens" ]; then
-  ln -s "/Applications/Setapp/Screens.app" "$HOME/Applications/System Tools/Screens"
+if [ -e "$HOME/Applications/System Tools/Screens" ]; then
+  rm "$HOME/Applications/System Tools/Screens"
+fi
+if [ -e "/Applications/Screens 5.app" ] && [ ! -e "$HOME/Applications/System Tools/Screens 5" ]; then
+  ln -s "/Applications/Screens 5.app" "$HOME/Applications/System Tools/Screens 5"
 fi
 if [ -e "/Applications/Transmit.app" ] && [ ! -e "$HOME/Applications/System Tools/Transmit" ]; then
   ln -s "/Applications/Transmit.app" "$HOME/Applications/System Tools/Transmit"

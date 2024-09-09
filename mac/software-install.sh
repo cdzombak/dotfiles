@@ -967,6 +967,20 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-tor" ]; then
   sw_install "/Applications/Tor Browser.app" _install_torbrowser
 fi
 
+_install_screens5() {
+  cecho "Install Screens 5? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1663047912
+    setupnote "Screens 5" \
+      "- [ ] Sign into Tailscale\n- [ ] Sidebar: hide Screens Connect\n- [ ] Controls: Use shared clipboard by default\n- [ ] Privacy: Lock Screens after 2 minutes\n- [ ] Restore purchases"
+  fi
+}
+if [ -e "/Applications/Setapp/Screens.app" ]; then
+  _install_screens5
+fi
+sw_install "/Applications/Screens 5.app" _install_screens5
+
 _install_vncviewer() {
   cecho "Install VNC Viewer? (y/N)" $magenta
   read -r response
@@ -974,7 +988,9 @@ _install_vncviewer() {
     brew install --cask vnc-viewer
   fi
 }
-sw_install "/Applications/VNC Viewer.app" _install_vncviewer
+if [ ! -e "/Applications/Screens 5.app" ]; then
+  sw_install "/Applications/VNC Viewer.app" _install_vncviewer
+fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-transmit" ]; then
   _install_transmit() {
@@ -2720,6 +2736,18 @@ if [ -e "/Applications/Screens Connect.app" ]; then
   osascript -e "tell application \"Screens Connect\" to quit"
   set -e
   trash "/Applications/Screens Connect.app"
+fi
+
+if [ -e "/Applications/Screens.app" ]; then
+  echo "Screens 4..."
+  verify_smartdelete
+  trash "/Applications/Screens.app"
+fi
+
+if [ -e "/Applications/Setapp/Screens.app" ]; then
+  echo "Screens 4..."
+  verify_smartdelete
+  trash "/Applications/Setapp/Screens.app"
 fi
 
 if [ -e "/Applications/StopTheMadness.app" ]; then
