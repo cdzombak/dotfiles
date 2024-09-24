@@ -9,7 +9,7 @@ function my_log() {
 }
 
 WLAN_IF="${WLAN_IF:-wlan0}"
-WLAN_GW=$(ip route show 0.0.0.0/0 dev "$WLAN_IF" | cut -d\  -f3)
+WLAN_GW=$(ip route show 0.0.0.0/0 dev "$WLAN_IF" | cut -d' ' -f3)
 PING_TARGET="${PING_TARGET:-$WLAN_GW}"
 
 if ping -i5 -c10 "$PING_TARGET" > /dev/null; then

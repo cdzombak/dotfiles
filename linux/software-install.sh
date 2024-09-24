@@ -234,6 +234,7 @@ if is_tiny; then
         sudo cp "$SCRIPT_DIR"/pi/wifi-check.sh /usr/local/bin/wifi-check.sh
         sudo chmod 0755 /usr/local/bin/wifi-check.sh
         sudo cp "$SCRIPT_DIR"/pi/wifi-check.cron /etc/cron.d/wifi-check
+        sudo chmod 0644 /etc/cron.d/wifi-check
         echo ""
         echo "NOTE: The cron job is disabled at install time."
         echo "      Verify interface names, then edit /etc/cron.d/wifi-check to enable it."
