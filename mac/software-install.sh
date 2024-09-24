@@ -1057,6 +1057,17 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-boop" ]; then
   sw_install "/Applications/Boop.app" _install_boop
 fi
 
+_install_ask_vscode() {
+  cecho "Install VS Code? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask visual-studio-code
+    setupnote "Visual Studio Code.app" \
+      "- [ ] Sync settings using Github account"
+  fi
+}
+sw_install "/Applications/Visual Studio Code.app" _install_ask_vscode
+
 if [ ! -e "$HOME/.config/dotfiles/software/no-jetbrains" ]; then
   _install_jetbrains() {
     cecho "Install JetBrains Toolbox? (y/N)" $magenta

@@ -76,6 +76,9 @@ fi
 if [ -e "$HOME/Applications/GitHub Desktop.app" ] && [ ! -e "$HOME/Applications/Dev Tools/GitHub Desktop" ]; then
   ln -s "$HOME/Applications/GitHub Desktop.app" "$HOME/Applications/Dev Tools/GitHub Desktop"
 fi
+if [ -e "$HOME/Applications/Visual Studio Code.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Visual Studio Code" ]; then
+  ln -s "$HOME/Applications/Visual Studio Code.app" "$HOME/Applications/Dev Tools/Visual Studio Code"
+fi
 
 if [ ! -d "$HOME/Applications/Hobby Tools" ]; then
   setupnote "Dock/Hobby Tools" "- [ ] Add Hobby Tools to Dock, if desired"
