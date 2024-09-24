@@ -319,6 +319,7 @@ EOF
 
 - [ ] Configure system via \`sudo raspi-config\` / \`sudo armbian-config\`
 - [ ] Harden for reliability per [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html)
+- [ ] Enable \`/etc/cron.d/imgbak\` as desired
 
 EOF
   fi

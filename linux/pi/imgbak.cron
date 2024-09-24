@@ -1,0 +1,10 @@
+# /etc/cron.d/imgbak: crontab entry for SD card image backups via imgbak.sh
+SHELL=/bin/bash
+RUNNER_LOG_DIR=/var/log/imgbak
+RUNNER_NTFY_SERVER=ntfy.cdzombak.net
+RUNNER_NTFY_TOPIC=dzops
+RUNNER_NTFY_ACCESS_TOKEN=
+
+00 07 * * *  root  SMBPASS="TKTK" runner -job-name "SD image backup" -ntfy-priority 4 -ntfy-tags x -retries 1 -- /usr/bin/flock -n /tmp/imgbak.lock ionice -c2 -n7 nice -n19 /usr/local/bin/imgbak.sh
+
+00 00 * * *  root  find "$RUNNER_LOG_DIR" -mtime +30 -name "*.log" -delete  >/dev/null
