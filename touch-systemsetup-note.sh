@@ -313,7 +313,7 @@ elif [ "$(uname)" == "Linux" ]; then
 
 EOF
   if command -v raspi-config >/dev/null || [ -e /etc/armbian-release ]; then
-    cat << EOF > "$HOME/SystemSetup.md"
+    cat << EOF >> "$HOME/SystemSetup.md"
 
 ## Raspberry Pi / Armbian Device Setup
 
