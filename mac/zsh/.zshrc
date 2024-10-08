@@ -55,6 +55,12 @@ fi
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
+
+if [ -d "$HOME/.asdf" ] ; then
+    . "$HOME/.asdf/asdf.sh"
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
 source ~/.zsh/completion.zsh
 autoload -Uz compinit
 compinit
