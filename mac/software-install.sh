@@ -2010,7 +2010,7 @@ _install_youtubedl() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     # brew install youtube-dl
-    brew install yt-dlp
+    brew install yt-dlp ffmpeg
   fi
 }
 sw_install "$(brew --prefix)/bin/yt-dlp" _install_youtubedl
