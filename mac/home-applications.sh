@@ -118,6 +118,9 @@ fi
 if [ -e "/Applications/Meshman 3D Viewer PRO.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Meshman 3D Viewer" ]; then
   ln -s "/Applications/Meshman 3D Viewer PRO.app" "$HOME/Applications/Hobby Tools/Meshman 3D Viewer"
 fi
+if [ -e "/Applications/MQTTAnalyzer.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/MQTTAnalyzer" ]; then
+  ln -s "/Applications/MQTTAnalyzer.app" "$HOME/Applications/Hobby Tools/MQTTAnalyzer"
+fi
 
 if [ ! -d "$HOME/Applications/Media" ]; then
   setupnote "Dock/Media" "- [ ] Add Media to Dock, if desired"
