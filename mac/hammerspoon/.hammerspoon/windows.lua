@@ -1,6 +1,8 @@
 hs.window.animationDuration = 0
 window = hs.getObjectMetatable("hs.window")
 
+local log = hs.logger.new('windows.lua', 'debug')
+
 -- +-----------------+
 -- |        |        |
 -- |  HERE  |        |
@@ -238,11 +240,11 @@ function window.centerWithFullHeight(win)
   local screen = win:screen()
   local max = screen:fullFrame()
 
-  f.x = max.x + (max.w / 5)
-  if max.w == 2560 then
-    f.x = f.x - 50
+  f.x = max.x + (max.w / 6)
+  if max.w > 2559 and max.w < 2561 then
+    f.x = f.x + 40
   end
-  f.w = max.w * 3/5
+  f.w = max.w * 4/6
   f.y = max.y
   f.h = max.h
   win:setFrame(f)
