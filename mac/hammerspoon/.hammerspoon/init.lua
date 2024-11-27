@@ -29,7 +29,7 @@ end
 
 hs.application.enableSpotlightForNameSearches(true)
 
-require('control-escape')
+-- require('control-escape')
 require('desk-usb')
 require('delete-words')
 require('markdown')
