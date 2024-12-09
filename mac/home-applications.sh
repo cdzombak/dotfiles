@@ -334,5 +334,8 @@ fi
 if [ -e "/Applications/ServerCat.app" ] && [ ! -e "$HOME/Applications/System Tools/ServerCat" ]; then
   ln -s "/Applications/ServerCat.app" "$HOME/Applications/System Tools/ServerCat"
 fi
+if [ -e "/Applications/Restic-Browser.app" ] && [ ! -e "$HOME/Applications/System Tools/Restic Browser" ]; then
+  ln -s "/Applications/Restic-Browser.app" "$HOME/Applications/System Tools/Restic Browser"
+fi
 
 cecho "✔ Done." $green
