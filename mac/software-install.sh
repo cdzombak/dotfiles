@@ -136,6 +136,7 @@ sw_install "$(brew --prefix)/bin/go" "brew_install go" \
   "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
 sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
+sw_install "$(brew --prefix)/bin/gtar" "brew_install gnu-tar"
 sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
 sw_install "$(brew --prefix)/bin/imagesnap" "brew_install imagesnap"
 sw_install "$(brew --prefix)/bin/jsonnet-lint" "brew_install go-jsonnet"
