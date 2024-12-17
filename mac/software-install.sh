@@ -183,6 +183,7 @@ sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
 sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
+sw_install "$(brew --prefix)/bin/yq" "brew_install python-yq"
 
 set +e
 if brew tap | grep "filosottile/gomod" >/dev/null ; then
