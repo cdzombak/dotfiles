@@ -1221,12 +1221,13 @@ fi
 
 echo ""
 cecho "Install common Python code quality tools? (y/N)" $magenta
-echo "(black, flake8, pylint, ruff)"
+echo "(black, flake8, mypy, pylint, ruff)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/black" "brew_install black"
   sw_install "$(brew --prefix)/bin/flake8" "brew_install flake8"
   sw_install "$(brew --prefix)/bin/pylint" "brew_install pylint"
+  sw_install "$(brew --prefix)/bin/mypy" "brew_install mypy"
   sw_install "$(brew --prefix)/bin/ruff" "brew_install ruff"
 fi
 
