@@ -712,21 +712,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-stream-deck" ]; then
   sw_install "/Applications/Elgato Stream Deck.app" _install_streamdeck
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-elgato-control-center" ]; then
-  _install_ask_control_center_elgato() {
-    echo ""
-    cecho "Install Elgato Control Center utility? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      _install_elgatocc
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-elgato-control-center"
-    fi
-  }
-  sw_install "/Applications/Elgato Control Center.app" _install_ask_control_center_elgato
-fi
-
 if [ ! -e "$HOME/.config/dotfiles/software/no-mutedeck" ]; then
   _install_ask_mutedeck() {
     echo ""
@@ -2027,6 +2012,16 @@ _install_quickmediaconv() {
   fi
 }
 sw_install "$(brew --prefix)/bin/flv2mp4" _install_quickmediaconv
+
+_install_fontforge() {
+  echo ""
+  cecho "Install FontForge? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask fontforge
+  fi
+}
+sw_install "/Applications/FontForge.app" _install_fontforge
 
 _install_ffworks() {
   echo ""
