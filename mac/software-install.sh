@@ -1421,6 +1421,15 @@ _install_servercat() {
 }
 sw_install "/Applications/ServerCat.app" _install_servercat
 
+_install_esphome() {
+  cecho "Install esphome? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install esphome
+  fi
+}
+sw_install "$(brew --prefix)/bin/esphome" _install_esphome
+
 echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
