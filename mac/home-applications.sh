@@ -109,6 +109,9 @@ fi
 if [ -e "/Applications/LTSpice.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/LTSpice" ]; then
   ln -s "/Applications/LTSpice.app" "$HOME/Applications/Hobby Tools/LTSpice"
 fi
+if [ -e "/Applications/Qucs-S.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/Qucs-S" ]; then
+  ln -s "/Applications/Qucs-S.app" "$HOME/Applications/Hobby Tools/Qucs-S"
+fi
 if [ -e "/Applications/KiCad/KiCad.app" ] && [ ! -e "$HOME/Applications/Hobby Tools/KiCad" ]; then
   ln -s "/Applications/KiCad/KiCad.app" "$HOME/Applications/Hobby Tools/KiCad"
 fi

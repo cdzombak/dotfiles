@@ -1512,11 +1512,12 @@ if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
   mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
 fi
 if [ ! -e "$HOME/.config/dotfiles/software/no-ee-tools" ]; then
-  cecho "Install EE tools (LTSpice, KiCad)? (y/N)" $magenta
+  cecho "Install EE tools (LTSpice, KiCad, Qucs-S)? (y/N)" $magenta
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
      sw_install /Applications/KiCad 'brew_cask_install kicad'
      sw_install /Applications/LTSpice.app 'brew_cask_install ltspice'
+     sw_install /Applications/Qucs-S.app 'brew_cask_install ra3xdh/qucs-s/qucs-s@nightly'
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/software/no-ee-tools"
