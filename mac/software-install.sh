@@ -1627,6 +1627,15 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-google-drive" ]; then
   sw_install "/Applications/Google Drive.app" _install_gdrive
 fi
 
+_install_zotero() {
+  cecho "Install Zotero? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask zotero
+  fi
+}
+sw_install /Applications/Zotero.app _install_zotero
+
 _install_clocker() {
   cecho "Install Clocker? (y/N)" $magenta
   read -r response
