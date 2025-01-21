@@ -271,7 +271,7 @@ elif [ "$(uname)" == "Linux" ]; then
 
 - [ ] Configure DNS as desired
 - [ ] \`adduser cdzombak\`
-- [ ] \`usermod -aG adm,admin,staff,operator,sudo cdzombak\`
+- [ ] \`usermod -aG adm,admin,staff,operator,sudo,users cdzombak\`
 - [ ] Set/change hostname as desired
     - \`hostnamectl set-hostname HOSTNAME.FQDN.TLD\`
     - \`hostnamectl set-hostname HOSTNAME --pretty\`
