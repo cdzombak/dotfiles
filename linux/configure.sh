@@ -54,6 +54,8 @@ if [ ! -e /etc/sysctl.d/90-cdz-netdev.conf ]; then
   echo "net.core.netdev_budget_usecs=6000" | sudo tee -a /etc/sysctl.d/90-cdz-netdev.conf
 fi
 
+./ssh-lockdown.sh
+
 echo "Clean MOTD..."
 sudo rm -f /etc/update-motd.d/10-help-text \
   /etc/update-motd.d/50-motd-news \

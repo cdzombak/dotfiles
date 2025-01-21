@@ -281,14 +281,6 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] Remove \`avahi-daemon\` (for home network machines) if plausible (due to [high CPU usage bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=993051;msg=56)) (\`sudo apt remove --purge avahi-daemon\`)
 - [ ] Customize \`/etc/update-motd.d\` as desired
 
-## SSH Hardening
-
-- [ ] Customize \`/etc/ssh/sshd_config\`:
-    - \`PermitRootLogin no\`
-    - \`PasswordAuthentication no\`
-    - \`KbdInteractiveAuthentication no\`
-    - When finished, \`sudo systemctl reload sshd\`
-
 ## Postfix
 
 - [ ] Install and configure Postfix for mail delivery if/as desired, per [my internal document](bear://x-callback-url/open-note?id=CEB5B409-41C9-4DCC-999B-031D789F1117-57092-0004FA61C2AC6DAB)
