@@ -227,14 +227,6 @@ _zsh_rprompt_segment() {
   [[ -n $3 ]] && echo -n $3
 }
 
-# Virtualenv: current working virtualenv
-# prompt_virtualenv() {
-#   local virtualenv_path="$VIRTUAL_ENV"
-#   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-#     prompt_segment blue black "(`basename $virtualenv_path`)"
-#   fi
-# }
-
 _zsh_rprompt_local_env() {
   if [[ -n "$_RPROMPT_ENV" ]]; then
     _zsh_rprompt_segment green black "$_RPROMPT_ENV"
@@ -313,18 +305,12 @@ gcloud-ctx-hide() {
   _ZSH_RPROMPT_GCLOUD_CONTEXT=false
 }
 
-# pyenv context
-_zsh_rprompt_pyenv() {
-  local pyenvinfo
-  local virtualenv_path="$VIRTUAL_ENV"
-  pyenvinfo=$(pyenv_prompt_info)
-  if [[ -n "$pyenvinfo" ]] && [[ "$pyenvinfo" != "system" ]]; then
-    _zsh_rprompt_segment black cyan "🐍 $pyenvinfo"
-  elif [[ -n $virtualenv_path ]] && [[ -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    if [[ "$pyenvinfo" == "system" ]]; then
-      pyenvinfo="$(python -V 2>&1 | cut -f 2 -d ' ')"
-    fi
-    _zsh_rprompt_segment black cyan "🐍 $pyenvinfo"
+_zsh_rprompt_asdf() {
+  if [[ "$(asdf which python3)" != "/opt/homebrew/bin/python3" ]]; then
+    _zsh_rprompt_segment black cyan "py $(python3 -V 2>&1 | cut -f 2 -d ' ')"
+  fi
+  if [[ "$(asdf which node)" != "/opt/homebrew/bin/node" ]]; then
+    _zsh_rprompt_segment black cyan "njs ${$(node --version 2>&1 | cut -f 2 -d ' '):1}"
   fi
 }
 
@@ -357,9 +343,9 @@ _zsh_build_prompt() {
 ## Right prompt
 _zsh_build_rprompt() {
   _zsh_rprompt_local_env
-  _zsh_rprompt_pyenv
   _zsh_rprompt_virtualenv
-  _zsh_rprompt_kubectl
+  _zsh_rprompt_asdf
+  #_zsh_rprompt_kubectl
   _zsh_rprompt_aws_region
   _zsh_rprompt_aws_profile
   _zsh_rprompt_gcloud

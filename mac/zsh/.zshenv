@@ -38,16 +38,13 @@ if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
 
-# pyenv:
-if command -v pyenv 1>/dev/null 2>&1; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-fi
-
 # allow installing in ~/opt:
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
 export MANPATH="$HOME/opt/share/man:$MANPATH"
+
+if [ -d "$HOME/.asdf" ] ; then
+    PATH="$HOME/.asdf/shims:$PATH"
+fi
 
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8

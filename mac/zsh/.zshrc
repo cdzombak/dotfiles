@@ -34,11 +34,15 @@ export SESSION_OPENED_TS=$(date +%s)
 
 alias reload!='echo "" && . ~/.zshrc'
 
-# redo prioritizing homebrew in PATH here, same as .zshenv,
+# redo prioritizing homebrew & asdf in PATH here, same as .zshenv,
 # since something in macOS is resetting it between there and now:
 if [ -d /opt/homebrew/bin ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export MANPATH="/opt/homebrew/share/man:$MANPATH"
+fi
+
+if [ -d "$HOME/.asdf" ] ; then
+    PATH="$HOME/.asdf/shims:$PATH"
 fi
 
 source ~/.zsh/lib-rc/urlencode.zsh
@@ -54,11 +58,6 @@ fi
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
-if [ -d "$HOME/.asdf" ] ; then
-    . "$HOME/.asdf/asdf.sh"
-    fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
 source ~/.zsh/completion.zsh
@@ -83,9 +82,7 @@ source ~/.zsh/markdown.zsh
 source ~/.zsh/marks.zsh
 source ~/.zsh/misc.zsh
 source ~/.zsh/navigation.zsh
-command -v nvm >/dev/null 2>&1 && source ~/.zsh/nvm.zsh
 source ~/.zsh/prompt.zsh
-command -v pyenv >/dev/null 2>&1 && source ~/.zsh/pyenv.zsh
 source ~/.zsh/python.zsh
 command -v rake >/dev/null 2>&1 && source ~/.zsh/rake.zsh
 source ~/.zsh/ssh.zsh

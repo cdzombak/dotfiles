@@ -8,6 +8,9 @@ source "$LIB_DIR"/cecho
 # shellcheck disable=SC1091
 source "$LIB_DIR"/sw_install
 
+ASDF_INSTALL_PY_VERSION="3.13.2"
+ASDF_INSTALL_NODE_VERSION="22.13.1"
+
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS software installation because not on macOS"
   exit 2
@@ -114,10 +117,43 @@ sw_install "$(brew --prefix)/Cellar/brew-caveats" \
 
 # begin with core/base Homebrew installs:
 # some of these (node, go, mas) are used later in this setup script.
+brew install openssl readline sqlite3 xz zlib tcl-tk@8 # https://github.com/pyenv/pyenv/wiki#suggested-build-environment (used by asdf)
+sw_install "$(brew --prefix)/bin/git" "brew_install git"
+sw_install "$(brew --prefix)/bin/go" "brew_install go" \
+  "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
+  sw_install "$(brew --prefix)/bin/node" "brew_install node"
+sw_install "$(brew --prefix)/bin/python3" "brew_install python"
+
+sw_install "$(brew --prefix)/bin/asdf" "brew_install asdf"
+
+sw_install "$(brew --prefix)/bin/brew-gem" "brew_install brew-gem"
+set +e
+if brew tap | grep "filosottile/gomod" >/dev/null ; then
+  echo "replacing brew-gomod by my fork ..."
+  echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
+  brew uninstall brew-gomod
+  brew untap filosottile/gomod
+fi
+set -e
+sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
+
+_asdf_setup_python() {
+  "$(brew --prefix)/bin/asdf" plugin add python
+  "$(brew --prefix)/bin/asdf" install python "$ASDF_INSTALL_PY_VERSION"
+  cd "$HOME" && "$(brew --prefix)/bin/asdf" set python system
+}
+sw_install "$HOME/.asdf/plugins/python" _asdf_setup_python
+
+_asdf_setup_nodejs() {
+  "$(brew --prefix)/bin/asdf" plugin add nodejs
+  "$(brew --prefix)/bin/asdf" install nodejs "$ASDF_INSTALL_NODE_VERSION"
+  cd "$HOME" && "$(brew --prefix)/bin/asdf" set nodejs system
+}
+sw_install "$HOME/.asdf/plugins/nodejs" _asdf_setup_nodejs
+
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
 sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
 sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
-sw_install "$(brew --prefix)/bin/brew-gem" "brew_install brew-gem"
 sw_install "$(brew --prefix)/bin/b2" "brew_install b2-tools"
 sw_install "$(brew --prefix)/bin/cidrtool" "brew_install cdzombak/oss/cidrtool"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
@@ -129,11 +165,8 @@ sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
 sw_install "$(brew --prefix)/bin/duti" "brew_install duti"
 sw_install "$(brew --prefix)/bin/fileicon" "brew_install fileicon"
 sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
-sw_install "$(brew --prefix)/bin/git" "brew_install git"
 sw_install "$(brew --prefix)/bin/git-lfs" "brew_install git-lfs"
 sudo git lfs install --system --skip-repo
-sw_install "$(brew --prefix)/bin/go" "brew_install go" \
-  "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
 sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
 sw_install "$(brew --prefix)/bin/gtar" "brew_install gnu-tar"
@@ -152,7 +185,6 @@ fi
 sw_install "$(brew --prefix)/bin/nano" "brew_install nano"
 sw_install "$(brew --prefix)/bin/ncdu" "brew_install ncdu"
 sw_install "$(brew --prefix)/bin/nnn" "brew_install nnn"
-sw_install "$(brew --prefix)/bin/node" "brew_install node"
 sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
 sw_install "$(brew --prefix)/bin/parallel" "brew_install parallel"
 mkdir -p "$HOME/.parallel"
@@ -162,7 +194,6 @@ sw_install "$(brew --prefix)/bin/pdffonts" "brew_install poppler"
 sw_install "$(brew --prefix)/bin/pngcrush" "brew_install pngcrush"
 sw_install "$(brew --prefix)/bin/prettierd" "brew_install fsouza/prettierd/prettierd"
 sw_install "$(brew --prefix)/bin/pup" "brew_install pup" # CLI HTML parsing; supports weblink script
-sw_install "$(brew --prefix)/bin/python3" "brew_install python"
 sw_install "/Applications/QuickLook Video.app" "brew_install qlvideo"
 sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
 sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
@@ -183,17 +214,7 @@ sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
 sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
 sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
 sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
-sw_install "$(brew --prefix)/bin/yq" "brew_install python-yq"
-
-set +e
-if brew tap | grep "filosottile/gomod" >/dev/null ; then
-  echo "replacing brew-gomod by my fork ..."
-  echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
-  brew uninstall brew-gomod
-  brew untap filosottile/gomod
-fi
-set -e
-sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
+sw_install "$(brew --prefix)/bin/yq" "brew_install python-yq" # Command-line YAML and XML processor that wraps jq
 
 _install_tealdeer() {
   brew install tealdeer
@@ -1195,13 +1216,11 @@ fi
 
 echo ""
 cecho "Install Python env management tools? (y/N)" $magenta
-echo "(virtualenv, pipenv, pyenv)"
+echo "(virtualenv, pipenv)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/virtualenv" "brew_install virtualenv" # 'PIP_REQUIRE_VIRTUALENV="0" $(brew --prefix)/bin/pip3 install virtualenv'
   sw_install "$(brew --prefix)/bin/pipenv" "brew_install pipenv"
-  # optional, but recommended build deps w/pyenv: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-  sw_install "$(brew --prefix)/bin/pyenv" "brew install pyenv openssl readline sqlite3 xz zlib"
 fi
 
 echo ""
@@ -1217,18 +1236,20 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-cecho "Install common JS/TS tools? (y/N)" $magenta
-echo "(corepack, nvm, pnpm, typescript, yarn; prettier, eslint, jshint)"
+cecho "Install Typescript? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)"/bin/corepack "brew_install corepack"
-  mkdir -p "$HOME/.nvm" && sw_install "$(brew --prefix)"/opt/nvm "brew_install nvm"
-  corepack enable pnpm
   sw_install "$(brew --prefix)"/bin/tsc 'brew_install typescript'
-  corepack enable yarn
+fi
+
+echo ""
+cecho "Install JS/TS linters? (y/N)" $magenta
+echo "(prettier, eslint)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  sw_install "$(brew --prefix)"/bin/tsc 'brew_install typescript'
   sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
   sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
-  sw_install "$(brew --prefix)/bin/jshint" 'npm install -g jshint'
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
@@ -2731,6 +2752,12 @@ if [ -e /Applications/Notability.app ]; then
   trash "/Applications/Notability.app"
 fi
 
+if [ -e "$(brew --prefix)/opt/nvm" ] ; then
+  echo "nvm ..."
+  brew uninstall nvm
+  trash "$HOME/.nvm"
+fi
+
 if [ -e "/Applications/OmniFocus.app" ]; then
   echo "OmniFocus..."
   verify_smartdelete
@@ -2741,6 +2768,12 @@ if [ -e "/Applications/Pins.app" ]; then
   echo "Pins..."
   verify_smartdelete
   trash /Applications/Pins.app
+fi
+
+if [ -e "$(brew --prefix)/bin/pyenv" ] ; then
+  echo "pyenv ..."
+  brew uninstall pyenv
+  trash "$HOME/.pyenv"
 fi
 
 if [ -e "$HOME/Library/QuickLook/QLMarkdown.qlgenerator" ]; then
