@@ -1242,7 +1242,6 @@ cecho "Install JS/TS linters? (y/N)" $magenta
 echo "(prettier, eslint)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)"/bin/tsc 'brew_install typescript'
   sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
   sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
 fi
