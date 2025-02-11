@@ -499,7 +499,9 @@ _logz_setup() {
     pushd "$TMP_DIR"
     curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
     tar xzf logzio-rsyslog.tar.gz
+    set +e
     sudo rsyslog/install.sh -t nginx -a "$LOGZ_TOKEN" -l "listener.logz.io"
+    set -e
     popd
   fi
 
