@@ -186,6 +186,9 @@ fi
 if [ -e "/Applications/YT Music.app" ] && [ ! -e "$HOME/Applications/Media/YT Music" ]; then
   ln -s "/Applications/YT Music.app" "$HOME/Applications/Media/YT Music"
 fi
+if [ -e "/Applications/Setapp/Clariti.app" ] && [ ! -e "$HOME/Applications/Media/Clariti" ]; then
+  ln -s "/Applications/Setapp/Clariti.app" "$HOME/Applications/Media/Clariti"
+fi
 rm -f "$HOME/Applications/Media/Transmission"
 
 if [ ! -d "$HOME/Applications/Photo Tools" ]; then
