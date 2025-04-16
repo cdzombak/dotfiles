@@ -153,8 +153,9 @@ sw_install "$HOME/.asdf/plugins/nodejs" _asdf_setup_nodejs
 
 sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
 sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
-sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
 sw_install "$(brew --prefix)/bin/b2" "brew_install b2-tools"
+sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
+sw_install "$(brew --prefix)/bin/bluetoothconnector" "brew_install bluetoothconnector"
 sw_install "$(brew --prefix)/bin/cidrtool" "brew_install cdzombak/oss/cidrtool"
 sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
 sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
