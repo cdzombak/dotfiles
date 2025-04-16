@@ -37,7 +37,7 @@ function usbCallback(data)
       -- if this is my work MacBook Pro,
       if isWorkMBP then
         -- enable BetterDisplay XDR brightness scaling:
-        hs.execute [["/Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay" "set" "--UUID=37D8832A-2D66-02CA-B9F7-8F30A301B230" "--nativeBrightnessUpscaling=off"]]
+        hs.execute [["/Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay" "set" "--UUID=37D8832A-2D66-02CA-B9F7-8F30A301B230" "--nativeBrightnessUpscaling=on"]]
         -- enable WiFi:
         hs.wifi.setPower(true)
       end
@@ -62,7 +62,7 @@ function usbCallback(data)
   if data["eventType"] == "added" then
     log.d("USB connect: productName '" .. data["productName"] .. "'; vendorID '" .. data["vendorID"] .. "'; productID '" .. data["productID"] .. "'")
 
-    -- on disconnect from Caldigit TS4,
+    -- on connect to Caldigit TS4,
     if isCaldigitTS4 then
       -- if this is my work MacBook Pro,
       if isWorkMBP then
