@@ -319,6 +319,10 @@ defaults write com.apple.finder QLInlinePreviewMinimumSupportedSize -int 512
 ###############################################################################
 
 echo ""
+echo "Disable margins for macOS window tiling"
+defaults write "com.apple.WindowManager" "EnableTiledWindowMargins" '0'
+
+echo ""
 echo "Speed up Mission Control animations; Group windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.2
 defaults write com.apple.dock "expose-group-by-app" -bool true
