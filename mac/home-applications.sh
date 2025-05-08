@@ -49,8 +49,15 @@ fi
 if [ -e "$HOME/Applications/GoLand.app" ] && [ ! -e "$HOME/Applications/Dev Tools/GoLand" ]; then
   ln -s "$HOME/Applications/GoLand.app" "$HOME/Applications/Dev Tools/GoLand"
 fi
-if [ -e "$HOME/Applications/PyCharm Professional Edition.app" ] && [ ! -e "$HOME/Applications/Dev Tools/PyCharm" ]; then
-  ln -s "$HOME/Applications/PyCharm Professional Edition.app" "$HOME/Applications/Dev Tools/PyCharm"
+rm -f "$HOME/Applications/Dev Tools/PyCharm"
+if [ -e "$HOME/Applications/PyCharm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/PyCharm" ]; then
+  ln -s "$HOME/Applications/PyCharm.app" "$HOME/Applications/Dev Tools/PyCharm"
+fi
+if [ -e "$HOME/Applications/DataGrip.app" ] && [ ! -e "$HOME/Applications/Dev Tools/DataGrip" ]; then
+  ln -s "$HOME/Applications/DataGrip.app" "$HOME/Applications/Dev Tools/DataGrip"
+fi
+if [ -e "$HOME/Applications/PhpStorm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/PhpStorm" ]; then
+  ln -s "$HOME/Applications/PhpStorm.app" "$HOME/Applications/Dev Tools/PhpStorm"
 fi
 if [ -e "$HOME/Applications/WebStorm.app" ] && [ ! -e "$HOME/Applications/Dev Tools/WebStorm" ]; then
   ln -s "$HOME/Applications/WebStorm.app" "$HOME/Applications/Dev Tools/WebStorm"
@@ -78,6 +85,9 @@ if [ -e "$HOME/Applications/GitHub Desktop.app" ] && [ ! -e "$HOME/Applications/
 fi
 if [ -e "$HOME/Applications/Visual Studio Code.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Visual Studio Code" ]; then
   ln -s "$HOME/Applications/Visual Studio Code.app" "$HOME/Applications/Dev Tools/Visual Studio Code"
+fi
+if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Squash" ]; then
+  ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Dev Tools/Squash"
 fi
 
 if [ ! -d "$HOME/Applications/Hobby Tools" ]; then
