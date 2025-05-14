@@ -599,7 +599,7 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 echo ""
 echo "Global Keyboard shortcuts: ⌘P to Save PDF from Print dialog; ^⇧⌘V to Paste and Match Style"
-defaults write -g NSUserKeyEquivalents '{"Paste and Match Style"="@^$v";"Save as PDF"="@p";}' && killall cfprefsd
+defaults write -g NSUserKeyEquivalents '{"Paste and Match Style"="@^$v";}' && killall cfprefsd
 
 echo ""
 echo "Finder.app Keyboard shortcut: ⇧⌘O to Documents"
