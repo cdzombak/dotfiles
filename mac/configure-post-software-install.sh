@@ -496,6 +496,11 @@ if [ -e "/Applications/Mimestream.app" ]; then
   defaults write com.mimestream.Mimestream HideBadgeForSpam 1
   defaults write com.mimestream.Mimestream PlaySounds none
   defaults write com.mimestream.Mimestream DeleteKeyAction 'trash'
+  defaults write com.mimestream.Mimestream NSUserKeyEquivalents '
+{
+    "Add Star" = "@^s";
+    "Remove Star" = "@^s";
+}'
 else
   echo "(Not installed.)"
 fi
