@@ -476,6 +476,13 @@ echo "Safari: Don't allow websites to ask to send push notifications"
 defaults write "com.apple.Safari" "CanPromptForPushNotifications" '0'
 
 echo ""
+echo "Safari: New Private Window shortcut matches Firefox"
+defaults write com.apple.Safari NSUserKeyEquivalents '
+{
+    "New Private Window" = "@$p";
+}'
+
+echo ""
 echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
