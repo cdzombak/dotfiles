@@ -8,6 +8,8 @@ source "$LIB_DIR"/cecho
 # shellcheck disable=SC1091
 source "$LIB_DIR"/sw_install
 
+exit 0
+
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS Finder Sidebar setup because not on macOS"
   exit 2
