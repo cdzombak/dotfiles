@@ -1,8 +1,8 @@
 # ssh with multiplexing (relies on ControlPath & etc set in ~/.ssh/config)
 alias ssh-mux='ssh -o "ControlMaster=auto"'
 
-alias hosts-list='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host //" ; echo "Windows Game Desktop" ; echo "Windows Laptop" ; }'
-alias hosts-list-md='{ grep "^Host " ~/.ssh/config | grep -v -- "-remote" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | grep -v -- -mux | grep -v "b5a." | sed "s/^Host /- [ ] /" ; echo "- [ ] Windows Game Desktop" ; echo "- [ ] Windows Laptop" ; }'
+alias hosts-list='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host //" | sed "s/^#Host /!/" ; }'
+alias hosts-list-md='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host /- [ ] /" | sed "s/^#Host /- [ ] !/" ; }'
 
 # ssc: ssh to the given host and open a screen
 function ssc {

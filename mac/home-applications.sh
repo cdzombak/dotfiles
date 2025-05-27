@@ -353,5 +353,8 @@ fi
 if [ -e "/Applications/Restic-Browser.app" ] && [ ! -e "$HOME/Applications/System Tools/Restic Browser" ]; then
   ln -s "/Applications/Restic-Browser.app" "$HOME/Applications/System Tools/Restic Browser"
 fi
+if [ -e "/Applications/Tintd.app" ] && [ ! -e "$HOME/Applications/System Tools/Tintd" ]; then
+  ln -s "/Applications/Tintd.app" "$HOME/Applications/System Tools/Tintd"
+fi
 
 cecho "✔ Done." $green
