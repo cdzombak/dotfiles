@@ -575,22 +575,6 @@ echo ""
 cecho "--- Utilities ---" $white
 echo ""
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-istatmenus" ]; then
-  _install_istat(){
-    cecho "Install iStat Menus? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask istat-menus
-      setupnote "iStat Menus.app" \
-        "- [ ] License\n- [ ] Configure based on current favorite system"
-    else
-        echo "Won't ask again next time this script is run."
-        touch "$HOME/.config/dotfiles/software/no-istatmenus"
-    fi
-  }
-  sw_install "/Applications/iStat Menus.app" _install_istat
-fi
-
 echo ""
 cecho "Install/update my notify-me script? (y/N)" $magenta
 echo "(requires auth to dropbox.dzombak.com/_auth)"
