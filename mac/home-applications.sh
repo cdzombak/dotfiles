@@ -86,6 +86,9 @@ fi
 if [ -e "$HOME/Applications/Visual Studio Code.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Visual Studio Code" ]; then
   ln -s "$HOME/Applications/Visual Studio Code.app" "$HOME/Applications/Dev Tools/Visual Studio Code"
 fi
+if [ -e "/Applications/Cursor.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Cursor" ]; then
+  ln -s "/Applications/Cursor.app" "$HOME/Applications/Dev Tools/Cursor"
+fi
 if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Squash" ]; then
   ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Dev Tools/Squash"
 fi
