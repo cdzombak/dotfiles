@@ -305,8 +305,6 @@ sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper"
   "- [ ] Allow full disk access"
 sw_install "/Applications/Raindrop.io.app" "brew_cask_install raindropio" \
   "- [ ] Sign in"
-sw_install /Applications/SensibleSideButtons.app "brew_cask_install sensiblesidebuttons" \
-  "- [ ] Start at Login\n- [ ] Enable\n- [ ] Enable Accessibility control"
 sw_install "/Applications/Shortcat.app" "brew_cask_install shortcat" \
   "- [ ] Grant permissions\n- [ ] Assign shortcut Alt-Command-Space (move Finder Search to Ctrl-Command-Space if needed)\n- [ ] Launch at Login\n- [ ] Hide in menu bar, next to Alfred"
 sw_install /Applications/Sloth.app "brew_cask_install sloth"
@@ -523,6 +521,12 @@ sw_install "/usr/local/bin/diskspace" _install_diskspace
 
 if [ ! -e "/Applications/Tembo.app" ]; then
   setupnote "Tembo" "- [ ] [Download](https://www.houdah.com/tembo/download.html) and install Tembo\n- [ ] Register (details in 1Password)\n- [ ] Grant permissions (in Privacy tab)\n- [ ] Enable helper; hide Menu Bar icon\n- [ ] Set global shortcut Ctrl-Shift-Space\n- [ ] Set Groups, Defaults, locations per config screenshots"
+fi
+
+if [ ! -e "/Applications/Setapp/BetterTouchTool.app" ] && [ ! -e "/Applications/BetterTouchTool.app" ]; then
+  brew install --cask bettertouchtool
+  setupnote "BetterTouchTool.app" \
+    "- [ ] Sync settings (Dropbox)\n- [ ] License"
 fi
 
 if [ -e /Applications/Arduino.app ]; then
@@ -2798,6 +2802,15 @@ if [ -e "/Applications/Screens.app" ]; then
   echo "Screens 4..."
   verify_smartdelete
   trash "/Applications/Screens.app"
+fi
+
+if [ -e "/Applications/SensibleSideButtons.app" ]; then
+  echo "SensibleSideButtons..."
+  set +e
+  osascript -e "tell application \"SensibleSideButtons\" to quit"
+  set -e
+  verify_smartdelete
+  trash /Applications/SensibleSideButtons.app
 fi
 
 if [ -e "/Applications/Setapp/Screens.app" ]; then
