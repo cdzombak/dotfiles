@@ -2036,6 +2036,16 @@ _install_quickmediaconv() {
 }
 sw_install "$(brew --prefix)/bin/flv2mp4" _install_quickmediaconv
 
+_install_inkscape() {
+  echo ""
+  cecho "Install Inkscape? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    brew install --cask inkscape
+  fi
+}
+sw_install "/Applications/Inkscape.app" _install_inkscape
+
 _install_fontforge() {
   echo ""
   cecho "Install FontForge? (y/N)" $magenta

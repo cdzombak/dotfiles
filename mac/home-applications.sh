@@ -265,6 +265,9 @@ fi
 if [ -e "/Applications/Peakto.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Peakto" ]; then
   ln -s "/Applications/Peakto.app" "$HOME/Applications/Photo Tools/Peakto"
 fi
+if [ -e "/Applications/Inkscape.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Inkscape" ]; then
+  ln -s "/Applications/Inkscape.app" "$HOME/Applications/Photo Tools/Inkscape"
+fi
 if [ -e "$HOME/Applications/Flickr.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Flickr" ]; then
   ln -s "$HOME/Applications/Flickr.app" "$HOME/Applications/Photo Tools/Flickr"
 fi
