@@ -58,8 +58,16 @@ if [ ! -f /etc/apt/keyrings/dist-cdzombak-net.gpg ]; then
   curl -fsSL https://dist.cdzombak.net/deb.key | sudo gpg --dearmor -o /etc/apt/keyrings/dist-cdzombak-net.gpg
   sudo chmod 0644 /etc/apt/keyrings/dist-cdzombak-net.gpg
 fi
-if [ ! -f /etc/apt/sources.list.d/dist-cdzombak-net.list ]; then
-  echo -e "deb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/oss any oss\ndeb [signed-by=/etc/apt/keyrings/dist-cdzombak-net.gpg] https://dist.cdzombak.net/deb/3p any 3p\n" | sudo tee /etc/apt/sources.list.d/dist-cdzombak-net.list > /dev/null
+if [ -f /etc/apt/sources.list.d/dist-cdzombak-net.list ]; then
+  sudo rm /etc/apt/sources.list.d/dist-cdzombak-net.list
+fi
+if [ ! -f /etc/apt/sources.list.d/cdzombak-oss.sources ]; then
+  sudo curl -fsSL https://dist.cdzombak.net/cdzombak-oss.sources -o /etc/apt/sources.list.d/cdzombak-oss.sources
+  sudo chmod 644 /etc/apt/sources.list.d/cdzombak-oss.sources
+fi
+if [ ! -f /etc/apt/sources.list.d/cdzombak-3p.sources ]; then
+  sudo curl -fsSL https://dist.cdzombak.net/cdzombak-3p.sources -o /etc/apt/sources.list.d/cdzombak-3p.sources
+  sudo chmod 644 /etc/apt/sources.list.d/cdzombak-3p.sources
 fi
 sudo apt update -y
 
@@ -550,6 +558,7 @@ if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
     echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+    printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
     sudo apt-get update
     sudo apt-get install syncthing
     sudo systemctl enable syncthing@cdzombak.service
