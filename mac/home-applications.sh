@@ -89,6 +89,9 @@ fi
 if [ -e "/Applications/Cursor.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Cursor" ]; then
   ln -s "/Applications/Cursor.app" "$HOME/Applications/Dev Tools/Cursor"
 fi
+if [ -e "/Applications/Taska.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Taska" ]; then
+  ln -s "/Applications/Taska.app" "$HOME/Applications/Dev Tools/Taska"
+fi
 if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Dev Tools/Squash" ]; then
   ln -s "/Applications/Setapp/Squash.app" "$HOME/Applications/Dev Tools/Squash"
 fi
