@@ -241,6 +241,12 @@ _install_metar() {
 }
 sw_install /usr/local/bin/metar _install_metar
 
+_install_mac_cleanup() {
+  brew tap mac-cleanup/mac-cleanup-py
+  brew install mac-cleanup-py
+}
+sw_install "$(brew --prefix)/bin/mac-cleanup" _install_mac_cleanup
+
 # Move on to macOS applications:
 
 sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
