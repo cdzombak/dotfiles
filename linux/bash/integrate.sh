@@ -7,6 +7,15 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+IS_ROOT=false
+if [ "$EUID" -eq 0 ]; then
+  if [ "$HOME" != "/root" ]; then
+    echo "[!] you appear to be root but HOME is not /root; exiting."
+    exit 1
+  fi
+  IS_ROOT=true
+fi
+
 grep -qF "#CDZ_BASHRC_SCREEN_TITLE" ~/.bashrc || (echo """
 
 #CDZ_BASHRC_SCREEN_TITLE:start
@@ -42,15 +51,6 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RC_APPEND_LINE="source \"$SCRIPT_DIR/bashrc_append\""
 grep -qF "/bashrc_append" ~/.bashrc || (echo "" >> ~/.bashrc ; echo "$RC_APPEND_LINE" >> ~/.bashrc)
-
-IS_ROOT=false
-if [ "$EUID" -eq 0 ]; then
-  if [ "$HOME" != "/root" ]; then
-    echo "[!] you appear to be root but HOME is not /root; exiting."
-    exit 1
-  fi
-  IS_ROOT=true
-fi
 
 if [ ! -e "$HOME/.bash_profile" ]; then
   if $IS_ROOT; then
