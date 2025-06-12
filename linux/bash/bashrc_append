@@ -3,13 +3,23 @@
 set -o noclobber
 
 alias ..='cd ..'
+alias ...='cd ../..'
+alias -- -='cd -'
+function h {
+    f "$HOME/$1"
+}
+alias pu='pushd'
+alias po='popd'
+
 alias md='mkdir'
+
 alias crontab='crontab -i'
 alias grep='grep -i'
+
 alias apt-up='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 
 # find external IP. pass -4 or -6 to specify v4/v6 address.
-alias myip='curl -s -w "\n" https://ip.dzdz.cz'
+alias myip='curl -s -w "\n" http://ip.dzdz.cz'
 
 if which op >/dev/null; then
     alias 1p='eval $(op signin)'
@@ -50,6 +60,8 @@ function rm-known-host() {
     sed -i "$1d" "$HOME/.ssh/known_hosts"
 }
 
+# better cp based on rsync:
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/cp/cp.plugin.zsh
 cpv() {
     rsync -pogbr -hhh --backup-dir="/tmp/rsync-${USER}" -e /dev/null --progress "$@"
 }
