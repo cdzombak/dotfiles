@@ -22,7 +22,7 @@ grep -qF "#CDZ_BASHRC_SCREEN_TITLE" ~/.bashrc || (echo """
 case \"\$TERM\" in
     screen*)
         # This is the escape sequence ESC k ESC
-        SCREENTITLE='\[\033k\w\033\134\]'
+        SCREENTITLE='\[\033k\W\033\134\]'
         ;;
     *)
         SCREENTITLE=''
