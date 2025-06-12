@@ -1,8 +1,8 @@
 # ssh with multiplexing (relies on ControlPath & etc set in ~/.ssh/config)
 alias ssh-mux='ssh -o "ControlMaster=auto"'
 
-alias hosts-list='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host //" | sed "s/^#Host /!/" ; }'
-alias hosts-list-md='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host /- [ ] /" | sed "s/^#Host /- [ ] !/" ; }'
+alias hosts-list='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host //" | sed "s/^#Host /!/" | sed "s/ .*\.tailnet-003a.ts.net//g" | sed "s/ .*\.dzhome//g" ; }'
+alias hosts-list-md='{ grep "^#\?Host " ~/.ssh/config | grep -v -- "kvm.dzhome$" | grep -v "bitbucket" | grep -v "Host gh" | grep -v "github" | grep -v "Host \*" | sed "s/^Host /- [ ] /" | sed "s/^#Host /- [ ] !/" | sed "s/ .*\.tailnet-003a.ts.net//g" | sed "s/ .*\.dzhome//g" ; }'
 
 # ssc: ssh to the given host and open a screen
 function ssc {
