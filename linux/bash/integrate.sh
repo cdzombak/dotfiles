@@ -12,7 +12,7 @@ grep -qF "#CDZ_BASHRC_SCREEN_TITLE" ~/.bashrc || (echo """
 #CDZ_BASHRC_SCREEN_TITLE:start
 case \"\$TERM\" in
     screen*)
-        # This is the escape sequence ESC k ESC \
+        # This is the escape sequence ESC k ESC
         SCREENTITLE='\[\033k\w\033\134\]'
         ;;
     *)
@@ -23,6 +23,18 @@ PS1=\"\${SCREENTITLE}\${PS1}\"
 #CDZ_BASHRC_SCREEN_TITLE:end
 
 """ >> ~/.bashrc)
+
+if $IS_ROOT; then
+  grep -qF "#CDZ_ROOT_RED_PROMPT" ~/.bashrc || (echo """
+
+#CDZ_ROOT_RED_PROMPT:start
+RED='\[\\033[0;31m\]'
+NOCOLOR='\[\\033[0m\]'
+export PS1=\"\${SCREENTITLE}\${RED}\${PS1}\${NOCOLOR}\"
+#CDZ_ROOT_RED_PROMPT:end
+
+""" >> ~/.bashrc)
+fi
 
 # On Debian/Ubuntu/Raspbian, we get a default Bash config in our homedir, which we just want to customize.
 # We do this by sourcing an additional config file here, rather than adding all changes to ~/.bashrc.
