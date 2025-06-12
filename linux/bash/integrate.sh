@@ -7,6 +7,23 @@ if [ "$(uname)" != "Linux" ]; then
   exit 2
 fi
 
+grep -qF "#CDZ_BASHRC_SCREEN_TITLE" ~/.bashrc || (echo """
+
+#CDZ_BASHRC_SCREEN_TITLE:start
+case \"\$TERM\" in
+    screen*)
+        # This is the escape sequence ESC k ESC \
+        SCREENTITLE='\[\033k\w\033\134\]'
+        ;;
+    *)
+        SCREENTITLE=''
+        ;;
+esac
+PS1=\"\${SCREENTITLE}\${PS1}\"
+#CDZ_BASHRC_SCREEN_TITLE:end
+
+""" >> ~/.bashrc)
+
 # On Debian/Ubuntu/Raspbian, we get a default Bash config in our homedir, which we just want to customize.
 # We do this by sourcing an additional config file here, rather than adding all changes to ~/.bashrc.
 
