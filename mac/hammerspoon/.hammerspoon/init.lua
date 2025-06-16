@@ -34,5 +34,6 @@ require('desk-usb')
 require('delete-words')
 require('markdown')
 require('windows')
+require('nano-shortcuts')
 
 hs.notify.new({title='Hammerspoon', informativeText='Ready ✅ (ctrl-alt-` to reload)'}):send()
