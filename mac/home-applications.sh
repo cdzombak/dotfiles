@@ -222,10 +222,10 @@ if [ -e "/Applications/Affinity Photo 2.app" ] && [ ! -e "$HOME/Applications/Pho
   ln -s "/Applications/Affinity Photo 2.app" "$HOME/Applications/Photo Tools/Affinity Photo"
 fi
 rm -f "$HOME/Applications/Photo Tools/DXO PhotoLab"
-rm -f "$HOME/Applications/Photo Tools/DxO FilmPack"
-if [ -e "/Applications/DXOPhotoLab7.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DXO PhotoLab" ]; then
-  ln -s "/Applications/DXOPhotoLab7.app" "$HOME/Applications/Photo Tools/DXO PhotoLab"
+if [ -e "/Applications/DXOPhotoLab8.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DXO PhotoLab" ]; then
+  ln -s "/Applications/DXOPhotoLab8.app" "$HOME/Applications/Photo Tools/DXO PhotoLab"
 fi
+rm -f "$HOME/Applications/Photo Tools/DxO FilmPack"
 if [ -e "/Applications/DxO FilmPack 7.app" ] && [ ! -e "$HOME/Applications/Photo Tools/DxO FilmPack" ]; then
   ln -s "/Applications/DxO FilmPack 7.app" "$HOME/Applications/Photo Tools/DxO FilmPack"
 fi
@@ -364,6 +364,36 @@ if [ -e "/Applications/Restic-Browser.app" ] && [ ! -e "$HOME/Applications/Syste
 fi
 if [ -e "/Applications/Tintd.app" ] && [ ! -e "$HOME/Applications/System Tools/Tintd" ]; then
   ln -s "/Applications/Tintd.app" "$HOME/Applications/System Tools/Tintd"
+fi
+
+if [ ! -d "$HOME/Applications/AI Tools" ]; then
+  setupnote "Dock/AI Tools" "- [ ] Add AI Tools to Dock, if desired"
+fi
+mkdir -p "$HOME/Applications/AI Tools"
+# if ! fileicon test "$HOME/Applications/AI Tools"; then
+#   fileicon set "$HOME/Applications/AI Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/AI Tools.png"
+# fi
+
+if [ -e "/Applications/Cursor.app" ] && [ ! -e "$HOME/Applications/AI Tools/Cursor" ]; then
+  ln -s "/Applications/Cursor.app" "$HOME/Applications/AI Tools/Cursor"
+fi
+if [ -e "/Applications/ChatGPT.app" ] && [ ! -e "$HOME/Applications/AI Tools/ChatGPT" ]; then
+  ln -s "/Applications/ChatGPT.app" "$HOME/Applications/AI Tools/ChatGPT"
+fi
+if [ -e "/Applications/Talktastic.app" ] && [ ! -e "$HOME/Applications/AI Tools/Talktastic" ]; then
+  ln -s "/Applications/Talktastic.app" "$HOME/Applications/AI Tools/Talktastic"
+fi
+if [ -e "/Applications/Claude.app" ] && [ ! -e "$HOME/Applications/AI Tools/Claude" ]; then
+  ln -s "/Applications/Claude.app" "$HOME/Applications/AI Tools/Claude"
+fi
+if [ -e "$HOME/Applications/ollama.app" ] && [ ! -e "$HOME/Applications/AI Tools/ollama" ]; then
+  ln -s "$HOME/Applications/ollama.app" "$HOME/Applications/AI Tools/ollama"
+fi
+if [ -e "$HOME/Applications/Devin.app" ] && [ ! -e "$HOME/Applications/AI Tools/Devin" ]; then
+  ln -s "$HOME/Applications/Devin.app" "$HOME/Applications/AI Tools/Devin"
+fi
+if [ -e "$HOME/Applications/GitHub Copilot.app" ] && [ ! -e "$HOME/Applications/AI Tools/GitHub Copilot" ]; then
+  ln -s "$HOME/Applications/GitHub Copilot.app" "$HOME/Applications/AI Tools/GitHub Copilot"
 fi
 
 cecho "✔ Done." $green
