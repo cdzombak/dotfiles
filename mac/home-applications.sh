@@ -370,9 +370,9 @@ if [ ! -d "$HOME/Applications/AI Tools" ]; then
   setupnote "Dock/AI Tools" "- [ ] Add AI Tools to Dock, if desired"
 fi
 mkdir -p "$HOME/Applications/AI Tools"
-# if ! fileicon test "$HOME/Applications/AI Tools"; then
-#   fileicon set "$HOME/Applications/AI Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/AI Tools.png"
-# fi
+if ! fileicon test "$HOME/Applications/AI Tools"; then
+  fileicon set "$HOME/Applications/AI Tools" "$SCRIPT_DIR/macOS Resources/Dock Icons/AI Tools.png"
+fi
 
 if [ -e "/Applications/Cursor.app" ] && [ ! -e "$HOME/Applications/AI Tools/Cursor" ]; then
   ln -s "/Applications/Cursor.app" "$HOME/Applications/AI Tools/Cursor"
