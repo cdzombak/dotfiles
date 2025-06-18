@@ -506,7 +506,7 @@ defaults write "com.apple.mail" "PollTime" '"-1"'
 echo ""
 echo "Customize message fonts & sizes"
 defaults write "com.apple.mail" "NSFontSize" '15'
-defaults write "com.apple.mail" "NSFixedPitchFont" '"MesloLGM-Regular"'
+defaults write "com.apple.mail" "NSFixedPitchFont" '"MesloLGL-Regular"'
 defaults write "com.apple.mail" "NSFixedPitchFontSize" '14'
 
 if defaults read com.apple.mail-shared >/dev/null; then

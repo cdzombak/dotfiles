@@ -21,7 +21,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 - [ ] Run setup scripts (\`make mac\`)
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
-    - [ ] Reset font to Meslo LG M for Powerline after initial install
+    - [ ] Reset font to Meslo LG L after initial install
 - [ ] Rename "Macintosh HD"
 - [ ] Add network interface(s) to Pi-Hole Adblocking group
 

@@ -142,7 +142,7 @@ if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
   if ! grep -c "CodeRunner" "$HOME/SystemSetup.md" >/dev/null; then
     echo "## CodeRunner" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set font to Meslo LG M 14pt" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set font to Meslo LG L 14pt" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Remove the million default file type associations" >> "$HOME/SystemSetup.md"
     echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
@@ -242,9 +242,9 @@ if [ -e "/Applications/Fork.app" ]; then
   else
     defaults write com.DanPristupov.Fork defaultSourceFolder "$HOME"
   fi
-  defaults write com.DanPristupov.Fork diffFontName "MesloLGM-Regular"
-  defaults write com.DanPristupov.Fork diffFontSize 11
-  defaults write com.DanPristupov.Fork diffFontSize 13
+  defaults write com.DanPristupov.Fork diffFontName "MesloLGL-Regular"
+  defaults write com.DanPristupov.Fork diffFontSize 12
+  defaults write com.DanPristupov.Fork diffFontSize 14
   defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
 else
   echo "(Not installed.)"
@@ -355,7 +355,7 @@ fi
 echo "JSON Editor ..."
 if [ -e "/Applications/JSON Editor.app" ]; then
   osascript -e "tell application \"JSON Editor\" to quit"
-  defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontName "MesloLGM-Regular"
+  defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontName "MesloLGL-Regular"
   defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontSize 13
 else
   echo "(Not installed.)"

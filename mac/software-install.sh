@@ -296,7 +296,7 @@ sw_install /Applications/IINA.app "brew_cask_install iina"
 sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
   "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/.config/macos\`, taking care not to overwrite the files there\n- [ ] Make default term"
 sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
-  "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG M Regular, size 14\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
+  "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG L Regular, size 14\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
 sw_install /Applications/Latest.app "brew_cask_install latest"
 sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
   "- [ ] License\n- [ ] Allow full disk access\n- [ ] Install and allow full disk access for \`fdautil\`\n- [ ] Enable QuickLaunch\n- [ ] Hide QuickLaunch in menu bar"
@@ -381,8 +381,23 @@ _install_redeye() {
 }
 sw_install "/Applications/Red Eye.app" _install_redeye
 
-sw_install "$HOME/Library/Fonts/MesloLGM-Regular.ttf" "brew_cask_install font-meslo-lg"
-sw_install "$HOME/Library/Fonts/Meslo LG M Regular for Powerline.otf" "brew_cask_install font-meslo-for-powerline"
+_install_meslolg() {
+  pushd /tmp
+  wget https://dropbox.dzombak.com/Meslo_LG_v1.2.5.zip
+  unzip Meslo_LG_v1.2.5.zip
+  cp Meslo_LG_v1.2.5/*.ttf "$HOME/Library/Fonts"
+  popd
+}
+sw_install "$HOME/Library/Fonts/MesloLGL-Regular.ttf" _install_meslolg
+_install_meslolgdz() {
+  pushd /tmp
+  wget https://dropbox.dzombak.com/Meslo_LG_DZ_v1.2.5.zip
+  unzip Meslo_LG_DZ_v1.2.5.zip
+  cp Meslo_LG_DZ_v1.2.5/*.ttf "$HOME/Library/Fonts"
+  popd
+}
+sw_install "$HOME/Library/Fonts/MesloLGLDZ-Regular.ttf" _install_meslolgdz
+
 sw_install "$HOME/Library/Fonts/NationalPark-Regular.otf" "brew_cask_install font-national-park"
 
 sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
@@ -422,7 +437,7 @@ sw_install /Applications/Pastebot.app "mas install 1179623856" \
 sw_install /Applications/PCalc.app "mas install 403504866"
 sw_install "/Applications/PDF Viewer.app" "mas install 1120099014"
 sw_install /Applications/Peek.app "mas install 1554235898" \
-  "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 12pt"
+  "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 13pt"
 sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
   "- [ ] Sign in"
 sw_install /Applications/Tot.app "mas install 1491071483" \
@@ -1164,7 +1179,7 @@ _install_paw() {
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sw_install /Applications/RapidAPI.app "brew_cask_install rapidapi" \
-      "- [ ] Sign in / License\n- [ ] Set font: Meslo LG M 13"
+      "- [ ] Sign in / License\n- [ ] Set font: Meslo LG L 14"
   fi
 }
 sw_install /Applications/RapidAPI.app _install_paw
