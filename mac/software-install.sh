@@ -1411,18 +1411,14 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
 fi
 
-if ! uname -p | grep -c "arm" >/dev/null; then
-  _install_virtualbox() {
-    cecho "Install VirtualBox? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask virtualbox virtualbox-extension-pack
-      mkdir -p "$HOME/VirtualBox VMs"
-      mkdir -p "$HOME/VM Images"
-    fi
-  }
-  sw_install /Applications/VirtualBox.app _install_virtualbox
-fi
+_install_utm() {
+  cecho "Install UTM (VM manager)? (y/N)" $magenta
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    mas install 1538878817
+  fi
+}
+sw_install /Applications/UTM.app _install_utm
 
 echo ""
 cecho "Install Kubernetes tools? (y/N)" $magenta
