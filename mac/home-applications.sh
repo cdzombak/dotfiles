@@ -241,6 +241,9 @@ fi
 if [ -e "/Applications/Pixelmator Pro.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Pixelmator Pro" ]; then
   ln -s "/Applications/Pixelmator Pro.app" "$HOME/Applications/Photo Tools/Pixelmator Pro"
 fi
+if [ -e "/Applications/PhotosRevive.app" ] && [ ! -e "$HOME/Applications/Photo Tools/PhotosRevive" ]; then
+  ln -s "/Applications/PhotosRevive.app" "$HOME/Applications/Photo Tools/PhotosRevive"
+fi
 if [ -e "/System/Applications/Preview.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Preview" ]; then
   ln -s "/System/Applications/Preview.app" "$HOME/Applications/Photo Tools/Preview"
 fi
@@ -255,6 +258,9 @@ if [ -e "/Applications/Setapp/Squash.app" ] && [ ! -e "$HOME/Applications/Photo 
 fi
 if [ -e "/Applications/Setapp/Luminar Neo.app" ] && [ ! -e "$HOME/Applications/Photo Tools/Luminar Neo" ]; then
   ln -s "/Applications/Setapp/Luminar Neo.app" "$HOME/Applications/Photo Tools/Luminar Neo"
+fi
+if [ -e "/Applications/MetaImage.app" ] && [ ! -e "$HOME/Applications/Photo Tools/MetaImage" ]; then
+  ln -s "/Applications/MetaImage.app" "$HOME/Applications/Photo Tools/MetaImage"
 fi
 if [ -e "/Applications/GeoTag.app" ] && [ ! -e "$HOME/Applications/Photo Tools/GeoTag" ]; then
   ln -s "/Applications/GeoTag.app" "$HOME/Applications/Photo Tools/GeoTag"
