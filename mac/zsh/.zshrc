@@ -103,6 +103,9 @@ fi
 if [ -x /Applications/UTM.app/Contents/MacOS/utmctl ]; then
     PATH="/Applications/UTM.app/Contents/MacOS:$PATH"
 fi
+if [ -x /Users/cdzombak/.claude/local/claude ]; then
+    PATH="/Users/cdzombak/.claude/local:$PATH"
+fi
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10

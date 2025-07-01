@@ -90,7 +90,7 @@ _zsh_prompt_end() {
 # End the right prompt
 _zsh_rprompt_end() {
   if [[ -n $_ZSH_PROMPT_CURRENT_BG && $_ZSH_PROMPT_CURRENT_BG != 'NONE' ]]; then
-    echo -n " %{%k%F{$_ZSH_PROMPT_CURRENT_BG}%}$_ZSH_PROMPT_SEGMENT_SEPARATOR"
+    echo -n "%{%k%F{$_ZSH_PROMPT_CURRENT_BG}%}$_ZSH_PROMPT_SEGMENT_SEPARATOR"
   fi
   echo -n "%{%k%f%}"
   _ZSH_PROMPT_CURRENT_BG=''
@@ -306,11 +306,26 @@ gcloud-ctx-hide() {
 }
 
 _zsh_rprompt_asdf() {
-  if [[ "$(asdf which python3)" != "/opt/homebrew/bin/python3" ]]; then
-    _zsh_rprompt_segment black cyan "py $(python3 -V 2>&1 | cut -f 2 -d ' ')"
+  local expected_python expected_node current_python current_node
+  
+  # Read expected versions from ~/.tool-versions
+  if [[ -f "$HOME/.tool-versions" ]]; then
+    expected_python=$(grep '^python ' "$HOME/.tool-versions" | awk '{print $2}')
+    expected_node=$(grep '^nodejs ' "$HOME/.tool-versions" | awk '{print $2}')
   fi
-  if [[ "$(asdf which node)" != "/opt/homebrew/bin/node" ]]; then
-    _zsh_rprompt_segment black cyan "njs ${$(node --version 2>&1 | cut -f 2 -d ' '):1}"
+  
+  # Get current versions
+  current_python=$(python3 -V 2>&1 | cut -f 2 -d ' ')
+  current_node=$(node --version 2>&1 | sed 's/^v//')
+  
+  # Show Python version only if different from expected
+  if [[ -n "$expected_python" && "$current_python" != "$expected_python" ]]; then
+    _zsh_rprompt_segment black cyan "py $current_python"
+  fi
+  
+  # Show Node version only if different from expected
+  if [[ -n "$expected_node" && "$current_node" != "$expected_node" ]]; then
+    _zsh_rprompt_segment black cyan "njs $current_node"
   fi
 }
 
