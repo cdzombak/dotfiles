@@ -2024,16 +2024,6 @@ _install_claquette() {
 }
 sw_install /Applications/Claquette.app _install_claquette
 
-_install_tag_editor() {
-  cecho "Install Tag Editor? (amvidia.com/tag-editor) (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask tageditor
-    setupnote "Tag Editor.app" "- [ ] License"
-  fi
-}
-sw_install "/Applications/Tag Editor.app" _install_tag_editor
-
 _install_youtubedl() {
   cecho "Install ~youtube-dl~ yt-dlp? (y/N)" $magenta
   read -r response
@@ -2860,6 +2850,12 @@ if [ -e /Applications/Tadam.app ]; then
   osascript -e "tell application \"Tadam\" to quit"
   trash /Applications/Tadam.app
   set -e
+fi
+
+if [ -e "/Applications/Tag Editor.app" ]; then
+  echo "Tag Editor..."
+  verify_smartdelete
+  brew uninstall --cask tageditor
 fi
 
 if [ -e /usr/local/bin/thingshub ]; then
