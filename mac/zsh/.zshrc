@@ -116,3 +116,5 @@ zstyle ':notify:*' blacklist-regex 'nano' # ex. 'find|git'
 
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
+
+. "$HOME/.local/bin/env"
