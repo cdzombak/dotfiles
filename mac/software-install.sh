@@ -5,11 +5,16 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
 source "$LIB_DIR"/cecho
-# shellcheck disable=SC1091
-source "$LIB_DIR"/sw_install
 
+# TODO(cdzombak): stow, read tool-versions for asdf version; inject via env
 ASDF_INSTALL_PY_VERSION="3.13.2"
 ASDF_INSTALL_NODE_VERSION="22.13.1"
+# --------
+
+
+# TODO(cdzombak): remove mysides
+# TODO(cdzombak): review brew-gomod fork
+# --------
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS software installation because not on macOS"
@@ -20,9 +25,7 @@ cecho "----                             ----" $white
 cecho "---- macOS Software Installation ----" $white
 cecho "----                             ----" $white
 echo ""
-cecho "This will take a while. The computer should be plugged in and have a solid network connection." $red
-cecho "If you don't wish to do this now, you can run 'make software-mac' later." $red
-echo ""
+cecho "On a new system this will take a while. The computer should be plugged in and have a solid network connection." $red
 cecho "Continue? (y/N)" $red
 CONTINUE=false
 read -r response
@@ -40,6 +43,7 @@ mkdir -p "$HOME/.config/dotfiles/software"
 rm -f "$HOME/.config/dotfiles/software/no-ecobee-wrapper"
 rm -f "$HOME/.config/dotfiles/software/no-home-hardware-utils"
 rm -f "$HOME/.config/dotfiles/software/no-octopi-dzhome"
+rm -f "$HOME/.config/dotfiles/software/no-*.app"
 
 # default choices which you can override in another window if desired:
 touch "$HOME/.config/dotfiles/software/no-boop"
@@ -57,7 +61,6 @@ fi
 if [ -e "$HOME/.nvm/nvm.sh" ]; then
   echo ""
   cecho "nvm is installed and will be deactivated in this shell." $red
-  echo "This ensures that system-level node, installed directly by homebrew, is used to install packages globally."
   # shellcheck disable=SC2162
   read -p "Press [Enter] to continue..."
   set +e
@@ -99,182 +102,29 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   read -p "Press [Enter] to continue..."
 fi
 
-# --------
-brew install openssl readline sqlite3 xz zlib tcl-tk@8
-
-# TODO(cdzombak): remove mysides
-# TODO(cdzombak): review brew-gomod fork
-# --------
-
-echo ""
-sw_install "$(brew --prefix)/bin/mas" "brew install mas"
-
-sw_install /Applications/Xcode.app "mas install 497799835"
-if ! xcode-select --print-path | grep -c "/Applications/Xcode.app" >/dev/null ; then
-  sudo xcode-select --install
-  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-fi
-if ! xcodebuild -checkFirstLaunchStatus; then
-  sudo xcodebuild -runFirstLaunch
-fi
-
-# sw_install's brew_[cask_]install uses `brew caveats`:
-sw_install "$(brew --prefix)/Cellar/brew-caveats" \
-  "brew tap rafaelgarrido/homebrew-caveats && brew install brew-caveats"
-
-# begin with core/base Homebrew installs:
-# some of these (node, go, mas) are used later in this setup script.
-brew install openssl readline sqlite3 xz zlib tcl-tk@8 # https://github.com/pyenv/pyenv/wiki#suggested-build-environment (used by asdf)
-sw_install "$(brew --prefix)/bin/git" "brew_install git"
-sw_install "$(brew --prefix)/bin/go" "brew_install go" \
-  "- [ ] Set \`GOPRIVATE\` as needed via: \`go env -w GOPRIVATE=host.com/org\`"
-  sw_install "$(brew --prefix)/bin/node" "brew_install node"
-sw_install "$(brew --prefix)/bin/python3" "brew_install python"
-
-sw_install "$(brew --prefix)/bin/asdf" "brew_install asdf"
-
-sw_install "$(brew --prefix)/bin/brew-gem" "brew_install brew-gem"
-set +e
 if brew tap | grep "filosottile/gomod" >/dev/null ; then
   echo "replacing brew-gomod by my fork ..."
   echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
   brew uninstall brew-gomod
   brew untap filosottile/gomod
 fi
-set -e
-sw_install "$(brew --prefix)/bin/brew-gomod" "brew install cdzombak/gomod/brew-gomod"
 
-_asdf_setup_python() {
-  "$(brew --prefix)/bin/asdf" plugin add python
-  "$(brew --prefix)/bin/asdf" install python "$ASDF_INSTALL_PY_VERSION"
-  cd "$HOME" && "$(brew --prefix)/bin/asdf" set python system
-}
-sw_install "$HOME/.asdf/plugins/python" _asdf_setup_python
-
-_asdf_setup_nodejs() {
-  "$(brew --prefix)/bin/asdf" plugin add nodejs
-  "$(brew --prefix)/bin/asdf" install nodejs "$ASDF_INSTALL_NODE_VERSION"
-  cd "$HOME" && "$(brew --prefix)/bin/asdf" set nodejs system
-}
-sw_install "$HOME/.asdf/plugins/nodejs" _asdf_setup_nodejs
-
-sw_install "$(brew --prefix)/bin/ag" "brew_install ag"
-sw_install "$(brew --prefix)/Cellar/bash-completion" "brew_install bash-completion"
-sw_install "$(brew --prefix)/bin/b2" "brew_install b2-tools"
-sw_install "$(brew --prefix)/bin/bandwhich" "brew_install bandwhich"
-sw_install "$(brew --prefix)/bin/bluetoothconnector" "brew_install bluetoothconnector"
-sw_install "$(brew --prefix)/bin/cidrtool" "brew_install cdzombak/oss/cidrtool"
-sw_install "$(brew --prefix)/opt/coreutils/libexec/gnubin" "brew_install coreutils"
-sw_install "$(brew --prefix)/bin/ggrep" "brew_install grep"
-sw_install "$(brew --prefix)/opt/curl/bin/curl" "brew_install curl"
-sw_install "$(brew --prefix)/bin/diff-so-fancy" "brew_install diff-so-fancy"
-sw_install "$(brew --prefix)/bin/ddgr" "brew_install ddgr"
-sw_install "$(brew --prefix)/bin/duf" "brew_install duf"
-sw_install "$(brew --prefix)/bin/dust" "brew_install dust"
-sw_install "$(brew --prefix)/bin/duti" "brew_install duti"
-sw_install "$(brew --prefix)/bin/fileicon" "brew_install fileicon"
-sw_install "$(brew --prefix)/bin/fzf" "brew_install fzf"
-sw_install "$(brew --prefix)/bin/gron" "brew_install gron"
-sw_install "$(brew --prefix)/bin/git-lfs" "brew_install git-lfs && sudo git lfs install --system --skip-repo"
-sw_install "$(brew --prefix)/bin/gtar" "brew_install gnu-tar"
-sw_install "$(brew --prefix)/bin/htop" "brew_install htop"
-sw_install "$(brew --prefix)/bin/imagesnap" "brew_install imagesnap"
-sw_install "$(brew --prefix)/bin/jsonnet-lint" "brew_install go-jsonnet"
-sw_install "$(brew --prefix)/bin/jq" "brew_install jq"
-sw_install "$(brew --prefix)/bin/listening" "brew_install cdzombak/oss/listening"
-sw_install "$(brew --prefix)/bin/lua" "brew_install lua"
-sw_install "$(brew --prefix)/bin/mdcat" "brew_install mdcat"
-sw_install "$(brew --prefix)/bin/mdless" "brew install mdless"
-sw_install "$(brew --prefix)/bin/mogrify" "brew_install imagemagick"
-if [ ! -e "$(brew --prefix)/bin/mysides" ] && [ ! -e "/usr/local/bin/mysides" ]; then brew install --cask mysides; fi
-sw_install "$(brew --prefix)/bin/nano" "brew_install nano"
-sw_install "$(brew --prefix)/bin/ncdu" "brew_install ncdu"
-sw_install "$(brew --prefix)/bin/nnn" "brew_install nnn"
-sw_install "$(brew --prefix)/bin/ocr" "brew_install schappim/ocr/ocr"
-sw_install "$(brew --prefix)/bin/parallel" "brew_install parallel && mkdir -p \"$HOME/.parallel\" && touch \"$HOME/.parallel/will-cite\""
-sw_install "$(brew --prefix)/bin/pdate" "brew_install cdzombak/oss/pdate"
-sw_install "$(brew --prefix)/bin/pdffonts" "brew_install poppler"
-sw_install "$(brew --prefix)/bin/pngcrush" "brew_install pngcrush"
-sw_install "$(brew --prefix)/bin/prettierd" "brew_install fsouza/prettierd/prettierd"
-sw_install "$(brew --prefix)/bin/pup" "brew_install pup" # CLI HTML parsing; supports weblink script
-sw_install "/Applications/QuickLook Video.app" "brew_install qlvideo"
-sw_install "$(brew --prefix)/bin/rdfind" "brew_install rdfind"
-sw_install "$(brew --prefix)/bin/screen" "brew_install screen"
-sw_install "$(brew --prefix)/bin/shellcheck" "brew_install shellcheck"
-sw_install "$(brew --prefix)/bin/shfmt" "brew_install shfmt"
-sw_install "$(brew --prefix)/opt/sqlite/bin/sqlite3" "brew_install sqlite"
-sw_install "$(brew --prefix)/bin/stow" "brew_install stow"
-sw_install "$(brew --prefix)/Cellar/syncthing" "brew_install syncthing && brew services start syncthing" \
-  "- [ ] Begin syncing \`~/.config/macos\`\n- [ ] Begin syncing \`~/Sync\`\n- [ ] Sync folder: Staggered file versioning, 60 days\n- [ ] Add \`#include globalstignore\` to ignore lists\n- [ ] Minimum disk space 10% in app settings\n- [ ] Update [Syncthing devices note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
-sw_install "$(brew --prefix)/bin/task" "brew_install go-task/tap/go-task"
-sw_install "$(brew --prefix)/bin/terminal-notifier" "brew_install terminal-notifier"
-sw_install "$(brew --prefix)/bin/tig" "brew_install tig"
-sw_install "$(brew --prefix)/bin/todos" "brew_install tofrodos"
-sw_install "$(brew --prefix)/bin/trash" "brew_install trash"
-sw_install "$(brew --prefix)/bin/tree" "brew_install tree"
-sw_install "$(brew --prefix)/bin/unshorten" "brew_install cdzombak/oss/unshorten"
-sw_install "$(brew --prefix)/bin/wget" "brew_install wget"
-sw_install "$(brew --prefix)/bin/windowstack2" "brew_install cdzombak/oss/windowstack2"
-sw_install "$(brew --prefix)/bin/xz" "brew_install xz"
-sw_install "$(brew --prefix)/bin/yamllint" "brew_install yamllint"
-sw_install "$(brew --prefix)/bin/yq" "brew_install python-yq" # Command-line YAML and XML processor that wraps jq
-
-_install_tealdeer() {
-  brew install tealdeer
-  "$(brew --prefix)/bin/tldr" --update >/dev/null &
-}
-sw_install "$(brew --prefix)/bin/tldr" _install_tealdeer
-
-# provides envsubst:
-sw_install "$(brew --prefix)/bin/gettext" "brew_install gettext && brew link --force gettext"
-
-# Install tools which use stuff we just installed via Homebrew:
-sw_install "$(brew --prefix)/bin/markdown-toc" 'npm install -g markdown-toc'
-sw_install "$(brew --prefix)/bin/nativefier" 'npm install -g nativefier'
-sw_install "$(brew --prefix)/bin/bundler" "brew gem install bundler"
-sw_install "$(brew --prefix)/bin/fpm" "brew gem install fpm"
-sw_install "$(brew --prefix)/bin/rubocop" "brew gem install rubocop"
-sw_install "$(brew --prefix)/bin/plistwatch" "brew gomod github.com/catilac/plistwatch"
-
-# metar: CLI metar lookup tool
-_install_metar() {
-  DEST_DIR="$HOME/3p_code/metar"
-  git clone "https://github.com/RyuKojiro/metar.git" "$DEST_DIR"
-  pushd "$DEST_DIR"
-  make
-  if [ -w /usr/local/bin ]; then make install; else sudo make install; fi
-  popd
-  chmod 0555 "$DEST_DIR"
-}
-sw_install /usr/local/bin/metar _install_metar
-
-_install_mac_cleanup() {
-  brew tap mac-cleanup/mac-cleanup-py
-  brew install mac-cleanup-py
-}
-sw_install "$(brew --prefix)/bin/mac-cleanup" _install_mac_cleanup
-
-# Move on to macOS applications:
-
-sw_install "/Applications/1Password.app" "brew_cask_install 1password" \
-  "- [ ] Sign in to accounts: personal; work as needed
-- [ ] Do not show in menu bar
-- [ ] Start at login
-- [ ] No keyboard shortcut for: Quick Access; Lock 1Password
-- [ ] Show 1Password: Ctrl-Shift-Command-Backslash
-- [ ] Autofill: Command-Backslash
-- [ ] Appearance -> Density: Compact
-- [ ] Appearance -> Always show in Sidebar: Categories and Tags
-- [ ] Security: enable unlock with Apple Watch
-- [ ] Security: hold Option to toggle revealed fields
-- [ ] Privacy -> Watchtower: Enable all Watchtower features
-- [ ] Developer: enable CLI integration"
-sw_install "$(brew --prefix)"/bin/op "brew_cask_install 1password-cli"
-sw_install "$HOME/Library/Screen Savers/Aerial.saver" "brew_cask_install aerial" \
-  "- [ ] Configure screen saver (as desired)"
 if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
 fi
+
+./mac-install -config install-asdf.yaml
+
+echo ""
+cecho "Skip optional installs? (y/N)" $white
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  ./mac-install -config install.yaml -skip-optional
+else
+  ./mac-install -config install.yaml
+fi
+
+
 sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
   "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Change theme\n- [ ] Sweep through synced workflows, fixing as needed"
   sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
@@ -458,16 +308,6 @@ sw_install "/Applications/Service Station.app" "mas install 1503136033" \
   "- [ ] Install/sync current configuration\n- [ ] Enable Finder extension\n- [ ] Allow access to \`/\`\n- [ ] Restore purchases"
 sw_install "/Applications/Shareful.app" "mas install 1522267256" \
     "- [ ] Enable share extensions: Copy, Open In, Save As"
-sw_install /Applications/Soro.app "mas install 1550457805"
-sw_install /Applications/Spaced.app "mas install 1666327168"
-
-_install_things() {
-  mas install 904280696 # Things
-  brew install --cask thingsmacsandboxhelper
-}
-# nb. Things shows in Finder as Things.app but its filename is Things3.app
-sw_install "/Applications/Things3.app" _install_things \
-  "- [ ] Sign into Things Cloud account\n- [ ] Set keyboard shortcuts\n- [ ] Enable autofill via Things Helper\n- [ ] Set calendar & reminders integration settings"
 
 _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
@@ -484,21 +324,7 @@ _install_hosts_timer() {
 }
 sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
 
-# Install Webster's 1913 Dictionary
-# mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
-# See: http://jsomers.net/blog/dictionary
-_install_websters() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'dictionary')
-  pushd "$TMP_DIR"
-  wget https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
-  unzip Webster.s.1913.dictionary.zip -d "$HOME/Library/Dictionaries/"
-  rm -rf "$HOME/Library/Dictionaries/__MACOSX"
-  popd
-  cecho "Opening Dictionary.app; please rearrange Webster’s 1913 to the top / as desired." $white
-  open -a Dictionary
-}
-sw_install "$HOME/Library/Dictionaries/Webster’s 1913.dictionary" _install_websters \
-  "- [ ] Arrange/enable dictionaries in Dictionary.app as desired"
+
 
 # Solarized for Xcode
 # if this source disappears, there's also my copy in ~/.config/macos
@@ -760,26 +586,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-mutedeck" ]; then
   }
   sw_install "/Applications/MuteDeck" _install_ask_mutedeck
 fi
-
-# ScanSnap is now connected exclusively to Curie and syncs scans via iCloud:
-# if [ ! -e "$HOME/.config/dotfiles/software/no-home-hardware-utils" ]; then
-#    _install_scansnap() {
-#     echo ""
-#     cecho "Install Fusitsu ScanSnap utility? (y/N)" $magenta
-#     read -r response
-#     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-#       sw_install /Applications/ScanSnap "brew_cask_install fujitsu-scansnap-manager" \
-#         "- [ ] Right click Dock icon -> Options and enable OCR on all pages\n- [ ] Disable launching at login"
-#     else
-#       echo "Won't ask again next time this script is run."
-#       touch "$HOME/.config/dotfiles/software/no-home-hardware-utils"
-#     fi
-#   }
-#   sw_install /Applications/ScanSnap _install_scansnap
-# fi
-
-# MyHarmony isn't supported on anything newer than Mojave:
-# sw_install /Applications/MyHarmony.app "brew_cask_install logitech-myharmony"
 
 _install_logitune() {
   cecho "Install LogiTune (for C920 webcam)? (y/N)" $magenta
@@ -2483,12 +2289,6 @@ _install_stopthenews() {
 }
 sw_install /Applications/StopTheNews.app _install_stopthenews
 
-sw_install "/Applications/Tabs to Links.app" "mas install 1451408472" \
-  "- [ ] Enable Tabs to Links Safari extension"
-
-sw_install "/Applications/Wayback Machine.app" "mas install 1472432422" \
-  "- [ ] Enable Wayback Machine Safari extnsion (as desired)"
-
 cecho "Open Safari for configuration now? (y/N)" $magenta
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -2944,6 +2744,8 @@ if [ -e /Applications/Hush.app ]; then
   trash /Applications/Hush.app
 fi
 
+# TODO(cdzombak): nativefier (npm)
+
 echo ""
 cecho "--- Cleanup/Tidy/Migrations ---" $white
 echo ""
@@ -3017,3 +2819,5 @@ set -e
 
 echo ""
 cecho "✔ Done!" $green
+
+"$SCRIPT_DIR"/home-applications.sh

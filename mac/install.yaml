@@ -26,28 +26,6 @@ install_groups:
         install:
           - brew: python
 
-      - artifact: $BREW/bin/asdf
-        install:
-          - brew: asdf
-
-      - artifact: $HOME/.asdf/plugins/python
-        install:
-          - run: $BREW/bin/asdf plugin add python
-
-      # TODO(cdzombak): sync w/tool-versions
-      - artifact: $HOME/.asdf/installs/python/3.13.2
-        install:
-          - run: $BREW/bin/asdf install python 3.13.2
-
-      - artifact: $HOME/.asdf/plugins/nodejs
-        install:
-          - run: $BREW/bin/asdf plugin add nodejs
-
-      # TODO(cdzombak): sync w/tool-versions
-      - artifact: $HOME/.asdf/installs/nodejs/24.1.0
-        install:
-          - run: $BREW/bin/asdf install nodejs 24.1.0
-
       - artifact: $HOME/.local/bin/uv
         install:
           - run: curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -296,10 +274,6 @@ install_groups:
         install:
           - npm: markdown-toc
 
-      - artifact: $BREW/bin/nativefier
-        install:
-          - npm: nativefier
-
       - artifact: $BREW/bin/bundler
         install:
           - gem: bundler
@@ -395,19 +369,26 @@ install_groups:
         checklist:
           - Verify fonts appear in Font Book
 
-      # TODO(cdzombak):
       - artifact: /usr/local/bin/hosts-timer
         install:
           - run: git clone https://github.com/cdzombak/hosts-timer.git /tmp/hosts-timer && cd /tmp/hosts-timer && make install && rm -rf /tmp/hosts-timer
         checklist:
           - Configure sudoers for passwordless operation
 
+      - artifact: /usr/local/bin/metar
+        install:
+          - run: git clone https://github.com/RyuKojiro/metar.git /tmp/metar && cd /tmp/metar && make install && rm -rf /tmp/metar
+        checklist:
+          - CLI weather tool for METAR reports
+
+      # mirrored from https://github.com/ponychicken/WebsterParser/releases/tag/0.0.2
+      # See: http://jsomers.net/blog/dictionary
       - artifact: "$HOME/Library/Dictionaries/Webster’s 1913.dictionary"
         install:
           - archive: https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
             file: "Webster’s 1913.dictionary"
         checklist:
-          - Verify dictionary appears in Dictionary.app
+          - Arrange/enable dictionaries in Dictionary.app as desired
 
       # TODO(cdzombak):
       - artifact: /Applications/Ears.app
@@ -435,11 +416,18 @@ install_groups:
         install:
           - cask: 1password
         checklist:
-          - Sign in to your 1Password account
-          - Configure Touch ID/Face ID unlock
-          - Install browser extensions
-          - Set up SSH key management
-          - Configure CLI tool integration
+          - Sign in to accounts: personal; work as needed
+          - Do not show in menu bar
+          - Start at login
+          - No keyboard shortcut for: Quick Access; Lock 1Password
+          - Show 1Password: Ctrl-Shift-Command-Backslash
+          - Autofill: Command-Backslash
+          - Appearance -> Density: Compact
+          - Appearance -> Always show in Sidebar: Categories and Tags
+          - Security: enable unlock with Apple Watch
+          - Security: hold Option to toggle revealed fields
+          - Privacy -> Watchtower: Enable all Watchtower features
+          - Developer: enable CLI integration
 
       - artifact: $BREW/bin/op
         install:
@@ -874,9 +862,10 @@ install_groups:
           - run: defaults write com.culturedcode.ThingsMac CCDockCountType 1
           - run: defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
         checklist:
-          - Configure cloud sync
-          - Set up keyboard shortcuts
-          - Configure widgets and extensions
+          - Sign into Things Cloud account
+          - Set keyboard shortcuts
+          - Enable autofill via Things Helper
+          - Set calendar & reminders integration settings
 
       # Safari Extensions
       - artifact: /Applications/RSS Button for Safari.app
@@ -909,7 +898,7 @@ install_groups:
         install:
           - mas: "1472422"
         checklist:
-          - Enable Safari extension
+          - Enable Safari extension (as desired)
 
       - artifact: /Applications/Wipr.app
         install:
@@ -917,6 +906,59 @@ install_groups:
         checklist:
           - Enable Safari extension
           - Configure blocking preferences
+
+      - artifact: /Applications/BetterTouchTool.app
+        install:
+          - cask: bettertouchtool
+        checklist:
+          - Enter license key
+          - Configure gestures and shortcuts
+          - Enable accessibility permissions
+
+      - artifact: /Applications/Secretive.app
+        install:
+          - cask: secretive
+        checklist:
+          - Configure SSH key management
+          - Set up key generation preferences
+
+      - artifact: $BREW/bin/yubikey-agent
+        install:
+          - brew: yubikey-agent
+        configure:
+          - run: brew services start yubikey-agent
+        checklist:
+          - Configure YubiKey for SSH authentication
+
+      - artifact: $BREW/bin/ykman
+        install:
+          - brew: ykman
+        checklist:
+          - Configure YubiKey management CLI
+
+      - artifact: /Applications/YubiKey Manager.app
+        install:
+          - cask: yubico-yubikey-manager
+        checklist:
+          - Configure YubiKey settings via GUI
+
+      - artifact: /Applications/Elgato Control Center.app
+        install:
+          - cask: elgato-control-center
+        checklist:
+          - Configure connected Elgato devices
+
+      - artifact: /Applications/MuteDeck.app
+        install:
+          - cask: mutedeck
+        checklist:
+          - Configure Stream Deck integration
+
+      - artifact: /Applications/Elgato Stream Deck.app
+        install:
+          - cask: elgato-stream-deck
+        checklist:
+          - Configure Stream Deck buttons and actions
 
   - group: Personal
     software:
@@ -1076,6 +1118,42 @@ install_groups:
         install:
           - brew: ffmpeg
 
+      - artifact: $BREW/bin/air
+        install:
+          - gomod: github.com/cosmtrek/air
+
+      - artifact: $BREW/bin/gorc
+        install:
+          - gomod: github.com/cdzombak/gorc
+
+      - artifact: $BREW/bin/nodemon
+        install:
+          - npm: nodemon
+
+      - artifact: $BREW/bin/pipenv
+        install:
+          - brew: pipenv
+
+      - artifact: $BREW/bin/iperf3
+        install:
+          - brew: iperf3
+
+      - artifact: $BREW/bin/mtr
+        install:
+          - brew: mtr
+
+      - artifact: $BREW/bin/nmap
+        install:
+          - brew: nmap
+
+      - artifact: $BREW/bin/speedtest
+        install:
+          - brew: speedtest-cli
+
+      - artifact: $BREW/bin/telnet
+        install:
+          - brew: telnet
+
   # Development tools (optional)
   - group: Dev
     software:
@@ -1083,6 +1161,8 @@ install_groups:
         persist: true
         install:
           - mas: "913158085"
+        checklist:
+          - Configure regex preferences
 
       - artifact: /Applications/Sublime Merge.app
         persist: true
@@ -1529,6 +1609,64 @@ install_groups:
         install:
           - cask: android-file-transfer
 
+      - artifact: /Applications/Fileloupe.app
+        persist: true
+        install:
+          - mas: "944693506"
+        checklist:
+          - Configure file metadata viewing preferences
+
+      - artifact: /Applications/Avenue.app
+        persist: true
+        install:
+          - mas: "1523681067"
+        checklist:
+          - Configure photo viewing preferences
+
+      - artifact: /Applications/Claquette - GIF & Video Tool.app
+        persist: true
+        install:
+          - mas: "587748131"
+        checklist:
+          - Configure GIF creation preferences
+
+      - artifact: /Applications/Topaz Sharpen AI.app
+        persist: true
+        install:
+          - cask: topaz-sharpen-ai
+        checklist:
+          - Enter license key
+          - Configure AI enhancement settings
+
+      - artifact: /Applications/PhotoSweeper X.app
+        persist: true
+        install:
+          - cask: photosweeper-x
+        checklist:
+          - Configure duplicate photo detection
+
+      - artifact: /Applications/Geotag.app
+        persist: true
+        install:
+          - cask: geotag
+        checklist:
+          - Configure geotagging preferences
+
+      - artifact: /Applications/Inkscape.app
+        persist: true
+        install:
+          - cask: inkscape
+
+      - artifact: /Applications/FontForge.app
+        persist: true
+        install:
+          - cask: fontforge
+
+      - artifact: /Applications/FF Works.app
+        persist: true
+        install:
+          - cask: ff-works
+
   # Home automation and smart home tools (optional)
   - group: Home
     software:
@@ -1554,6 +1692,14 @@ install_groups:
           - cask: plexamp
         checklist:
           - Sign in to Plex account
+
+      - artifact: /Applications/Plex.app
+        persist: true
+        install:
+          - cask: plex
+        checklist:
+          - Configure media server
+          - Set up libraries
 
       - artifact: /Applications/Infuse 7.app
         persist: true
@@ -1590,6 +1736,13 @@ install_groups:
         persist: true
         install:
           - cask: calibre
+
+      - artifact: /System/Library/Screen Savers/WebViewScreenSaver.saver
+        persist: true
+        install:
+          - cask: webviewscreensaver
+        checklist:
+          - Configure custom URLs for screensaver
 
   # Social networking applications (optional)
   - group: Social Networking

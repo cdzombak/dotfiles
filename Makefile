@@ -67,10 +67,6 @@ mac-stow: require-macos dependencies submodules ## Link macOS configuration file
 
 .PHONY: mac-software
 mac-software: require-macos dependencies submodules setupnote rosetta ## Install and configure macOS software suite (this can take a long time)
-	@echo -ne "\033[0;37m"
-	@echo "WARNING: the configuration part of this setup will quit & open some apps automatically."
-	@echo "         Use Ctrl-C to exit if you have work open right now."
-	@echo -e "`tput sgr0`"
 	@echo ""
 	@bash ./mac/software-install.sh
 	@echo ""

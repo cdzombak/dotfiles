@@ -5,8 +5,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
 source "$LIB_DIR"/cecho
-# shellcheck disable=SC1091
-source "$LIB_DIR"/sw_install
 
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS ~/Applications setup because not on macOS"
@@ -19,7 +17,7 @@ create_app_folder() {
   local category_folder="$1"
   local folder_path="$HOME/Applications/$category_folder"
   local icon_path="$SCRIPT_DIR/macOS Resources/Dock Icons/$category_folder.png"
-  
+
   if [ ! -d "$folder_path" ]; then
     setupnote "Dock/$category_folder" "- [ ] Add $category_folder to Dock, if desired"
   fi

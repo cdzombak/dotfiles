@@ -866,9 +866,6 @@ else
   echo "(Not installed.)"
 fi
 
-"$SCRIPT_DIR"/finder-sidebar.sh
-"$SCRIPT_DIR"/home-applications.sh
-
 echo ""
 cecho "--- Homebrew / Zsh / usr/local (permissions fixes) ---" $white
 echo ""
