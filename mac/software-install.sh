@@ -99,6 +99,13 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   read -p "Press [Enter] to continue..."
 fi
 
+# --------
+brew install openssl readline sqlite3 xz zlib tcl-tk@8
+
+# TODO(cdzombak): remove mysides
+# TODO(cdzombak): review brew-gomod fork
+# --------
+
 echo ""
 sw_install "$(brew --prefix)/bin/mas" "brew install mas"
 
@@ -1452,6 +1459,19 @@ _install_esphome() {
 }
 sw_install "$(brew --prefix)/bin/esphome" _install_esphome
 
+# TODO(cdzombak): icon composer -- via DMG download
+
+echo ""
+cecho "--- AI Tools ---" $white
+echo ""
+
+# TODO(cdzombak): vibetunnel (/Applications/VibeTunnel.app ; /opt/homebrew/bin/vt) (brew install --cask vibetunnel)
+# TODO(cdzombak): claude ( brew install --cask claude; /Applications/VibeTunnel.app )
+# TODO(cdzombak): claude sync; MCP servers
+# TODO(cdzombak): claude code ( npm install -g @anthropic-ai/claude-code )
+# TODO(cdzombak): talktastic
+# TODO(cdzombak): ollama, devin, GH copilot (web apps)
+
 echo ""
 cecho "--- CAD, 3DP, EE, Radio ---" $white
 echo ""
@@ -1632,6 +1652,8 @@ _install_signal() {
   fi
 }
 sw_install /Applications/Signal.app _install_signal
+
+# TODO(cdzombak): office ( brew info --cask microsoft-office ) (persist)
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-google-drive" ]; then
   _install_gdrive() {
