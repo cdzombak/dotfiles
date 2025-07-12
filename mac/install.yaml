@@ -437,10 +437,14 @@ install_groups:
         install:
           - cask: alfred
         checklist:
-          - Enable Alfred accessibility permissions
-          - Configure hotkey (Cmd+Space)
-          - Set up Powerpack license
-          - Configure sync preferences
+          - Launch & walk through setup
+          - Disable Spotlight keyboard shortcut
+          - Use Command-Space for Alfred
+          - Sync settings from ~/.config/macos
+          - Enable automatic snippet expansion
+          - Enable browser bookmarks
+          - Change theme
+          - Sweep through synced workflows, fixing as needed
 
       - artifact: /Applications/AppCleaner.app
         install:
@@ -448,15 +452,19 @@ install_groups:
         configure:
           - run: defaults write net.freemacsoft.AppCleaner SUEnableAutomaticChecks -bool true
         checklist:
-          - Enable SmartDelete feature
+          - Enable SmartDelete (automatic watching for deleted apps)
+          - Enable automatic updates
+          - Allow Full Disk Access
 
       - artifact: /Applications/Arq.app
         install:
           - cask: arq
         checklist:
-          - Configure backup sources and destinations
-          - Set up encryption password
-          - Schedule backup frequency
+          - Setup onsite backups as desired
+          - Setup offsite backups as desired
+          - Setup emails via Mailgun
+          - Pause backups on battery power
+          - Enable backup thinning
 
       - artifact: /Applications/Choosy.app
         install:
@@ -467,9 +475,10 @@ install_groups:
           - run: defaults write com.choosyosx.Choosy runningMode 3
           - run: defaults write com.choosyosx.Choosy displayBrowserNames 0
         checklist:
-          - Enter license key
-          - Configure browser selection preferences
-          - Set up URL patterns
+          - License Choosy
+          - Enable Choosy & Start at Login
+          - Set as default browser
+          - Configure Choosy/Import and Tweak Choosy Config
 
       - artifact: /Applications/CommandQ.app
         install:
@@ -478,7 +487,8 @@ install_groups:
           - run: defaults write com.commandqapp.CommandQ delay -float 1.805555555555556
           - run: defaults write com.commandqapp.CommandQ launchOnBoot -bool true
         checklist:
-          - Enter license key
+          - License
+          - Enable Start at Login
 
       - artifact: /Applications/FastScripts.app
         install:
@@ -487,24 +497,21 @@ install_groups:
           - run: defaults write com.red-sweater.fastscripts3 ShellScriptEditorIdentifier "com.sublimetext.4"
           - run: defaults write com.red-sweater.fastscripts3 ScriptKeyboardShortcuts -data "e2925be062706c6973743030d4010203040506070000000000000a97"
         checklist:
-          - Enter license key
-          - Configure script folders
+          - License
+          - Launch at login
 
       - artifact: /Applications/GPG Keychain.app
         install:
           - cask: gpg-suite-no-mail
         checklist:
-          - Import existing GPG keys
-          - Configure key preferences
-          - Set up Git signing
+          - Import/generate GPG keys as needed
 
       - artifact: /Applications/Hammerspoon.app
         install:
           - cask: hammerspoon
         checklist:
-          - Enable accessibility permissions
-          - Configure launch at login
-          - Set up configuration files
+          - Configure to run at login
+          - Enable Accessibility
 
       - artifact: /Applications/Hex Fiend.app
         install:
@@ -516,9 +523,9 @@ install_groups:
         install:
           - brew: jordanbaird-ice
         checklist:
-          - Grant necessary permissions
-          - Configure menu bar organization
-          - Enable launch at login
+          - Grant permissions
+          - Launch at login
+          - Configure menu bar as desired/following convention from existing systems
 
       - artifact: /Applications/IINA.app
         install:
@@ -528,17 +535,19 @@ install_groups:
         install:
           - cask: iterm2
         checklist:
-          - Enable accessibility permissions
-          - Configure sync settings
-          - Set up color schemes and fonts
+          - Allow Full Disk Access
+          - Sync settings from ~/.config/macos, taking care not to overwrite the files there
+          - Make default term
 
       - artifact: /Applications/Kaleidoscope.app
         install:
           - cask: kaleidoscope
         checklist:
-          - Enter license key
-          - Configure as diff tool for Git
-          - Set up integration with development tools
+          - License
+          - Set terminal app
+          - Set font Meslo LG L Regular, size 14
+          - Enable Finder extension
+          - Enable Safari extension
 
       - artifact: /Applications/Latest.app
         install:
@@ -552,8 +561,11 @@ install_groups:
           - run: defaults write "com.soma-zone.LaunchControl" "changeLabelWhenRename" '1'
           - run: defaults write "com.soma-zone.LaunchControl" "fileEditor" '"/Applications/Sublime Text.app"'
         checklist:
-          - Enter license key
-          - Grant full disk access
+          - License
+          - Allow full disk access
+          - Install and allow full disk access for fdautil
+          - Enable QuickLaunch
+          - Hide QuickLaunch in menu bar
 
       - artifact: /Applications/LICEcap.app
         install:
@@ -563,29 +575,30 @@ install_groups:
         install:
           - cask: notunes
         checklist:
-          - Configure launch at login
-          - Set up menu bar preferences
+          - Launch
+          - Hide in menu bar
+          - Add to Login Items
 
       - artifact: /Applications/OmniDiskSweeper.app
         install:
           - cask: omnidisksweeper
         checklist:
-          - Grant full disk access permissions
+          - Allow full disk access
 
       - artifact: /Applications/Raindrop.io.app
         install:
           - cask: raindropio
         checklist:
-          - Sign in to your account
-          - Install browser extensions
-          - Configure sync settings
+          - Sign in
 
       - artifact: /Applications/Shortcat.app
         install:
           - cask: shortcat
         checklist:
-          - Enable accessibility permissions
-          - Configure activation shortcuts
+          - Grant permissions
+          - Assign shortcut Alt-Command-Space (move Finder Search to Ctrl-Command-Space if needed)
+          - Launch at Login
+          - Hide in menu bar, next to Alfred
 
       - artifact: /Applications/Sloth.app
         install:
@@ -595,17 +608,14 @@ install_groups:
         install:
           - cask: spotify
         checklist:
-          - Sign in to your account
-          - Disable startup launch if desired
-          - Configure music quality preferences
+          - Sign in
+          - Disable launching at login
 
       - artifact: /Applications/Tailscale.app
         install:
           - cask: tailscale
         checklist:
-          - Sign in to your Tailscale account
-          - Configure device settings
-          - Set up SSH and file sharing
+          - Sign in
 
       - artifact: /Applications/The Unarchiver.app
         install:
@@ -624,8 +634,8 @@ install_groups:
           - run: defaults write abnerworks.Typora theme "Github"
           - run: defaults write abnerworks.Typora "use_seamless_window" 1
         checklist:
-          - Configure file associations
-          - Enter license key
+          - Associate with Markdown files
+          - License
 
       - artifact: $HOME/Library/Screen Savers/Aerial.saver
         install:
@@ -691,9 +701,11 @@ install_groups:
           - run: defaults write com.phocusllp.duemac prefStringLastAutoDarkThemeName -string "Obsidian"
           - run: defaults write com.phocusllp.duemac prefStringLastAutoLightThemeName -string "Calcite"
         checklist:
-          - Configure keyboard shortcuts
-          - Enable launch at login
-          - Set up sync preferences
+          - Assign keyboard shortcut Ctrl-Shift-U
+          - Start at Login
+          - Enable Dropbox Sync
+          - Customize Notifications
+          - Restore purchases
 
       - artifact: /Applications/Instapaper Save.app
         install:
@@ -911,16 +923,16 @@ install_groups:
         install:
           - cask: bettertouchtool
         checklist:
-          - Enter license key
-          - Configure gestures and shortcuts
-          - Enable accessibility permissions
+          - Sync settings (Dropbox)
+          - License
 
       - artifact: /Applications/Secretive.app
         install:
           - cask: secretive
         checklist:
-          - Configure SSH key management
-          - Set up key generation preferences
+          - Walk through setup
+          - Generate a key for this machine
+          - Add key to SSH config
 
       - artifact: $BREW/bin/yubikey-agent
         install:
@@ -928,7 +940,8 @@ install_groups:
         configure:
           - run: brew services start yubikey-agent
         checklist:
-          - Configure YubiKey for SSH authentication
+          - Use yubikey-agent -setup to generate a new SSH key, if needed
+          - Add new public key to SSH config
 
       - artifact: $BREW/bin/ykman
         install:
@@ -979,9 +992,13 @@ install_groups:
         install:
           - cask: fork
         checklist:
-          - Sign in to GitHub account
-          - Configure Git settings
-          - Set default source folder
+          - Activate license
+          - Switch to Stable update channel
+          - Set Git instance (use Homebrew Git)
+          - Set Terminal tool (iTerm2)
+          - Set Diff & Merge tools (Kaleidoscope)
+          - Set GitHub Desktop as default GitHub tool
+          - Sign into GitHub account (as desired)
 
       - artifact: $BREW/bin/cloc
         install:
@@ -1169,15 +1186,15 @@ install_groups:
         install:
           - cask: sublime-merge
         checklist:
-          - Enter license key
-          - Configure Git settings
+          - License
 
       - artifact: /Applications/TextBuddy.app
         persist: true
         install:
           - mas: "1487928210"
         checklist:
-          - Configure preferences
+          - Assign global shortcut Ctrl+Shift+T
+          - License
 
       - artifact: /Applications/Boop.app
         persist: true

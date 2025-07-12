@@ -80,17 +80,6 @@ echo -e "This script will use ${magenta}sudo${_reset}; enter your password to au
 sudo -v
 while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# build out /usr/local tree, since we try to install stuff there:
-if [ -w /usr/local ]; then
-  mkdir -p /usr/local/bin
-  mkdir -p /usr/local/sbin
-  mkdir -p /usr/local/share/man/man1
-else
-  sudo mkdir -p /usr/local/bin
-  sudo mkdir -p /usr/local/sbin
-  sudo mkdir -p /usr/local/share/man/man1
-fi
-
 echo ""
 cecho "You need to be signed into the App Store to continue." $white
 cecho "Open the App Store? (y/N)" $magenta
@@ -102,6 +91,17 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
   read -p "Press [Enter] to continue..."
 fi
 
+# build out /usr/local tree, since we try to install stuff there:
+if [ -w /usr/local ]; then
+  mkdir -p /usr/local/bin
+  mkdir -p /usr/local/sbin
+  mkdir -p /usr/local/share/man/man1
+else
+  sudo mkdir -p /usr/local/bin
+  sudo mkdir -p /usr/local/sbin
+  sudo mkdir -p /usr/local/share/man/man1
+fi
+
 if brew tap | grep "filosottile/gomod" >/dev/null ; then
   echo "replacing brew-gomod by my fork ..."
   echo "https://github.com/FiloSottile/homebrew-gomod/issues/7"
@@ -111,6 +111,19 @@ fi
 
 if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
+fi
+
+if [ -e /Applications/Arduino.app ]; then
+  echo "Migrating away from deprecated Arduino cask ..."
+  brew install arduino-cli
+  brew install --cask arduino-ide
+  brew uninstall arduino
+fi
+
+if [ -e /Applications/Paw.app ]; then
+  echo "Migrating Paw to RapidAPI ..."
+  brew install --cask rapidapi
+  brew uninstall --cask paw
 fi
 
 ./mac-install -config install-asdf.yaml
@@ -384,18 +397,7 @@ if [ ! -e "/Applications/Setapp/BetterTouchTool.app" ] && [ ! -e "/Applications/
     "- [ ] Sync settings (Dropbox)\n- [ ] License"
 fi
 
-if [ -e /Applications/Arduino.app ]; then
-  echo "Migrating away from deprecated Arduino cask ..."
-  brew install arduino-cli
-  brew install --cask arduino-ide
-  brew uninstall arduino
-fi
 
-if [ -e /Applications/Paw.app ]; then
-  echo "Migrating Paw to RapidAPI ..."
-  brew install --cask rapidapi
-  brew uninstall --cask paw
-fi
 
 echo ""
 cecho "--- Interactive Section ---" $white
