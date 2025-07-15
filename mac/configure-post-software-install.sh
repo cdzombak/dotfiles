@@ -13,6 +13,8 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 2
 fi
 
+# TODO(cdzombak): migrate entiely to software suite script
+
 cecho "----                            ----" $white
 cecho "---- Post-Install Configuration ----" $white
 cecho "----                            ----" $white
