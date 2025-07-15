@@ -617,300 +617,25 @@ echo ""
 cecho "--- Dev Tools ---" $white
 echo ""
 
-cecho "Install basic development tools? (y/N)" $magenta
-echo "(Expressions, Fork, Sublime Merge, TextBuddy, cloc, hexyl, file watchers)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  # GUI dev tools:
-  sw_install /Applications/Expressions.app "mas install 913158085"
-  sw_install /Applications/Fork.app "brew_cask_install fork" \
-    "- [ ] Activate license\n- [ ] Switch to Stable update channel\n- [ ] Set Git instance (use Homebrew Git)\n- [ ] Set Terminal tool (iTerm2)\n- [ ] Set Diff & Merge tools (Kaleidoscope)\n- [ ] Set GitHub Desktop as default GitHub tool\n- [ ] Sign into GitHub account (as desired)"
-  sw_install "/Applications/Sublime Merge.app" "brew_cask_install sublime-merge" \
-    "- [ ] License"
-  sw_install "/Applications/TextBuddy.app" "brew_cask_install textbuddy" \
-    "- [ ] Assign global shortcut Ctrl+Shift+T\n- [ ] License"
+# Basic development tools now handled by install.yaml (Dev group)
 
-  # Via Setapp:
-  if [ ! -e /Applications/Setapp/CodeRunner.app ]; then
-    cecho "Please install CodeRunner via Setapp." $white
-    open "https://setapp.com/apps/coderunner"
-  fi
+# Boop now handled by install.yaml (Dev group)
 
-  # CLI tools, not installed by default on non-dev machines:
-  sw_install "$(brew --prefix)/bin/cloc" "brew_install cloc"
-  sw_install "$(brew --prefix)/bin/hexyl" "brew_install hexyl"
+# VS Code now handled by install.yaml (Dev group)
 
-  # Various file watchers, popular in various communities/with various toolchains:
-  sw_install "$(brew --prefix)/bin/air" "brew gomod github.com/cosmtrek/air"
-  sw_install "$(brew --prefix)/bin/entr" "brew_install entr"
-  sw_install /usr/local/bin/nodemon "npm install -g nodemon" # drop-in watcher for Node projects
-  sw_install "$(brew --prefix)/bin/watchman" "brew_install watchman" # popular for React Native
-fi
+# JetBrains Toolbox now handled by install.yaml (Dev group)
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-boop" ]; then
-  _install_boop() {
-    cecho "Install Boop? (y/N)" $magenta
-    echo "(OSS TextBuddy alternative)"
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1518425043
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-boop"
-    fi
-  }
-  sw_install "/Applications/Boop.app" _install_boop
-fi
+# Dash, JSON Editor, and CSV Editor now handled by install.yaml (Dev group)
 
-_install_ask_vscode() {
-  cecho "Install VS Code? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask visual-studio-code
-    setupnote "Visual Studio Code.app" \
-      "- [ ] Sync settings using Github account"
-  fi
-}
-sw_install "/Applications/Visual Studio Code.app" _install_ask_vscode
+# PLIST Editor, WWDC app, SF Symbols, and Redis Insight now handled by install.yaml (Dev group)
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-jetbrains" ]; then
-  _install_jetbrains() {
-    cecho "Install JetBrains Toolbox? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask jetbrains-toolbox
-      setupnote "JetBrains Toolbox.app" \
-        "- [ ] Sign into JetBrains account\n- [ ] Enable automatic updates\n- [ ] Enable 'Generate Shell Scripts' to \`~/opt/bin\`\n- [ ] Enable 'Run at Login'\n- [ ] Install IDEs as desired\n- [ ] Enable settings & plugin syncing"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-jetbrains"
-    fi
-  }
-  sw_install "/Applications/JetBrains Toolbox.app" _install_jetbrains
-fi
+# HTTP/API tools and Go development tools now handled by install.yaml (Dev group)
 
-_install_ask_dash() {
-  cecho "Install Dash? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask dash
-    setupnote "Dash.app" \
-      "- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Sync snippets\n- [ ] Review & Arrange docsets as desired\n- [ ] License"
-  fi
-}
-sw_install /Applications/Dash.app _install_ask_dash
+# Python tools and TypeScript now handled by install.yaml (Dev group)
 
-_install_ask_jsoneditor() {
-  cecho "Install JSON Editor? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 567740330
-    setupnote "JSON Editor.app" "- [ ] Associate with JSON files"
-  fi
-}
-sw_install "/Applications/JSON Editor.app" _install_ask_jsoneditor
+# JS/TS linters, embedded development tools, and Script Debugger now handled by install.yaml (Dev group)
 
-_install_csveditor() {
-  cecho "Install CSV Editor? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/Easy CSV Editor.app" "mas install 1171346381" \
-      "- [ ] Associate with CSV files"
-  fi
-}
-sw_install "/Applications/Easy CSV Editor.app" _install_csveditor
-
-_install_plist_editor() {
-  cecho "Install PLIST Editor? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "/Applications/PLIST Editor.app" "mas install 1157491961" \
-      "- [ ] Associate with PLIST files"
-  fi
-}
-sw_install "/Applications/PLIST Editor.app" _install_plist_editor
-
-_install_wwdcapp() {
-  cecho "Install WWDC macOS application (for watching/downloading videos)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask wwdc
-  fi
-}
-sw_install /Applications/WWDC.app _install_wwdcapp
-
-_install_sfsymbols() {
-  cecho "Install Apple's SF Symbols Mac app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     brew install --cask sf-symbols
-  fi
-}
-sw_install "/Applications/SF Symbols.app" _install_sfsymbols
-
-_install_redisinsight() {
-  cecho "Install Redis Insight? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     brew install --cask redisinsight
-  fi
-}
-sw_install "/Applications/Redis Insight.app" _install_redisinsight
-
-echo ""
-cecho "HTTP/API Tools..." $white
-echo ""
-
-_install_paw() {
-  cecho "Install ~Paw~ RapidAPI? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /Applications/RapidAPI.app "brew_cask_install rapidapi" \
-      "- [ ] Sign in / License\n- [ ] Set font: Meslo LG L 14"
-  fi
-}
-sw_install /Applications/RapidAPI.app _install_paw
-
-echo ""
-cecho "Install HTTP tools? (y/N)" $magenta
-echo "(httpie for CLI; HTTP Toolkit for GUI)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "/Applications/HTTP Toolkit.app" "brew_cask_install http-toolkit"
-  sw_install "$(brew --prefix)/bin/http" "brew_install httpie"
-fi
-
-_install_websocat() {
-  cecho "Install websocat? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install websocat
-  fi
-}
-sw_install "$(brew --prefix)/bin/websocat" _install_websocat
-
-echo ""
-cecho "Languages & Tools..." $white
-echo ""
-
-echo ""
-cecho "Install common Go tools? (y/N)" $magenta
-echo "(golint, goimports, gorc, pkger, golangci-lint, ifacemaker)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/golint" "brew gomod golang.org/x/lint/golint"
-  sw_install "$(brew --prefix)/bin/goimports" "brew gomod golang.org/x/tools/cmd/goimports"
-  sw_install "$(brew --prefix)/bin/gorc" "brew gomod github.com/stretchr/gorc"
-  sw_install "$(brew --prefix)/bin/pkger" "brew gomod github.com/markbates/pkger/cmd/pkger"
-  sw_install "$(brew --prefix)/bin/golangci-lint" "brew_install golangci-lint"
-  sw_install "$(brew --prefix)/bin/ifacemaker" "brew gomod github.com/vburenin/ifacemaker@master"
-fi
-
-echo ""
-cecho "Install Python env management tools? (y/N)" $magenta
-echo "(virtualenv, pipenv)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/virtualenv" "brew_install virtualenv" # 'PIP_REQUIRE_VIRTUALENV="0" $(brew --prefix)/bin/pip3 install virtualenv'
-  sw_install "$(brew --prefix)/bin/pipenv" "brew_install pipenv"
-fi
-
-echo ""
-cecho "Install common Python code quality tools? (y/N)" $magenta
-echo "(black, flake8, mypy, pylint, ruff)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/black" "brew_install black"
-  sw_install "$(brew --prefix)/bin/flake8" "brew_install flake8"
-  sw_install "$(brew --prefix)/bin/pylint" "brew_install pylint"
-  sw_install "$(brew --prefix)/bin/mypy" "brew_install mypy"
-  sw_install "$(brew --prefix)/bin/ruff" "brew_install ruff"
-fi
-
-echo ""
-cecho "Install Typescript? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)"/bin/tsc 'brew_install typescript'
-fi
-
-echo ""
-cecho "Install JS/TS linters? (y/N)" $magenta
-echo "(prettier, eslint)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/prettier" 'brew_install prettier'
-  sw_install "$(brew --prefix)/bin/eslint" 'brew_install eslint'
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-embedded-tools" ]; then
-  cecho "Install embedded development tools (Arduino, PlatformIO)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install "$(brew --prefix)/bin/arduino-cli" 'brew_install arduino-cli'
-      sw_install "/Applications/Arduino IDE.app" 'brew_cask_install arduino-ide'
-      sw_install "$(brew --prefix)/bin/platformio" 'brew_install platformio'
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-embedded-tools"
-  fi
-fi
-
-_install_ask_script_debugger() {
-  cecho "Install Script Debugger (for AppleScript)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask script-debugger
-  fi
-}
-sw_install "/Applications/Script Debugger.app" _install_ask_script_debugger
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-carthage" ]; then
-  cecho "Install Carthage? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "$(brew --prefix)"/bin/carthage 'brew_install carthage'
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-carthage"
-  fi
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-react-native" ]; then
-  cecho "Install React Native CLI? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install /usr/local/bin/react-native "npm install -g react-native-cli"
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-react-native"
-  fi
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-sbt" ]; then
-  cecho "Install Scala tools (sbt)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "$(brew --prefix)/bin/sbt" 'brew_install sbt'
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-sbt"
-  fi
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-java-devtools" ]; then
-  echo ""
-  cecho "Install Java tools (JDK, Maven, Gradle completion for bash/zsh)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sw_install "$(brew --prefix)/Caskroom/java" "brew_cask_install java"
-    sw_install "$(brew --prefix)/Cellar/gradle-completion" "brew_install gradle-completion"
-    sw_install "$(brew --prefix)/bin/mvn" "brew_install maven"
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-java-devtools"
-  fi
-fi
+# Carthage, React Native CLI, Scala/sbt, and Java tools now handled by install.yaml (Dev group)
 
 cecho "Install Latex tools? (y/N)" $magenta
 read -r response
@@ -985,58 +710,9 @@ if [ ! -e /Applications/Docker.app ] && [ ! -e /Applications/OrbStack.app ]; the
   fi
 fi
 
-echo ""
-cecho "Install Docker/container tools (act, dive, dockerfilelint, hadolint, periodic-docker-pull)? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  sw_install "$(brew --prefix)/bin/act" "brew_install act"
-  brew tap | grep -c wagoodman/dive >/dev/null || brew tap wagoodman/dive
-  sw_install "$(brew --prefix)/bin/dive" "brew_install dive"
-  sw_install "$(brew --prefix)/bin/hadolint" "brew_install hadolint"
-  sw_install "$(brew --prefix)/bin/_periodic_docker_pull" "brew_install cdzombak/oss/periodic-docker-pull"
-  sw_install "$(brew --prefix)/bin/dockerfilelint" 'npm install -g dockerfilelint'
-fi
+# Docker/container tools and UTM now handled by install.yaml (Dev group)
 
-_install_utm() {
-  cecho "Install UTM (VM manager)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1538878817
-  fi
-}
-sw_install /Applications/UTM.app _install_utm
-
-echo ""
-cecho "Install Kubernetes tools? (y/N)" $magenta
-echo "(k9s [CLI k8s manager], kail [k8s tail], Lens [GUI k8s IDE])"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  YES_INSTALL_KUBECTL=true
-  brew tap | grep -c boz/repo >/dev/null || brew tap boz/repo
-  sw_install "$(brew --prefix)/bin/kail" "brew_install boz/repo/kail"
-  sw_install "$(brew --prefix)/bin/k9s" "brew_install derailed/k9s/k9s"
-  sw_install "/Applications/Lens.app" "brew_cask_install lens"
-fi
-
-_install_servercat() {
-  cecho "Install ServerCat? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1501532023
-    setupnote "ServerCat.app" \
-      "- [ ] Add servers as desired"
-  fi
-}
-sw_install "/Applications/ServerCat.app" _install_servercat
-
-_install_esphome() {
-  cecho "Install esphome? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install esphome
-  fi
-}
-sw_install "$(brew --prefix)/bin/esphome" _install_esphome
+# Kubernetes tools, ServerCat, and esphome now handled by install.yaml (Dev group)
 
 # TODO(cdzombak): icon composer -- via DMG download
 
@@ -1051,310 +727,24 @@ echo ""
 # TODO(cdzombak): talktastic
 # TODO(cdzombak): ollama, devin, GH copilot (web apps)
 
-echo ""
-cecho "--- CAD, 3DP, EE, Radio ---" $white
-echo ""
+# CAD, 3D printing, and electronics tools now handled by install.yaml (CAD group)
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-bambu-studio" ]; then
-  _install_bambustudio() {
-    cecho "Install Bambu Studio? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask bambu-studio
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-bambu-studio"
-    fi
-  }
-  sw_install "/Applications/BambuStudio.app" _install_bambustudio
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-cura" ]; then
-  _install_cura() {
-    cecho "Install Cura? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask ultimaker-cura
-      setupnote "Ultimaker Cura" \
-        "- [ ] Sign In\n- [ ] Install Mesh Tools extension\n- [ ] Restore settings etc. from most recent backup (Extensions > Cura Backups)"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-cura"
-    fi
-  }
-  sw_install "/Applications/UltiMaker Cura.app" _install_cura
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-fusion360" ]; then
-  _install_f360() {
-    cecho "Install Autodesk Fusion? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask autodesk-fusion360
-      setupnote "Autodesk Fusion" "- [ ] Sign In"
-      chflags -h hidden "$HOME/Applications/Remove Autodesk Fusion.app"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-fusion360"
-    fi
-  }
-  sw_install "$HOME/Applications/Autodesk Fusion.app" _install_f360
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-openscad" ]; then
-  _install_openscad() {
-    cecho "Install OpenSCAD? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask openscad@snapshot
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-openscad"
-    fi
-  }
-  sw_install /Applications/OpenSCAD.app _install_openscad
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-meshman3dviewer" ]; then
-  _install_meshman3dviewer() {
-    cecho "Install Meshman 3D Viewer? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1502933106
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-meshman3dviewer"
-    fi
-  }
-  sw_install "/Applications/Meshman 3D Viewer PRO.app" _install_meshman3dviewer
-fi
-
-if [ -e "$HOME/.config/dotfiles/software/no-kicad" ]; then
-  mv "$HOME/.config/dotfiles/software/no-kicad" "$HOME/.config/dotfiles/software/no-ee-tools"
-fi
-if [ ! -e "$HOME/.config/dotfiles/software/no-ee-tools" ]; then
-  cecho "Install EE tools (LTSpice, KiCad, Qucs-S)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     sw_install /Applications/KiCad 'brew_cask_install kicad'
-     sw_install /Applications/LTSpice.app 'brew_cask_install ltspice'
-     sw_install /Applications/Qucs-S.app 'brew_cask_install ra3xdh/qucs-s/qucs-s'
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/software/no-ee-tools"
-  fi
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-cubicsdr" ]; then
-  _install_cubicsdr() {
-    cecho "Install CubicSDR? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask cubicsdr
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-cubicsdr"
-    fi
-  }
-  sw_install /Applications/CubicSDR.app _install_cubicsdr
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-chirp" ]; then
-  _install_chirp() {
-    cecho "Install CHIRP (radio programming tool)? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask chirp
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-chirp"
-    fi
-  }
-  sw_install /Applications/CHIRP.app _install_chirp
-fi
+# Radio tools (CubicSDR, CHIRP) now handled by install.yaml (CAD group)
 
 echo ""
 cecho "--- Office & Communication ---" $white
 echo ""
 
-_install_firefox() {
-  cecho "Install Firefox? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask firefox
-    setupnote "Firefox.app" \
-        "- [ ] Sign into Firefox Sync\n- [ ] Change device name\n- [ ] Sync uBlock settings from cloud storage\n- [ ] Customize toolbar\n- [ ] Remove default bookmarks\n- [ ] Disable Pocket (\`about:config\` and disable \`extensions.pocket.enabled\`)"
-  fi
-}
-sw_install /Applications/Firefox.app _install_firefox
+# Firefox, Slack, Zoom, Signal, and Google Drive now handled by install.yaml (Office/Communications groups)
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-slack" ]; then
-  _install_slack() {
-    cecho "Install Slack? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      sw_install /Applications/Slack.app "brew_cask_install slack" \
-        "- [ ] Sign in to Slack accounts"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-slack"
-    fi
-  }
-  sw_install /Applications/Slack.app _install_slack
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-zoom" ]; then
-  _install_zoom() {
-    cecho "Install Zoom for videoconferencing? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      # keep Zoom from installing its shitty local webserver thing
-      rm -rf "$HOME/.zoomus"
-      touch "$HOME/.zoomus"
-      brew install --cask zoom
-      setupnote "Zoom.app" \
-        "- [ ] Enable microphone mute when joining meeting\n- [ ] Disable video when joining meeting\n- [ ] Generally configure as desired"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-zoom"
-    fi
-  }
-fi
-
-_install_signal() {
-  cecho "Install Signal? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask signal
-    setupnote "Signal.app" \
-        "- [ ] Authenticate with phone"
-  fi
-}
-sw_install /Applications/Signal.app _install_signal
-
-# TODO(cdzombak): office ( brew info --cask microsoft-office ) (persist)
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-google-drive" ]; then
-  _install_gdrive() {
-    cecho "Install Google Drive? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask google-drive
-      setupnote "Google Drive.app" \
-        "- [ ] Authenticate"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-google-drive"
-    fi
-  }
-  sw_install "/Applications/Google Drive.app" _install_gdrive
-fi
-
-_install_zotero() {
-  cecho "Install Zotero? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask zotero
-  fi
-}
-sw_install /Applications/Zotero.app _install_zotero
-
-_install_clocker() {
-  cecho "Install Clocker? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1056643111
-  fi
-}
-sw_install /Applications/Clocker.app _install_clocker
-
-_install_diagrams() {
-  cecho "Install Diagrams? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1276248849
-  fi
-}
-sw_install /Applications/Diagrams.app _install_diagrams
-
-_install_drawio() {
-  cecho "Install Draw.io app? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask drawio
-  fi
-}
-sw_install /Applications/draw.io.app _install_drawio
-
-_install_monodraw() {
-  cecho "Install Monodraw? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask monodraw
-    # shellcheck disable=SC2129
-    echo "## Monodraw.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Register (link in 1Password)" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Monodraw.app _install_monodraw
+# Zotero, Clocker, Diagrams, Draw.io, and Monodraw now handled by install.yaml (Office group)
 
 
 echo ""
 cecho "--- Media Tools ---" $white
 echo ""
 
-if [ -e "/Applications/Pixelmator.app" ]; then
-  echo "Replacing Pixelmator Classic by Pixelmator Pro..."
-  mas install 1289583905
-  sudo rm -rf "/Applications/Pixelmator.app"
-fi
-
-_install_pixelmator() {
-  cecho "Install Pixelmator? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1289583905
-  fi
-}
-sw_install "/Applications/Pixelmator Pro.app" _install_pixelmator
-
-_install_acorn() {
-  cecho "Install Acorn? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1547371478
-  fi
-}
-sw_install "/Applications/Acorn.app" _install_acorn
-
-_install_affinity_photo() {
-  cecho "Install Affinity Photo? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask affinity-photo
-  fi
-}
-sw_install "/Applications/Affinity Photo 2.app" _install_affinity_photo
-
-_install_raw_power() {
-  cecho "Install RAW Power? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1157116444
-  fi
-}
-sw_install "/Applications/RAW Power.app" _install_raw_power
-
-_install_topaz_sharpen() {
-  cecho "Install Topaz Sharpen AI? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask topaz-sharpen-ai
-  fi
-}
-sw_install "/Applications/Topaz Sharpen AI.app" _install_topaz_sharpen
+# Pixelmator Pro, Acorn, Affinity Photo, RAW Power, and Topaz Sharpen AI now handled by install.yaml (Multimedia group)
 
 _install_note_dxophotolab() {
   cecho "Install DxO PhotoLab? (y/N)" $magenta
@@ -1462,76 +852,7 @@ _install_x3f_tools() {
 }
 sw_install "$HOME/opt/bin/x3f_extract" _install_x3f_tools
 
-_install_photosweeper() {
-  cecho "Install PhotoSweeper X? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask photosweeper-x
-  fi
-}
-sw_install "/Applications/PhotoSweeper X.app" _install_photosweeper
-
-_install_fileloupe() {
-  cecho "Install Fileloupe media browser? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 944693506 # Fileloupe
-    setupnote "Fileloupe" "- [ ] Grant full disk access"
-  fi
-}
-sw_install /Applications/Fileloupe.app _install_fileloupe
-
-_install_colorsnapper() {
-  cecho "Install ColorSnapper? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 969418666
-  fi
-}
-sw_install /Applications/ColorSnapper2.app _install_colorsnapper
-
-_install_geotag() {
-  cecho "Install GeoTag? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask geotag
-    mkdir -p "$HOME/tmp/GeoTag Backups"
-    # shellcheck disable=SC2129
-    echo "## /Applications/GeoTag.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set backups directory to \`~/tmp/GeoTag Backups\`" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/GeoTag.app _install_geotag
-
-_install_avenue() {
-  cecho "Install Avenue (GPX viewer)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1523681067
-  fi
-}
-sw_install "/Applications/Avenue.app" _install_avenue
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-adobecc" ]; then
-  _install_adobe_cc() {
-    cecho "Install Adobe Creative Cloud? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask adobe-creative-cloud
-      # shellcheck disable=SC2129
-      echo "## Adobe Creative Cloud" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-      echo -e "- [ ] Sign into Adobe Account\n-[ ] Install Lightroom\n- [ ] Install Photoshop" >> "$HOME/SystemSetup.md"
-      echo "" >> "$HOME/SystemSetup.md"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-adobecc"
-    fi
-  }
-  sw_install "/Applications/Adobe Creative Cloud" _install_adobe_cc
-fi
+# PhotoSweeper X, Fileloupe, ColorSnapper, GeoTag, Avenue, and Adobe Creative Cloud now handled by install.yaml (Multimedia group)
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-applepromediatools" ]; then
   echo ""
@@ -1548,64 +869,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-applepromediatools" ]; then
   fi
 fi
 
-_install_claquette() {
-  cecho "Install Claquette (lightweight simple video editing tool)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 587748131
-  fi
-}
-sw_install /Applications/Claquette.app _install_claquette
-
-_install_youtubedl() {
-  cecho "Install ~youtube-dl~ yt-dlp? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    # brew install youtube-dl
-    brew install yt-dlp ffmpeg
-  fi
-}
-sw_install "$(brew --prefix)/bin/yt-dlp" _install_youtubedl
-
-_install_quickmediaconv() {
-  echo ""
-  cecho "Install quick media conversion scripts? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install cdzombak/oss/quick-media-conv
-  fi
-}
-sw_install "$(brew --prefix)/bin/flv2mp4" _install_quickmediaconv
-
-_install_inkscape() {
-  echo ""
-  cecho "Install Inkscape? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask inkscape
-  fi
-}
-sw_install "/Applications/Inkscape.app" _install_inkscape
-
-_install_fontforge() {
-  echo ""
-  cecho "Install FontForge? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask fontforge
-  fi
-}
-sw_install "/Applications/FontForge.app" _install_fontforge
-
-_install_ffworks() {
-  echo ""
-  cecho "Install ff·Works? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask ff-works
-  fi
-}
-sw_install "/Applications/ff·Works.app" _install_ffworks
+# Claquette, yt-dlp, quick-media-conv, Inkscape, FontForge, and ff·Works now handled by install.yaml (Multimedia group)
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-handbrake" ]; then
   _install_handbrake() {
@@ -1658,114 +922,17 @@ if [ -e "/Applications/Sonos S1 Controller.app" ]; then
   brew cleanup
   brew update
 fi
-_install_sonos() {
-  cecho "Install Sonos? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask sonos
-    # shellcheck disable=SC2129
-    echo "## Sonos.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "**Note:** do not enable notifications." >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install "/Applications/Sonos.app" _install_sonos
-
-_install_parcel() {
-  cecho "Install Parcel (package tracker)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 639968404
-    setupnote "Parcel.app" \
-      "- [ ] Allow notifications\n- [ ] Tweak system notification settings (all off except \"Show in Notification Center\")\n- [ ] Enable calendar integration"
-  fi
-}
-sw_install "/Applications/Parcel.app" _install_parcel
+# Sonos and Parcel now handled by install.yaml (Home group)
 
 echo ""
 cecho "--- Music / Podcasts / Reading ---" $white
 echo ""
 
-_install_plexamp() {
-  cecho "Install Plexamp? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask plexamp
-    # shellcheck disable=SC2129
-    echo "## Plexamp.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Use Large font size (Settings > Experience)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Use system window controls (Settings > Experience > Desktop Integration)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Turn off notifications (Settings > Experience > Desktop Integration)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Set 160Kbps conversion bitrate (Settings > Playback > Streaming Quality)" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Disable crossfades (aka \"Sweet Fades\") (Settings > Playback)" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Plexamp.app _install_plexamp
+# Plexamp, Infuse, and Plex Desktop now handled by install.yaml (Multimedia group)
 
-_install_infuse() {
-  cecho "Install Infuse? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1136220934
-    setupnote "Infuse.app" \
-      "- [ ] Sign into Plex servers as desired\n- [ ] Add file shares as desired\n- [ ] Disable file shares in Library views\n- [ ] Restore purchases"
-  fi
-}
-sw_install /Applications/Infuse.app _install_infuse
+# Pocket Casts and YT Music now handled by install.yaml (Multimedia group)
 
-_install_plexdesktop() {
-  cecho "Install Plex Desktop? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask plex
-    # shellcheck disable=SC2129
-    echo "## Plex.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] Sign into Plex account" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/Plex.app _install_plexdesktop
-
-_install_pocketcasts() {
-  cecho "Install Pocket Casts? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask pocket-casts
-  fi
-}
-sw_install "/Applications/Pocket Casts.app" _install_pocketcasts
-
-_install_ytmusic() {
-  cecho "Install YT Music? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask yt-music
-  fi
-}
-sw_install "/Applications/YT Music.app" _install_ytmusic
-
-_install_triode() {
-  cecho "Install Triode? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 1450027401
-  fi
-}
-sw_install "/Applications/Triode.app" _install_triode
-
-_install_kindle() {
-  cecho "Install Kindle? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 405399194 # Kindle
-  fi
-}
-sw_install /Applications/Kindle.app _install_kindle
+# Triode and Kindle now handled by install.yaml (Multimedia group)
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-remotehelperapp" ]; then
   _install_remotehelperapp() {
@@ -1885,19 +1052,7 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-steam" ]; then
   sw_install /Applications/Steam.app _install_steam
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-nsnake" ]; then
-  _install_nsnake() {
-    cecho "Install nsnake? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install nsnake
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-nsnake"
-    fi
-  }
-  sw_install "$(brew --prefix)/bin/nsnake" _install_nsnake
-fi
+# nsnake now handled by install.yaml (Games group)
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-blackink" ]; then
   _install_blackink() {
@@ -1923,49 +1078,9 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-blackink" ]; then
   sw_install "/Applications/Black Ink.app" _install_blackink
 fi
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-minimetro" ]; then
-  _install_minimetro() {
-    cecho "Install Mini Metro? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1047760200 # Mini Metro
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-minimetro"
-    fi
-  }
-  sw_install "/Applications/Mini Metro.app" _install_minimetro
-fi
+# Mini Metro and SimCity now handled by install.yaml (Games group)
 
-if [ ! -e "$HOME/.config/dotfiles/software/no-simcity" ]; then
-  _install_simcity() {
-    cecho "Install SimCity 4 Deluxe? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 804079949 # SimCity 4 Deluxe Edition
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-simcity"
-    fi
-  }
-  sw_install "/Applications/Sim City 4 Deluxe Edition.app" _install_simcity
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-flyingtoasters" ]; then
-  _install_flyingtoasters() {
-    cecho "Install Flying Toasters screen saver? (y/N)" $magenta
-    echo "(Can also be changed to other screen savers from https://www.bryanbraun.com/after-dark-css )"
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install --cask webviewscreensaver --no-quarantine
-      setupnote "Flying Toasters (WebViewScreenSaver)" "- [ ] Set URL to \`https://www.bryanbraun.com/after-dark-css/all/flying-toasters.html\`\n- [ ] Set other URLs from https://www.bryanbraun.com/after-dark-css as desired"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-flyingtoasters"
-    fi
-  }
-  sw_install "$HOME/Library/Screen Savers/WebViewScreenSaver.saver" _install_flyingtoasters
-fi
+# Flying Toasters screen saver now handled by install.yaml (Games group)
 
 fi # $GOINTERACTIVE
 
