@@ -68,9 +68,7 @@ mac-stow: require-macos dependencies submodules ## Link macOS configuration file
 .PHONY: mac-software
 mac-software: require-macos dependencies submodules setupnote rosetta ## Install and configure macOS software suite (this can take a long time)
 	@echo ""
-	@bash ./mac/software-install.sh
-	@echo ""
-	@bash ./mac/configure-post-software-install.sh
+	@bash ./mac/software-suite.sh
 	@echo ""
 
 .PHONY: mac-automation-repo

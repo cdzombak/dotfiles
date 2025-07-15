@@ -9,5 +9,5 @@ set +e
 open "$(brew --prefix)"/Caskroom/mutedeck/"$MD_VDIR"/"$MD_INSTALLER_NAME"
 set -e
 echo ""
-cecho "Please finish installing MuteDeck ..."
+echo "Please finish installing MuteDeck ..."
 read -rp "(press enter/return to continue)"

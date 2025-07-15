@@ -336,6 +336,16 @@ install_groups:
       - artifact: /Applications/Marked 2.app
         install:
           - cask: marked
+        configure:
+          - run: defaults write com.brettterpstra.marked2 WebKitDeveloperExtras -bool true
+          - run: defaults write com.brettterpstra.marked2 convertGithubCheckboxes -bool true
+          - run: defaults write com.brettterpstra.marked2 defaultProcessor -string "Discount (GFM)"
+          - run: defaults write com.brettterpstra.marked2 defaultSyntaxStyle -string "GitHub"
+          - run: defaults write com.brettterpstra.marked2 externalEditor -string "Typora"
+          - run: defaults write com.brettterpstra.marked2 externalImageEditor -string "Pixelmator"
+          - run: defaults write com.brettterpstra.marked2 includeMathJax -bool true
+          - run: defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
+          - run: defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
         checklist:
           - License
           - Install Custom CSS from ~/.config/macos
@@ -351,17 +361,6 @@ install_groups:
         checklist:
           - Set bezel to 70% opacity (from default 80)
           - Hide in Dock; show only in menu bar
-
-      - artifact: /Applications/Setapp.app
-        install:
-          - cask: setapp
-        checklist:
-          - Sign in to Setapp
-          - Disable "Show in Finder Sidebar"
-          - Install applications as desired from Setapp Favorites
-          - Re-run post-install configuration script
-          - Disable global search shortcut
-          - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
       - artifact: /Applications/ThingsMacSandboxHelper.app
         install:
@@ -394,10 +393,10 @@ install_groups:
             file: "Ears.app"
         checklist:
           - License Ears
-          - Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar
-          - Favorite devices: AirPods Pro and Sony ANC Phones
-          - Linked devices: AirPods Pro/Webcam Mic, Sony ANC Phones/Webcam Mic, AirPods Pro/Lavalier Mic, Sony ANC Phones/Lavalier Mic
-          - Notifications: banners, show on lock screen, hide in Notification Center, show previews always
+          - "Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar"
+          - "Favorite devices: AirPods Pro and Sony ANC Phones"
+          - "Linked devices: AirPods Pro/Webcam Mic, Sony ANC Phones/Webcam Mic, AirPods Pro/Lavalier Mic, Sony ANC Phones/Lavalier Mic"
+          - "Notifications: banners, show on lock screen, hide in Notification Center, show previews always"
 
       - artifact: $HOME/Library/Sounds/Honk.aiff
         install:
@@ -419,18 +418,18 @@ install_groups:
         install:
           - cask: 1password
         checklist:
-          - Sign in to accounts: personal; work as needed
-          - Do not show in menu bar
-          - Start at login
-          - No keyboard shortcut for: Quick Access; Lock 1Password
-          - Show 1Password: Ctrl-Shift-Command-Backslash
-          - Autofill: Command-Backslash
-          - Appearance -> Density: Compact
-          - Appearance -> Always show in Sidebar: Categories and Tags
-          - Security: enable unlock with Apple Watch
-          - Security: hold Option to toggle revealed fields
-          - Privacy -> Watchtower: Enable all Watchtower features
-          - Developer: enable CLI integration
+          - "Sign in to accounts: personal; work as needed"
+          - "Do not show in menu bar"
+          - "Start at login"
+          - "No keyboard shortcut for: Quick Access; Lock 1Password"
+          - "Show 1Password: Ctrl-Shift-Command-Backslash"
+          - "Autofill: Command-Backslash"
+          - "Appearance -> Density: Compact"
+          - "Appearance -> Always show in Sidebar: Categories and Tags"
+          - "Security: enable unlock with Apple Watch"
+          - "Security: hold Option to toggle revealed fields"
+          - "Privacy -> Watchtower: Enable all Watchtower features"
+          - "Developer: enable CLI integration"
 
       - artifact: $BREW/bin/op
         install:
@@ -498,6 +497,8 @@ install_groups:
           - cask: fastscripts
         configure:
           - run: defaults write com.red-sweater.fastscripts3 ShellScriptEditorIdentifier "com.sublimetext.4"
+          # update via:
+          # defaults read com.red-sweater.fastscripts3 ScriptKeyboardShortcuts | sed 's/[^0-9a-f]*//g'
           - run: defaults write com.red-sweater.fastscripts3 ScriptKeyboardShortcuts -data "e2925be062706c6973743030d4010203040506070000000000000a97"
         checklist:
           - License
@@ -679,7 +680,7 @@ install_groups:
           - run: defaults write net.shinyfrog.bear SFAppIconMatchesTheme -bool true
           - run: defaults write net.shinyfrog.bear SFEditorFontSize 17
           - run: defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 50
-          - run: 'defaults write net.shinyfrog.bear NSUserKeyEquivalents ''{ Archive = "^$a"; Back = "@^\U2190"; Forward = "@^\U2192"; }'''
+          - run: postinstall/bear.sh
         checklist:
           - Assign keyboard shortcuts
           - Enable Bear Safari extension
@@ -933,29 +934,10 @@ install_groups:
           - Sync settings (Dropbox)
           - License
 
-      - artifact: /Applications/MuteDeck.app
-        install:
-          - script: install/mutedeck.sh
-        checklist:
-          - Enable Accessibility permissions
-          - Enable System Microphone & Zoom only
-          - Start at login
-          - Don't open window at start
-          - Hide in menu bar
-
-      - artifact: /Applications/Elgato Stream Deck.app
-        install:
-          - cask: elgato-stream-deck
-        checklist:
-          - Enable Accessibility permissions
-          - "Install plugins: [Cosmetic Key](https://marketplace.elgato.com/product/cosmetic-key-077407b5-299b-479c-a921-6a3ffec677da), [MuteDeck](https://marketplace.elgato.com/product/mutedeck-5d494067-d9fa-4798-b40e-aca3b09f50a2) or [Zoom](https://marketplace.elgato.com/product/zoom-plugin-a588eabf-fced-401b-a7e3-c12e81bbf75c), [API Request](https://marketplace.elgato.com/product/api-request-dc7f3a02-e32c-4daf-b5a9-48c618deb6d1)"
-          - "Install icons: [Material](https://marketplace.elgato.com/product/material-1c32abe8-341b-4cba-8e2b-186d6ed96070), [Mana](https://marketplace.elgato.com/product/mana-icons-f69dadd1-fd29-463f-b49d-8af9f7567fb6), [Pure](https://marketplace.elgato.com/product/pure-a994a0a5-049c-4382-b73f-417553e1d8bb), [Entype](https://marketplace.elgato.com/product/entypo-854efe00-6c8c-4532-854f-d5a2b3e3acae), [Hexaza](https://marketplace.elgato.com/product/hexaza-3d4ed1dc-bf33-4f30-9ecd-201769f10c0d)"
-          - Restore config backup/saved profiles as desired
-          - Configure as desired
-          - Set keyboard shortcut for DnD in Shortcuts app
-          - Verify MuteDeck is installed and configured
-
       - artifact: "/Applications/Tembo.app"
+        configure:
+          - run: defaults write com.houdah.Tembo3 enableTemboHelper 1
+          - run: defaults write com.houdah.Tembo3 quitOnCloseOfLastWindow 1
         checklist:
           - "[Download](https://www.houdah.com/tembo/download.html) and install Tembo"
           - Register (details in 1Password)
@@ -968,10 +950,14 @@ install_groups:
         install:
           - cask: apparency
 
-
       - artifact: /Applications/Fork.app
         install:
           - cask: fork
+        configure:
+          - run: defaults write com.DanPristupov.Fork defaultSourceFolder "$HOME/code"
+          - run: defaults write com.DanPristupov.Fork diffFontName "MesloLGL-Regular"
+          - run: defaults write com.DanPristupov.Fork diffFontSize 14
+          - run: defaults write com.DanPristupov.Fork SUAutomaticallyUpdate 1
         checklist:
           - Activate license
           - Switch to Stable update channel
@@ -1012,6 +998,9 @@ install_groups:
       - artifact: /Applications/JSON Editor.app
         install:
           - mas: "567740330"
+        configure:
+          - run: defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontName "MesloLGL-Regular"
+          - run: defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontSize 13
         checklist:
           - Associate with JSON files
 
@@ -1136,7 +1125,7 @@ install_groups:
         install:
           - brew: iperf3
 
-      - artifact: $BREW/bin/mtr
+      - artifact: $BREW/sbin/mtr
         install:
           - brew: mtr
 
@@ -1204,6 +1193,28 @@ install_groups:
           - Disable creating tags from hashtags
           - Disable daily prompt
 
+  - group: Setapp
+    optional: false
+    software:
+
+      - artifact: /Applications/Setapp.app
+        install:
+          - cask: setapp
+        configure:
+          - run: defaults write com.setapp.DesktopClient EnableLauncher -bool false
+          - run: defaults write com.setapp.DesktopClient KeepTeasers -bool false
+          - run: defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
+          - run: defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
+        checklist:
+          - Sign in to Setapp
+          - Disable "Show in Finder Sidebar"
+          - Install applications as desired from Setapp Favorites
+          - Re-run post-install configuration script
+          - Disable global search shortcut
+          - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
+
+
+
   # Development tools (optional)
   - group: Dev
     software:
@@ -1225,6 +1236,10 @@ install_groups:
         persist: true
         install:
           - mas: "1487928210"
+        configure:
+          - run: defaults write "com.clickontyler.TextBuddy" "numberLinesFromZero" '0'
+          - run: defaults delete "com.clickontyler.TextBuddy" "userSyncEnabled"
+          - run: defaults delete "com.clickontyler.TextBuddy" "showOnActivate"
         checklist:
           - Assign global shortcut Ctrl+Shift+T
           - License
@@ -1290,6 +1305,8 @@ install_groups:
         persist: true
         install:
           - cask: rapidapi
+        configure:
+          - run: defaults write com.luckymarmot.Paw SUAutomaticallyUpdate 1
         checklist:
           - Sign in / License
           - Set font Meslo LG L 14
@@ -1657,6 +1674,7 @@ install_groups:
           - cask: zoom
         configure:
           - run: sudo rm -rf ~/.zoomus
+          - run: defaults write us.zoom.xos BounceApplicationSetting 2
         checklist:
           - Enable microphone mute when joining meeting
           - Disable video when joining meeting
@@ -1667,6 +1685,16 @@ install_groups:
           - cask: signal
         checklist:
           - Authenticate with phone
+
+      - artifact: /Applications/MuteDeck.app
+        install:
+          - script: install/mutedeck.sh
+        checklist:
+          - Enable Accessibility permissions
+          - Enable System Microphone & Zoom only
+          - Start at login
+          - Don't open window at start
+          - Hide in menu bar
 
   # Multimedia, photography, and media tools (optional)
   - group: Multimedia & Photography
@@ -1689,6 +1717,11 @@ install_groups:
         persist: true
         install:
           - mas: "1157116444"
+        configure:
+          - run: defaults write com.gentlemencoders.RAWPower "Save Edits Automatically" 1
+          - run: defaults write com.gentlemencoders.RAWPower "Use Current Directory for Export" 1
+          - run: defaults write 6MR872QP3J.RAWPower.sharedDefaults viewerBrightness 0.9
+          - run: defaults write 6MR872QP3J.RAWPower.sharedDefaults interfaceBrightness 0.9
 
       - artifact: /Applications/ColorSnapper2.app
         persist: true
@@ -1731,6 +1764,8 @@ install_groups:
         persist: true
         install:
           - mas: "1523681067"
+        configure:
+          - run: duti -s com.vincent-neo.Avenue public.gpx viewer
         checklist:
           - Configure photo viewing preferences
 
@@ -1984,6 +2019,8 @@ install_groups:
         install:
           - archive: https://redsweater.com/blackink/BlackInkLatest.zip
             file: "Black Ink.app"
+        configure:
+          - run: defaults write com.red-sweater.blackink2 SkipToNext -bool false
         checklist:
           - License
           - Enable software updates
@@ -2035,6 +2072,9 @@ install_groups:
           - run: defaults write "net.rafaelconde.Hand-Mirror" "selectedUIIcon" "Menu_Aperture"
           - run: defaults write "net.rafaelconde.Hand-Mirror" "selectedPopoverSize" 'Medium'
           - run: defaults write "net.rafaelconde.Hand-Mirror" "dismissPreference" '1'
+          - run: defaults write "net.rafaelconde.Hand-Mirror" "smartWindowPreference" '0'
+          - run: defaults write "net.rafaelconde.Hand-Mirror" "windowMaskPreference" '0'
+          - run: defaults write "net.rafaelconde.Hand-Mirror" "selectedMirroringPreference" '1'
         checklist:
           - Set shortcut Ctrl-Shift-Cmd-M
           - Set open at login as desired
@@ -2087,3 +2127,15 @@ install_groups:
         checklist:
           - Disable meeting notifications/calendar integration
           - Configure webcam as desired
+
+      - artifact: /Applications/Elgato Stream Deck.app
+        install:
+          - cask: elgato-stream-deck
+        checklist:
+          - Enable Accessibility permissions
+          - "Install plugins: [Cosmetic Key](https://marketplace.elgato.com/product/cosmetic-key-077407b5-299b-479c-a921-6a3ffec677da), [MuteDeck](https://marketplace.elgato.com/product/mutedeck-5d494067-d9fa-4798-b40e-aca3b09f50a2) or [Zoom](https://marketplace.elgato.com/product/zoom-plugin-a588eabf-fced-401b-a7e3-c12e81bbf75c), [API Request](https://marketplace.elgato.com/product/api-request-dc7f3a02-e32c-4daf-b5a9-48c618deb6d1)"
+          - "Install icons: [Material](https://marketplace.elgato.com/product/material-1c32abe8-341b-4cba-8e2b-186d6ed96070), [Mana](https://marketplace.elgato.com/product/mana-icons-f69dadd1-fd29-463f-b49d-8af9f7567fb6), [Pure](https://marketplace.elgato.com/product/pure-a994a0a5-049c-4382-b73f-417553e1d8bb), [Entype](https://marketplace.elgato.com/product/entypo-854efe00-6c8c-4532-854f-d5a2b3e3acae), [Hexaza](https://marketplace.elgato.com/product/hexaza-3d4ed1dc-bf33-4f30-9ecd-201769f10c0d)"
+          - Restore config backup/saved profiles as desired
+          - Configure as desired
+          - Set keyboard shortcut for DnD in Shortcuts app
+          - Verify MuteDeck is installed and configured

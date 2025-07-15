@@ -6,10 +6,7 @@ LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
 source "$LIB_DIR"/cecho
 
-# TODO(cdzombak): stow, read tool-versions for asdf version; inject via env
-ASDF_INSTALL_PY_VERSION="3.13.2"
-ASDF_INSTALL_NODE_VERSION="22.13.1"
-
+# TODO(cdzombak): stow tool-versions
 # TODO(cdzombak): vibetunnel (/Applications/VibeTunnel.app ; /opt/homebrew/bin/vt) (brew install --cask vibetunnel)
 # TODO(cdzombak): claude ( brew install --cask claude; /Applications/Claude.app )
 # TODO(cdzombak): claude sync; MCP servers
@@ -28,15 +25,7 @@ cecho "---- macOS Software Suite ----" $white
 cecho "----                      ----" $white
 echo ""
 cecho "On a new system this will take a while. The computer should be plugged in and have a solid network connection." $red
-cecho "Continue? (y/N)" $red
-CONTINUE=false
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  CONTINUE=true
-fi
-if ! $CONTINUE; then
-  exit 0
-fi
+echo ""
 
 echo ""
 cecho "--- Choices ---" $white
@@ -49,6 +38,7 @@ rm -f "$HOME/.config/dotfiles/software/no-ecobee-wrapper"
 rm -f "$HOME/.config/dotfiles/software/no-home-hardware-utils"
 rm -f "$HOME/.config/dotfiles/software/no-octopi-dzhome"
 rm -f "$HOME/.config/dotfiles/software/no-*.app"
+rm -f "$HOME/.config/dotfiles/software/no-applepromediatools"
 
 # migrate choices:
 if [ -e "$HOME/.config/dotfiles/software/no-caprine" ]; then
@@ -64,7 +54,6 @@ fi
 touch "$HOME/.config/dotfiles/software/no-boop"
 
 if [ "$(ls -A "$HOME/.config/dotfiles/software")" ] ; then
-  echo ""
   cecho "Please review these currently-persisted choices in ~/.config/dotfiles/software:" $white
   ls -C "$HOME/.config/dotfiles/software"
   echo ""
@@ -77,7 +66,6 @@ echo ""
 cecho "--- sudo ---" $white
 echo ""
 
-echo ""
 echo -e "This script will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
 # Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
@@ -177,15 +165,18 @@ echo ""
 cecho "--- Core Suite Setup ---" $white
 echo ""
 
-./mac-install -config install-asdf.yaml
+env \
+  ASDF_PYTHON="$(cat ~/.tool-versions | grep python | head -n 1 | cut -d' ' -f 2)" \
+  ASDF_NODEJS="$(cat ~/.tool-versions | grep nodejs | head -n 1 | cut -d' ' -f 2)" \
+  "$SCRIPT_DIR"/mac-install -config "$SCRIPT_DIR"/install-asdf.yaml
 
 echo ""
 cecho "Skip optional installs? (y/N)" $white
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  ./mac-install -config install.yaml -skip-optional
+  "$SCRIPT_DIR"/mac-install -config "$SCRIPT_DIR"/install.yaml -skip-optional
 else
-  ./mac-install -config install.yaml
+  "$SCRIPT_DIR"/mac-install -config "$SCRIPT_DIR"/install.yaml
 fi
 
 if [ ! -L /Applications/Marked.app ]; then
@@ -194,7 +185,7 @@ if [ ! -L /Applications/Marked.app ]; then
   chflags -h hidden /Applications/Marked.app
 fi
 
-
+### Uninstalls:
 "$SCRIPT_DIR"/software-suite-uninstalls.sh
 
 
@@ -249,6 +240,174 @@ sw_install "$(brew --prefix)"/bin/sqlint _install_sqlint
 set -e
 
 
+echo ""
+cecho "--- Post-Install Configuration ---" $white
+echo ""
+
+if [ ! -f "$HOME/.netrc" ]; then
+  cp ./.netrc.template "$HOME/.netrc"
+  chmod 600 "$HOME/.netrc"
+fi
+# shellcheck disable=SC2088
+setupnote "~/.netrc" "- [ ] Set dropbox.dzombak.com credentials"
+
+if [ -d /opt/homebrew ]; then
+  cecho "Set path for macOS .apps to include /usr/local and /opt/homebrew..." $white
+  sudo launchctl config user path "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/opt/homebrew/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+else
+  cecho "Set path for macOS .apps to include /usr/local..." $white
+  sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/sbin:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:/usr/local/opt/go/libexec/bin"
+fi
+echo ""
+
+# Further configuration ...
+# - for applications installed as part of the software install script
+# - using tools installed as part of the software install script
+
+cecho "--- Application Configuration ---" $white
+echo "If these don't apply, open the affected app, quit it, and re-run this script. As a last resort, try rebooting, and run this script again."
+echo ""
+
+echo "Xcode ..."
+"$SCRIPT_DIR"/postinstall/xcode.sh
+
+if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
+  echo "CodeRunner (Setapp)..."
+  defaults write com.krill.CodeRunner-setapp ColorTheme -string "Solarized (light)"
+  defaults write com.krill.CodeRunner-setapp DefaultTabModeSoftTabs 1
+  if ! grep -c "CodeRunner" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## CodeRunner" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Set font to Meslo LG L 14pt" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Remove the million default file type associations" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Configure as desired" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+fi
+
+if [ -e "/Applications/Google Chrome.app" ]; then
+  echo "Google Chrome..."
+  # echo ""
+  # echo "Using the system-native print preview dialog in Chrome"
+  # defaults write com.google.Chrome DisablePrintPreview -bool true
+  # defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+  echo "  Disable annoying Chrome swipe-to-navigate gesture"
+  defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
+fi
+
+if [ -e "/Applications/Setapp/Grids.app" ]; then
+  echo "Grids ..."
+  defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'
+  setupnote "Grids" \
+    "- [ ] Disable menu bar icon\n- [ ] Disable most or all notifications\n- [ ] Set spacing to \`16\`\n- [ ] Set picture size to \`4\`\n- [ ] Do not show stories or ads\n- [ ] Sign in"
+fi
+
+
+if [ -e "/Applications/Setapp/HazeOver.app" ]; then
+echo "HazeOver ..."
+  defaults write com.pointum.hazeover-setapp Animation -float "0.05"
+  defaults write com.pointum.hazeover-setapp AskSecondaryDisplay -bool false
+  defaults write com.pointum.hazeover-setapp Enabled -bool true
+  defaults write com.pointum.hazeover-setapp IndependentScreens -bool true
+  defaults write com.pointum.hazeover-setapp Intensity -float "5.167723137178133"
+  defaults write com.pointum.hazeover-setapp MultiFocus -bool true
+  setupnote "HazeOver" \
+    "- [ ] Hide in menu bar\n- [ ] Start at Login"
+fi
+
+
+if [ -e "/Applications/Setapp/Keysmith.app" ]; then
+echo "Keysmith ..."
+  defaults write "app.keysmith.Keysmith-setapp" "shouldEnableEnhancedAXModeInBrowsers" '1'
+  if ! grep -c "Keysmith.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Keysmith.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Change quick launcher shortcut to Ctrl+Option+Command+Space, to avoid Finder search conflict" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Enable sync via Syncthing" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+fi
+
+
+if [ -e "/Applications/Setapp/Marked 2.app" ]; then
+echo "Marked (Setapp)..."
+  defaults write com.brettterpstra.marked2-setapp WebKitDeveloperExtras -bool true
+  defaults write com.brettterpstra.marked2-setapp convertGithubCheckboxes -bool true
+  defaults write com.brettterpstra.marked2-setapp defaultProcessor -string "Discount (GFM)"
+  defaults write com.brettterpstra.marked2-setapp defaultSyntaxStyle -string "GitHub"
+  defaults write com.brettterpstra.marked2-setapp externalEditor -string "Typora"
+  defaults write com.brettterpstra.marked2-setapp externalImageEditor -string "Pixelmator"
+  defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
+  defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
+  defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
+fi
+
+
+if [ -e "/Applications/Setapp/Mission Control Plus.app" ]; then
+echo "Mission Control Plus ..."
+  if ! grep -c "Mission Control Plus.app" "$HOME/SystemSetup.md" >/dev/null; then
+    echo "## Mission Control Plus.app" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Disable complex keyboard shortcuts" >> "$HOME/SystemSetup.md"
+    echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
+    echo "" >> "$HOME/SystemSetup.md"
+  fi
+fi
+
+
+if [ -e "/Applications/Setapp/Path Finder.app" ]; then
+echo "Path Finder ..."
+  defaults write com.cocoatech.PathFinder-setapp disableWarnOnQuit -bool true
+  defaults write com.cocoatech.PathFinder-setapp globalAppsMenuEnabled -bool false
+  defaults write com.cocoatech.PathFinder-setapp kNTDiffToolPath "/usr/local/bin/ksdiff"
+  defaults write com.cocoatech.PathFinder-setapp kOpenTextEditDocumentsInTextEditor -bool false
+  defaults write com.cocoatech.PathFinder-setapp kTerminalApplicationPath "/Applications/iTerm.app"
+  defaults write com.cocoatech.PathFinder-setapp textEditorApplicationPath "/Applications/Sublime Text.app"
+fi
+
+
+if [ -e "/Applications/Setapp/SQLPro Studio.app" ]; then
+echo "SQLPro Studio ..."
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-DisableSampleConnections" '1'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalentMask" '1048576'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-QueryMenuKeyEquivalent" '"\U21a9"'
+  defaults write "com.hankinsoft.sqlpro-studio-setapp" "ApplicationPreference-CommentUncommentShortcutKeyEquivalent" '/'
+fi
+
+echo ""
+cecho "--- Permissions: Homebrew / Zsh / usr/local ---" $white
+echo ""
+
+echo -e "This fix will use ${magenta}sudo${_reset}; enter your password to authenticate if prompted."
+# Authenticate upfront and run a keep-alive to update existing `sudo` time stamp until script has finished
+sudo -v
+while true; do sudo -v -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+WHOAMI="$(whoami)"
+if [ -d /usr/local/share/zsh ]; then
+  sudo chown "$WHOAMI":staff /usr/local/share/zsh
+  sudo chown "$WHOAMI":staff /usr/local/share/zsh/site-functions
+  sudo chmod -R 755 /usr/local/share/zsh
+fi
+
+if [ -d /opt/homebrew/share/zsh ]; then
+  sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh
+  sudo chown "$WHOAMI":staff /opt/homebrew/share/zsh/site-functions
+  sudo chmod -R 755 /opt/homebrew/share/zsh
+fi
+
+sudo chown -R "$(whoami):staff" /usr/local/bin
+sudo chmod 755 /usr/local/bin
+
+pushd "$HOME/.zsh" >/dev/null
+find . -type f ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 600 {} \;
+find . -type d ! -path "./zsh-syntax-highlighting/*" ! -path "./zsh-syntax-highlighting" -exec chmod 700 {} \;
+popd >/dev/null
+
+
+### ~/Applications / Dock Icons:
 "$SCRIPT_DIR"/software-suite-home-applications.sh
 
 
