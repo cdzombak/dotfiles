@@ -454,6 +454,18 @@ if [ -e /Applications/Hush.app ]; then
   trash /Applications/Hush.app
 fi
 
-# TODO(cdzombak): nativefier (npm)
-# TODO(cdzombak): remove mysides
-# TODO(cdzombak): ivpn
+if [ -e /Applications/IVPN.app ]; then
+  echo "IVPN..."
+  verify_smartdelete
+  trash /Applications/IVPN.app
+fi
+
+if [ -e "$(brew --prefix)/bin/mysides" ] ; then
+  echo "mysides ..."
+  brew uninstall mysides
+fi
+
+if [ -e "$(brew --prefix)/bin/nativefier" ] ; then
+  echo "nativefier ..."
+  brew uninstall nativefier
+fi

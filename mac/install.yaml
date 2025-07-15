@@ -1031,10 +1031,9 @@ install_groups:
         install:
           - gomod: golang.org/x/tools/cmd/goimports
 
-      # TODO(cdzombak):
       - artifact: $BREW/bin/gorc
         install:
-          - gomod: github.com/cdzombak/gorc
+          - gomod: github.com/stretchr/gorc
 
       - artifact: $BREW/bin/pkger
         install:
@@ -1890,14 +1889,14 @@ install_groups:
         install:
           - cask: sonos
         checklist:
-          - Note do not enable notifications
+          - "Note: do not enable notifications"
 
       - artifact: $HOME/Applications/UniFi Protect.app
         persist: true
         checklist:
           - Create Safari web app
 
-      # TODO(cdzombak):
+      # TODO(cdzombak): other webapps
 
   # Music, podcasts, and reading applications (optional)
   - group: "Music, Movies, Podcasts & Reading"
