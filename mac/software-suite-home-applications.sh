@@ -34,9 +34,8 @@ create_app_link() {
   local app_path="$2"
   local shortcut_name="${3:-$(basename "$app_path" .app)}"
   local link_path="$HOME/Applications/$category_folder/$shortcut_name"
-
   if [ -e "$app_path" ]; then
-    ln -sf "$app_path" "$link_path"
+    ln -shf "$app_path" "$link_path"
   fi
 }
 

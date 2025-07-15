@@ -402,7 +402,6 @@ install_groups:
         install:
           - dl: https://dropbox.dzombak.com/Honk.aiff
 
-      # TODO(cdzombak):
       - artifact: /usr/local/bin/diskspace
         note: reports the various free space measurements possible on APFS
         install:
@@ -1159,6 +1158,7 @@ install_groups:
           - Add key to SSH config
 
       - artifact: $BREW/bin/yubikey-agent
+        persist: true
         install:
           - run: brew tap filippo.io/yubikey-agent https://filippo.io/yubikey-agent
           - brew: yubikey-agent
@@ -1170,12 +1170,14 @@ install_groups:
           - Add new public key to SSH config
 
       - artifact: $BREW/bin/ykman
+        persist: true
         install:
           - brew: ykman
         checklist:
           - Configure YubiKey management CLI
 
       - artifact: /Applications/YubiKey Manager.app
+        persist: true
         install:
           - cask: yubico-yubikey-manager
         checklist:
@@ -1460,11 +1462,6 @@ install_groups:
         checklist:
           - Add this system to backup strategy/plan/routine
 
-      - artifact: /Applications/IVPN.app
-        persist: true
-        install:
-          - cask: ivpn
-
       - artifact: /Applications/Tor Browser.app
         persist: true
         install:
@@ -1526,14 +1523,14 @@ install_groups:
       - artifact: /Applications/Meshman 3D Viewer PRO.app
         persist: true
         install:
-          - mas: "1469117334"
+          - mas: "https://apps.apple.com/us/app/meshman-3d-viewer-pro/id1502933106?mt=12"
 
       - artifact: /Applications/LTspice.app
         persist: true
         install:
           - cask: ltspice
 
-      - artifact: /Applications/KiCad.app
+      - artifact: /Applications/KiCad/KiCad.app
         persist: true
         install:
           - cask: kicad
@@ -1574,6 +1571,7 @@ install_groups:
         checklist:
           - Authenticate
 
+      # TODO(cdzombak):
       - artifact: /Applications/Zotero.app
         install:
           - cask: zotero
@@ -1769,7 +1767,7 @@ install_groups:
         checklist:
           - Configure photo viewing preferences
 
-      - artifact: /Applications/Claquette - GIF & Video Tool.app
+      - artifact: /Applications/Claquette.app
         persist: true
         install:
           - mas: "587748131"
@@ -1808,7 +1806,7 @@ install_groups:
         install:
           - cask: fontforge
 
-      - artifact: /Applications/FF Works.app
+      - artifact: "/Applications/ff·Works.app"
         persist: true
         install:
           - cask: ff-works
@@ -1822,8 +1820,6 @@ install_groups:
 
       - artifact: /Applications/DxO FilmPack 7.app
         persist: true
-        install:
-          - run: echo "(manual install required)"
         checklist:
           - Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)
 
@@ -1924,7 +1920,7 @@ install_groups:
         checklist:
           - Sign into Plex account
 
-      - artifact: /Applications/Infuse 7.app
+      - artifact: /Applications/Infuse.app
         persist: true
         install:
           - mas: "1136220934"
@@ -2098,7 +2094,7 @@ install_groups:
           - Privacy Lock Screens after 2 minutes
           - Restore purchases
 
-      - artifact: /Applications/Transmit 5.app
+      - artifact: /Applications/Transmit.app
         persist: true
         install:
           - cask: transmit

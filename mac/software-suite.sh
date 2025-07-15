@@ -5,6 +5,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 LIB_DIR="$SCRIPT_DIR/../lib"
 # shellcheck disable=SC1091
 source "$LIB_DIR"/cecho
+source "$LIB_DIR"/sw_install
 
 # TODO(cdzombak): stow tool-versions
 # TODO(cdzombak): vibetunnel (/Applications/VibeTunnel.app ; /opt/homebrew/bin/vt) (brew install --cask vibetunnel)
