@@ -314,17 +314,12 @@ install_groups:
         install:
           - run: brew tap mac-cleanup/mac-cleanup-py ; brew install mac-cleanup-py
 
-      - artifact: /Applications/iTermAI.app
-        install:
-          - cask: itermai
-
       - artifact: /Applications/Sublime Text.app
         install:
           - cask: sublime-text
         checklist:
-          - Install Package Control
-          - Enter license key
-          - Configure sync settings
+          - Open the application and allow Package Control to finish installing packages as configured
+          - License
 
       - artifact: /Applications/Suspicious Package.app
         install:
@@ -337,6 +332,9 @@ install_groups:
       - artifact: /Applications/Marked 2.app
         install:
           - cask: marked
+        checklist:
+          - License
+          - Install Custom CSS from ~/.config/macos
 
       - artifact: /Applications/KeyCastr.app
         install:
@@ -346,29 +344,34 @@ install_groups:
           - run: defaults write "io.github.keycastr" "default.commandKeysOnly" '1'
           - run: defaults write "io.github.keycastr" "selectedVisualizer" 'Default'
           - run: defaults write "io.github.keycastr" "default.fadeDelay" '"1.646634615384615"'
+        checklist:
+          - Set bezel to 70% opacity (from default 80)
+          - Hide in Dock; show only in menu bar
 
       - artifact: /Applications/Setapp.app
         install:
           - cask: setapp
+        checklist:
+          - Sign in to Setapp
+          - Disable "Show in Finder Sidebar"
+          - Install applications as desired from Setapp Favorites
+          - Re-run post-install configuration script
+          - Disable global search shortcut
+          - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
       - artifact: /Applications/ThingsMacSandboxHelper.app
         install:
           - cask: thingsmacsandboxhelper
 
-      # TODO(cdzombak):
       - artifact: $HOME/Library/Fonts/MesloLGL-Regular.ttf
         install:
-          - run: wget -O /tmp/Meslo.zip https://dropbox.dzombak.com/_auth/Meslo.zip && unzip /tmp/Meslo.zip -d /tmp/meslo && cp /tmp/meslo/*.ttf "$HOME/Library/Fonts/" && rm -rf /tmp/Meslo.zip /tmp/meslo
-        checklist:
-          - Verify fonts appear in Font Book
+          - archive: https://dropbox.dzombak.com/Meslo_LG_v1.2.5.zip
 
-      # TODO(cdzombak):
       - artifact: $HOME/Library/Fonts/MesloLGLDZ-Regular.ttf
         install:
-          - run: wget -O /tmp/MesloDZ.zip https://dropbox.dzombak.com/_auth/MesloDZ.zip && unzip /tmp/MesloDZ.zip -d /tmp/meslodz && cp /tmp/meslodz/*.ttf "$HOME/Library/Fonts/" && rm -rf /tmp/MesloDZ.zip /tmp/meslodz
-        checklist:
-          - Verify fonts appear in Font Book
+          - archive: https://dropbox.dzombak.com/Meslo_LG_DZ_v1.2.5.zip
 
+      # TODO(cdzombak):
       - artifact: /usr/local/bin/hosts-timer
         install:
           - run: git clone https://github.com/cdzombak/hosts-timer.git /tmp/hosts-timer && cd /tmp/hosts-timer && make install && rm -rf /tmp/hosts-timer
@@ -390,12 +393,16 @@ install_groups:
         checklist:
           - Arrange/enable dictionaries in Dictionary.app as desired
 
-      # TODO(cdzombak):
       - artifact: /Applications/Ears.app
         install:
-          - run: wget -O /tmp/Ears.zip https://retina.studio/ears/download && unzip /tmp/Ears.zip -d /tmp/ears && cp -r /tmp/ears/Ears.app /Applications/ && rm -rf /tmp/Ears.zip /tmp/ears
+          - archive: https://download.retina.studio/ears/v1/
+            file: "Ears.app"
         checklist:
-          - Enter license key
+          - License Ears
+          - Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar
+          - Favorite devices: AirPods Pro and Sony ANC Phones
+          - Linked devices: AirPods Pro/Webcam Mic, Sony ANC Phones/Webcam Mic, AirPods Pro/Lavalier Mic, Sony ANC Phones/Lavalier Mic
+          - Notifications: banners, show on lock screen, hide in Notification Center, show previews always
 
       - artifact: $HOME/Library/Sounds/Honk.aiff
         install:
@@ -408,7 +415,7 @@ install_groups:
 
       - artifact: /Applications/Red Eye.app
         install:
-          - run: echo "Manual install required from iCloud Drive/Software"
+          - run: echo "(manual install required)"
         checklist:
           - Install Red Eye.app from iCloud Drive/Software folder
 
@@ -678,16 +685,15 @@ install_groups:
           - run: defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 50
           - run: 'defaults write net.shinyfrog.bear NSUserKeyEquivalents ''{ Archive = "^$a"; Back = "@^\U2190"; Forward = "@^\U2192"; }'''
         checklist:
-          - Sign in to sync account
-          - Configure keyboard shortcuts
-          - Install Safari extension
+          - Assign keyboard shortcuts
+          - Enable Bear Safari extension
 
       - artifact: /Applications/Dropover.app
         install:
           - mas: "1355679052"
         checklist:
-          - Configure launch at login
-          - Restore purchase if needed
+          - Start at login
+          - Restore purchase
 
       - artifact: /Applications/Due.app
         install:
@@ -711,15 +717,18 @@ install_groups:
         install:
           - mas: "1481302432"
         checklist:
-          - Sign in to Instapaper account
-          - Install browser extensions
+          - Sign in
+          - Enable system share extension (not Safari extension)
 
       - artifact: /Applications/NewFileMenu.app
         install:
           - mas: "1064959555"
         checklist:
-          - Configure file templates
-          - Set up keyboard shortcuts
+          - Enable Finder extension
+          - Enable opening file after creation
+          - Disable menu bar item
+          - Disable all templates except plain text and shell script
+          - Add Markdown template (located in .config/macos/NewFileMenu)
 
       - artifact: /Applications/Numbers.app
         install:
@@ -737,7 +746,7 @@ install_groups:
         install:
           - mas: "736473980"
         checklist:
-          - Restore purchases if needed
+          - Restore purchases
 
       - artifact: /Applications/TableFlip.app
         install:
@@ -754,9 +763,10 @@ install_groups:
           - run: defaults write com.tapbots.Pastebot2Mac "PasteAndDequeueHotKeyCleared" '1'
           - run: defaults write com.tapbots.Pastebot2Mac "MaxNumberClipboardEntries" '500'
         checklist:
-          - Configure launch at login
-          - Set up keyboard shortcuts
-          - Enable accessibility permissions
+          - Start at login
+          - Set/confirm Shift-Command-V global shortcut
+          - Configure, especially Always Paste Plain Text
+          - Enable Accessibility control
 
       - artifact: /Applications/PCalc.app
         install:
@@ -770,14 +780,15 @@ install_groups:
         install:
           - mas: "1554235898"
         checklist:
-          - Enable accessibility permissions
-          - Configure font preferences
+          - Enable Accessibility access as required
+          - Change max preview size to Medium 500K
+          - Change font Meslo LG M 13pt
 
       - artifact: /Applications/Poolsuite FM.app
         install:
           - mas: "1514817810"
         checklist:
-          - Sign in to your account
+          - Sign in
 
       - artifact: /Applications/RadarScope.app
         install:
@@ -804,8 +815,8 @@ install_groups:
           - run: defaults write com.basevelocity.RadarScope warningProvider -string "wdt"
         checklist:
           - Restore purchases
-          - Configure data providers
-          - Set up location preferences
+          - Sign into RadarScope account
+          - Sign into Spotter Network account
 
       - artifact: /Applications/Reeder.app
         install:
@@ -832,23 +843,23 @@ install_groups:
           - run: defaults write com.reederapp.5.macOS "corekit.animator.configuration" 2
           - run: defaults write com.reederapp.5.macOS "subscriptions-hide-allitems-count" -bool false
         checklist:
-          - Configure Feedbin account
-          - Set up reading preferences
-          - Configure keyboard shortcuts
+          - Sign into Feedbin
+          - Feedbin settings sync every 15m; sync on wake; unread count in app icon; keep 2 days archive
 
       - artifact: /Applications/Service Station.app
         install:
           - mas: "1503136033"
         checklist:
-          - Configure sync preferences
-          - Grant necessary permissions
+          - Install/sync current configuration
+          - Enable Finder extension
+          - Allow access to /
+          - Restore purchases
 
       - artifact: /Applications/Shareful.app
         install:
           - mas: "1522267256"
         checklist:
-          - Enable system extensions
-          - Configure sharing preferences
+          - Enable share extensions Copy, Open In, Save As
 
       - artifact: /Applications/Soro.app
         install:
@@ -862,9 +873,10 @@ install_groups:
         install:
           - mas: "1491071483"
         checklist:
-          - Configure launch at login
-          - Set up keyboard shortcuts
-          - Configure dock preferences
+          - Start at login
+          - Add to Dock
+          - Control with Dock Icon; customize color
+          - Shortcut Ctrl-Shift-'
 
       - artifact: /Applications/Things3.app
         install:
@@ -884,14 +896,14 @@ install_groups:
         install:
           - mas: "1437501942"
         checklist:
-          - Enable Safari extension
+          - Configure for Reeder.app
+          - Enable RSS Button Safari extension
 
       - artifact: /Applications/Save to Raindrop.io.app
         install:
           - mas: "1549370672"
         checklist:
-          - Enable Safari extension
-          - Sign in to Raindrop.io account
+          - Enable Save to Raindrop Safari extension
 
       - artifact: /Applications/StopTheNews.app
         install:
@@ -916,8 +928,8 @@ install_groups:
         install:
           - mas: "1320666476"
         checklist:
-          - Enable Safari extension
-          - Configure blocking preferences
+          - Enable extensions
+          - Hide in Safari toolbar
 
       - artifact: /Applications/BetterTouchTool.app
         install:
@@ -959,19 +971,37 @@ install_groups:
         install:
           - cask: elgato-control-center
         checklist:
-          - Configure connected Elgato devices
+          - Arrange in menu bar
 
       - artifact: /Applications/MuteDeck.app
         install:
           - cask: mutedeck
         checklist:
-          - Configure Stream Deck integration
+          - Enable Accessibility permissions
+          - Enable System Microphone & Zoom only
+          - Start at login
+          - Don't open window at start
+          - Hide in menu bar
 
       - artifact: /Applications/Elgato Stream Deck.app
         install:
           - cask: elgato-stream-deck
         checklist:
-          - Configure Stream Deck buttons and actions
+          - Enable Accessibility permissions
+          - Install plugins Control Center, Cosmetic Key, MuteDeck or Zoom, API Request
+          - Install icons Material, Mana, Pure, Entypo, Hexaza
+          - Restore config backup/saved profiles as desired
+          - Configure as desired
+          - Set keyboard shortcut for DnD in Shortcuts app
+
+      - artifact: "/Applications/Tembo.app"
+        checklist:
+          - "[Download](https://www.houdah.com/tembo/download.html) and install Tembo"
+          - Register (details in 1Password)
+          - Grant permissions (in Privacy tab)
+          - Enable helper; hide Menu Bar icon
+          - Set global shortcut Ctrl-Shift-Space
+          - Set Groups, Defaults, locations per config screenshots
 
   - group: Personal
     software:
@@ -1234,9 +1264,9 @@ install_groups:
         install:
           - cask: github
         checklist:
-          - Sign in to GitHub account
-          - Configure Git settings
-          - Set up SSH keys
+          - Sign in
+          - Set external editor and shell
+          - Install CLI tool
 
       - artifact: /Applications/WWDC.app
         persist: true
@@ -1259,7 +1289,7 @@ install_groups:
           - cask: rapidapi
         checklist:
           - Sign in / License
-          - "Set font: Meslo LG L 14"
+          - Set font Meslo LG L 14
 
       - artifact: /Applications/HTTP Toolkit.app
         install:
@@ -1385,7 +1415,10 @@ install_groups:
 
   # AI and machine learning tools (optional)
   - group: AI
-    software: []
+    software:
+      - artifact: /Applications/iTermAI.app
+        install:
+          - cask: itermai
 
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio
@@ -1524,7 +1557,9 @@ install_groups:
         install:
           - mas: "639968404"
         checklist:
-          - Add delivery tracking accounts
+          - Allow notifications
+          - Tweak system notification settings (all off except "Show in Notification Center")
+          - Enable calendar integration
 
   # Communication applications (optional)
   - group: Communications
@@ -1540,17 +1575,19 @@ install_groups:
           - run: defaults write com.mimestream.Mimestream DeleteKeyAction 'trash'
           - run: 'defaults write com.mimestream.Mimestream NSUserKeyEquivalents ''{ "Add Star" = "@^s"; "Remove Star" = "@^s"; }'''
         checklist:
-          - Add email accounts
-          - Configure notification preferences
-          - Set up keyboard shortcuts
-          - Configure message handling preferences
+          - Add personal accounts; set account name
+          - Customize main window & message window toolbars
+          - Increase font size
+          - Notification config Show in Notification Center and display badge
 
       - artifact: /Applications/Discord.app
         persist: true
         install:
           - cask: discord
         checklist:
-          - Sign in to Discord account
+          - Login
+          - Disable unread message badge (Preferences > Notifications)
+          - Disable notification sounds in System Preferences
 
       - artifact: /Applications/Slack.app
         persist: true
@@ -1608,8 +1645,9 @@ install_groups:
         install:
           - cask: adobe-creative-cloud
         checklist:
-          - Sign in to Adobe account
-          - Install desired Creative Cloud apps
+          - Sign into Adobe Account
+          - Install Lightroom
+          - Install Photoshop
 
       - artifact: /Applications/Handbrake.app
         persist: true
@@ -1631,7 +1669,7 @@ install_groups:
         install:
           - mas: "944693506"
         checklist:
-          - Configure file metadata viewing preferences
+          - Grant full disk access
 
       - artifact: /Applications/Avenue.app
         persist: true
@@ -1667,7 +1705,7 @@ install_groups:
         install:
           - cask: geotag
         checklist:
-          - Configure geotagging preferences
+          - Set backups directory to ~/tmp/GeoTag Backups
 
       - artifact: /Applications/Inkscape.app
         persist: true
@@ -1692,7 +1730,7 @@ install_groups:
         install:
           - cask: sonos
         checklist:
-          - Set up Sonos system
+          - Note do not enable notifications
 
       - artifact: $HOME/Applications/UniFi Protect.app
         persist: true
@@ -1708,22 +1746,29 @@ install_groups:
         install:
           - cask: plexamp
         checklist:
-          - Sign in to Plex account
+          - Sign into Plex account
+          - Use Large font size (Settings > Experience)
+          - Use system window controls (Settings > Experience > Desktop Integration)
+          - Turn off notifications (Settings > Experience > Desktop Integration)
+          - Set 160Kbps conversion bitrate (Settings > Playback > Streaming Quality)
+          - Disable crossfades (aka "Sweet Fades") (Settings > Playback)
 
       - artifact: /Applications/Plex.app
         persist: true
         install:
           - cask: plex
         checklist:
-          - Configure media server
-          - Set up libraries
+          - Sign into Plex account
 
       - artifact: /Applications/Infuse 7.app
         persist: true
         install:
           - mas: "1136220934"
         checklist:
-          - Configure media sources
+          - Sign into Plex servers as desired
+          - Add file shares as desired
+          - Disable file shares in Library views
+          - Restore purchases
 
       - artifact: /Applications/Pocket Casts.app
         persist: true
@@ -1759,7 +1804,8 @@ install_groups:
         install:
           - cask: webviewscreensaver
         checklist:
-          - Configure custom URLs for screensaver
+          - Set URL to https://www.bryanbraun.com/after-dark-css/all/flying-toasters.html
+          - Set other URLs from https://www.bryanbraun.com/after-dark-css as desired
 
   # Social networking applications (optional)
   - group: Social Networking
@@ -1772,21 +1818,27 @@ install_groups:
         configure:
           - run: defaults write com.tapbots.Ivory fontSize 16
         checklist:
-          - Sign in to Mastodon account
+          - Sign into personal a2mi.social Mastodon account
+          - Restore purchases
+          - Enable notifications
+          - Notification settings (system level) Disable banners & sounds; previews only when unlocked
+          - Sign into Instapaper
 
       - artifact: /Applications/Mona.app
         persist: true
         install:
           - mas: "1659154653"
         checklist:
-          - Sign in to Mastodon account
+          - Sign into personal a2mi.social Mastodon account
+          - Restore purchases
+          - Disallow notifications (for now)
 
       - artifact: /Applications/Messenger.app
         persist: true
         install:
           - cask: messenger
         checklist:
-          - Sign in to Facebook account
+          - Sign into Facebook account
 
   # Games and entertainment (optional)
   - group: Games
@@ -1796,8 +1848,9 @@ install_groups:
         install:
           - cask: steam
         checklist:
-          - Sign in to Steam account
-          - Configure game library
+          - Launch & sign in
+          - Remove login item in System Preferences/Users & Groups
+          - Disable & unload com.valvesoftware.steamclean launchd job
 
       - artifact: $BREW/bin/nsnake
         persist: true
@@ -1822,7 +1875,8 @@ install_groups:
         install:
           - cask: betterdisplay
         checklist:
-          - Configure display settings
+          - License
+          - Configure as desired
 
       - artifact: /Applications/Hand Mirror.app
         persist: true
@@ -1833,7 +1887,11 @@ install_groups:
           - run: defaults write "net.rafaelconde.Hand-Mirror" "selectedPopoverSize" 'Medium'
           - run: defaults write "net.rafaelconde.Hand-Mirror" "dismissPreference" '1'
         checklist:
-          - Enable screen mirroring
+          - Set shortcut Ctrl-Shift-Cmd-M
+          - Set open at login as desired
+          - Select correct webcam
+          - Position in menu bar
+          - Restore purchase
 
       - artifact: /Applications/VNC Viewer.app
         persist: true
@@ -1845,12 +1903,17 @@ install_groups:
         install:
           - mas: "1663047912"
         checklist:
-          - Configure remote connections
+          - Sign into Tailscale
+          - Sidebar hide Screens Connect
+          - Controls Use shared clipboard by default
+          - Privacy Lock Screens after 2 minutes
+          - Restore purchases
 
       - artifact: /Applications/Transmit 5.app
         persist: true
         install:
           - cask: transmit
         checklist:
-          - Enter license key
-          - Configure server connections
+          - License
+          - Sign into Panic Sync (Transmit and Nova repository)
+          - Configure application

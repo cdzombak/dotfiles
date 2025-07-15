@@ -137,61 +137,17 @@ else
   ./mac-install -config install.yaml
 fi
 
-
-sw_install "/Applications/Alfred 5.app" "brew_cask_install alfred" \
-  "- [ ] Launch & walk through setup\n- [ ] Disable Spotlight keyboard shortcut\n- [ ] Use Command-Space for Alfred\n- [ ] Sync settings from \`~/.config/macos\`\n- [ ] Enable automatic snippet expansion\n- [ ] Enable browser bookmarks\n- [ ] Change theme\n- [ ] Sweep through synced workflows, fixing as needed"
-  sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
-sw_install /Applications/AppCleaner.app "brew_cask_install appcleaner" \
-  "- [ ] Enable SmartDelete (automatic watching for deleted apps)\n- [ ] Enable automatic updates\n- [ ] Allow Full Disk Access"
-sw_install /Applications/Arq.app "brew_cask_install arq" \
-  "- [ ] Setup onsite backups as desired\n- [ ] Setup offsite backups as desired\n- [ ] Setup emails via Mailgun\n- [ ] Pause backups on battery power\n- [ ] Enable backup thinning"
-sw_install "$HOME/Library/Screen Savers/Brooklyn.saver" "brew_cask_install brooklyn" \
-  "- [ ] Configure screen saver (as desired)"
-sw_install "/Applications/Choosy.app" "brew_cask_install choosy" \
-  "- [ ] License Choosy\n- [ ] Enable Choosy & Start at Login\n- [ ] Set as default browser\n- [ ] Configure Choosy/Import and Tweak Choosy Config"
-sw_install /Applications/CommandQ.app "brew_cask_install commandq" \
-  "- [ ] License\n- [ ] Enable Start at Login"
-sw_install /Applications/FastScripts.app "brew_cask_install fastscripts" \
-  "- [ ] License\n- [ ] Launch at login"
-sw_install "/Applications/GitHub Desktop.app" "brew_cask_install github" \
-  "- [ ] Sign in\n- [ ] Set external editor and shell\n- [ ] Install CLI tool"
-sw_install "/Applications/GPG Keychain.app" "brew_cask_install gpg-suite-no-mail" \
-  "- [ ] Import/generate GPG keys as needed"
-sw_install /Applications/Hammerspoon.app "brew_cask_install hammerspoon" \
-  "- [ ] Configure to run at login\n- [ ] Enable Accessibility"
-sw_install "/Applications/Hex Fiend.app" "brew_cask_install hex-fiend"
-sw_install /Applications/Ice.app "brew_install jordanbaird-ice" \
-  "- [ ] Grant permissions\n- [ ] Launch at login\n- [ ] Configure menu bar as desired/following convention from existing systems"
-sw_install /Applications/IINA.app "brew_cask_install iina"
-sw_install /Applications/iTerm.app "brew_cask_install iterm2" \
-  "- [ ] Allow Full Disk Access\n- [ ] Sync settings from \`~/.config/macos\`, taking care not to overwrite the files there\n- [ ] Make default term"
-sw_install /Applications/iTermAI.app "brew_cask_install itermai"
-sw_install /Applications/Kaleidoscope.app "brew_cask_install kaleidoscope" \
-  "- [ ] License\n- [ ] Set terminal app\n- [ ] Set font: Meslo LG L Regular, size 14\n- [ ] Enable Finder extension\n- [ ] Enable Safari extension"
-sw_install /Applications/Latest.app "brew_cask_install latest"
-sw_install /Applications/LaunchControl.app "brew_cask_install launchcontrol" \
-  "- [ ] License\n- [ ] Allow full disk access\n- [ ] Install and allow full disk access for \`fdautil\`\n- [ ] Enable QuickLaunch\n- [ ] Hide QuickLaunch in menu bar"
-sw_install /Applications/LICEcap.app "brew_cask_install licecap"
-if [ ! -e "$HOME/.config/dotfiles/software/no-mimestream" ]; then
-  sw_install /Applications/Mimestream.app "brew_cask_install mimestream" \
-    "- [ ] Add personal accounts; set account name\n- [ ] Customize main window & message window toolbars\n- [ ] Increase font size\n- [ ] Notification config: Show in Notification Center and display badge"
+if [ ! -L /Applications/Marked.app ]; then
+  # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
+  ln -s "/Applications/Marked 2.app" /Applications/Marked.app
+  chflags -h hidden /Applications/Marked.app
 fi
-sw_install "/Applications/noTunes.app" "brew_cask_install notunes" \
-  "- [ ] Launch\n- [ ] Hide in menu bar\n- [ ] Add to Login Items"
-sw_install /Applications/OmniDiskSweeper.app "brew_cask_install omnidisksweeper" \
-  "- [ ] Allow full disk access"
-sw_install "/Applications/Raindrop.io.app" "brew_cask_install raindropio" \
-  "- [ ] Sign in"
-sw_install "/Applications/Shortcat.app" "brew_cask_install shortcat" \
-  "- [ ] Grant permissions\n- [ ] Assign shortcut Alt-Command-Space (move Finder Search to Ctrl-Command-Space if needed)\n- [ ] Launch at Login\n- [ ] Hide in menu bar, next to Alfred"
-sw_install /Applications/Sloth.app "brew_cask_install sloth"
-sw_install /Applications/Spotify.app "brew_cask_install spotify" \
-  "- [ ] Sign in\n- [ ] Disable launching at login"
-sw_install "/Applications/Tailscale.app" "brew_cask_install tailscale" \
-  "- [ ] Sign in"
-sw_install "/Applications/The Unarchiver.app" "brew_cask_install the-unarchiver"
-sw_install "/Applications/Typora.app" "brew_cask_install typora" \
-  "- [ ] Associate with Markdown files\n- [ ] License"
+
+
+
+
+# TODO(cdzombak): migrate these
+sw_install "/Applications/Apparency.app" "brew_cask_install apparency"
 
 _install_sublimetext() {
   brew install --cask sublime-text
@@ -225,103 +181,6 @@ if [ -L "$HOME/.sublime-config" ]; then
   rm "$HOME/.sublime-config"
 fi
 
-_install_suspicious_package() {
-  brew install --cask suspicious-package
-  # if [ ! -f /etc/paths.d/cdz.SuspiciousPackage ]; then
-  #   set -x
-  #   sudo rm -f /etc/paths.d/cdz.SuspiciousPackage
-  #   echo '/Applications/Suspicious Package.app/Contents/SharedSupport' | sudo tee -a /etc/paths.d/cdz.SuspiciousPackage > /dev/null
-  #   set +x
-  # fi
-}
-sw_install "/Applications/Suspicious Package.app" _install_suspicious_package
-
-_install_whatsyoursign() {
-  brew install --cask whatsyoursign
-  open -a "$(brew info --cask whatsyoursign | grep -i "$(brew --prefix)/caskroom" | cut -d' ' -f1)/WhatsYourSign Installer.app"
-  while [ ! -e /Applications/WhatsYourSign.app ]; do
-    cecho "Please complete WhatsYourSign installation." $white
-    # shellcheck disable=SC2162
-    read -p "Press [Enter] to continue..."
-  done
-}
-sw_install /Applications/WhatsYourSign.app _install_whatsyoursign
-
-_install_redeye() {
-  setupnote "Red Eye.app" "- [ ] Install from \`iCloud Drive/Software\`"
-}
-sw_install "/Applications/Red Eye.app" _install_redeye
-
-_install_meslolg() {
-  pushd /tmp
-  wget https://dropbox.dzombak.com/Meslo_LG_v1.2.5.zip
-  unzip Meslo_LG_v1.2.5.zip
-  cp Meslo_LG_v1.2.5/*.ttf "$HOME/Library/Fonts"
-  popd
-}
-sw_install "$HOME/Library/Fonts/MesloLGL-Regular.ttf" _install_meslolg
-_install_meslolgdz() {
-  pushd /tmp
-  wget https://dropbox.dzombak.com/Meslo_LG_DZ_v1.2.5.zip
-  unzip Meslo_LG_DZ_v1.2.5.zip
-  cp Meslo_LG_DZ_v1.2.5/*.ttf "$HOME/Library/Fonts"
-  popd
-}
-sw_install "$HOME/Library/Fonts/MesloLGLDZ-Regular.ttf" _install_meslolgdz
-
-sw_install "$HOME/Library/Fonts/NationalPark-Regular.otf" "brew_cask_install font-national-park"
-
-sw_install "/Applications/Marked 2.app" "brew_cask_install marked" \
-  "- [ ] License\n- [ ] Install Custom CSS from \`~/.config/macos\`"
-if [ ! -L /Applications/Marked.app ]; then
-  # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
-  ln -s "/Applications/Marked 2.app" /Applications/Marked.app
-  chflags -h hidden /Applications/Marked.app
-fi
-
-sw_install "/Applications/KeyCastr.app" "brew_cask_install keycastr" \
-  "- [ ] Set bezel to 70% opacity (from default 80)\n- [ ] Hide in Dock; show only in menu bar"
-
-# macOS Applications from Mac App Store:
-
-sw_install "/Applications/1Password for Safari.app" "mas install 1569813296" \
-  "- [ ] Enable in Safari\n- [ ] Always allow on every site\n- [ ] Show in Toolbar (arrange to left: Back/Forward, RSS, 1Password) \n- [ ] Disable all Safari autofill features but \"Other Forms\""
-if [ ! -e "$HOME/.config/dotfiles/software/no-bear" ]; then
-  sw_install /Applications/Bear.app "mas install 1091189122" \
-    "- [ ] Assign keyboard shortcuts\n- [ ] Enable Bear Safari extension"
-fi
-# sw_install /Applications/Byword.app "mas install 420212497"
-sw_install /Applications/Dropover.app "mas install 1355679052" \
-  "- [ ] Start at login\n- [ ] Restore purchase"
-sw_install /Applications/Due.app "mas install 524373870" \
-  "- [ ] Assign keyboard shortcut Ctrl-Shift-U\n- [ ] Start at Login\n- [ ] Enable Dropbox Sync\n- [ ] Customize Notifications\n- [ ] Restore purchases"
-sw_install "/Applications/Instapaper Save.app" "mas install 1481302432" \
-  "- [ ] Sign in\n- [ ] Enable system share extension (_not_ Safari extension)"
-sw_install /Applications/NewFileMenu.app "mas install 1064959555" \
-  "- [ ] Enable Finder extension\n- [ ] Enable opening file after creation\n- [ ] Disable menu bar item\n- [ ] Disable all templates except plain text and shell script\n- [ ] Add Markdown template (located in .config/macos/NewFileMenu)"
-sw_install /Applications/Numbers.app "mas install 409203825"
-sw_install /Applications/Pages.app "mas install 409201541"
-sw_install "/Applications/Paint S.app" "mas install 736473980" \
-  "- [ ] Restore purchases"
-sw_install /Applications/Pastebot.app "mas install 1179623856" \
-  "- [ ] Start at login\n- [ ] Set/confirm Shift-Command-V global shortcut\n- [ ] Configure, especially Always Paste Plain Text\n- [ ] Enable Accessibility control"
-sw_install /Applications/PCalc.app "mas install 403504866"
-sw_install "/Applications/PDF Viewer.app" "mas install 1120099014"
-sw_install /Applications/Peek.app "mas install 1554235898" \
-  "- [ ] Enable Accessibility access as required\n- [ ] Change max preview size to Medium 500K\n- [ ] Change font: Meslo LG M 13pt"
-sw_install "/Applications/Poolsuite FM.app" "mas install 1514817810" \
-  "- [ ] Sign in"
-sw_install /Applications/Tot.app "mas install 1491071483" \
-  "- [ ] Start at login\n- [ ] Add to Dock\n- [ ] Control with Dock Icon; customize color\n- [ ] Shortcut: \`Ctrl-Shift-'\`"
-sw_install /Applications/RadarScope.app "mas install 288419283" \
-  "- [ ] Restore purchases\n- [ ] Sign into RadarScope account\n- [ ] Sign into Spotter Network account"
-sw_install /Applications/Reeder.app "mas install 1529448980" \
-  "- [ ] Sign into Feedbin\n- [ ] Feedbin settings: sync every 15m; sync on wake; unread count in app icon; keep 2 days archive"
-sw_install "/Applications/Service Station.app" "mas install 1503136033" \
-  "- [ ] Install/sync current configuration\n- [ ] Enable Finder extension\n- [ ] Allow access to \`/\`\n- [ ] Restore purchases"
-sw_install "/Applications/Shareful.app" "mas install 1522267256" \
-    "- [ ] Enable share extensions: Copy, Open In, Save As"
-
 _install_hosts_timer() {
   TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
   git clone "https://github.com/cdzombak/hosts-timer.git" "$TMP_DIR"
@@ -337,8 +196,6 @@ _install_hosts_timer() {
 }
 sw_install "/usr/local/bin/hosts-timer" _install_hosts_timer
 
-
-
 # Solarized for Xcode
 # if this source disappears, there's also my copy in ~/.config/macos
 _install_xcode_solarized() {
@@ -352,29 +209,6 @@ _install_xcode_solarized() {
 }
 sw_install "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.xccolortheme" _install_xcode_solarized "- [ ] Enable color theme in Xcode\n- [ ] Customize font & size"
 
-_install_setapp() {
-  brew install --cask setapp
-}
-sw_install /Applications/Setapp.app _install_setapp \
-  "- [ ] Sign in to Setapp\n- [ ] Disable \"Show in Finder Sidebar\"\n- [ ] Install applications as desired from Setapp Favorites\n- [ ] Re-run post-install configuration script\n- [ ] Disable global search shortcut\n- [ ] Disable the launch agent \`com.setapp.DesktopClient.SetappLauncher\` using LaunchControl (disable, unload, and change disabled override)"
-
-_install_ears() {
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'ears')
-  pushd "$TMP_DIR"
-  wget -O ears.zip "https://download.retina.studio/ears/v1/"
-  unzip ears.zip -d "/Applications/"
-  rm -rf "/Applications/__MACOSX"
-  popd
-}
-sw_install "/Applications/Ears.app" _install_ears \
-  "- [ ] License Ears
-- [ ] Configure: Start at Login; Key combo Ctrl-Shift-E; Notify about audio device changes; Show in Menu Bar
-- [ ] Favorite devices: AirPods Pro and Sony ANC Phones
-- [ ] Linked devices: AirPods Pro/Webcam Mic, Sony ANC Phones/Webcam Mic, AirPods Pro/Lavalier Mic, Sony ANC Phones/Lavalier Mic
-- [ ] Notifications: banners, show on lock screen, hide in Notification Center, show previews always"
-
-sw_install "$HOME/Library/Sounds/Honk.aiff" "wget -P $HOME/Library/Sounds https://dropbox.dzombak.com/Honk.aiff"
-
 _install_diskspace() {
   # https://github.com/scriptingosx/diskspace reports the various free space measure possible on APFS
   set -x
@@ -386,55 +220,6 @@ _install_diskspace() {
   set +x
 }
 sw_install "/usr/local/bin/diskspace" _install_diskspace
-
-if [ ! -e "/Applications/Tembo.app" ]; then
-  setupnote "Tembo" "- [ ] [Download](https://www.houdah.com/tembo/download.html) and install Tembo\n- [ ] Register (details in 1Password)\n- [ ] Grant permissions (in Privacy tab)\n- [ ] Enable helper; hide Menu Bar icon\n- [ ] Set global shortcut Ctrl-Shift-Space\n- [ ] Set Groups, Defaults, locations per config screenshots"
-fi
-
-if [ ! -e "/Applications/Setapp/BetterTouchTool.app" ] && [ ! -e "/Applications/BetterTouchTool.app" ]; then
-  brew install --cask bettertouchtool
-  setupnote "BetterTouchTool.app" \
-    "- [ ] Sync settings (Dropbox)\n- [ ] License"
-fi
-
-
-
-echo ""
-cecho "--- Interactive Section ---" $white
-cecho "The remaining applications/tools are not installed by default, since they may be unneeded/unwanted in some system setups." $white
-
-GOINTERACTIVE=true
-cecho "Skip the interactive section? (y/N)" $magenta
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  GOINTERACTIVE=false
-  echo "Moving on."
-fi
-
-YES_INSTALL_KUBECTL=false
-
-if $GOINTERACTIVE; then
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-dayone" ]; then
-  _install_dayone() {
-    cecho "Install Day One? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      mas install 1055511498
-      sudo bash "/Applications/Day One.app/Contents/Resources/install_cli.sh"
-      setupnote "Day One.app" \
-        "- [ ] Sign into Day One account\n- [ ] Disable global shortcut\n- [ ] Disable creating tags from hashtags\n- [ ] Disable daily prompt"
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-dayone"
-    fi
-  }
-  sw_install "/Applications/Day One.app" _install_dayone
-fi
-
-echo ""
-cecho "--- Utilities ---" $white
-echo ""
 
 echo ""
 cecho "Install/update my notify-me script? (y/N)" $magenta
@@ -489,20 +274,6 @@ if [ ! -e "$HOME/.config/dotfiles/software/no-yubikey-ssh-agent" ]; then
     fi
   }
   sw_install "$(brew --prefix)/bin/yubikey-agent" _install_yubikey_agent
-fi
-
-if [ ! -e "$HOME/.config/dotfiles/software/no-ykman" ]; then
-  _install_ykman() {
-    cecho "Install ykman (CLI YubiKey management tool)? (y/N)" $magenta
-    read -r response
-    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      brew install ykman
-    else
-      echo "Won't ask again next time this script is run."
-      touch "$HOME/.config/dotfiles/software/no-ykman"
-    fi
-  }
-  sw_install "/Applications/YubiKey Manager.app" _install_ykman
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/software/no-yubikey-manager" ]; then
@@ -1529,74 +1300,6 @@ _install_monodraw() {
 }
 sw_install /Applications/Monodraw.app _install_monodraw
 
-_install_omnigraffle() {
-  cecho "Install OmniGraffle? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask omnigraffle
-    # shellcheck disable=SC2129
-    echo "## OmniGraffle.app" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-    echo -e "- [ ] License" >> "$HOME/SystemSetup.md"
-    echo "" >> "$HOME/SystemSetup.md"
-  fi
-}
-sw_install /Applications/OmniGraffle.app _install_omnigraffle
-
-_install_omnioutliner() {
-  cecho "Install OmniOutliner? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask omnioutliner
-    setupnote "OmniOutliner" "- [ ] License\n- [ ] Link template folder in \`~/.config/macos/OmniOutliner\`"
-  fi
-}
-sw_install /Applications/OmniOutliner.app _install_omnioutliner
-
-_install_keynote() {
-  cecho "Install Keynote? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 409183694 # Keynote
-  fi
-}
-sw_install /Applications/Keynote.app _install_keynote
-
-_install_deckset() {
-  cecho "Install Deckset? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask deckset
-  fi
-}
-sw_install /Applications/Deckset.app _install_deckset
-
-_install_pdfscanner() {
-  cecho "Install PDF Scanner (PDF scan & compression tool)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 410968114
-  fi
-}
-sw_install /Applications/PDFScanner.app _install_pdfscanner
-
-_install_tableflip() {
-  cecho "Install TableFlip (Markdown table utility)? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    brew install --cask tableflip
-  fi
-}
-sw_install /Applications/TableFlip.app _install_tableflip
-
-_install_calca() {
-  cecho "Install Calca? (y/N)" $magenta
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    mas install 635758264 # Calca
-  fi
-}
-sw_install /Applications/Calca.app _install_calca
 
 echo ""
 cecho "--- Media Tools ---" $white
