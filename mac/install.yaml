@@ -22,13 +22,13 @@ install_groups:
         install:
           - brew: node
 
+      - artifact: $BREW/bin/uv
+        install:
+          - brew: uv
+
       - artifact: $BREW/bin/python3
         install:
           - brew: python
-
-      - artifact: $HOME/.local/bin/uv
-        install:
-          - run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - artifact: $BREW/bin/ag
         install:
