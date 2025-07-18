@@ -715,10 +715,11 @@ install_groups:
           - mas: "1064959555"
         checklist:
           - Enable Finder extension
-          - Enable opening file after creation
+          - Enable opening & showing file after creation
+          - Keep helper app open in background
           - Disable menu bar item
-          - Disable all templates except plain text and shell script
-          - Add Markdown template (located in .config/macos/NewFileMenu)
+          - Set template storage directory (`~/.config/macos/NewFileMenu`)
+          - Disable all templates except Plain Text, Markdown, and Shell Script
 
       - artifact: /Applications/Numbers.app
         install:
@@ -842,7 +843,7 @@ install_groups:
         checklist:
           - Install/sync current configuration
           - Enable Finder extension
-          - Allow access to /
+          - Allow access to / and other relevant volumes
           - Restore purchases
 
       - artifact: /Applications/Shareful.app
