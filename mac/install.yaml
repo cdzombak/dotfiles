@@ -643,16 +643,10 @@ install_groups:
       - artifact: $HOME/Library/Screen Savers/Aerial.saver
         install:
           - cask: aerial
-        checklist:
-          - Configure in System Preferences
-          - Set up video preferences
 
       - artifact: $HOME/Library/Screen Savers/Brooklyn.saver
         install:
           - cask: brooklyn
-        checklist:
-          - Configure in System Preferences
-          - Set up display preferences
 
       - artifact: $HOME/Library/Fonts/JetBrainsMono-Regular.ttf
         install:
@@ -1812,36 +1806,25 @@ install_groups:
 
       - artifact: /Applications/DXOPhotoLab7.app
         persist: true
-        install:
-          - run: echo "(manual install required)"
-        checklist:
-          - Download and install from [dxo.com/dxo-photolab/download](https://www.dxo.com/dxo-photolab/download/)
+        note: https://www.dxo.com/dxo-photolab/download/
 
       - artifact: /Applications/DxO FilmPack 7.app
         persist: true
-        checklist:
-          - Download and install from [dxo.com/dxo-filmpack/download](https://www.dxo.com/dxo-filmpack/download/)
+        note: https://www.dxo.com/dxo-filmpack/download/
 
       - artifact: /Applications/SIGMA Photo Pro 6.app
         persist: true
-        install:
-          - run: echo "(manual install required)"
-        checklist:
-          - Download and install from [sigma-global.com/en/support/software/sigma-photo-pro](https://www.sigma-global.com/en/support/software/sigma-photo-pro/?os=mac)
+        note: https://www.sigma-global.com/en/support/software/sigma-photo-pro/?os=mac
 
       - artifact: /Applications/SIGMA Optimization Pro.app
         persist: true
-        install:
-          - run: echo "(manual install required)"
-        checklist:
-          - Download and install from [sigma-global.com/en/support/software/sigma-optimization-pro](https://www.sigma-global.com/en/support/software/sigma-optimization-pro/?os=mac)
+        note: https://www.sigma-global.com/en/support/software/sigma-optimization-pro/?os=mac
 
       - artifact: $HOME/Library/QuickLook/X3F QL Plugin.qlgenerator
         persist: true
-        install:
-          - run: echo "(manual install required)"
+        note: https://dropbox.dzombak.com/X3F-QL-Plugin.qlgenerator.zip
         checklist:
-          - Download and install X3F QL Plugin.qlgenerator from dropbox.dzombak.com/X3F-QL-Plugin.qlgenerator.zip
+          - Download and install
           - Enable in System Settings
 
       - artifact: $BREW/bin/xtool
@@ -1855,10 +1838,9 @@ install_groups:
 
       - artifact: $HOME/opt/bin/x3f_extract
         persist: true
-        install:
-          - run: echo "(manual install required)"
+        note: https://github.com/Kalpanika/x3f
         checklist:
-          - Download and install x3f tools from https://github.com/Kalpanika/x3f
+          - Download from https://github.com/Kalpanika/x3f
           - Install x3f tools to $HOME/opt/bin
 
       - artifact: /Applications/Logic Pro X.app
