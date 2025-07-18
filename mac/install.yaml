@@ -1217,7 +1217,9 @@ install_groups:
           - Disable global search shortcut
           - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
+      - artifact: /Applications/Setapp/Meta.app
 
+      - artifact: /Applications/Setapp/Renamer.app
 
   # Development tools (optional)
   - group: Dev
