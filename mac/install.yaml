@@ -1955,6 +1955,11 @@ install_groups:
         checklist:
           - Work through required permissions
 
+      - artifact: /Applications/MusicBrainz Picard.app
+        persist: true
+        install:
+          - cask: musicbrainz-picard
+
   # Social networking applications (optional)
   - group: Social Networking
     software:
