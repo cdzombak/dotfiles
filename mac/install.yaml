@@ -1804,7 +1804,7 @@ install_groups:
         install:
           - cask: ff-works
 
-      - artifact: /Applications/DXOPhotoLab7.app
+      - artifact: /Applications/DXOPhotoLab8.app
         persist: true
         note: https://www.dxo.com/dxo-photolab/download/
 

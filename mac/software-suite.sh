@@ -130,6 +130,13 @@ if [ -e "/Applications/Alfred 4.app" ]; then
   brew reinstall --cask alfred
 fi
 
+if [ -e "/Applications/DxOPhotoLab7.app" ]; then
+  echo "DxO PhotoLab: manual upgrade required ..."
+  trash "/Applications/DxOPhotoLab7.app"
+  ./mac-install -config ./install.yaml -only photolab
+  open "https://www.dxo.com/dxo-photolab/download/"
+fi
+
 if [ -e /Applications/Arduino.app ]; then
   echo "Migrating away from deprecated Arduino cask ..."
   brew install arduino-cli
