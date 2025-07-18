@@ -1460,16 +1460,6 @@ install_groups:
         install:
           - cask: tor-browser
 
-      - artifact: /Applications/TeX
-        persist: true
-        install:
-          - cask: mactex
-
-      - artifact: /Applications/texmaker.app
-        persist: true
-        install:
-          - cask: texmaker
-
       - artifact: /Applications/Wireshark.app
         persist: true
         install:
@@ -1623,6 +1613,16 @@ install_groups:
           - Allow notifications
           - Tweak system notification settings (all off except "Show in Notification Center")
           - Enable calendar integration
+
+      - artifact: /Applications/TeX
+        persist: true
+        install:
+          - cask: mactex
+
+      - artifact: /Applications/texmaker.app
+        persist: true
+        install:
+          - cask: texmaker
 
   # Communication applications (optional)
   - group: Communications
