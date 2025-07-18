@@ -671,12 +671,12 @@ install_groups:
           - mas: "1091189122"
         configure:
           - run: defaults write net.shinyfrog.bear SFAppIconMatchesTheme -bool true
-          - run: defaults write net.shinyfrog.bear SFEditorFontSize 17
-          - run: defaults write net.shinyfrog.bear SFEditorLineWidthMultiplier 50
           - run: postinstall/bear.sh
         checklist:
-          - Assign keyboard shortcuts
+          - Assign global keyboard shortcuts (⌃⇧N, ⌃⇧W)
           - Enable Bear Safari extension
+          - "Set font size: 17"
+          - "Set line width: 50em"
 
       - artifact: /Applications/Dropover.app
         install:
