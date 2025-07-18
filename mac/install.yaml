@@ -1009,6 +1009,14 @@ install_groups:
         checklist:
           - Associate with PLIST files
 
+      - artifact: /Applications/Pixelmator Pro.app
+        install:
+          - mas: "1289583905"
+
+      - artifact: /Applications/Acorn 7.app
+        install:
+          - mas: "1547371478"
+
       - artifact: $BREW/bin/httpie
         install:
           - brew: httpie
@@ -1690,15 +1698,6 @@ install_groups:
   # Multimedia, photography, and media tools (optional)
   - group: Multimedia & Photography
     software:
-      - artifact: /Applications/Pixelmator Pro.app
-        install:
-          - mas: "1289583905"
-
-      - artifact: /Applications/Acorn 7.app
-        persist: true
-        install:
-          - mas: "1547371478"
-
       - artifact: /Applications/Affinity Photo 2.app
         persist: true
         install:
