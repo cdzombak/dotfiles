@@ -710,6 +710,11 @@ install_groups:
           - Sign in
           - Enable system share extension (not Safari extension)
 
+      - artifact: $HOME/Applications/Instapaper Reader.app
+        checklist:
+          - "Create Safari web app (`https://instapaper.com/u`)"
+          - Sign in
+
       - artifact: /Applications/NewFileMenu.app
         install:
           - mas: "1064959555"
@@ -1155,7 +1160,7 @@ install_groups:
 
       - artifact: $HOME/Applications/UniChar.app
         checklist:
-          - "Create Safari web app (`https://unichar.app`)"
+          - "Create Safari web app (`https://unichar.app/web/`)"
 
   - group: SSH & Yubikeys
     software:
@@ -1485,6 +1490,14 @@ install_groups:
         persist: true
         install:
           - cask: wireshark
+
+      - artifact: $HOME/Applications/Clock.app
+        checklist:
+          - "Create Safari web app (`https://clock.dzdz.cz`)"
+
+      - artifact: $HOME/Applications/JSON Viewer.app
+        checklist:
+          - "Create Safari web app (`https://json.dzdz.cz`)"
 
   # AI tools (optional)
   - group: AI
@@ -1925,11 +1938,18 @@ install_groups:
         persist: true
         checklist:
           - "Create Safari web app (`https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard/all`)"
+          - Sign in
 
       - artifact: $HOME/Applications/Frigate.app
         persist: true
         checklist:
           - "Create Safari web app (`https://boston.tailnet-003a.ts.net:8971/`)"
+          - Sign in
+
+      - artifact: $HOME/Applications/Ecobee.app
+        checklist:
+          - "Create Safari web app (`https://www.ecobee.com/consumerportal/index.html#/devices`)"
+          - Sign in
 
   # Music, podcasts, and reading applications (optional)
   - group: "Music, Movies, Podcasts & Reading"
@@ -2097,6 +2117,7 @@ install_groups:
       - artifact: $HOME/Applications/Ntfy.app
         checklist:
           - "Create Safari web app (`https://ntfy.cdzombak.net`)"
+          - Sign in
 
       - artifact: /Applications/BetterDisplay.app
         persist: true
