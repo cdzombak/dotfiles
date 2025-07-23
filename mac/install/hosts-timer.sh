@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO(cdzombak):  proper package
-
 TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'hosts-timer')
 git clone "https://github.com/cdzombak/hosts-timer.git" "$TMP_DIR"
 pushd "$TMP_DIR"

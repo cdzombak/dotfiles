@@ -114,7 +114,7 @@ zstyle ':notify:*' success-title "Completed ✅"
 zstyle ':notify:*' enable-on-ssh yes
 zstyle ':notify:*' blacklist-regex 'nano' # ex. 'find|git'
 
+. "$HOME/.local/bin/env"
+
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
-
-. "$HOME/.local/bin/env"

@@ -167,12 +167,12 @@ create_app_link "System Tools" "/Applications/Tintd.app"
 
 create_app_folder "AI Tools"
 
-create_app_link "AI Tools" "/Applications/Cursor.app"
 create_app_link "AI Tools" "/Applications/Talktastic.app"
 create_app_link "AI Tools" "/Applications/Claude.app"
 create_app_link "AI Tools" "$HOME/Applications/ollama.app"
 create_app_link "AI Tools" "$HOME/Applications/Devin.app"
 create_app_link "AI Tools" "$HOME/Applications/GitHub Copilot.app"
-# TODO(cdzombak): /Applications/VibeTunnel.app
+create_app_link "AI Tools" "/Applications/VibeTunnel.app"
+create_app_link "AI Tools" "/Applications/Windsurf.app"
 
 cecho "✔ Done." $green

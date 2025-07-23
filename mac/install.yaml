@@ -1153,6 +1153,10 @@ install_groups:
         configure:
           - run: defaults write "net.earthlingsoft.UnicodeChecker" "Use last Codepoint" '1'
 
+      - artifact: $HOME/Applications/UniChar.app
+        checklist:
+          - "Create Safari web app (`https://unichar.app`)"
+
   - group: SSH & Yubikeys
     software:
       - artifact: /Applications/Secretive.app
@@ -1482,9 +1486,46 @@ install_groups:
         install:
           - cask: wireshark
 
-  # AI and machine learning tools (optional)
+  # AI tools (optional)
   - group: AI
     software:
+      - artifact: /Applications/TalkTastic.app
+        note: https://talktastic.com/download
+        checklist:
+          - "Set shortcut: ⌥ + Space"
+
+      - artifact: /Applications/Claude.app
+        install:
+          - cask: claude
+        configure:
+          - "Set keyboard shortcut: ⌃ + ⇧ + Space"
+          - Run on Startup
+          - Show in Menu Bar
+
+      - artifact: $HOME/mcp
+        note: Synced via Syncthing
+        configure:
+          - Hardlink Claude Desktop config per README
+
+      - artifact: /Users/cdzombak/.claude/local/claude
+        install:
+          - npm: @anthropic-ai/claude-code
+
+      - artifact: $HOME/Applications/Ollama.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://jetstream.tailnet-003a.ts.net:7778`)"
+
+      - artifact: $HOME/Applications/Devin.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://app.devin.ai`)"
+
+      - artifact: $HOME/Applications/GitHub Copilot.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://github.com/copilot`)"
+
       - artifact: /Applications/iTermAI.app
         install:
           - cask: itermai
@@ -1571,7 +1612,6 @@ install_groups:
         checklist:
           - Authenticate
 
-      # TODO(cdzombak):
       - artifact: /Applications/Zotero.app
         install:
           - cask: zotero
@@ -1884,9 +1924,12 @@ install_groups:
       - artifact: $HOME/Applications/UniFi Protect.app
         persist: true
         checklist:
-          - Create Safari web app
+          - "Create Safari web app (`https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard/all`)"
 
-      # TODO(cdzombak): other webapps
+      - artifact: $HOME/Applications/Frigate.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://boston.tailnet-003a.ts.net:8971/`)"
 
   # Music, podcasts, and reading applications (optional)
   - group: "Music, Movies, Podcasts & Reading"
@@ -1918,6 +1961,11 @@ install_groups:
           - Add file shares as desired
           - Disable file shares in Library views
           - Restore purchases
+
+      - artifact: $HOME/Applications/Lofi Cafe.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://lofi.cafe`)"
 
       - artifact: /Applications/Pocket Casts.app
         persist: true
@@ -2045,6 +2093,10 @@ install_groups:
       - artifact: $HOME/opt/bin/notify-me
         install:
           - script: install/notify-me.sh
+
+      - artifact: $HOME/Applications/Ntfy.app
+        checklist:
+          - "Create Safari web app (`https://ntfy.cdzombak.net`)"
 
       - artifact: /Applications/BetterDisplay.app
         persist: true

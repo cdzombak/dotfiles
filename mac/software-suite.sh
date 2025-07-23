@@ -7,15 +7,6 @@ LIB_DIR="$SCRIPT_DIR/../lib"
 source "$LIB_DIR"/cecho
 source "$LIB_DIR"/sw_install
 
-# TODO(cdzombak): stow tool-versions
-# TODO(cdzombak): vibetunnel (/Applications/VibeTunnel.app ; /opt/homebrew/bin/vt) (brew install --cask vibetunnel)
-# TODO(cdzombak): claude ( brew install --cask claude; /Applications/Claude.app )
-# TODO(cdzombak): claude sync; MCP servers
-# TODO(cdzombak): claude code ( npm install -g @anthropic-ai/claude-code )
-# TODO(cdzombak): whispr app
-# TODO(cdzombak): ollama, devin, GH copilot (web apps)
-# TODO(cdzombak): review brew-gomod fork
-
 if [ "$(uname)" != "Darwin" ]; then
   echo "Skipping macOS software installation because not on macOS"
   exit 2

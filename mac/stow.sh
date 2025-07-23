@@ -27,6 +27,7 @@ stow --target="$HOME" --ignore="DS_Store" login
 stow --target="$HOME" --ignore="DS_Store" profile
 stow --target="$HOME" --ignore="DS_Store" ruby
 stow --target="$HOME" --ignore="DS_Store" zsh
+stow --target="$HOME" --ignore="DS_Store" asdf
 [ -L "$HOME/.kubectl_aliases" ] || ln -s "$SCRIPT_DIR"/kubectl-aliases/.kubectl_aliases "$HOME/.kubectl_aliases"
 
 cecho "✔ Done." $green
