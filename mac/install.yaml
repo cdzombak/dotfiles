@@ -1499,6 +1499,10 @@ install_groups:
         checklist:
           - "Create Safari web app (`https://json.dzdz.cz`)"
 
+      - artifact: $HOME/Applications/Transform Tools.app
+        checklist:
+          - "Create Safari web app (`https://transform.tools/`)"
+
   # AI tools (optional)
   - group: AI
     software:
