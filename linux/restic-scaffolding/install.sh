@@ -15,6 +15,8 @@ sudo mkdir /etc/restic-backup/pre-backup.d
 sudo chmod 0755 /etc/restic-backup/pre-backup.d
 sudo cp "$SCRIPT_DIR"/backup.sh /etc/restic-backup
 sudo chmod 0755 /etc/restic-backup/backup.sh
+sudo cp "$SCRIPT_DIR"/unlock.sh /etc/restic-backup
+sudo chmod 0755 /etc/restic-backup/unlock.sh
 sudo cp "$SCRIPT_DIR"/excludes.txt /etc/restic-backup
 sudo cp "$SCRIPT_DIR"/include-files.txt /etc/restic-backup
 sudo cp "$SCRIPT_DIR"/keep.json /etc/restic-backup
