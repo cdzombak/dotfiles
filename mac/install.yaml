@@ -1514,19 +1514,19 @@ install_groups:
       - artifact: /Applications/Claude.app
         install:
           - cask: claude
-        configure:
+        checklist:
           - "Set keyboard shortcut: ⌃ + ⇧ + Space"
           - Run on Startup
           - Show in Menu Bar
 
       - artifact: $HOME/mcp
         note: Synced via Syncthing
-        configure:
+        checklist:
           - Hardlink Claude Desktop config per README
 
       - artifact: /Users/cdzombak/.claude/local/claude
         install:
-          - npm: @anthropic-ai/claude-code
+          - npm: "@anthropic-ai/claude-code"
 
       - artifact: $HOME/Applications/Ollama.app
         persist: true
