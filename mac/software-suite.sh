@@ -124,7 +124,7 @@ fi
 if [ -e "/Applications/DxOPhotoLab7.app" ]; then
   echo "DxO PhotoLab: manual upgrade required ..."
   trash "/Applications/DxOPhotoLab7.app"
-  ./mac-install -config ./install.yaml -only photolab
+  "$SCRIPT_DIR"/mac-install -config ./install.yaml -only photolab
   open "https://www.dxo.com/dxo-photolab/download/"
 fi
 
