@@ -1166,6 +1166,12 @@ install_groups:
         checklist:
           - "Create Safari web app (`https://unichar.app/web/`)"
 
+      - artifact: /Applications/JSON Editor.app
+        install:
+          - mas: "https://apps.apple.com/us/app/json-editor/id567740330?mt=12"
+        configure:
+          - run: /usr/local/bin/utiluti type set public.json com.vladbadea.jsoneditor
+
   - group: SSH & Yubikeys
     software:
       - artifact: /Applications/Secretive.app
