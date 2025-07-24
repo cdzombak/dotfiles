@@ -30,6 +30,10 @@ install_groups:
         install:
           - brew: python
 
+      - artifact: /usr/local/bin/utiluti
+        install:
+          - script: install/utiluti.sh
+
       - artifact: $BREW/bin/ag
         install:
           - brew: ag
