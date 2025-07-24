@@ -1019,9 +1019,9 @@ install_groups:
         install:
           - mas: "1289583905"
 
-      - artifact: /Applications/Acorn 7.app
+      - artifact: /Applications/Acorn.app
         install:
-          - mas: "1547371478"
+          - mas: "https://apps.apple.com/us/app/acorn-8/id6737921844?mt=12"
 
       - artifact: $BREW/bin/httpie
         install:

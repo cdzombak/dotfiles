@@ -128,6 +128,12 @@ if [ -e "/Applications/DxOPhotoLab7.app" ]; then
   open "https://www.dxo.com/dxo-photolab/download/"
 fi
 
+if [ -e "/Applications/Acorn 7.app" ]; then
+  echo "Acorn: manual upgrade required ..."
+  trash "/Applications/Acorn 7.app"
+  "$SCRIPT_DIR"/mac-install -config ./install.yaml -only acorn
+fi
+
 if [ -e /Applications/Arduino.app ]; then
   echo "Migrating away from deprecated Arduino cask ..."
   brew install arduino-cli
