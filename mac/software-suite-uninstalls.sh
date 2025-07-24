@@ -467,5 +467,8 @@ fi
 
 if [ -e "$(brew --prefix)/bin/nativefier" ] ; then
   echo "nativefier ..."
+  set +e
   brew uninstall nativefier
+  npm uninstall -g nativefier
+  set -e
 fi
