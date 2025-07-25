@@ -174,5 +174,6 @@ create_app_link "AI Tools" "$HOME/Applications/GitHub Copilot.app"
 create_app_link "AI Tools" "/Applications/VibeTunnel.app"
 create_app_link "AI Tools" "/Applications/Windsurf.app"
 create_app_link "AI Tools" "$HOME/Applications/claudia"
+create_app_link "AI Tools" "$HOME/Applications/Google AI Studio.app"
 
 cecho "✔ Done." $green

@@ -1566,6 +1566,11 @@ install_groups:
         checklist:
           - "Create Safari web app (`https://github.com/copilot`)"
 
+      - artifact: $HOME/Applications/Google AI Studio.app
+        persist: true
+        checklist:
+          - "Create Safari web app (`https://aistudio.google.com`)"
+
       - artifact: /Applications/iTermAI.app
         install:
           - cask: itermai
