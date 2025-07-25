@@ -452,7 +452,7 @@ install_groups:
         checklist:
           - Launch & walk through setup
           - Disable Spotlight keyboard shortcut
-          - Use Command-Space for Alfred
+          - Use ⌘+Space for Alfred
           - Sync settings from ~/.config/macos
           - Enable automatic snippet expansion
           - Enable browser bookmarks
@@ -611,7 +611,8 @@ install_groups:
           - cask: shortcat
         checklist:
           - Grant permissions
-          - Assign shortcut Alt-Command-Space (move Finder Search to Ctrl-Command-Space if needed)
+          - Move Finder Search to Ctrl-Command-Space (if needed)
+          - Assign shortcut Alt-Command-Space
           - Launch at Login
           - Hide in menu bar, next to Alfred
 
@@ -895,7 +896,7 @@ install_groups:
           - run: defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
         checklist:
           - Sign into Things Cloud account
-          - Set keyboard shortcuts
+          - Set keyboard shortcuts (⌃⌥Space for Quick Entry, ⌃⇧I for Autofill)
           - Enable autofill via Things Helper
           - Set calendar & reminders integration settings
 
@@ -954,7 +955,7 @@ install_groups:
           - Register (details in 1Password)
           - Grant permissions (in Privacy tab)
           - Enable helper; hide Menu Bar icon
-          - Set global shortcut Ctrl-Shift-Space
+          - Set global shortcut Ctrl-Shift-Cmd-Space
           - Set Groups, Defaults, locations per config screenshots
 
       - artifact: "/Applications/Apparency.app"
@@ -1254,6 +1255,13 @@ install_groups:
 
       - artifact: /Applications/Setapp/Renamer.app
 
+      - artifact: /Applications/Setapp/Keysmith.app
+        checklist:
+          - Clear all shortcuts except quick launcher
+          - Set quick launcher shortcut to Ctrl-Alt-Cmd-Space
+          - Configure sync via Syncthing
+          - Launch at login
+
   # Development tools (optional)
   - group: Dev
     software:
@@ -1528,6 +1536,7 @@ install_groups:
         note: https://talktastic.com/download
         checklist:
           - "Set shortcut: ⌥ + Space"
+          - Launch at Login
 
       - artifact: /Applications/Claude.app
         install:
