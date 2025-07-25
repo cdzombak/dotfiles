@@ -25,6 +25,9 @@ install_groups:
       - artifact: $BREW/bin/uv
         install:
           - brew: uv
+      - artifact: ~/.bun/bin/bun
+        install:
+          - run: "curl -fsSL https://bun.sh/install | bash"
 
       - artifact: $BREW/bin/python3
         install:

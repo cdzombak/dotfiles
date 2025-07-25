@@ -40,7 +40,6 @@ if [ -d /opt/homebrew/bin ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export MANPATH="/opt/homebrew/share/man:$MANPATH"
 fi
-
 if [ -d "$HOME/.asdf" ] ; then
     PATH="$HOME/.asdf/shims:$PATH"
 fi
@@ -51,7 +50,6 @@ source ~/.zsh/lib-rc/short-host.zsh
 
 set -o noclobber
 
-# Set ZSH_CACHE_DIR to the path where cache files should be created
 if [[ -z "$ZSH_CACHE_DIR" ]]; then
     ZSH_CACHE_DIR="$HOME/.zsh-cache"
 fi
@@ -63,6 +61,8 @@ fi
 source ~/.zsh/completion.zsh
 autoload -Uz compinit
 compinit
+
+alias macinstall='$HOME/.dotfiles/mac/mac-install -config $HOME/.dotfiles/mac/install.yaml -only'
 
 source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
@@ -88,6 +88,7 @@ command -v rake >/dev/null 2>&1 && source ~/.zsh/rake.zsh
 source ~/.zsh/ssh.zsh
 source ~/.zsh/title.zsh
 source ~/.zsh/wx.zsh
+[ -d "$HOME/.bun" ] && source ~/.zsh/bun.zsh
 
 command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
@@ -118,3 +119,6 @@ zstyle ':notify:*' blacklist-regex 'nano' # ex. 'find|git'
 
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
+
+# bun completions
+[ -s "/Users/cdzombak/.bun/_bun" ] && source "/Users/cdzombak/.bun/_bun"
