@@ -22,9 +22,10 @@ install_groups:
         install:
           - brew: node
 
-      - artifact: $BREW/bin/uv
+      - artifact: $BREW/bin/rustc
         install:
-          - brew: uv
+          - brew: rust
+
       - artifact: ~/.bun/bin/bun
         install:
           - run: "curl -fsSL https://bun.sh/install | bash"
@@ -32,6 +33,10 @@ install_groups:
       - artifact: $BREW/bin/python3
         install:
           - brew: python
+
+      - artifact: $BREW/bin/uv
+        install:
+          - brew: uv
 
       - artifact: /usr/local/bin/utiluti
         install:
