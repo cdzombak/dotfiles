@@ -65,7 +65,6 @@ create_app_link "Dev Tools" "$HOME/Applications/IntelliJ IDEA Ultimate.app" "Int
 create_app_link "Dev Tools" "$HOME/Applications/OrbStack.app"
 create_app_link "Dev Tools" "$HOME/Applications/GitHub Desktop.app"
 create_app_link "Dev Tools" "$HOME/Applications/Visual Studio Code.app"
-create_app_link "Dev Tools" "/Applications/Cursor.app"
 create_app_link "Dev Tools" "/Applications/Taska.app"
 create_app_link "Dev Tools" "/Applications/Setapp/Squash.app"
 
@@ -174,5 +173,6 @@ create_app_link "AI Tools" "$HOME/Applications/Devin.app"
 create_app_link "AI Tools" "$HOME/Applications/GitHub Copilot.app"
 create_app_link "AI Tools" "/Applications/VibeTunnel.app"
 create_app_link "AI Tools" "/Applications/Windsurf.app"
+create_app_link "AI Tools" "$HOME/Applications/claudia"
 
 cecho "✔ Done." $green

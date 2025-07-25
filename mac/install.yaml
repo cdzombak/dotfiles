@@ -1546,6 +1546,11 @@ install_groups:
         install:
           - npm: "@anthropic-ai/claude-code"
 
+      - artifact: $HOME/Applications/claudia
+        persist: true
+        install:
+          - script: install/claudia.sh
+
       - artifact: $HOME/Applications/Ollama.app
         persist: true
         checklist:
