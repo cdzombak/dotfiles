@@ -1585,6 +1585,7 @@ install_groups:
           - "Create Safari web app (`https://aistudio.google.com`)"
 
       - artifact: /Applications/iTermAI.app
+        persist: true
         install:
           - cask: itermai
 
