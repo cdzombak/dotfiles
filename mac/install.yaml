@@ -1611,6 +1611,11 @@ install_groups:
         install:
           - brew: block-goose-cli
 
+      - artifact: $BREW/bin/gemini
+        persist: true
+        install:
+          - brew: gemini-cli
+
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio
     software:
