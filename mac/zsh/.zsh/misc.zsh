@@ -71,3 +71,5 @@ function delayed_exit() {
     exit
 }
 alias qq="delayed_exit"
+
+alias llm="OLLAMA_HOST=https://jetstream.tailnet-003a.ts.net:7777 llm"

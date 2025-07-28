@@ -58,6 +58,10 @@ install_groups:
         install:
           - brew: bandwhich
 
+      - artifact: $BREW/bin/bat
+        install:
+          - brew: bat
+
       - artifact: $BREW/bin/bluetoothconnector
         install:
           - brew: bluetoothconnector
@@ -1583,6 +1587,16 @@ install_groups:
       - artifact: /Applications/iTermAI.app
         install:
           - cask: itermai
+
+      - artifact: $BREW/bin/llm
+        install:
+          - brew: llm
+          - run: "llm install --upgrade llm-ollama"
+          - run: "llm install --upgrade llm-gemini"
+        configure:
+          - run: "env OLLAMA_HOST=https://jetstream.tailnet-003a.ts.net:7777 llm models default deepseek-r1:8b"
+        checklist:
+          - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
 
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio
