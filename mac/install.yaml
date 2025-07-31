@@ -1165,6 +1165,10 @@ install_groups:
         install:
           - brew: telnet
 
+      - artifact: $BREW/bin/gorun
+        install:
+          - gomod: github.com/erning/gorun
+
       - artifact: "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/Solarized Light.xccolortheme"
         install:
           - script: install/xcode-solarized.sh

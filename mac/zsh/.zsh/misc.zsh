@@ -39,6 +39,10 @@ alias remove-newline-eof="perl -pi -e 'chomp if eof'"
 alias subl='subl -n' # always open a new window when working from CLI
 alias subl.='subl -n .' # I can't type
 
+# VS Code
+alias code='code --new-window' # always open a new window when working from CLI
+alias code.='code --new-window .' # I can't type
+
 # easy access to the Tailscale CLI
 [ -e '/Applications/Tailscale.app' ] && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 
