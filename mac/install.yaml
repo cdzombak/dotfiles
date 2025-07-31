@@ -665,6 +665,12 @@ install_groups:
         install:
           - cask: brooklyn
 
+      - artifact: "/Library/Screen Savers/Bauhaus Clock V1.2.saver"
+        note: "https://gumroad.com/login?next=%2Flibrary"
+        checklist:
+          - "Install from zip file"
+          - "Remove any old versions from `/Library/Screen Savers`"
+
       - artifact: $HOME/Library/Fonts/JetBrainsMono-Regular.ttf
         install:
           - cask: font-jetbrains-mono
