@@ -166,6 +166,11 @@ if gem list | grep -c mdless >/dev/null; then
   brew install mdless
 fi
 
+if [ "$(utiluti --version)" != "1.3" ]; then
+  echo "Remove outdated utiluti..."
+  sudo rm /usr/local/bin/utiluti
+fi
+
 echo ""
 cecho "--- Core Suite Setup ---" $white
 echo ""
@@ -189,6 +194,7 @@ if [ ! -L /Applications/Marked.app ]; then
   ln -s "/Applications/Marked 2.app" /Applications/Marked.app
   chflags -h hidden /Applications/Marked.app
 fi
+
 
 ### Uninstalls:
 "$SCRIPT_DIR"/software-suite-uninstalls.sh
