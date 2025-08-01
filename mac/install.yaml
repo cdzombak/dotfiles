@@ -865,6 +865,14 @@ install_groups:
           - Sign into Feedbin
           - Feedbin settings sync every 15m; sync on wake; unread count in app icon; keep 2 days archive
 
+      - artifact: /Applications/Feedbin.app
+        note: "https://apps.apple.com/us/app/feedbin/id1444961766 (`mas` does not support iPad apps)"
+        # install:
+        #   - mas: "https://apps.apple.com/us/app/feedbin/id1444961766"
+        checklist:
+          - Sign into Feedbin account
+          - Enable Feedbin Safari extension
+
       - artifact: /Applications/Service Station.app
         install:
           - mas: "1503136033"
