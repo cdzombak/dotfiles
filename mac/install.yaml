@@ -1717,6 +1717,14 @@ install_groups:
         checklist:
           - Authenticate
 
+      - artifact: /Applications/Microsoft Word.app
+        name: Microsoft Office
+        persist: true
+        install:
+          - cask: microsoft-office
+        checklist:
+          - Sign in to Microsoft 365 account
+
       - artifact: /Applications/Zotero.app
         install:
           - cask: zotero
