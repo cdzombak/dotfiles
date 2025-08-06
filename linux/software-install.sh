@@ -423,14 +423,7 @@ if profile_server && ! command -v nginx >/dev/null; then
   echo "Install nginx? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo apt install nginx
-
-    mkdir -p "$HOME/src"
-    git clone https://github.com/cdzombak/nginx_ensite.git "$HOME/src"/nginx_ensite
-    pushd "$HOME/src"/nginx_ensite
-    sudo make install
-    popd
-
+    sudo apt install nginx nginx-ensite
     if [ -e /etc/rsyslog.d/22-logzio-linux.conf ]; then
       echo "system appears to use logz.io"
       echo "Enter your logz.io token: "
