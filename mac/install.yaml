@@ -1203,6 +1203,14 @@ install_groups:
         configure:
           - run: /usr/local/bin/utiluti type set public.json com.vladbadea.jsoneditor
 
+      - artifact: $BREW/bin/ronn
+        install:
+          - brew: ronn
+
+      - artifact: $BREW/bin/groff
+        install:
+          - brew: groff
+
   - group: SSH & Yubikeys
     software:
       - artifact: /Applications/Secretive.app
