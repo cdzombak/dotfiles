@@ -1281,9 +1281,34 @@ install_groups:
           - Disable global search shortcut
           - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
+      - artifact: /Applications/Setapp/CodeRunner.app
+      - artifact: /Applications/Setapp/Downie.app
+      - artifact: /Applications/Setapp/ForkLift.app
+      - artifact: /Applications/Setapp/Gemini.app
+        note: Duplicate file finder
+      - artifact: /Applications/Setapp/Grids.app
+        note: Instagram client
+      - artifact: /Applications/Setapp/KeyKey Typing Tutor.app
+      - artifact: /Applications/Setapp/Luminar Neo.app
       - artifact: /Applications/Setapp/Meta.app
-
+        note: Music metadata editor
+      - artifact: /Applications/Setapp/PDF Squeezer.app
+      - artifact: /Applications/Setapp/Permute.app
+        note: Video/audio/image converter
+      - artifact: /Applications/Setapp/Prizmo.app
+        note: OCR and scanning app
       - artifact: /Applications/Setapp/Renamer.app
+      - artifact: /Applications/Setapp/Soulver.app
+      - artifact: /Applications/Setapp/SQLPro for SQLite.app
+      - artifact: /Applications/Setapp/SQLPro Studio.app
+      - artifact: /Applications/Setapp/Squash.app
+        note: Image compression tool
+      - artifact: /Applications/Setapp/Timing.app
+
+      - artifact: /Applications/Setapp/Mission Control Plus.app
+        checklist:
+          - Disable complex keyboard shortcuts
+          - Launch at login
 
       - artifact: /Applications/Setapp/Keysmith.app
         checklist:
