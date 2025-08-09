@@ -1351,6 +1351,12 @@ install_groups:
         install:
           - mas: "1518425043"
 
+      - artifact: /Applications/Icon Composer.app
+        persist: true
+        install:
+          - archive: https://developer.apple.com/download/files/icon-composer.dmg
+            file: Icon Composer.app
+
       - artifact: /Applications/Visual Studio Code.app
         persist: true
         install:
