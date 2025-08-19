@@ -16,7 +16,7 @@ alias md='mkdir'
 alias crontab='crontab -i'
 alias grep='grep -i'
 
-alias apt-up='sudo apt update && sudo apt upgrade && sudo apt autoremove'
+alias apt-update='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" http://ip.dzdz.cz'
