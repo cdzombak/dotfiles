@@ -372,7 +372,6 @@ if [ -e "/Applications/Setapp/Path Finder.app" ]; then
 echo "Path Finder ..."
   defaults write com.cocoatech.PathFinder-setapp disableWarnOnQuit -bool true
   defaults write com.cocoatech.PathFinder-setapp globalAppsMenuEnabled -bool false
-  defaults write com.cocoatech.PathFinder-setapp kNTDiffToolPath "/usr/local/bin/ksdiff"
   defaults write com.cocoatech.PathFinder-setapp kOpenTextEditDocumentsInTextEditor -bool false
   defaults write com.cocoatech.PathFinder-setapp kTerminalApplicationPath "/Applications/iTerm.app"
   defaults write com.cocoatech.PathFinder-setapp textEditorApplicationPath "/Applications/Sublime Text.app"

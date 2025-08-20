@@ -558,16 +558,6 @@ install_groups:
           - Sync settings from ~/.config/macos, taking care not to overwrite the files there
           - Make default term
 
-      - artifact: /Applications/Kaleidoscope.app
-        install:
-          - cask: kaleidoscope
-        checklist:
-          - License
-          - Set terminal app
-          - Set font Meslo LG L Regular, size 14
-          - Enable Finder extension
-          - Enable Safari extension
-
       - artifact: /Applications/Latest.app
         install:
           - cask: latest
@@ -993,7 +983,7 @@ install_groups:
           - Switch to Stable update channel
           - Set Git instance (use Homebrew Git)
           - Set Terminal tool (iTerm2)
-          - Set Diff & Merge tools (Kaleidoscope)
+          - Set Diff & Merge tools (FileMerge)
           - Set GitHub Desktop as default GitHub tool
           - Sign into GitHub account (as desired)
 

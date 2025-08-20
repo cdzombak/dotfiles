@@ -227,6 +227,12 @@ if [ -e /Applications/IPinator.app ]; then
   trash "/Applications/IPinator.app"
 fi
 
+if [ -e /Applications/Kaleidoscope.app ]; then
+  echo "Kaleidoscope..."
+  verify_smartdelete
+  trash "/Applications/Kaleidoscope.app"
+fi
+
 if [ -e "/Applications/Keybase.app" ]; then
   echo "Keybase..."
   verify_smartdelete

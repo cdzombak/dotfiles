@@ -123,22 +123,21 @@
 
 # Tools
 
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[mergetool "opendiff"]
 	trustExitCode = true
 [mergetool]
 	prompt = false
 [merge]
-	tool = Kaleidoscope
+	tool = opendiff
 
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "opendiff"]
+	trustExitCode = true
+	cmd = /usr/bin/opendiff \"$LOCAL\" \"$REMOTE\" -merge \"$MERGED\"| cat
 [difftool]
 	prompt = false
-	trustExitCode = true
 [diff]
 	compactionHeuristic = true
-	tool = Kaleidoscope
+	tool = opendiff
 
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
