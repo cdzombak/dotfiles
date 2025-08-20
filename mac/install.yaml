@@ -1611,6 +1611,13 @@ install_groups:
         install:
           - script: install/claudia.sh
 
+      - artifact: $BREW/bin/opencode
+        persist: true
+        install:
+          - brew: sst/tap/opencode
+        checklist:
+          - Set up with Claude account
+
       - artifact: $HOME/Applications/Ollama.app
         persist: true
         checklist:
