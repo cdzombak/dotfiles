@@ -1271,6 +1271,11 @@ install_groups:
           - Disable global search shortcut
           - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
+      - artifact: /Applications/Setapp/Clariti.app
+        checklist:
+          - Disable metric system
+          - Hide from menu bar
+          - Enable square view
       - artifact: /Applications/Setapp/CodeRunner.app
       - artifact: /Applications/Setapp/Downie.app
       - artifact: /Applications/Setapp/ForkLift.app
