@@ -103,7 +103,7 @@ create_app_link "Media" "/Applications/Pocket Casts.app"
 create_app_link "Media" "/Applications/Poolsuite FM.app" "Poolsuite"
 create_app_link "Media" "/Applications/Raindrop.io.app"
 create_app_link "Media" "/Applications/YT Music.app"
-create_app_link "Media" "/Applications/Setapp/Clariti.app"
+create_app_link "Media" "/Applications/Clariti.app"
 
 rm -f "$HOME/Applications/Media/Transmission"
 
