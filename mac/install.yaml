@@ -1622,7 +1622,9 @@ install_groups:
         install:
           - brew: sst/tap/opencode
         checklist:
-          - Set up with Claude account
+          - "Sign in with Anthropic (`opencode auth login`)"
+          - "Sign in with GitHub (`opencode auth login`)"
+          - "Set up local Ollama (TK)"
 
       - artifact: $HOME/Applications/Ollama.app
         persist: true
