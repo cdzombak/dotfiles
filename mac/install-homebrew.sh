@@ -37,7 +37,6 @@ if [ ! -L "$HOME/.local/.nano-root" ]; then
   ln -s "$(brew --prefix)" "$HOME/.local/.nano-root"
 fi
 
-brew tap homebrew/autoupdate
 if brew autoupdate status | grep -c -q "not configured" >/dev/null; then
   # 44h == 86400 seconds
   brew autoupdate start 86400 --cleanup
