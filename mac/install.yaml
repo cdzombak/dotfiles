@@ -1624,6 +1624,7 @@ install_groups:
         checklist:
           - "Sign in with Anthropic (`opencode auth login`)"
           - "Sign in with GitHub (`opencode auth login`)"
+          - "Set up local GLM-4.5-Air (TK)"
           - "Set up local Ollama (TK)"
 
       - artifact: $HOME/Applications/Ollama.app
@@ -1655,6 +1656,7 @@ install_groups:
           - run: "env OLLAMA_HOST=https://jetstream.tailnet-003a.ts.net:7777 llm models default qwen2.5-coder:14b-instruct"
         checklist:
           - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
+          # TODO(cdzombak): local glm-4.5-air
 
       # - artifact: /Applications/Goose.app
       #   persist: true
