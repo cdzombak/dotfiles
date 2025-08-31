@@ -1607,10 +1607,15 @@ install_groups:
         install:
           - npm: "@anthropic-ai/claude-code"
 
-      - artifact: $HOME/Applications/claudia
+      # - artifact: $HOME/Applications/claudia
+      #   persist: true
+      #   install:
+      #     - script: install/claudia.sh
+
+      - artifact: /Applications/Conductor.app
         persist: true
         install:
-          - script: install/claudia.sh
+          - cask: conductor
 
       - artifact: $BREW/bin/opencode
         persist: true
@@ -1636,11 +1641,6 @@ install_groups:
         checklist:
           - "Create Safari web app (`https://github.com/copilot`)"
 
-      - artifact: $HOME/Applications/Google AI Studio.app
-        persist: true
-        checklist:
-          - "Create Safari web app (`https://aistudio.google.com`)"
-
       - artifact: /Applications/iTermAI.app
         persist: true
         install:
@@ -1656,18 +1656,23 @@ install_groups:
         checklist:
           - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
 
-      - artifact: /Applications/Goose.app
-        persist: true
-        install:
-          - cask: block-goose
-        checklist:
-          - "Set up Ollama (`https://jetstream.tailnet-003a.ts.net:7777`)"
-          - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
+      # - artifact: /Applications/Goose.app
+      #   persist: true
+      #   install:
+      #     - cask: block-goose
+      #   checklist:
+      #     - "Set up Ollama (`https://jetstream.tailnet-003a.ts.net:7777`)"
+      #     - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
 
-      - artifact: $BREW/bin/goose
+      # - artifact: $BREW/bin/goose
+      #   persist: true
+      #   install:
+      #     - brew: block-goose-cli
+
+      - artifact: $HOME/Applications/Google AI Studio.app
         persist: true
-        install:
-          - brew: block-goose-cli
+        checklist:
+          - "Create Safari web app (`https://aistudio.google.com`)"
 
       - artifact: $BREW/bin/gemini
         persist: true
