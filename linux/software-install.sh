@@ -378,13 +378,6 @@ EOF
       touch "$HOME/.config/dotfiles/no-disable-dphys-swapfile"
     fi
   fi
-
-  sudo mkdir /var/log/imgbak
-  sudo chmod 0755 /var/log/imgbak
-  sudo cp "$SCRIPT_DIR"/pi/imgbak.sh /usr/local/bin/imgbak.sh
-  sudo chmod 0754 /usr/local/bin/imgbak.sh
-  sudo cp "$SCRIPT_DIR"/pi/imgbak.cron /etc/cron.d/imgbak
-  sudo chmod 0640 /etc/cron.d/imgbak
 fi
 
 if [ ! -e "$HOME/.config/dotfiles/no-kernelpanic-reboot" ] && [ ! -e /etc/sysctl.d/90-cdz-kernelpanic.conf ]; then

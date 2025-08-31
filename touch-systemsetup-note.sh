@@ -285,7 +285,6 @@ elif [ "$(uname)" == "Linux" ]; then
 ## 1Password
 
 - [ ] Sign in (if needed) (\`eval \$(op signin)\`)
-
 EOF
   if command -v raspi-config >/dev/null || [ -e /etc/armbian-release ]; then
     cat << EOF >> "$HOME/SystemSetup.md"
@@ -294,7 +293,6 @@ EOF
 
 - [ ] Configure system via \`sudo raspi-config\` / \`sudo armbian-config\`
 - [ ] Harden for reliability per [my blog series](https://www.dzombak.com/blog/series/pi-reliability.html)
-- [ ] Enable \`/etc/cron.d/imgbak\` as desired
 
 EOF
   fi
