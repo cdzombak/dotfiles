@@ -1627,7 +1627,7 @@ install_groups:
           - "Set up local GLM-4.5-Air (TK)"
           - "Set up local Ollama (TK)"
 
-      - artifact: $HOME/Applications/Ollama.app
+      - artifact: $HOME/Applications/OpenWebUI.app
         persist: true
         checklist:
           - "Create Safari web app (`https://jetstream.tailnet-003a.ts.net:7778`)"
