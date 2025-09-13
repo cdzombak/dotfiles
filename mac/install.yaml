@@ -258,7 +258,7 @@ install_groups:
         install:
           - brew: tree
 
-      - artifact: $BREW/bin/trash
+      - artifact: $BREW/opt/trash/bin/trash
         install:
           - brew: trash
 
