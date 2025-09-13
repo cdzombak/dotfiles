@@ -166,7 +166,7 @@ if gem list | grep -c mdless >/dev/null; then
   brew install mdless
 fi
 
-if [ "$(utiluti --version)" != "1.3" ]; then
+if [ -x /usr/local/bin/utiluti ] && [ "$(utiluti --version)" != "1.3" ]; then
   echo "Remove outdated utiluti..."
   sudo rm /usr/local/bin/utiluti
 fi
