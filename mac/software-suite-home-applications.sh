@@ -82,8 +82,9 @@ create_app_link "Hobby Tools" "/Applications/KiCad/KiCad.app"
 create_app_link "Hobby Tools" "/Applications/BambuStudio.app" "Bambu Studio"
 create_app_link "Hobby Tools" "/Applications/Meshman 3D Viewer PRO.app" "Meshman 3D Viewer"
 create_app_link "Hobby Tools" "/Applications/MQTTAnalyzer.app"
-create_app_link "Hobby Tools" "/Applications/CubicSDR.app"
 create_app_link "Hobby Tools" "/Applications/SDR++.app"
+
+rm -f "$HOME/Applications/Hobby Tools/CubicSDR"
 
 create_app_folder "Media"
 

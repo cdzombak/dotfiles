@@ -105,6 +105,12 @@ if [ -e /Applications/coconutBattery.app ]; then
   set -e
 fi
 
+if [ -e "/Applications/CubicSDR.app" ]; then
+  echo "CubicSDR..."
+  verify_smartdelete
+  trash /Applications/CubicSDR.app
+fi
+
 if [ -e /Applications/DaisyDisk.app ]; then
   echo "DaisyDisk..."
   set +e

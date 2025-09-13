@@ -1732,10 +1732,10 @@ install_groups:
         install:
           - run: brew tap ra1nb0w/qucs-s ; brew install --cask qucs-s
 
-      - artifact: /Applications/CubicSDR.app
-        persist: true
+      - artifact: "/Applications/SDR++.app"
         install:
-          - cask: cubicsdr
+          - archive: "https://github.com/AlexandreRouma/SDRPlusPlus/releases/download/nightly/sdrpp_macos_arm.zip"
+            file: "SDR++.app"
 
       - artifact: /Applications/CHIRP.app
         persist: true
