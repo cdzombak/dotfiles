@@ -11,16 +11,16 @@ install_groups:
       - artifact: $HOME/.asdf/plugins/python
         install:
           - run: brew install openssl readline sqlite3 xz zlib tcl-tk@8
-          - run: $BREW/bin/asdf plugin add python
+          - run: asdf plugin add python
 
       - artifact: $HOME/.asdf/installs/python/$ENV_ASDF_PYTHON
         install:
-          - run: $BREW/bin/asdf install python $ENV_ASDF_PYTHON
+          - run: asdf install python $ENV_ASDF_PYTHON
 
       - artifact: $HOME/.asdf/plugins/nodejs
         install:
-          - run: $BREW/bin/asdf plugin add nodejs
+          - run: asdf plugin add nodejs
 
       - artifact: $HOME/.asdf/installs/nodejs/$ENV_ASDF_NODEJS
         install:
-          - run: $BREW/bin/asdf install nodejs $ENV_ASDF_NODEJS
+          - run: asdf install nodejs $ENV_ASDF_NODEJS
