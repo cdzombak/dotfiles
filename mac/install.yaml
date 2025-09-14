@@ -330,7 +330,9 @@ install_groups:
         install:
           - run: brew tap mac-cleanup/mac-cleanup-py ; brew install mac-cleanup-py
 
-      - artifact: /Applications/Sublime Text.app
+      #- artifact: /Applications/Sublime Text.app
+      # this is the last artifact installed by install/sublime-text.sh:
+      - artifact: $HOME/Library/Application Support/Sublime Text 3/Packages/User
         install:
           - script: install/sublime-text.sh
         checklist:
