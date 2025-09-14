@@ -908,6 +908,10 @@ install_groups:
           - Enable autofill via Things Helper
           - Set calendar & reminders integration settings
 
+      - artifact: $BREW/bin/things2md
+        install:
+          - brew: cdzombak/oss/things2md
+
       # Safari Extensions
       - artifact: /Applications/RSS Button for Safari.app
         install:
