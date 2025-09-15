@@ -1241,7 +1241,7 @@ install_groups:
       - artifact: /Applications/Day One.app
         persist: true
         install:
-          - mas: "1044867090"
+          - mas: "https://apps.apple.com/us/app/day-one/id1055511498?mt=12"
         checklist:
           - Sign into Day One account
           - Disable global shortcut
