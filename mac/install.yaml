@@ -402,7 +402,6 @@ install_groups:
       - artifact: "$HOME/Library/Dictionaries/Webster’s 1913.dictionary"
         install:
           - archive: https://dropbox.dzombak.com/websters-1913/Webster.s.1913.dictionary.zip
-            file: "Webster’s 1913.dictionary"
         checklist:
           - Arrange/enable dictionaries in Dictionary.app as desired
 
