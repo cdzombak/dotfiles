@@ -1131,7 +1131,7 @@ install_groups:
 
       - artifact: $BREW/bin/air
         install:
-          - gomod: github.com/cosmtrek/air
+          - gomod: github.com/air-verse/air
 
       - artifact: $BREW/bin/gorc
         install:
