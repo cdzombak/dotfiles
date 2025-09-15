@@ -927,7 +927,7 @@ install_groups:
 
       - artifact: /Applications/Wayback Machine.app
         install:
-          - mas: "1472422"
+          - mas: "https://apps.apple.com/us/app/wayback-machine/id1472432422?mt=12"
         checklist:
           - Enable Safari extension (as desired)
 
