@@ -426,8 +426,6 @@ install_groups:
           - script: install/diskspace.sh
 
       - artifact: /Applications/Red Eye.app
-        install:
-          - run: echo "(manual install required)"
         checklist:
           - Install Red Eye.app from iCloud Drive/Software folder
 
