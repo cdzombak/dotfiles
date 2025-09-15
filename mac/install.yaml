@@ -716,13 +716,6 @@ install_groups:
           - Customize Notifications
           - Restore purchases
 
-      - artifact: /Applications/Instapaper Save.app
-        install:
-          - mas: "1481302432"
-        checklist:
-          - Sign in
-          - Enable system share extension (not Safari extension)
-
       - artifact: $HOME/Applications/Instapaper Reader.app
         checklist:
           - "Create Safari web app (`https://instapaper.com/u`)"
