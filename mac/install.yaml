@@ -1703,7 +1703,7 @@ install_groups:
         checklist:
           - Sign In
 
-      - artifact: /Applications/OpenSCAD.app
+      - artifact: "/Applications/OpenSCAD*.app"
         persist: true
         install:
           - cask: openscad
