@@ -1726,7 +1726,7 @@ install_groups:
       - artifact: /Applications/Qucs-S.app
         persist: true
         install:
-          - run: brew tap ra1nb0w/qucs-s ; brew install --cask qucs-s
+          - cask: ra3xdh/qucs-s/qucs-s@nightly
 
       - artifact: "/Applications/SDR++.app"
         install:
