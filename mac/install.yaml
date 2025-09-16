@@ -1600,9 +1600,9 @@ install_groups:
         checklist:
           - Hardlink Claude Desktop config per README
 
-      - artifact: /Users/cdzombak/.claude/local/claude
+      - artifact: /Users/cdzombak/.local/bin/claude
         install:
-          - npm: "@anthropic-ai/claude-code"
+          - run: "curl -fsSL https://claude.ai/install.sh | bash"
 
       # - artifact: $HOME/Applications/claudia
       #   persist: true
