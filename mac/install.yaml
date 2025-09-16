@@ -1677,6 +1677,11 @@ install_groups:
         install:
           - brew: gemini-cli
 
+      - artifact: $BREW/bin/git-ac
+        persist: true
+        install:
+          - brew: cdzombak/oss/git-ac
+
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio
     software:
