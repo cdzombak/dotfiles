@@ -1654,19 +1654,6 @@ install_groups:
         checklist:
           - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
 
-      # - artifact: /Applications/Goose.app
-      #   persist: true
-      #   install:
-      #     - cask: block-goose
-      #   checklist:
-      #     - "Set up Ollama (`https://jetstream.tailnet-003a.ts.net:7777`)"
-      #     - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
-
-      # - artifact: $BREW/bin/goose
-      #   persist: true
-      #   install:
-      #     - brew: block-goose-cli
-
       - artifact: $HOME/Applications/Google AI Studio.app
         persist: true
         checklist:
