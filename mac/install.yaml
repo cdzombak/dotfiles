@@ -1725,10 +1725,11 @@ install_groups:
           - archive: "https://github.com/AlexandreRouma/SDRPlusPlus/releases/download/nightly/sdrpp_macos_arm.zip"
             file: "SDR++.app"
 
-      - artifact: /Applications/CHIRP.app
-        persist: true
-        install:
-          - cask: chirp
+      # "Cask 'chirp' has been disabled because it cannot be reliably fetched due to Cloudflare protections! It was disabled on 2025-08-05."
+      # - artifact: /Applications/CHIRP.app
+      #   persist: true
+      #   install:
+      #     - cask: chirp
 
   # Office and productivity applications (optional)
   - group: Office
