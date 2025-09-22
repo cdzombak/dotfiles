@@ -1912,7 +1912,7 @@ install_groups:
       - artifact: /Applications/ColorSnapper2.app
         persist: true
         install:
-          - mas: "969418666"
+          - cask: colorsnapper
 
       - artifact: /Applications/Adobe Creative Cloud.app
         persist: true
