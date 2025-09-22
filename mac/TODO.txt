@@ -1,5 +1,0 @@
-- move dotfiles stuff out; complete migration/integration; TODOs
-- resolve TODOs
-- versioning
-- CI, release
-- CI updates dotfiles with the binary
