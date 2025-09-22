@@ -18,7 +18,7 @@ install_groups:
         checklist:
           - Set GOPRIVATE as needed via go env -w GOPRIVATE=host.com/org
 
-      - artifact: $BREW/bin/node
+      - artifact: $BREW/Cellar/node/*/bin/node
         install:
           - brew: node
 
