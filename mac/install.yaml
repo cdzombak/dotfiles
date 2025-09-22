@@ -1809,7 +1809,8 @@ install_groups:
         install:
           - mas: "635758264"
 
-      - artifact: /Applications/Parcel.app
+      # TODO(cdzombak): update to new Parcel app after upgrading to macOS 26
+      - artifact: /Applications/Parcel Classic.app
         persist: true
         install:
           - mas: "639968404"
