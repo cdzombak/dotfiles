@@ -171,6 +171,10 @@ if [ -x /usr/local/bin/utiluti ] && [ "$(utiluti --version)" != "1.3" ]; then
   sudo rm /usr/local/bin/utiluti
 fi
 
+if [ -e /usr/local/bin/metar ]; then
+  sudo rm /usr/local/bin/metar
+fi
+
 echo ""
 cecho "--- Core Suite Setup ---" $white
 echo ""

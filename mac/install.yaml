@@ -322,9 +322,9 @@ install_groups:
         configure:
           - run: brew link --force gettext
 
-      - artifact: /usr/local/bin/metar
+      - artifact: $BREW/bin/metar
         install:
-          - script: install/metar.sh
+          - brew: cdzombak/3p/metar
 
       - artifact: $BREW/bin/mac-cleanup
         install:
