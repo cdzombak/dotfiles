@@ -547,7 +547,7 @@ if [ ! -e "$HOME/.config/dotfiles/no-syncthing" ] && ! dpkg-query -W syncthing >
     sudo apt-get install syncthing
     sudo systemctl enable syncthing@cdzombak.service
     setupnote "Syncthing" \
-      "- [ ] Make GUI accessible via Tailscale\n- [ ] Set GUI password\n- [ ] Add ID to Syncthing Devices note\n- [ ] Start syncing folders as desired"
+      "- [ ] Make GUI bind to Tailscale IP only\n- [ ] Start syncing folders as desired\n- [ ] Bookmark Tailscale-proxied GUI\n- [ ] Monitor Syncthing on this machine via Uptime Kuma\n- [ ] Update [Syncthing Configuration note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-syncthing"

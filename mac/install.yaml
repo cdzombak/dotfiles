@@ -236,7 +236,12 @@ install_groups:
         configure:
           - run: brew services start syncthing
         checklist:
-          - Configure Syncthing via web interface at http://localhost:8384
+          - Start syncing folders as desired via web interface at http://localhost:8384
+          - "Set `InsecureSkipHostcheck` in Settings -> Advanced -> GUI"
+          - "Serve via Tailscale: `tailscale serve --bg --https 8385 http://localhost:8384`"
+          - Bookmark Tailscale-proxied GUI
+          - Monitor Syncthing on this machine via Uptime Kuma
+          - "Update [Syncthing Configuration note](bear://x-callback-url/open-note?id=0FC65581-3166-44CF-99E6-4E82089EE4F0-316-0000A2DF53A3E8CD)"
 
       - artifact: $BREW/bin/task
         install:
