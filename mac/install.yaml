@@ -1595,19 +1595,13 @@ install_groups:
           - Run on Startup
           - Show in Menu Bar
 
-      - artifact: $HOME/mcp
-        note: Synced via Syncthing
-        checklist:
-          - Hardlink Claude Desktop config per README
-
       - artifact: /Users/cdzombak/.local/bin/claude
         install:
           - run: "curl -fsSL https://claude.ai/install.sh | bash"
 
-      # - artifact: $HOME/Applications/claudia
-      #   persist: true
-      #   install:
-      #     - script: install/claudia.sh
+      - artifact: $BREW/bin/aclaude
+        install:
+          - brew: cdzombak/oss/aclaude
 
       - artifact: /Applications/Conductor.app
         persist: true
@@ -1623,6 +1617,11 @@ install_groups:
           - "Sign in with GitHub (`opencode auth login`)"
           - "Set up local GLM-4.5-Air (TK)"
           - "Set up local Ollama (TK)"
+
+      - artifact: $HOME/mcp
+        note: Synced via Syncthing
+        checklist:
+          - Hardlink Claude Desktop config per README
 
       - artifact: $HOME/Applications/OpenWebUI.app
         persist: true
