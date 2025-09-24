@@ -1,6 +1,6 @@
 # company-specific config
 
 [user]
-	name = Chris Dzombak
-	email = chris@inngest.com
-	signingkey = 3E21D21C
+    name = Chris Dzombak
+    email = chris.dzombak@maymobility.com
+    signingkey = E7F3908A

@@ -8,7 +8,7 @@
 	signingkey = 7CE31A6E
 
 # Company-specific name/email/signing key:
-[includeIf "gitdir:~/code/inngest/"]
+[includeIf "gitdir:~/code/may/"]
 	path = .gitconfig-work
 
 # Core Config
