@@ -22,9 +22,9 @@ install_groups:
         install:
           - brew: node
 
-      - artifact: $BREW/bin/rustc
+      - artifact: $HOME/.cargo/bin/rustc
         install:
-          - brew: rust
+          - run: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
 
       - artifact: ~/.bun/bin/bun
         install:

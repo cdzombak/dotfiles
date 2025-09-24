@@ -25,9 +25,7 @@ if [ -d "$HOME/go" ]; then
 fi
 
 # Rust:
-if [ -d "$HOME/.cargo/bin" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
+[-d "$HOME/cargo" ] && . "$HOME/.cargo/env"
 
 # Fastlane (brew install --cask fastlane):
 if [ -d "$HOME/.fastlane/bin" ]; then
