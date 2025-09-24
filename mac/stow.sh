@@ -24,7 +24,6 @@ stow --target="$HOME" --ignore="DS_Store" act
 stow --target="$HOME" --ignore="DS_Store" hammerspoon
 stow --target="$HOME" --ignore="DS_Store" git
 stow --target="$HOME" --ignore="DS_Store" login
-stow --target="$HOME" --ignore="DS_Store" profile
 stow --target="$HOME" --ignore="DS_Store" ruby
 stow --target="$HOME" --ignore="DS_Store" zsh
 stow --target="$HOME" --ignore="DS_Store" asdf
