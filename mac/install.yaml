@@ -902,9 +902,10 @@ install_groups:
           - run: defaults write com.culturedcode.ThingsMac UriSchemeEnabled -bool true
         checklist:
           - Sign into Things Cloud account
-          - Set keyboard shortcuts (⌃⌥Space for Quick Entry, ⌃⇧I for Autofill)
           - Enable autofill via Things Helper
+          - Set keyboard shortcuts (⌃⌥Space for Quick Entry, ⌃⇧I for Autofill)
           - Set calendar & reminders integration settings
+          - Badge count: Deadlines only
 
       - artifact: $BREW/bin/things2md
         install:
