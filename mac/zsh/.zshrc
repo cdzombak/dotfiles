@@ -62,8 +62,6 @@ source ~/.zsh/completion.zsh
 autoload -Uz compinit
 compinit
 
-alias mac-install-only='$HOME/.dotfiles/mac/mac-install -config $HOME/.dotfiles/mac/install.yaml -only'
-
 source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
 source ~/.zsh/colored-man-pages.zsh
