@@ -86,7 +86,8 @@ command -v rake >/dev/null 2>&1 && source ~/.zsh/rake.zsh
 source ~/.zsh/ssh.zsh
 source ~/.zsh/title.zsh
 source ~/.zsh/wx.zsh
-[ -d "$HOME/.bun" ] && source ~/.zsh/bun.zsh
+
+[ -f ~/.local.zsh ] && source ~/.local.zsh
 
 command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
@@ -96,15 +97,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     source ~/.zsh/macos.zsh
     source ~/.zsh/xcode.zsh
 fi
-if [ -f ~/.local.zsh ]; then
-    source ~/.local.zsh
-fi
-if [ -x /Applications/UTM.app/Contents/MacOS/utmctl ]; then
-    PATH="/Applications/UTM.app/Contents/MacOS:$PATH"
-fi
-if [ -x /Users/cdzombak/.claude/local/claude ]; then
-    PATH="/Users/cdzombak/.claude/local:$PATH"
-fi
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10
@@ -113,10 +105,5 @@ zstyle ':notify:*' success-title "Completed ✅"
 zstyle ':notify:*' enable-on-ssh yes
 zstyle ':notify:*' blacklist-regex 'nano' # ex. 'find|git'
 
-. "$HOME/.local/bin/env"
-
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
-
-# bun completions
-[ -s "/Users/cdzombak/.bun/_bun" ] && source "/Users/cdzombak/.bun/_bun"

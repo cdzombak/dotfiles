@@ -34,20 +34,34 @@ if [ -d "$HOME/.fastlane/bin" ]; then
     export PATH="$PATH:$HOME/.fastlane/bin"
 fi
 
+# Google Cloud:
 if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
+
+# UTM (VM app):
+if [ -x /Applications/UTM.app/Contents/MacOS/utmctl ]; then
+    PATH="/Applications/UTM.app/Contents/MacOS:$PATH"
+fi
+
+# Claude Code:
+if [ -x /Users/cdzombak/.claude/local/claude ]; then
+    PATH="/Users/cdzombak/.claude/local:$PATH"
+fi
+
+# https://bun.com:
+[ -d "$HOME/.bun" ] && source ~/.zsh/bun.zsh
 
 # allow installing in ~/opt:
 export PATH="$HOME/opt/sbin:$HOME/opt/bin:$PATH"
 export MANPATH="$HOME/opt/share/man:$MANPATH"
 
+# ~/.local/bin
+[ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
+
+# asdf-vm:
 if [ -d "$HOME/.asdf" ] ; then
     PATH="$HOME/.asdf/shims:$PATH"
-fi
-
-if [ -e "$HOME/.local.bin/env" ]; then
-    . "$HOME/.local/bin/env"
 fi
 
 export LC_ALL=en_US.UTF-8
@@ -67,3 +81,4 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ ! -f "/Applications/Sublime Te
 else
     export EDITOR='subl -w -n' # sublime; wait; new window
 fi
+
