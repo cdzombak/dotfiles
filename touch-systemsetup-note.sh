@@ -19,7 +19,7 @@ EOF
 if [ "$(uname)" == "Darwin" ]; then
   cat << EOF > "$HOME/SystemSetup.md"
 
-- [ ] Run setup scripts (\`make mac\`)
+- [ ] Run setup scripts (\`make mac-all\`)
 - [ ] Set up Solarized Dark profile in Terminal.app as the default
     - [ ] Reset font to Meslo LG L after initial install
 - [ ] Rename "Macintosh HD"
@@ -49,7 +49,7 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
     - [ ] Enable "Optimize Mac Storage" for iCloud Drive & Photos, as desired
     - [ ] Enable Desktop & Documents folders, as desired
 
-_Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\` and \`macos-configure-post-software-install.sh\` to create iCloud Drive links in \`~\` and configure the Finder sidebar.
+_Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` to create iCloud Drive links in \`~\`.
 
 ### Apple Pay
 
@@ -69,7 +69,6 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`macos-homedir.sh\`
 ### Desktop & Screen Saver
 
 - [ ] Customize as desired
-- [ ] Install Aqueux desktops package
 
 ### Extensions
 
