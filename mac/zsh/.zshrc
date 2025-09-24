@@ -5,6 +5,8 @@
 # color theme and other inspiration from https://gist.github.com/kevin-smets/8568070
 # https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
 
+export SESSION_OPENED_TS=$(date +%s)
+
 fpath=(~/.zsh/completions $fpath)
 if [ -d "$HOME/.local/shell-completion" ] ; then
     fpath=(~/.local/shell-completion $fpath)
@@ -29,8 +31,6 @@ export CLICOLOR=true
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 export LS_COLORS="di=36:ln=35:so=31;1;44:pi=30;1;44:ex=1;31:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=30;1;43:tw=30;1;42:ow=30;1;43"
 export WINDOWSTACK2_ERRCOLOR="1;30"
-
-export SESSION_OPENED_TS=$(date +%s)
 
 alias reload!='echo "" && . ~/.zshrc'
 
