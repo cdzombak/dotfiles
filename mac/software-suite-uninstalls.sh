@@ -448,12 +448,6 @@ if [ -e /Applications/Wavebox.app ]; then
   trash /Applications/Wavebox.app
 fi
 
-if [ -e /Applications/WireGuard.app ]; then
-  echo "WireGuard Client..."
-  verify_smartdelete
-  trash /Applications/WireGuard.app
-fi
-
 if [ -e "/Applications/Magic Lasso.app" ]; then
   echo "Magic Lasso..."
   verify_smartdelete
