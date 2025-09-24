@@ -446,7 +446,6 @@ install_groups:
           - "Autofill: Command-Backslash"
           - "Appearance -> Density: Compact"
           - "Appearance -> Always show in Sidebar: Categories and Tags"
-          - "Security: enable unlock with Apple Watch"
           - "Security: hold Option to toggle revealed fields"
           - "Privacy -> Watchtower: Enable all Watchtower features"
           - "Developer: enable CLI integration"

@@ -35,7 +35,6 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 
 - [ ] Enable FileVault
 - [ ] Enable Firewall
-- [ ] Allow unlocking machine with Apple Watch
 - [ ] Allow apps downloaded from: App Store and identified developers
 - [ ] 5 minutes to screen saver
 - [ ] 2 minutes to screen off when on battery; 10 minutes on AC
