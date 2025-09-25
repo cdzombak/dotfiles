@@ -25,7 +25,7 @@ if [ -d "$HOME/go" ]; then
 fi
 
 # Rust:
-[-d "$HOME/cargo" ] && . "$HOME/.cargo/env"
+[ -d "$HOME/cargo" ] && . "$HOME/.cargo/env"
 
 # Fastlane (brew install --cask fastlane):
 if [ -d "$HOME/.fastlane/bin" ]; then
