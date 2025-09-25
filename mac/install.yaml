@@ -904,7 +904,7 @@ install_groups:
           - Enable autofill via Things Helper
           - Set keyboard shortcuts (⌃⌥Space for Quick Entry, ⌃⇧I for Autofill)
           - Set calendar & reminders integration settings
-          - Badge count: Deadlines only
+          - "Badge count: Deadlines only"
 
       - artifact: $BREW/bin/things2md
         install:
