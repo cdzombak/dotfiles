@@ -66,9 +66,9 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 - [ ] Do not show Spotlight in menu bar
 
-### Desktop & Screen Saver
+### Desktop & Dock
 
-- [ ] Customize as desired
+- [ ] Disable "Tiled windows have margins"
 
 ### Extensions
 
@@ -122,6 +122,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Disable guest access
 - [ ] Audit login items
 - [ ] Set account photo
+
+### Wallpaper, Screen Saver
+
+- [ ] Configure as desired
 
 ## Calendar
 
