@@ -351,6 +351,12 @@ if [ -e "/Applications/Rocket.app" ]; then
   trash /Applications/Rocket.app
 fi
 
+if [ -e "/Applications/RSS Button for Safari.app" ]; then
+  echo "RSS Button for Safari..."
+  verify_smartdelete
+  trash "/Applications/RSS Button for Safari.app"
+fi
+
 if [ -e "/Applications/Screens Connect.app" ]; then
   echo "Screens Connect..."
   verify_smartdelete

@@ -917,13 +917,6 @@ install_groups:
           - brew: cdzombak/oss/things2md
 
       # Safari Extensions
-      - artifact: /Applications/RSS Button for Safari.app
-        install:
-          - mas: "1437501942"
-        checklist:
-          - Configure for Reeder.app
-          - Enable RSS Button Safari extension
-
       - artifact: /Applications/Save to Raindrop.io.app
         install:
           - mas: "1549370672"
