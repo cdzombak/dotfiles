@@ -172,7 +172,7 @@ create_app_folder "AI Tools"
 
 create_app_link "AI Tools" "/Applications/Talktastic.app"
 create_app_link "AI Tools" "/Applications/Claude.app"
-create_app_link "AI Tools" "$HOME/Applications/ollama.app"
+create_app_link "AI Tools" "$HOME/Applications/OpenWebUI.app"
 create_app_link "AI Tools" "$HOME/Applications/Devin.app"
 create_app_link "AI Tools" "$HOME/Applications/GitHub Copilot.app"
 create_app_link "AI Tools" "/Applications/VibeTunnel.app"
