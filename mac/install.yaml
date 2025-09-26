@@ -724,8 +724,8 @@ install_groups:
           - Restore purchases
 
       - artifact: $HOME/Applications/Instapaper Reader.app
+        note: "https://instapaper.com/u (Safari web app)"
         checklist:
-          - "Create Safari web app (`https://instapaper.com/u`)"
           - Sign in
 
       - artifact: /Applications/NewFileMenu.app
@@ -1185,8 +1185,7 @@ install_groups:
           - run: defaults write "net.earthlingsoft.UnicodeChecker" "Use last Codepoint" '1'
 
       - artifact: $HOME/Applications/UniChar.app
-        checklist:
-          - "Create Safari web app (`https://unichar.app/web/`)"
+        note: "https://unichar.app/web (Safari web app)"
 
       - artifact: /Applications/JSON Editor.app
         install:
@@ -1571,16 +1570,13 @@ install_groups:
           - cask: wireshark
 
       - artifact: $HOME/Applications/Clock.app
-        checklist:
-          - "Create Safari web app (`https://clock.dzdz.cz`)"
+        note: "https://clock.dzdz.cz (Safari web app)"
 
       - artifact: $HOME/Applications/JSON Viewer.app
-        checklist:
-          - "Create Safari web app (`https://json.dzdz.cz`)"
+        note: "https://json.dzdz.cz (Safari web app)"
 
       - artifact: $HOME/Applications/Transform Tools.app
-        checklist:
-          - "Create Safari web app (`https://transform.tools/`)"
+        note: "https://transform.tools/ (Safari web app)"
 
   # AI tools (optional)
   - group: AI
@@ -1629,18 +1625,15 @@ install_groups:
 
       - artifact: $HOME/Applications/OpenWebUI.app
         persist: true
-        checklist:
-          - "Create Safari web app (`https://jetstream.tailnet-003a.ts.net:7778`)"
+        note: "https://jetstream.tailnet-003a.ts.net:7778 (Safari web app)"
 
       - artifact: $HOME/Applications/Devin.app
         persist: true
-        checklist:
-          - "Create Safari web app (`https://app.devin.ai`)"
+        note: "https://app.devin.ai (Safari web app)"
 
       - artifact: $HOME/Applications/GitHub Copilot.app
         persist: true
-        checklist:
-          - "Create Safari web app (`https://github.com/copilot`)"
+        note: "https://github.com/copilot (Safari web app)"
 
       - artifact: /Applications/iTermAI.app
         persist: true
@@ -1659,8 +1652,7 @@ install_groups:
 
       - artifact: $HOME/Applications/Google AI Studio.app
         persist: true
-        checklist:
-          - "Create Safari web app (`https://aistudio.google.com`)"
+        note: "https://aistudio.google.com (Safari web app)"
 
       - artifact: $BREW/bin/gemini
         persist: true
@@ -2074,19 +2066,19 @@ install_groups:
 
       - artifact: $HOME/Applications/UniFi Protect.app
         persist: true
+        note: "https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard/all (Safari web app)"
         checklist:
-          - "Create Safari web app (`https://unifi.ui.com/consoles/788A204135D20000000002A23AAC0000000002BC292500000000594C9DDB:831189568/protect/dashboard/all`)"
           - Sign in
 
       - artifact: $HOME/Applications/Frigate.app
         persist: true
+        note: "https://boston.tailnet-003a.ts.net:8971/ (Safari web app)"
         checklist:
-          - "Create Safari web app (`https://boston.tailnet-003a.ts.net:8971/`)"
           - Sign in
 
       - artifact: $HOME/Applications/Ecobee.app
+        note: "https://www.ecobee.com/consumerportal/index.html#/devices (Safari web app)"
         checklist:
-          - "Create Safari web app (`https://www.ecobee.com/consumerportal/index.html#/devices`)"
           - Sign in
 
   # Music, podcasts, and reading applications (optional)
@@ -2131,8 +2123,7 @@ install_groups:
 
       - artifact: $HOME/Applications/Lofi Cafe.app
         persist: true
-        checklist:
-          - "Create Safari web app (`https://lofi.cafe`)"
+        note: "https://lofi.cafe (Safari web app)"
 
       - artifact: /Applications/Pocket Casts.app
         persist: true
@@ -2262,8 +2253,8 @@ install_groups:
           - script: install/notify-me.sh
 
       - artifact: $HOME/Applications/Ntfy.app
+        note: "https://ntfy.cdzombak.net (Safari web app)"
         checklist:
-          - "Create Safari web app (`https://ntfy.cdzombak.net`)"
           - Sign in
 
       - artifact: /Applications/BetterDisplay.app
