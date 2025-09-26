@@ -1,9 +1,11 @@
 function short_hostname() {
     if [[ "$OSTYPE" = darwin* ]]; then
-      # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
-      echo $(scutil --get ComputerName 2>/dev/null) || ${HOST/.*/}
+        # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
+        echo $(scutil --get ComputerName 2>/dev/null) || ${HOST/.*/}
+    elif command -v hostnamectl >/dev/null 2>&1; then
+        echo $(hostnamectl --pretty)
     else
-      echo ${HOST/.*/}
+        echo ${HOST/.*/}
     fi
 }
 
