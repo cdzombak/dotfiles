@@ -550,6 +550,7 @@ install_groups:
         checklist:
           - Grant permissions
           - Launch at login
+          - Hide Ice icon
           - Configure menu bar as desired/following convention from existing systems
 
       - artifact: /Applications/IINA.app
