@@ -7,24 +7,33 @@
 
 export SESSION_OPENED_TS=$(date +%s)
 
+source ~/.zsh/completion.zsh
+autoload -Uz compinit
+compinit
 fpath=(~/.zsh/completions $fpath)
 if [ -d "$HOME/.local/shell-completion" ] ; then
     fpath=(~/.local/shell-completion $fpath)
 fi
+if type brew &>/dev/null; then
+    fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
-if [ -x "$(brew --prefix)/bin/assume" ]; then
-    alias assume="source assume"
-    if [ -d "$HOME/.granted/zsh_autocomplete/assume" ]; then
-        fpath=("$HOME/.granted/zsh_autocomplete/assume/" $fpath)
-    fi
-    if [ -d "$HOME/.granted/zsh_autocomplete/granted" ]; then
-        fpath=("$HOME/.granted/zsh_autocomplete/granted/" $fpath)
+    if [ -x "$(brew --prefix)/bin/assume" ]; then
+        alias assume="source assume"
     fi
 fi
+if [ -d "$HOME/.granted/zsh_autocomplete/assume" ]; then
+    fpath=("$HOME/.granted/zsh_autocomplete/assume/" $fpath)
+fi
+if [ -d "$HOME/.granted/zsh_autocomplete/granted" ]; then
+    fpath=("$HOME/.granted/zsh_autocomplete/granted/" $fpath)
+fi
+if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
+    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+fi
+[ -d "$HOME/.bun" ] && source "$HOME/.bun/_bun" # https://bun.com completions
 
-DEFAULT_USER=cdzombak
-autoload -U zmv
 setopt interactivecomments
+setopt noclobber
 
 export CLICOLOR=true
 # generate/sync via https://geoff.greer.fm/lscolors/
@@ -32,35 +41,16 @@ export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 export LS_COLORS="di=36:ln=35:so=31;1;44:pi=30;1;44:ex=1;31:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=30;1;43:tw=30;1;42:ow=30;1;43"
 export WINDOWSTACK2_ERRCOLOR="1;30"
 
-alias reload!='echo "" && . ~/.zshrc'
-
-# redo prioritizing homebrew & asdf in PATH here, same as .zshenv,
-# since something in macOS is resetting it between there and now:
-if [ -d /opt/homebrew/bin ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    export MANPATH="/opt/homebrew/share/man:$MANPATH"
-fi
-if [ -d "$HOME/.asdf" ] ; then
-    PATH="$HOME/.asdf/shims:$PATH"
-fi
-
 source ~/.zsh/lib-rc/urlencode.zsh
 source ~/.zsh/lib-rc/git.zsh
 source ~/.zsh/lib-rc/short-host.zsh
 
-set -o noclobber
-
-if [[ -z "$ZSH_CACHE_DIR" ]]; then
-    ZSH_CACHE_DIR="$HOME/.zsh-cache"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source ~/.zsh/macos.zsh
+    source ~/.zsh/xcode.zsh
 fi
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
-source ~/.zsh/completion.zsh
-autoload -Uz compinit
-compinit
+alias reload!='echo "" && . ~/.zshrc'
 
 source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
@@ -69,6 +59,7 @@ source ~/.zsh/devtools.zsh
 command -v docker >/dev/null 2>&1 && source ~/.zsh/docker-func.zsh
 source ~/.zsh/envtools.zsh
 source ~/.zsh/extract.zsh
+command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
 source ~/.zsh/gitignore.zsh
 source ~/.zsh/golang.zsh
 source ~/.zsh/grep.zsh
@@ -80,23 +71,16 @@ source ~/.zsh/markdown.zsh
 source ~/.zsh/marks.zsh
 source ~/.zsh/misc.zsh
 source ~/.zsh/navigation.zsh
+DEFAULT_USER=cdzombak # used in ~/.zsh/prompt.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/python.zsh
 command -v rake >/dev/null 2>&1 && source ~/.zsh/rake.zsh
 source ~/.zsh/ssh.zsh
 source ~/.zsh/title.zsh
 source ~/.zsh/wx.zsh
+autoload -U zmv # https://blog.smittytone.net/2021/04/03/how-to-use-zmv-z-shell-super-smart-file-renamer/
 
 [ -f ~/.local.zsh ] && source ~/.local.zsh
-
-command -v fzf >/dev/null 2>&1 && source ~/.zsh/fzf.zsh
-if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
-    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-fi
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    source ~/.zsh/macos.zsh
-    source ~/.zsh/xcode.zsh
-fi
 
 source ~/.zsh/zsh-notify/notify.plugin.zsh
 zstyle ':notify:*' command-complete-timeout 10
