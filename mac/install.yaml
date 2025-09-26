@@ -885,6 +885,9 @@ install_groups:
       - artifact: /Applications/Spaced.app
         install:
           - mas: "1666327168"
+        checklist:
+          - Reduce opacity
+          - Launch at login
 
       - artifact: /Applications/Tot.app
         install:
