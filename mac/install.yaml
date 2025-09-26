@@ -26,6 +26,10 @@ install_groups:
         install:
           - run: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
 
+      - artifact: $HOME/.rustup/toolchains/stable-aarch64-apple-darwin/bin/rust-analyzer
+        install:
+          - run: rustup component add rust-analyzer
+
       - artifact: ~/.bun/bin/bun
         install:
           - run: "curl -fsSL https://bun.sh/install | bash"
