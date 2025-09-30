@@ -1267,10 +1267,8 @@ install_groups:
           - run: defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
         checklist:
           - Sign in to Setapp
-          - Disable "Show in Finder Sidebar"
+          - Configure Setapp settings as desired
           - Install applications as desired from Setapp Favorites
-          - Re-run post-install configuration script
-          - Disable global search shortcut
           - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
 
       - artifact: /Applications/Setapp/CodeRunner.app
