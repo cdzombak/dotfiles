@@ -1353,6 +1353,9 @@ install_groups:
           - cask: visual-studio-code
         checklist:
           - Sync settings using Github account
+          - Set default window zoom to 0.75 *(not synced)*
+          - Sign into GitHub for GitHub Actions extension
+          - Sign into GitHub for GitHub Pull Requests extension
 
       - artifact: /Applications/JetBrains Toolbox.app
         persist: true
