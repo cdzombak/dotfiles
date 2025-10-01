@@ -86,6 +86,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/.config/macos\`)
     - [ ] Customize available services as desired
 - [ ] Enable Dictation
+- [ ] Dictation shortcut: Press right Command key twice
 
 ### Notifications
 
