@@ -33,7 +33,7 @@ if [ -d "$HOME/go" ]; then
 fi
 
 # Rust:
-[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # UTM (VM app):
 if [ -x /Applications/UTM.app/Contents/MacOS/utmctl ]; then
