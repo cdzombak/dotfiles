@@ -895,9 +895,9 @@ install_groups:
           - mas: "1491071483"
         checklist:
           - Start at login
-          - Add to Dock
-          - Control with Dock Icon; customize color
+          - Activate with Smart Icons
           - Shortcut Ctrl-Shift-'
+          - Customize app icon
 
       - artifact: /Applications/Things3.app
         install:
