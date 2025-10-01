@@ -1843,8 +1843,7 @@ install_groups:
         checklist:
           - Add personal accounts; set account name
           - Customize main window & message window toolbars
-          - Increase font size
-          - Notification config Show in Notification Center and display badge
+          - "Notification config: Show in Notification Center and display badge"
 
       - artifact: /Applications/Discord.app
         persist: true
