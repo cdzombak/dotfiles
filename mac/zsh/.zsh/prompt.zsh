@@ -161,10 +161,15 @@ _zsh_rprompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $1 != $_ZSH_PROMPT_CURRENT_BG ]]; then
+  if [[ $_ZSH_PROMPT_CURRENT_BG != 'NONE' && $1 != $_ZSH_PROMPT_CURRENT_BG ]]; then
     echo -n " %{%K{$_ZSH_PROMPT_CURRENT_BG}%F{$1}%}$_ZSH_PROMPT_R_SEGMENT_SEPARATOR"
+    echo -n "%{$bg%}%{$fg%} "
+  elif [[ $_ZSH_PROMPT_CURRENT_BG == 'NONE' ]]; then
+    # First segment - no leading space before OR after separator
+    echo -n "%{%F{$1}%}$_ZSH_PROMPT_R_SEGMENT_SEPARATOR%{$bg%}%{$fg%}"
+  else
+    echo -n "%{$bg%}%{$fg%} "
   fi
-  echo -n "%{$bg%}%{$fg%} "
   _ZSH_PROMPT_CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
 }
@@ -197,6 +202,19 @@ _zsh_rprompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     _zsh_rprompt_segment cyan black "`basename $virtualenv_path`"
+  fi
+}
+
+_zsh_rprompt_nats() {
+  if command -v nats &>/dev/null; then
+    # Get the active context (line with * at the end)
+    local nats_ctx
+    nats_ctx=$(nats context ls 2>/dev/null | grep '\*' | awk '{print $2}' | sed 's/\*$//')
+
+    # Only show if context exists and is not localhost
+    if [[ -n "$nats_ctx" && "$nats_ctx" != "localhost" ]]; then
+      _zsh_rprompt_segment green black "nats:$nats_ctx"
+    fi
   fi
 }
 
@@ -297,9 +315,11 @@ _zsh_build_prompt() {
 
 ## Right prompt
 _zsh_build_rprompt() {
+  _ZSH_PROMPT_CURRENT_BG='NONE'
   _zsh_rprompt_local_env
   _zsh_rprompt_virtualenv
   _zsh_rprompt_asdf
+  _zsh_rprompt_nats
   _zsh_rprompt_kubectl
   _zsh_rprompt_aws_region
   _zsh_rprompt_aws_profile
