@@ -249,22 +249,22 @@ gcloud-ctx-hide() {
 
 _zsh_rprompt_asdf() {
   local expected_python expected_node current_python current_node
-  
+
   # Read expected versions from ~/.tool-versions
   if [[ -f "$HOME/.tool-versions" ]]; then
     expected_python=$(grep '^python ' "$HOME/.tool-versions" | awk '{print $2}')
     expected_node=$(grep '^nodejs ' "$HOME/.tool-versions" | awk '{print $2}')
   fi
-  
+
   # Get current versions
   current_python=$(python3 -V 2>&1 | cut -f 2 -d ' ')
   current_node=$(node --version 2>&1 | sed 's/^v//')
-  
+
   # Show Python version only if different from expected
   if [[ -n "$expected_python" && "$current_python" != "$expected_python" ]]; then
     _zsh_rprompt_segment black cyan "py $current_python"
   fi
-  
+
   # Show Node version only if different from expected
   if [[ -n "$expected_node" && "$current_node" != "$expected_node" ]]; then
     _zsh_rprompt_segment black cyan "njs $current_node"
@@ -300,7 +300,7 @@ _zsh_build_rprompt() {
   _zsh_rprompt_local_env
   _zsh_rprompt_virtualenv
   _zsh_rprompt_asdf
-  #_zsh_rprompt_kubectl
+  _zsh_rprompt_kubectl
   _zsh_rprompt_aws_region
   _zsh_rprompt_aws_profile
   _zsh_rprompt_gcloud
