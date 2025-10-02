@@ -1,0 +1,267 @@
+#compdef nats -value-,NATS_CONTEXT,-default-
+
+# This file should be installed as '_nats' in a directory in your $fpath list.
+
+# Recommendation: place NATS_CONTEXT into your fake-parameters zstyle
+#
+# Eg:
+#   zstyle ':completion:*' fake-parameters \
+#     AWS_PROFILE DOCKER_CONTEXT NATS_CONTEXT
+#
+# The standard zstyle 'verbose' bool is honored for NATS context names; this
+# true-by-default style causes the completion to decorate the names with the
+# .description fields from the contexts.  Override with:
+#   zstyle ':completion::complete:nats:*' verbose false
+#   zstyle ':completion::complete:-value-,NATS_CONTEXT,:' verbose false
+#
+# The approach used to get the descriptions is slightly fragile, based upon raw
+# text-line parsing of the JSON context files.  If we change that storage at all,
+# and have to switch back to invoking jq once per file, then we will unfortunately
+# have to move the zstyle guard across to 'extra-verbose' instead.  It's only the
+# mapfile technique which lets us keep this as only being 'verbose'.
+#
+
+local curcontext="$curcontext" state line expl
+local nctx
+local -a nats_contexts nats_commands nats_sub nats_flags nats_global_flags described_contexts
+local -A nats_decorate_flags_desc nats_decorate_flags_next nats_decorate_flags_mutex
+local -i nats_verbose=0 NORMARG
+
+# We use ${mapfile[...]} for loading in the context files
+zmodload -i zsh/mapfile
+
+# extra-verbose is documented as for features which will slow completion speed.
+# verbose is just for being more wordy.
+# If we have to revert back to the jq invocation approach, then we should use
+# `-t extra-verbose` as our conditional here.
+if zstyle -T ":completion:${curcontext}:" verbose; then
+  # nb: 'verbose' is on-by-default for zsh, but this is by convention and
+  # documentation, rather than by logic.  So when querying the style, we use
+  # '-T' so that absence of the option is taken as true, not false.
+  # If switching to extra-verbose, off-by-default, then the above zstyle test
+  # needs to switch to -t instead of -T.
+  nats_verbose=1
+fi
+
+local -ra want_context=(
+  context:copy
+  context:edit
+  context:info
+  context:rm
+  context:select
+  context:show
+  context:validate
+)
+
+local -r nats_ctxdir="${XDG_CONFIG_HOME:-$HOME/.config}/nats/context"
+
+# Beware that the edit facility will leave .bak files behind, so
+# restrict this to only JSON contexts.
+nats_contexts=( "$nats_ctxdir"/*.json(N:t:r) )
+
+# *IF* we revert back to using jq, then:
+# TODO: come up with a cache expiration strategy and integrate this with use-cache
+# or at least a global variable.
+#
+# The performance difference scales rapidly with number of contexts.
+#
+(( ${+functions[_nats_context_names]} )) ||
+_nats_context_names() {
+  if (( nats_verbose )); then
+    described_contexts=()
+    for nctx in "${nats_contexts[@]}"; do
+      # This is the more reliable but much slower method, using repeated invocations of jq:
+      #described_contexts+=("${nctx//:/\\:}:$(_call_program jq "jq -r .description < \"${(q)nats_ctxdir}/${(q)nctx}.json\"")")
+      # This, thanks to Bart Schaefer, is a zsh-native approach which will work
+      # as long as the JSON files are one field per line; if we start storing
+      # the JSON data as single-line blobs then we will need to switch back to
+      # the heavy-weight jq approach:
+      described_contexts+=("${nctx//:/\\:}:${${${${(@M)${(f)mapfile[$nats_ctxdir/$nctx.json]}:#[[:space:]]##\"description\":*}#*: \"}%,}%\"}")
+    done
+    _describe nats-contexts described_contexts
+  else
+    _wanted nats-contexts expl 'nats contexts' compadd "$@" -- "${nats_contexts[@]}"
+  fi
+}
+
+case "$service" in
+  *,NATS_CONTEXT,*)
+    _nats_context_names
+    return 0
+    ;;
+esac
+
+(( ${+functions[_nats_subcommands]} )) ||
+_nats_subcommands() {
+  local -a nats_subcommands
+  local cline copt
+  local -i should_decorate_flags=0
+  # Beware: if we're not careful, `nats s<tab>` won't distinguish that `s` is
+  # not a complete word yet and instead take it as the alias 's' for stream,
+  # find the stream sub-commands, and then filter to only the ones in that
+  # which start 's'.
+  cline="${line%%[[:space:]]##}"
+  copt=''
+  if [[ "${cline##*[[:space:]]}" == --* ]]; then
+    # it's an option
+    copt=' --'
+    should_decorate_flags=1
+  elif [[ "${cline##*[[:space:]]}" == -* ]]; then
+    copt=' -'
+  fi
+  if [[ "$cline" == "$line" ]]; then
+    if [[ "${cline%%[[:space:]]*}" == "$cline" ]]; then
+      # first word, drop it entirely
+      cline=''
+    else
+      # drop last word
+      cline="${line%%[[:space:]]##[^[:space:]]##}"
+    fi
+  fi
+  local curcontext="${curcontext%:*:*}:nats${cline:+-}${cline//[[:space:]]##/-}:"
+  nats_subcommands=( $(_call_program nats-completion-bash "${(q)words[1]} --completion-bash ${cline}${copt}") )
+  if (( should_decorate_flags )); then
+    local -a nats_flags=("${nats_subcommands[@]}")
+    _nats_decorate_flags
+    words[$NORMARG,$CURRENT-1]=()
+    CURRENT=$((NORMARG+1))
+    _arguments : "${nats_flags[@]}"
+  else
+    local full_sub="${cline//[[:space:]]##/:}"
+    if (( ${want_context[(Ie)$full_sub]} )); then
+      _nats_context_names
+    else
+      _describe -t nats-commands 'nats commands' nats_subcommands
+    fi
+  fi
+  return 0
+}
+
+(( ${+functions[_nats_decorate_flags]} )) ||
+_nats_decorate_flags() {
+  local fullflag flag directive message
+  local -a new_flags=() items expanded
+  local -a specific_flags=() global_flags=() items expanded
+  for fullflag in "${nats_flags[@]}"; do
+    flag="${fullflag#--}"
+    if (( nats_global_flags[(I)$fullflag] )); then
+      message='global flag'
+    else
+      message='sub-command flag'
+    fi
+    if (( ${+nats_decorate_flags_desc[$flag]} )); then
+      directive=''
+      if ! (( $+nats_decorate_flags_mutex[$flag] )); then
+        directive="--$flag"
+        if (( $+nats_decorate_flags_next[$flag] )); then
+          directive+="="
+        fi
+      fi
+      directive+="[${nats_decorate_flags_desc[$flag]}]:${message}"
+      if (( $+nats_decorate_flags_next[$flag] )); then
+        directive+=":${nats_decorate_flags_next[$flag]}"
+      fi
+      if (( $+nats_decorate_flags_mutex[$flag] )); then
+        # This is safe because flag is validated to be known
+        eval "expanded=(${nats_decorate_flags_mutex[$flag]})"
+        new_flags+=( ${^expanded}"$directive" )
+      else
+        new_flags+=( "$directive" )
+      fi
+    else
+      new_flags+=( "$fullflag" )
+    fi
+  done
+  nats_flags=( "${new_flags[@]}" )
+}
+
+nats_decorate_flags_desc=( # this assumes zsh is-at-least 5.5
+	[help]='show help and exit'
+	[version]='show version and exit'
+
+	[context]='NATS user context'
+	[no-context]='Do not use current selected context'
+	[server]='NATS server URL to connect to'
+
+	# authentication options (using contexts provides defaults for these)
+	[tlscert]='TLS client auth public certificate'
+	[tlskey]='TLS client auth private key'
+	[tlsca]='TLS CA bundle to verify server cert'
+	[creds]='NATS credentials file to use for authentication'
+	[nkey]='filename containing NKey private key'
+	[user]='NATS username to authenticate as'
+	[password]='Password for NATS user'
+
+	[trace]='Trace API interactions'
+	[timeout]='time to wait for responses from NATS'
+	[connection-name]='set visible self-descriptive name in NATS connection'
+	[inbox-prefix]='custom inbox prefix to use'
+	[socks-proxy]='SOCKS5 proxy for connecting to NATS server'
+
+	[js-api-prefix]='JetStream API subject prefix'
+	[js-domain]='JetStream Domain (for transiting other NATS clusters)'
+	[js-event-prefix]='JetStream Advisories subject prefix'
+
+	# Here we have to be careful about phrasing when a flag might apply to
+	# different nouns in different sub-commands; it's better to skip our
+	# verbose help than to be wrong, so if in doubt, exclude.
+	#
+	# We do set curcontext appropriately so in theory we could move these
+	# into another array and take the 4th field from $curcontext and use
+	# that as a key prefix, but so far it's not worth it.
+	# We'd rather put the effort into replacing the CLI's completion support
+	# to let us remove all this specialist knowledge from the zsh wrapper.
+
+	# common sub-command flags
+	[yaml]='Produce YAML format output'
+	[json]='Produce JSON format output'
+	[force]='Proceed without prompting'
+	[subject]='NATS Subject to restrict to'
+	[top]='Show this many results'
+	[sort]='Sort on this field (see help)'
+
+	# account backup
+	[critical-warnings]='Treat warnings as failures'
+	# account tls
+	[expire-warn]='Warn about certs expiring this soon'
+	[ocsp]='Report OCSP information, if any'
+	[no-pem]='Skip showing certificate in PEM form'  # will not match if completion suggests only --pem
+)
+nats_decorate_flags_mutex=(
+	[server]='"(--server -s)"{-s,--server=}'
+)
+nats_decorate_flags_next=(
+	# if flag is not listed here, but is described above, then it's a boolean flag
+	[tlscert]='_files' [tlskey]='_files' [tlsca]='_files'
+	[creds]='_files' [nkey]='_files'
+	[user]=' ' [password]=' '
+	[server]=' '
+	[timeout]=' '
+	[connection-name]=' '
+	[inbox-prefix]=' '
+	[js-api-prefix]=' ' [js-domain]=' ' [js-event-prefix]=' '
+	[context]='_nats_context_names'
+	[socks-proxy]='_urls'
+
+	[expire-warn]=' '  # duration
+	[subject]=' '
+	[sort]='_message -r sort order' # different keywords in different contexts
+	[top]='_message -r numeric count'
+)
+
+# We populate a complete set first, so that even if we don't have more details below,
+# we can still tab-complete it; it will just be missing some data
+#
+# Most flags can appear anywhere; this is not a git-style "top command flags"
+# vs "subcommand flags", but instead "one pool of flags which gains extra
+# entries for some subcommands".
+#
+nats_global_flags=( $(_call_program nats-completion-bash "${(q)words[1]} --completion-bash ${line} --") )
+nats_flags=("${nats_global_flags[@]}")
+_nats_decorate_flags
+
+_arguments -n -A '-*' -C : "${nats_flags[@]}" '(-)*: :->subcommands' && return
+
+case "$state" in
+  (subcommands) _nats_subcommands ;;
+esac
