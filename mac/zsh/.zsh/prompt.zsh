@@ -117,39 +117,40 @@ _zsh_prompt_git() {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
     PL_BRANCH_CHAR=$'\ue0a0'         # 
   }
-  local ref dirty mode repo_path
+  # Use cached branch info if available
+  [[ -z "$_ZSH_PROMPT_GIT_BRANCH" ]] && return
+
+  local dirty mode repo_path
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    dirty=$(parse_git_dirty)
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
-    if [[ -n $dirty ]]; then
-      _zsh_prompt_segment yellow black
-    else
-      _zsh_prompt_segment green black
-    fi
+  dirty=$(parse_git_dirty)
 
-    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
-      mode=" <B>"
-    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
-      mode=" >M<"
-    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
-      mode=" >R>"
-    fi
-
-    setopt promptsubst
-    autoload -Uz vcs_info
-
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' get-revision true
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:*' stagedstr '✚'
-    zstyle ':vcs_info:*' unstagedstr '●'
-    zstyle ':vcs_info:*' formats ' %u%c'
-    zstyle ':vcs_info:*' actionformats ' %u%c'
-    vcs_info
-    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+  if [[ -n $dirty ]]; then
+    _zsh_prompt_segment yellow black
+  else
+    _zsh_prompt_segment green black
   fi
+
+  if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+    mode=" <B>"
+  elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+    mode=" >M<"
+  elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+    mode=" >R>"
+  fi
+
+  setopt promptsubst
+  autoload -Uz vcs_info
+
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' get-revision true
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' stagedstr '✚'
+  zstyle ':vcs_info:*' unstagedstr '●'
+  zstyle ':vcs_info:*' formats ' %u%c'
+  zstyle ':vcs_info:*' actionformats ' %u%c'
+  vcs_info
+  echo -n "${PL_BRANCH_CHAR} ${_ZSH_PROMPT_GIT_BRANCH}${vcs_info_msg_0_%% }${mode}"
 }
 
 # Dir: current working directory
@@ -303,14 +304,50 @@ _zsh_prompt_status() {
   [[ -n "$symbols" ]] && _zsh_prompt_segment black default "$symbols"
 }
 
-## Main prompt
+_zsh_should_split_prompt() {
+  # Check path length (expanded)
+  local current_path="${(%):-%~}"
+  if [[ ${#current_path} -gt 60 ]]; then
+    return 0
+  fi
+
+  # Check git branch length (use cached value from _zsh_prompt_git if available)
+  if [[ -n "$_ZSH_PROMPT_GIT_BRANCH" && ${#_ZSH_PROMPT_GIT_BRANCH} -gt 40 ]]; then
+    return 0
+  fi
+
+  return 1
+}
+
 _zsh_build_prompt() {
   RETVAL=$?
-  _zsh_prompt_status
-  _zsh_prompt_context
-  _zsh_prompt_dir
-  _zsh_prompt_git
-  _zsh_prompt_end
+
+  # Pre-populate git branch cache for prompt splitting decision
+  _ZSH_PROMPT_GIT_BRANCH=""
+  if (( $+commands[git] )) && $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    local ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="$(git rev-parse --short HEAD 2> /dev/null)"
+    _ZSH_PROMPT_GIT_BRANCH="${ref/refs\/heads\//}"
+  fi
+
+  if _zsh_should_split_prompt; then
+    # First line: status, context, dir
+    _zsh_prompt_status
+    _zsh_prompt_context
+    _zsh_prompt_dir
+    _zsh_prompt_end
+    echo ""
+    # Second line: git and end
+    _ZSH_PROMPT_CURRENT_BG='NONE'
+    _zsh_prompt_git
+    _zsh_prompt_end
+  else
+    # Single line: everything together
+    _zsh_prompt_status
+    _zsh_prompt_context
+    _zsh_prompt_dir
+    _zsh_prompt_git
+    _zsh_prompt_end
+  fi
 }
 
 ## Right prompt
