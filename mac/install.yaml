@@ -1324,6 +1324,11 @@ install_groups:
         checklist:
           - License
 
+      - artifact: /Applications/Klogg.app
+        persist: true
+        install:
+          - cask: klogg
+
       - artifact: /Applications/TextBuddy.app
         persist: true
         install:
