@@ -1,10 +1,10 @@
-# https://github.com/superbrothers/zsh-kubectl-prompt/commit/46081ea2e587f2440eecaff1109bba5749af3c94
+# https://github.com/superbrothers/zsh-kubectl-prompt/commit/cc8e2d15b56cf0dfff0954b30bd604fe9bcfcee3
 
 setopt prompt_subst
 autoload -U add-zsh-hook
 
 function() {
-    local namespace separator modified_time_fmt
+    local namespace separator binary
 
     # Specify the separator between context and namespace
     zstyle -s ':zsh-kubectl-prompt:' separator separator
@@ -18,18 +18,22 @@ function() {
         zstyle ':zsh-kubectl-prompt:' namespace true
     fi
 
-    # Check the stat command because it has a different syntax between GNU coreutils and FreeBSD.
-    if stat --help >/dev/null 2>&1; then
-        modified_time_fmt='-c%y' # GNU coreutils
-    else
-        modified_time_fmt='-f%m' # FreeBSD
+    # Specify the binary to get the information from kubeconfig (e.g. `oc`)
+    zstyle -s ':zsh-kubectl-binary:' binary binary
+    if [[ -z "$binary" ]]; then
+        zstyle ':zsh-kubectl-prompt:' binary "kubectl"
     fi
-    zstyle ':zsh-kubectl-prompt:' modified_time_fmt $modified_time_fmt
 }
 
 add-zsh-hook precmd _zsh_kubectl_prompt_precmd
 function _zsh_kubectl_prompt_precmd() {
-    local kubeconfig config updated_at now context namespace ns separator modified_time_fmt
+    local kubeconfig config updated_at now context namespace ns separator modified_time_fmt binary
+
+    zstyle -s ':zsh-kubectl-prompt:' binary binary
+    if ! command -v "$binary" >/dev/null; then
+      ZSH_KUBECTL_PROMPT="${binary} command not found"
+      return 1
+    fi
 
     kubeconfig="$HOME/.kube/config"
     if [[ -n "$KUBECONFIG" ]]; then
@@ -37,12 +41,21 @@ function _zsh_kubectl_prompt_precmd() {
     fi
 
     zstyle -s ':zsh-kubectl-prompt:' modified_time_fmt modified_time_fmt
+    if [[ -z "$modified_time_fmt" ]]; then
+      # Check the stat command because it has a different syntax between GNU coreutils and FreeBSD.
+      if stat --help >/dev/null 2>&1; then
+          modified_time_fmt='-c%y' # GNU coreutils
+      else
+          modified_time_fmt='-f%m' # FreeBSD
+      fi
+      zstyle ':zsh-kubectl-prompt:' modified_time_fmt $modified_time_fmt
+    fi
 
     # KUBECONFIG environment variable can hold a list of kubeconfig files that is colon-delimited.
     # Therefore, if KUBECONFIG has been held multiple files, each files need to be checked.
     while read -d ":" config; do
         if ! now="${now}$(stat -L $modified_time_fmt "$config" 2>/dev/null)"; then
-            _ZSH_KUBECTL_PROMPT="$config doesn't exist"
+            ZSH_KUBECTL_PROMPT="$config doesn't exist"
             return 1
         fi
     done <<< "${kubeconfig}:"
@@ -53,22 +66,32 @@ function _zsh_kubectl_prompt_precmd() {
     fi
     zstyle ':zsh-kubectl-prompt:' updated_at "$now"
 
-    if ! context="$(kubectl config current-context 2>/dev/null)"; then
-        _ZSH_KUBECTL_PROMPT="current-context is not set"
+    # Set environment variable if context is not set
+    if ! context="$("$binary" config current-context 2>/dev/null)"; then
+        ZSH_KUBECTL_PROMPT="current-context is not set"
         return 1
     fi
 
+    ZSH_KUBECTL_USER="$("$binary" config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.user}")"
+    ZSH_KUBECTL_CONTEXT="${context}"
+    ns="$("$binary" config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")"
+    [[ -z "$ns" ]] && ns="default"
+    ZSH_KUBECTL_NAMESPACE="${ns}"
+
+    # Specify the entry before prompt (default empty)
+    zstyle -s ':zsh-kubectl-prompt:' preprompt preprompt
+    # Specify the entry after prompt (default empty)
+    zstyle -s ':zsh-kubectl-prompt:' postprompt postprompt
+
+    # Set environment variable without namespace
     zstyle -s ':zsh-kubectl-prompt:' namespace namespace
     if [[ "$namespace" != true ]]; then
-        _ZSH_KUBECTL_PROMPT="${context}"
+        ZSH_KUBECTL_PROMPT="${preprompt}${context}${postprompt}"
         return 0
     fi
 
-    ns="$(kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")"
-    [[ -z "$ns" ]] && ns="default"
-
     zstyle -s ':zsh-kubectl-prompt:' separator separator
-    _ZSH_KUBECTL_PROMPT="${context}${separator}${ns}"
+    ZSH_KUBECTL_PROMPT="${preprompt}${context}${separator}${ns}${postprompt}"
 
     return 0
 }
