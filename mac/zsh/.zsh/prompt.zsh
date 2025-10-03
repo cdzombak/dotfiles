@@ -223,10 +223,8 @@ _zsh_rprompt_nats() {
 source ~/.zsh/kubectl-prompt.zsh
 
 _zsh_rprompt_kubectl() {
-  if [[ $_ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
-    local kcprompt
-    kcprompt=$(echo -n $_ZSH_KUBECTL_PROMPT | awk -F '/' '{print $1}' | awk -F '_' '{print $2 "/" $4}')
-    _zsh_rprompt_segment magenta black "$kcprompt"
+  if [[ "$PWD" == *"k8s-platform"* ]] || [[ $_ZSH_RPROMPT_K8S_CONTEXT = true ]]; then
+    _zsh_rprompt_segment magenta black "$ZSH_KUBECTL_PROMPT"
   fi
 }
 
