@@ -1511,11 +1511,6 @@ install_groups:
         install:
           - run: brew tap boz/repo ; brew install kail
 
-      - artifact: /Applications/Lens.app
-        persist: true
-        install:
-          - cask: lens
-
       - artifact: /Applications/ServerCat.app
         persist: true
         install:
