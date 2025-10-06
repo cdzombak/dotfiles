@@ -150,7 +150,13 @@ _zsh_prompt_git() {
   zstyle ':vcs_info:*' formats ' %u%c'
   zstyle ':vcs_info:*' actionformats ' %u%c'
   vcs_info
-  echo -n "${PL_BRANCH_CHAR} ${_ZSH_PROMPT_GIT_BRANCH}${vcs_info_msg_0_%% }${mode}"
+
+  # Display branch or detached HEAD
+  if [[ -n "$_ZSH_PROMPT_GIT_DETACHED" ]]; then
+    echo -n "➦ ${_ZSH_PROMPT_GIT_BRANCH}${vcs_info_msg_0_%% }${mode}"
+  else
+    echo -n "${PL_BRANCH_CHAR} ${_ZSH_PROMPT_GIT_BRANCH}${vcs_info_msg_0_%% }${mode}"
+  fi
 }
 
 # Dir: current working directory
@@ -322,9 +328,18 @@ _zsh_build_prompt() {
 
   # Pre-populate git branch cache for prompt splitting decision
   _ZSH_PROMPT_GIT_BRANCH=""
+  _ZSH_PROMPT_GIT_DETACHED=""
   if (( $+commands[git] )) && $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    local ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="$(git rev-parse --short HEAD 2> /dev/null)"
-    _ZSH_PROMPT_GIT_BRANCH="${ref/refs\/heads\//}"
+    local ref
+    if ref=$(git symbolic-ref HEAD 2> /dev/null); then
+      # On a branch - strip refs/heads/
+      _ZSH_PROMPT_GIT_BRANCH="${ref/refs\/heads\//}"
+      _ZSH_PROMPT_GIT_DETACHED=""
+    else
+      # Detached HEAD - get short hash
+      _ZSH_PROMPT_GIT_BRANCH="$(git rev-parse --short HEAD 2> /dev/null)"
+      _ZSH_PROMPT_GIT_DETACHED="1"
+    fi
   fi
 
   if _zsh_should_split_prompt; then
