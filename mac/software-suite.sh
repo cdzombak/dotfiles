@@ -300,17 +300,6 @@ if [ -e "/Applications/Setapp/CodeRunner.app" ]; then
   fi
 fi
 
-if [ -e "/Applications/Google Chrome.app" ]; then
-  echo "Google Chrome..."
-  # echo ""
-  # echo "Using the system-native print preview dialog in Chrome"
-  # defaults write com.google.Chrome DisablePrintPreview -bool true
-  # defaults write com.google.Chrome.canary DisablePrintPreview -bool true
-
-  echo "  Disable annoying Chrome swipe-to-navigate gesture"
-  defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
-fi
-
 if [ -e "/Applications/Setapp/Grids.app" ]; then
   echo "Grids ..."
   defaults write "com.thinktimecreations.Grids" "Application.DoNotShowLoginWarning" '1'

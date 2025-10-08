@@ -1731,6 +1731,17 @@ install_groups:
   # Office and productivity applications (optional)
   - group: Office
     software:
+      - artifact: /Applications/Google Chrome.app
+        persist: true
+        install:
+          - cask: google-chrome
+        checklist:
+          - Sign into Google account
+          - Enable sync
+          - Customize toolbar
+        configure:
+          - run: defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
       - artifact: /Applications/Firefox.app
         install:
           - cask: firefox
