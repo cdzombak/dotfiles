@@ -1880,10 +1880,10 @@ install_groups:
           - Authenticate with phone
 
       - artifact: /Applications/MuteDeck.app
+        note: "`~/.dotfiles/mac/install/mutedeck.sh`"
         checklist:
-          - "Install (`~/.dotfiles/mac/install/mutedeck.sh`)"
           - Enable Accessibility permissions
-          - Enable System Microphone & Zoom only
+          - Enable System Microphone, Zoom, Browser Extensions, etc. as desired
           - Start at login
           - Don't open window at start
           - Hide in menu bar
