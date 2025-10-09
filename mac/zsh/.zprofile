@@ -56,3 +56,6 @@ export MANPATH="$HOME/opt/share/man:$MANPATH"
 if [ -d "$HOME/.asdf" ] ; then
     PATH="$HOME/.asdf/shims:$PATH"
 fi
+
+# Orbstack (VM app):
+[ -f ~/.orbstack/shell/init.zsh ] && source ~/.orbstack/shell/init.zsh 2>/dev/null
