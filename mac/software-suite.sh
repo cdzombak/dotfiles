@@ -175,6 +175,14 @@ if [ -e /usr/local/bin/metar ]; then
   sudo rm /usr/local/bin/metar
 fi
 
+if [ -e "/Applications/Wipr.app" ]; then
+  WIPR_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "/Applications/Wipr.app/Contents/Info.plist" 2>/dev/null || echo "unknown")
+  if [[ "$WIPR_VERSION" =~ ^1\. ]]; then
+    echo "Removing Wipr 1 ..."
+    trash /Applications/Wipr.app
+  fi
+fi
+
 echo ""
 cecho "--- Core Suite Setup ---" $white
 echo ""

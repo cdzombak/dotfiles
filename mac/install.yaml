@@ -938,7 +938,7 @@ install_groups:
 
       - artifact: /Applications/Wipr.app
         install:
-          - mas: "1320666476"
+          - mas: "https://apps.apple.com/us/app/wipr-2/id1662217862"
         checklist:
           - Enable extensions
           - Hide in Safari toolbar
