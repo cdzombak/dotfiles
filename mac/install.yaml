@@ -538,6 +538,13 @@ install_groups:
           - Configure to run at login
           - Enable Accessibility
 
+      - artifact: /Applications/Karabiner-Elements.app
+        install:
+          - cask: karabiner-elements
+        checklist:
+          - Configure to run at login
+          - Enable required permissions
+
       - artifact: /Applications/Hex Fiend.app
         install:
           - cask: hex-fiend
