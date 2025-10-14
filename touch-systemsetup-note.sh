@@ -118,6 +118,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 - [ ] Exclude \`~/code\`, \`~/3p_code\`, \`~/go\` and any other high-churn directories
 
+### Touchpad Gestures
+
+- [ ] Enable App Expose gesture (swipe down w/three fingers)
+
 ### Users & Groups
 
 - [ ] Disable guest access
