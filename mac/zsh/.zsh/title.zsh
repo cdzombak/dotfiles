@@ -62,7 +62,7 @@ function enable-auto-title {
   export DISABLE_AUTO_TITLE=false
 }
 
-ZSH_TERM_TAB_TITLE_IDLE="%20<..<%~%<<" # 20 char left truncated PWD
+ZSH_TERM_TAB_TITLE_IDLE="%30<..<%~%<<" # 30 char left truncated PWD
 ZSH_SCREEN_TAB_TITLE_IDLE="%8<..<%~%<<" # 8 char left truncated PWD
 ZSH_TERM_TITLE_IDLE="%n@$(short_hostname): %~"
 # Avoid duplication of directory in terminals with independent dir display
