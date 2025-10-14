@@ -1423,6 +1423,7 @@ install_groups:
         checklist:
           - Sign in / License
           - Set font Meslo LG L 14
+          - Change app icon
 
       - artifact: /Applications/HTTP Toolkit.app
         install:
