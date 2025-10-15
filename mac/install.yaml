@@ -347,6 +347,8 @@ install_groups:
         checklist:
           - Open the application and allow Package Control to finish installing packages as configured
           - License
+        configure:
+          - run: utiluti type set public.plain-text com.sublimetext.4
 
       - artifact: "$HOME/.config/sublimetext"
         install:
