@@ -378,7 +378,6 @@ install_groups:
           - run: defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
         checklist:
           - License
-          - Install Custom CSS from ~/.config/macos
 
       - artifact: /Applications/Karabiner-Elements.app
         install:
