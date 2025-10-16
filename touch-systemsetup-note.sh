@@ -64,7 +64,9 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 ### Control Center
 
-- [ ] Do not show Spotlight in menu bar
+- [ ] Show Audio in menu bar
+- [ ] Hide Spotlight in menu bar
+- [ ] Show or hide WiFi in menu bar as desired
 
 ### Desktop & Dock
 
