@@ -380,6 +380,13 @@ install_groups:
           - License
           - Install Custom CSS from ~/.config/macos
 
+      - artifact: /Applications/Karabiner-Elements.app
+        install:
+          - cask: karabiner-elements
+        checklist:
+          - Allow all permissions
+          - Import settings from `~/.config/macos`
+
       - artifact: /Applications/KeyCastr.app
         install:
           - cask: keycastr
