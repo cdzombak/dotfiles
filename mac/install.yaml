@@ -1603,21 +1603,57 @@ install_groups:
           - "Set shortcut: ⌥ + Space"
           - Launch at Login
 
+      - artifact: /Applications/iTermAI.app
+        persist: true
+        install:
+          - cask: itermai
+
+      - artifact: $BREW/bin/git-ac
+        persist: true
+        install:
+          - brew: cdzombak/oss/git-ac
+
+      - artifact: $BREW/bin/llm
+        install:
+          - brew: llm
+          - run: "llm install --upgrade llm-gemini"
+        checklist:
+          - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
+          - "Optional: `llm install --upgrade llm-ollama`"
+
       - artifact: /Applications/Claude.app
         install:
           - cask: claude
         checklist:
+          - Sign in with Anthropic
           - "Set keyboard shortcut: ⌃ + ⇧ + Space"
           - Run on Startup
           - Show in Menu Bar
+          - Hardlink MCP config
 
       - artifact: /Users/cdzombak/.local/bin/claude
         install:
           - run: "curl -fsSL https://claude.ai/install.sh | bash"
+        checklist:
+          - Sign in with Anthropic
+          - Sync MCP config
 
       - artifact: $BREW/bin/aclaude
         install:
           - brew: cdzombak/oss/aclaude
+
+      - artifact: /Applications/ChatGPT.app
+        install:
+          - cask: chatgpt
+        checklist:
+          - Sign in with OpenAI
+
+      - artifact: $BREW/bin/codex
+        install:
+          - brew: codex
+        checklist:
+          - Sign in with OpenAI
+          - Sync MCP config
 
       - artifact: /Applications/Conductor.app
         persist: true
@@ -1631,13 +1667,10 @@ install_groups:
         checklist:
           - "Sign in with Anthropic (`opencode auth login`)"
           - "Sign in with GitHub (`opencode auth login`)"
-          - "Set up local GLM-4.5-Air (TK)"
-          - "Set up local Ollama (TK)"
+          - Sync MCP config
 
       - artifact: $HOME/mcp
         note: Synced via Syncthing
-        checklist:
-          - Hardlink Claude Desktop config per README
 
       - artifact: $HOME/Applications/OpenWebUI.app
         persist: true
@@ -1651,21 +1684,6 @@ install_groups:
         persist: true
         note: "https://github.com/copilot (Safari web app)"
 
-      - artifact: /Applications/iTermAI.app
-        persist: true
-        install:
-          - cask: itermai
-
-      - artifact: $BREW/bin/llm
-        install:
-          - brew: llm
-          - run: "llm install --upgrade llm-ollama"
-          - run: "llm install --upgrade llm-gemini"
-        # configure:
-        #   - run: "env OLLAMA_HOST=https://jetstream.tailnet-003a.ts.net:7777 llm models default qwen2.5-coder:14b-instruct"
-        checklist:
-          - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
-
       - artifact: $HOME/Applications/Google AI Studio.app
         persist: true
         note: "https://aistudio.google.com (Safari web app)"
@@ -1674,11 +1692,6 @@ install_groups:
         persist: true
         install:
           - brew: gemini-cli
-
-      - artifact: $BREW/bin/git-ac
-        persist: true
-        install:
-          - brew: cdzombak/oss/git-ac
 
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio
