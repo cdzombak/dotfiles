@@ -979,8 +979,6 @@ install_groups:
           - "[Download](https://www.houdah.com/tembo/download.html) and install Tembo"
           - Register (details in 1Password)
           - Grant permissions (in Privacy tab)
-          - Enable helper; hide Menu Bar icon
-          - Set global shortcut Ctrl-Shift-Cmd-Space
           - Set Groups, Defaults, locations per config screenshots
 
       - artifact: "/Applications/Apparency.app"
