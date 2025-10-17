@@ -2111,7 +2111,7 @@ install_groups:
 
       - artifact: $HOME/Applications/Frigate.app
         persist: true
-        note: "https://boston.tailnet-003a.ts.net:8971/ (Safari web app)"
+        note: "https://elton.tailnet-003a.ts.net:8971/ (Safari web app)"
         checklist:
           - Sign in
 
