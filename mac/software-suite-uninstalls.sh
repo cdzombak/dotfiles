@@ -472,6 +472,12 @@ if [ -e /Applications/IVPN.app ]; then
   trash /Applications/IVPN.app
 fi
 
+if [ -e /Applications/Soro.app ]; then
+  echo "Soro..."
+  verify_smartdelete
+  sudo trash /Applications/Soro.app
+fi
+
 if [ -e "$(brew --prefix)/bin/mysides" ] ; then
   echo "mysides ..."
   brew uninstall mysides

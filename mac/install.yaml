@@ -894,10 +894,6 @@ install_groups:
         checklist:
           - Enable share extensions Copy, Open In, Save As
 
-      - artifact: /Applications/Soro.app
-        install:
-          - mas: "1550457805"
-
       - artifact: /Applications/Spaced.app
         install:
           - mas: "1666327168"
