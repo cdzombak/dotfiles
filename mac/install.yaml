@@ -1608,6 +1608,8 @@ install_groups:
         persist: true
         install:
           - brew: cdzombak/oss/git-ac
+        checklist:
+          - Sync config from Curie
 
       - artifact: $BREW/bin/llm
         install:
@@ -1637,6 +1639,8 @@ install_groups:
       - artifact: $BREW/bin/aclaude
         install:
           - brew: cdzombak/oss/aclaude
+        checklist:
+          - Sync config from Curie
 
       - artifact: /Applications/ChatGPT.app
         install:
