@@ -234,20 +234,12 @@ _zsh_rprompt_kubectl() {
   fi
 }
 
-k8s-ctx-show() {
+kubectl-ctx-show() {
   _ZSH_RPROMPT_K8S_CONTEXT=true
 }
 
-k8s-ctx-hide() {
+kubectl-ctx-hide() {
   _ZSH_RPROMPT_K8S_CONTEXT=false
-}
-
-kubernetes-context-show() {
-  k8s-ctx-show
-}
-
-kubernetes-context-hide() {
-  k8s-ctx-hide
 }
 
 # gcloud context
