@@ -155,6 +155,11 @@ if [ -e "/Applications/Sonos S1 Controller.app" ]; then
   brew update
 fi
 
+if brew list --formula codex >/dev/null 2>&1; then
+  echo "Migrating Codex formula to cask ..."
+  brew uninstall codex
+fi
+
 if [ -e /opt/homebrew/Cellar/gem-mdless/1.0.37 ]; then
   echo "Move to Homebrew packaged mdless..."
   brew gem uninstall mdless

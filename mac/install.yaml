@@ -1650,7 +1650,7 @@ install_groups:
 
       - artifact: $BREW/bin/codex
         install:
-          - brew: codex
+          - cask: codex
         checklist:
           - Sign in with OpenAI
           - Sync MCP config
