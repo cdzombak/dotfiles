@@ -1271,7 +1271,7 @@ install_groups:
         checklist:
           - Launch at Login
           - Install settings and sign into all services
-          - Set shortcut Ctrl-Shift-S
+          - Set shortcut Ctrl-Command-Space
 
   - group: Setapp
     optional: false
