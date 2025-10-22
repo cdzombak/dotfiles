@@ -50,6 +50,10 @@ install_groups:
         install:
           - brew: ag
 
+      - artifact: $BREW/bin/rg
+        install:
+          - brew: ripgrep
+
       - artifact: $BREW/etc/bash_completion
         install:
           - brew: bash-completion
