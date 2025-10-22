@@ -1266,6 +1266,13 @@ install_groups:
           - Disable daily prompt
           - "Set appearance -> font size: 18"
 
+      - artifact: $HOME/Applications/Searchlight.app
+        note: "Install from iCloud Drive"
+        checklist:
+          - Launch at Login
+          - Install settings and sign into all services
+          - Set shortcut Ctrl-Shift-S
+
   - group: Setapp
     optional: false
     software:
