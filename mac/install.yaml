@@ -480,6 +480,7 @@ install_groups:
           - Enable browser bookmarks
           - Change theme
           - Sweep through synced workflows, fixing as needed
+          - Allow Bluetooth permission in System Settings
 
       - artifact: /Applications/AppCleaner.app
         install:
