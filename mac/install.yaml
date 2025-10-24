@@ -213,6 +213,8 @@ install_groups:
       - artifact: /Applications/QuickLook Video.app
         install:
           - cask: qlvideo
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: $BREW/bin/rdfind
         install:
@@ -361,6 +363,8 @@ install_groups:
       - artifact: /Applications/Suspicious Package.app
         install:
           - cask: suspicious-package
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/WhatsYourSign.app
         checklist:
@@ -718,6 +722,7 @@ install_groups:
           - Enable Bear Safari extension
           - "Set font size: 17"
           - "Set line width: 50em"
+          - Enable Quick Look extension
 
       - artifact: /Applications/Dropover.app
         install:
@@ -777,6 +782,7 @@ install_groups:
           - mas: "736473980"
         checklist:
           - Restore purchases
+          - Enable Quick Look extension
 
       - artifact: /Applications/TableFlip.app
         install:
@@ -992,6 +998,8 @@ install_groups:
       - artifact: "/Applications/Apparency.app"
         install:
           - cask: apparency
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/Fork.app
         install:
@@ -1046,6 +1054,7 @@ install_groups:
           - run: defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontSize 13
         checklist:
           - Associate with JSON files
+          - Enable Quick Look extension
 
       - artifact: /Applications/Easy CSV Editor.app
         install:
@@ -1057,15 +1066,21 @@ install_groups:
         install:
           - mas: "1157491961"
         checklist:
+          # TODO(cdzombak): automate association
           - Associate with PLIST files
+          - Enable Quick Look extension
 
       - artifact: /Applications/Pixelmator Pro.app
         install:
           - mas: "1289583905"
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/Acorn.app
         install:
           - mas: "https://apps.apple.com/us/app/acorn-8/id6737921844?mt=12"
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: $BREW/bin/httpie
         install:
@@ -1317,6 +1332,8 @@ install_groups:
         note: OCR and scanning app
       - artifact: /Applications/Setapp/Renamer.app
       - artifact: /Applications/Setapp/Soulver.app
+        checklist:
+          - Enable Quick Look extension
       - artifact: /Applications/Setapp/SQLPro for SQLite.app
       - artifact: /Applications/Setapp/SQLPro Studio.app
       - artifact: /Applications/Setapp/Squash.app
@@ -1379,6 +1396,8 @@ install_groups:
         install:
           - archive: https://developer.apple.com/download/files/icon-composer.dmg
             file: Icon Composer.app
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/Visual Studio Code.app
         persist: true
@@ -1833,6 +1852,8 @@ install_groups:
       - artifact: /Applications/Diagrams.app
         install:
           - mas: "1276248849"
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/draw.io.app
         install:
@@ -1881,6 +1902,7 @@ install_groups:
           - Allow notifications
           - Tweak system notification settings (all off except "Show in Notification Center")
           - Enable calendar integration
+          - Enable Quick Look extension
 
       - artifact: /Applications/TeX
         persist: true
@@ -1960,6 +1982,8 @@ install_groups:
         persist: true
         install:
           - cask: affinity-photo
+        checklist:
+          - Enable Quick Look extension
 
       - artifact: /Applications/RAW Power.app
         persist: true
@@ -2016,6 +2040,7 @@ install_groups:
           - run: duti -s com.vincent-neo.Avenue public.gpx viewer
         checklist:
           - Configure photo viewing preferences
+          - Enable Quick Look extension
 
       - artifact: /Applications/Claquette.app
         persist: true
@@ -2023,6 +2048,7 @@ install_groups:
           - mas: "587748131"
         checklist:
           - Configure GIF creation preferences
+          - Enable Quick Look extension
 
       - artifact: /Applications/Topaz Sharpen AI.app
         persist: true
@@ -2286,6 +2312,7 @@ install_groups:
         checklist:
           - License
           - Enable software updates
+          - Enable Quick Look extension
 
       - artifact: /Applications/Steam.app
         persist: true
