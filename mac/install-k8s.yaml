@@ -1,0 +1,34 @@
+# totally optional install of k8s software suite. doesn't even run automatically;
+# run with `mac-install -config install-k8s.yaml`.
+---
+
+checklist: $HOME/SystemSetup.md
+
+install_groups:
+  - group: Kubernetes Software
+    optional: false
+    software:
+
+      - artifact: $BREW/bin/kubectl
+        install:
+          - brew: kubectl
+
+      - artifact: $BREW/bin/kubectx
+        install:
+          - brew: kubectx
+
+      - artifact: $BREW/bin/k9s
+        install:
+          - brew: derailed/k9s/k9s
+
+      - artifact: $BREW/bin/helm
+        install:
+          - brew: helm
+
+      - artifact: $HOME/Library/helm/plugins/helm-diff
+        install:
+          - run: helm plugin install https://github.com/databus23/helm-diff
+
+      - artifact: /Applications/Lens.app
+        install:
+          - cask: lens
