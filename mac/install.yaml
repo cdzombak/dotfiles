@@ -811,8 +811,15 @@ install_groups:
           - mas: "1554235898"
         checklist:
           - Enable Accessibility access as required
+          - Enable QuickLook extension
           - Change max preview size to Medium 500K
           - Change font Meslo LG M 13pt
+
+      - artifact: "/Applications/Folder Quick Look.app"
+        install:
+          - mas: "https://apps.apple.com/us/app/folder-quick-look/id6753110395?mt=12"
+        checklist:
+          - Enable QuickLook extension
 
       - artifact: /Applications/Poolsuite FM.app
         install:
