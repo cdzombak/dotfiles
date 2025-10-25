@@ -244,7 +244,7 @@ install_groups:
         install:
           - brew: syncthing
         configure:
-          - run: brew services start syncthing
+          - run: 'if [ "$(hostname -s)" != "opportunity" ]; then brew services start syncthing; fi'
         checklist:
           - Start syncing folders as desired via web interface at http://localhost:8384
           - "Set `InsecureSkipHostcheck` in Settings -> Advanced -> GUI"
