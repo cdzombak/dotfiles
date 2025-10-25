@@ -227,6 +227,12 @@ if [ -e "/Applications/Instapaper.app" ] ; then
   trash "/Applications/Instapaper.app"
 fi
 
+if [ -e "/Applications/iTermAI.app" ]; then
+  echo "iTermAI..."
+  verify_smartdelete
+  trash "/Applications/iTermAI.app"
+fi
+
 if [ -e /Applications/IPinator.app ]; then
   echo "IPinator..."
   verify_smartdelete

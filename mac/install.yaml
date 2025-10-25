@@ -1637,10 +1637,6 @@ install_groups:
           - "Set shortcut: ⌥ + Space"
           - Launch at Login
 
-      - artifact: /Applications/iTermAI.app
-        persist: true
-        install:
-          - cask: itermai
 
       - artifact: $BREW/bin/git-ac
         persist: true
