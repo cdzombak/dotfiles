@@ -33,7 +33,3 @@ if [ ! -d /opt/docker ]; then
   sudo chmod g+s /opt/docker/compose
   sudo chmod g+s /opt/docker/src
 fi
-
-#sudo cp -f "$SCRIPT_DIR"/gen-dhparam.sh /opt/docker/gen-data-dhparam.sh
-#sudo chown root:docker /opt/docker/gen-data-dhparam.sh
-#sudo chmod 0774 /opt/docker/gen-data-dhparam.sh

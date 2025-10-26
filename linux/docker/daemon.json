@@ -1,6 +1,6 @@
 {
-  "log-driver": "json-file",
+  "log-driver": "gelf",
   "log-opts": {
-    "max-size": "10m"
+    "gelf-address": "udp://elton.tailnet-003a.ts.net:12211"
   }
 }

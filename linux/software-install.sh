@@ -415,17 +415,6 @@ if profile_server && ! command -v nginx >/dev/null; then
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo apt install nginx nginx-ensite
-    if [ -e /etc/rsyslog.d/22-logzio-linux.conf ]; then
-      echo "system appears to use logz.io"
-      echo "Enter your logz.io token: "
-      read -r LOGZ_TOKEN
-      TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-nginx')
-      pushd "$TMP_DIR"
-      curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
-      tar xzf logzio-rsyslog.tar.gz
-      sudo rsyslog/install.sh -t nginx -a "$LOGZ_TOKEN" -l "listener.logz.io"
-      popd
-    fi
   fi
 
   echo "Install certbot (via snap)? (y/N)"
@@ -444,19 +433,6 @@ if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
     "$SCRIPT_DIR"/docker/docker-install.sh
-
-    if [ -e /etc/rsyslog.d/22-logzio-linux.conf ]; then
-      echo "system appears to use logz.io"
-      echo "Enter your logz.io token: "
-      read -r LOGZ_TOKEN
-      "$SCRIPT_DIR/docker/setup-logz.sh" "$LOGZ_TOKEN"
-      if [ -x /usr/sbin/netdata ]; then
-        setupnote "logz.io docker shipper" \
-          "- [ ] Ingest Prometheus metrics to Netdata (from \`127.0.0.1:6002\`; \`sudo /etc/netdata/edit-config go.d/prometheus.conf\`)"
-      fi
-      setupnote "Docker" \
-        "- [ ] Run /opt/docker/gen-data-dhparam.sh (if needed for internal/Tailscale https-portal containers)"
-    fi
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-docker"
@@ -464,56 +440,23 @@ if [ ! -e "$HOME/.config/dotfiles/no-docker" ] && ! command -v docker >/dev/null
 fi
 
 echo ""
-echo "--- Logz.io ---"
+echo "--- Graylog ---"
 echo ""
 
-_logz_setup() {
-  echo "Enter your logz.io token: "
-  read -r LOGZ_TOKEN
-
-  echo "syslog..."
-  TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-linux')
-  pushd "$TMP_DIR"
-  curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
-  tar xzf logzio-rsyslog.tar.gz
-  sudo rsyslog/install.sh -t linux -a "$LOGZ_TOKEN" -l "listener.logz.io"
-  popd
-
-  if is_tiny; then
-    setupnote "rsyslog" \
-      "- [ ] Place \`/var/spool/rsyslog\` in a tmpfs (\`tmpfs  /var/spool/rsyslog  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=25M  0  0\`)
-- [ ] Adjust the amount of space it's allowed to use (see \`/etc/rsyslog.d/22-logzio-linux.conf\`)"
-  fi
-
-  if command -v nginx >/dev/null; then
-    echo "nginx..."
-    TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'logz-nginx')
-    pushd "$TMP_DIR"
-    curl -sLO https://github.com/logzio/logzio-shipper/raw/master/dist/logzio-rsyslog.tar.gz
-    tar xzf logzio-rsyslog.tar.gz
-    set +e
-    sudo rsyslog/install.sh -t nginx -a "$LOGZ_TOKEN" -l "listener.logz.io"
-    set -e
-    popd
-  fi
-
-  if command -v docker >/dev/null; then
-    echo "docker..."
-    "$SCRIPT_DIR/docker/setup-logz.sh" "$LOGZ_TOKEN"
-    if [ -x /usr/sbin/netdata ]; then
-      setupnote "logz.io docker shipper" \
-        "- [ ] Ingest Prometheus metrics to Netdata (use 127.0.0.1:6002)"
-    fi
-  fi
-}
-if [ ! -e "$HOME/.config/dotfiles/no-logzio" ] && [ ! -e /etc/rsyslog.d/22-logzio-linux.conf ]; then
-  echo "Setup log shipping to logz.io? (y/N)"
+if [ ! -e "$HOME/.config/dotfiles/no-graylog" ] && [ ! -e /etc/rsyslog.d/22-graylog-elton.conf ]; then
+  echo "Setup systemd log shipping to Graylog (elton)? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    _logz_setup
+      sudo apt-get install rsyslog
+      sudo cp "$SCRIPT_DIR"/22-graylog-elton.conf /etc/rsyslog.d/22-graylog-elton.conf
+      sudo systemctl restart rsyslog
+      if is_tiny; then
+        setupnote "rsyslog" \
+          "- [ ] Place \`/var/spool/rsyslog\` in a tmpfs (\`tmpfs  /var/spool/rsyslog  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=25M  0  0\`)"
+      fi
   else
     echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/no-logzio"
+    touch "$HOME/.config/dotfiles/no-graylog"
   fi
 fi
 
