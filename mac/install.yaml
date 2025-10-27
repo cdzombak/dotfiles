@@ -176,6 +176,10 @@ install_groups:
         install:
           - brew: ncdu
 
+      - artifact: $BREW/bin/newt
+        install:
+          - brew: cdzombak/oss/newt
+
       - artifact: $BREW/bin/nnn
         install:
           - brew: nnn
