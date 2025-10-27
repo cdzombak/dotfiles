@@ -726,7 +726,7 @@ install_groups:
           - run: defaults write net.shinyfrog.bear SFAppIconMatchesTheme -bool true
           - run: postinstall/bear.sh
         checklist:
-          - Assign global keyboard shortcuts (⌃⇧N, ⌃⇧W)
+          - Assign global keyboard shortcuts (⌃⇧B, ⌃⇧W)
           - Enable Bear Safari extension
           - "Set font size: 17"
           - "Set line width: 50em"
