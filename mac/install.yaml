@@ -927,6 +927,7 @@ install_groups:
           - Activate with Smart Icons
           - Shortcut Ctrl-Shift-'
           - Customize app icon
+          - Text size Extra Large 👓
 
       - artifact: /Applications/Things3.app
         install:
