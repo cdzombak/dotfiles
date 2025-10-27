@@ -132,6 +132,10 @@ install_groups:
         install:
           - brew: gnu-tar
 
+      - artifact: $BREW/bin/gha-secrets-setup
+        install:
+          - brew: cdzombak/oss/gha-secrets-setup
+
       - artifact: $BREW/bin/htop
         install:
           - brew: htop
