@@ -188,6 +188,11 @@ if [ -e "/Applications/Wipr.app" ]; then
   fi
 fi
 
+if [ -e "$HOME/opt/bin/gha-secrets-setup" ]; then
+  echo "Removing old gha-secrets-setup ..."
+  rm -rf "$HOME/opt/bin/gha-secrets-setup"
+fi
+
 echo ""
 cecho "--- Core Suite Setup ---" $white
 echo ""
