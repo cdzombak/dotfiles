@@ -147,3 +147,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[coderabbit]
+	machineId = cli/67178d45ad264c718b2e982e2276ee98

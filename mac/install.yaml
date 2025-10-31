@@ -1639,7 +1639,6 @@ install_groups:
           - "Set shortcut: ⌥ + Space"
           - Launch at Login
 
-
       - artifact: $BREW/bin/git-ac
         persist: true
         install:
@@ -1677,6 +1676,12 @@ install_groups:
           - brew: cdzombak/oss/aclaude
         checklist:
           - Sync config from Curie
+
+      - artifact: $HOME/.local/bin/coderabbit
+        install:
+          - run: "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
+        checklist:
+          - Sign in with CodeRabbit account (via GitHub)
 
       - artifact: /Applications/ChatGPT.app
         install:
