@@ -393,6 +393,12 @@ if [ -e "/Applications/Setapp/Screens.app" ]; then
   trash "/Applications/Setapp/Screens.app"
 fi
 
+if [ -e "/Applications/Spotify.app" ]; then
+  echo "Spotify..."
+  verify_smartdelete
+  trash "/Applications/Spotify.app"
+fi
+
 if [ -e "/Applications/StopTheMadness.app" ]; then
   verify_smartdelete
   echo "StopTheMadness..."

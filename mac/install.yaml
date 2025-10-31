@@ -653,13 +653,6 @@ install_groups:
         install:
           - cask: sloth
 
-      - artifact: /Applications/Spotify.app
-        install:
-          - cask: spotify
-        checklist:
-          - Sign in
-          - Disable launching at login
-
       - artifact: /Applications/Tailscale.app
         install:
           - cask: tailscale
