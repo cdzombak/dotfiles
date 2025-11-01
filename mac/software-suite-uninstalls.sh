@@ -72,6 +72,12 @@ if [ -e "/Applications/Bunch.app" ]; then
   trash /Applications/Bunch.app
 fi
 
+if [ -e "/Applications/Boop.app" ]; then
+  echo "Boop..."
+  verify_smartdelete
+  trash /Applications/Boop.app
+fi
+
 if [ -e "/Applications/Burn.app" ]; then
   echo "Burn (CD burner)..."
   verify_smartdelete
@@ -403,6 +409,12 @@ if [ -e "/Applications/StopTheMadness.app" ]; then
   verify_smartdelete
   echo "StopTheMadness..."
   trash "/Applications/StopTheMadness.app"
+fi
+
+if [ -e "/Applications/TextBuddy.app" ]; then
+  echo "TextBuddy..."
+  verify_smartdelete
+  trash "/Applications/TextBuddy.app"
 fi
 
 if [ -e /Applications/Tadam.app ]; then

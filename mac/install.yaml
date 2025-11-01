@@ -1383,23 +1383,6 @@ install_groups:
         install:
           - cask: klogg
 
-      - artifact: /Applications/TextBuddy.app
-        persist: true
-        install:
-          - mas: "1487928210"
-        configure:
-          - run: defaults write "com.clickontyler.TextBuddy" "numberLinesFromZero" '0'
-          - run: defaults delete "com.clickontyler.TextBuddy" "userSyncEnabled" || true
-          - run: defaults delete "com.clickontyler.TextBuddy" "showOnActivate" || true
-        checklist:
-          - Assign global shortcut Ctrl+Shift+T
-          - License
-
-      - artifact: /Applications/Boop.app
-        persist: true
-        install:
-          - mas: "1518425043"
-
       - artifact: /Applications/Icon Composer.app
         persist: true
         install:
