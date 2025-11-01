@@ -1357,6 +1357,13 @@ install_groups:
   # Development tools (optional)
   - group: Dev
     software:
+      - artifact: /Applications/Taska.app
+        persist: true
+        install:
+          - mas: "https://apps.apple.com/us/app/taska-for-github-gitlab-issues/id6741809383?mt=12"
+        checklist:
+          - Sign in
+
       - artifact: /Applications/Expressions.app
         persist: true
         install:
