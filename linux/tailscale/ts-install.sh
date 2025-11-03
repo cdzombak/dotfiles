@@ -3,7 +3,7 @@ set -euo pipefail
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up
+sudo tailscale up --accept-routes
 
 sudo mkdir -p /opt/tailscale/cert
 sudo cp "$SCRIPT_DIR"/on-renew.sh /opt/tailscale/cert/on-renew.sh
