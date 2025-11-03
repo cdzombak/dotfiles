@@ -1626,6 +1626,7 @@ install_groups:
         note: https://talktastic.com/download
         checklist:
           - "Set shortcut: ⌥ + Space"
+          - Hide draft windows
           - Launch at Login
 
       - artifact: $BREW/bin/git-ac
