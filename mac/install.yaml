@@ -1239,6 +1239,12 @@ install_groups:
         install:
           - brew: groff
 
+      - artifact: /Applications/NetSpeedMonitor.app
+        note: "iCloud Drive/Software (for now)"
+        checklist:
+          - Launch at login
+          - Position in menu bar as desired
+
   - group: SSH & Yubikeys
     software:
       - artifact: /Applications/Secretive.app
