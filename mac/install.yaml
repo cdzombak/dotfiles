@@ -1639,10 +1639,9 @@ install_groups:
       - artifact: $BREW/bin/llm
         install:
           - brew: llm
-          - run: "llm install --upgrade llm-gemini"
+          - run: "llm install --upgrade llm-openrouter"
         checklist:
-          - "Set Gemini API key: `llm keys set gemini` (ref. 1Password)"
-          - "Optional: `llm install --upgrade llm-ollama`"
+          - "Set OpenRouter API key: `llm keys set openrouter`"
 
       - artifact: /Applications/Claude.app
         install:
