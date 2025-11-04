@@ -172,7 +172,7 @@ create_app_link "System Tools" "/Applications/Tintd.app"
 
 create_app_folder "AI Tools"
 
-create_app_link "AI Tools" "/Applications/Talktastic.app"
+create_app_link "AI Tools" "/Applications/Wispr Flow.app"
 create_app_link "AI Tools" "/Applications/iTermAI.app"
 create_app_link "AI Tools" "/Applications/Claude.app"
 create_app_link "AI Tools" "/Applications/ChatGPT.app"
