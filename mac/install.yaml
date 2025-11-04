@@ -2242,6 +2242,11 @@ install_groups:
           - Sign in
           - Set up last.fm scrobbling
 
+      - artifact: /Applications/Nuage.app
+        persist: true
+        install:
+          - cask: nuage
+
       - artifact: /Applications/Triode.app
         persist: true
         install:
