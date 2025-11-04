@@ -1628,11 +1628,13 @@ install_groups:
   # AI tools (optional)
   - group: AI
     software:
-      - artifact: /Applications/TalkTastic.app
-        note: https://talktastic.com/download
+      - artifact: /Applications/Wispr Flow.app
+        note: https://wisprflow.ai/downloads
         checklist:
-          - "Set shortcut: ⌥ + Space"
-          - Hide draft windows
+          - "Set shortcuts: ⌥ ; ⌥ + Space"
+          - Enable code editor integration
+          - Hide Dock icon
+          - Hide Wispr Flow bar
           - Launch at Login
 
       - artifact: $BREW/bin/git-ac

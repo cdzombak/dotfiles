@@ -501,6 +501,12 @@ if [ -e /Applications/YT Music.app ]; then
   brew uninstall --cask yt-music
 fi
 
+if [ -e /Applications/TalkTastic.app ]; then
+  echo "TalkTastic..."
+  verify_smartdelete
+  trash /Applications/TalkTastic.app
+fi
+
 if [ -e /Applications/Soro.app ]; then
   echo "Soro..."
   verify_smartdelete
