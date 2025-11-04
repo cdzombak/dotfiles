@@ -495,7 +495,7 @@ if [ -e /Applications/IVPN.app ]; then
   trash /Applications/IVPN.app
 fi
 
-if [ -e /Applications/YT Music.app ]; then
+if [ -e "/Applications/YT Music.app" ]; then
   echo "YT Music..."
   verify_smartdelete
   brew uninstall --cask yt-music
