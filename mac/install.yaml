@@ -457,7 +457,7 @@ install_groups:
           - script: install/diskspace.sh
 
       - artifact: /Applications/Red Eye.app
-        note: Install Red Eye.app from iCloud Drive/Software folder
+        note: Install Red Eye.app from iCloud Drive/Software
 
       - artifact: /Applications/1Password.app
         install:
@@ -1240,7 +1240,7 @@ install_groups:
           - brew: groff
 
       - artifact: /Applications/NetSpeedMonitor.app
-        note: "iCloud Drive/Software (for now)"
+        note: "Install from iCloud Drive/Software (for now)"
         checklist:
           - Launch at login
           - Position in menu bar as desired
@@ -1297,7 +1297,7 @@ install_groups:
           - "Set appearance -> font size: 18"
 
       - artifact: $HOME/Applications/Searchlight.app
-        note: "Install from iCloud Drive (for now)"
+        note: "Install from iCloud Drive/Software (for now)"
         checklist:
           - Launch at Login
           - Install settings and sign into all services
