@@ -471,7 +471,6 @@ if [ -e "/Applications/Vitals.app" ]; then
   brew untap hmarr/tap
 fi
 
-
 if [ -e /Applications/Wavebox.app ]; then
   echo "Wavebox..."
   verify_smartdelete
@@ -494,6 +493,12 @@ if [ -e /Applications/IVPN.app ]; then
   echo "IVPN..."
   verify_smartdelete
   trash /Applications/IVPN.app
+fi
+
+if [ -e /Applications/YT Music.app ]; then
+  echo "YT Music..."
+  verify_smartdelete
+  brew uninstall --cask yt-music
 fi
 
 if [ -e /Applications/Soro.app ]; then

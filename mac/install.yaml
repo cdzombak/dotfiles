@@ -2226,10 +2226,13 @@ install_groups:
         checklist:
           - Sign in to Pocket Casts account
 
-      - artifact: /Applications/YT Music.app
+      - artifact: /Applications/YouTube Music.app
         persist: true
         install:
-          - cask: yt-music
+          - brew: neved4/homebrew-tap/pear
+        checklist:
+          - Sign in
+          - Set up last.fm scrobbling
 
       - artifact: /Applications/Triode.app
         persist: true
