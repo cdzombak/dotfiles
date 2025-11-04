@@ -2242,6 +2242,13 @@ install_groups:
           - Sign in
           - Set up last.fm scrobbling
 
+      - artifact: /Applications/DaftCloud.app
+        persist: true
+        install:
+          - mas: "https://apps.apple.com/us/app/daftcloud/id1320450034?mt=12"
+        checklist:
+          - Sign in to SoundCloud account
+
       - artifact: /Applications/Triode.app
         persist: true
         install:
