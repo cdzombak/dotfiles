@@ -2353,6 +2353,11 @@ install_groups:
         install:
           - mas: "1047760200"
 
+      - artifact: /Applications/Pocket City 2.app
+        persist: true
+        install:
+          - mas: "https://apps.apple.com/us/app/pocket-city-2/id6742559886?mt=12"
+
       - artifact: /Applications/SimCity 4 Deluxe Edition.app
         persist: true
         install:
