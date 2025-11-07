@@ -588,12 +588,12 @@ install_groups:
         install:
           - cask: iina
 
-      - artifact: /Applications/iTerm.app
+      - artifact: /Applications/Ghostty.app
         install:
-          - cask: iterm2
+          - cask: ghostty
         checklist:
           - Allow Full Disk Access
-          - Sync settings from ~/.config/macos, taking care not to overwrite the files there
+          - Allow Accessibility (for quick terminal)
           - Make default term
 
       - artifact: /Applications/Latest.app
@@ -1355,7 +1355,7 @@ install_groups:
       - artifact: /Applications/Setapp/Keysmith.app
         checklist:
           - Clear all shortcuts except quick launcher
-          - Set quick launcher shortcut to Ctrl-Alt-Cmd-Space
+          - Set quick launcher shortcut to Shift-Alt-Space
           - Configure sync via Syncthing
           - Launch at login
 

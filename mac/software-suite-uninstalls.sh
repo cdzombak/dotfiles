@@ -495,6 +495,12 @@ if [ -e /Applications/IVPN.app ]; then
   trash /Applications/IVPN.app
 fi
 
+if [ -e /Applications/iTerm.app ]; then
+  echo "iTerm..."
+  verify_smartdelete
+  brew uninstall --cask iterm2
+fi
+
 if [ -e "/Applications/YT Music.app" ]; then
   echo "YT Music..."
   verify_smartdelete
