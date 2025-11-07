@@ -81,12 +81,5 @@ autoload -U zmv # https://blog.smittytone.net/2021/04/03/how-to-use-zmv-z-shell-
 
 [ -f ~/.local.zsh ] && source ~/.local.zsh
 
-source ~/.zsh/zsh-notify/notify.plugin.zsh
-zstyle ':notify:*' command-complete-timeout 10
-zstyle ':notify:*' error-title "Error ❗️"
-zstyle ':notify:*' success-title "Completed ✅"
-zstyle ':notify:*' enable-on-ssh yes
-zstyle ':notify:*' blacklist-regex 'nano' # ex. 'find|git'
-
 # must be last; see https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source ~/.zsh/highlight.zsh
