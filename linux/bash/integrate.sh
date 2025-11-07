@@ -69,3 +69,17 @@ fi
 if ! grep -E '^\s*xterm-color\|.*xterm-ghostty.*\)\s*color_prompt=yes' ~/.bashrc >/dev/null; then
   sed -i '/^\s*xterm-color|.*)\s*color_prompt=yes/s/xterm-color|\*-256color)/xterm-color|*-256color|xterm-ghostty)/' ~/.bashrc
 fi
+
+# Add Ghostty Bash at the beginning of .bashrc if not already present:
+if ! grep -q 'GHOSTTY_BASH_DIR' ~/.bashrc; then
+    cp ~/.bashrc ~/.bashrc.bak
+    cat > /tmp/bashrc_prepend << 'EOF'
+GHOSTTY_BASH_DIR="$HOME/.dotfiles/linux/ghostty-bash"
+if [ -n "${GHOSTTY_BASH_DIR}" ]; then
+    builtin source "${GHOSTTY_BASH_DIR}/ghostty.bash"
+fi
+
+EOF
+    cat /tmp/bashrc_prepend ~/.bashrc > /tmp/bashrc_new && mv /tmp/bashrc_new ~/.bashrc
+    rm /tmp/bashrc_prepend
+fi
