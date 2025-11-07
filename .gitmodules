@@ -1,9 +1,4 @@
-[submodule "mac/zsh/.zsh/zsh-notify"]
-	path = zsh/.zsh/zsh-notify
-	url = https://github.com/cdzombak/zsh-notify.git
-[submodule "mac/zsh/.zsh/zsh-syntax-highlighting"]
-	path = zsh/.zsh/zsh-syntax-highlighting
-	url = https://github.com/cdzombak/zsh-syntax-highlighting.git
+
 [submodule "mac/kubectl-aliases"]
-	path = kubectl-aliases
-	url = https://github.com/ahmetb/kubectl-aliases.git
+    path = kubectl-aliases
+    url = https://github.com/ahmetb/kubectl-aliases.git
