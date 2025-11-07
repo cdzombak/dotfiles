@@ -64,3 +64,8 @@ else
     echo "         Manually integrate that file into dotfiles/linux/bash."
   fi
 fi
+
+# Use a color prompt in ghostty:
+if ! grep -E '^\s*xterm-color\|.*xterm-ghostty.*\)\s*color_prompt=yes' ~/.bashrc >/dev/null; then
+  sed -i '/^\s*xterm-color|.*)\s*color_prompt=yes/s/xterm-color|\*-256color)/xterm-color|*-256color|xterm-ghostty)/' ~/.bashrc
+fi
