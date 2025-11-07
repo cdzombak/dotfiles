@@ -5,8 +5,6 @@
 # color theme and other inspiration from https://gist.github.com/kevin-smets/8568070
 # https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
 
-export SESSION_OPENED_TS=$(date +%s)
-
 source ~/.zsh/completion.zsh
 fpath=(~/.zsh/completions $fpath)
 if [ -d "$HOME/.local/shell-completion" ] ; then

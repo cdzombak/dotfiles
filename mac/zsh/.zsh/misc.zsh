@@ -56,14 +56,4 @@ cpv() {
 }
 compdef _files cpv
 
-# wait for the minimum required to avoid iTerm "session ended very soon" then exit
-function delayed_exit() {
-    NOW=$(date +%s)
-    DELTA=$(($NOW-$SESSION_OPENED_TS))
-    INTERVAL=4
-    if (( $DELTA < $INTERVAL )); then
-        sleep $(($INTERVAL-$DELTA))
-    fi
-    exit
-}
-alias qq="delayed_exit"
+alias qq="exit"
