@@ -250,6 +250,26 @@ function window.centerWithFullHeight(win)
   win:setFrame(f)
 end
 
+-- +--------------+
+-- | |          | |
+-- | |   HERE   | |
+-- | |          | |
+-- +--------------+
+function window.centerWideWithFullHeight(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:fullFrame()
+
+  f.x = max.x + (max.w / 10)
+  if max.w > 2559 and max.w < 2561 then
+    f.x = f.x + 40
+  end
+  f.w = max.w * 8/10
+  f.y = max.y
+  f.h = max.h
+  win:setFrame(f)
+end
+
 function window.nextScreen(win)
   local currentScreen = win:screen()
   local allScreens = hs.screen.allScreens()
@@ -420,6 +440,10 @@ end)
 
 windowLayoutMode:bindWithAutomaticExit('space', function()
   hs.window.focusedWindow():centerWithFullHeight()
+end)
+
+windowLayoutMode:bindWithAutomaticExit('w', function()
+  hs.window.focusedWindow():centerWideWithFullHeight()
 end)
 
 windowLayoutMode:bindWithAutomaticExit('h', function()
