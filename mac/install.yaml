@@ -595,6 +595,7 @@ install_groups:
           - Allow Full Disk Access
           - Allow Accessibility (for quick terminal)
           - Make default term
+          - "Hardlink config from `~/.config/macos/ghostty`"
 
       - artifact: /Applications/Latest.app
         install:
