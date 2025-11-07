@@ -596,6 +596,7 @@ install_groups:
           - Allow Accessibility (for quick terminal)
           - Make default term
           - "Hardlink config from `~/.config/macos/ghostty`"
+          - Disable notification badges
 
       - artifact: /Applications/Latest.app
         install:
