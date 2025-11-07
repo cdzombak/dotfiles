@@ -70,3 +70,6 @@ f() {
 	cd "$1"
 	ls
 }
+
+# apogee
+alias subl='apg -s subl'
