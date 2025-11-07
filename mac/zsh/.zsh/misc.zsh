@@ -49,11 +49,6 @@ alias cpwd='pwd|tr -d "\n"|clipcopy'
 # find external IP. pass -4 or -6 to specify v4/v6 address.
 alias myip='curl -s -w "\n" https://ip.dzdz.cz'
 
-# download YouTube video -> local Plex server
-plex-ytdl() {
-    ssh -t curie "/Users/cdzombak/code/youtube-dl-wrapper.sh \"$1\""
-}
-
 # better cp based on rsync:
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/cp/cp.plugin.zsh
 cpv() {
@@ -72,6 +67,3 @@ function delayed_exit() {
     exit
 }
 alias qq="delayed_exit"
-
-alias llm-js="env OLLAMA_HOST=https://jetstream.tailnet-003a.ts.net:7777 llm"
-alias llm-wb="env OLLAMA_HOST=http://wilbur.tailnet-003a.ts.net:11434 llm"
