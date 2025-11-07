@@ -2,6 +2,9 @@
 alias diskspace='diskspace -H'
 alias mac-install-only='$HOME/.dotfiles/mac/mac-install -config $HOME/.dotfiles/mac/install.yaml -only'
 
+# easy access to the Tailscale CLI
+[ -e '/Applications/Tailscale.app' ] && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+
 # Find bundle ID for an app, via http://brettterpstra.com/2012/07/31/overthinking-it-fast-bundle-id-retrieval-for-mac-apps/
 bid() {
   local shortname location
