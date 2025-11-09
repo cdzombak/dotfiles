@@ -2198,6 +2198,7 @@ install_groups:
           - Turn off notifications (Settings > Experience > Desktop Integration)
           - Set 160Kbps conversion bitrate (Settings > Playback > Streaming Quality)
           - Disable crossfades (aka "Sweet Fades") (Settings > Playback)
+          - Set up Sonic Sage
 
       - artifact: /Applications/Plex.app
         persist: true
