@@ -91,6 +91,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Dictation shortcut: Press right Command key twice
 - [ ] Disable Spotlight keyboard shortcuts
 
+### Liquid Glass
+
+- [ ] Change style to Tinted Glass
+
 ### Notifications
 
 - [ ] Disable entirely for Books, Games, Mail, Music, Reminders
