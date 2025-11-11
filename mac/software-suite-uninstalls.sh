@@ -297,6 +297,17 @@ if [ -e /Applications/Mastonaut.app ]; then
   trash "/Applications/Mastonaut.app"
 fi
 
+if [ -e "/Applications/Marked 2.app" ]; then
+  echo "Marked 2..."
+  verify_smartdelete
+  trash "/Applications/Marked 2.app"
+fi
+
+if [ -L /Applications/Marked.app ]; then
+  echo "Marked symlink..."
+  rm /Applications/Marked.app
+fi
+
 if [ -e /Applications/NepTunes.app ]; then
   echo "NepTunes..."
   verify_smartdelete

@@ -379,22 +379,6 @@ install_groups:
           - Install (`brew install --cask whatsyoursign`)
           - Run Installer
 
-      - artifact: /Applications/Marked 2.app
-        install:
-          - cask: marked
-        configure:
-          - run: defaults write com.brettterpstra.marked2 WebKitDeveloperExtras -bool true
-          - run: defaults write com.brettterpstra.marked2 convertGithubCheckboxes -bool true
-          - run: defaults write com.brettterpstra.marked2 defaultProcessor -string "Discount (GFM)"
-          - run: defaults write com.brettterpstra.marked2 defaultSyntaxStyle -string "GitHub"
-          - run: defaults write com.brettterpstra.marked2 externalEditor -string "Typora"
-          - run: defaults write com.brettterpstra.marked2 externalImageEditor -string "Pixelmator"
-          - run: defaults write com.brettterpstra.marked2 includeMathJax -bool true
-          - run: defaults write com.brettterpstra.marked2 isMultiMarkdownDefault -bool false
-          - run: defaults write com.brettterpstra.marked2 syntaxHighlight -bool true
-        checklist:
-          - License
-
       - artifact: /Applications/Karabiner-Elements.app
         install:
           - cask: karabiner-elements
