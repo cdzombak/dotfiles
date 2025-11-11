@@ -18,15 +18,6 @@ typora() {
 #   fi
 # }
 
-marked() {
-  if (( $# == 0 )); then
-    echo "Usage: marked <file>"
-    echo "Open in Marked 2"
-  else
-    open -a "Marked 2" "$1"
-  fi
-}
-
 mded() {
   if (( $# == 0 )); then
     echo "Usage: mded <file>"

@@ -211,13 +211,6 @@ else
   "$SCRIPT_DIR"/mac-install -config "$SCRIPT_DIR"/install.yaml
 fi
 
-if [ ! -L /Applications/Marked.app ]; then
-  # compatibility with old "Open in Marked" IntelliJ plugin which hardcodes this path to Marked:
-  ln -s "/Applications/Marked 2.app" /Applications/Marked.app
-  chflags -h hidden /Applications/Marked.app
-fi
-
-
 ### Uninstalls:
 "$SCRIPT_DIR"/software-suite-uninstalls.sh
 
@@ -350,20 +343,6 @@ echo "Keysmith ..."
     echo -e "- [ ] Hide in menu bar" >> "$HOME/SystemSetup.md"
     echo "" >> "$HOME/SystemSetup.md"
   fi
-fi
-
-
-if [ -e "/Applications/Setapp/Marked 2.app" ]; then
-echo "Marked (Setapp)..."
-  defaults write com.brettterpstra.marked2-setapp WebKitDeveloperExtras -bool true
-  defaults write com.brettterpstra.marked2-setapp convertGithubCheckboxes -bool true
-  defaults write com.brettterpstra.marked2-setapp defaultProcessor -string "Discount (GFM)"
-  defaults write com.brettterpstra.marked2-setapp defaultSyntaxStyle -string "GitHub"
-  defaults write com.brettterpstra.marked2-setapp externalEditor -string "Typora"
-  defaults write com.brettterpstra.marked2-setapp externalImageEditor -string "Pixelmator"
-  defaults write com.brettterpstra.marked2-setapp includeMathJax -bool true
-  defaults write com.brettterpstra.marked2-setapp isMultiMarkdownDefault -bool false
-  defaults write com.brettterpstra.marked2-setapp syntaxHighlight -bool true
 fi
 
 
