@@ -1659,6 +1659,12 @@ install_groups:
         checklist:
           - Sync config from Curie
 
+      - artifact: $HOME/.local/bin/synclaude
+        install:
+          - run: "curl -sSL https://raw.githubusercontent.com/parnexcodes/synclaude/main/scripts/install.sh | bash"
+        checklist:
+          - Sign in with Synthetic (`synclaude setup`)
+
       - artifact: $HOME/.local/bin/coderabbit
         install:
           - run: "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
