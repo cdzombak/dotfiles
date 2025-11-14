@@ -2213,6 +2213,10 @@ install_groups:
         persist: true
         note: "https://lofi.cafe (Safari web app)"
 
+      - artifact: $HOME/Applications/Underscore.app
+        persist: true
+        note: "https://kottke.org/underscore/ (Safari web app)"
+
       - artifact: /Applications/Pocket Casts.app
         persist: true
         install:
