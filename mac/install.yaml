@@ -746,7 +746,7 @@ install_groups:
         checklist:
           - Enable Finder extension
           - Enable opening & showing file after creation
-          - Keep helper app open in background
+          - Launch at Login
           - Disable menu bar item
           - Set template storage directory (`~/.config/macos/NewFileMenu`)
           - Disable all templates except Plain Text, Markdown, and Shell Script
