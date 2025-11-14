@@ -2104,20 +2104,9 @@ install_groups:
         persist: true
         note: https://www.dxo.com/dxo-filmpack/download/
 
-      - artifact: /Applications/SIGMA Photo Pro 6.app
-        persist: true
-        note: https://www.sigma-global.com/en/support/software/sigma-photo-pro/?os=mac
-
       - artifact: /Applications/SIGMA Optimization Pro.app
         persist: true
         note: https://www.sigma-global.com/en/support/software/sigma-optimization-pro/?os=mac
-
-      - artifact: $HOME/Library/QuickLook/X3F QL Plugin.qlgenerator
-        persist: true
-        note: https://dropbox.dzombak.com/X3F-QL-Plugin.qlgenerator.zip
-        checklist:
-          - Download and install
-          - Enable in System Settings
 
       - artifact: $BREW/bin/xtool
         persist: true
@@ -2127,13 +2116,6 @@ install_groups:
           - run: xtool install -scripts
           - run: xtool install -x3f-extract
           - script: postinstall/xtool.sh
-
-      - artifact: $HOME/opt/bin/x3f_extract
-        persist: true
-        note: https://github.com/Kalpanika/x3f
-        checklist:
-          - Download from https://github.com/Kalpanika/x3f
-          - Install x3f tools to $HOME/opt/bin
 
       - artifact: /Applications/Logic Pro X.app
         persist: true
