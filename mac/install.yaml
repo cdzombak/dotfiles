@@ -1975,7 +1975,7 @@ install_groups:
         checklist:
           - Authenticate with phone
 
-      - artifact: /Applications/MuteDeck.app
+      - artifact: /Applications/MuteDeck/MuteDeck.app
         note: "`~/.dotfiles/mac/install/mutedeck.sh`"
         checklist:
           - Enable Accessibility permissions
