@@ -51,6 +51,7 @@ export MANPATH="$HOME/opt/share/man:$MANPATH"
 
 # ~/.local/bin
 [ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # asdf-vm:
 if [ -d "$HOME/.asdf" ] ; then
