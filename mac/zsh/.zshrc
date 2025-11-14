@@ -49,6 +49,10 @@ fi
 
 alias reload!='echo "" && . ~/.zshrc'
 
+if [ -x /Users/cdzombak/.claude/local/claude ]; then
+    alias claude="/Users/cdzombak/.claude/local/claude"
+fi
+
 source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
 source ~/.zsh/colored-man-pages.zsh
