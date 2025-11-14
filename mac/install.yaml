@@ -1684,6 +1684,13 @@ install_groups:
           - Sign in with OpenAI
           - Sync MCP config
 
+      - artifact: $BREW/bin/copilot
+        install:
+          - run: "npm install -g @github/copilot"
+        checklist:
+          - Sign in
+          - Sync MCP config
+
       - artifact: /Applications/Conductor.app
         persist: true
         install:
