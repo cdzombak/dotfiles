@@ -1828,6 +1828,7 @@ install_groups:
           - Sign into Google account
           - Enable sync
           - Customize toolbar
+          - Disable "Warn before Quit" (File menu)
         configure:
           - run: defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 
