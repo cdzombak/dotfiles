@@ -2047,6 +2047,7 @@ install_groups:
           - mas: "944693506"
         checklist:
           - Grant full disk access
+          - "Settings -> Viewing: auto-play media when navigating"
 
       - artifact: /Applications/Avenue.app
         persist: true
