@@ -1692,6 +1692,12 @@ install_groups:
           - Sign in
           - Sync MCP config
 
+      - artifact: $BREW/bin/octofriend
+        install:
+          - run: "npm install --global --omit=dev octofriend"
+        checklist:
+          - Sign in
+
       - artifact: /Applications/Conductor.app
         persist: true
         install:
