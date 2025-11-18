@@ -57,6 +57,7 @@ source ~/.zsh/bundler.zsh
 source ~/.zsh/clipboard.zsh
 source ~/.zsh/colored-man-pages.zsh
 source ~/.zsh/devtools.zsh
+source ~/.zsh/dirmerge.zsh
 command -v docker >/dev/null 2>&1 && source ~/.zsh/docker-func.zsh
 source ~/.zsh/envtools.zsh
 source ~/.zsh/extract.zsh
