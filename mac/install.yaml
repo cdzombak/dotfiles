@@ -1697,6 +1697,7 @@ install_groups:
           - run: "npm install --global --omit=dev octofriend"
         checklist:
           - Sign in
+          - Sync MCP config
 
       - artifact: /Applications/Conductor.app
         persist: true
