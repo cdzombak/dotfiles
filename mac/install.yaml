@@ -656,7 +656,7 @@ install_groups:
           - run: defaults write abnerworks.Typora "copy_markdown_by_default" 1
           - run: defaults write abnerworks.Typora "enable_inline_math" 1
           - run: defaults write abnerworks.Typora prettyIndent 0
-          - run: defaults write abnerworks.Typora quitAfterWindowClose 1
+          - run: defaults write abnerworks.Typora quitAfterWindowClose 0
           - run: defaults write abnerworks.Typora "strict_mode" 1
           - run: defaults write abnerworks.Typora theme "Github"
           - run: defaults write abnerworks.Typora "use_seamless_window" 1
