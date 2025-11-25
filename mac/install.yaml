@@ -1232,6 +1232,32 @@ install_groups:
           - Launch at login
           - Position in menu bar as desired
 
+      - artifact: /Applications/Setapp.app
+        install:
+          - cask: setapp
+        configure:
+          - run: defaults write com.setapp.DesktopClient EnableLauncher -bool false
+          - run: defaults write com.setapp.DesktopClient KeepTeasers -bool false
+          - run: defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
+          - run: defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
+        checklist:
+          - Sign in to Setapp
+          - Configure Setapp settings as desired
+          - Install applications as desired from Setapp Favorites
+          - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
+
+      - artifact: /Applications/Setapp/Mission Control Plus.app
+        checklist:
+          - Disable complex keyboard shortcuts
+          - Launch at login
+
+      - artifact: /Applications/Setapp/Keysmith.app
+        checklist:
+          - Clear all shortcuts except quick launcher
+          - Set quick launcher shortcut to Shift-Alt-Space
+          - Configure sync via Syncthing
+          - Launch at login
+
   - group: SSH & Yubikeys
     software:
       - artifact: /Applications/Secretive.app
@@ -1290,24 +1316,8 @@ install_groups:
           - Install settings and sign into all services
           - Set shortcut Ctrl-Command-Space
 
-  - group: Setapp
-    optional: false
+  - group: Optional Setapp Apps
     software:
-
-      - artifact: /Applications/Setapp.app
-        install:
-          - cask: setapp
-        configure:
-          - run: defaults write com.setapp.DesktopClient EnableLauncher -bool false
-          - run: defaults write com.setapp.DesktopClient KeepTeasers -bool false
-          - run: defaults write com.setapp.DesktopClient ShouldLoadFinderSyncExtensionOnLaunch -bool false
-          - run: defaults write "com.setapp.DesktopClient" "shouldBlockPushBanner" '1'
-        checklist:
-          - Sign in to Setapp
-          - Configure Setapp settings as desired
-          - Install applications as desired from Setapp Favorites
-          - Disable the launch agent com.setapp.DesktopClient.SetappLauncher using LaunchControl (disable, unload, and change disabled override)
-
       - artifact: /Applications/Setapp/CodeRunner.app
       - artifact: /Applications/Setapp/Downie.app
       - artifact: /Applications/Setapp/ForkLift.app
@@ -1332,18 +1342,6 @@ install_groups:
       - artifact: /Applications/Setapp/SQLPro Studio.app
       - artifact: /Applications/Setapp/Squash.app
         note: Image compression tool
-
-      - artifact: /Applications/Setapp/Mission Control Plus.app
-        checklist:
-          - Disable complex keyboard shortcuts
-          - Launch at login
-
-      - artifact: /Applications/Setapp/Keysmith.app
-        checklist:
-          - Clear all shortcuts except quick launcher
-          - Set quick launcher shortcut to Shift-Alt-Space
-          - Configure sync via Syncthing
-          - Launch at login
 
   # Development tools (optional)
   - group: Dev
