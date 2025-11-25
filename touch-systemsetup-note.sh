@@ -38,8 +38,6 @@ Consider running \`plistwatch\` while configuring, to capture additional scripta
 - [ ] Allow apps downloaded from: App Store and identified developers
 - [ ] 5 minutes to screen saver
 - [ ] 2 minutes to screen off when on battery; 10 minutes on AC
-- [ ] Review other Energy settings as desired
-    - [ ] Enable optimizing video streaming while on battery
 - [ ] Name Touch ID finger & add the other index finger
 - [ ] Verify Find My Mac is enabled
 
@@ -56,6 +54,10 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Add current cards to Apple Pay, as desired
 - [ ] Set address correctly
 - [ ] Set default card
+
+### Battery
+
+- [ ] Enable optimizing video streaming while on battery
 
 ### Bluetooth
 
