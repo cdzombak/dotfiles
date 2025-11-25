@@ -2162,12 +2162,6 @@ install_groups:
         checklist:
           - Sign in
 
-      - artifact: $HOME/Applications/Frigate.app
-        persist: true
-        note: "https://elton.tailnet-003a.ts.net:8971/ (Safari web app)"
-        checklist:
-          - Sign in
-
       - artifact: $HOME/Applications/Ecobee.app
         note: "https://www.ecobee.com/consumerportal/index.html#/devices (Safari web app)"
         checklist:
