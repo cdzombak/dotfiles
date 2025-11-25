@@ -1647,7 +1647,7 @@ install_groups:
           - Show in Menu Bar
           - Hardlink MCP config
 
-      - artifact: /Users/cdzombak/.claude/local/claude
+      - artifact: $HOME/.local/bin/claude
         install:
           - run: "curl -fsSL https://claude.ai/install.sh | bash"
         checklist:
