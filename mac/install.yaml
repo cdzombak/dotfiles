@@ -1040,22 +1040,22 @@ install_groups:
         configure:
           - run: defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontName "MesloLGL-Regular"
           - run: defaults write com.vladbadea.jsoneditor PLEPlistOutlineViewFontSize 13
+          - run: /usr/local/bin/utiluti type set public.json com.vladbadea.jsoneditor
         checklist:
-          - Associate with JSON files
           - Enable Quick Look extension
 
       - artifact: /Applications/Easy CSV Editor.app
         install:
           - mas: "1171346381"
-        checklist:
-          - Associate with CSV files
+        configure:
+          - run: /usr/local/bin/utiluti type set public.comma-separated-values-text com.vladbadea.csveditor
 
       - artifact: /Applications/PLIST Editor.app
         install:
           - mas: "1157491961"
+        configure:
+          - run: /usr/local/bin/utiluti type set com.apple.property-list com.vladbadea.plisteditor
         checklist:
-          # TODO(cdzombak): automate association
-          - Associate with PLIST files
           - Enable Quick Look extension
 
       - artifact: /Applications/Pixelmator Pro.app
