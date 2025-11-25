@@ -1602,7 +1602,7 @@ install_groups:
         install:
           - cask: wireshark
 
-      - artifact: $HOME/Applications/Clock.app
+      - artifact: $HOME/Applications/Clock!.app
         note: "https://clock.dzdz.cz (Safari web app)"
 
       - artifact: $HOME/Applications/JSON Viewer.app
