@@ -1652,11 +1652,11 @@ install_groups:
           - Sign in with Anthropic
           - Sync MCP config
 
-      - artifact: $BREW/bin/aclaude
-        install:
-          - brew: cdzombak/oss/aclaude
-        checklist:
-          - Sync config from Curie
+      # - artifact: $BREW/bin/aclaude
+      #   install:
+      #     - brew: cdzombak/oss/aclaude
+      #   checklist:
+      #     - Sync config from Curie
 
       - artifact: $HOME/.local/bin/synclaude
         install:
@@ -1725,10 +1725,6 @@ install_groups:
       - artifact: "$HOME/Applications/Codex.app"
         persist: true
         note: "https://chatgpt.com/codex (Safari web app)"
-
-      - artifact: "$HOME/Applications/Claude Code.app"
-        persist: true
-        note: "https://claude.ai/code (Safari web app)"
 
       - artifact: $HOME/Applications/Devin.app
         persist: true

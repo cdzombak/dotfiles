@@ -542,3 +542,9 @@ if [ -e "$(brew --prefix)/bin/nativefier" ] ; then
   npm uninstall -g nativefier
   set -e
 fi
+
+if [ -e "$HOME/Applications/Claude Code.app" ]; then
+  echo "Claude Code.app..."
+  verify_smartdelete
+  trash "$HOME/Applications/Claude Code.app"
+fi

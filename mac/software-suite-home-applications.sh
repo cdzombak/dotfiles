@@ -187,4 +187,6 @@ create_app_link "AI Tools" "$HOME/Applications/claudia"
 create_app_link "AI Tools" "$HOME/Applications/Codex.app"
 create_app_link "AI Tools" "$HOME/Applications/Google AI Studio.app"
 
+rm -f "$HOME/Applications/AI Tools/Claude Code"
+
 cecho "✔ Done." $green
