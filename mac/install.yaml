@@ -814,6 +814,7 @@ install_groups:
           - mas: "https://apps.apple.com/us/app/folder-quick-look/id6753110395?mt=12"
         checklist:
           - Enable QuickLook extension
+          - Show hidden files
 
       - artifact: /Applications/Poolsuite FM.app
         install:
