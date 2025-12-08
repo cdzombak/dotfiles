@@ -662,7 +662,7 @@ install_groups:
           - run: defaults write abnerworks.Typora "use_seamless_window" 1
           - run: /usr/local/bin/utiluti type set io.typora.markdown abnerworks.Typora
           - run: /usr/local/bin/utiluti type set net.daringfireball.markdown abnerworks.Typora
-          - run: /usr/local/bin/utiluti type set com.unknown.md abnerworks.Typora
+          - run: /usr/local/bin/utiluti type set com.unknown.md abnerworks.Typora || true
         checklist:
           - License
 
