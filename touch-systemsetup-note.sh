@@ -89,9 +89,8 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Turn off "correct spelling automatically," "capitalize words automatically," "add period with double-space"
 - [ ] Sync keyboard shortcuts configuration with current favorite system (screenshots in \`~/.config/macos\`)
     - [ ] Customize available services as desired
-- [ ] Enable Dictation
-- [ ] Dictation shortcut: Press right Command key twice
 - [ ] Disable Spotlight keyboard shortcuts
+- [ ] Enable "Use F1, F2, etc. keys as standard function keys"
 
 ### Liquid Glass
 
