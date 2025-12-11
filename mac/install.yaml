@@ -1617,7 +1617,7 @@ install_groups:
       - artifact: /Applications/Wispr Flow.app
         note: https://wisprflow.ai/downloads
         checklist:
-          - "Set shortcuts: Ctrl+Shift+X; hands-free Ctrl-Shift-/; Command Ctrl-Shift-C; Paste Transcript Ctrl-Shift-V"
+          - "Set shortcuts: Alt+Space; hands-free Ctrl-Shift-X; Command Ctrl-Shift-C; Paste Transcript Ctrl-Shift-V"
           - Enable code editor integration
           - Hide Dock icon
           - Hide Wispr Flow bar
