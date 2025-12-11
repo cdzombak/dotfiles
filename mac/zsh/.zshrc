@@ -30,7 +30,9 @@ autoload -Uz compinit
 compinit
 
 setopt interactivecomments
-setopt noclobber
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+    setopt noclobber
+fi
 
 export CLICOLOR=true
 # generate/sync via https://geoff.greer.fm/lscolors/
