@@ -11,8 +11,8 @@ if [ -d "$HOME/.local/shell-completion" ] ; then
     fpath=(~/.local/shell-completion $fpath)
 fi
 if type brew &>/dev/null; then
-    fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-    if [ -x "$(brew --prefix)/bin/assume" ]; then
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+    if [ -x "/opt/homebrew/bin/assume" ]; then
         alias assume="source assume"
     fi
 fi
@@ -22,8 +22,8 @@ fi
 if [ -d "$HOME/.granted/zsh_autocomplete/granted" ]; then
     fpath=("$HOME/.granted/zsh_autocomplete/granted/" $fpath)
 fi
-if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
-    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk/" ] ; then
+    source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 [ -d "$HOME/.bun" ] && source "$HOME/.bun/_bun" # https://bun.com completions
 autoload -Uz compinit

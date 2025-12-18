@@ -20,12 +20,12 @@ if [ -d "$HOME/.bun" ]; then
 fi
 
 # Google Cloud:
-if [ -d "$(brew --prefix)/Caskroom/google-cloud-sdk/" ] ; then
-    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk/" ] ; then
+    source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
 
 # Golang:
-export GOROOT=$(brew --prefix)/opt/go/libexec
+export GOROOT=/opt/homebrew/opt/go/libexec
 export PATH="$GOROOT/bin:$PATH"
 if [ -d "$HOME/go" ]; then
     export GOPATH="$HOME/go"
