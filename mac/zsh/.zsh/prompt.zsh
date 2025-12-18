@@ -252,6 +252,9 @@ kubectl-ctx-hide() {
   _ZSH_RPROMPT_K8S_CONTEXT=false
 }
 
+alias kubectl="kubectl-ctx-show; kubectl"
+alias kubectx="kubectl-ctx-show; kubectx"
+
 # gcloud context
 
 alias gcloud="gcloud-ctx-show; gcloud"
