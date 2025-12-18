@@ -10,7 +10,7 @@ fpath=(~/.zsh/completions $fpath)
 if [ -d "$HOME/.local/shell-completion" ] ; then
     fpath=(~/.local/shell-completion $fpath)
 fi
-if type brew &>/dev/null; then
+if [ -d /opt/homebrew ]; then
     fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
     if [ -x "/opt/homebrew/bin/assume" ]; then
         alias assume="source assume"
