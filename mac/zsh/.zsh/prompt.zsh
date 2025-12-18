@@ -213,7 +213,7 @@ _zsh_rprompt_virtualenv() {
 }
 
 _zsh_rprompt_nats() {
-  if command -v nats &>/dev/null; then
+  if [[ $_ZSH_RPROMPT_NATS_CONTEXT = true ]] && command -v nats &>/dev/null; then
     # Get the active context (line with * at the end)
     local nats_ctx
     nats_ctx=$(nats context ls 2>/dev/null | grep '\*' | awk '{print $2}' | sed 's/\*$//')
@@ -224,6 +224,16 @@ _zsh_rprompt_nats() {
     fi
   fi
 }
+
+nats-ctx-show() {
+  _ZSH_RPROMPT_NATS_CONTEXT=true
+}
+
+nats-ctx-hide() {
+  _ZSH_RPROMPT_NATS_CONTEXT=false
+}
+
+alias nats="nats-ctx-show; nats"
 
 # kubectl context
 source ~/.zsh/kubectl-prompt.zsh
