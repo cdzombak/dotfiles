@@ -1654,18 +1654,6 @@ install_groups:
           - Sign in with Anthropic
           - Sync MCP config
 
-      # - artifact: $BREW/bin/aclaude
-      #   install:
-      #     - brew: cdzombak/oss/aclaude
-      #   checklist:
-      #     - Sync config from Curie
-
-      - artifact: $HOME/.local/bin/synclaude
-        install:
-          - run: "curl -sSL https://raw.githubusercontent.com/parnexcodes/synclaude/main/scripts/install.sh | bash"
-        checklist:
-          - Sign in with Synthetic (`synclaude setup`)
-
       - artifact: $HOME/.local/bin/coderabbit
         install:
           - run: "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
@@ -1688,13 +1676,6 @@ install_groups:
       - artifact: $BREW/bin/copilot
         install:
           - run: "npm install -g @github/copilot"
-        checklist:
-          - Sign in
-          - Sync MCP config
-
-      - artifact: $BREW/bin/octofriend
-        install:
-          - run: "npm install --global --omit=dev octofriend"
         checklist:
           - Sign in
           - Sync MCP config
@@ -1739,11 +1720,6 @@ install_groups:
       - artifact: $HOME/Applications/Google AI Studio.app
         persist: true
         note: "https://aistudio.google.com (Safari web app)"
-
-      - artifact: $BREW/bin/gemini
-        persist: true
-        install:
-          - brew: gemini-cli
 
   # CAD, 3D Printing, Electronics & Radio tools (optional)
   - group: CAD, 3D Printing, Electronics & Radio

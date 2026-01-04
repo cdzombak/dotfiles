@@ -548,3 +548,23 @@ if [ -e "$HOME/Applications/Claude Code.app" ]; then
   verify_smartdelete
   trash "$HOME/Applications/Claude Code.app"
 fi
+
+if [ -e /opt/homebrew/bin/aclaude ]; then
+  echo "aclaude..."
+  brew uninstall cdzombak/oss/aclaude
+fi
+
+if [ -e /opt/homebrew/bin/gemini ]; then
+  echo "gemini..."
+  brew uninstall gemini-cli
+fi
+
+if [ -e /opt/homebrew/bin/octofriend ]; then
+  echo "octofriend..."
+  npm uninstall --global octofriend
+fi
+
+if [ -e "$HOME"/.local/bin/synclaude ]; then
+  echo "synclaude..."
+  curl -sSL https://raw.githubusercontent.com/parnexcodes/synclaude/main/scripts/uninstall.sh | bash
+fi
