@@ -1652,7 +1652,9 @@ install_groups:
           - run: "curl -fsSL https://claude.ai/install.sh | bash"
         checklist:
           - Sign in with Anthropic
-          - Sync MCP config
+          - Sync MCP config (`~/.claude.json`)
+          - Sync status line config (`~/.claude/settings.json`)
+          - Sync plugins (`~/.claude/settings.json`)
 
       - artifact: $HOME/.local/bin/coderabbit
         install:
