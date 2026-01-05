@@ -1136,6 +1136,10 @@ install_groups:
         install:
           - brew: typescript
 
+      - artifact: $BREW/bin/typescript-language-server
+        install:
+          - brew: typescript-language-server
+
       - artifact: $BREW/bin/prettier
         install:
           - brew: prettier
