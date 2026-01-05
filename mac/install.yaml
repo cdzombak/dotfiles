@@ -42,6 +42,10 @@ install_groups:
         install:
           - brew: uv
 
+      - artifact: $HOME/go/bin/gopls
+        install:
+          - run: go install golang.org/x/tools/gopls@latest
+
       - artifact: /usr/local/bin/utiluti
         install:
           - script: install/utiluti.sh
