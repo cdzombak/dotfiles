@@ -860,7 +860,7 @@ install_groups:
         configure:
           - run: defaults write com.reederapp.5.macOS "app.appearance" 10
           - run: defaults write com.reederapp.5.macOS "app.appearance.opaque" '1'
-          - run: defaults write com.reederapp.5.macOS "app.content-size-category" '3'
+          - run: defaults write com.reederapp.5.macOS "app.content-size-category" '5'
           - run: defaults write com.reederapp.5.macOS "app.default-browser" -string "com.apple.Safari"
           - run: defaults write com.reederapp.5.macOS "app.filter" 2
           - run: defaults write com.reederapp.5.macOS "app.grayscale-favicons" -bool true
@@ -869,7 +869,7 @@ install_groups:
           - run: defaults write com.reederapp.5.macOS "app.state.stream.type" 0
           - run: defaults write com.reederapp.5.macOS "app.state.stream.user" -string "Feedbin/chris@chrisdzombak.net"
           - run: defaults write com.reederapp.5.macOS "app.state.user" -string "Feedbin/chris@chrisdzombak.net"
-          - run: defaults write com.reederapp.5.macOS "article.font-size" 17
+          - run: defaults write com.reederapp.5.macOS "article.font-size" '19'
           - run: defaults write com.reederapp.5.macOS "article.increase-contrast" -bool true
           - run: defaults write com.reederapp.5.macOS "article.max.width" '40'
           - run: defaults write com.reederapp.5.macOS "bionic.toolbar" -bool false
