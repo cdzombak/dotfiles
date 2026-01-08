@@ -69,6 +69,8 @@ create_app_link "Dev Tools" "$HOME/Applications/OrbStack.app"
 create_app_link "Dev Tools" "$HOME/Applications/GitHub Desktop.app"
 create_app_link "Dev Tools" "$HOME/Applications/Visual Studio Code.app"
 create_app_link "Dev Tools" "/Applications/Taska.app"
+create_app_link "Dev Tools" "/Applications/Klogg.app"
+create_app_link "Dev Tools" "/Applications/RapidAPI.app"
 create_app_link "Dev Tools" "/Applications/Setapp/Squash.app"
 
 create_app_folder "Hobby Tools"
@@ -87,6 +89,7 @@ create_app_link "Hobby Tools" "/Applications/BambuStudio.app" "Bambu Studio"
 create_app_link "Hobby Tools" "/Applications/Meshman 3D Viewer PRO.app" "Meshman 3D Viewer"
 create_app_link "Hobby Tools" "/Applications/MQTTAnalyzer.app"
 create_app_link "Hobby Tools" "/Applications/SDR++.app"
+create_app_link "Hobby Tools" "/Applications/balenaEtcher.app"
 
 rm -f "$HOME/Applications/Hobby Tools/CubicSDR"
 
