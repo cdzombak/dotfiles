@@ -864,7 +864,7 @@ install_groups:
           - run: defaults write com.reederapp.5.macOS "app.default-browser" -string "com.apple.Safari"
           - run: defaults write com.reederapp.5.macOS "app.filter" 2
           - run: defaults write com.reederapp.5.macOS "app.grayscale-favicons" -bool true
-          - run: defaults write com.reederapp.5.macOS "app.icon-badge" 0
+          - run: defaults write "com.reederapp.5.macOS" "app.icon-badge" '2'
           - run: defaults write com.reederapp.5.macOS "app.layout" 3
           - run: defaults write com.reederapp.5.macOS "app.state.stream.type" 0
           - run: defaults write com.reederapp.5.macOS "app.state.stream.user" -string "Feedbin/chris@chrisdzombak.net"
