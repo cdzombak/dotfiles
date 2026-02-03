@@ -1668,6 +1668,7 @@ install_groups:
           - run: "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
         checklist:
           - Sign in with CodeRabbit account (via GitHub)
+          - Install Claude Code plugin (`/plugin install coderabbit`)
 
       - artifact: /Applications/ChatGPT.app
         install:
