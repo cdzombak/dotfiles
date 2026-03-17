@@ -633,7 +633,7 @@ install_groups:
           - cask: shortcat
         checklist:
           - Grant permissions
-          - Move Finder Search to Ctrl-Command-Space (if needed)
+          - Disable Finder search shortcut
           - Assign shortcut Alt-Command-Space
           - Launch at Login
           - Hide in menu bar, next to Alfred
