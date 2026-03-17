@@ -1,5 +1,12 @@
 # shellcheck shell=bash
 
+# History: share between sessions, write incrementally, and keep a long history.
+HISTSIZE=100000
+HISTFILESIZE=200000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
+
 set -o noclobber
 
 alias ..='cd ..'
