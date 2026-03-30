@@ -501,6 +501,12 @@ install_groups:
           - Pause backups on battery power
           - Enable backup thinning
 
+      - artifact: /Applications/Bandwidther.app
+        install:
+          - cask: cdzombak/oss/bandwidther
+        checklist:
+          - Open at login
+
       - artifact: /Applications/Choosy.app
         install:
           - cask: choosy
