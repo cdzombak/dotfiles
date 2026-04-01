@@ -1241,12 +1241,6 @@ install_groups:
         install:
           - brew: groff
 
-      - artifact: /Applications/NetSpeedMonitor.app
-        note: "Install from iCloud Drive/Software (for now)"
-        checklist:
-          - Launch at login
-          - Position in menu bar as desired
-
       - artifact: /Applications/Setapp.app
         install:
           - cask: setapp
