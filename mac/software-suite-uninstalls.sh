@@ -488,6 +488,12 @@ if [ -e /Applications/Wavebox.app ]; then
   trash /Applications/Wavebox.app
 fi
 
+if [ -e "/Applications/Wispr Flow.app" ]; then
+  echo "Wispr Flow..."
+  verify_smartdelete
+  trash "/Applications/Wispr Flow.app"
+fi
+
 if [ -e "/Applications/Magic Lasso.app" ]; then
   echo "Magic Lasso..."
   verify_smartdelete
@@ -562,6 +568,22 @@ fi
 if [ -e /opt/homebrew/bin/octofriend ]; then
   echo "octofriend..."
   npm uninstall --global octofriend
+fi
+
+if [ -e /Applications/ChatGPT.app ]; then
+  echo "ChatGPT..."
+  verify_smartdelete
+  brew uninstall --cask chatgpt || trash /Applications/ChatGPT.app
+fi
+
+if [ -e "$(brew --prefix)/bin/codex" ]; then
+  echo "Codex CLI..."
+  brew uninstall --cask codex
+fi
+
+if [ -e "$HOME/Applications/Codex.app" ]; then
+  echo "Codex.app (Safari web app)..."
+  trash "$HOME/Applications/Codex.app"
 fi
 
 if [ -e "$HOME"/.local/bin/synclaude ]; then

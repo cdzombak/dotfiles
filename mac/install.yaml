@@ -1620,15 +1620,6 @@ install_groups:
   # AI tools (optional)
   - group: AI
     software:
-      - artifact: /Applications/Wispr Flow.app
-        note: https://wisprflow.ai/downloads
-        checklist:
-          - "Set shortcuts: Alt+Space; hands-free Ctrl-Shift-X; Command Ctrl-Shift-C; Paste Transcript Ctrl-Shift-V"
-          - Enable code editor integration
-          - Hide Dock icon
-          - Hide Wispr Flow bar
-          - Launch at Login
-
       - artifact: $BREW/bin/git-ac
         persist: true
         install:
@@ -1669,18 +1660,6 @@ install_groups:
           - Sign in with CodeRabbit account (via GitHub)
           - Install Claude Code plugin (`/plugin install coderabbit`)
 
-      - artifact: /Applications/ChatGPT.app
-        install:
-          - cask: chatgpt
-        checklist:
-          - Sign in with OpenAI
-
-      - artifact: $BREW/bin/codex
-        install:
-          - cask: codex
-        checklist:
-          - Sign in with OpenAI
-          - Sync MCP config
 
       - artifact: $BREW/bin/copilot
         install:
@@ -1714,9 +1693,6 @@ install_groups:
         persist: true
         note: "https://jetstream.tailnet-003a.ts.net:7778 (Safari web app)"
 
-      - artifact: "$HOME/Applications/Codex.app"
-        persist: true
-        note: "https://chatgpt.com/codex (Safari web app)"
 
       - artifact: $HOME/Applications/Devin.app
         persist: true
