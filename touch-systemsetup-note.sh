@@ -200,7 +200,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 - [ ] Sign into iCloud & enable Messages in iCloud
 - [ ] Disable notifications for messages from unknown contacts
-- [ ] Set Do Not Disturb for active group threads
+- [ ] Set Hide Alerts for active group threads
 - [ ] Enable iPhone sending SMS to this Mac
 - [ ] Notifications: show previews only when unlocked
 - [ ] Increase font size
