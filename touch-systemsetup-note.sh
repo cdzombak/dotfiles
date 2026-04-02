@@ -205,10 +205,6 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 - [ ] Notifications: show previews only when unlocked
 - [ ] Increase font size
 
-## Notes
-
-- [ ] Increase default text size to middle setting
-
 ## Widgets / Notification Center
 
 - [ ] Configure: Calendar, Oblique SE, Weather, Photos (skip as desired for work laptop)
