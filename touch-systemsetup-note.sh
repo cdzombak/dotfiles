@@ -308,6 +308,42 @@ EOF
 
 EOF
   fi
+
+  if [ -f /home/cdzombak/.config/dotfiles/sw-profile-desktop ]; then
+    cat << EOF >> "$HOME/SystemSetup.md"
+
+## Linux Desktop Setup
+
+- [ ] Set up \`keyd\` per [my blog post](https://www.dzombak.com/blog/2026/03/linux-desktop-amenities/#remapping-caps-lock-to-control-escape)
+    - nb. automation tracked: https://github.com/cdzombak/dotfiles/issues/34
+- [ ] Set up Ringboard per [my blog post](https://www.dzombak.com/blog/2026/03/linux-desktop-amenities/#clipboard-history)
+    - [ ] move Cargo env setup from \`.bashrc\` to \`.localrc\`
+- [ ] \`sudo apt install gnome-sushi\`
+- [ ] Position & rearrange Dock as desired
+- [ ] Replace default Restic setup by [Backrest](https://github.com/garethgeorge/backrest), as desired
+
+### 1Password Desktop
+
+- [ ] [Download](https://1password.com/downloads/linux) and install
+- [ ] Sign in
+
+### Google Chrome
+
+- [ ] [Download](https://www.google.com/chrome/dr/download) and install
+- [ ] Sign in
+
+### Ghostty
+
+- [ ] [Install](https://ghostty.org/docs/install/binary#linux)
+- [ ] Sync config
+
+### VS Code
+
+- [ ] [Download](https://code.visualstudio.com/) and install
+- [ ] Sign in with GitHub for config sync
+
+EOF
+  fi
 else
   echo "System '$(uname)' unknown."
   exit 1

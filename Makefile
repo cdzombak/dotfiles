@@ -102,14 +102,14 @@ linux-homedir: require-linux ## Set up basic Linux home directory structure
 	@bash ./linux/homedir.sh
 
 .PHONY: linux-user
-linux-user: setupnote linux-stow linux-homedir ## User-level (ie. nothing systemwide) setup on Linux
+linux-user: linux-swprof setupnote linux-stow linux-homedir ## User-level (ie. nothing systemwide) setup on Linux
 
 .PHONY: linux-configure
-linux-configure: setupnote require-linux ## Core Linux configuration (requires sudo)
+linux-configure: linux-swprof setupnote require-linux ## Core Linux configuration (requires sudo)
 	@bash ./linux/configure.sh
 
 .PHONY: linux-software
-linux-software: setupnote require-linux linux-homedir ## Set up core software on Linux (requires sudo)
+linux-software: linux-swprof setupnote require-linux linux-homedir ## Set up core software on Linux (requires sudo)
 	@bash ./linux/software-install.sh
 
 .PHONY: linux-all
