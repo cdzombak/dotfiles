@@ -211,12 +211,12 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 ## Safari
 
-- [ ] Walk through Preferences, configuring as desired
+- [ ] Configure Preferences as desired
     - [ ] Set homepage: \`https://start.dzdz.cz/\`
-    - [ ] New tabs and windows open with start page
+    - [ ] New tabs and windows open with: start page
     - [ ] Disable AutoFill (in favor of [1Password](https://blog.1password.com/big-sur-1password-7-7/))
-    - [ ] Privacy: disable hiding IP from known trackers (breaks stuff/slows performance)
-    - [ ] Enable web developer features
+    - [ ] Privacy: disable hiding IP from known trackers _(breaks stuff/slows performance)_
+    - [ ] Advanced: Enable web developer features
 - [ ] Configure toolbar based on screenshot in \`~/.config/macos\` (or current favorite system)
 
 ## Desk Setup
