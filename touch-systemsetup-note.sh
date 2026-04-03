@@ -337,6 +337,10 @@ EOF
 - [ ] [Install](https://ghostty.org/docs/install/binary#linux)
 - [ ] Sync config
 
+### SourceGit
+
+- [ ] [Download](https://github.com/sourcegit-scm/sourcegit) and install, as desired
+
 ### VS Code
 
 - [ ] [Download](https://code.visualstudio.com/) and install
