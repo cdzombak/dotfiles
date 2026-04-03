@@ -207,7 +207,7 @@ _Note:_ After enabling iCloud Drive, you may need to re-run \`mac/homedir.sh\` t
 
 ## Widgets / Notification Center
 
-- [ ] Configure: Calendar, Oblique SE, Weather, Photos (skip as desired for work laptop)
+- [ ] Configure: Calendar, Oblique SE, Weather, RadarScope, Batteries
 
 ## Safari
 
