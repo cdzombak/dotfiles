@@ -80,3 +80,6 @@ f() {
 
 # apogee
 alias subl='apg -s subl'
+
+# support local changes to env:
+if [ -f "$HOME/.localrc" ]; then source "$HOME/.localrc"; fi
