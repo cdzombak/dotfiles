@@ -1011,7 +1011,7 @@ install_groups:
           - Activate license
           - Switch to Stable update channel
           - Set Git instance (use Homebrew Git)
-          - Set Terminal tool (iTerm2)
+          - Set Terminal tool (Ghostty)
           - Set Diff & Merge tools (FileMerge)
           - Set GitHub Desktop as default GitHub tool
           - Sign into GitHub account (as desired)
