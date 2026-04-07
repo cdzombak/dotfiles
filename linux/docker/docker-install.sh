@@ -17,7 +17,11 @@ if [ ! -e "$HOME/.config/dotfiles/no-graylog" ]; then
   echo "Setup Docker log shipping to Graylog (elton)? (y/N)"
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo cp -f "$SCRIPT_DIR"/daemon.json /etc/docker/daemon.json
+    if [ -f "$HOME/.config/dotfiles/no-tailscale" ]; then
+      sudo cp -f "$SCRIPT_DIR"/daemon.json /etc/docker/daemon-no-ts.json
+    else
+      sudo cp -f "$SCRIPT_DIR"/daemon.json /etc/docker/daemon.json
+    fi
     sudo chown root:docker /etc/docker/daemon.json
   fi
 fi

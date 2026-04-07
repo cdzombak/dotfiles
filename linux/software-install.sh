@@ -425,6 +425,21 @@ if profile_server && ! command -v nginx >/dev/null; then
 fi
 
 echo ""
+echo "--- Tailscale ---"
+echo ""
+
+if [ ! -e "$HOME/.config/dotfiles/no-tailscale" ] && ! dpkg-query -W tailscale >/dev/null 2>&1; then
+  echo "Install Tailscale? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    "$SCRIPT_DIR"/tailscale/ts-install.sh
+  else
+    echo "Won't ask again next time this script is run."
+    touch "$HOME/.config/dotfiles/no-tailscale"
+  fi
+fi
+
+echo ""
 echo "--- Docker ---"
 echo ""
 
@@ -448,7 +463,11 @@ if [ ! -e "$HOME/.config/dotfiles/no-graylog" ] && [ ! -e /etc/rsyslog.d/22-gray
   read -r response
   if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
       sudo apt-get install rsyslog
-      sudo cp "$SCRIPT_DIR"/22-graylog-elton.conf /etc/rsyslog.d/22-graylog-elton.conf
+      if [ -f "$HOME/.config/dotfiles/no-tailscale" ]; then
+        sudo cp "$SCRIPT_DIR"/22-graylog-elton-no-ts.conf /etc/rsyslog.d/22-graylog-elton.conf
+      else
+        sudo cp "$SCRIPT_DIR"/22-graylog-elton.conf /etc/rsyslog.d/22-graylog-elton.conf
+      fi
       sudo systemctl restart rsyslog
       if is_tiny; then
         setupnote "rsyslog" \
@@ -457,21 +476,6 @@ if [ ! -e "$HOME/.config/dotfiles/no-graylog" ] && [ ! -e /etc/rsyslog.d/22-gray
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-graylog"
-  fi
-fi
-
-echo ""
-echo "--- Tailscale ---"
-echo ""
-
-if [ ! -e "$HOME/.config/dotfiles/no-tailscale" ] && ! dpkg-query -W tailscale >/dev/null 2>&1; then
-  echo "Install Tailscale? (y/N)"
-  read -r response
-  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    "$SCRIPT_DIR"/tailscale/ts-install.sh
-  else
-    echo "Won't ask again next time this script is run."
-    touch "$HOME/.config/dotfiles/no-tailscale"
   fi
 fi
 

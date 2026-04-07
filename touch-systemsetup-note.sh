@@ -272,11 +272,6 @@ elif [ "$(uname)" == "Linux" ]; then
 - [ ] Initialize repo with \`restic init\`
 - [ ] Configure cron job (see \`/etc/cron.d/restic-backup\`)
 
-## Logging
-
-- [ ] Customize \`/etc/rsyslog.d/22-graylog.conf\` as needed (e.g. if this machine does not use Tailscale)
-- [ ] Customize \`/etc/docker/daemon.json\` as needed (e.g. if this machine does not use Tailscale)
-
 ## 1Password
 
 - [ ] Sign in (if needed) (\`eval \$(op signin)\`)

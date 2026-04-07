@@ -1,0 +1,6 @@
+{
+  "log-driver": "gelf",
+  "log-opts": {
+    "gelf-address": "udp://elton.dzhome:12211"
+  }
+}
