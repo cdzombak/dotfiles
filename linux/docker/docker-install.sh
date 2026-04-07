@@ -13,8 +13,14 @@ echo \
 sudo apt -y update
 sudo apt install docker-ce -y
 
-sudo cp -f "$SCRIPT_DIR"/daemon.json /etc/docker/daemon.json
-sudo chown root:docker /etc/docker/daemon.json
+if [ ! -e "$HOME/.config/dotfiles/no-graylog" ]; then
+  echo "Setup Docker log shipping to Graylog (elton)? (y/N)"
+  read -r response
+  if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo cp -f "$SCRIPT_DIR"/daemon.json /etc/docker/daemon.json
+    sudo chown root:docker /etc/docker/daemon.json
+  fi
+fi
 
 sudo systemctl enable docker
 sudo systemctl start docker
