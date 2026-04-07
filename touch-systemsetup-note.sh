@@ -274,8 +274,8 @@ elif [ "$(uname)" == "Linux" ]; then
 
 ## Logging
 
-- [ ] Customize \`/etc/rsyslog.d/22-graylog.conf\` as desired (e.g. if this machine does not use Tailscale)
-- [ ] Customize \`/etc/docker/daemon.json\` as desired (e.g. if this machine does not use Tailscale)
+- [ ] Customize \`/etc/rsyslog.d/22-graylog.conf\` as needed (e.g. if this machine does not use Tailscale)
+- [ ] Customize \`/etc/docker/daemon.json\` as needed (e.g. if this machine does not use Tailscale)
 
 ## 1Password
 
