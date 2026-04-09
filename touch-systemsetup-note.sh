@@ -319,6 +319,13 @@ EOF
 
 - [ ] [Download](https://github.com/sourcegit-scm/sourcegit) and install, as desired
 
+### Sublime Text & Merge
+
+- [ ] [Set up apt repo](https://www.sublimetext.com/docs/linux_repositories.html#apt)
+- [ ] \`sudo apt-get install sublime-text sublime-merge\`
+- [ ] License
+- [ ] Sync basic configuration
+
 ### VS Code
 
 - [ ] [Download](https://code.visualstudio.com/) and install
