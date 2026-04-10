@@ -588,5 +588,5 @@ fi
 
 if [ -e "$HOME"/.local/bin/synclaude ]; then
   echo "synclaude..."
-  curl -sSL https://raw.githubusercontent.com/parnexcodes/synclaude/main/scripts/uninstall.sh | bash --force
+  curl -sSL https://raw.githubusercontent.com/parnexcodes/synclaude/main/scripts/uninstall.sh | bash -s -- --force
 fi
