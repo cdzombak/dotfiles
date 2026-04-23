@@ -1692,9 +1692,7 @@ install_groups:
         install:
           - brew: sst/tap/opencode
         checklist:
-          - "Sign in with Anthropic (`opencode auth login`)"
-          - "Sign in with OpenAI (`opencode auth login`)"
-          - "Sign in with GitHub (`opencode auth login`)"
+          - "Sign in with OpenAI OAuth (`opencode auth login`)"
           - "Sign in with OpenRouter (`opencode auth login`)"
           - "Sign in with OpenCode Zen (`opencode auth login`)"
           - "Sign in with Synthetic (`opencode auth login`)"
