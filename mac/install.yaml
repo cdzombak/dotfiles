@@ -1660,6 +1660,20 @@ install_groups:
           - Sign in with CodeRabbit account (via GitHub)
           - Install Claude Code plugin (`/plugin install coderabbit`)
 
+      - artifact: $BREW/bin/codex
+        install:
+          - cask: codex
+        checklist:
+          - Sign in
+          - Sync MCP config
+
+      - artifact: /Applications/Codex.app
+        install:
+          - cask: codex-app
+        checklist:
+          - Sign in
+          - "Set UI font size (16) (Settings > Appearance)"
+          - "Set code font size (14) (Settings > Appearance)"
 
       - artifact: $BREW/bin/copilot
         install:
