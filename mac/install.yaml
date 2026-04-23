@@ -1707,11 +1707,6 @@ install_groups:
         persist: true
         note: "https://jetstream.tailnet-003a.ts.net:7778 (Safari web app)"
 
-
-      - artifact: $HOME/Applications/Devin.app
-        persist: true
-        note: "https://app.devin.ai (Safari web app)"
-
       - artifact: $HOME/Applications/GitHub Copilot.app
         persist: true
         note: "https://github.com/copilot (Safari web app)"
