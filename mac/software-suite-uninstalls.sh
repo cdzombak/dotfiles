@@ -576,11 +576,6 @@ if [ -e /Applications/ChatGPT.app ]; then
   brew uninstall --cask chatgpt || trash /Applications/ChatGPT.app
 fi
 
-if [ -e "$(brew --prefix)/bin/codex" ]; then
-  echo "Codex CLI..."
-  brew uninstall --cask codex
-fi
-
 if [ -e "$HOME/Applications/Codex.app" ]; then
   echo "Codex.app (Safari web app)..."
   trash "$HOME/Applications/Codex.app"
