@@ -6,3 +6,5 @@ defaults write net.shinyfrog.bear NSUserKeyEquivalents '{
     Back = "@[";
     Forward = "@]";
 }'
+
+ln -sfn "/Applications/Bear.app/Contents/MacOS/bearcli" /usr/local/bin/bearcli
