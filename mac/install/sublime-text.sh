@@ -2,6 +2,7 @@
 set -euo pipefail
 
 brew install --cask sublime-text
+ln -sfn "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 
 SUBLIMETEXT_INSTALLED_PKGS_DIR="$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
 mkdir -p "$SUBLIMETEXT_INSTALLED_PKGS_DIR"
