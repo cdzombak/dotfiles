@@ -5,7 +5,7 @@
 [user]
 	name = Chris Dzombak
 	email = chris@dzombak.com
-	signingkey = 7CE31A6E
+	signingkey = D9DA5662
 
 # Company-specific name/email/signing key:
 [includeIf "gitdir:~/code/may/"]
