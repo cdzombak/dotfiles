@@ -1354,6 +1354,11 @@ install_groups:
   # Development tools (optional)
   - group: Dev
     software:
+      - artifact: /Applications/DevCleaner.app
+        persist: true
+        install:
+          - mas: "https://apps.apple.com/us/app/devcleaner-for-xcode/id1388020431?mt=12"
+
       - artifact: /Applications/Taska.app
         persist: true
         install:
