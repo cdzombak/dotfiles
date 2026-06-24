@@ -1658,13 +1658,6 @@ install_groups:
           - Sync status line config (`~/.claude/settings.json`)
           - Sync plugins (`~/.claude/settings.json`)
 
-      - artifact: $HOME/.local/bin/coderabbit
-        install:
-          - run: "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
-        checklist:
-          - Sign in with CodeRabbit account (via GitHub)
-          - Install Claude Code plugin (`/plugin install coderabbit`)
-
       - artifact: $BREW/bin/codex
         install:
           - cask: codex
