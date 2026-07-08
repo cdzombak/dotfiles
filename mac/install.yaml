@@ -1820,10 +1820,6 @@ install_groups:
         checklist:
           - Sign in to Microsoft 365 account
 
-      - artifact: /Applications/Zotero.app
-        install:
-          - cask: zotero
-
       - artifact: /Applications/Clocker.app
         install:
           - mas: "1056643111"
