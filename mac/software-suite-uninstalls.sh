@@ -117,6 +117,12 @@ if [ -e "/Applications/CubicSDR.app" ]; then
   trash /Applications/CubicSDR.app
 fi
 
+if [ -e "/Applications/DaftCloud.app" ]; then
+  echo "DaftCloud..."
+  verify_smartdelete
+  trash /Applications/DaftCloud.app
+fi
+
 if [ -e /Applications/DaisyDisk.app ]; then
   echo "DaisyDisk..."
   set +e
