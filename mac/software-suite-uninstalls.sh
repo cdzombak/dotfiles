@@ -102,6 +102,12 @@ if [ -e /Applications/CARROTweather.app ]; then
   trash /Applications/CARROTweather.app
 fi
 
+if [ -e /Applications/Clariti.app ]; then
+  echo "Clariti..."
+  verify_smartdelete
+  trash /Applications/Clariti.app
+fi
+
 if [ -e /Applications/coconutBattery.app ]; then
   echo "coconutBattery..."
   set +e

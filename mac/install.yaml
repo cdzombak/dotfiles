@@ -2157,15 +2157,6 @@ install_groups:
           - Disable file shares in Library views
           - Restore purchases
 
-      - artifact: /Applications/Clariti.app
-        install:
-          - cask: clariti
-        checklist:
-          - Sign in with Apple
-          - Disable metric system
-          - Hide from menu bar
-          - Enable square view
-
       - artifact: $HOME/Applications/Lofi Cafe.app
         persist: true
         note: "https://lofi.cafe (Safari web app)"
