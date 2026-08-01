@@ -176,6 +176,15 @@ if [ ! -e "$HOME/.config/dotfiles/no-netdata" ] && ! dpkg-query -W netdata >/dev
       "- [ ] Listen on port 9998\n- [ ] Make accessible via Tailscale with HTTPS (\`sudo tailscale serve --bg --https 9999 9998\`)\n- [ ] Monitor all services for this server\n- [ ] Configure per [my Netdata config document](bear://x-callback-url/open-note?id=E9620D65-2100-46CB-A798-02EFA52B6BE5-57092-00053B45CF64BCAE)"
     sudo mkdir -p /etc/netdata/health.d
     sudo cp "$SCRIPT_DIR"/netdata/user_process_count.conf /etc/netdata/health.d/user_process_count.conf
+    if is_rpi; then
+      # Alarms on the firmware under-voltage flag the sensors collector already
+      # records. No-op on a Pi without the raspberrypi-hwmon driver; see the
+      # comments in the config.
+      sudo cp "$SCRIPT_DIR"/netdata/rpi-undervoltage.conf /etc/netdata/health.d/rpi-undervoltage.conf
+    fi
+    # health.d/ is only read at startup, so the configs just copied are inert
+    # until this. Not worth failing the whole script over.
+    sudo netdatacli reload-health || true
   else
     echo "Won't ask again next time this script is run."
     touch "$HOME/.config/dotfiles/no-netdata"
