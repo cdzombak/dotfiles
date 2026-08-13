@@ -13,13 +13,13 @@ color brightblue "\$\((error|eval|filter|filter-out|findstring|firstword)[[:spac
 color brightblue "\$\((flavor|foreach|if|info|join|lastword|notdir|or)[[:space:]]"
 color brightblue "\$\((origin|patsubst|realpath|shell|sort|strip|suffix)[[:space:]]"
 color brightblue "\$\((value|warning|wildcard|word|wordlist|words)[[:space:]]"
-color black    "[()$]"
+color cyan    "[()$]"
 color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
 color brightyellow "\$+(\{[^} ]+\}|\([^) ]+\))"
 color brightyellow "\$[@^<*?%|+]|\$\([@^<*?%+-][DF]\)"
 color magenta   "\$\$|\\.?"
-color brightblack "(^|[[:space:]])#([^{].*)?$"
-color brightblack  "^	@#.*"
+color brightcyan "(^|[[:space:]])#([^{].*)?$"
+color brightcyan  "^	@#.*"
 
 # Show trailing whitespace
 color ,green "[[:space:]]+$"

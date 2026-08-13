@@ -19,4 +19,4 @@ color green ""(\\.|[^"])*""
 color green "`(\\.|[^\\`])*`"
 
 ## Comments
-color brightblack "^\s*#.*"
+color brightcyan "^\s*#.*"

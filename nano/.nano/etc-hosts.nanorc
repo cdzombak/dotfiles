@@ -11,5 +11,5 @@ icolor green "^[0-9a-f:]+\s"
 color normal "[.:]"
 
 # comments
-color brightblack "^#.*"
+color brightcyan "^#.*"
 
