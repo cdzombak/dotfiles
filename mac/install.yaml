@@ -172,6 +172,10 @@ install_groups:
         install:
           - brew: mdless
 
+      - artifact: $BREW/bin/mdunwrap
+        install:
+          - brew: cdzombak/oss/mdunwrap
+
       - artifact: $BREW/bin/mogrify
         install:
           - brew: imagemagick
