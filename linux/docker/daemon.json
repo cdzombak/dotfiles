@@ -1,6 +1,6 @@
 {
   "log-driver": "gelf",
   "log-opts": {
-    "gelf-address": "udp://elton.tailnet-003a.ts.net:12211"
+    "gelf-address": "udp://100.106.255.23:12211"
   }
 }
