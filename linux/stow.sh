@@ -35,6 +35,6 @@ stow --target="$HOME" --ignore="DS_Store" git
 stow --target="$HOME" --ignore="DS_Store" htop
 touch "$HOME"/.gitconfig.local
 "$SCRIPT_DIR"/bash/integrate.sh
-"$SCRIPT_DIR"/../claude_code/install_statusline.sh
+"$SCRIPT_DIR"/../claude-code/install_statusline.sh
 
 cecho "✔ Done." $green

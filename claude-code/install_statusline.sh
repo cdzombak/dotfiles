@@ -3,7 +3,7 @@ set -euo pipefail
 
 CLAUDE_DIR="$HOME/.claude"
 SETTINGS="$CLAUDE_DIR/settings.json"
-STATUSLINE='{"type":"command","command":"~/.dotfiles/claude_code/statusline.sh"}'
+STATUSLINE='{"type":"command","command":"~/.dotfiles/claude-code/statusline.sh"}'
 
 if [ ! -d "$CLAUDE_DIR" ]; then
   echo "$CLAUDE_DIR does not exist; skipping Claude Code statusline install."
