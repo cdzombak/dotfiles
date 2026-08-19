@@ -28,4 +28,6 @@ stow --target="$HOME" --ignore="DS_Store" ruby
 stow --target="$HOME" --ignore="DS_Store" zsh
 stow --target="$HOME" --ignore="DS_Store" asdf
 
+"$SCRIPT_DIR"/../claude_code/install_statusline.sh
+
 cecho "✔ Done." $green
