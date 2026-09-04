@@ -4,8 +4,15 @@
 
 input=$(cat)
 model_name=$(echo "$input" | jq -r '.model.display_name')
+effort=$(echo "$input" | jq -r '.effort.level // empty')
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 cwd_display="${cwd/#$HOME/~}"
+
+if [[ -n "$effort" ]]; then
+    model_label="${model_name}/${effort}"
+else
+    model_label="$model_name"
+fi
 
 git_info=""
 if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
@@ -30,4 +37,4 @@ fi
 white=$'\033[37m'
 reset_cwd=$'\033[0m'
 
-printf "[%s] %s%s%s%s" "$model_name" "$white" "$cwd_display" "$reset_cwd" "$git_info"
+printf "[%s] %s%s%s%s" "$model_label" "$white" "$cwd_display" "$reset_cwd" "$git_info"
