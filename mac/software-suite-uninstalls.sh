@@ -233,6 +233,12 @@ if [ -e "/Applications/Grasshopper.app" ]; then
   trash /Applications/Grasshopper.app
 fi
 
+if [ -e "/Applications/Ice.app" ] ; then
+  echo "Ice..."
+  verify_smartdelete
+  trash "/Applications/Ice.app"
+fi
+
 if [ -e "/Applications/Ice Cubes.app" ] ; then
   echo "Ice Cubes..."
   verify_smartdelete

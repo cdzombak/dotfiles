@@ -572,13 +572,15 @@ install_groups:
         configure:
           - run: defaults write com.ridiculousfish.HexFiend DefaultEditMode 2
 
-      - artifact: /Applications/Ice.app
+      - artifact: /Applications/Thaw.app
         install:
-          - brew: jordanbaird-ice
+          - brew: thaw
+        configure:
+          - run: defaults write "com.stonerl.Thaw" "ShowIceIcon" 0
+          - run: defaults write "com.stonerl.Thaw" "EnableAlwaysHiddenSection" 1
         checklist:
           - Grant permissions
           - Launch at login
-          - Hide Ice icon
           - Configure menu bar as desired/following convention from existing systems
 
       - artifact: /Applications/IINA.app
