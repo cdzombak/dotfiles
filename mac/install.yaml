@@ -1356,6 +1356,11 @@ install_groups:
       - artifact: /Applications/Setapp/SQLPro Studio.app
       - artifact: /Applications/Setapp/Squash.app
         note: Image compression tool
+      - artifact: /Applications/Setapp/Taphouse.app
+        note: Homebrew GUI
+        checklist:
+          - Disable menu bar icon
+          - Enable "Auto-refresh services list"
 
   # Development tools (optional)
   - group: Dev

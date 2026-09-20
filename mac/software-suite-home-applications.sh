@@ -172,6 +172,7 @@ create_app_link "System Tools" "/System/Applications/System Settings.app"
 create_app_link "System Tools" "/Applications/Latest.app"
 create_app_link "System Tools" "/Applications/ServerCat.app"
 create_app_link "System Tools" "/Applications/Restic-Browser.app" "Restic Browser"
+create_app_link "System Tools" "/Applications/Setapp/Taphouse.app"
 create_app_link "System Tools" "/Applications/Tintd.app"
 
 create_app_folder "AI Tools"
